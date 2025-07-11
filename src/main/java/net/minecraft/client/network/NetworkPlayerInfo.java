@@ -33,11 +33,11 @@ public class NetworkPlayerInfo {
      * When this is non-null, it is displayed instead of the player's real name
      */
     private IChatComponent displayName;
-    private int field_178873_i = 0;
-    private int field_178870_j = 0;
-    private long field_178871_k = 0L;
-    private long field_178868_l = 0L;
-    private long field_178869_m = 0L;
+    private int lastHealth = 0;
+    private int displayHealth = 0;
+    private long lastHealthTime = 0L;
+    private long healthBlinkTime = 0L;
+    private long renderVisibilityId = 0L;
 
     public NetworkPlayerInfo(GameProfile p_i46294_1_) {
         this.gameProfile = p_i46294_1_;
@@ -136,42 +136,42 @@ public class NetworkPlayerInfo {
     }
 
     public int func_178835_l() {
-        return this.field_178873_i;
+        return this.lastHealth;
     }
 
     public void func_178836_b(int p_178836_1_) {
-        this.field_178873_i = p_178836_1_;
+        this.lastHealth = p_178836_1_;
     }
 
     public int func_178860_m() {
-        return this.field_178870_j;
+        return this.displayHealth;
     }
 
     public void func_178857_c(int p_178857_1_) {
-        this.field_178870_j = p_178857_1_;
+        this.displayHealth = p_178857_1_;
     }
 
     public long func_178847_n() {
-        return this.field_178871_k;
+        return this.lastHealthTime;
     }
 
     public void func_178846_a(long p_178846_1_) {
-        this.field_178871_k = p_178846_1_;
+        this.lastHealthTime = p_178846_1_;
     }
 
     public long func_178858_o() {
-        return this.field_178868_l;
+        return this.healthBlinkTime;
     }
 
     public void func_178844_b(long p_178844_1_) {
-        this.field_178868_l = p_178844_1_;
+        this.healthBlinkTime = p_178844_1_;
     }
 
     public long func_178855_p() {
-        return this.field_178869_m;
+        return this.renderVisibilityId;
     }
 
     public void func_178843_c(long p_178843_1_) {
-        this.field_178869_m = p_178843_1_;
+        this.renderVisibilityId = p_178843_1_;
     }
 }

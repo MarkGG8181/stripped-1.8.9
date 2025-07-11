@@ -11,7 +11,7 @@ public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
 {
     private static final ResourceLocation DEFAULT_RES_LOC = new ResourceLocation("textures/entity/steve.png");
     protected ModelBiped modelBipedMain;
-    protected float field_77070_b;
+    protected float scale;
 
     public RenderBiped(RenderManager renderManagerIn, ModelBiped modelBipedIn, float shadowSize)
     {
@@ -23,7 +23,7 @@ public class RenderBiped<T extends EntityLiving> extends RenderLiving<T>
     {
         super(renderManagerIn, modelBipedIn, shadowSize);
         this.modelBipedMain = modelBipedIn;
-        this.field_77070_b = p_i46169_4_;
+        this.scale = p_i46169_4_;
         this.addLayer(new LayerCustomHead(modelBipedIn.bipedHead));
     }
 

@@ -29,10 +29,10 @@ public class GuiFlatPresets extends GuiScreen
     private final GuiCreateFlatWorld parentScreen;
     private String presetsTitle;
     private String presetsShare;
-    private String field_146436_r;
-    private GuiFlatPresets.ListSlot field_146435_s;
-    private GuiButton field_146434_t;
-    private GuiTextField field_146433_u;
+    private String listText;
+    private GuiFlatPresets.ListSlot list;
+    private GuiButton btnSelect;
+    private GuiTextField export;
 
     public GuiFlatPresets(GuiCreateFlatWorld p_i46318_1_)
     {
@@ -49,12 +49,12 @@ public class GuiFlatPresets extends GuiScreen
         Keyboard.enableRepeatEvents(true);
         this.presetsTitle = I18n.format("createWorld.customize.presets.title", new Object[0]);
         this.presetsShare = I18n.format("createWorld.customize.presets.share", new Object[0]);
-        this.field_146436_r = I18n.format("createWorld.customize.presets.list", new Object[0]);
-        this.field_146433_u = new GuiTextField(2, this.fontRendererObj, 50, 40, this.width - 100, 20);
-        this.field_146435_s = new GuiFlatPresets.ListSlot();
-        this.field_146433_u.setMaxStringLength(1230);
-        this.field_146433_u.setText(this.parentScreen.func_146384_e());
-        this.buttonList.add(this.field_146434_t = new GuiButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("createWorld.customize.presets.select", new Object[0])));
+        this.listText = I18n.format("createWorld.customize.presets.list", new Object[0]);
+        this.export = new GuiTextField(2, this.fontRendererObj, 50, 40, this.width - 100, 20);
+        this.list = new GuiFlatPresets.ListSlot();
+        this.export.setMaxStringLength(1230);
+        this.export.setText(this.parentScreen.func_146384_e());
+        this.buttonList.add(this.btnSelect = new GuiButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("createWorld.customize.presets.select", new Object[0])));
         this.buttonList.add(new GuiButton(1, this.width / 2 + 5, this.height - 28, 150, 20, I18n.format("gui.cancel", new Object[0])));
         this.func_146426_g();
     }
@@ -65,7 +65,7 @@ public class GuiFlatPresets extends GuiScreen
     public void handleMouseInput() throws IOException
     {
         super.handleMouseInput();
-        this.field_146435_s.handleMouseInput();
+        this.list.handleMouseInput();
     }
 
     /**
@@ -81,7 +81,7 @@ public class GuiFlatPresets extends GuiScreen
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
-        this.field_146433_u.mouseClicked(mouseX, mouseY, mouseButton);
+        this.export.mouseClicked(mouseX, mouseY, mouseButton);
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
@@ -91,7 +91,7 @@ public class GuiFlatPresets extends GuiScreen
      */
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        if (!this.field_146433_u.textboxKeyTyped(typedChar, keyCode))
+        if (!this.export.textboxKeyTyped(typedChar, keyCode))
         {
             super.keyTyped(typedChar, keyCode);
         }
@@ -104,7 +104,7 @@ public class GuiFlatPresets extends GuiScreen
     {
         if (button.id == 0 && this.func_146430_p())
         {
-            this.parentScreen.func_146383_a(this.field_146433_u.getText());
+            this.parentScreen.func_146383_a(this.export.getText());
             this.mc.displayGuiScreen(this.parentScreen);
         }
         else if (button.id == 1)
@@ -119,11 +119,11 @@ public class GuiFlatPresets extends GuiScreen
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
-        this.field_146435_s.drawScreen(mouseX, mouseY, partialTicks);
+        this.list.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.presetsTitle, this.width / 2, 8, 16777215);
         this.drawString(this.fontRendererObj, this.presetsShare, 50, 30, 10526880);
-        this.drawString(this.fontRendererObj, this.field_146436_r, 50, 70, 10526880);
-        this.field_146433_u.drawTextBox();
+        this.drawString(this.fontRendererObj, this.listText, 50, 70, 10526880);
+        this.export.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -132,19 +132,19 @@ public class GuiFlatPresets extends GuiScreen
      */
     public void updateScreen()
     {
-        this.field_146433_u.updateCursorCounter();
+        this.export.updateCursorCounter();
         super.updateScreen();
     }
 
     public void func_146426_g()
     {
         boolean flag = this.func_146430_p();
-        this.field_146434_t.enabled = flag;
+        this.btnSelect.enabled = flag;
     }
 
     private boolean func_146430_p()
     {
-        return this.field_146435_s.field_148175_k > -1 && this.field_146435_s.field_148175_k < FLAT_WORLD_PRESETS.size() || this.field_146433_u.getText().length() > 1;
+        return this.list.selected > -1 && this.list.selected < FLAT_WORLD_PRESETS.size() || this.export.getText().length() > 1;
     }
 
     private static void func_146425_a(String p_146425_0_, Item p_146425_1_, BiomeGenBase p_146425_2_, FlatLayerInfo... p_146425_3_)
@@ -194,23 +194,23 @@ public class GuiFlatPresets extends GuiScreen
 
     static class LayerItem
     {
-        public Item field_148234_a;
-        public int field_179037_b;
-        public String field_148232_b;
-        public String field_148233_c;
+        public Item icon;
+        public int iconMetadata;
+        public String name;
+        public String generatorInfo;
 
         public LayerItem(Item p_i45518_1_, int p_i45518_2_, String p_i45518_3_, String p_i45518_4_)
         {
-            this.field_148234_a = p_i45518_1_;
-            this.field_179037_b = p_i45518_2_;
-            this.field_148232_b = p_i45518_3_;
-            this.field_148233_c = p_i45518_4_;
+            this.icon = p_i45518_1_;
+            this.iconMetadata = p_i45518_2_;
+            this.name = p_i45518_3_;
+            this.generatorInfo = p_i45518_4_;
         }
     }
 
     class ListSlot extends GuiSlot
     {
-        public int field_148175_k = -1;
+        public int selected = -1;
 
         public ListSlot()
         {
@@ -257,14 +257,14 @@ public class GuiFlatPresets extends GuiScreen
 
         protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
         {
-            this.field_148175_k = slotIndex;
+            this.selected = slotIndex;
             GuiFlatPresets.this.func_146426_g();
-            GuiFlatPresets.this.field_146433_u.setText(((GuiFlatPresets.LayerItem)GuiFlatPresets.FLAT_WORLD_PRESETS.get(GuiFlatPresets.this.field_146435_s.field_148175_k)).field_148233_c);
+            GuiFlatPresets.this.export.setText(((GuiFlatPresets.LayerItem)GuiFlatPresets.FLAT_WORLD_PRESETS.get(GuiFlatPresets.this.list.selected)).generatorInfo);
         }
 
         protected boolean isSelected(int slotIndex)
         {
-            return slotIndex == this.field_148175_k;
+            return slotIndex == this.selected;
         }
 
         protected void drawBackground()
@@ -274,8 +274,8 @@ public class GuiFlatPresets extends GuiScreen
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
             GuiFlatPresets.LayerItem guiflatpresets$layeritem = (GuiFlatPresets.LayerItem)GuiFlatPresets.FLAT_WORLD_PRESETS.get(entryID);
-            this.func_178054_a(p_180791_2_, p_180791_3_, guiflatpresets$layeritem.field_148234_a, guiflatpresets$layeritem.field_179037_b);
-            GuiFlatPresets.this.fontRendererObj.drawString(guiflatpresets$layeritem.field_148232_b, p_180791_2_ + 18 + 5, p_180791_3_ + 6, 16777215);
+            this.func_178054_a(p_180791_2_, p_180791_3_, guiflatpresets$layeritem.icon, guiflatpresets$layeritem.iconMetadata);
+            GuiFlatPresets.this.fontRendererObj.drawString(guiflatpresets$layeritem.name, p_180791_2_ + 18 + 5, p_180791_3_ + 6, 16777215);
         }
     }
 }

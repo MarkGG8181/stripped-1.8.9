@@ -5,16 +5,16 @@ import net.minecraft.util.MathHelper;
 
 public class ModelWitch extends ModelVillager
 {
-    public boolean field_82900_g;
-    private ModelRenderer field_82901_h = (new ModelRenderer(this)).setTextureSize(64, 128);
+    public boolean holdingItem;
+    private ModelRenderer mole = (new ModelRenderer(this)).setTextureSize(64, 128);
     private ModelRenderer witchHat;
 
     public ModelWitch(float p_i46361_1_)
     {
         super(p_i46361_1_, 0.0F, 64, 128);
-        this.field_82901_h.setRotationPoint(0.0F, -2.0F, 0.0F);
-        this.field_82901_h.setTextureOffset(0, 0).addBox(0.0F, 3.0F, -6.75F, 1, 1, 1, -0.25F);
-        this.villagerNose.addChild(this.field_82901_h);
+        this.mole.setRotationPoint(0.0F, -2.0F, 0.0F);
+        this.mole.setTextureOffset(0, 0).addBox(0.0F, 3.0F, -6.75F, 1, 1, 1, -0.25F);
+        this.villagerNose.addChild(this.mole);
         this.witchHat = (new ModelRenderer(this)).setTextureSize(64, 128);
         this.witchHat.setRotationPoint(-5.0F, -10.03125F, -5.0F);
         this.witchHat.setTextureOffset(0, 64).addBox(0.0F, 0.0F, 0.0F, 10, 2, 10);
@@ -53,7 +53,7 @@ public class ModelWitch extends ModelVillager
         this.villagerNose.rotateAngleY = 0.0F;
         this.villagerNose.rotateAngleZ = MathHelper.cos((float)entityIn.ticksExisted * f) * 2.5F * (float)Math.PI / 180.0F;
 
-        if (this.field_82900_g)
+        if (this.holdingItem)
         {
             this.villagerNose.rotateAngleX = -0.9F;
             this.villagerNose.offsetZ = -0.09375F;

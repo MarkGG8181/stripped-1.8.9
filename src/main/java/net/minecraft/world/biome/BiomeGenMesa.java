@@ -17,19 +17,19 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class BiomeGenMesa extends BiomeGenBase
 {
-    private IBlockState[] field_150621_aC;
-    private long field_150622_aD;
-    private NoiseGeneratorPerlin field_150623_aE;
-    private NoiseGeneratorPerlin field_150624_aF;
-    private NoiseGeneratorPerlin field_150625_aG;
-    private boolean field_150626_aH;
-    private boolean field_150620_aI;
+    private IBlockState[] clayBands;
+    private long worldSeed;
+    private NoiseGeneratorPerlin pillarNoise;
+    private NoiseGeneratorPerlin pillarRoofNoise;
+    private NoiseGeneratorPerlin clayBandsOffsetNoise;
+    private boolean brycePillars;
+    private boolean hasForest;
 
     public BiomeGenMesa(int id, boolean p_i45380_2_, boolean p_i45380_3_)
     {
         super(id);
-        this.field_150626_aH = p_i45380_2_;
-        this.field_150620_aI = p_i45380_3_;
+        this.brycePillars = p_i45380_2_;
+        this.hasForest = p_i45380_3_;
         this.setDisableRain();
         this.setTemperatureRainfall(2.0F, 0.0F);
         this.spawnableCreatureList.clear();
@@ -70,31 +70,31 @@ public class BiomeGenMesa extends BiomeGenBase
 
     public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
     {
-        if (this.field_150621_aC == null || this.field_150622_aD != worldIn.getSeed())
+        if (this.clayBands == null || this.worldSeed != worldIn.getSeed())
         {
             this.func_150619_a(worldIn.getSeed());
         }
 
-        if (this.field_150623_aE == null || this.field_150624_aF == null || this.field_150622_aD != worldIn.getSeed())
+        if (this.pillarNoise == null || this.pillarRoofNoise == null || this.worldSeed != worldIn.getSeed())
         {
-            Random random = new Random(this.field_150622_aD);
-            this.field_150623_aE = new NoiseGeneratorPerlin(random, 4);
-            this.field_150624_aF = new NoiseGeneratorPerlin(random, 1);
+            Random random = new Random(this.worldSeed);
+            this.pillarNoise = new NoiseGeneratorPerlin(random, 4);
+            this.pillarRoofNoise = new NoiseGeneratorPerlin(random, 1);
         }
 
-        this.field_150622_aD = worldIn.getSeed();
+        this.worldSeed = worldIn.getSeed();
         double d4 = 0.0D;
 
-        if (this.field_150626_aH)
+        if (this.brycePillars)
         {
             int i = (x & -16) + (z & 15);
             int j = (z & -16) + (x & 15);
-            double d0 = Math.min(Math.abs(noiseVal), this.field_150623_aE.func_151601_a((double)i * 0.25D, (double)j * 0.25D));
+            double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.func_151601_a((double)i * 0.25D, (double)j * 0.25D));
 
             if (d0 > 0.0D)
             {
                 double d1 = 0.001953125D;
-                double d2 = Math.abs(this.field_150624_aF.func_151601_a((double)i * d1, (double)j * d1));
+                double d2 = Math.abs(this.pillarRoofNoise.func_151601_a((double)i * d1, (double)j * d1));
                 d4 = d0 * d0 * 2.5D;
                 double d3 = Math.ceil(d2 * 50.0D) + 14.0D;
 
@@ -169,7 +169,7 @@ public class BiomeGenMesa extends BiomeGenBase
                                 chunkPrimerIn.setBlockState(k1, i1, j1, iblockstate3.getBlock().getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE));
                             }
                         }
-                        else if (this.field_150620_aI && i1 > 86 + k * 2)
+                        else if (this.hasForest && i1 > 86 + k * 2)
                         {
                             if (flag)
                             {
@@ -229,10 +229,10 @@ public class BiomeGenMesa extends BiomeGenBase
 
     private void func_150619_a(long p_150619_1_)
     {
-        this.field_150621_aC = new IBlockState[64];
-        Arrays.fill(this.field_150621_aC, Blocks.hardened_clay.getDefaultState());
+        this.clayBands = new IBlockState[64];
+        Arrays.fill(this.clayBands, Blocks.hardened_clay.getDefaultState());
         Random random = new Random(p_150619_1_);
-        this.field_150625_aG = new NoiseGeneratorPerlin(random, 1);
+        this.clayBandsOffsetNoise = new NoiseGeneratorPerlin(random, 1);
 
         for (int l1 = 0; l1 < 64; ++l1)
         {
@@ -240,7 +240,7 @@ public class BiomeGenMesa extends BiomeGenBase
 
             if (l1 < 64)
             {
-                this.field_150621_aC[l1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
+                this.clayBands[l1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
             }
         }
 
@@ -253,7 +253,7 @@ public class BiomeGenMesa extends BiomeGenBase
 
             for (int l = 0; k + l < 64 && l < j; ++l)
             {
-                this.field_150621_aC[k + l] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW);
+                this.clayBands[k + l] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW);
             }
         }
 
@@ -266,7 +266,7 @@ public class BiomeGenMesa extends BiomeGenBase
 
             for (int i1 = 0; l3 + i1 < 64 && i1 < i3; ++i1)
             {
-                this.field_150621_aC[l3 + i1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
+                this.clayBands[l3 + i1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
             }
         }
 
@@ -279,7 +279,7 @@ public class BiomeGenMesa extends BiomeGenBase
 
             for (int j1 = 0; k4 + j1 < 64 && j1 < i4; ++j1)
             {
-                this.field_150621_aC[k4 + j1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.RED);
+                this.clayBands[k4 + j1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.RED);
             }
         }
 
@@ -293,16 +293,16 @@ public class BiomeGenMesa extends BiomeGenBase
 
             for (int k1 = 0; j4 + k1 < 64 && k1 < i5; ++k1)
             {
-                this.field_150621_aC[j4 + k1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
+                this.clayBands[j4 + k1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.WHITE);
 
                 if (j4 + k1 > 1 && random.nextBoolean())
                 {
-                    this.field_150621_aC[j4 + k1 - 1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
+                    this.clayBands[j4 + k1 - 1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
                 }
 
                 if (j4 + k1 < 63 && random.nextBoolean())
                 {
-                    this.field_150621_aC[j4 + k1 + 1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
+                    this.clayBands[j4 + k1 + 1] = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER);
                 }
             }
         }
@@ -310,14 +310,14 @@ public class BiomeGenMesa extends BiomeGenBase
 
     private IBlockState func_180629_a(int p_180629_1_, int p_180629_2_, int p_180629_3_)
     {
-        int i = (int)Math.round(this.field_150625_aG.func_151601_a((double)p_180629_1_ * 1.0D / 512.0D, (double)p_180629_1_ * 1.0D / 512.0D) * 2.0D);
-        return this.field_150621_aC[(p_180629_2_ + i + 64) % 64];
+        int i = (int)Math.round(this.clayBandsOffsetNoise.func_151601_a((double)p_180629_1_ * 1.0D / 512.0D, (double)p_180629_1_ * 1.0D / 512.0D) * 2.0D);
+        return this.clayBands[(p_180629_2_ + i + 64) % 64];
     }
 
     protected BiomeGenBase createMutatedBiome(int p_180277_1_)
     {
         boolean flag = this.biomeID == BiomeGenBase.mesa.biomeID;
-        BiomeGenMesa biomegenmesa = new BiomeGenMesa(p_180277_1_, flag, this.field_150620_aI);
+        BiomeGenMesa biomegenmesa = new BiomeGenMesa(p_180277_1_, flag, this.hasForest);
 
         if (!flag)
         {

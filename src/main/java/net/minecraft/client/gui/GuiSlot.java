@@ -32,7 +32,7 @@ public abstract class GuiSlot
     private int scrollDownButtonID;
     protected int mouseX;
     protected int mouseY;
-    protected boolean field_148163_i = true;
+    protected boolean centerListVertically = true;
 
     /** Where the mouse was in the window when you first clicked to scroll */
     protected int initialClickY = -2;
@@ -51,7 +51,7 @@ public abstract class GuiSlot
 
     /** The time when this button was last clicked. */
     protected long lastClicked;
-    protected boolean field_178041_q = true;
+    protected boolean visible = true;
 
     /**
      * Set to true if a selected element in this gui will show an outline box
@@ -221,7 +221,7 @@ public abstract class GuiSlot
 
     public void drawScreen(int mouseXIn, int mouseYIn, float p_148128_3_)
     {
-        if (this.field_178041_q)
+        if (this.visible)
         {
             this.mouseX = mouseXIn;
             this.mouseY = mouseYIn;

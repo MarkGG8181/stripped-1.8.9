@@ -15,9 +15,9 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListEntry {
     private static final ResourceLocation RESOURCE_PACKS_TEXTURE = new ResourceLocation("textures/gui/resource_packs.png");
-    private static final IChatComponent field_183020_d = new ChatComponentTranslation("resourcePack.incompatible", new Object[0]);
-    private static final IChatComponent field_183021_e = new ChatComponentTranslation("resourcePack.incompatible.old", new Object[0]);
-    private static final IChatComponent field_183022_f = new ChatComponentTranslation("resourcePack.incompatible.new", new Object[0]);
+    private static final IChatComponent INCOMPATIBLE = new ChatComponentTranslation("resourcePack.incompatible", new Object[0]);
+    private static final IChatComponent INCOMPATIBLE_OLD = new ChatComponentTranslation("resourcePack.incompatible.old", new Object[0]);
+    private static final IChatComponent INCOMPATIBLE_NEW = new ChatComponentTranslation("resourcePack.incompatible.new", new Object[0]);
     protected final Minecraft mc;
     protected final GuiScreenResourcePacks resourcePacksGUI;
 
@@ -48,11 +48,11 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
             int k = mouseY - y;
 
             if (i < 1) {
-                s = field_183020_d.getFormattedText();
-                s1 = field_183021_e.getFormattedText();
+                s = INCOMPATIBLE.getFormattedText();
+                s1 = INCOMPATIBLE_OLD.getFormattedText();
             } else if (i > 1) {
-                s = field_183020_d.getFormattedText();
-                s1 = field_183022_f.getFormattedText();
+                s = INCOMPATIBLE.getFormattedText();
+                s1 = INCOMPATIBLE_NEW.getFormattedText();
             }
 
             if (this.func_148309_e()) {

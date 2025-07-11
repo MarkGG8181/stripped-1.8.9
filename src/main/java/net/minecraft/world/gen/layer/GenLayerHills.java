@@ -7,13 +7,13 @@ import org.apache.logging.log4j.Logger;
 public class GenLayerHills extends GenLayer
 {
     private static final Logger logger = LogManager.getLogger();
-    private GenLayer field_151628_d;
+    private GenLayer riverLayer;
 
     public GenLayerHills(long p_i45479_1_, GenLayer p_i45479_3_, GenLayer p_i45479_4_)
     {
         super(p_i45479_1_);
         this.parent = p_i45479_3_;
-        this.field_151628_d = p_i45479_4_;
+        this.riverLayer = p_i45479_4_;
     }
 
     /**
@@ -23,7 +23,7 @@ public class GenLayerHills extends GenLayer
     public int[] getInts(int areaX, int areaY, int areaWidth, int areaHeight)
     {
         int[] aint = this.parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
-        int[] aint1 = this.field_151628_d.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
+        int[] aint1 = this.riverLayer.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
         int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
         for (int i = 0; i < areaHeight; ++i)

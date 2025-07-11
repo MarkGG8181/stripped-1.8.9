@@ -10,7 +10,7 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 public class S1CPacketEntityMetadata implements Packet<INetHandlerPlayClient>
 {
     private int entityId;
-    private List<DataWatcher.WatchableObject> field_149378_b;
+    private List<DataWatcher.WatchableObject> dataManagerEntries;
 
     public S1CPacketEntityMetadata()
     {
@@ -22,11 +22,11 @@ public class S1CPacketEntityMetadata implements Packet<INetHandlerPlayClient>
 
         if (p_i45217_3_)
         {
-            this.field_149378_b = p_i45217_2_.getAllWatched();
+            this.dataManagerEntries = p_i45217_2_.getAllWatched();
         }
         else
         {
-            this.field_149378_b = p_i45217_2_.getChanged();
+            this.dataManagerEntries = p_i45217_2_.getChanged();
         }
     }
 
@@ -36,7 +36,7 @@ public class S1CPacketEntityMetadata implements Packet<INetHandlerPlayClient>
     public void readPacketData(PacketBuffer buf) throws IOException
     {
         this.entityId = buf.readVarIntFromBuffer();
-        this.field_149378_b = DataWatcher.readWatchedListFromPacketBuffer(buf);
+        this.dataManagerEntries = DataWatcher.readWatchedListFromPacketBuffer(buf);
     }
 
     /**
@@ -45,7 +45,7 @@ public class S1CPacketEntityMetadata implements Packet<INetHandlerPlayClient>
     public void writePacketData(PacketBuffer buf) throws IOException
     {
         buf.writeVarIntToBuffer(this.entityId);
-        DataWatcher.writeWatchedListToPacketBuffer(this.field_149378_b, buf);
+        DataWatcher.writeWatchedListToPacketBuffer(this.dataManagerEntries, buf);
     }
 
     /**
@@ -58,7 +58,7 @@ public class S1CPacketEntityMetadata implements Packet<INetHandlerPlayClient>
 
     public List<DataWatcher.WatchableObject> func_149376_c()
     {
-        return this.field_149378_b;
+        return this.dataManagerEntries;
     }
 
     public int getEntityId()

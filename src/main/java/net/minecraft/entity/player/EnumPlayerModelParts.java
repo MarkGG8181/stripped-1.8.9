@@ -16,14 +16,14 @@ public enum EnumPlayerModelParts
     private final int partId;
     private final int partMask;
     private final String partName;
-    private final IChatComponent field_179339_k;
+    private final IChatComponent name;
 
     private EnumPlayerModelParts(int partIdIn, String partNameIn)
     {
         this.partId = partIdIn;
         this.partMask = 1 << partIdIn;
         this.partName = partNameIn;
-        this.field_179339_k = new ChatComponentTranslation("options.modelPart." + partNameIn, new Object[0]);
+        this.name = new ChatComponentTranslation("options.modelPart." + partNameIn, new Object[0]);
     }
 
     public int getPartMask()
@@ -43,6 +43,6 @@ public enum EnumPlayerModelParts
 
     public IChatComponent func_179326_d()
     {
-        return this.field_179339_k;
+        return this.name;
     }
 }

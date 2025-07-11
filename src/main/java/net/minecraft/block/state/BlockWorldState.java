@@ -9,7 +9,7 @@ public class BlockWorldState
 {
     private final World world;
     private final BlockPos pos;
-    private final boolean field_181628_c;
+    private final boolean forceLoad;
     private IBlockState state;
     private TileEntity tileEntity;
     private boolean tileEntityInitialized;
@@ -18,12 +18,12 @@ public class BlockWorldState
     {
         this.world = worldIn;
         this.pos = posIn;
-        this.field_181628_c = p_i46451_3_;
+        this.forceLoad = p_i46451_3_;
     }
 
     public IBlockState getBlockState()
     {
-        if (this.state == null && (this.field_181628_c || this.world.isBlockLoaded(this.pos)))
+        if (this.state == null && (this.forceLoad || this.world.isBlockLoaded(this.pos)))
         {
             this.state = this.world.getBlockState(this.pos);
         }

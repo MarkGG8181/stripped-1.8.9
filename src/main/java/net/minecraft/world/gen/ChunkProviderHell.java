@@ -58,14 +58,14 @@ public class ChunkProviderHell implements IChunkProvider
     private final NoiseGeneratorOctaves netherrackExculsivityNoiseGen;
     public final NoiseGeneratorOctaves netherNoiseGen6;
     public final NoiseGeneratorOctaves netherNoiseGen7;
-    private final WorldGenFire field_177470_t = new WorldGenFire();
-    private final WorldGenGlowStone1 field_177469_u = new WorldGenGlowStone1();
-    private final WorldGenGlowStone2 field_177468_v = new WorldGenGlowStone2();
-    private final WorldGenerator field_177467_w = new WorldGenMinable(Blocks.quartz_ore.getDefaultState(), 14, BlockHelper.forBlock(Blocks.netherrack));
-    private final WorldGenHellLava field_177473_x = new WorldGenHellLava(Blocks.flowing_lava, true);
-    private final WorldGenHellLava field_177472_y = new WorldGenHellLava(Blocks.flowing_lava, false);
-    private final GeneratorBushFeature field_177471_z = new GeneratorBushFeature(Blocks.brown_mushroom);
-    private final GeneratorBushFeature field_177465_A = new GeneratorBushFeature(Blocks.red_mushroom);
+    private final WorldGenFire fireFeature = new WorldGenFire();
+    private final WorldGenGlowStone1 lightGemGen = new WorldGenGlowStone1();
+    private final WorldGenGlowStone2 hellPortalGen = new WorldGenGlowStone2();
+    private final WorldGenerator quartzGen = new WorldGenMinable(Blocks.quartz_ore.getDefaultState(), 14, BlockHelper.forBlock(Blocks.netherrack));
+    private final WorldGenHellLava lavaTrapGen = new WorldGenHellLava(Blocks.flowing_lava, true);
+    private final WorldGenHellLava hellSpringGen = new WorldGenHellLava(Blocks.flowing_lava, false);
+    private final GeneratorBushFeature brownMushroomFeature = new GeneratorBushFeature(Blocks.brown_mushroom);
+    private final GeneratorBushFeature redMushroomFeature = new GeneratorBushFeature(Blocks.red_mushroom);
     private final MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
     private final MapGenBase netherCaveGenerator = new MapGenCavesHell();
     double[] noiseData1;
@@ -393,42 +393,42 @@ public class ChunkProviderHell implements IChunkProvider
 
         for (int i = 0; i < 8; ++i)
         {
-            this.field_177472_y.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
+            this.hellSpringGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
         for (int j = 0; j < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1; ++j)
         {
-            this.field_177470_t.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
+            this.fireFeature.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
         for (int k = 0; k < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1); ++k)
         {
-            this.field_177469_u.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
+            this.lightGemGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
         for (int l = 0; l < 10; ++l)
         {
-            this.field_177468_v.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
+            this.hellPortalGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
         }
 
         if (this.hellRNG.nextBoolean())
         {
-            this.field_177471_z.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
+            this.brownMushroomFeature.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
         }
 
         if (this.hellRNG.nextBoolean())
         {
-            this.field_177465_A.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
+            this.redMushroomFeature.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
         }
 
         for (int i1 = 0; i1 < 16; ++i1)
         {
-            this.field_177467_w.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
+            this.quartzGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
         }
 
         for (int j1 = 0; j1 < 16; ++j1)
         {
-            this.field_177473_x.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
+            this.lavaTrapGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
         }
 
         BlockFalling.fallInstantly = false;

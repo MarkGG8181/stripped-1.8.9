@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 
 public class WorldGenTaiga1 extends WorldGenAbstractTree
 {
-    private static final IBlockState field_181636_a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-    private static final IBlockState field_181637_b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState TRUNK = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
+    private static final IBlockState LEAF = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
     public WorldGenTaiga1()
     {
@@ -95,7 +95,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                                     if (!worldIn.getBlockState(blockpos).getBlock().isFullBlock())
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, field_181637_b);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
                                     }
                                 }
                             }
@@ -117,7 +117,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                         if (block1.getMaterial() == Material.air || block1.getMaterial() == Material.leaves)
                         {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(i3), field_181636_a);
+                            this.setBlockAndNotifyAdequately(worldIn, position.up(i3), TRUNK);
                         }
                     }
 

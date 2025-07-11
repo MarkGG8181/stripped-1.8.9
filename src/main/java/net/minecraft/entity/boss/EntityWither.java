@@ -40,12 +40,12 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityWither extends EntityMob implements IBossDisplayData, IRangedAttackMob {
-    private float[] field_82220_d = new float[2];
-    private float[] field_82221_e = new float[2];
-    private float[] field_82217_f = new float[2];
-    private float[] field_82218_g = new float[2];
-    private int[] field_82223_h = new int[2];
-    private int[] field_82224_i = new int[2];
+    private float[] xRotationHeads = new float[2];
+    private float[] yRotationHeads = new float[2];
+    private float[] xRotOHeads = new float[2];
+    private float[] yRotOHeads = new float[2];
+    private int[] nextHeadUpdate = new int[2];
+    private int[] idleHeadUpdates = new int[2];
 
     /**
      * Time before the Wither tries to break blocks
@@ -156,8 +156,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         super.onLivingUpdate();
 
         for (int i = 0; i < 2; ++i) {
-            this.field_82218_g[i] = this.field_82221_e[i];
-            this.field_82217_f[i] = this.field_82220_d[i];
+            this.yRotOHeads[i] = this.yRotationHeads[i];
+            this.xRotOHeads[i] = this.xRotationHeads[i];
         }
 
         for (int j = 0; j < 2; ++j) {
@@ -178,10 +178,10 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                 double d9 = (double) MathHelper.sqrt_double(d6 * d6 + d8 * d8);
                 float f = (float) (MathHelper.atan2(d8, d6) * 180.0D / Math.PI) - 90.0F;
                 float f1 = (float) (-(MathHelper.atan2(d7, d9) * 180.0D / Math.PI));
-                this.field_82220_d[j] = this.func_82204_b(this.field_82220_d[j], f1, 40.0F);
-                this.field_82221_e[j] = this.func_82204_b(this.field_82221_e[j], f, 10.0F);
+                this.xRotationHeads[j] = this.func_82204_b(this.xRotationHeads[j], f1, 40.0F);
+                this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], f, 10.0F);
             } else {
-                this.field_82221_e[j] = this.func_82204_b(this.field_82221_e[j], this.renderYawOffset, 10.0F);
+                this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
             }
         }
 
@@ -223,13 +223,13 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
             super.updateAITasks();
 
             for (int i = 1; i < 3; ++i) {
-                if (this.ticksExisted >= this.field_82223_h[i - 1]) {
-                    this.field_82223_h[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
+                if (this.ticksExisted >= this.nextHeadUpdate[i - 1]) {
+                    this.nextHeadUpdate[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
 
                     if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
                         int j3 = i - 1;
-                        int k3 = this.field_82224_i[i - 1];
-                        this.field_82224_i[j3] = this.field_82224_i[i - 1] + 1;
+                        int k3 = this.idleHeadUpdates[i - 1];
+                        this.idleHeadUpdates[j3] = this.idleHeadUpdates[i - 1] + 1;
 
                         if (k3 > 15) {
                             float f = 10.0F;
@@ -238,7 +238,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                             double d1 = MathHelper.getRandomDoubleInRange(this.rand, this.posY - (double) f1, this.posY + (double) f1);
                             double d2 = MathHelper.getRandomDoubleInRange(this.rand, this.posZ - (double) f, this.posZ + (double) f);
                             this.launchWitherSkullToCoords(i + 1, d0, d1, d2, true);
-                            this.field_82224_i[i - 1] = 0;
+                            this.idleHeadUpdates[i - 1] = 0;
                         }
                     }
 
@@ -252,8 +252,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                                 this.updateWatchedTargetId(i, 0);
                             } else {
                                 this.launchWitherSkullToEntity(i + 1, (EntityLivingBase) entity);
-                                this.field_82223_h[i - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
-                                this.field_82224_i[i - 1] = 0;
+                                this.nextHeadUpdate[i - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
+                                this.idleHeadUpdates[i - 1] = 0;
                             }
                         } else {
                             this.updateWatchedTargetId(i, 0);
@@ -446,8 +446,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                         this.blockBreakCounter = 20;
                     }
 
-                    for (int i = 0; i < this.field_82224_i.length; ++i) {
-                        this.field_82224_i[i] += 3;
+                    for (int i = 0; i < this.idleHeadUpdates.length; ++i) {
+                        this.idleHeadUpdates[i] += 3;
                     }
 
                     return super.attackEntityFrom(source, amount);
@@ -507,11 +507,11 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     }
 
     public float func_82207_a(int p_82207_1_) {
-        return this.field_82221_e[p_82207_1_];
+        return this.yRotationHeads[p_82207_1_];
     }
 
     public float func_82210_r(int p_82210_1_) {
-        return this.field_82220_d[p_82210_1_];
+        return this.xRotationHeads[p_82210_1_];
     }
 
     public int getInvulTime() {

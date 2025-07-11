@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 
 public class WorldGenSavannaTree extends WorldGenAbstractTree
 {
-    private static final IBlockState field_181643_a = Blocks.log2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA);
-    private static final IBlockState field_181644_b = Blocks.leaves2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState TRUNK = Blocks.log2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA);
+    private static final IBlockState LEAF = Blocks.leaves2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
     public WorldGenSavannaTree(boolean p_i45463_1_)
     {
@@ -204,7 +204,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
     private void func_181642_b(World p_181642_1_, BlockPos p_181642_2_)
     {
-        this.setBlockAndNotifyAdequately(p_181642_1_, p_181642_2_, field_181643_a);
+        this.setBlockAndNotifyAdequately(p_181642_1_, p_181642_2_, TRUNK);
     }
 
     private void func_175924_b(World worldIn, BlockPos p_175924_2_)
@@ -213,7 +213,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
         if (material == Material.air || material == Material.leaves)
         {
-            this.setBlockAndNotifyAdequately(worldIn, p_175924_2_, field_181644_b);
+            this.setBlockAndNotifyAdequately(worldIn, p_175924_2_, LEAF);
         }
     }
 }

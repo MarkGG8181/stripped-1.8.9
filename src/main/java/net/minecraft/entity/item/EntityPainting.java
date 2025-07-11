@@ -168,7 +168,7 @@ public class EntityPainting extends EntityHanging
         SKELETON("Skeleton", 64, 48, 192, 64),
         DONKEY_KONG("DonkeyKong", 64, 48, 192, 112);
 
-        public static final int field_180001_A = "SkullAndRoses".length();
+        public static final int MAX_NAME_LENGTH = "SkullAndRoses".length();
         public final String title;
         public final int sizeX;
         public final int sizeY;

@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class FlatLayerInfo
 {
-    private final int field_175902_a;
+    private final int version;
     private IBlockState layerMaterial;
 
     /** Amount of layers for this set of layers. */
@@ -21,7 +21,7 @@ public class FlatLayerInfo
     public FlatLayerInfo(int p_i45627_1_, int height, Block layerMaterialIn)
     {
         this.layerCount = 1;
-        this.field_175902_a = p_i45627_1_;
+        this.version = p_i45627_1_;
         this.layerCount = height;
         this.layerMaterial = layerMaterialIn.getDefaultState();
     }
@@ -78,7 +78,7 @@ public class FlatLayerInfo
     {
         String s;
 
-        if (this.field_175902_a >= 3)
+        if (this.version >= 3)
         {
             ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(this.getLayerMaterialBlock());
             s = resourcelocation == null ? "null" : resourcelocation.toString();

@@ -37,7 +37,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
 
     /** Save directory for chunks using the Anvil format */
     private final File chunkSaveLocation;
-    private boolean field_183014_e = false;
+    private boolean savingExtraData = false;
 
     public AnvilChunkLoader(File chunkSaveLocationIn)
     {
@@ -138,7 +138,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
     {
         if (this.chunksToRemove.isEmpty())
         {
-            if (this.field_183014_e)
+            if (this.savingExtraData)
             {
                 logger.info("ThreadedAnvilChunkStorage ({}): All chunks are saved", new Object[] {this.chunkSaveLocation.getName()});
             }
@@ -208,7 +208,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
     {
         try
         {
-            this.field_183014_e = true;
+            this.savingExtraData = true;
 
             while (true)
             {
@@ -220,7 +220,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO
         }
         finally
         {
-            this.field_183014_e = false;
+            this.savingExtraData = false;
         }
     }
 

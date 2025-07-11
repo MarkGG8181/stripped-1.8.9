@@ -5,19 +5,19 @@ import net.minecraft.entity.EntityLivingBase;
 public class CombatEntry
 {
     private final DamageSource damageSrc;
-    private final int field_94567_b;
+    private final int time;
     private final float damage;
     private final float health;
-    private final String field_94566_e;
+    private final String fallSuffix;
     private final float fallDistance;
 
     public CombatEntry(DamageSource damageSrcIn, int p_i1564_2_, float healthAmount, float damageAmount, String p_i1564_5_, float fallDistanceIn)
     {
         this.damageSrc = damageSrcIn;
-        this.field_94567_b = p_i1564_2_;
+        this.time = p_i1564_2_;
         this.damage = damageAmount;
         this.health = healthAmount;
-        this.field_94566_e = p_i1564_5_;
+        this.fallSuffix = p_i1564_5_;
         this.fallDistance = fallDistanceIn;
     }
 
@@ -44,7 +44,7 @@ public class CombatEntry
 
     public String func_94562_g()
     {
-        return this.field_94566_e;
+        return this.fallSuffix;
     }
 
     public IChatComponent getDamageSrcDisplayName()

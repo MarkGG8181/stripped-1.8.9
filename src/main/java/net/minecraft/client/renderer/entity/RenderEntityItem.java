@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderEntityItem extends Render<EntityItem>
 {
     private final RenderItem itemRenderer;
-    private Random field_177079_e = new Random();
+    private Random random = new Random();
 
     public RenderEntityItem(RenderManager renderManagerIn, RenderItem p_i46167_2_)
     {
@@ -91,7 +91,7 @@ public class RenderEntityItem extends Render<EntityItem>
     public void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         ItemStack itemstack = entity.getEntityItem();
-        this.field_177079_e.setSeed(187L);
+        this.random.setSeed(187L);
         boolean flag = false;
 
         if (this.bindEntityTexture(entity))
@@ -116,9 +116,9 @@ public class RenderEntityItem extends Render<EntityItem>
 
                 if (j > 0)
                 {
-                    float f = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
-                    float f1 = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
-                    float f2 = (this.field_177079_e.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f1 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
+                    float f2 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     GlStateManager.translate(f, f1, f2);
                 }
 

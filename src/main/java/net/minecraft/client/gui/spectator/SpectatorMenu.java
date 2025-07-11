@@ -13,11 +13,11 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
 public class SpectatorMenu {
-    private static final ISpectatorMenuObject field_178655_b = new SpectatorMenu.EndSpectatorObject();
-    private static final ISpectatorMenuObject field_178656_c = new SpectatorMenu.MoveMenuObject(-1, true);
-    private static final ISpectatorMenuObject field_178653_d = new SpectatorMenu.MoveMenuObject(1, true);
-    private static final ISpectatorMenuObject field_178654_e = new SpectatorMenu.MoveMenuObject(1, false);
-    public static final ISpectatorMenuObject field_178657_a = new ISpectatorMenuObject() {
+    private static final ISpectatorMenuObject CLOSE_ITEM = new SpectatorMenu.EndSpectatorObject();
+    private static final ISpectatorMenuObject SCROLL_LEFT = new SpectatorMenu.MoveMenuObject(-1, true);
+    private static final ISpectatorMenuObject SCROLL_RIGHT_ENABLED = new SpectatorMenu.MoveMenuObject(1, true);
+    private static final ISpectatorMenuObject SCROLL_RIGHT_DISABLED = new SpectatorMenu.MoveMenuObject(1, false);
+    public static final ISpectatorMenuObject EMPTY_SLOT = new ISpectatorMenuObject() {
         public void func_178661_a(SpectatorMenu menu) {
         }
 
@@ -32,19 +32,19 @@ public class SpectatorMenu {
             return false;
         }
     };
-    private final ISpectatorMenuRecipient field_178651_f;
-    private final List<SpectatorDetails> field_178652_g = Lists.<SpectatorDetails>newArrayList();
-    private ISpectatorMenuView field_178659_h = new BaseSpectatorGroup();
-    private int field_178660_i = -1;
-    private int field_178658_j;
+    private final ISpectatorMenuRecipient listener;
+    private final List<SpectatorDetails> previousCategories = Lists.<SpectatorDetails>newArrayList();
+    private ISpectatorMenuView category = new BaseSpectatorGroup();
+    private int selectedSlot = -1;
+    private int page;
 
     public SpectatorMenu(ISpectatorMenuRecipient p_i45497_1_) {
-        this.field_178651_f = p_i45497_1_;
+        this.listener = p_i45497_1_;
     }
 
     public ISpectatorMenuObject func_178643_a(int p_178643_1_) {
-        int i = p_178643_1_ + this.field_178658_j * 6;
-        return this.field_178658_j > 0 && p_178643_1_ == 0 ? field_178656_c : (p_178643_1_ == 7 ? (i < this.field_178659_h.func_178669_a().size() ? field_178653_d : field_178654_e) : (p_178643_1_ == 8 ? field_178655_b : (i >= 0 && i < this.field_178659_h.func_178669_a().size() ? MoreObjects.firstNonNull(this.field_178659_h.func_178669_a().get(i), field_178657_a) : field_178657_a)));
+        int i = p_178643_1_ + this.page * 6;
+        return this.page > 0 && p_178643_1_ == 0 ? SCROLL_LEFT : (p_178643_1_ == 7 ? (i < this.category.func_178669_a().size() ? SCROLL_RIGHT_ENABLED : SCROLL_RIGHT_DISABLED) : (p_178643_1_ == 8 ? CLOSE_ITEM : (i >= 0 && i < this.category.func_178669_a().size() ? MoreObjects.firstNonNull(this.category.func_178669_a().get(i), EMPTY_SLOT) : EMPTY_SLOT)));
     }
 
     public List<ISpectatorMenuObject> func_178642_a() {
@@ -58,42 +58,42 @@ public class SpectatorMenu {
     }
 
     public ISpectatorMenuObject func_178645_b() {
-        return this.func_178643_a(this.field_178660_i);
+        return this.func_178643_a(this.selectedSlot);
     }
 
     public ISpectatorMenuView func_178650_c() {
-        return this.field_178659_h;
+        return this.category;
     }
 
     public void func_178644_b(int p_178644_1_) {
         ISpectatorMenuObject ispectatormenuobject = this.func_178643_a(p_178644_1_);
 
-        if (ispectatormenuobject != field_178657_a) {
-            if (this.field_178660_i == p_178644_1_ && ispectatormenuobject.func_178662_A_()) {
+        if (ispectatormenuobject != EMPTY_SLOT) {
+            if (this.selectedSlot == p_178644_1_ && ispectatormenuobject.func_178662_A_()) {
                 ispectatormenuobject.func_178661_a(this);
             } else {
-                this.field_178660_i = p_178644_1_;
+                this.selectedSlot = p_178644_1_;
             }
         }
     }
 
     public void func_178641_d() {
-        this.field_178651_f.func_175257_a(this);
+        this.listener.func_175257_a(this);
     }
 
     public int func_178648_e() {
-        return this.field_178660_i;
+        return this.selectedSlot;
     }
 
     public void func_178647_a(ISpectatorMenuView p_178647_1_) {
-        this.field_178652_g.add(this.func_178646_f());
-        this.field_178659_h = p_178647_1_;
-        this.field_178660_i = -1;
-        this.field_178658_j = 0;
+        this.previousCategories.add(this.func_178646_f());
+        this.category = p_178647_1_;
+        this.selectedSlot = -1;
+        this.page = 0;
     }
 
     public SpectatorDetails func_178646_f() {
-        return new SpectatorDetails(this.func_178642_a(), this.field_178660_i);
+        return new SpectatorDetails(this.func_178642_a(), this.selectedSlot);
     }
 
     static class EndSpectatorObject implements ISpectatorMenuObject {
@@ -109,7 +109,7 @@ public class SpectatorMenu {
         }
 
         public void func_178663_a(float p_178663_1_, int alpha) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.field_175269_a);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
             Gui.drawModalRectWithCustomSizedTexture(0, 0, 128.0F, 0.0F, 16, 16, 256.0F, 256.0F);
         }
 
@@ -119,26 +119,26 @@ public class SpectatorMenu {
     }
 
     static class MoveMenuObject implements ISpectatorMenuObject {
-        private final int field_178666_a;
-        private final boolean field_178665_b;
+        private final int direction;
+        private final boolean enabled;
 
         public MoveMenuObject(int p_i45495_1_, boolean p_i45495_2_) {
-            this.field_178666_a = p_i45495_1_;
-            this.field_178665_b = p_i45495_2_;
+            this.direction = p_i45495_1_;
+            this.enabled = p_i45495_2_;
         }
 
         public void func_178661_a(SpectatorMenu menu) {
-            menu.field_178658_j = this.field_178666_a;
+            menu.page = this.direction;
         }
 
         public IChatComponent getSpectatorName() {
-            return this.field_178666_a < 0 ? new ChatComponentText("Previous Page") : new ChatComponentText("Next Page");
+            return this.direction < 0 ? new ChatComponentText("Previous Page") : new ChatComponentText("Next Page");
         }
 
         public void func_178663_a(float p_178663_1_, int alpha) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.field_175269_a);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
 
-            if (this.field_178666_a < 0) {
+            if (this.direction < 0) {
                 Gui.drawModalRectWithCustomSizedTexture(0, 0, 144.0F, 0.0F, 16, 16, 256.0F, 256.0F);
             } else {
                 Gui.drawModalRectWithCustomSizedTexture(0, 0, 160.0F, 0.0F, 16, 16, 256.0F, 256.0F);
@@ -146,7 +146,7 @@ public class SpectatorMenu {
         }
 
         public boolean func_178662_A_() {
-            return this.field_178665_b;
+            return this.enabled;
         }
     }
 }

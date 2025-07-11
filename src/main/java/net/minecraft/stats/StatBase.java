@@ -20,7 +20,7 @@ public class StatBase
     public boolean isIndependent;
     private final IStatType type;
     private final IScoreObjectiveCriteria objectiveCriteria;
-    private Class <? extends IJsonSerializable > field_150956_d;
+    private Class <? extends IJsonSerializable > serializableClazz;
     private static NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
     public static IStatType simpleStatType = new IStatType()
     {
@@ -51,7 +51,7 @@ public class StatBase
             return d1 > 0.5D ? StatBase.decimalFormat.format(d1) + " km" : (d0 > 0.5D ? StatBase.decimalFormat.format(d0) + " m" : number + " cm");
         }
     };
-    public static IStatType field_111202_k = new IStatType()
+    public static IStatType divideByTen = new IStatType()
     {
         public String format(int number)
         {
@@ -169,12 +169,12 @@ public class StatBase
 
     public Class <? extends IJsonSerializable > func_150954_l()
     {
-        return this.field_150956_d;
+        return this.serializableClazz;
     }
 
     public StatBase func_150953_b(Class <? extends IJsonSerializable > p_150953_1_)
     {
-        this.field_150956_d = p_150953_1_;
+        this.serializableClazz = p_150953_1_;
         return this;
     }
 }

@@ -24,15 +24,14 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
     private final DateFormat field_146633_h = new SimpleDateFormat();
     protected GuiScreen parentScreen;
     protected String screenTitle = "Select world";
-    private boolean field_146634_i;
 
     /** The list index of the currently-selected world */
     private int selectedIndex;
     private java.util.List<SaveFormatComparator> field_146639_s;
     private GuiSelectWorld.List availableWorlds;
-    private String field_146637_u;
-    private String field_146636_v;
-    private String[] field_146635_w = new String[4];
+    private String selectWorld;
+    private String selectWorldConversion;
+    private final String[] gamemodes = new String[4];
     private boolean confirmingDelete;
     private GuiButton deleteButton;
     private GuiButton selectButton;
@@ -63,12 +62,12 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
             return;
         }
 
-        this.field_146637_u = I18n.format("selectWorld.world", new Object[0]);
-        this.field_146636_v = I18n.format("selectWorld.conversion", new Object[0]);
-        this.field_146635_w[WorldSettings.GameType.SURVIVAL.getID()] = I18n.format("gameMode.survival", new Object[0]);
-        this.field_146635_w[WorldSettings.GameType.CREATIVE.getID()] = I18n.format("gameMode.creative", new Object[0]);
-        this.field_146635_w[WorldSettings.GameType.ADVENTURE.getID()] = I18n.format("gameMode.adventure", new Object[0]);
-        this.field_146635_w[WorldSettings.GameType.SPECTATOR.getID()] = I18n.format("gameMode.spectator", new Object[0]);
+        this.selectWorld = I18n.format("selectWorld.world", new Object[0]);
+        this.selectWorldConversion = I18n.format("selectWorld.conversion", new Object[0]);
+        this.gamemodes[WorldSettings.GameType.SURVIVAL.getID()] = I18n.format("gameMode.survival", new Object[0]);
+        this.gamemodes[WorldSettings.GameType.CREATIVE.getID()] = I18n.format("gameMode.creative", new Object[0]);
+        this.gamemodes[WorldSettings.GameType.ADVENTURE.getID()] = I18n.format("gameMode.adventure", new Object[0]);
+        this.gamemodes[WorldSettings.GameType.SPECTATOR.getID()] = I18n.format("gameMode.spectator", new Object[0]);
         this.availableWorlds = new GuiSelectWorld.List(this.mc);
         this.availableWorlds.registerScrollButtons(4, 5);
         this.addWorldSelectionButtons();
@@ -179,27 +178,23 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
     {
         this.mc.displayGuiScreen((GuiScreen)null);
 
-        if (!this.field_146634_i)
+        String s = this.func_146621_a(p_146615_1_);
+
+        if (s == null)
         {
-            this.field_146634_i = true;
-            String s = this.func_146621_a(p_146615_1_);
+            s = "World" + p_146615_1_;
+        }
 
-            if (s == null)
-            {
-                s = "World" + p_146615_1_;
-            }
+        String s1 = this.func_146614_d(p_146615_1_);
 
-            String s1 = this.func_146614_d(p_146615_1_);
+        if (s1 == null)
+        {
+            s1 = "World" + p_146615_1_;
+        }
 
-            if (s1 == null)
-            {
-                s1 = "World" + p_146615_1_;
-            }
-
-            if (this.mc.getSaveLoader().canLoadWorld(s))
-            {
-                this.mc.launchIntegratedServer(s, s1, (WorldSettings)null);
-            }
+        if (this.mc.getSaveLoader().canLoadWorld(s))
+        {
+            this.mc.launchIntegratedServer(s, s1, (WorldSettings)null);
         }
     }
 
@@ -307,7 +302,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
             if (StringUtils.isEmpty(s))
             {
-                s = GuiSelectWorld.this.field_146637_u + " " + (entryID + 1);
+                s = GuiSelectWorld.this.selectWorld + " " + (entryID + 1);
             }
 
             String s1 = saveformatcomparator.getFileName();
@@ -317,11 +312,11 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback
 
             if (saveformatcomparator.requiresConversion())
             {
-                s2 = GuiSelectWorld.this.field_146636_v + " " + s2;
+                s2 = GuiSelectWorld.this.selectWorldConversion + " " + s2;
             }
             else
             {
-                s2 = GuiSelectWorld.this.field_146635_w[saveformatcomparator.getEnumGameType().getID()];
+                s2 = GuiSelectWorld.this.gamemodes[saveformatcomparator.getEnumGameType().getID()];
 
                 if (saveformatcomparator.isHardcoreModeEnabled())
                 {

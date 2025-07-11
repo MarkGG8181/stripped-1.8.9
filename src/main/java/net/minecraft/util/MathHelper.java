@@ -20,9 +20,9 @@ public class MathHelper
      * this number" calculations.
      */
     private static final int[] multiplyDeBruijnBitPosition;
-    private static final double field_181163_d;
-    private static final double[] field_181164_e;
-    private static final double[] field_181165_f;
+    private static final double FRAC_BIAS;
+    private static final double[] ASINE_TAB;
+    private static final double[] COS_TAB;
 
     /**
      * sin looked up in a table
@@ -444,11 +444,11 @@ public class MathHelper
             double d9 = func_181161_i(d0);
             p_181159_2_ = p_181159_2_ * d9;
             p_181159_0_ = p_181159_0_ * d9;
-            double d2 = field_181163_d + p_181159_0_;
+            double d2 = FRAC_BIAS + p_181159_0_;
             int i = (int)Double.doubleToRawLongBits(d2);
-            double d3 = field_181164_e[i];
-            double d4 = field_181165_f[i];
-            double d5 = d2 - field_181163_d;
+            double d3 = ASINE_TAB[i];
+            double d4 = COS_TAB[i];
+            double d5 = d2 - FRAC_BIAS;
             double d6 = p_181159_0_ * d4 - p_181159_2_ * d5;
             double d7 = (6.0D + d6 * d6) * d6 * 0.16666666666666666D;
             double d8 = d3 + d7;
@@ -549,16 +549,16 @@ public class MathHelper
         }
 
         multiplyDeBruijnBitPosition = new int[] {0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9};
-        field_181163_d = Double.longBitsToDouble(4805340802404319232L);
-        field_181164_e = new double[257];
-        field_181165_f = new double[257];
+        FRAC_BIAS = Double.longBitsToDouble(4805340802404319232L);
+        ASINE_TAB = new double[257];
+        COS_TAB = new double[257];
 
         for (int j = 0; j < 257; ++j)
         {
             double d0 = (double)j / 256.0D;
             double d1 = Math.asin(d0);
-            field_181165_f[j] = Math.cos(d1);
-            field_181164_e[j] = d1;
+            COS_TAB[j] = Math.cos(d1);
+            ASINE_TAB[j] = d1;
         }
     }
 }

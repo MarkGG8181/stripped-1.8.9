@@ -110,7 +110,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
      */
     private int floatingTickCount;
     private boolean field_147366_g;
-    private int field_147378_h;
+    private int keepAliveId;
     private long lastPingTime;
     private long lastSentPingPacket;
 
@@ -120,7 +120,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
      */
     private int chatSpamThresholdCount;
     private int itemDropThreshold;
-    private IntHashMap<Short> field_147372_n = new IntHashMap();
+    private IntHashMap<Short> pendingTransactions = new IntHashMap();
     private double lastPosX;
     private double lastPosY;
     private double lastPosZ;
@@ -148,8 +148,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
         {
             this.lastSentPingPacket = (long)this.networkTickCount;
             this.lastPingTime = this.currentTimeMillis();
-            this.field_147378_h = (int)this.lastPingTime;
-            this.sendPacket(new S00PacketKeepAlive(this.field_147378_h));
+            this.keepAliveId = (int)this.lastPingTime;
+            this.sendPacket(new S00PacketKeepAlive(this.keepAliveId));
         }
 
         this.serverController.theProfiler.endSection();
@@ -1036,7 +1036,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
                 }
                 else
                 {
-                    this.field_147372_n.addKey(this.playerEntity.openContainer.windowId, Short.valueOf(packetIn.getActionNumber()));
+                    this.pendingTransactions.addKey(this.playerEntity.openContainer.windowId, Short.valueOf(packetIn.getActionNumber()));
                     this.playerEntity.playerNetServerHandler.sendPacket(new S32PacketConfirmTransaction(packetIn.getWindowId(), packetIn.getActionNumber(), false));
                     this.playerEntity.openContainer.setCanCraft(this.playerEntity, false);
                     List<ItemStack> list1 = Lists.<ItemStack>newArrayList();
@@ -1139,7 +1139,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
     public void processConfirmTransaction(C0FPacketConfirmTransaction packetIn)
     {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
-        Short oshort = (Short)this.field_147372_n.lookup(this.playerEntity.openContainer.windowId);
+        Short oshort = (Short)this.pendingTransactions.lookup(this.playerEntity.openContainer.windowId);
 
         if (oshort != null && packetIn.getUid() == oshort.shortValue() && this.playerEntity.openContainer.windowId == packetIn.getWindowId() && !this.playerEntity.openContainer.getCanCraft(this.playerEntity) && !this.playerEntity.isSpectator())
         {
@@ -1188,7 +1188,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable
      */
     public void processKeepAlive(C00PacketKeepAlive packetIn)
     {
-        if (packetIn.getKey() == this.field_147378_h)
+        if (packetIn.getKey() == this.keepAliveId)
         {
             int i = (int)(this.currentTimeMillis() - this.lastPingTime);
             this.playerEntity.ping = (this.playerEntity.ping * 3 + i) / 4;

@@ -733,33 +733,33 @@ public class GlStateManager
 
     static class StencilFunc
     {
-        public int field_179081_a;
+        public int func;
         public int field_179079_b;
-        public int field_179080_c;
+        public int mask;
 
         private StencilFunc()
         {
-            this.field_179081_a = 519;
+            this.func = 519;
             this.field_179079_b = 0;
-            this.field_179080_c = -1;
+            this.mask = -1;
         }
     }
 
     static class StencilState
     {
-        public GlStateManager.StencilFunc field_179078_a;
-        public int field_179076_b;
-        public int field_179077_c;
-        public int field_179074_d;
-        public int field_179075_e;
+        public GlStateManager.StencilFunc func;
+        public int mask;
+        public int fail;
+        public int zfail;
+        public int zpass;
 
         private StencilState()
         {
-            this.field_179078_a = new GlStateManager.StencilFunc();
-            this.field_179076_b = -1;
-            this.field_179077_c = 7680;
-            this.field_179074_d = 7680;
-            this.field_179075_e = 7680;
+            this.func = new GlStateManager.StencilFunc();
+            this.mask = -1;
+            this.fail = 7680;
+            this.zfail = 7680;
+            this.zpass = 7680;
         }
     }
 

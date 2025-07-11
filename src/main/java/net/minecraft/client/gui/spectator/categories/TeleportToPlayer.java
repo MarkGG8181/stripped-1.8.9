@@ -20,36 +20,36 @@ import net.minecraft.world.WorldSettings;
 
 public class TeleportToPlayer implements ISpectatorMenuView, ISpectatorMenuObject
 {
-    private static final Ordering<NetworkPlayerInfo> field_178674_a = Ordering.from(new Comparator<NetworkPlayerInfo>()
+    private static final Ordering<NetworkPlayerInfo> PROFILE_ORDER = Ordering.from(new Comparator<NetworkPlayerInfo>()
     {
         public int compare(NetworkPlayerInfo p_compare_1_, NetworkPlayerInfo p_compare_2_)
         {
             return ComparisonChain.start().compare(p_compare_1_.getGameProfile().getId(), p_compare_2_.getGameProfile().getId()).result();
         }
     });
-    private final List<ISpectatorMenuObject> field_178673_b;
+    private final List<ISpectatorMenuObject> items;
 
     public TeleportToPlayer()
     {
-        this(field_178674_a.<NetworkPlayerInfo>sortedCopy(Minecraft.getMinecraft().getNetHandler().getPlayerInfoMap()));
+        this(PROFILE_ORDER.<NetworkPlayerInfo>sortedCopy(Minecraft.getMinecraft().getNetHandler().getPlayerInfoMap()));
     }
 
     public TeleportToPlayer(Collection<NetworkPlayerInfo> p_i45493_1_)
     {
-        this.field_178673_b = Lists.<ISpectatorMenuObject>newArrayList();
+        this.items = Lists.<ISpectatorMenuObject>newArrayList();
 
-        for (NetworkPlayerInfo networkplayerinfo : field_178674_a.sortedCopy(p_i45493_1_))
+        for (NetworkPlayerInfo networkplayerinfo : PROFILE_ORDER.sortedCopy(p_i45493_1_))
         {
             if (networkplayerinfo.getGameType() != WorldSettings.GameType.SPECTATOR)
             {
-                this.field_178673_b.add(new PlayerMenuObject(networkplayerinfo.getGameProfile()));
+                this.items.add(new PlayerMenuObject(networkplayerinfo.getGameProfile()));
             }
         }
     }
 
     public List<ISpectatorMenuObject> func_178669_a()
     {
-        return this.field_178673_b;
+        return this.items;
     }
 
     public IChatComponent func_178670_b()
@@ -69,12 +69,12 @@ public class TeleportToPlayer implements ISpectatorMenuView, ISpectatorMenuObjec
 
     public void func_178663_a(float p_178663_1_, int alpha)
     {
-        Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.field_175269_a);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(GuiSpectator.SPECTATOR_WIDGETS);
         Gui.drawModalRectWithCustomSizedTexture(0, 0, 0.0F, 0.0F, 16, 16, 256.0F, 256.0F);
     }
 
     public boolean func_178662_A_()
     {
-        return !this.field_178673_b.isEmpty();
+        return !this.items.isEmpty();
     }
 }

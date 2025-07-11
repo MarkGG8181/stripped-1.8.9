@@ -132,11 +132,11 @@ public class CommandDebug extends CommandBase {
                     stringBuilder.append(" ");
                 }
 
-                stringBuilder.append(profiler$result.field_76331_c).append(" - ").append(String.format("%.2f", new Object[]{Double.valueOf(profiler$result.field_76332_a)})).append("%/").append(String.format("%.2f", new Object[]{Double.valueOf(profiler$result.field_76330_b)})).append("%\n");
+                stringBuilder.append(profiler$result.profilerName).append(" - ").append(String.format("%.2f", new Object[]{Double.valueOf(profiler$result.usePercentage)})).append("%/").append(String.format("%.2f", new Object[]{Double.valueOf(profiler$result.totalUsePercentage)})).append("%\n");
 
-                if (!profiler$result.field_76331_c.equals("unspecified")) {
+                if (!profiler$result.profilerName.equals("unspecified")) {
                     try {
-                        this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.field_76331_c, stringBuilder);
+                        this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.profilerName, stringBuilder);
                     } catch (Exception exception) {
                         stringBuilder.append("[[ EXCEPTION ").append((Object) exception).append(" ]]");
                     }

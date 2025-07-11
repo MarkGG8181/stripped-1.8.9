@@ -31,7 +31,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      * Sets the distance limit for how far away the generator will populate leaves from the base leaf node.
      */
     int leafDistanceLimit = 4;
-    List<WorldGenBigTree.FoliageCoordinates> field_175948_j;
+    List<WorldGenBigTree.FoliageCoordinates> foliageCoords;
 
     public WorldGenBigTree(boolean p_i2008_1_)
     {
@@ -59,8 +59,8 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.field_175948_j = Lists.<WorldGenBigTree.FoliageCoordinates>newArrayList();
-        this.field_175948_j.add(new WorldGenBigTree.FoliageCoordinates(this.basePos.up(k), j));
+        this.foliageCoords = Lists.<WorldGenBigTree.FoliageCoordinates>newArrayList();
+        this.foliageCoords.add(new WorldGenBigTree.FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)
         {
@@ -87,7 +87,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
                         if (this.checkBlockLine(blockpos2, blockpos) == -1)
                         {
-                            this.field_175948_j.add(new WorldGenBigTree.FoliageCoordinates(blockpos, blockpos2.getY()));
+                            this.foliageCoords.add(new WorldGenBigTree.FoliageCoordinates(blockpos, blockpos2.getY()));
                         }
                     }
                 }
@@ -215,7 +215,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     void generateLeaves()
     {
-        for (WorldGenBigTree.FoliageCoordinates worldgenbigtree$foliagecoordinates : this.field_175948_j)
+        for (WorldGenBigTree.FoliageCoordinates worldgenbigtree$foliagecoordinates : this.foliageCoords)
         {
             this.generateLeafNode(worldgenbigtree$foliagecoordinates);
         }
@@ -253,7 +253,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     void generateLeafNodeBases()
     {
-        for (WorldGenBigTree.FoliageCoordinates worldgenbigtree$foliagecoordinates : this.field_175948_j)
+        for (WorldGenBigTree.FoliageCoordinates worldgenbigtree$foliagecoordinates : this.foliageCoords)
         {
             int i = worldgenbigtree$foliagecoordinates.func_177999_q();
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
@@ -361,17 +361,17 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
     static class FoliageCoordinates extends BlockPos
     {
-        private final int field_178000_b;
+        private final int branchBase;
 
         public FoliageCoordinates(BlockPos p_i45635_1_, int p_i45635_2_)
         {
             super(p_i45635_1_.getX(), p_i45635_1_.getY(), p_i45635_1_.getZ());
-            this.field_178000_b = p_i45635_2_;
+            this.branchBase = p_i45635_2_;
         }
 
         public int func_177999_q()
         {
-            return this.field_178000_b;
+            return this.branchBase;
         }
     }
 }

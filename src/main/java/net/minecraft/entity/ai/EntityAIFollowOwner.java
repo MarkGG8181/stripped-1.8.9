@@ -19,10 +19,10 @@ public class EntityAIFollowOwner extends EntityAIBase
     World theWorld;
     private double followSpeed;
     private PathNavigate petPathfinder;
-    private int field_75343_h;
+    private int timeToRecalcPath;
     float maxDist;
     float minDist;
-    private boolean field_75344_i;
+    private boolean oldWaterCost;
 
     public EntityAIFollowOwner(EntityTameable thePetIn, double followSpeedIn, float minDistIn, float maxDistIn)
     {
@@ -83,8 +83,8 @@ public class EntityAIFollowOwner extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.field_75343_h = 0;
-        this.field_75344_i = ((PathNavigateGround)this.thePet.getNavigator()).getAvoidsWater();
+        this.timeToRecalcPath = 0;
+        this.oldWaterCost = ((PathNavigateGround)this.thePet.getNavigator()).getAvoidsWater();
         ((PathNavigateGround)this.thePet.getNavigator()).setAvoidsWater(false);
     }
 
@@ -114,9 +114,9 @@ public class EntityAIFollowOwner extends EntityAIBase
 
         if (!this.thePet.isSitting())
         {
-            if (--this.field_75343_h <= 0)
+            if (--this.timeToRecalcPath <= 0)
             {
-                this.field_75343_h = 10;
+                this.timeToRecalcPath = 10;
 
                 if (!this.petPathfinder.tryMoveToEntityLiving(this.theOwner, this.followSpeed))
                 {

@@ -39,14 +39,14 @@ import net.minecraft.world.World;
 
 public class EntityGuardian extends EntityMob
 {
-    private float field_175482_b;
-    private float field_175484_c;
-    private float field_175483_bk;
-    private float field_175485_bl;
-    private float field_175486_bm;
+    private float clientSideTailAnimation;
+    private float clientSideTailAnimationO;
+    private float clientSideTailAnimationSpeed;
+    private float clientSideSpikesAnimation;
+    private float clientSideSpikesAnimationO;
     private EntityLivingBase targetedEntity;
-    private int field_175479_bo;
-    private boolean field_175480_bp;
+    private int clientSideAttackTime;
+    private boolean clientSideTouchedGround;
     private EntityAIWander wander;
 
     public EntityGuardian(World worldIn)
@@ -65,7 +65,7 @@ public class EntityGuardian extends EntityMob
         entityaimovetowardsrestriction.setMutexBits(3);
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, true, false, new EntityGuardian.GuardianTargetSelector(this)));
         this.moveHelper = new EntityGuardian.GuardianMoveHelper(this);
-        this.field_175484_c = this.field_175482_b = this.rand.nextFloat();
+        this.clientSideTailAnimationO = this.clientSideTailAnimation = this.rand.nextFloat();
     }
 
     protected void applyEntityAttributes()
@@ -176,7 +176,7 @@ public class EntityGuardian extends EntityMob
     public void setElder()
     {
         this.setElder(true);
-        this.field_175486_bm = this.field_175485_bl = 1.0F;
+        this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation = 1.0F;
     }
 
     private void setTargetedEntity(int entityId)
@@ -235,7 +235,7 @@ public class EntityGuardian extends EntityMob
         }
         else if (dataID == 17)
         {
-            this.field_175479_bo = 0;
+            this.clientSideAttackTime = 0;
             this.targetedEntity = null;
         }
     }
@@ -299,49 +299,49 @@ public class EntityGuardian extends EntityMob
     {
         if (this.worldObj.isRemote)
         {
-            this.field_175484_c = this.field_175482_b;
+            this.clientSideTailAnimationO = this.clientSideTailAnimation;
 
             if (!this.isInWater())
             {
-                this.field_175483_bk = 2.0F;
+                this.clientSideTailAnimationSpeed = 2.0F;
 
-                if (this.motionY > 0.0D && this.field_175480_bp && !this.isSilent())
+                if (this.motionY > 0.0D && this.clientSideTouchedGround && !this.isSilent())
                 {
                     this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.guardian.flop", 1.0F, 1.0F, false);
                 }
 
-                this.field_175480_bp = this.motionY < 0.0D && this.worldObj.isBlockNormalCube((new BlockPos(this)).down(), false);
+                this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube((new BlockPos(this)).down(), false);
             }
             else if (this.func_175472_n())
             {
-                if (this.field_175483_bk < 0.5F)
+                if (this.clientSideTailAnimationSpeed < 0.5F)
                 {
-                    this.field_175483_bk = 4.0F;
+                    this.clientSideTailAnimationSpeed = 4.0F;
                 }
                 else
                 {
-                    this.field_175483_bk += (0.5F - this.field_175483_bk) * 0.1F;
+                    this.clientSideTailAnimationSpeed += (0.5F - this.clientSideTailAnimationSpeed) * 0.1F;
                 }
             }
             else
             {
-                this.field_175483_bk += (0.125F - this.field_175483_bk) * 0.2F;
+                this.clientSideTailAnimationSpeed += (0.125F - this.clientSideTailAnimationSpeed) * 0.2F;
             }
 
-            this.field_175482_b += this.field_175483_bk;
-            this.field_175486_bm = this.field_175485_bl;
+            this.clientSideTailAnimation += this.clientSideTailAnimationSpeed;
+            this.clientSideSpikesAnimationO = this.clientSideSpikesAnimation;
 
             if (!this.isInWater())
             {
-                this.field_175485_bl = this.rand.nextFloat();
+                this.clientSideSpikesAnimation = this.rand.nextFloat();
             }
             else if (this.func_175472_n())
             {
-                this.field_175485_bl += (0.0F - this.field_175485_bl) * 0.25F;
+                this.clientSideSpikesAnimation += (0.0F - this.clientSideSpikesAnimation) * 0.25F;
             }
             else
             {
-                this.field_175485_bl += (1.0F - this.field_175485_bl) * 0.06F;
+                this.clientSideSpikesAnimation += (1.0F - this.clientSideSpikesAnimation) * 0.06F;
             }
 
             if (this.func_175472_n() && this.isInWater())
@@ -356,9 +356,9 @@ public class EntityGuardian extends EntityMob
 
             if (this.hasTargetedEntity())
             {
-                if (this.field_175479_bo < this.func_175464_ck())
+                if (this.clientSideAttackTime < this.func_175464_ck())
                 {
-                    ++this.field_175479_bo;
+                    ++this.clientSideAttackTime;
                 }
 
                 EntityLivingBase entitylivingbase = this.getTargetedEntity();
@@ -410,17 +410,17 @@ public class EntityGuardian extends EntityMob
 
     public float func_175471_a(float p_175471_1_)
     {
-        return this.field_175484_c + (this.field_175482_b - this.field_175484_c) * p_175471_1_;
+        return this.clientSideTailAnimationO + (this.clientSideTailAnimation - this.clientSideTailAnimationO) * p_175471_1_;
     }
 
     public float func_175469_o(float p_175469_1_)
     {
-        return this.field_175486_bm + (this.field_175485_bl - this.field_175486_bm) * p_175469_1_;
+        return this.clientSideSpikesAnimationO + (this.clientSideSpikesAnimation - this.clientSideSpikesAnimationO) * p_175469_1_;
     }
 
     public float func_175477_p(float p_175477_1_)
     {
-        return ((float)this.field_175479_bo + p_175477_1_) / (float)this.func_175464_ck();
+        return ((float)this.clientSideAttackTime + p_175477_1_) / (float)this.func_175464_ck();
     }
 
     protected void updateAITasks()

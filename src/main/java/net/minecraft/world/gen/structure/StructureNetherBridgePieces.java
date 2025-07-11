@@ -102,7 +102,7 @@ public class StructureNetherBridgePieces
 
     public static class Corridor extends StructureNetherBridgePieces.Piece
     {
-        private boolean field_111021_b;
+        private boolean chest;
 
         public Corridor()
         {
@@ -113,19 +113,19 @@ public class StructureNetherBridgePieces
             super(p_i45615_1_);
             this.coordBaseMode = p_i45615_4_;
             this.boundingBox = p_i45615_3_;
-            this.field_111021_b = p_i45615_2_.nextInt(3) == 0;
+            this.chest = p_i45615_2_.nextInt(3) == 0;
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
             super.readStructureFromNBT(tagCompound);
-            this.field_111021_b = tagCompound.getBoolean("Chest");
+            this.chest = tagCompound.getBoolean("Chest");
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
             super.writeStructureToNBT(tagCompound);
-            tagCompound.setBoolean("Chest", this.field_111021_b);
+            tagCompound.setBoolean("Chest", this.chest);
         }
 
         public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
@@ -151,9 +151,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            if (this.field_111021_b && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
+            if (this.chest && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(3, 3), this.getYWithOffset(2), this.getZWithOffset(3, 3))))
             {
-                this.field_111021_b = false;
+                this.chest = false;
                 this.generateChestContents(worldIn, structureBoundingBoxIn, randomIn, 3, 2, 3, field_111019_a, 2 + randomIn.nextInt(4));
             }
 
@@ -173,7 +173,7 @@ public class StructureNetherBridgePieces
 
     public static class Corridor2 extends StructureNetherBridgePieces.Piece
     {
-        private boolean field_111020_b;
+        private boolean chest;
 
         public Corridor2()
         {
@@ -184,19 +184,19 @@ public class StructureNetherBridgePieces
             super(p_i45613_1_);
             this.coordBaseMode = p_i45613_4_;
             this.boundingBox = p_i45613_3_;
-            this.field_111020_b = p_i45613_2_.nextInt(3) == 0;
+            this.chest = p_i45613_2_.nextInt(3) == 0;
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
             super.readStructureFromNBT(tagCompound);
-            this.field_111020_b = tagCompound.getBoolean("Chest");
+            this.chest = tagCompound.getBoolean("Chest");
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
             super.writeStructureToNBT(tagCompound);
-            tagCompound.setBoolean("Chest", this.field_111020_b);
+            tagCompound.setBoolean("Chest", this.chest);
         }
 
         public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
@@ -222,9 +222,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 3, 4, 1, 4, 4, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 3, 4, 3, 4, 4, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            if (this.field_111020_b && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(1, 3), this.getYWithOffset(2), this.getZWithOffset(1, 3))))
+            if (this.chest && structureBoundingBoxIn.isVecInside(new BlockPos(this.getXWithOffset(1, 3), this.getYWithOffset(2), this.getZWithOffset(1, 3))))
             {
-                this.field_111020_b = false;
+                this.chest = false;
                 this.generateChestContents(worldIn, structureBoundingBoxIn, randomIn, 1, 2, 3, field_111019_a, 2 + randomIn.nextInt(4));
             }
 
@@ -969,12 +969,12 @@ public class StructureNetherBridgePieces
 
             for (StructureNetherBridgePieces.PieceWeight structurenetherbridgepieces$pieceweight : p_74960_1_)
             {
-                if (structurenetherbridgepieces$pieceweight.field_78824_d > 0 && structurenetherbridgepieces$pieceweight.field_78827_c < structurenetherbridgepieces$pieceweight.field_78824_d)
+                if (structurenetherbridgepieces$pieceweight.maxPlaceCount > 0 && structurenetherbridgepieces$pieceweight.placeCount < structurenetherbridgepieces$pieceweight.maxPlaceCount)
                 {
                     flag = true;
                 }
 
-                i += structurenetherbridgepieces$pieceweight.field_78826_b;
+                i += structurenetherbridgepieces$pieceweight.weight;
             }
 
             return flag ? i : -1;
@@ -993,11 +993,11 @@ public class StructureNetherBridgePieces
 
                 for (StructureNetherBridgePieces.PieceWeight structurenetherbridgepieces$pieceweight : p_175871_2_)
                 {
-                    k -= structurenetherbridgepieces$pieceweight.field_78826_b;
+                    k -= structurenetherbridgepieces$pieceweight.weight;
 
                     if (k < 0)
                     {
-                        if (!structurenetherbridgepieces$pieceweight.func_78822_a(p_175871_9_) || structurenetherbridgepieces$pieceweight == p_175871_1_.theNetherBridgePieceWeight && !structurenetherbridgepieces$pieceweight.field_78825_e)
+                        if (!structurenetherbridgepieces$pieceweight.func_78822_a(p_175871_9_) || structurenetherbridgepieces$pieceweight == p_175871_1_.theNetherBridgePieceWeight && !structurenetherbridgepieces$pieceweight.allowInRow)
                         {
                             break;
                         }
@@ -1006,7 +1006,7 @@ public class StructureNetherBridgePieces
 
                         if (structurenetherbridgepieces$piece != null)
                         {
-                            ++structurenetherbridgepieces$pieceweight.field_78827_c;
+                            ++structurenetherbridgepieces$pieceweight.placeCount;
                             p_175871_1_.theNetherBridgePieceWeight = structurenetherbridgepieces$pieceweight;
 
                             if (!structurenetherbridgepieces$pieceweight.func_78823_a())
@@ -1039,7 +1039,7 @@ public class StructureNetherBridgePieces
                 if (structurecomponent != null)
                 {
                     p_175870_2_.add(structurecomponent);
-                    p_175870_1_.field_74967_d.add(structurecomponent);
+                    p_175870_1_.pendingChildren.add(structurecomponent);
                 }
 
                 return structurecomponent;
@@ -1128,17 +1128,17 @@ public class StructureNetherBridgePieces
     static class PieceWeight
     {
         public Class <? extends StructureNetherBridgePieces.Piece > weightClass;
-        public final int field_78826_b;
-        public int field_78827_c;
-        public int field_78824_d;
-        public boolean field_78825_e;
+        public final int weight;
+        public int placeCount;
+        public int maxPlaceCount;
+        public boolean allowInRow;
 
         public PieceWeight(Class <? extends StructureNetherBridgePieces.Piece > p_i2055_1_, int p_i2055_2_, int p_i2055_3_, boolean p_i2055_4_)
         {
             this.weightClass = p_i2055_1_;
-            this.field_78826_b = p_i2055_2_;
-            this.field_78824_d = p_i2055_3_;
-            this.field_78825_e = p_i2055_4_;
+            this.weight = p_i2055_2_;
+            this.maxPlaceCount = p_i2055_3_;
+            this.allowInRow = p_i2055_4_;
         }
 
         public PieceWeight(Class <? extends StructureNetherBridgePieces.Piece > p_i2056_1_, int p_i2056_2_, int p_i2056_3_)
@@ -1148,12 +1148,12 @@ public class StructureNetherBridgePieces
 
         public boolean func_78822_a(int p_78822_1_)
         {
-            return this.field_78824_d == 0 || this.field_78827_c < this.field_78824_d;
+            return this.maxPlaceCount == 0 || this.placeCount < this.maxPlaceCount;
         }
 
         public boolean func_78823_a()
         {
-            return this.field_78824_d == 0 || this.field_78827_c < this.field_78824_d;
+            return this.maxPlaceCount == 0 || this.placeCount < this.maxPlaceCount;
         }
     }
 
@@ -1220,7 +1220,7 @@ public class StructureNetherBridgePieces
         public StructureNetherBridgePieces.PieceWeight theNetherBridgePieceWeight;
         public List<StructureNetherBridgePieces.PieceWeight> primaryWeights;
         public List<StructureNetherBridgePieces.PieceWeight> secondaryWeights;
-        public List<StructureComponent> field_74967_d = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingChildren = Lists.<StructureComponent>newArrayList();
 
         public Start()
         {
@@ -1233,7 +1233,7 @@ public class StructureNetherBridgePieces
 
             for (StructureNetherBridgePieces.PieceWeight structurenetherbridgepieces$pieceweight : StructureNetherBridgePieces.primaryComponents)
             {
-                structurenetherbridgepieces$pieceweight.field_78827_c = 0;
+                structurenetherbridgepieces$pieceweight.placeCount = 0;
                 this.primaryWeights.add(structurenetherbridgepieces$pieceweight);
             }
 
@@ -1241,7 +1241,7 @@ public class StructureNetherBridgePieces
 
             for (StructureNetherBridgePieces.PieceWeight structurenetherbridgepieces$pieceweight1 : StructureNetherBridgePieces.secondaryComponents)
             {
-                structurenetherbridgepieces$pieceweight1.field_78827_c = 0;
+                structurenetherbridgepieces$pieceweight1.placeCount = 0;
                 this.secondaryWeights.add(structurenetherbridgepieces$pieceweight1);
             }
         }

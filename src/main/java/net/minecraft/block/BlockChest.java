@@ -440,11 +440,11 @@ public class BlockChest extends BlockContainer
 
                 if (this.chestType == 0)
                 {
-                    playerIn.triggerAchievement(StatList.field_181723_aa);
+                    playerIn.triggerAchievement(StatList.chestOpenedStat);
                 }
                 else if (this.chestType == 1)
                 {
-                    playerIn.triggerAchievement(StatList.field_181737_U);
+                    playerIn.triggerAchievement(StatList.trappedChestTriggerStat);
                 }
             }
 

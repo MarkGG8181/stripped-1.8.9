@@ -107,11 +107,11 @@ public class BlockDispenser extends BlockContainer
 
                 if (tileentity instanceof TileEntityDropper)
                 {
-                    playerIn.triggerAchievement(StatList.field_181731_O);
+                    playerIn.triggerAchievement(StatList.dropperInspectedStat);
                 }
                 else
                 {
-                    playerIn.triggerAchievement(StatList.field_181733_Q);
+                    playerIn.triggerAchievement(StatList.dispenserInspectedStat);
                 }
             }
 

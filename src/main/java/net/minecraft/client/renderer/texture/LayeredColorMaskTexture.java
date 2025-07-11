@@ -21,14 +21,14 @@ public class LayeredColorMaskTexture extends AbstractTexture
 
     /** The location of the texture. */
     private final ResourceLocation textureLocation;
-    private final List<String> field_174949_h;
-    private final List<EnumDyeColor> field_174950_i;
+    private final List<String> listTextures;
+    private final List<EnumDyeColor> listDyeColors;
 
     public LayeredColorMaskTexture(ResourceLocation textureLocationIn, List<String> p_i46101_2_, List<EnumDyeColor> p_i46101_3_)
     {
         this.textureLocation = textureLocationIn;
-        this.field_174949_h = p_i46101_2_;
-        this.field_174950_i = p_i46101_3_;
+        this.listTextures = p_i46101_2_;
+        this.listDyeColors = p_i46101_3_;
     }
 
     public void loadTexture(IResourceManager resourceManager) throws IOException
@@ -50,10 +50,10 @@ public class LayeredColorMaskTexture extends AbstractTexture
             Graphics graphics = bufferedimage.getGraphics();
             graphics.drawImage(bufferedimage1, 0, 0, (ImageObserver)null);
 
-            for (int j = 0; j < 17 && j < this.field_174949_h.size() && j < this.field_174950_i.size(); ++j)
+            for (int j = 0; j < 17 && j < this.listTextures.size() && j < this.listDyeColors.size(); ++j)
             {
-                String s = (String)this.field_174949_h.get(j);
-                MapColor mapcolor = ((EnumDyeColor)this.field_174950_i.get(j)).getMapColor();
+                String s = (String)this.listTextures.get(j);
+                MapColor mapcolor = ((EnumDyeColor)this.listDyeColors.get(j)).getMapColor();
 
                 if (s != null)
                 {

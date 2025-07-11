@@ -210,17 +210,17 @@ public class GuiBeacon extends GuiContainer
 
     static class Button extends GuiButton
     {
-        private final ResourceLocation field_146145_o;
-        private final int field_146144_p;
-        private final int field_146143_q;
-        private boolean field_146142_r;
+        private final ResourceLocation iconTexture;
+        private final int iconX;
+        private final int iconY;
+        private boolean selected;
 
         protected Button(int p_i1077_1_, int p_i1077_2_, int p_i1077_3_, ResourceLocation p_i1077_4_, int p_i1077_5_, int p_i1077_6_)
         {
             super(p_i1077_1_, p_i1077_2_, p_i1077_3_, 22, 22, "");
-            this.field_146145_o = p_i1077_4_;
-            this.field_146144_p = p_i1077_5_;
-            this.field_146143_q = p_i1077_6_;
+            this.iconTexture = p_i1077_4_;
+            this.iconX = p_i1077_5_;
+            this.iconY = p_i1077_6_;
         }
 
         public void drawButton(Minecraft mc, int mouseX, int mouseY)
@@ -237,7 +237,7 @@ public class GuiBeacon extends GuiContainer
                 {
                     j += this.width * 2;
                 }
-                else if (this.field_146142_r)
+                else if (this.selected)
                 {
                     j += this.width * 1;
                 }
@@ -248,23 +248,23 @@ public class GuiBeacon extends GuiContainer
 
                 this.drawTexturedModalRect(this.xPosition, this.yPosition, j, i, this.width, this.height);
 
-                if (!GuiBeacon.beaconGuiTextures.equals(this.field_146145_o))
+                if (!GuiBeacon.beaconGuiTextures.equals(this.iconTexture))
                 {
-                    mc.getTextureManager().bindTexture(this.field_146145_o);
+                    mc.getTextureManager().bindTexture(this.iconTexture);
                 }
 
-                this.drawTexturedModalRect(this.xPosition + 2, this.yPosition + 2, this.field_146144_p, this.field_146143_q, 18, 18);
+                this.drawTexturedModalRect(this.xPosition + 2, this.yPosition + 2, this.iconX, this.iconY, 18, 18);
             }
         }
 
         public boolean func_146141_c()
         {
-            return this.field_146142_r;
+            return this.selected;
         }
 
         public void func_146140_b(boolean p_146140_1_)
         {
-            this.field_146142_r = p_146140_1_;
+            this.selected = p_146140_1_;
         }
     }
 
@@ -297,20 +297,20 @@ public class GuiBeacon extends GuiContainer
     class PowerButton extends GuiBeacon.Button
     {
         private final int field_146149_p;
-        private final int field_146148_q;
+        private final int tier;
 
         public PowerButton(int p_i1076_2_, int p_i1076_3_, int p_i1076_4_, int p_i1076_5_, int p_i1076_6_)
         {
             super(p_i1076_2_, p_i1076_3_, p_i1076_4_, GuiContainer.inventoryBackground, 0 + Potion.potionTypes[p_i1076_5_].getStatusIconIndex() % 8 * 18, 198 + Potion.potionTypes[p_i1076_5_].getStatusIconIndex() / 8 * 18);
             this.field_146149_p = p_i1076_5_;
-            this.field_146148_q = p_i1076_6_;
+            this.tier = p_i1076_6_;
         }
 
         public void drawButtonForegroundLayer(int mouseX, int mouseY)
         {
             String s = I18n.format(Potion.potionTypes[this.field_146149_p].getName(), new Object[0]);
 
-            if (this.field_146148_q >= 3 && this.field_146149_p != Potion.regeneration.id)
+            if (this.tier >= 3 && this.field_146149_p != Potion.regeneration.id)
             {
                 s = s + " II";
             }

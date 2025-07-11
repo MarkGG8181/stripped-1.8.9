@@ -25,8 +25,8 @@ public class GuiCommandBlock extends GuiScreen
     /** "Done" button for the GUI. */
     private GuiButton doneBtn;
     private GuiButton cancelBtn;
-    private GuiButton field_175390_s;
-    private boolean field_175389_t;
+    private GuiButton outputBtn;
+    private boolean trackOutput;
 
     public GuiCommandBlock(CommandBlockLogic p_i45032_1_)
     {
@@ -51,7 +51,7 @@ public class GuiCommandBlock extends GuiScreen
         this.buttonList.clear();
         this.buttonList.add(this.doneBtn = new GuiButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done", new Object[0])));
         this.buttonList.add(this.cancelBtn = new GuiButton(1, this.width / 2 + 4, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.cancel", new Object[0])));
-        this.buttonList.add(this.field_175390_s = new GuiButton(4, this.width / 2 + 150 - 20, 150, 20, 20, "O"));
+        this.buttonList.add(this.outputBtn = new GuiButton(4, this.width / 2 + 150 - 20, 150, 20, 20, "O"));
         this.commandTextField = new GuiTextField(2, this.fontRendererObj, this.width / 2 - 150, 50, 300, 20);
         this.commandTextField.setMaxStringLength(32767);
         this.commandTextField.setFocused(true);
@@ -60,7 +60,7 @@ public class GuiCommandBlock extends GuiScreen
         this.previousOutputTextField.setMaxStringLength(32767);
         this.previousOutputTextField.setEnabled(false);
         this.previousOutputTextField.setText("-");
-        this.field_175389_t = this.localCommandBlock.shouldTrackOutput();
+        this.trackOutput = this.localCommandBlock.shouldTrackOutput();
         this.func_175388_a();
         this.doneBtn.enabled = this.commandTextField.getText().trim().length() > 0;
     }
@@ -82,7 +82,7 @@ public class GuiCommandBlock extends GuiScreen
         {
             if (button.id == 1)
             {
-                this.localCommandBlock.setTrackOutput(this.field_175389_t);
+                this.localCommandBlock.setTrackOutput(this.trackOutput);
                 this.mc.displayGuiScreen((GuiScreen)null);
             }
             else if (button.id == 0)
@@ -173,7 +173,7 @@ public class GuiCommandBlock extends GuiScreen
     {
         if (this.localCommandBlock.shouldTrackOutput())
         {
-            this.field_175390_s.displayString = "O";
+            this.outputBtn.displayString = "O";
 
             if (this.localCommandBlock.getLastOutput() != null)
             {
@@ -182,7 +182,7 @@ public class GuiCommandBlock extends GuiScreen
         }
         else
         {
-            this.field_175390_s.displayString = "X";
+            this.outputBtn.displayString = "X";
             this.previousOutputTextField.setText("-");
         }
     }

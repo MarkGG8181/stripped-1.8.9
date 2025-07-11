@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LanServerDetector {
-    private static final AtomicInteger field_148551_a = new AtomicInteger(0);
+    private static final AtomicInteger ATOMIC_COUNTER = new AtomicInteger(0);
     private static final Logger logger = LogManager.getLogger();
 
     public static class LanServer {
@@ -90,7 +90,7 @@ public class LanServerDetector {
         private final MulticastSocket socket;
 
         public ThreadLanServerFind(LanServerDetector.LanServerList p_i1320_1_) throws IOException {
-            super("LanServerDetector #" + LanServerDetector.field_148551_a.incrementAndGet());
+            super("LanServerDetector #" + LanServerDetector.ATOMIC_COUNTER.incrementAndGet());
             this.localServerList = p_i1320_1_;
             this.setDaemon(true);
             this.socket = new MulticastSocket(4445);

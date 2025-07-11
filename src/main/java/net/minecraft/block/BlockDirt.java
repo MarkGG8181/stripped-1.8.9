@@ -118,7 +118,7 @@ public class BlockDirt extends Block
         private final int metadata;
         private final String name;
         private final String unlocalizedName;
-        private final MapColor field_181067_h;
+        private final MapColor color;
 
         private DirtType(int p_i46396_3_, String p_i46396_4_, MapColor p_i46396_5_)
         {
@@ -130,7 +130,7 @@ public class BlockDirt extends Block
             this.metadata = p_i46397_3_;
             this.name = p_i46397_4_;
             this.unlocalizedName = p_i46397_5_;
-            this.field_181067_h = p_i46397_6_;
+            this.color = p_i46397_6_;
         }
 
         public int getMetadata()
@@ -145,7 +145,7 @@ public class BlockDirt extends Block
 
         public MapColor func_181066_d()
         {
-            return this.field_181067_h;
+            return this.color;
         }
 
         public String toString()

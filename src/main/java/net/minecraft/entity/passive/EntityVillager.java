@@ -950,14 +950,14 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         public ItemStack buyingItemStack;
         public EntityVillager.PriceInfo buyingPriceInfo;
         public ItemStack sellingItemstack;
-        public EntityVillager.PriceInfo field_179408_d;
+        public EntityVillager.PriceInfo sellingPriceInfo;
 
         public ItemAndEmeraldToItem(Item p_i45813_1_, EntityVillager.PriceInfo p_i45813_2_, Item p_i45813_3_, EntityVillager.PriceInfo p_i45813_4_)
         {
             this.buyingItemStack = new ItemStack(p_i45813_1_);
             this.buyingPriceInfo = p_i45813_2_;
             this.sellingItemstack = new ItemStack(p_i45813_3_);
-            this.field_179408_d = p_i45813_4_;
+            this.sellingPriceInfo = p_i45813_4_;
         }
 
         public void modifyMerchantRecipeList(MerchantRecipeList recipeList, Random random)
@@ -971,9 +971,9 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
             int j = 1;
 
-            if (this.field_179408_d != null)
+            if (this.sellingPriceInfo != null)
             {
-                j = this.field_179408_d.getPrice(random);
+                j = this.sellingPriceInfo.getPrice(random);
             }
 
             recipeList.add(new MerchantRecipe(new ItemStack(this.buyingItemStack.getItem(), i, this.buyingItemStack.getMetadata()), new ItemStack(Items.emerald), new ItemStack(this.sellingItemstack.getItem(), j, this.sellingItemstack.getMetadata())));

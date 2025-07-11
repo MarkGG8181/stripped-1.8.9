@@ -242,7 +242,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
     private boolean doneLoadingTerrain;
     private final Map<UUID, NetworkPlayerInfo> playerInfoMap = Maps.<UUID, NetworkPlayerInfo>newHashMap();
     public int currentServerMaxPlayers = 20;
-    private boolean field_147308_k = false;
+    private boolean hasStatistics = false;
 
     /**
      * Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both
@@ -1204,7 +1204,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
             int i = ((Integer) entry.getValue()).intValue();
 
             if (statbase.isAchievement() && i > 0) {
-                if (this.field_147308_k && this.gameController.thePlayer.getStatFileWriter().readStat(statbase) == 0) {
+                if (this.hasStatistics && this.gameController.thePlayer.getStatFileWriter().readStat(statbase) == 0) {
                     Achievement achievement = (Achievement) statbase;
                     this.gameController.guiAchievement.displayAchievement(achievement);
 
@@ -1220,11 +1220,11 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
             this.gameController.thePlayer.getStatFileWriter().unlockAchievement(this.gameController.thePlayer, statbase, i);
         }
 
-        if (!this.field_147308_k && !flag && this.gameController.gameSettings.showInventoryAchievementHint) {
+        if (!this.hasStatistics && !flag && this.gameController.gameSettings.showInventoryAchievementHint) {
             this.gameController.guiAchievement.displayUnformattedAchievement(AchievementList.openInventory);
         }
 
-        this.field_147308_k = true;
+        this.hasStatistics = true;
 
         if (this.gameController.currentScreen instanceof IProgressMeter) {
             ((IProgressMeter) this.gameController.currentScreen).doneLoading();

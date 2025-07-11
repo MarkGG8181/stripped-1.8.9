@@ -25,8 +25,8 @@ public class EntityChicken extends EntityAnimal
 {
     public float wingRotation;
     public float destPos;
-    public float field_70884_g;
-    public float field_70888_h;
+    public float oFlapSpeed;
+    public float oFlap;
     public float wingRotDelta = 1.0F;
 
     /** The time until the next egg is spawned. */
@@ -67,8 +67,8 @@ public class EntityChicken extends EntityAnimal
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        this.field_70888_h = this.wingRotation;
-        this.field_70884_g = this.destPos;
+        this.oFlap = this.wingRotation;
+        this.oFlapSpeed = this.destPos;
         this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
         this.destPos = MathHelper.clamp_float(this.destPos, 0.0F, 1.0F);
 

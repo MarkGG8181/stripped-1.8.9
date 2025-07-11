@@ -77,7 +77,7 @@ public class Chunk
     /** Boolean value indicating if the terrain is populated. */
     private boolean isTerrainPopulated;
     private boolean isLightPopulated;
-    private boolean field_150815_m;
+    private boolean chunkTicked;
 
     /**
      * Set to true if the chunk has been modified and needs to be updated internally.
@@ -1224,7 +1224,7 @@ public class Chunk
             this.recheckGaps(this.worldObj.isRemote);
         }
 
-        this.field_150815_m = true;
+        this.chunkTicked = true;
 
         if (!this.isLightPopulated && this.isTerrainPopulated)
         {
@@ -1246,7 +1246,7 @@ public class Chunk
 
     public boolean isPopulated()
     {
-        return this.field_150815_m && this.isTerrainPopulated && this.isLightPopulated;
+        return this.chunkTicked && this.isTerrainPopulated && this.isLightPopulated;
     }
 
     /**

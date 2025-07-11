@@ -17,16 +17,16 @@ public class RenderZombie extends RenderBiped<EntityZombie>
 {
     private static final ResourceLocation zombieTextures = new ResourceLocation("textures/entity/zombie/zombie.png");
     private static final ResourceLocation zombieVillagerTextures = new ResourceLocation("textures/entity/zombie/zombie_villager.png");
-    private final ModelBiped field_82434_o;
+    private final ModelBiped defaultModel;
     private final ModelZombieVillager zombieVillagerModel;
-    private final List<LayerRenderer<EntityZombie>> field_177121_n;
-    private final List<LayerRenderer<EntityZombie>> field_177122_o;
+    private final List<LayerRenderer<EntityZombie>> villagerLayers;
+    private final List<LayerRenderer<EntityZombie>> defaultLayers;
 
     public RenderZombie(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelZombie(), 0.5F, 1.0F);
         LayerRenderer layerrenderer = (LayerRenderer)this.layerRenderers.get(0);
-        this.field_82434_o = this.modelBipedMain;
+        this.defaultModel = this.modelBipedMain;
         this.zombieVillagerModel = new ModelZombieVillager();
         this.addLayer(new LayerHeldItem(this));
         LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
@@ -38,7 +38,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
             }
         };
         this.addLayer(layerbipedarmor);
-        this.field_177122_o = Lists.newArrayList(this.layerRenderers);
+        this.defaultLayers = Lists.newArrayList(this.layerRenderers);
 
         if (layerrenderer instanceof LayerCustomHead)
         {
@@ -48,7 +48,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
 
         this.removeLayer(layerbipedarmor);
         this.addLayer(new LayerVillagerArmor(this));
-        this.field_177121_n = Lists.newArrayList(this.layerRenderers);
+        this.villagerLayers = Lists.newArrayList(this.layerRenderers);
     }
 
     /**
@@ -73,12 +73,12 @@ public class RenderZombie extends RenderBiped<EntityZombie>
         if (zombie.isVillager())
         {
             this.mainModel = this.zombieVillagerModel;
-            this.layerRenderers = this.field_177121_n;
+            this.layerRenderers = this.villagerLayers;
         }
         else
         {
-            this.mainModel = this.field_82434_o;
-            this.layerRenderers = this.field_177122_o;
+            this.mainModel = this.defaultModel;
+            this.layerRenderers = this.defaultLayers;
         }
 
         this.modelBipedMain = (ModelBiped)this.mainModel;

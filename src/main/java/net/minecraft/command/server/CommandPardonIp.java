@@ -51,7 +51,7 @@ public class CommandPardonIp extends CommandBase
     {
         if (args.length == 1 && args[0].length() > 1)
         {
-            Matcher matcher = CommandBanIp.field_147211_a.matcher(args[0]);
+            Matcher matcher = CommandBanIp.IP_PATTERN.matcher(args[0]);
 
             if (matcher.matches())
             {

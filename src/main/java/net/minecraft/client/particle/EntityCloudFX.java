@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class EntityCloudFX extends EntityFX
 {
-    float field_70569_a;
+    float oSize;
 
     protected EntityCloudFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i1221_8_, double p_i1221_10_, double p_i1221_12_)
     {
@@ -23,7 +23,7 @@ public class EntityCloudFX extends EntityFX
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F - (float)(Math.random() * 0.30000001192092896D);
         this.particleScale *= 0.75F;
         this.particleScale *= f;
-        this.field_70569_a = this.particleScale;
+        this.oSize = this.particleScale;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.3D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * f);
         this.noClip = false;
@@ -36,7 +36,7 @@ public class EntityCloudFX extends EntityFX
     {
         float f = ((float)this.particleAge + partialTicks) / (float)this.particleMaxAge * 32.0F;
         f = MathHelper.clamp_float(f, 0.0F, 1.0F);
-        this.particleScale = this.field_70569_a * f;
+        this.particleScale = this.oSize * f;
         super.renderParticle(worldRendererIn, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
     }
 

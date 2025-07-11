@@ -14,27 +14,27 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class BiomeGenHills extends BiomeGenBase
 {
     private WorldGenerator theWorldGenerator = new WorldGenMinable(Blocks.monster_egg.getDefaultState().withProperty(BlockSilverfish.VARIANT, BlockSilverfish.EnumType.STONE), 9);
-    private WorldGenTaiga2 field_150634_aD = new WorldGenTaiga2(false);
+    private WorldGenTaiga2 spruceGenerator = new WorldGenTaiga2(false);
     private int field_150635_aE = 0;
     private int field_150636_aF = 1;
     private int field_150637_aG = 2;
-    private int field_150638_aH;
+    private int type;
 
     protected BiomeGenHills(int id, boolean p_i45373_2_)
     {
         super(id);
-        this.field_150638_aH = this.field_150635_aE;
+        this.type = this.field_150635_aE;
 
         if (p_i45373_2_)
         {
             this.theBiomeDecorator.treesPerChunk = 3;
-            this.field_150638_aH = this.field_150636_aF;
+            this.type = this.field_150636_aF;
         }
     }
 
     public WorldGenAbstractTree genBigTreeChance(Random rand)
     {
-        return (WorldGenAbstractTree)(rand.nextInt(3) > 0 ? this.field_150634_aD : super.genBigTreeChance(rand));
+        return (WorldGenAbstractTree)(rand.nextInt(3) > 0 ? this.spruceGenerator : super.genBigTreeChance(rand));
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos)
@@ -69,12 +69,12 @@ public class BiomeGenHills extends BiomeGenBase
         this.topBlock = Blocks.grass.getDefaultState();
         this.fillerBlock = Blocks.dirt.getDefaultState();
 
-        if ((noiseVal < -1.0D || noiseVal > 2.0D) && this.field_150638_aH == this.field_150637_aG)
+        if ((noiseVal < -1.0D || noiseVal > 2.0D) && this.type == this.field_150637_aG)
         {
             this.topBlock = Blocks.gravel.getDefaultState();
             this.fillerBlock = Blocks.gravel.getDefaultState();
         }
-        else if (noiseVal > 1.0D && this.field_150638_aH != this.field_150636_aF)
+        else if (noiseVal > 1.0D && this.type != this.field_150636_aF)
         {
             this.topBlock = Blocks.stone.getDefaultState();
             this.fillerBlock = Blocks.stone.getDefaultState();
@@ -88,7 +88,7 @@ public class BiomeGenHills extends BiomeGenBase
      */
     private BiomeGenHills mutateHills(BiomeGenBase p_150633_1_)
     {
-        this.field_150638_aH = this.field_150637_aG;
+        this.type = this.field_150637_aG;
         this.func_150557_a(p_150633_1_.color, true);
         this.setBiomeName(p_150633_1_.biomeName + " M");
         this.setHeight(new BiomeGenBase.Height(p_150633_1_.minHeight, p_150633_1_.maxHeight));

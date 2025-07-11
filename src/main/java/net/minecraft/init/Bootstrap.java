@@ -230,7 +230,7 @@ public class Bootstrap
         });
         IBehaviorDispenseItem ibehaviordispenseitem = new BehaviorDefaultDispenseItem()
         {
-            private final BehaviorDefaultDispenseItem field_150841_b = new BehaviorDefaultDispenseItem();
+            private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 ItemBucket itembucket = (ItemBucket)stack.getItem();
@@ -244,7 +244,7 @@ public class Bootstrap
                 }
                 else
                 {
-                    return this.field_150841_b.dispense(source, stack);
+                    return this.dispenseBehavior.dispense(source, stack);
                 }
             }
         };
@@ -252,7 +252,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.water_bucket, ibehaviordispenseitem);
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new BehaviorDefaultDispenseItem()
         {
-            private final BehaviorDefaultDispenseItem field_150840_b = new BehaviorDefaultDispenseItem();
+            private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -285,7 +285,7 @@ public class Bootstrap
                 }
                 else if (((TileEntityDispenser)source.getBlockTileEntity()).addItemStack(new ItemStack(item)) < 0)
                 {
-                    this.field_150840_b.dispense(source, new ItemStack(item));
+                    this.dispenseBehavior.dispense(source, new ItemStack(item));
                 }
 
                 return stack;
@@ -293,7 +293,7 @@ public class Bootstrap
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.flint_and_steel, new BehaviorDefaultDispenseItem()
         {
-            private boolean field_150839_b = true;
+            private boolean succeeded = true;
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -315,14 +315,14 @@ public class Bootstrap
                 }
                 else
                 {
-                    this.field_150839_b = false;
+                    this.succeeded = false;
                 }
 
                 return stack;
             }
             protected void playDispenseSound(IBlockSource source)
             {
-                if (this.field_150839_b)
+                if (this.succeeded)
                 {
                     source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
                 }
@@ -334,7 +334,7 @@ public class Bootstrap
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.dye, new BehaviorDefaultDispenseItem()
         {
-            private boolean field_150838_b = true;
+            private boolean succeeded = true;
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 if (EnumDyeColor.WHITE == EnumDyeColor.byDyeDamage(stack.getMetadata()))
@@ -351,7 +351,7 @@ public class Bootstrap
                     }
                     else
                     {
-                        this.field_150838_b = false;
+                        this.succeeded = false;
                     }
 
                     return stack;
@@ -363,7 +363,7 @@ public class Bootstrap
             }
             protected void playDispenseSound(IBlockSource source)
             {
-                if (this.field_150838_b)
+                if (this.succeeded)
                 {
                     source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
                 }
@@ -388,7 +388,7 @@ public class Bootstrap
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.skull, new BehaviorDefaultDispenseItem()
         {
-            private boolean field_179240_b = true;
+            private boolean succeeded = true;
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -444,14 +444,14 @@ public class Bootstrap
                 }
                 else
                 {
-                    this.field_179240_b = false;
+                    this.succeeded = false;
                 }
 
                 return stack;
             }
             protected void playDispenseSound(IBlockSource source)
             {
-                if (this.field_179240_b)
+                if (this.succeeded)
                 {
                     source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
                 }
@@ -463,7 +463,7 @@ public class Bootstrap
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Item.getItemFromBlock(Blocks.pumpkin), new BehaviorDefaultDispenseItem()
         {
-            private boolean field_179241_b = true;
+            private boolean succeeded = true;
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -481,14 +481,14 @@ public class Bootstrap
                 }
                 else
                 {
-                    this.field_179241_b = false;
+                    this.succeeded = false;
                 }
 
                 return stack;
             }
             protected void playDispenseSound(IBlockSource source)
             {
-                if (this.field_179241_b)
+                if (this.succeeded)
                 {
                     source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
                 }

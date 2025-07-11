@@ -6,10 +6,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 
 public class ScreenChatOptions extends GuiScreen {
-    private static final GameSettings.Options[] field_146399_a = new GameSettings.Options[]{GameSettings.Options.CHAT_VISIBILITY, GameSettings.Options.CHAT_COLOR, GameSettings.Options.CHAT_LINKS, GameSettings.Options.CHAT_OPACITY, GameSettings.Options.CHAT_LINKS_PROMPT, GameSettings.Options.CHAT_SCALE, GameSettings.Options.CHAT_HEIGHT_FOCUSED, GameSettings.Options.CHAT_HEIGHT_UNFOCUSED, GameSettings.Options.CHAT_WIDTH};
+    private static final GameSettings.Options[] CHAT_OPTIONS = new GameSettings.Options[]{GameSettings.Options.CHAT_VISIBILITY, GameSettings.Options.CHAT_COLOR, GameSettings.Options.CHAT_LINKS, GameSettings.Options.CHAT_OPACITY, GameSettings.Options.CHAT_LINKS_PROMPT, GameSettings.Options.CHAT_SCALE, GameSettings.Options.CHAT_HEIGHT_FOCUSED, GameSettings.Options.CHAT_HEIGHT_UNFOCUSED, GameSettings.Options.CHAT_WIDTH};
     private final GuiScreen parentScreen;
     private final GameSettings game_settings;
-    private String field_146401_i;
+    private String chatTitle;
 
     public ScreenChatOptions(GuiScreen parentScreenIn, GameSettings gameSettingsIn) {
         this.parentScreen = parentScreenIn;
@@ -22,9 +22,9 @@ public class ScreenChatOptions extends GuiScreen {
      */
     public void initGui() {
         int i = 0;
-        this.field_146401_i = I18n.format("options.chat.title", new Object[0]);
+        this.chatTitle = I18n.format("options.chat.title", new Object[0]);
 
-        for (GameSettings.Options gamesettings$options : field_146399_a) {
+        for (GameSettings.Options gamesettings$options : CHAT_OPTIONS) {
             if (gamesettings$options.getEnumFloat()) {
                 this.buttonList.add(new GuiOptionSlider(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 + 24 * (i >> 1), gamesettings$options));
             } else {
@@ -59,7 +59,7 @@ public class ScreenChatOptions extends GuiScreen {
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRendererObj, this.field_146401_i, this.width / 2, 20, 16777215);
+        this.drawCenteredString(this.fontRendererObj, this.chatTitle, this.width / 2, 20, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 }

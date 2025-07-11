@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 
 public class WorldGenDesertWells extends WorldGenerator
 {
-    private static final BlockStateHelper field_175913_a = BlockStateHelper.forBlock(Blocks.sand).where(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumType.SAND));
-    private final IBlockState field_175911_b = Blocks.stone_slab.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SAND).withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-    private final IBlockState field_175912_c = Blocks.sandstone.getDefaultState();
-    private final IBlockState field_175910_d = Blocks.flowing_water.getDefaultState();
+    private static final BlockStateHelper IS_SAND = BlockStateHelper.forBlock(Blocks.sand).where(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumType.SAND));
+    private final IBlockState sandSlab = Blocks.stone_slab.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SAND).withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+    private final IBlockState sandstone = Blocks.sandstone.getDefaultState();
+    private final IBlockState water = Blocks.flowing_water.getDefaultState();
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
@@ -26,7 +26,7 @@ public class WorldGenDesertWells extends WorldGenerator
             position = position.down();
         }
 
-        if (!field_175913_a.apply(worldIn.getBlockState(position)))
+        if (!IS_SAND.apply(worldIn.getBlockState(position)))
         {
             return false;
         }
@@ -49,16 +49,16 @@ public class WorldGenDesertWells extends WorldGenerator
                 {
                     for (int k = -2; k <= 2; ++k)
                     {
-                        worldIn.setBlockState(position.add(l1, l, k), this.field_175912_c, 2);
+                        worldIn.setBlockState(position.add(l1, l, k), this.sandstone, 2);
                     }
                 }
             }
 
-            worldIn.setBlockState(position, this.field_175910_d, 2);
+            worldIn.setBlockState(position, this.water, 2);
 
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                worldIn.setBlockState(position.offset(enumfacing), this.field_175910_d, 2);
+                worldIn.setBlockState(position.offset(enumfacing), this.water, 2);
             }
 
             for (int i1 = -2; i1 <= 2; ++i1)
@@ -67,15 +67,15 @@ public class WorldGenDesertWells extends WorldGenerator
                 {
                     if (i1 == -2 || i1 == 2 || i2 == -2 || i2 == 2)
                     {
-                        worldIn.setBlockState(position.add(i1, 1, i2), this.field_175912_c, 2);
+                        worldIn.setBlockState(position.add(i1, 1, i2), this.sandstone, 2);
                     }
                 }
             }
 
-            worldIn.setBlockState(position.add(2, 1, 0), this.field_175911_b, 2);
-            worldIn.setBlockState(position.add(-2, 1, 0), this.field_175911_b, 2);
-            worldIn.setBlockState(position.add(0, 1, 2), this.field_175911_b, 2);
-            worldIn.setBlockState(position.add(0, 1, -2), this.field_175911_b, 2);
+            worldIn.setBlockState(position.add(2, 1, 0), this.sandSlab, 2);
+            worldIn.setBlockState(position.add(-2, 1, 0), this.sandSlab, 2);
+            worldIn.setBlockState(position.add(0, 1, 2), this.sandSlab, 2);
+            worldIn.setBlockState(position.add(0, 1, -2), this.sandSlab, 2);
 
             for (int j1 = -1; j1 <= 1; ++j1)
             {
@@ -83,21 +83,21 @@ public class WorldGenDesertWells extends WorldGenerator
                 {
                     if (j1 == 0 && j2 == 0)
                     {
-                        worldIn.setBlockState(position.add(j1, 4, j2), this.field_175912_c, 2);
+                        worldIn.setBlockState(position.add(j1, 4, j2), this.sandstone, 2);
                     }
                     else
                     {
-                        worldIn.setBlockState(position.add(j1, 4, j2), this.field_175911_b, 2);
+                        worldIn.setBlockState(position.add(j1, 4, j2), this.sandSlab, 2);
                     }
                 }
             }
 
             for (int k1 = 1; k1 <= 3; ++k1)
             {
-                worldIn.setBlockState(position.add(-1, k1, -1), this.field_175912_c, 2);
-                worldIn.setBlockState(position.add(-1, k1, 1), this.field_175912_c, 2);
-                worldIn.setBlockState(position.add(1, k1, -1), this.field_175912_c, 2);
-                worldIn.setBlockState(position.add(1, k1, 1), this.field_175912_c, 2);
+                worldIn.setBlockState(position.add(-1, k1, -1), this.sandstone, 2);
+                worldIn.setBlockState(position.add(-1, k1, 1), this.sandstone, 2);
+                worldIn.setBlockState(position.add(1, k1, -1), this.sandstone, 2);
+                worldIn.setBlockState(position.add(1, k1, 1), this.sandstone, 2);
             }
 
             return true;

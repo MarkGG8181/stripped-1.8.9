@@ -105,15 +105,15 @@ public class BlockPattern {
 
     static class CacheLoader extends com.google.common.cache.CacheLoader<BlockPos, BlockWorldState> {
         private final World world;
-        private final boolean field_181626_b;
+        private final boolean forceLoad;
 
         public CacheLoader(World worldIn, boolean p_i46460_2_) {
             this.world = worldIn;
-            this.field_181626_b = p_i46460_2_;
+            this.forceLoad = p_i46460_2_;
         }
 
         public BlockWorldState load(BlockPos p_load_1_) throws Exception {
-            return new BlockWorldState(this.world, p_load_1_, this.field_181626_b);
+            return new BlockWorldState(this.world, p_load_1_, this.forceLoad);
         }
     }
 
@@ -122,18 +122,18 @@ public class BlockPattern {
         private final EnumFacing finger;
         private final EnumFacing thumb;
         private final LoadingCache<BlockPos, BlockWorldState> lcache;
-        private final int field_181120_e;
-        private final int field_181121_f;
-        private final int field_181122_g;
+        private final int width;
+        private final int height;
+        private final int depth;
 
         public PatternHelper(BlockPos posIn, EnumFacing fingerIn, EnumFacing thumbIn, LoadingCache<BlockPos, BlockWorldState> lcacheIn, int p_i46378_5_, int p_i46378_6_, int p_i46378_7_) {
             this.pos = posIn;
             this.finger = fingerIn;
             this.thumb = thumbIn;
             this.lcache = lcacheIn;
-            this.field_181120_e = p_i46378_5_;
-            this.field_181121_f = p_i46378_6_;
-            this.field_181122_g = p_i46378_7_;
+            this.width = p_i46378_5_;
+            this.height = p_i46378_6_;
+            this.depth = p_i46378_7_;
         }
 
         public BlockPos getPos() {
@@ -149,11 +149,11 @@ public class BlockPattern {
         }
 
         public int func_181118_d() {
-            return this.field_181120_e;
+            return this.width;
         }
 
         public int func_181119_e() {
-            return this.field_181121_f;
+            return this.height;
         }
 
         public BlockWorldState translateOffset(int palmOffset, int thumbOffset, int fingerOffset) {

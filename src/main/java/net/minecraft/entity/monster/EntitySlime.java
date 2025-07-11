@@ -401,7 +401,7 @@ public class EntitySlime extends EntityLiving implements IMob
     static class AISlimeAttack extends EntityAIBase
     {
         private EntitySlime slime;
-        private int field_179465_b;
+        private int growTieredTimer;
 
         public AISlimeAttack(EntitySlime slimeIn)
         {
@@ -417,14 +417,14 @@ public class EntitySlime extends EntityLiving implements IMob
 
         public void startExecuting()
         {
-            this.field_179465_b = 300;
+            this.growTieredTimer = 300;
             super.startExecuting();
         }
 
         public boolean continueExecuting()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage ? false : --this.field_179465_b > 0));
+            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage ? false : --this.growTieredTimer > 0));
         }
 
         public void updateTask()
@@ -437,8 +437,8 @@ public class EntitySlime extends EntityLiving implements IMob
     static class AISlimeFaceRandom extends EntityAIBase
     {
         private EntitySlime slime;
-        private float field_179459_b;
-        private int field_179460_c;
+        private float chosenDegrees;
+        private int nextRandomizeTime;
 
         public AISlimeFaceRandom(EntitySlime slimeIn)
         {
@@ -453,13 +453,13 @@ public class EntitySlime extends EntityLiving implements IMob
 
         public void updateTask()
         {
-            if (--this.field_179460_c <= 0)
+            if (--this.nextRandomizeTime <= 0)
             {
-                this.field_179460_c = 40 + this.slime.getRNG().nextInt(60);
-                this.field_179459_b = (float)this.slime.getRNG().nextInt(360);
+                this.nextRandomizeTime = 40 + this.slime.getRNG().nextInt(60);
+                this.chosenDegrees = (float)this.slime.getRNG().nextInt(360);
             }
 
-            ((EntitySlime.SlimeMoveHelper)this.slime.getMoveHelper()).func_179920_a(this.field_179459_b, false);
+            ((EntitySlime.SlimeMoveHelper)this.slime.getMoveHelper()).func_179920_a(this.chosenDegrees, false);
         }
     }
 
@@ -513,10 +513,10 @@ public class EntitySlime extends EntityLiving implements IMob
 
     static class SlimeMoveHelper extends EntityMoveHelper
     {
-        private float field_179922_g;
-        private int field_179924_h;
+        private float yRot;
+        private int jumpDelay;
         private EntitySlime slime;
-        private boolean field_179923_j;
+        private boolean isAggressive;
 
         public SlimeMoveHelper(EntitySlime slimeIn)
         {
@@ -526,8 +526,8 @@ public class EntitySlime extends EntityLiving implements IMob
 
         public void func_179920_a(float p_179920_1_, boolean p_179920_2_)
         {
-            this.field_179922_g = p_179920_1_;
-            this.field_179923_j = p_179920_2_;
+            this.yRot = p_179920_1_;
+            this.isAggressive = p_179920_2_;
         }
 
         public void setSpeed(double speedIn)
@@ -538,7 +538,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
         public void onUpdateMoveHelper()
         {
-            this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, this.field_179922_g, 30.0F);
+            this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, this.yRot, 30.0F);
             this.entity.rotationYawHead = this.entity.rotationYaw;
             this.entity.renderYawOffset = this.entity.rotationYaw;
 
@@ -554,13 +554,13 @@ public class EntitySlime extends EntityLiving implements IMob
                 {
                     this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue()));
 
-                    if (this.field_179924_h-- <= 0)
+                    if (this.jumpDelay-- <= 0)
                     {
-                        this.field_179924_h = this.slime.getJumpDelay();
+                        this.jumpDelay = this.slime.getJumpDelay();
 
-                        if (this.field_179923_j)
+                        if (this.isAggressive)
                         {
-                            this.field_179924_h /= 3;
+                            this.jumpDelay /= 3;
                         }
 
                         this.slime.getJumpHelper().setJumping();

@@ -36,14 +36,14 @@ public class ShaderGroup {
     private Matrix4f projectionMatrix;
     private int mainFramebufferWidth;
     private int mainFramebufferHeight;
-    private float field_148036_j;
-    private float field_148037_k;
+    private float time;
+    private float lastStamp;
 
     public ShaderGroup(TextureManager p_i1050_1_, IResourceManager p_i1050_2_, Framebuffer p_i1050_3_, ResourceLocation p_i1050_4_) throws JsonException, IOException, JsonSyntaxException {
         this.resourceManager = p_i1050_2_;
         this.mainFramebuffer = p_i1050_3_;
-        this.field_148036_j = 0.0F;
-        this.field_148037_k = 0.0F;
+        this.time = 0.0F;
+        this.lastStamp = 0.0F;
         this.mainFramebufferWidth = p_i1050_3_.framebufferWidth;
         this.mainFramebufferHeight = p_i1050_3_.framebufferHeight;
         this.shaderGroupName = p_i1050_4_.toString();
@@ -307,19 +307,19 @@ public class ShaderGroup {
     }
 
     public void loadShaderGroup(float partialTicks) {
-        if (partialTicks < this.field_148037_k) {
-            this.field_148036_j += 1.0F - this.field_148037_k;
-            this.field_148036_j += partialTicks;
+        if (partialTicks < this.lastStamp) {
+            this.time += 1.0F - this.lastStamp;
+            this.time += partialTicks;
         } else {
-            this.field_148036_j += partialTicks - this.field_148037_k;
+            this.time += partialTicks - this.lastStamp;
         }
 
-        for (this.field_148037_k = partialTicks; this.field_148036_j > 20.0F; this.field_148036_j -= 20.0F) {
+        for (this.lastStamp = partialTicks; this.time > 20.0F; this.time -= 20.0F) {
             ;
         }
 
         for (Shader shader : this.listShaders) {
-            shader.loadShader(this.field_148036_j / 20.0F);
+            shader.loadShader(this.time / 20.0F);
         }
     }
 

@@ -1118,7 +1118,7 @@ public class Minecraft implements IThreadListener {
             Profiler.Result profiler$result = (Profiler.Result) list.remove(0);
 
             if (keyCount == 0) {
-                if (profiler$result.field_76331_c.length() > 0) {
+                if (profiler$result.profilerName.length() > 0) {
                     int i = this.debugProfilerName.lastIndexOf(".");
 
                     if (i >= 0) {
@@ -1128,12 +1128,12 @@ public class Minecraft implements IThreadListener {
             } else {
                 --keyCount;
 
-                if (keyCount < list.size() && !((Profiler.Result) list.get(keyCount)).field_76331_c.equals("unspecified")) {
+                if (keyCount < list.size() && !((Profiler.Result) list.get(keyCount)).profilerName.equals("unspecified")) {
                     if (this.debugProfilerName.length() > 0) {
                         this.debugProfilerName = this.debugProfilerName + ".";
                     }
 
-                    this.debugProfilerName = this.debugProfilerName + ((Profiler.Result) list.get(keyCount)).field_76331_c;
+                    this.debugProfilerName = this.debugProfilerName + ((Profiler.Result) list.get(keyCount)).profilerName;
                 }
             }
         }
@@ -1173,7 +1173,7 @@ public class Minecraft implements IThreadListener {
 
             for (int l = 0; l < list.size(); ++l) {
                 Profiler.Result profiler$result1 = (Profiler.Result) list.get(l);
-                int i1 = MathHelper.floor_double(profiler$result1.field_76332_a / 4.0D) + 1;
+                int i1 = MathHelper.floor_double(profiler$result1.usePercentage / 4.0D) + 1;
                 worldrenderer.begin(6, DefaultVertexFormats.POSITION_COLOR);
                 int j1 = profiler$result1.getColor();
                 int k1 = j1 >> 16 & 255;
@@ -1182,7 +1182,7 @@ public class Minecraft implements IThreadListener {
                 worldrenderer.pos((double) j, (double) k, 0.0D).color(k1, l1, i2, 255).endVertex();
 
                 for (int j2 = i1; j2 >= 0; --j2) {
-                    float f = (float) ((d0 + profiler$result1.field_76332_a * (double) j2 / (double) i1) * Math.PI * 2.0D / 100.0D);
+                    float f = (float) ((d0 + profiler$result1.usePercentage * (double) j2 / (double) i1) * Math.PI * 2.0D / 100.0D);
                     float f1 = MathHelper.sin(f) * (float) i;
                     float f2 = MathHelper.cos(f) * (float) i * 0.5F;
                     worldrenderer.pos((double) ((float) j + f1), (double) ((float) k - f2), 0.0D).color(k1, l1, i2, 255).endVertex();
@@ -1192,7 +1192,7 @@ public class Minecraft implements IThreadListener {
                 worldrenderer.begin(5, DefaultVertexFormats.POSITION_COLOR);
 
                 for (int i3 = i1; i3 >= 0; --i3) {
-                    float f3 = (float) ((d0 + profiler$result1.field_76332_a * (double) i3 / (double) i1) * Math.PI * 2.0D / 100.0D);
+                    float f3 = (float) ((d0 + profiler$result1.usePercentage * (double) i3 / (double) i1) * Math.PI * 2.0D / 100.0D);
                     float f4 = MathHelper.sin(f3) * (float) i;
                     float f5 = MathHelper.cos(f3) * (float) i * 0.5F;
                     worldrenderer.pos((double) ((float) j + f4), (double) ((float) k - f5), 0.0D).color(k1 >> 1, l1 >> 1, i2 >> 1, 255).endVertex();
@@ -1200,41 +1200,41 @@ public class Minecraft implements IThreadListener {
                 }
 
                 tessellator.draw();
-                d0 += profiler$result1.field_76332_a;
+                d0 += profiler$result1.usePercentage;
             }
 
             DecimalFormat decimalformat = new DecimalFormat("##0.00");
             GlStateManager.enableTexture2D();
             String s = "";
 
-            if (!profiler$result.field_76331_c.equals("unspecified")) {
+            if (!profiler$result.profilerName.equals("unspecified")) {
                 s = s + "[0] ";
             }
 
-            if (profiler$result.field_76331_c.length() == 0) {
+            if (profiler$result.profilerName.length() == 0) {
                 s = s + "ROOT ";
             } else {
-                s = s + profiler$result.field_76331_c + " ";
+                s = s + profiler$result.profilerName + " ";
             }
 
             int l2 = 16777215;
             this.fontRendererObj.drawStringWithShadow(s, (float) (j - i), (float) (k - i / 2 - 16), l2);
-            this.fontRendererObj.drawStringWithShadow(s = decimalformat.format(profiler$result.field_76330_b) + "%", (float) (j + i - this.fontRendererObj.getStringWidth(s)), (float) (k - i / 2 - 16), l2);
+            this.fontRendererObj.drawStringWithShadow(s = decimalformat.format(profiler$result.totalUsePercentage) + "%", (float) (j + i - this.fontRendererObj.getStringWidth(s)), (float) (k - i / 2 - 16), l2);
 
             for (int k2 = 0; k2 < list.size(); ++k2) {
                 Profiler.Result profiler$result2 = (Profiler.Result) list.get(k2);
                 String s1 = "";
 
-                if (profiler$result2.field_76331_c.equals("unspecified")) {
+                if (profiler$result2.profilerName.equals("unspecified")) {
                     s1 = s1 + "[?] ";
                 } else {
                     s1 = s1 + "[" + (k2 + 1) + "] ";
                 }
 
-                s1 = s1 + profiler$result2.field_76331_c;
+                s1 = s1 + profiler$result2.profilerName;
                 this.fontRendererObj.drawStringWithShadow(s1, (float) (j - i), (float) (k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76332_a) + "%", (float) (j + i - 50 - this.fontRendererObj.getStringWidth(s1)), (float) (k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
-                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.field_76330_b) + "%", (float) (j + i - this.fontRendererObj.getStringWidth(s1)), (float) (k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
+                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.usePercentage) + "%", (float) (j + i - 50 - this.fontRendererObj.getStringWidth(s1)), (float) (k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
+                this.fontRendererObj.drawStringWithShadow(s1 = decimalformat.format(profiler$result2.totalUsePercentage) + "%", (float) (j + i - this.fontRendererObj.getStringWidth(s1)), (float) (k + i / 2 + k2 * 8 + 20), profiler$result2.getColor());
             }
         }
     }

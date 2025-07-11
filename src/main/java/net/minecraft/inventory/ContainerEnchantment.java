@@ -290,7 +290,7 @@ public class ContainerEnchantment extends Container
                         }
                     }
 
-                    playerIn.triggerAchievement(StatList.field_181739_W);
+                    playerIn.triggerAchievement(StatList.itemEnchantedStat);
                     this.tableInventory.markDirty();
                     this.xpSeed = playerIn.getXPSeed();
                     this.onCraftMatrixChanged(this.tableInventory);

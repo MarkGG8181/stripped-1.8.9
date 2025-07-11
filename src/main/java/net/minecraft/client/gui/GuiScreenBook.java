@@ -64,8 +64,8 @@ public class GuiScreenBook extends GuiScreen {
     private int currPage;
     private NBTTagList bookPages;
     private String bookTitle = "";
-    private List<IChatComponent> field_175386_A;
-    private int field_175387_B = -1;
+    private List<IChatComponent> cachedComponents;
+    private int cachedPage = -1;
     private GuiScreenBook.NextPageButton buttonNextPage;
     private GuiScreenBook.NextPageButton buttonPreviousPage;
     private GuiButton buttonDone;
@@ -394,32 +394,32 @@ public class GuiScreenBook extends GuiScreen {
                 } else {
                     s5 = s5 + "" + EnumChatFormatting.GRAY + "_";
                 }
-            } else if (this.field_175387_B != this.currPage) {
+            } else if (this.cachedPage != this.currPage) {
                 if (ItemEditableBook.validBookTagContents(this.bookObj.getTagCompound())) {
                     try {
                         IChatComponent ichatcomponent = IChatComponent.Serializer.jsonToComponent(s5);
-                        this.field_175386_A = ichatcomponent != null ? GuiUtilRenderComponents.splitText(ichatcomponent, 116, this.fontRendererObj, true, true) : null;
+                        this.cachedComponents = ichatcomponent != null ? GuiUtilRenderComponents.splitText(ichatcomponent, 116, this.fontRendererObj, true, true) : null;
                     } catch (JsonParseException var13) {
-                        this.field_175386_A = null;
+                        this.cachedComponents = null;
                     }
                 } else {
                     ChatComponentText chatcomponenttext = new ChatComponentText(EnumChatFormatting.DARK_RED.toString() + "* Invalid book tag *");
-                    this.field_175386_A = Lists.newArrayList(chatcomponenttext);
+                    this.cachedComponents = Lists.newArrayList(chatcomponenttext);
                 }
 
-                this.field_175387_B = this.currPage;
+                this.cachedPage = this.currPage;
             }
 
             int j1 = this.fontRendererObj.getStringWidth(s4);
             this.fontRendererObj.drawString(s4, i - j1 + this.bookImageWidth - 44, j + 16, 0);
 
-            if (this.field_175386_A == null) {
+            if (this.cachedComponents == null) {
                 this.fontRendererObj.drawSplitString(s5, i + 36, j + 16 + 16, 116, 0);
             } else {
-                int k1 = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.field_175386_A.size());
+                int k1 = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.cachedComponents.size());
 
                 for (int l1 = 0; l1 < k1; ++l1) {
-                    IChatComponent ichatcomponent2 = (IChatComponent) this.field_175386_A.get(l1);
+                    IChatComponent ichatcomponent2 = (IChatComponent) this.cachedComponents.get(l1);
                     this.fontRendererObj.drawString(ichatcomponent2.getUnformattedText(), i + 36, j + 16 + 16 + l1 * this.fontRendererObj.FONT_HEIGHT, 0);
                 }
 
@@ -487,20 +487,20 @@ public class GuiScreenBook extends GuiScreen {
     }
 
     public IChatComponent func_175385_b(int p_175385_1_, int p_175385_2_) {
-        if (this.field_175386_A == null) {
+        if (this.cachedComponents == null) {
             return null;
         } else {
             int i = p_175385_1_ - (this.width - this.bookImageWidth) / 2 - 36;
             int j = p_175385_2_ - 2 - 16 - 16;
 
             if (i >= 0 && j >= 0) {
-                int k = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.field_175386_A.size());
+                int k = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.cachedComponents.size());
 
                 if (i <= 116 && j < this.mc.fontRendererObj.FONT_HEIGHT * k + k) {
                     int l = j / this.mc.fontRendererObj.FONT_HEIGHT;
 
-                    if (l >= 0 && l < this.field_175386_A.size()) {
-                        IChatComponent ichatcomponent = (IChatComponent) this.field_175386_A.get(l);
+                    if (l >= 0 && l < this.cachedComponents.size()) {
+                        IChatComponent ichatcomponent = (IChatComponent) this.cachedComponents.get(l);
                         int i1 = 0;
 
                         for (IChatComponent ichatcomponent1 : ichatcomponent) {
@@ -525,11 +525,11 @@ public class GuiScreenBook extends GuiScreen {
     }
 
     static class NextPageButton extends GuiButton {
-        private final boolean field_146151_o;
+        private final boolean isForward;
 
         public NextPageButton(int p_i46316_1_, int p_i46316_2_, int p_i46316_3_, boolean p_i46316_4_) {
             super(p_i46316_1_, p_i46316_2_, p_i46316_3_, 23, 13, "");
-            this.field_146151_o = p_i46316_4_;
+            this.isForward = p_i46316_4_;
         }
 
         public void drawButton(Minecraft mc, int mouseX, int mouseY) {
@@ -544,7 +544,7 @@ public class GuiScreenBook extends GuiScreen {
                     i += 23;
                 }
 
-                if (!this.field_146151_o) {
+                if (!this.isForward) {
                     j += 13;
                 }
 

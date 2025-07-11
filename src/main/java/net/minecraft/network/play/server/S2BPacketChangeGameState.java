@@ -9,7 +9,7 @@ public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
 {
     public static final String[] MESSAGE_NAMES = new String[] {"tile.bed.notValid"};
     private int state;
-    private float field_149141_c;
+    private float value;
 
     public S2BPacketChangeGameState()
     {
@@ -18,7 +18,7 @@ public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
     public S2BPacketChangeGameState(int stateIn, float p_i45194_2_)
     {
         this.state = stateIn;
-        this.field_149141_c = p_i45194_2_;
+        this.value = p_i45194_2_;
     }
 
     /**
@@ -27,7 +27,7 @@ public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
     public void readPacketData(PacketBuffer buf) throws IOException
     {
         this.state = buf.readUnsignedByte();
-        this.field_149141_c = buf.readFloat();
+        this.value = buf.readFloat();
     }
 
     /**
@@ -36,7 +36,7 @@ public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
     public void writePacketData(PacketBuffer buf) throws IOException
     {
         buf.writeByte(this.state);
-        buf.writeFloat(this.field_149141_c);
+        buf.writeFloat(this.value);
     }
 
     /**
@@ -54,6 +54,6 @@ public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
 
     public float func_149137_d()
     {
-        return this.field_149141_c;
+        return this.value;
     }
 }

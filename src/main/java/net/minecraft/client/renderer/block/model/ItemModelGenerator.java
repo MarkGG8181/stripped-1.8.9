@@ -241,27 +241,27 @@ public class ItemModelGenerator
     static class Span
     {
         private final ItemModelGenerator.SpanFacing spanFacing;
-        private int field_178387_b;
-        private int field_178388_c;
-        private final int field_178386_d;
+        private int min;
+        private int max;
+        private final int anchor;
 
         public Span(ItemModelGenerator.SpanFacing spanFacingIn, int p_i46216_2_, int p_i46216_3_)
         {
             this.spanFacing = spanFacingIn;
-            this.field_178387_b = p_i46216_2_;
-            this.field_178388_c = p_i46216_2_;
-            this.field_178386_d = p_i46216_3_;
+            this.min = p_i46216_2_;
+            this.max = p_i46216_2_;
+            this.anchor = p_i46216_3_;
         }
 
         public void func_178382_a(int p_178382_1_)
         {
-            if (p_178382_1_ < this.field_178387_b)
+            if (p_178382_1_ < this.min)
             {
-                this.field_178387_b = p_178382_1_;
+                this.min = p_178382_1_;
             }
-            else if (p_178382_1_ > this.field_178388_c)
+            else if (p_178382_1_ > this.max)
             {
-                this.field_178388_c = p_178382_1_;
+                this.max = p_178382_1_;
             }
         }
 
@@ -272,17 +272,17 @@ public class ItemModelGenerator
 
         public int func_178385_b()
         {
-            return this.field_178387_b;
+            return this.min;
         }
 
         public int func_178384_c()
         {
-            return this.field_178388_c;
+            return this.max;
         }
 
         public int func_178381_d()
         {
-            return this.field_178386_d;
+            return this.anchor;
         }
     }
 
@@ -294,14 +294,14 @@ public class ItemModelGenerator
         RIGHT(EnumFacing.WEST, 1, 0);
 
         private final EnumFacing facing;
-        private final int field_178373_f;
-        private final int field_178374_g;
+        private final int xOffset;
+        private final int yOffset;
 
         private SpanFacing(EnumFacing facing, int p_i46215_4_, int p_i46215_5_)
         {
             this.facing = facing;
-            this.field_178373_f = p_i46215_4_;
-            this.field_178374_g = p_i46215_5_;
+            this.xOffset = p_i46215_4_;
+            this.yOffset = p_i46215_5_;
         }
 
         public EnumFacing getFacing()
@@ -311,12 +311,12 @@ public class ItemModelGenerator
 
         public int func_178372_b()
         {
-            return this.field_178373_f;
+            return this.xOffset;
         }
 
         public int func_178371_c()
         {
-            return this.field_178374_g;
+            return this.yOffset;
         }
 
         private boolean func_178369_d()

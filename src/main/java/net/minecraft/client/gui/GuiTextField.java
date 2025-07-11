@@ -54,7 +54,7 @@ public class GuiTextField extends Gui
 
     /** True if this textbox is visible */
     private boolean visible = true;
-    private GuiPageButtonList.GuiResponder field_175210_x;
+    private GuiPageButtonList.GuiResponder guiResponder;
     private Predicate<String> validator = Predicates.<String>alwaysTrue();
 
     public GuiTextField(int componentId, FontRenderer fontrendererObj, int x, int y, int par5Width, int par6Height)
@@ -69,7 +69,7 @@ public class GuiTextField extends Gui
 
     public void func_175207_a(GuiPageButtonList.GuiResponder p_175207_1_)
     {
-        this.field_175210_x = p_175207_1_;
+        this.guiResponder = p_175207_1_;
     }
 
     /**
@@ -161,9 +161,9 @@ public class GuiTextField extends Gui
             this.text = s;
             this.moveCursorBy(i - this.selectionEnd + l);
 
-            if (this.field_175210_x != null)
+            if (this.guiResponder != null)
             {
-                this.field_175210_x.func_175319_a(this.id, this.text);
+                this.guiResponder.func_175319_a(this.id, this.text);
             }
         }
     }
@@ -224,9 +224,9 @@ public class GuiTextField extends Gui
                         this.moveCursorBy(p_146175_1_);
                     }
 
-                    if (this.field_175210_x != null)
+                    if (this.guiResponder != null)
                     {
-                        this.field_175210_x.func_175319_a(this.id, this.text);
+                        this.guiResponder.func_175319_a(this.id, this.text);
                     }
                 }
             }

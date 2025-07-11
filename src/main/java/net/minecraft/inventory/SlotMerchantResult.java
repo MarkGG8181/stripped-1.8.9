@@ -13,7 +13,7 @@ public class SlotMerchantResult extends Slot
 
     /** The Player whos trying to buy/sell stuff. */
     private EntityPlayer thePlayer;
-    private int field_75231_g;
+    private int removeCount;
 
     /** "Instance" of the Merchant. */
     private final IMerchant theMerchant;
@@ -42,7 +42,7 @@ public class SlotMerchantResult extends Slot
     {
         if (this.getHasStack())
         {
-            this.field_75231_g += Math.min(amount, this.getStack().stackSize);
+            this.removeCount += Math.min(amount, this.getStack().stackSize);
         }
 
         return super.decrStackSize(amount);
@@ -54,7 +54,7 @@ public class SlotMerchantResult extends Slot
      */
     protected void onCrafting(ItemStack stack, int amount)
     {
-        this.field_75231_g += amount;
+        this.removeCount += amount;
         this.onCrafting(stack);
     }
 
@@ -63,8 +63,8 @@ public class SlotMerchantResult extends Slot
      */
     protected void onCrafting(ItemStack stack)
     {
-        stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_75231_g);
-        this.field_75231_g = 0;
+        stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.removeCount);
+        this.removeCount = 0;
     }
 
     public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)

@@ -58,15 +58,15 @@ public class OldServerPinger {
         server.pingToServer = -1L;
         server.playerList = null;
         networkmanager.setNetHandler(new INetHandlerStatusClient() {
-            private boolean field_147403_d = false;
-            private boolean field_183009_e = false;
-            private long field_175092_e = 0L;
+            private boolean successful = false;
+            private boolean receivedStatus = false;
+            private long pingSentAt = 0L;
 
             public void handleServerInfo(S00PacketServerInfo packetIn) {
-                if (this.field_183009_e) {
+                if (this.receivedStatus) {
                     networkmanager.closeChannel(new ChatComponentText("Received unrequested status"));
                 } else {
-                    this.field_183009_e = true;
+                    this.receivedStatus = true;
                     ServerStatusResponse serverstatusresponse = packetIn.getResponse();
 
                     if (serverstatusresponse.getServerDescription() != null) {
@@ -123,21 +123,21 @@ public class OldServerPinger {
                         server.setBase64EncodedIconData((String) null);
                     }
 
-                    this.field_175092_e = Minecraft.getSystemTime();
-                    networkmanager.sendPacket(new C01PacketPing(this.field_175092_e));
-                    this.field_147403_d = true;
+                    this.pingSentAt = Minecraft.getSystemTime();
+                    networkmanager.sendPacket(new C01PacketPing(this.pingSentAt));
+                    this.successful = true;
                 }
             }
 
             public void handlePong(S01PacketPong packetIn) {
-                long i = this.field_175092_e;
+                long i = this.pingSentAt;
                 long j = Minecraft.getSystemTime();
                 server.pingToServer = j - i;
                 networkmanager.closeChannel(new ChatComponentText("Finished"));
             }
 
             public void onDisconnect(IChatComponent reason) {
-                if (!this.field_147403_d) {
+                if (!this.successful) {
                     OldServerPinger.logger.error("Can\'t ping " + server.serverIP + ": " + reason.getUnformattedText());
                     server.serverMOTD = EnumChatFormatting.DARK_RED + "Can\'t connect to server.";
                     server.populationInfo = "";

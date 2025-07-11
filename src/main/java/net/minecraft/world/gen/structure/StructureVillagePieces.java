@@ -213,7 +213,7 @@ public class StructureVillagePieces
                 if (start.getWorldChunkManager().areBiomesViable(i, j, i1 / 2 + 4, MapGenVillage.villageSpawnBiomes))
                 {
                     p_176066_1_.add(structurecomponent);
-                    start.field_74932_i.add(structurecomponent);
+                    start.pendingHouses.add(structurecomponent);
                     return structurecomponent;
                 }
             }
@@ -248,7 +248,7 @@ public class StructureVillagePieces
                 if (start.getWorldChunkManager().areBiomesViable(i, j, i1 / 2 + 4, MapGenVillage.villageSpawnBiomes))
                 {
                     p_176069_1_.add(structurecomponent);
-                    start.field_74930_j.add(structurecomponent);
+                    start.pendingRoads.add(structurecomponent);
                     return structurecomponent;
                 }
             }
@@ -282,16 +282,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 12 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 12 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 3, 3, 7, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -438,16 +438,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 4 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 4 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 0, 12, 4, 8, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -543,16 +543,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 4 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 4 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 0, 6, 4, 8, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -606,16 +606,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 7 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 7 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 7, 4, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -726,16 +726,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 9 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 9 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 7, 5, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -864,16 +864,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 6 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 0, 9, 4, 6, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -966,16 +966,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 7 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 7 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 7, 4, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -1138,16 +1138,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 6 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 0, 4, Blocks.cobblestone.getDefaultState(), Blocks.cobblestone.getDefaultState(), false);
@@ -1411,8 +1411,8 @@ public class StructureVillagePieces
         public int terrainType;
         public StructureVillagePieces.PieceWeight structVillagePieceWeight;
         public List<StructureVillagePieces.PieceWeight> structureVillageWeightedPieceList;
-        public List<StructureComponent> field_74932_i = Lists.<StructureComponent>newArrayList();
-        public List<StructureComponent> field_74930_j = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingHouses = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingRoads = Lists.<StructureComponent>newArrayList();
 
         public Start()
         {
@@ -1424,7 +1424,7 @@ public class StructureVillagePieces
             this.worldChunkMngr = chunkManagerIn;
             this.structureVillageWeightedPieceList = p_i2104_6_;
             this.terrainType = p_i2104_7_;
-            BiomeGenBase biomegenbase = chunkManagerIn.getBiomeGenerator(new BlockPos(p_i2104_4_, 0, p_i2104_5_), BiomeGenBase.field_180279_ad);
+            BiomeGenBase biomegenbase = chunkManagerIn.getBiomeGenerator(new BlockPos(p_i2104_4_, 0, p_i2104_5_), BiomeGenBase.DEFAULT);
             this.inDesert = biomegenbase == BiomeGenBase.desert || biomegenbase == BiomeGenBase.desertHills;
             this.func_175846_a(this.inDesert);
         }
@@ -1456,16 +1456,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 4 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 4 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 2, 3, 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -1484,7 +1484,7 @@ public class StructureVillagePieces
 
     abstract static class Village extends StructureComponent
     {
-        protected int field_143015_k = -1;
+        protected int averageGroundLvl = -1;
         private int villagersSpawned;
         private boolean isDesertVillage;
 
@@ -1504,14 +1504,14 @@ public class StructureVillagePieces
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
-            tagCompound.setInteger("HPos", this.field_143015_k);
+            tagCompound.setInteger("HPos", this.averageGroundLvl);
             tagCompound.setInteger("VCount", this.villagersSpawned);
             tagCompound.setBoolean("Desert", this.isDesertVillage);
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
-            this.field_143015_k = tagCompound.getInteger("HPos");
+            this.averageGroundLvl = tagCompound.getInteger("HPos");
             this.villagersSpawned = tagCompound.getInteger("VCount");
             this.isDesertVillage = tagCompound.getBoolean("Desert");
         }
@@ -1723,16 +1723,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 3, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 3, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 1, 4, 12, 4, Blocks.cobblestone.getDefaultState(), Blocks.flowing_water.getDefaultState(), false);
@@ -1806,16 +1806,16 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            if (this.field_143015_k < 0)
+            if (this.averageGroundLvl < 0)
             {
-                this.field_143015_k = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+                this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-                if (this.field_143015_k < 0)
+                if (this.averageGroundLvl < 0)
                 {
                     return true;
                 }
 
-                this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 6 - 1, 0);
+                this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 6 - 1, 0);
             }
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 3, 5, 4, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);

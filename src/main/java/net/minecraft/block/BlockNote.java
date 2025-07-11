@@ -63,7 +63,7 @@ public class BlockNote extends BlockContainer
                 TileEntityNote tileentitynote = (TileEntityNote)tileentity;
                 tileentitynote.changePitch();
                 tileentitynote.triggerNote(worldIn, pos);
-                playerIn.triggerAchievement(StatList.field_181735_S);
+                playerIn.triggerAchievement(StatList.noteblockTunedStat);
             }
 
             return true;
@@ -79,7 +79,7 @@ public class BlockNote extends BlockContainer
             if (tileentity instanceof TileEntityNote)
             {
                 ((TileEntityNote)tileentity).triggerNote(worldIn, pos);
-                playerIn.triggerAchievement(StatList.field_181734_R);
+                playerIn.triggerAchievement(StatList.noteblockPlayedStat);
             }
         }
     }

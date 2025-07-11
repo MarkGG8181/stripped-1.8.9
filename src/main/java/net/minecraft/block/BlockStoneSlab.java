@@ -165,7 +165,7 @@ public abstract class BlockStoneSlab extends BlockSlab
 
         private static final BlockStoneSlab.EnumType[] META_LOOKUP = new BlockStoneSlab.EnumType[values().length];
         private final int meta;
-        private final MapColor field_181075_k;
+        private final MapColor mapColor;
         private final String name;
         private final String unlocalizedName;
 
@@ -177,7 +177,7 @@ public abstract class BlockStoneSlab extends BlockSlab
         private EnumType(int p_i46382_3_, MapColor p_i46382_4_, String p_i46382_5_, String p_i46382_6_)
         {
             this.meta = p_i46382_3_;
-            this.field_181075_k = p_i46382_4_;
+            this.mapColor = p_i46382_4_;
             this.name = p_i46382_5_;
             this.unlocalizedName = p_i46382_6_;
         }
@@ -189,7 +189,7 @@ public abstract class BlockStoneSlab extends BlockSlab
 
         public MapColor func_181074_c()
         {
-            return this.field_181075_k;
+            return this.mapColor;
         }
 
         public String toString()

@@ -19,12 +19,12 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
     private static final ResourceLocation GUARDIAN_TEXTURE = new ResourceLocation("textures/entity/guardian.png");
     private static final ResourceLocation GUARDIAN_ELDER_TEXTURE = new ResourceLocation("textures/entity/guardian_elder.png");
     private static final ResourceLocation GUARDIAN_BEAM_TEXTURE = new ResourceLocation("textures/entity/guardian_beam.png");
-    int field_177115_a;
+    int lastModelVersion;
 
     public RenderGuardian(RenderManager renderManagerIn)
     {
         super(renderManagerIn, new ModelGuardian(), 0.5F);
-        this.field_177115_a = ((ModelGuardian)this.mainModel).func_178706_a();
+        this.lastModelVersion = ((ModelGuardian)this.mainModel).func_178706_a();
     }
 
     public boolean shouldRender(EntityGuardian livingEntity, ICamera camera, double camX, double camY, double camZ)
@@ -68,10 +68,10 @@ public class RenderGuardian extends RenderLiving<EntityGuardian>
      */
     public void doRender(EntityGuardian entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if (this.field_177115_a != ((ModelGuardian)this.mainModel).func_178706_a())
+        if (this.lastModelVersion != ((ModelGuardian)this.mainModel).func_178706_a())
         {
             this.mainModel = new ModelGuardian();
-            this.field_177115_a = ((ModelGuardian)this.mainModel).func_178706_a();
+            this.lastModelVersion = ((ModelGuardian)this.mainModel).func_178706_a();
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);

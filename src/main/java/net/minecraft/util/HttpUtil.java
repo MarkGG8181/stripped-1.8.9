@@ -30,7 +30,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HttpUtil
 {
-    public static final ListeningExecutorService field_180193_a = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool((new ThreadFactoryBuilder()).setDaemon(true).setNameFormat("Downloader %d").build()));
+    public static final ListeningExecutorService DOWNLOADER_EXECUTOR = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool((new ThreadFactoryBuilder()).setDaemon(true).setNameFormat("Downloader %d").build()));
 
     /** The number of download threads that we have started so far. */
     private static final AtomicInteger downloadThreadsStarted = new AtomicInteger(0);
@@ -137,7 +137,7 @@ public class HttpUtil
 
     public static ListenableFuture<Object> downloadResourcePack(final File saveFile, final String packUrl, final Map<String, String> p_180192_2_, final int maxSize, final IProgressUpdate p_180192_4_, final Proxy p_180192_5_)
     {
-        ListenableFuture<?> listenablefuture = field_180193_a.submit(new Runnable()
+        ListenableFuture<?> listenablefuture = DOWNLOADER_EXECUTOR.submit(new Runnable()
         {
             public void run()
             {

@@ -40,7 +40,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Texture allocated for the current viewport of the main menu's panorama background.
      */
     private DynamicTexture viewportTexture;
-    private boolean field_175375_v = true;
+    private boolean mcoEnabled = true;
 
     /**
      * The Object object utilized as a thread lock when performing non thread-safe operations
@@ -67,17 +67,17 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
      * An array of all the paths to the panorama pictures.
      */
     private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[]{new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
-    public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
-    private int field_92024_r;
-    private int field_92023_s;
-    private int field_92022_t;
-    private int field_92021_u;
-    private int field_92020_v;
-    private int field_92019_w;
+    public static final String MORE_INFO_TEXT = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
+    private int openGLWarning2Width;
+    private int openGLWarning1Width;
+    private int openGLWarningX1;
+    private int openGLWarningY1;
+    private int openGLWarningX2;
+    private int openGLWarningY2;
     private ResourceLocation backgroundTexture;
 
     public GuiMainMenu() {
-        this.openGLWarning2 = field_96138_a;
+        this.openGLWarning2 = MORE_INFO_TEXT;
         BufferedReader bufferedreader = null;
 
         this.updateCounter = RANDOM.nextFloat();
@@ -128,13 +128,13 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit")));
 
         synchronized (this.threadLock) {
-            this.field_92023_s = this.fontRendererObj.getStringWidth(this.openGLWarning1);
-            this.field_92024_r = this.fontRendererObj.getStringWidth(this.openGLWarning2);
-            int k = Math.max(this.field_92023_s, this.field_92024_r);
-            this.field_92022_t = (this.width - k) / 2;
-            this.field_92021_u = this.buttonList.getFirst().yPosition - i;
-            this.field_92020_v = this.field_92022_t + k;
-            this.field_92019_w = this.field_92021_u + i;
+            this.openGLWarning1Width = this.fontRendererObj.getStringWidth(this.openGLWarning1);
+            this.openGLWarning2Width = this.fontRendererObj.getStringWidth(this.openGLWarning2);
+            int k = Math.max(this.openGLWarning1Width, this.openGLWarning2Width);
+            this.openGLWarningX1 = (this.width - k) / 2;
+            this.openGLWarningY1 = this.buttonList.getFirst().yPosition - i;
+            this.openGLWarningX2 = this.openGLWarningX1 + k;
+            this.openGLWarningY2 = this.openGLWarningY1 + i;
         }
     }
 
@@ -361,9 +361,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         }
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
-            drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1, 1428160512);
-            this.drawString(this.fontRendererObj, this.openGLWarning1, this.field_92022_t, this.field_92021_u, -1);
-            this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.field_92024_r) / 2, ((GuiButton) this.buttonList.get(0)).yPosition - 12, -1);
+            drawRect(this.openGLWarningX1 - 2, this.openGLWarningY1 - 2, this.openGLWarningX2 + 2, this.openGLWarningY2 - 1, 1428160512);
+            this.drawString(this.fontRendererObj, this.openGLWarning1, this.openGLWarningX1, this.openGLWarningY1, -1);
+            this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.openGLWarning2Width) / 2, ((GuiButton) this.buttonList.get(0)).yPosition - 12, -1);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -376,7 +376,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         super.mouseClicked(mouseX, mouseY, mouseButton);
 
         synchronized (this.threadLock) {
-            if (this.openGLWarning1.length() > 0 && mouseX >= this.field_92022_t && mouseX <= this.field_92020_v && mouseY >= this.field_92021_u && mouseY <= this.field_92019_w) {
+            if (this.openGLWarning1.length() > 0 && mouseX >= this.openGLWarningX1 && mouseX <= this.openGLWarningX2 && mouseY >= this.openGLWarningY1 && mouseY <= this.openGLWarningY2) {
                 GuiConfirmOpenLink guiconfirmopenlink = new GuiConfirmOpenLink(this, this.openGLWarningLink, 13, true);
                 guiconfirmopenlink.disableSecurityWarning();
                 this.mc.displayGuiScreen(guiconfirmopenlink);

@@ -7,7 +7,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
 {
     EntityTameable theDefendingTameable;
     EntityLivingBase theOwnerAttacker;
-    private int field_142051_e;
+    private int timestamp;
 
     public EntityAIOwnerHurtByTarget(EntityTameable theDefendingTameableIn)
     {
@@ -37,7 +37,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
             {
                 this.theOwnerAttacker = entitylivingbase.getAITarget();
                 int i = entitylivingbase.getRevengeTimer();
-                return i != this.field_142051_e && this.isSuitableTarget(this.theOwnerAttacker, false) && this.theDefendingTameable.shouldAttackEntity(this.theOwnerAttacker, entitylivingbase);
+                return i != this.timestamp && this.isSuitableTarget(this.theOwnerAttacker, false) && this.theDefendingTameable.shouldAttackEntity(this.theOwnerAttacker, entitylivingbase);
             }
         }
     }
@@ -52,7 +52,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
 
         if (entitylivingbase != null)
         {
-            this.field_142051_e = entitylivingbase.getRevengeTimer();
+            this.timestamp = entitylivingbase.getRevengeTimer();
         }
 
         super.startExecuting();

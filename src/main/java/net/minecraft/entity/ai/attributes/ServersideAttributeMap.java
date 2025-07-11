@@ -55,7 +55,7 @@ public class ServersideAttributeMap extends BaseAttributeMap
             this.attributeInstanceSet.add(instance);
         }
 
-        for (IAttribute iattribute : this.field_180377_c.get(instance.getAttribute()))
+        for (IAttribute iattribute : this.descendantsByParent.get(instance.getAttribute()))
         {
             ModifiableAttributeInstance modifiableattributeinstance = this.getAttributeInstance(iattribute);
 

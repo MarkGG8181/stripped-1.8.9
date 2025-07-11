@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 public class WorldGenForest extends WorldGenAbstractTree
 {
-    private static final IBlockState field_181629_a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.BIRCH);
-    private static final IBlockState field_181630_b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState LOG = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.BIRCH);
+    private static final IBlockState LEAF = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH).withProperty(BlockOldLeaf.CHECK_DECAY, Boolean.valueOf(false));
     private boolean useExtraRandomHeight;
 
     public WorldGenForest(boolean p_i45449_1_, boolean p_i45449_2_)
@@ -103,7 +103,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                                     if (block.getMaterial() == Material.air || block.getMaterial() == Material.leaves)
                                     {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, field_181630_b);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
                                     }
                                 }
                             }
@@ -116,7 +116,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                         if (block2.getMaterial() == Material.air || block2.getMaterial() == Material.leaves)
                         {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(j2), field_181629_a);
+                            this.setBlockAndNotifyAdequately(worldIn, position.up(j2), LOG);
                         }
                     }
 

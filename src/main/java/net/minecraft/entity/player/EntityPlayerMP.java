@@ -528,7 +528,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
             if (entitylist$entityegginfo != null)
             {
-                this.triggerAchievement(entitylist$entityegginfo.field_151513_e);
+                this.triggerAchievement(entitylist$entityegginfo.entityKilledByStat);
             }
 
             entitylivingbase.addToPlayerScore(this, this.scoreValue);

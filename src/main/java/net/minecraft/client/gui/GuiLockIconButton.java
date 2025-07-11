@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class GuiLockIconButton extends GuiButton
 {
-    private boolean field_175231_o = false;
+    private boolean locked = false;
 
     public GuiLockIconButton(int p_i45538_1_, int p_i45538_2_, int p_i45538_3_)
     {
@@ -14,12 +14,12 @@ public class GuiLockIconButton extends GuiButton
 
     public boolean func_175230_c()
     {
-        return this.field_175231_o;
+        return this.locked;
     }
 
     public void func_175229_b(boolean p_175229_1_)
     {
-        this.field_175231_o = p_175229_1_;
+        this.locked = p_175229_1_;
     }
 
     /**
@@ -34,7 +34,7 @@ public class GuiLockIconButton extends GuiButton
             boolean flag = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
             GuiLockIconButton.Icon guilockiconbutton$icon;
 
-            if (this.field_175231_o)
+            if (this.locked)
             {
                 if (!this.enabled)
                 {
@@ -75,23 +75,23 @@ public class GuiLockIconButton extends GuiButton
         UNLOCKED_HOVER(20, 166),
         UNLOCKED_DISABLED(20, 186);
 
-        private final int field_178914_g;
-        private final int field_178920_h;
+        private final int x;
+        private final int y;
 
         private Icon(int p_i45537_3_, int p_i45537_4_)
         {
-            this.field_178914_g = p_i45537_3_;
-            this.field_178920_h = p_i45537_4_;
+            this.x = p_i45537_3_;
+            this.y = p_i45537_4_;
         }
 
         public int func_178910_a()
         {
-            return this.field_178914_g;
+            return this.x;
         }
 
         public int func_178912_b()
         {
-            return this.field_178920_h;
+            return this.y;
         }
     }
 }

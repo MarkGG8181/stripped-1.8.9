@@ -10,7 +10,7 @@ public class ModelSilverfish extends ModelBase
 
     /** The wings (dust-looking sprites) on the silverfish's model. */
     private ModelRenderer[] silverfishWings;
-    private float[] field_78170_c = new float[7];
+    private float[] zPlacement = new float[7];
 
     /** The widths, heights, and lengths for the silverfish model boxes. */
     private static final int[][] silverfishBoxLength = new int[][] {{3, 2, 2}, {4, 3, 2}, {6, 4, 3}, {3, 3, 3}, {2, 2, 3}, {2, 1, 2}, {1, 1, 2}};
@@ -27,7 +27,7 @@ public class ModelSilverfish extends ModelBase
             this.silverfishBodyParts[i] = new ModelRenderer(this, silverfishTexturePositions[i][0], silverfishTexturePositions[i][1]);
             this.silverfishBodyParts[i].addBox((float)silverfishBoxLength[i][0] * -0.5F, 0.0F, (float)silverfishBoxLength[i][2] * -0.5F, silverfishBoxLength[i][0], silverfishBoxLength[i][1], silverfishBoxLength[i][2]);
             this.silverfishBodyParts[i].setRotationPoint(0.0F, (float)(24 - silverfishBoxLength[i][1]), f);
-            this.field_78170_c[i] = f;
+            this.zPlacement[i] = f;
 
             if (i < this.silverfishBodyParts.length - 1)
             {
@@ -38,13 +38,13 @@ public class ModelSilverfish extends ModelBase
         this.silverfishWings = new ModelRenderer[3];
         this.silverfishWings[0] = new ModelRenderer(this, 20, 0);
         this.silverfishWings[0].addBox(-5.0F, 0.0F, (float)silverfishBoxLength[2][2] * -0.5F, 10, 8, silverfishBoxLength[2][2]);
-        this.silverfishWings[0].setRotationPoint(0.0F, 16.0F, this.field_78170_c[2]);
+        this.silverfishWings[0].setRotationPoint(0.0F, 16.0F, this.zPlacement[2]);
         this.silverfishWings[1] = new ModelRenderer(this, 20, 11);
         this.silverfishWings[1].addBox(-3.0F, 0.0F, (float)silverfishBoxLength[4][2] * -0.5F, 6, 4, silverfishBoxLength[4][2]);
-        this.silverfishWings[1].setRotationPoint(0.0F, 20.0F, this.field_78170_c[4]);
+        this.silverfishWings[1].setRotationPoint(0.0F, 20.0F, this.zPlacement[4]);
         this.silverfishWings[2] = new ModelRenderer(this, 20, 18);
         this.silverfishWings[2].addBox(-3.0F, 0.0F, (float)silverfishBoxLength[4][2] * -0.5F, 6, 5, silverfishBoxLength[1][2]);
-        this.silverfishWings[2].setRotationPoint(0.0F, 19.0F, this.field_78170_c[1]);
+        this.silverfishWings[2].setRotationPoint(0.0F, 19.0F, this.zPlacement[1]);
     }
 
     /**

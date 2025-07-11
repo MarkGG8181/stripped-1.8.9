@@ -13,28 +13,28 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class MapGenStronghold extends MapGenStructure
 {
-    private List<BiomeGenBase> field_151546_e;
+    private List<BiomeGenBase> allowedBiomes;
 
     /**
      * is spawned false and set true once the defined BiomeGenBases were compared with the present ones
      */
     private boolean ranBiomeCheck;
     private ChunkCoordIntPair[] structureCoords;
-    private double field_82671_h;
-    private int field_82672_i;
+    private double distance;
+    private int spread;
 
     public MapGenStronghold()
     {
         this.structureCoords = new ChunkCoordIntPair[3];
-        this.field_82671_h = 32.0D;
-        this.field_82672_i = 3;
-        this.field_151546_e = Lists.<BiomeGenBase>newArrayList();
+        this.distance = 32.0D;
+        this.spread = 3;
+        this.allowedBiomes = Lists.<BiomeGenBase>newArrayList();
 
         for (BiomeGenBase biomegenbase : BiomeGenBase.getBiomeGenArray())
         {
             if (biomegenbase != null && biomegenbase.minHeight > 0.0F)
             {
-                this.field_151546_e.add(biomegenbase);
+                this.allowedBiomes.add(biomegenbase);
             }
         }
     }
@@ -47,7 +47,7 @@ public class MapGenStronghold extends MapGenStructure
         {
             if (((String)entry.getKey()).equals("distance"))
             {
-                this.field_82671_h = MathHelper.parseDoubleWithDefaultAndMax((String)entry.getValue(), this.field_82671_h, 1.0D);
+                this.distance = MathHelper.parseDoubleWithDefaultAndMax((String)entry.getValue(), this.distance, 1.0D);
             }
             else if (((String)entry.getKey()).equals("count"))
             {
@@ -55,7 +55,7 @@ public class MapGenStronghold extends MapGenStructure
             }
             else if (((String)entry.getKey()).equals("spread"))
             {
-                this.field_82672_i = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.field_82672_i, 1);
+                this.spread = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.spread, 1);
             }
         }
     }
@@ -76,10 +76,10 @@ public class MapGenStronghold extends MapGenStructure
 
             for (int j = 0; j < this.structureCoords.length; ++j)
             {
-                double d1 = (1.25D * (double)i + random.nextDouble()) * this.field_82671_h * (double)i;
+                double d1 = (1.25D * (double)i + random.nextDouble()) * this.distance * (double)i;
                 int k = (int)Math.round(Math.cos(d0) * d1);
                 int l = (int)Math.round(Math.sin(d0) * d1);
-                BlockPos blockpos = this.worldObj.getWorldChunkManager().findBiomePosition((k << 4) + 8, (l << 4) + 8, 112, this.field_151546_e, random);
+                BlockPos blockpos = this.worldObj.getWorldChunkManager().findBiomePosition((k << 4) + 8, (l << 4) + 8, 112, this.allowedBiomes, random);
 
                 if (blockpos != null)
                 {
@@ -88,12 +88,12 @@ public class MapGenStronghold extends MapGenStructure
                 }
 
                 this.structureCoords[j] = new ChunkCoordIntPair(k, l);
-                d0 += (Math.PI * 2D) * (double)i / (double)this.field_82672_i;
+                d0 += (Math.PI * 2D) * (double)i / (double)this.spread;
 
-                if (j == this.field_82672_i)
+                if (j == this.spread)
                 {
                     i += 2 + random.nextInt(5);
-                    this.field_82672_i += 1 + random.nextInt(2);
+                    this.spread += 1 + random.nextInt(2);
                 }
             }
 
@@ -151,7 +151,7 @@ public class MapGenStronghold extends MapGenStructure
             StructureStrongholdPieces.Stairs2 structurestrongholdpieces$stairs2 = new StructureStrongholdPieces.Stairs2(0, p_i2067_2_, (p_i2067_3_ << 4) + 2, (p_i2067_4_ << 4) + 2);
             this.components.add(structurestrongholdpieces$stairs2);
             structurestrongholdpieces$stairs2.buildComponent(structurestrongholdpieces$stairs2, this.components, p_i2067_2_);
-            List<StructureComponent> list = structurestrongholdpieces$stairs2.field_75026_c;
+            List<StructureComponent> list = structurestrongholdpieces$stairs2.pendingChildren;
 
             while (!list.isEmpty())
             {

@@ -13,7 +13,7 @@ public class GuiYesNo extends GuiScreen
     protected GuiYesNoCallback parentScreen;
     protected String messageLine1;
     private String messageLine2;
-    private final List<String> field_175298_s = Lists.<String>newArrayList();
+    private final List<String> listLines = Lists.<String>newArrayList();
 
     /** The text shown for the first button in GuiYesNo */
     protected String confirmButtonText;
@@ -51,8 +51,8 @@ public class GuiYesNo extends GuiScreen
     {
         this.buttonList.add(new GuiOptionButton(0, this.width / 2 - 155, this.height / 6 + 96, this.confirmButtonText));
         this.buttonList.add(new GuiOptionButton(1, this.width / 2 - 155 + 160, this.height / 6 + 96, this.cancelButtonText));
-        this.field_175298_s.clear();
-        this.field_175298_s.addAll(this.fontRendererObj.listFormattedStringToWidth(this.messageLine2, this.width - 50));
+        this.listLines.clear();
+        this.listLines.addAll(this.fontRendererObj.listFormattedStringToWidth(this.messageLine2, this.width - 50));
     }
 
     /**
@@ -72,7 +72,7 @@ public class GuiYesNo extends GuiScreen
         this.drawCenteredString(this.fontRendererObj, this.messageLine1, this.width / 2, 70, 16777215);
         int i = 90;
 
-        for (String s : this.field_175298_s)
+        for (String s : this.listLines)
         {
             this.drawCenteredString(this.fontRendererObj, s, this.width / 2, i, 16777215);
             i += this.fontRendererObj.FONT_HEIGHT;

@@ -129,7 +129,7 @@ public class BlockHopper extends BlockContainer
             if (tileentity instanceof TileEntityHopper)
             {
                 playerIn.displayGUIChest((TileEntityHopper)tileentity);
-                playerIn.triggerAchievement(StatList.field_181732_P);
+                playerIn.triggerAchievement(StatList.hopperInspectedStat);
             }
 
             return true;

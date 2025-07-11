@@ -41,10 +41,10 @@ import net.minecraft.world.World;
 public class EntityRabbit extends EntityAnimal
 {
     private EntityRabbit.AIAvoidEntity<EntityWolf> aiAvoidWolves;
-    private int field_175540_bm = 0;
-    private int field_175535_bn = 0;
+    private int jumpTicks = 0;
+    private int jumpDuration = 0;
     private boolean field_175536_bo = false;
-    private boolean field_175537_bp = false;
+    private boolean wasOnGround = false;
     private int currentMoveTypeDuration = 0;
     private EntityRabbit.EnumMoveType moveType = EntityRabbit.EnumMoveType.HOP;
     private int carrotTicks = 0;
@@ -84,7 +84,7 @@ public class EntityRabbit extends EntityAnimal
 
     public float func_175521_o(float p_175521_1_)
     {
-        return this.field_175535_bn == 0 ? 0.0F : ((float)this.field_175540_bm + p_175521_1_) / (float)this.field_175535_bn;
+        return this.jumpDuration == 0 ? 0.0F : ((float)this.jumpTicks + p_175521_1_) / (float)this.jumpDuration;
     }
 
     public void setMovementSpeed(double newSpeed)
@@ -116,8 +116,8 @@ public class EntityRabbit extends EntityAnimal
     public void doMovementAction(EntityRabbit.EnumMoveType movetype)
     {
         this.setJumping(true, movetype);
-        this.field_175535_bn = movetype.func_180073_d();
-        this.field_175540_bm = 0;
+        this.jumpDuration = movetype.func_180073_d();
+        this.jumpTicks = 0;
     }
 
     public boolean func_175523_cj()
@@ -159,7 +159,7 @@ public class EntityRabbit extends EntityAnimal
 
         if (this.onGround)
         {
-            if (!this.field_175537_bp)
+            if (!this.wasOnGround)
             {
                 this.setJumping(false, EntityRabbit.EnumMoveType.NONE);
                 this.func_175517_cu();
@@ -174,7 +174,7 @@ public class EntityRabbit extends EntityAnimal
                     this.calculateRotationYaw(entitylivingbase.posX, entitylivingbase.posZ);
                     this.moveHelper.setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, this.moveHelper.getSpeed());
                     this.doMovementAction(EntityRabbit.EnumMoveType.ATTACK);
-                    this.field_175537_bp = true;
+                    this.wasOnGround = true;
                 }
             }
 
@@ -202,7 +202,7 @@ public class EntityRabbit extends EntityAnimal
             }
         }
 
-        this.field_175537_bp = this.onGround;
+        this.wasOnGround = this.onGround;
     }
 
     /**
@@ -246,19 +246,19 @@ public class EntityRabbit extends EntityAnimal
     {
         super.onLivingUpdate();
 
-        if (this.field_175540_bm != this.field_175535_bn)
+        if (this.jumpTicks != this.jumpDuration)
         {
-            if (this.field_175540_bm == 0 && !this.worldObj.isRemote)
+            if (this.jumpTicks == 0 && !this.worldObj.isRemote)
             {
                 this.worldObj.setEntityState(this, (byte)1);
             }
 
-            ++this.field_175540_bm;
+            ++this.jumpTicks;
         }
-        else if (this.field_175535_bn != 0)
+        else if (this.jumpDuration != 0)
         {
-            this.field_175540_bm = 0;
-            this.field_175535_bn = 0;
+            this.jumpTicks = 0;
+            this.jumpDuration = 0;
         }
     }
 
@@ -493,8 +493,8 @@ public class EntityRabbit extends EntityAnimal
         if (id == 1)
         {
             this.createRunningParticles();
-            this.field_175535_bn = 10;
-            this.field_175540_bm = 0;
+            this.jumpDuration = 10;
+            this.jumpTicks = 0;
         }
         else
         {
@@ -551,8 +551,8 @@ public class EntityRabbit extends EntityAnimal
     static class AIRaidFarm extends EntityAIMoveToBlock
     {
         private final EntityRabbit rabbit;
-        private boolean field_179498_d;
-        private boolean field_179499_e = false;
+        private boolean wantsToRaid;
+        private boolean canRaid = false;
 
         public AIRaidFarm(EntityRabbit rabbitIn)
         {
@@ -569,8 +569,8 @@ public class EntityRabbit extends EntityAnimal
                     return false;
                 }
 
-                this.field_179499_e = false;
-                this.field_179498_d = this.rabbit.isCarrotEaten();
+                this.canRaid = false;
+                this.wantsToRaid = this.rabbit.isCarrotEaten();
             }
 
             return super.shouldExecute();
@@ -578,7 +578,7 @@ public class EntityRabbit extends EntityAnimal
 
         public boolean continueExecuting()
         {
-            return this.field_179499_e && super.continueExecuting();
+            return this.canRaid && super.continueExecuting();
         }
 
         public void startExecuting()
@@ -603,14 +603,14 @@ public class EntityRabbit extends EntityAnimal
                 IBlockState iblockstate = world.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
 
-                if (this.field_179499_e && block instanceof BlockCarrot && ((Integer)iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7)
+                if (this.canRaid && block instanceof BlockCarrot && ((Integer)iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7)
                 {
                     world.setBlockState(blockpos, Blocks.air.getDefaultState(), 2);
                     world.destroyBlock(blockpos, true);
                     this.rabbit.createEatingParticles();
                 }
 
-                this.field_179499_e = false;
+                this.canRaid = false;
                 this.runDelay = 10;
             }
         }
@@ -625,9 +625,9 @@ public class EntityRabbit extends EntityAnimal
                 IBlockState iblockstate = worldIn.getBlockState(pos);
                 block = iblockstate.getBlock();
 
-                if (block instanceof BlockCarrot && ((Integer)iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7 && this.field_179498_d && !this.field_179499_e)
+                if (block instanceof BlockCarrot && ((Integer)iblockstate.getValue(BlockCarrot.AGE)).intValue() == 7 && this.wantsToRaid && !this.canRaid)
                 {
-                    this.field_179499_e = true;
+                    this.canRaid = true;
                     return true;
                 }
             }
@@ -681,7 +681,7 @@ public class EntityRabbit extends EntityAnimal
     public class RabbitJumpHelper extends EntityJumpHelper
     {
         private EntityRabbit theEntity;
-        private boolean field_180068_d = false;
+        private boolean canJump = false;
 
         public RabbitJumpHelper(EntityRabbit rabbit)
         {
@@ -696,12 +696,12 @@ public class EntityRabbit extends EntityAnimal
 
         public boolean func_180065_d()
         {
-            return this.field_180068_d;
+            return this.canJump;
         }
 
         public void func_180066_a(boolean p_180066_1_)
         {
-            this.field_180068_d = p_180066_1_;
+            this.canJump = p_180066_1_;
         }
 
         public void doJump()

@@ -43,7 +43,7 @@ public class ModelRabbit extends ModelBase
 
     /** The Rabbit's Nose */
     ModelRenderer rabbitNose;
-    private float field_178701_m = 0.0F;
+    private float jumpRotation = 0.0F;
     private float field_178699_n = 0.0F;
 
     public ModelRabbit()
@@ -181,10 +181,10 @@ public class ModelRabbit extends ModelBase
         this.rabbitNose.rotateAngleY = this.rabbitHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.rabbitRightEar.rotateAngleY = this.rabbitNose.rotateAngleY - 0.2617994F;
         this.rabbitLeftEar.rotateAngleY = this.rabbitNose.rotateAngleY + 0.2617994F;
-        this.field_178701_m = MathHelper.sin(entityrabbit.func_175521_o(f) * (float)Math.PI);
-        this.rabbitLeftThigh.rotateAngleX = this.rabbitRightThigh.rotateAngleX = (this.field_178701_m * 50.0F - 21.0F) * 0.017453292F;
-        this.rabbitLeftFoot.rotateAngleX = this.rabbitRightFoot.rotateAngleX = this.field_178701_m * 50.0F * 0.017453292F;
-        this.rabbitLeftArm.rotateAngleX = this.rabbitRightArm.rotateAngleX = (this.field_178701_m * -40.0F - 11.0F) * 0.017453292F;
+        this.jumpRotation = MathHelper.sin(entityrabbit.func_175521_o(f) * (float)Math.PI);
+        this.rabbitLeftThigh.rotateAngleX = this.rabbitRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
+        this.rabbitLeftFoot.rotateAngleX = this.rabbitRightFoot.rotateAngleX = this.jumpRotation * 50.0F * 0.017453292F;
+        this.rabbitLeftArm.rotateAngleX = this.rabbitRightArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * 0.017453292F;
     }
 
     /**

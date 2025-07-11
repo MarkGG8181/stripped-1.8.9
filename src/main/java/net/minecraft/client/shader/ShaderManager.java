@@ -30,7 +30,7 @@ public class ShaderManager {
     private static final ShaderDefault defaultShaderUniform = new ShaderDefault();
     private static ShaderManager staticShaderManager = null;
     private static int currentProgram = -1;
-    private static boolean field_148000_e = true;
+    private static boolean lastCull = true;
     private final Map<String, Object> shaderSamplers = Maps.<String, Object>newHashMap();
     private final List<String> samplerNames = Lists.<String>newArrayList();
     private final List<Integer> shaderSamplerLocations = Lists.<Integer>newArrayList();
@@ -41,7 +41,7 @@ public class ShaderManager {
     private final String programFilename;
     private final boolean useFaceCulling;
     private boolean isDirty;
-    private final JsonBlendingMode field_148016_p;
+    private final JsonBlendingMode blendingMode;
     private final List<Integer> attribLocations;
     private final List<String> attributes;
     private final ShaderLoader vertexShaderLoader;
@@ -117,7 +117,7 @@ public class ShaderManager {
                 }
             }
 
-            this.field_148016_p = JsonBlendingMode.func_148110_a(JsonUtils.getJsonObject(jsonobject, "blend", (JsonObject) null));
+            this.blendingMode = JsonBlendingMode.func_148110_a(JsonUtils.getJsonObject(jsonobject, "blend", (JsonObject) null));
             this.useFaceCulling = JsonUtils.getBoolean(jsonobject, "cull", true);
             this.vertexShaderLoader = ShaderLoader.loadShader(resourceManager, ShaderLoader.ShaderType.VERTEX, s);
             this.fragmentShaderLoader = ShaderLoader.loadShader(resourceManager, ShaderLoader.ShaderType.FRAGMENT, s1);
@@ -150,7 +150,7 @@ public class ShaderManager {
         OpenGlHelper.glUseProgram(0);
         currentProgram = -1;
         staticShaderManager = null;
-        field_148000_e = true;
+        lastCull = true;
 
         for (int i = 0; i < this.shaderSamplerLocations.size(); ++i) {
             if (this.shaderSamplers.get(this.samplerNames.get(i)) != null) {
@@ -163,7 +163,7 @@ public class ShaderManager {
     public void useShader() {
         this.isDirty = false;
         staticShaderManager = this;
-        this.field_148016_p.func_148109_a();
+        this.blendingMode.func_148109_a();
 
         if (this.program != currentProgram) {
             OpenGlHelper.glUseProgram(this.program);

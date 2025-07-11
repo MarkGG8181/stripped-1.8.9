@@ -21,7 +21,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     /** Whether this hopper minecart is being blocked by an activator rail. */
     private boolean isBlocked = true;
     private int transferTicker = -1;
-    private BlockPos field_174900_c = BlockPos.ORIGIN;
+    private BlockPos lastPosition = BlockPos.ORIGIN;
 
     public EntityMinecartHopper(World worldIn)
     {
@@ -141,7 +141,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         {
             BlockPos blockpos = new BlockPos(this);
 
-            if (blockpos.equals(this.field_174900_c))
+            if (blockpos.equals(this.lastPosition))
             {
                 --this.transferTicker;
             }

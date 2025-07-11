@@ -17,7 +17,7 @@ import net.minecraft.util.IChatComponent;
 
 public class CommandBanIp extends CommandBase
 {
-    public static final Pattern field_147211_a = Pattern.compile("^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+    public static final Pattern IP_PATTERN = Pattern.compile("^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
 
     /**
      * Gets the name of the command
@@ -59,7 +59,7 @@ public class CommandBanIp extends CommandBase
         if (args.length >= 1 && args[0].length() > 1)
         {
             IChatComponent ichatcomponent = args.length >= 2 ? getChatComponentFromNthArg(sender, args, 1) : null;
-            Matcher matcher = field_147211_a.matcher(args[0]);
+            Matcher matcher = IP_PATTERN.matcher(args[0]);
 
             if (matcher.matches())
             {

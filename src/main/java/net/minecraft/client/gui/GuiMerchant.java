@@ -235,12 +235,12 @@ public class GuiMerchant extends GuiContainer
 
     static class MerchantButton extends GuiButton
     {
-        private final boolean field_146157_o;
+        private final boolean forward;
 
         public MerchantButton(int buttonID, int x, int y, boolean p_i1095_4_)
         {
             super(buttonID, x, y, 12, 19, "");
-            this.field_146157_o = p_i1095_4_;
+            this.forward = p_i1095_4_;
         }
 
         public void drawButton(Minecraft mc, int mouseX, int mouseY)
@@ -262,7 +262,7 @@ public class GuiMerchant extends GuiContainer
                     j += this.width;
                 }
 
-                if (!this.field_146157_o)
+                if (!this.forward)
                 {
                     i += this.height;
                 }

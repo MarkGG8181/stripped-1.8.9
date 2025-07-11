@@ -20,7 +20,7 @@ public class Scoreboard
     private final ScoreObjective[] objectiveDisplaySlots = new ScoreObjective[19];
     private final Map<String, ScorePlayerTeam> teams = Maps.<String, ScorePlayerTeam>newHashMap();
     private final Map<String, ScorePlayerTeam> teamMemberships = Maps.<String, ScorePlayerTeam>newHashMap();
-    private static String[] field_178823_g = null;
+    private static String[] displaySlots = null;
 
     /**
      * Returns a ScoreObjective for the objective name
@@ -493,17 +493,17 @@ public class Scoreboard
 
     public static String[] getDisplaySlotStrings()
     {
-        if (field_178823_g == null)
+        if (displaySlots == null)
         {
-            field_178823_g = new String[19];
+            displaySlots = new String[19];
 
             for (int i = 0; i < 19; ++i)
             {
-                field_178823_g[i] = getObjectiveDisplaySlot(i);
+                displaySlots[i] = getObjectiveDisplaySlot(i);
             }
         }
 
-        return field_178823_g;
+        return displaySlots;
     }
 
     public void func_181140_a(Entity p_181140_1_)

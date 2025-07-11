@@ -16,7 +16,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
     protected byte yaw;
     protected byte pitch;
     protected boolean onGround;
-    protected boolean field_149069_g;
+    protected boolean rotating;
 
     public S14PacketEntity()
     {
@@ -88,7 +88,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
 
     public boolean func_149060_h()
     {
-        return this.field_149069_g;
+        return this.rotating;
     }
 
     public boolean getOnGround()
@@ -134,7 +134,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
     {
         public S16PacketEntityLook()
         {
-            this.field_149069_g = true;
+            this.rotating = true;
         }
 
         public S16PacketEntityLook(int entityIdIn, byte yawIn, byte pitchIn, boolean onGroundIn)
@@ -142,7 +142,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
             super(entityIdIn);
             this.yaw = yawIn;
             this.pitch = pitchIn;
-            this.field_149069_g = true;
+            this.rotating = true;
             this.onGround = onGroundIn;
         }
 
@@ -167,7 +167,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
     {
         public S17PacketEntityLookMove()
         {
-            this.field_149069_g = true;
+            this.rotating = true;
         }
 
         public S17PacketEntityLookMove(int p_i45973_1_, byte p_i45973_2_, byte p_i45973_3_, byte p_i45973_4_, byte p_i45973_5_, byte p_i45973_6_, boolean p_i45973_7_)
@@ -179,7 +179,7 @@ public class S14PacketEntity implements Packet<INetHandlerPlayClient>
             this.yaw = p_i45973_5_;
             this.pitch = p_i45973_6_;
             this.onGround = p_i45973_7_;
-            this.field_149069_g = true;
+            this.rotating = true;
         }
 
         public void readPacketData(PacketBuffer buf) throws IOException

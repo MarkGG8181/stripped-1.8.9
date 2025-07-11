@@ -123,7 +123,7 @@ public abstract class BiomeGenBase
     public static final BiomeGenBase mesa = (new BiomeGenMesa(37, false, false)).setColor(14238997).setBiomeName("Mesa");
     public static final BiomeGenBase mesaPlateau_F = (new BiomeGenMesa(38, false, true)).setColor(11573093).setBiomeName("Mesa Plateau F").setHeight(height_HighPlateaus);
     public static final BiomeGenBase mesaPlateau = (new BiomeGenMesa(39, false, false)).setColor(13274213).setBiomeName("Mesa Plateau").setHeight(height_HighPlateaus);
-    public static final BiomeGenBase field_180279_ad = ocean;
+    public static final BiomeGenBase DEFAULT = ocean;
     protected static final NoiseGeneratorPerlin temperatureNoise;
     protected static final NoiseGeneratorPerlin GRASS_COLOR_NOISE;
     protected static final WorldGenDoublePlant DOUBLE_PLANT_GENERATOR;

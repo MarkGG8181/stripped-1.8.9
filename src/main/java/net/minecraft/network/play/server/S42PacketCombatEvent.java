@@ -10,9 +10,9 @@ import net.minecraft.util.CombatTracker;
 public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
 {
     public S42PacketCombatEvent.Event eventType;
-    public int field_179774_b;
-    public int field_179775_c;
-    public int field_179772_d;
+    public int playerId;
+    public int entityId;
+    public int duration;
     public String deathMessage;
 
     public S42PacketCombatEvent()
@@ -28,13 +28,13 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
         switch (combatEventType)
         {
             case END_COMBAT:
-                this.field_179772_d = combatTrackerIn.func_180134_f();
-                this.field_179775_c = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
+                this.duration = combatTrackerIn.func_180134_f();
+                this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
                 break;
 
             case ENTITY_DIED:
-                this.field_179774_b = combatTrackerIn.getFighter().getEntityId();
-                this.field_179775_c = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
+                this.playerId = combatTrackerIn.getFighter().getEntityId();
+                this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
                 this.deathMessage = combatTrackerIn.getDeathMessage().getUnformattedText();
         }
     }
@@ -48,13 +48,13 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
 
         if (this.eventType == S42PacketCombatEvent.Event.END_COMBAT)
         {
-            this.field_179772_d = buf.readVarIntFromBuffer();
-            this.field_179775_c = buf.readInt();
+            this.duration = buf.readVarIntFromBuffer();
+            this.entityId = buf.readInt();
         }
         else if (this.eventType == S42PacketCombatEvent.Event.ENTITY_DIED)
         {
-            this.field_179774_b = buf.readVarIntFromBuffer();
-            this.field_179775_c = buf.readInt();
+            this.playerId = buf.readVarIntFromBuffer();
+            this.entityId = buf.readInt();
             this.deathMessage = buf.readStringFromBuffer(32767);
         }
     }
@@ -68,13 +68,13 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
 
         if (this.eventType == S42PacketCombatEvent.Event.END_COMBAT)
         {
-            buf.writeVarIntToBuffer(this.field_179772_d);
-            buf.writeInt(this.field_179775_c);
+            buf.writeVarIntToBuffer(this.duration);
+            buf.writeInt(this.entityId);
         }
         else if (this.eventType == S42PacketCombatEvent.Event.ENTITY_DIED)
         {
-            buf.writeVarIntToBuffer(this.field_179774_b);
-            buf.writeInt(this.field_179775_c);
+            buf.writeVarIntToBuffer(this.playerId);
+            buf.writeInt(this.entityId);
             buf.writeString(this.deathMessage);
         }
     }

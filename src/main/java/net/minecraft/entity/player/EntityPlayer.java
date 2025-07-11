@@ -698,8 +698,8 @@ public abstract class EntityPlayer extends EntityLivingBase {
         if (scoreplayerteam != null) {
             int i = scoreplayerteam.getChatFormat().getColorIndex();
 
-            if (i >= 0 && i < IScoreObjectiveCriteria.field_178793_i.length) {
-                for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.field_178793_i[i])) {
+            if (i >= 0 && i < IScoreObjectiveCriteria.KILLED_BY_TEAM.length) {
+                for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.KILLED_BY_TEAM[i])) {
                     Score score = this.getWorldScoreboard().getValueFromObjective(p_175137_1_.getName(), scoreobjective);
                     score.func_96648_a();
                 }
@@ -711,8 +711,8 @@ public abstract class EntityPlayer extends EntityLivingBase {
         if (scoreplayerteam1 != null) {
             int j = scoreplayerteam1.getChatFormat().getColorIndex();
 
-            if (j >= 0 && j < IScoreObjectiveCriteria.field_178792_h.length) {
-                return this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.field_178792_h[j]);
+            if (j >= 0 && j < IScoreObjectiveCriteria.TEAM_KILL.length) {
+                return this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.TEAM_KILL[j]);
             }
         }
 
@@ -1657,7 +1657,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo) EntityList.entityEggs.get(Integer.valueOf(EntityList.getEntityID(entityLivingIn)));
 
         if (entitylist$entityegginfo != null) {
-            this.triggerAchievement(entitylist$entityegginfo.field_151512_d);
+            this.triggerAchievement(entitylist$entityegginfo.killEntityStat);
         }
     }
 

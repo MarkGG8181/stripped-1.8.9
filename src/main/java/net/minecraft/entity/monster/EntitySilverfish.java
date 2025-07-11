@@ -171,7 +171,7 @@ public class EntitySilverfish extends EntityMob
     {
         private final EntitySilverfish silverfish;
         private EnumFacing facing;
-        private boolean field_179484_c;
+        private boolean doMerge;
 
         public AIHideInStone(EntitySilverfish silverfishIn)
         {
@@ -202,24 +202,24 @@ public class EntitySilverfish extends EntityMob
 
                     if (BlockSilverfish.canContainSilverfish(iblockstate))
                     {
-                        this.field_179484_c = true;
+                        this.doMerge = true;
                         return true;
                     }
                 }
 
-                this.field_179484_c = false;
+                this.doMerge = false;
                 return super.shouldExecute();
             }
         }
 
         public boolean continueExecuting()
         {
-            return this.field_179484_c ? false : super.continueExecuting();
+            return this.doMerge ? false : super.continueExecuting();
         }
 
         public void startExecuting()
         {
-            if (!this.field_179484_c)
+            if (!this.doMerge)
             {
                 super.startExecuting();
             }
@@ -242,7 +242,7 @@ public class EntitySilverfish extends EntityMob
     static class AISummonSilverfish extends EntityAIBase
     {
         private EntitySilverfish silverfish;
-        private int field_179463_b;
+        private int lookForFriends;
 
         public AISummonSilverfish(EntitySilverfish silverfishIn)
         {
@@ -251,22 +251,22 @@ public class EntitySilverfish extends EntityMob
 
         public void func_179462_f()
         {
-            if (this.field_179463_b == 0)
+            if (this.lookForFriends == 0)
             {
-                this.field_179463_b = 20;
+                this.lookForFriends = 20;
             }
         }
 
         public boolean shouldExecute()
         {
-            return this.field_179463_b > 0;
+            return this.lookForFriends > 0;
         }
 
         public void updateTask()
         {
-            --this.field_179463_b;
+            --this.lookForFriends;
 
-            if (this.field_179463_b <= 0)
+            if (this.lookForFriends <= 0)
             {
                 World world = this.silverfish.worldObj;
                 Random random = this.silverfish.getRNG();

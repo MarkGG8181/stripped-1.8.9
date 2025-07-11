@@ -29,10 +29,10 @@ public class ChunkProviderGenerate implements IChunkProvider
 {
     /** RNG. */
     private Random rand;
-    private NoiseGeneratorOctaves field_147431_j;
-    private NoiseGeneratorOctaves field_147432_k;
-    private NoiseGeneratorOctaves field_147429_l;
-    private NoiseGeneratorPerlin field_147430_m;
+    private final NoiseGeneratorOctaves field_147431_j;
+    private final NoiseGeneratorOctaves field_147432_k;
+    private final NoiseGeneratorOctaves field_147429_l;
+    private final NoiseGeneratorPerlin field_147430_m;
 
     /** A NoiseGeneratorOctaves used in generating terrain */
     public NoiseGeneratorOctaves noiseGen5;

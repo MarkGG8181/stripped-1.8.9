@@ -27,7 +27,7 @@ public class ServerData
 
     /** Game version for this server. */
     public String gameVersion = "1.8.9";
-    public boolean field_78841_f;
+    public boolean pinged;
     public String playerList;
     private ServerData.ServerResourceMode resourceMode = ServerData.ServerResourceMode.PROMPT;
     private String serverIcon;

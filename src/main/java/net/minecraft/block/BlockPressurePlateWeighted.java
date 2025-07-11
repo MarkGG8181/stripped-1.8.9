@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class BlockPressurePlateWeighted extends BlockBasePressurePlate
 {
     public static final PropertyInteger POWER = PropertyInteger.create("power", 0, 15);
-    private final int field_150068_a;
+    private final int maxWeight;
 
     protected BlockPressurePlateWeighted(Material p_i46379_1_, int p_i46379_2_)
     {
@@ -25,16 +25,16 @@ public class BlockPressurePlateWeighted extends BlockBasePressurePlate
     {
         super(p_i46380_1_, p_i46380_3_);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POWER, Integer.valueOf(0)));
-        this.field_150068_a = p_i46380_2_;
+        this.maxWeight = p_i46380_2_;
     }
 
     protected int computeRedstoneStrength(World worldIn, BlockPos pos)
     {
-        int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, this.getSensitiveAABB(pos)).size(), this.field_150068_a);
+        int i = Math.min(worldIn.getEntitiesWithinAABB(Entity.class, this.getSensitiveAABB(pos)).size(), this.maxWeight);
 
         if (i > 0)
         {
-            float f = (float)Math.min(this.field_150068_a, i) / (float)this.field_150068_a;
+            float f = (float)Math.min(this.maxWeight, i) / (float)this.maxWeight;
             return MathHelper.ceiling_float_int(f * 15.0F);
         }
         else

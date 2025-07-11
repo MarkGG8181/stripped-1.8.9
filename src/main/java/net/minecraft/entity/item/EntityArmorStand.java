@@ -39,7 +39,7 @@ public class EntityArmorStand extends EntityLivingBase
      */
     private long punchCooldown;
     private int disabledSlots;
-    private boolean field_181028_bj;
+    private boolean wasMarker;
     private Rotations headRotation;
     private Rotations bodyRotation;
     private Rotations leftArmRotation;
@@ -220,7 +220,7 @@ public class EntityArmorStand extends EntityLivingBase
         this.setNoGravity(tagCompund.getBoolean("NoGravity"));
         this.setNoBasePlate(tagCompund.getBoolean("NoBasePlate"));
         this.setMarker(tagCompund.getBoolean("Marker"));
-        this.field_181028_bj = !this.hasMarker();
+        this.wasMarker = !this.hasMarker();
         this.noClip = this.hasNoGravity();
         NBTTagCompound nbttagcompound = tagCompund.getCompoundTag("Pose");
         this.writePoseToNBT(nbttagcompound);
@@ -737,13 +737,13 @@ public class EntityArmorStand extends EntityLivingBase
 
         boolean flag = this.hasMarker();
 
-        if (!this.field_181028_bj && flag)
+        if (!this.wasMarker && flag)
         {
             this.func_181550_a(false);
         }
         else
         {
-            if (!this.field_181028_bj || flag)
+            if (!this.wasMarker || flag)
             {
                 return;
             }
@@ -751,7 +751,7 @@ public class EntityArmorStand extends EntityLivingBase
             this.func_181550_a(true);
         }
 
-        this.field_181028_bj = flag;
+        this.wasMarker = flag;
     }
 
     private void func_181550_a(boolean p_181550_1_)

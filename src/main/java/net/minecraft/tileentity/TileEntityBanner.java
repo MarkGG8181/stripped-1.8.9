@@ -18,7 +18,7 @@ public class TileEntityBanner extends TileEntity
 
     /** A list of all the banner patterns. */
     private NBTTagList patterns;
-    private boolean field_175119_g;
+    private boolean patternDataSet;
     private List<TileEntityBanner.EnumBannerPattern> patternList;
     private List<EnumDyeColor> colorList;
 
@@ -57,7 +57,7 @@ public class TileEntityBanner extends TileEntity
         this.patternList = null;
         this.colorList = null;
         this.patternResourceLocation = "";
-        this.field_175119_g = true;
+        this.patternDataSet = true;
     }
 
     public void writeToNBT(NBTTagCompound compound)
@@ -84,7 +84,7 @@ public class TileEntityBanner extends TileEntity
         this.patternList = null;
         this.colorList = null;
         this.patternResourceLocation = null;
-        this.field_175119_g = true;
+        this.patternDataSet = true;
     }
 
     /**
@@ -149,7 +149,7 @@ public class TileEntityBanner extends TileEntity
     {
         if (this.patternList == null || this.colorList == null || this.patternResourceLocation == null)
         {
-            if (!this.field_175119_g)
+            if (!this.patternDataSet)
             {
                 this.patternResourceLocation = "";
             }

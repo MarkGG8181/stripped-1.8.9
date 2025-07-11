@@ -223,7 +223,7 @@ public class StructureStrongholdPieces
             if (structurecomponent != null)
             {
                 p_175953_1_.add(structurecomponent);
-                p_175953_0_.field_75026_c.add(structurecomponent);
+                p_175953_0_.pendingChildren.add(structurecomponent);
             }
 
             return structurecomponent;
@@ -247,7 +247,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45582_1_);
             this.coordBaseMode = p_i45582_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45582_2_);
+            this.entryDoor = this.getRandomDoor(p_i45582_2_);
             this.boundingBox = p_i45582_3_;
         }
 
@@ -283,7 +283,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 4, 6, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 1, 0);
                 this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, StructureStrongholdPieces.Stronghold.Door.OPENING, 1, 1, 6);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 1, 2, 3, 1, 4, Blocks.stonebrick.getDefaultState(), Blocks.stonebrick.getDefaultState(), false);
                 this.setBlockState(worldIn, Blocks.stone_slab.getStateFromMeta(BlockStoneSlab.EnumType.SMOOTHBRICK.getMetadata()), 3, 1, 1, structureBoundingBoxIn);
@@ -309,7 +309,7 @@ public class StructureStrongholdPieces
 
     public static class Corridor extends StructureStrongholdPieces.Stronghold
     {
-        private int field_74993_a;
+        private int steps;
 
         public Corridor()
         {
@@ -320,19 +320,19 @@ public class StructureStrongholdPieces
             super(p_i45581_1_);
             this.coordBaseMode = p_i45581_4_;
             this.boundingBox = p_i45581_3_;
-            this.field_74993_a = p_i45581_4_ != EnumFacing.NORTH && p_i45581_4_ != EnumFacing.SOUTH ? p_i45581_3_.getXSize() : p_i45581_3_.getZSize();
+            this.steps = p_i45581_4_ != EnumFacing.NORTH && p_i45581_4_ != EnumFacing.SOUTH ? p_i45581_3_.getXSize() : p_i45581_3_.getZSize();
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
             super.writeStructureToNBT(tagCompound);
-            tagCompound.setInteger("Steps", this.field_74993_a);
+            tagCompound.setInteger("Steps", this.steps);
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
             super.readStructureFromNBT(tagCompound);
-            this.field_74993_a = tagCompound.getInteger("Steps");
+            this.steps = tagCompound.getInteger("Steps");
         }
 
         public static StructureBoundingBox func_175869_a(List<StructureComponent> p_175869_0_, Random p_175869_1_, int p_175869_2_, int p_175869_3_, int p_175869_4_, EnumFacing p_175869_5_)
@@ -372,7 +372,7 @@ public class StructureStrongholdPieces
             }
             else
             {
-                for (int i = 0; i < this.field_74993_a; ++i)
+                for (int i = 0; i < this.steps; ++i)
                 {
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 0, 0, i, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 1, 0, i, structureBoundingBoxIn);
@@ -403,10 +403,10 @@ public class StructureStrongholdPieces
 
     public static class Crossing extends StructureStrongholdPieces.Stronghold
     {
-        private boolean field_74996_b;
-        private boolean field_74997_c;
-        private boolean field_74995_d;
-        private boolean field_74999_h;
+        private boolean leftLow;
+        private boolean leftHigh;
+        private boolean rightLow;
+        private boolean rightHigh;
 
         public Crossing()
         {
@@ -416,30 +416,30 @@ public class StructureStrongholdPieces
         {
             super(p_i45580_1_);
             this.coordBaseMode = p_i45580_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45580_2_);
+            this.entryDoor = this.getRandomDoor(p_i45580_2_);
             this.boundingBox = p_i45580_3_;
-            this.field_74996_b = p_i45580_2_.nextBoolean();
-            this.field_74997_c = p_i45580_2_.nextBoolean();
-            this.field_74995_d = p_i45580_2_.nextBoolean();
-            this.field_74999_h = p_i45580_2_.nextInt(3) > 0;
+            this.leftLow = p_i45580_2_.nextBoolean();
+            this.leftHigh = p_i45580_2_.nextBoolean();
+            this.rightLow = p_i45580_2_.nextBoolean();
+            this.rightHigh = p_i45580_2_.nextInt(3) > 0;
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
             super.writeStructureToNBT(tagCompound);
-            tagCompound.setBoolean("leftLow", this.field_74996_b);
-            tagCompound.setBoolean("leftHigh", this.field_74997_c);
-            tagCompound.setBoolean("rightLow", this.field_74995_d);
-            tagCompound.setBoolean("rightHigh", this.field_74999_h);
+            tagCompound.setBoolean("leftLow", this.leftLow);
+            tagCompound.setBoolean("leftHigh", this.leftHigh);
+            tagCompound.setBoolean("rightLow", this.rightLow);
+            tagCompound.setBoolean("rightHigh", this.rightHigh);
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
             super.readStructureFromNBT(tagCompound);
-            this.field_74996_b = tagCompound.getBoolean("leftLow");
-            this.field_74997_c = tagCompound.getBoolean("leftHigh");
-            this.field_74995_d = tagCompound.getBoolean("rightLow");
-            this.field_74999_h = tagCompound.getBoolean("rightHigh");
+            this.leftLow = tagCompound.getBoolean("leftLow");
+            this.leftHigh = tagCompound.getBoolean("leftHigh");
+            this.rightLow = tagCompound.getBoolean("rightLow");
+            this.rightHigh = tagCompound.getBoolean("rightHigh");
         }
 
         public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
@@ -455,22 +455,22 @@ public class StructureStrongholdPieces
 
             this.getNextComponentNormal((StructureStrongholdPieces.Stairs2)componentIn, listIn, rand, 5, 1);
 
-            if (this.field_74996_b)
+            if (this.leftLow)
             {
                 this.getNextComponentX((StructureStrongholdPieces.Stairs2)componentIn, listIn, rand, i, 1);
             }
 
-            if (this.field_74997_c)
+            if (this.leftHigh)
             {
                 this.getNextComponentX((StructureStrongholdPieces.Stairs2)componentIn, listIn, rand, j, 7);
             }
 
-            if (this.field_74995_d)
+            if (this.rightLow)
             {
                 this.getNextComponentZ((StructureStrongholdPieces.Stairs2)componentIn, listIn, rand, i, 1);
             }
 
-            if (this.field_74999_h)
+            if (this.rightHigh)
             {
                 this.getNextComponentZ((StructureStrongholdPieces.Stairs2)componentIn, listIn, rand, j, 7);
             }
@@ -491,24 +491,24 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 9, 8, 10, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 4, 3, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 4, 3, 0);
 
-                if (this.field_74996_b)
+                if (this.leftLow)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 3, 1, 0, 5, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
 
-                if (this.field_74995_d)
+                if (this.rightLow)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 3, 1, 9, 5, 3, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
 
-                if (this.field_74997_c)
+                if (this.leftHigh)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 7, 0, 7, 9, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
 
-                if (this.field_74999_h)
+                if (this.rightHigh)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 5, 7, 9, 7, 9, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
@@ -543,7 +543,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45579_1_);
             this.coordBaseMode = p_i45579_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45579_2_);
+            this.entryDoor = this.getRandomDoor(p_i45579_2_);
             this.boundingBox = p_i45579_3_;
         }
 
@@ -574,7 +574,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 4, 4, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 1, 0);
 
                 if (this.coordBaseMode != EnumFacing.NORTH && this.coordBaseMode != EnumFacing.EAST)
                 {
@@ -603,7 +603,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45578_1_);
             this.coordBaseMode = p_i45578_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45578_2_);
+            this.entryDoor = this.getRandomDoor(p_i45578_2_);
             this.boundingBox = p_i45578_3_;
             this.isLargeRoom = p_i45578_3_.getYSize() > 6;
         }
@@ -653,7 +653,7 @@ public class StructureStrongholdPieces
                 }
 
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 13, i - 1, 14, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 4, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 4, 1, 0);
                 this.func_175805_a(worldIn, structureBoundingBoxIn, randomIn, 0.07F, 2, 1, 1, 11, 4, 13, Blocks.web.getDefaultState(), Blocks.web.getDefaultState(), false);
                 int j = 1;
                 int k = 12;
@@ -931,7 +931,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45576_1_);
             this.coordBaseMode = p_i45576_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45576_2_);
+            this.entryDoor = this.getRandomDoor(p_i45576_2_);
             this.boundingBox = p_i45576_3_;
         }
 
@@ -955,7 +955,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 8, 4, 10, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 1, 0);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 10, 3, 3, 10, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 4, 1, 1, 4, 3, 1, false, randomIn, StructureStrongholdPieces.strongholdStones);
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 4, 1, 3, 4, 3, 3, false, randomIn, StructureStrongholdPieces.strongholdStones);
@@ -997,7 +997,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 4, 4, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 1, 0);
 
                 if (this.coordBaseMode != EnumFacing.NORTH && this.coordBaseMode != EnumFacing.EAST)
                 {
@@ -1026,7 +1026,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45575_1_);
             this.coordBaseMode = p_i45575_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45575_2_);
+            this.entryDoor = this.getRandomDoor(p_i45575_2_);
             this.boundingBox = p_i45575_3_;
             this.roomType = p_i45575_2_.nextInt(5);
         }
@@ -1065,7 +1065,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 10, 6, 10, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 4, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 4, 1, 0);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 1, 10, 6, 3, 10, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 1, 4, 0, 3, 6, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 10, 1, 4, 10, 3, 6, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -1166,7 +1166,7 @@ public class StructureStrongholdPieces
 
     public static class Stairs extends StructureStrongholdPieces.Stronghold
     {
-        private boolean field_75024_a;
+        private boolean source;
 
         public Stairs()
         {
@@ -1175,9 +1175,9 @@ public class StructureStrongholdPieces
         public Stairs(int p_i2081_1_, Random p_i2081_2_, int p_i2081_3_, int p_i2081_4_)
         {
             super(p_i2081_1_);
-            this.field_75024_a = true;
+            this.source = true;
             this.coordBaseMode = EnumFacing.Plane.HORIZONTAL.random(p_i2081_2_);
-            this.field_143013_d = StructureStrongholdPieces.Stronghold.Door.OPENING;
+            this.entryDoor = StructureStrongholdPieces.Stronghold.Door.OPENING;
 
             switch (this.coordBaseMode)
             {
@@ -1194,27 +1194,27 @@ public class StructureStrongholdPieces
         public Stairs(int p_i45574_1_, Random p_i45574_2_, StructureBoundingBox p_i45574_3_, EnumFacing p_i45574_4_)
         {
             super(p_i45574_1_);
-            this.field_75024_a = false;
+            this.source = false;
             this.coordBaseMode = p_i45574_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45574_2_);
+            this.entryDoor = this.getRandomDoor(p_i45574_2_);
             this.boundingBox = p_i45574_3_;
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
             super.writeStructureToNBT(tagCompound);
-            tagCompound.setBoolean("Source", this.field_75024_a);
+            tagCompound.setBoolean("Source", this.source);
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
             super.readStructureFromNBT(tagCompound);
-            this.field_75024_a = tagCompound.getBoolean("Source");
+            this.source = tagCompound.getBoolean("Source");
         }
 
         public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
         {
-            if (this.field_75024_a)
+            if (this.source)
             {
                 StructureStrongholdPieces.strongComponentType = StructureStrongholdPieces.Crossing.class;
             }
@@ -1237,7 +1237,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 10, 4, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 7, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 7, 0);
                 this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, StructureStrongholdPieces.Stronghold.Door.OPENING, 1, 1, 4);
                 this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 2, 6, 1, structureBoundingBoxIn);
                 this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 1, 5, 1, structureBoundingBoxIn);
@@ -1265,7 +1265,7 @@ public class StructureStrongholdPieces
     {
         public StructureStrongholdPieces.PieceWeight strongholdPieceWeight;
         public StructureStrongholdPieces.PortalRoom strongholdPortalRoom;
-        public List<StructureComponent> field_75026_c = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingChildren = Lists.<StructureComponent>newArrayList();
 
         public Stairs2()
         {
@@ -1292,7 +1292,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45572_1_);
             this.coordBaseMode = p_i45572_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45572_2_);
+            this.entryDoor = this.getRandomDoor(p_i45572_2_);
             this.boundingBox = p_i45572_3_;
         }
 
@@ -1316,7 +1316,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 10, 7, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 7, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 7, 0);
                 this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, StructureStrongholdPieces.Stronghold.Door.OPENING, 1, 1, 7);
                 int i = this.getMetadataWithOffset(Blocks.stone_stairs, 2);
 
@@ -1388,7 +1388,7 @@ public class StructureStrongholdPieces
         {
             super(p_i45573_1_);
             this.coordBaseMode = p_i45573_4_;
-            this.field_143013_d = this.getRandomDoor(p_i45573_2_);
+            this.entryDoor = this.getRandomDoor(p_i45573_2_);
             this.boundingBox = p_i45573_3_;
             this.expandsX = p_i45573_2_.nextInt(2) == 0;
             this.expandsZ = p_i45573_2_.nextInt(2) == 0;
@@ -1438,7 +1438,7 @@ public class StructureStrongholdPieces
             else
             {
                 this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 4, 6, true, randomIn, StructureStrongholdPieces.strongholdStones);
-                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.field_143013_d, 1, 1, 0);
+                this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, this.entryDoor, 1, 1, 0);
                 this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, StructureStrongholdPieces.Stronghold.Door.OPENING, 1, 1, 6);
                 this.randomlyPlaceBlock(worldIn, structureBoundingBoxIn, randomIn, 0.1F, 1, 2, 1, Blocks.torch.getDefaultState());
                 this.randomlyPlaceBlock(worldIn, structureBoundingBoxIn, randomIn, 0.1F, 3, 2, 1, Blocks.torch.getDefaultState());
@@ -1462,7 +1462,7 @@ public class StructureStrongholdPieces
 
     abstract static class Stronghold extends StructureComponent
     {
-        protected StructureStrongholdPieces.Stronghold.Door field_143013_d = StructureStrongholdPieces.Stronghold.Door.OPENING;
+        protected StructureStrongholdPieces.Stronghold.Door entryDoor = StructureStrongholdPieces.Stronghold.Door.OPENING;
 
         public Stronghold()
         {
@@ -1475,12 +1475,12 @@ public class StructureStrongholdPieces
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
         {
-            tagCompound.setString("EntryDoor", this.field_143013_d.name());
+            tagCompound.setString("EntryDoor", this.entryDoor.name());
         }
 
         protected void readStructureFromNBT(NBTTagCompound tagCompound)
         {
-            this.field_143013_d = StructureStrongholdPieces.Stronghold.Door.valueOf(tagCompound.getString("EntryDoor"));
+            this.entryDoor = StructureStrongholdPieces.Stronghold.Door.valueOf(tagCompound.getString("EntryDoor"));
         }
 
         protected void placeDoor(World worldIn, Random p_74990_2_, StructureBoundingBox p_74990_3_, StructureStrongholdPieces.Stronghold.Door p_74990_4_, int p_74990_5_, int p_74990_6_, int p_74990_7_)

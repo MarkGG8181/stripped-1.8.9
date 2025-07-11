@@ -58,7 +58,7 @@ public class MapGenNetherBridge extends MapGenStructure
             StructureNetherBridgePieces.Start structurenetherbridgepieces$start = new StructureNetherBridgePieces.Start(p_i2040_2_, (p_i2040_3_ << 4) + 2, (p_i2040_4_ << 4) + 2);
             this.components.add(structurenetherbridgepieces$start);
             structurenetherbridgepieces$start.buildComponent(structurenetherbridgepieces$start, this.components, p_i2040_2_);
-            List<StructureComponent> list = structurenetherbridgepieces$start.field_74967_d;
+            List<StructureComponent> list = structurenetherbridgepieces$start.pendingChildren;
 
             while (!list.isEmpty())
             {

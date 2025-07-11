@@ -249,7 +249,7 @@ public abstract class BlockRailBase extends Block
         private final BlockRailBase block;
         private IBlockState state;
         private final boolean isPowered;
-        private final List<BlockPos> field_150657_g = Lists.<BlockPos>newArrayList();
+        private final List<BlockPos> connectedRails = Lists.<BlockPos>newArrayList();
 
         public Rail(World worldIn, BlockPos pos, IBlockState state)
         {
@@ -264,74 +264,74 @@ public abstract class BlockRailBase extends Block
 
         private void func_180360_a(BlockRailBase.EnumRailDirection p_180360_1_)
         {
-            this.field_150657_g.clear();
+            this.connectedRails.clear();
 
             switch (p_180360_1_)
             {
                 case NORTH_SOUTH:
-                    this.field_150657_g.add(this.pos.north());
-                    this.field_150657_g.add(this.pos.south());
+                    this.connectedRails.add(this.pos.north());
+                    this.connectedRails.add(this.pos.south());
                     break;
 
                 case EAST_WEST:
-                    this.field_150657_g.add(this.pos.west());
-                    this.field_150657_g.add(this.pos.east());
+                    this.connectedRails.add(this.pos.west());
+                    this.connectedRails.add(this.pos.east());
                     break;
 
                 case ASCENDING_EAST:
-                    this.field_150657_g.add(this.pos.west());
-                    this.field_150657_g.add(this.pos.east().up());
+                    this.connectedRails.add(this.pos.west());
+                    this.connectedRails.add(this.pos.east().up());
                     break;
 
                 case ASCENDING_WEST:
-                    this.field_150657_g.add(this.pos.west().up());
-                    this.field_150657_g.add(this.pos.east());
+                    this.connectedRails.add(this.pos.west().up());
+                    this.connectedRails.add(this.pos.east());
                     break;
 
                 case ASCENDING_NORTH:
-                    this.field_150657_g.add(this.pos.north().up());
-                    this.field_150657_g.add(this.pos.south());
+                    this.connectedRails.add(this.pos.north().up());
+                    this.connectedRails.add(this.pos.south());
                     break;
 
                 case ASCENDING_SOUTH:
-                    this.field_150657_g.add(this.pos.north());
-                    this.field_150657_g.add(this.pos.south().up());
+                    this.connectedRails.add(this.pos.north());
+                    this.connectedRails.add(this.pos.south().up());
                     break;
 
                 case SOUTH_EAST:
-                    this.field_150657_g.add(this.pos.east());
-                    this.field_150657_g.add(this.pos.south());
+                    this.connectedRails.add(this.pos.east());
+                    this.connectedRails.add(this.pos.south());
                     break;
 
                 case SOUTH_WEST:
-                    this.field_150657_g.add(this.pos.west());
-                    this.field_150657_g.add(this.pos.south());
+                    this.connectedRails.add(this.pos.west());
+                    this.connectedRails.add(this.pos.south());
                     break;
 
                 case NORTH_WEST:
-                    this.field_150657_g.add(this.pos.west());
-                    this.field_150657_g.add(this.pos.north());
+                    this.connectedRails.add(this.pos.west());
+                    this.connectedRails.add(this.pos.north());
                     break;
 
                 case NORTH_EAST:
-                    this.field_150657_g.add(this.pos.east());
-                    this.field_150657_g.add(this.pos.north());
+                    this.connectedRails.add(this.pos.east());
+                    this.connectedRails.add(this.pos.north());
             }
         }
 
         private void func_150651_b()
         {
-            for (int i = 0; i < this.field_150657_g.size(); ++i)
+            for (int i = 0; i < this.connectedRails.size(); ++i)
             {
-                BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.field_150657_g.get(i));
+                BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.connectedRails.get(i));
 
                 if (blockrailbase$rail != null && blockrailbase$rail.func_150653_a(this))
                 {
-                    this.field_150657_g.set(i, blockrailbase$rail.pos);
+                    this.connectedRails.set(i, blockrailbase$rail.pos);
                 }
                 else
                 {
-                    this.field_150657_g.remove(i--);
+                    this.connectedRails.remove(i--);
                 }
             }
         }
@@ -374,9 +374,9 @@ public abstract class BlockRailBase extends Block
 
         private boolean func_180363_c(BlockPos p_180363_1_)
         {
-            for (int i = 0; i < this.field_150657_g.size(); ++i)
+            for (int i = 0; i < this.connectedRails.size(); ++i)
             {
-                BlockPos blockpos = (BlockPos)this.field_150657_g.get(i);
+                BlockPos blockpos = (BlockPos)this.connectedRails.get(i);
 
                 if (blockpos.getX() == p_180363_1_.getX() && blockpos.getZ() == p_180363_1_.getZ())
                 {
@@ -404,12 +404,12 @@ public abstract class BlockRailBase extends Block
 
         private boolean func_150649_b(BlockRailBase.Rail rail)
         {
-            return this.func_150653_a(rail) || this.field_150657_g.size() != 2;
+            return this.func_150653_a(rail) || this.connectedRails.size() != 2;
         }
 
         private void func_150645_c(BlockRailBase.Rail p_150645_1_)
         {
-            this.field_150657_g.add(p_150645_1_.pos);
+            this.connectedRails.add(p_150645_1_.pos);
             BlockPos blockpos = this.pos.north();
             BlockPos blockpos1 = this.pos.south();
             BlockPos blockpos2 = this.pos.west();
@@ -647,9 +647,9 @@ public abstract class BlockRailBase extends Block
             {
                 this.world.setBlockState(this.pos, this.state, 3);
 
-                for (int i = 0; i < this.field_150657_g.size(); ++i)
+                for (int i = 0; i < this.connectedRails.size(); ++i)
                 {
-                    BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.field_150657_g.get(i));
+                    BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.connectedRails.get(i));
 
                     if (blockrailbase$rail != null)
                     {

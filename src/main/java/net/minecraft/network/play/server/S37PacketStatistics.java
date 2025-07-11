@@ -12,7 +12,7 @@ import net.minecraft.stats.StatList;
 
 public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
 {
-    private Map<StatBase, Integer> field_148976_a;
+    private Map<StatBase, Integer> statisticMap;
 
     public S37PacketStatistics()
     {
@@ -20,7 +20,7 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
 
     public S37PacketStatistics(Map<StatBase, Integer> p_i45173_1_)
     {
-        this.field_148976_a = p_i45173_1_;
+        this.statisticMap = p_i45173_1_;
     }
 
     /**
@@ -37,7 +37,7 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
     public void readPacketData(PacketBuffer buf) throws IOException
     {
         int i = buf.readVarIntFromBuffer();
-        this.field_148976_a = Maps.<StatBase, Integer>newHashMap();
+        this.statisticMap = Maps.<StatBase, Integer>newHashMap();
 
         for (int j = 0; j < i; ++j)
         {
@@ -46,7 +46,7 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
 
             if (statbase != null)
             {
-                this.field_148976_a.put(statbase, Integer.valueOf(k));
+                this.statisticMap.put(statbase, Integer.valueOf(k));
             }
         }
     }
@@ -56,9 +56,9 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
      */
     public void writePacketData(PacketBuffer buf) throws IOException
     {
-        buf.writeVarIntToBuffer(this.field_148976_a.size());
+        buf.writeVarIntToBuffer(this.statisticMap.size());
 
-        for (Entry<StatBase, Integer> entry : this.field_148976_a.entrySet())
+        for (Entry<StatBase, Integer> entry : this.statisticMap.entrySet())
         {
             buf.writeString(((StatBase)entry.getKey()).statId);
             buf.writeVarIntToBuffer(((Integer)entry.getValue()).intValue());
@@ -67,6 +67,6 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient>
 
     public Map<StatBase, Integer> func_148974_c()
     {
-        return this.field_148976_a;
+        return this.statisticMap;
     }
 }

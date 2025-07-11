@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class BiomeGenPlains extends BiomeGenBase
 {
-    protected boolean field_150628_aC;
+    protected boolean sunflowers;
 
     protected BiomeGenPlains(int id)
     {
@@ -81,7 +81,7 @@ public class BiomeGenPlains extends BiomeGenBase
             }
         }
 
-        if (this.field_150628_aC)
+        if (this.sunflowers)
         {
             DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.SUNFLOWER);
 
@@ -101,7 +101,7 @@ public class BiomeGenPlains extends BiomeGenBase
     {
         BiomeGenPlains biomegenplains = new BiomeGenPlains(p_180277_1_);
         biomegenplains.setBiomeName("Sunflower Plains");
-        biomegenplains.field_150628_aC = true;
+        biomegenplains.sunflowers = true;
         biomegenplains.setColor(9286496);
         biomegenplains.field_150609_ah = 14273354;
         return biomegenplains;

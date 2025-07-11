@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 public abstract class EntityAgeable extends EntityCreature
 {
     protected int growingAge;
-    protected int field_175502_b;
-    protected int field_175503_c;
+    protected int forcedAge;
+    protected int forcedAgeTimer;
     private float ageWidth = -1.0F;
     private float ageHeight;
 
@@ -109,17 +109,17 @@ public abstract class EntityAgeable extends EntityCreature
 
         if (p_175501_2_)
         {
-            this.field_175502_b += k;
+            this.forcedAge += k;
 
-            if (this.field_175503_c == 0)
+            if (this.forcedAgeTimer == 0)
             {
-                this.field_175503_c = 40;
+                this.forcedAgeTimer = 40;
             }
         }
 
         if (this.getGrowingAge() == 0)
         {
-            this.setGrowingAge(this.field_175502_b);
+            this.setGrowingAge(this.forcedAge);
         }
     }
 
@@ -150,7 +150,7 @@ public abstract class EntityAgeable extends EntityCreature
     {
         super.writeEntityToNBT(tagCompound);
         tagCompound.setInteger("Age", this.getGrowingAge());
-        tagCompound.setInteger("ForcedAge", this.field_175502_b);
+        tagCompound.setInteger("ForcedAge", this.forcedAge);
     }
 
     /**
@@ -160,7 +160,7 @@ public abstract class EntityAgeable extends EntityCreature
     {
         super.readEntityFromNBT(tagCompund);
         this.setGrowingAge(tagCompund.getInteger("Age"));
-        this.field_175502_b = tagCompund.getInteger("ForcedAge");
+        this.forcedAge = tagCompund.getInteger("ForcedAge");
     }
 
     /**
@@ -173,14 +173,14 @@ public abstract class EntityAgeable extends EntityCreature
 
         if (this.worldObj.isRemote)
         {
-            if (this.field_175503_c > 0)
+            if (this.forcedAgeTimer > 0)
             {
-                if (this.field_175503_c % 4 == 0)
+                if (this.forcedAgeTimer % 4 == 0)
                 {
                     this.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
 
-                --this.field_175503_c;
+                --this.forcedAgeTimer;
             }
 
             this.setScaleForAge(this.isChild());

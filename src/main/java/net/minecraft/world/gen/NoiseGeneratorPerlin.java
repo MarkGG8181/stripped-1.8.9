@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class NoiseGeneratorPerlin extends NoiseGenerator
 {
-    private NoiseGeneratorSimplex[] field_151603_a;
-    private int field_151602_b;
+    private NoiseGeneratorSimplex[] noiseLevels;
+    private int levels;
 
     public NoiseGeneratorPerlin(Random p_i45470_1_, int p_i45470_2_)
     {
-        this.field_151602_b = p_i45470_2_;
-        this.field_151603_a = new NoiseGeneratorSimplex[p_i45470_2_];
+        this.levels = p_i45470_2_;
+        this.noiseLevels = new NoiseGeneratorSimplex[p_i45470_2_];
 
         for (int i = 0; i < p_i45470_2_; ++i)
         {
-            this.field_151603_a[i] = new NoiseGeneratorSimplex(p_i45470_1_);
+            this.noiseLevels[i] = new NoiseGeneratorSimplex(p_i45470_1_);
         }
     }
 
@@ -23,9 +23,9 @@ public class NoiseGeneratorPerlin extends NoiseGenerator
         double d0 = 0.0D;
         double d1 = 1.0D;
 
-        for (int i = 0; i < this.field_151602_b; ++i)
+        for (int i = 0; i < this.levels; ++i)
         {
-            d0 += this.field_151603_a[i].func_151605_a(p_151601_1_ * d1, p_151601_3_ * d1) / d1;
+            d0 += this.noiseLevels[i].func_151605_a(p_151601_1_ * d1, p_151601_3_ * d1) / d1;
             d1 /= 2.0D;
         }
 
@@ -54,9 +54,9 @@ public class NoiseGeneratorPerlin extends NoiseGenerator
         double d1 = 1.0D;
         double d0 = 1.0D;
 
-        for (int j = 0; j < this.field_151602_b; ++j)
+        for (int j = 0; j < this.levels; ++j)
         {
-            this.field_151603_a[j].func_151606_a(p_151600_1_, p_151600_2_, p_151600_4_, p_151600_6_, p_151600_7_, p_151600_8_ * d0 * d1, p_151600_10_ * d0 * d1, 0.55D / d1);
+            this.noiseLevels[j].func_151606_a(p_151600_1_, p_151600_2_, p_151600_4_, p_151600_6_, p_151600_7_, p_151600_8_ * d0 * d1, p_151600_10_ * d0 * d1, 0.55D / d1);
             d0 *= p_151600_12_;
             d1 *= p_151600_14_;
         }

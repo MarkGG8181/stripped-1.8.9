@@ -16,7 +16,7 @@ import net.minecraft.server.MinecraftServer;
 public class ServerScoreboard extends Scoreboard
 {
     private final MinecraftServer scoreboardMCServer;
-    private final Set<ScoreObjective> field_96553_b = Sets.<ScoreObjective>newHashSet();
+    private final Set<ScoreObjective> addedObjectives = Sets.<ScoreObjective>newHashSet();
     private ScoreboardSaveData scoreboardSaveData;
 
     public ServerScoreboard(MinecraftServer mcServer)
@@ -28,7 +28,7 @@ public class ServerScoreboard extends Scoreboard
     {
         super.func_96536_a(p_96536_1_);
 
-        if (this.field_96553_b.contains(p_96536_1_.getObjective()))
+        if (this.addedObjectives.contains(p_96536_1_.getObjective()))
         {
             this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3CPacketUpdateScore(p_96536_1_));
         }
@@ -72,7 +72,7 @@ public class ServerScoreboard extends Scoreboard
 
         if (p_96530_2_ != null)
         {
-            if (this.field_96553_b.contains(p_96530_2_))
+            if (this.addedObjectives.contains(p_96530_2_))
             {
                 this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3DPacketDisplayScoreboard(p_96530_1_, p_96530_2_));
             }
@@ -127,7 +127,7 @@ public class ServerScoreboard extends Scoreboard
     {
         super.onObjectiveDisplayNameChanged(p_96532_1_);
 
-        if (this.field_96553_b.contains(p_96532_1_))
+        if (this.addedObjectives.contains(p_96532_1_))
         {
             this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3BPacketScoreboardObjective(p_96532_1_, 2));
         }
@@ -139,7 +139,7 @@ public class ServerScoreboard extends Scoreboard
     {
         super.onScoreObjectiveRemoved(p_96533_1_);
 
-        if (this.field_96553_b.contains(p_96533_1_))
+        if (this.addedObjectives.contains(p_96533_1_))
         {
             this.sendDisplaySlotRemovalPackets(p_96533_1_);
         }
@@ -220,7 +220,7 @@ public class ServerScoreboard extends Scoreboard
             }
         }
 
-        this.field_96553_b.add(p_96549_1_);
+        this.addedObjectives.add(p_96549_1_);
     }
 
     public List<Packet> func_96548_f(ScoreObjective p_96548_1_)
@@ -251,7 +251,7 @@ public class ServerScoreboard extends Scoreboard
             }
         }
 
-        this.field_96553_b.remove(p_96546_1_);
+        this.addedObjectives.remove(p_96546_1_);
     }
 
     public int func_96552_h(ScoreObjective p_96552_1_)

@@ -33,7 +33,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
     public static final Potion[][] effectsList = new Potion[][] {{Potion.moveSpeed, Potion.digSpeed}, {Potion.resistance, Potion.jump}, {Potion.damageBoost}, {Potion.regeneration}};
     private final List<TileEntityBeacon.BeamSegment> beamSegments = Lists.<TileEntityBeacon.BeamSegment>newArrayList();
     private long beamRenderCounter;
-    private float field_146014_j;
+    private float beamRenderScale;
     private boolean isComplete;
 
     /** Level of this beacon's pyramid. */
@@ -224,22 +224,22 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
             if (i > 1)
             {
-                this.field_146014_j -= (float)i / 40.0F;
+                this.beamRenderScale -= (float)i / 40.0F;
 
-                if (this.field_146014_j < 0.0F)
+                if (this.beamRenderScale < 0.0F)
                 {
-                    this.field_146014_j = 0.0F;
+                    this.beamRenderScale = 0.0F;
                 }
             }
 
-            this.field_146014_j += 0.025F;
+            this.beamRenderScale += 0.025F;
 
-            if (this.field_146014_j > 1.0F)
+            if (this.beamRenderScale > 1.0F)
             {
-                this.field_146014_j = 1.0F;
+                this.beamRenderScale = 1.0F;
             }
 
-            return this.field_146014_j;
+            return this.beamRenderScale;
         }
     }
 

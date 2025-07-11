@@ -36,7 +36,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
     private GuiStats.StatsItem itemStats;
     private GuiStats.StatsBlock blockStats;
     private GuiStats.StatsMobsList mobStats;
-    private StatFileWriter field_146546_t;
+    private StatFileWriter stats;
     private GuiSlot displaySlot;
 
     /** When true, the game will be paused when the gui is shown */
@@ -45,7 +45,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
     public GuiStats(GuiScreen p_i1071_1_, StatFileWriter p_i1071_2_)
     {
         this.parentScreen = p_i1071_1_;
-        this.field_146546_t = p_i1071_2_;
+        this.stats = p_i1071_2_;
     }
 
     /**
@@ -224,11 +224,11 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
     abstract class Stats extends GuiSlot
     {
-        protected int field_148218_l = -1;
+        protected int headerPressed = -1;
         protected List<StatCrafting> statsHolder;
         protected Comparator<StatCrafting> statSorter;
-        protected int field_148217_o = -1;
-        protected int field_148215_p;
+        protected int sortColumn = -1;
+        protected int sortOrder;
 
         protected Stats(Minecraft mcIn)
         {
@@ -255,10 +255,10 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         {
             if (!Mouse.isButtonDown(0))
             {
-                this.field_148218_l = -1;
+                this.headerPressed = -1;
             }
 
-            if (this.field_148218_l == 0)
+            if (this.headerPressed == 0)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18, p_148129_2_ + 1, 0, 0);
             }
@@ -267,7 +267,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18, p_148129_2_ + 1, 0, 18);
             }
 
-            if (this.field_148218_l == 1)
+            if (this.headerPressed == 1)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18, p_148129_2_ + 1, 0, 0);
             }
@@ -276,7 +276,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18, p_148129_2_ + 1, 0, 18);
             }
 
-            if (this.field_148218_l == 2)
+            if (this.headerPressed == 2)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 215 - 18, p_148129_2_ + 1, 0, 0);
             }
@@ -285,21 +285,21 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 215 - 18, p_148129_2_ + 1, 0, 18);
             }
 
-            if (this.field_148217_o != -1)
+            if (this.sortColumn != -1)
             {
                 int i = 79;
                 int j = 18;
 
-                if (this.field_148217_o == 1)
+                if (this.sortColumn == 1)
                 {
                     i = 129;
                 }
-                else if (this.field_148217_o == 2)
+                else if (this.sortColumn == 2)
                 {
                     i = 179;
                 }
 
-                if (this.field_148215_p == 1)
+                if (this.sortOrder == 1)
                 {
                     j = 36;
                 }
@@ -310,24 +310,24 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void func_148132_a(int p_148132_1_, int p_148132_2_)
         {
-            this.field_148218_l = -1;
+            this.headerPressed = -1;
 
             if (p_148132_1_ >= 79 && p_148132_1_ < 115)
             {
-                this.field_148218_l = 0;
+                this.headerPressed = 0;
             }
             else if (p_148132_1_ >= 129 && p_148132_1_ < 165)
             {
-                this.field_148218_l = 1;
+                this.headerPressed = 1;
             }
             else if (p_148132_1_ >= 179 && p_148132_1_ < 215)
             {
-                this.field_148218_l = 2;
+                this.headerPressed = 2;
             }
 
-            if (this.field_148218_l >= 0)
+            if (this.headerPressed >= 0)
             {
-                this.func_148212_h(this.field_148218_l);
+                this.func_148212_h(this.headerPressed);
                 this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
             }
         }
@@ -348,7 +348,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         {
             if (p_148209_1_ != null)
             {
-                String s = p_148209_1_.format(GuiStats.this.field_146546_t.readStat(p_148209_1_));
+                String s = p_148209_1_.format(GuiStats.this.stats.readStat(p_148209_1_));
                 GuiStats.this.drawString(GuiStats.this.fontRendererObj, s, p_148209_2_ - GuiStats.this.fontRendererObj.getStringWidth(s), p_148209_3_ + 5, p_148209_4_ ? 16777215 : 9474192);
             }
             else
@@ -433,19 +433,19 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void func_148212_h(int p_148212_1_)
         {
-            if (p_148212_1_ != this.field_148217_o)
+            if (p_148212_1_ != this.sortColumn)
             {
-                this.field_148217_o = p_148212_1_;
-                this.field_148215_p = -1;
+                this.sortColumn = p_148212_1_;
+                this.sortOrder = -1;
             }
-            else if (this.field_148215_p == -1)
+            else if (this.sortOrder == -1)
             {
-                this.field_148215_p = 1;
+                this.sortOrder = 1;
             }
             else
             {
-                this.field_148217_o = -1;
-                this.field_148215_p = 0;
+                this.sortColumn = -1;
+                this.sortOrder = 0;
             }
 
             Collections.sort(this.statsHolder, this.statSorter);
@@ -464,15 +464,15 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 boolean flag = false;
                 int i = Item.getIdFromItem(statcrafting.func_150959_a());
 
-                if (GuiStats.this.field_146546_t.readStat(statcrafting) > 0)
+                if (GuiStats.this.stats.readStat(statcrafting) > 0)
                 {
                     flag = true;
                 }
-                else if (StatList.objectUseStats[i] != null && GuiStats.this.field_146546_t.readStat(StatList.objectUseStats[i]) > 0)
+                else if (StatList.objectUseStats[i] != null && GuiStats.this.stats.readStat(StatList.objectUseStats[i]) > 0)
                 {
                     flag = true;
                 }
-                else if (StatList.objectCraftStats[i] != null && GuiStats.this.field_146546_t.readStat(StatList.objectCraftStats[i]) > 0)
+                else if (StatList.objectCraftStats[i] != null && GuiStats.this.stats.readStat(StatList.objectCraftStats[i]) > 0)
                 {
                     flag = true;
                 }
@@ -492,17 +492,17 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                     StatBase statbase = null;
                     StatBase statbase1 = null;
 
-                    if (StatsBlock.this.field_148217_o == 2)
+                    if (StatsBlock.this.sortColumn == 2)
                     {
                         statbase = StatList.mineBlockStatArray[j];
                         statbase1 = StatList.mineBlockStatArray[k];
                     }
-                    else if (StatsBlock.this.field_148217_o == 0)
+                    else if (StatsBlock.this.sortColumn == 0)
                     {
                         statbase = StatList.objectCraftStats[j];
                         statbase1 = StatList.objectCraftStats[k];
                     }
-                    else if (StatsBlock.this.field_148217_o == 1)
+                    else if (StatsBlock.this.sortColumn == 1)
                     {
                         statbase = StatList.objectUseStats[j];
                         statbase1 = StatList.objectUseStats[k];
@@ -520,12 +520,12 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                             return -1;
                         }
 
-                        int l = GuiStats.this.field_146546_t.readStat(statbase);
-                        int i1 = GuiStats.this.field_146546_t.readStat(statbase1);
+                        int l = GuiStats.this.stats.readStat(statbase);
+                        int i1 = GuiStats.this.stats.readStat(statbase1);
 
                         if (l != i1)
                         {
-                            return (l - i1) * StatsBlock.this.field_148215_p;
+                            return (l - i1) * StatsBlock.this.sortOrder;
                         }
                     }
 
@@ -538,7 +538,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         {
             super.drawListHeader(p_148129_1_, p_148129_2_, p_148129_3_);
 
-            if (this.field_148218_l == 0)
+            if (this.headerPressed == 0)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18 + 1, p_148129_2_ + 1 + 1, 18, 18);
             }
@@ -547,7 +547,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18, p_148129_2_ + 1, 18, 18);
             }
 
-            if (this.field_148218_l == 1)
+            if (this.headerPressed == 1)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18 + 1, p_148129_2_ + 1 + 1, 36, 18);
             }
@@ -556,7 +556,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18, p_148129_2_ + 1, 36, 18);
             }
 
-            if (this.field_148218_l == 2)
+            if (this.headerPressed == 2)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 215 - 18 + 1, p_148129_2_ + 1 + 1, 54, 18);
             }
@@ -619,7 +619,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         {
             StatBase statbase = (StatBase)StatList.generalStats.get(entryID);
             GuiStats.this.drawString(GuiStats.this.fontRendererObj, statbase.getStatName().getUnformattedText(), p_180791_2_ + 2, p_180791_3_ + 1, entryID % 2 == 0 ? 16777215 : 9474192);
-            String s = statbase.format(GuiStats.this.field_146546_t.readStat(statbase));
+            String s = statbase.format(GuiStats.this.stats.readStat(statbase));
             GuiStats.this.drawString(GuiStats.this.fontRendererObj, s, p_180791_2_ + 2 + 213 - GuiStats.this.fontRendererObj.getStringWidth(s), p_180791_3_ + 1, entryID % 2 == 0 ? 16777215 : 9474192);
         }
     }
@@ -636,15 +636,15 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 boolean flag = false;
                 int i = Item.getIdFromItem(statcrafting.func_150959_a());
 
-                if (GuiStats.this.field_146546_t.readStat(statcrafting) > 0)
+                if (GuiStats.this.stats.readStat(statcrafting) > 0)
                 {
                     flag = true;
                 }
-                else if (StatList.objectBreakStats[i] != null && GuiStats.this.field_146546_t.readStat(StatList.objectBreakStats[i]) > 0)
+                else if (StatList.objectBreakStats[i] != null && GuiStats.this.stats.readStat(StatList.objectBreakStats[i]) > 0)
                 {
                     flag = true;
                 }
-                else if (StatList.objectCraftStats[i] != null && GuiStats.this.field_146546_t.readStat(StatList.objectCraftStats[i]) > 0)
+                else if (StatList.objectCraftStats[i] != null && GuiStats.this.stats.readStat(StatList.objectCraftStats[i]) > 0)
                 {
                     flag = true;
                 }
@@ -664,17 +664,17 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                     StatBase statbase = null;
                     StatBase statbase1 = null;
 
-                    if (StatsItem.this.field_148217_o == 0)
+                    if (StatsItem.this.sortColumn == 0)
                     {
                         statbase = StatList.objectBreakStats[j];
                         statbase1 = StatList.objectBreakStats[k];
                     }
-                    else if (StatsItem.this.field_148217_o == 1)
+                    else if (StatsItem.this.sortColumn == 1)
                     {
                         statbase = StatList.objectCraftStats[j];
                         statbase1 = StatList.objectCraftStats[k];
                     }
-                    else if (StatsItem.this.field_148217_o == 2)
+                    else if (StatsItem.this.sortColumn == 2)
                     {
                         statbase = StatList.objectUseStats[j];
                         statbase1 = StatList.objectUseStats[k];
@@ -692,12 +692,12 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                             return -1;
                         }
 
-                        int l = GuiStats.this.field_146546_t.readStat(statbase);
-                        int i1 = GuiStats.this.field_146546_t.readStat(statbase1);
+                        int l = GuiStats.this.stats.readStat(statbase);
+                        int i1 = GuiStats.this.stats.readStat(statbase1);
 
                         if (l != i1)
                         {
-                            return (l - i1) * StatsItem.this.field_148215_p;
+                            return (l - i1) * StatsItem.this.sortOrder;
                         }
                     }
 
@@ -710,7 +710,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         {
             super.drawListHeader(p_148129_1_, p_148129_2_, p_148129_3_);
 
-            if (this.field_148218_l == 0)
+            if (this.headerPressed == 0)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18 + 1, p_148129_2_ + 1 + 1, 72, 18);
             }
@@ -719,7 +719,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 115 - 18, p_148129_2_ + 1, 72, 18);
             }
 
-            if (this.field_148218_l == 1)
+            if (this.headerPressed == 1)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18 + 1, p_148129_2_ + 1 + 1, 18, 18);
             }
@@ -728,7 +728,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 GuiStats.this.drawSprite(p_148129_1_ + 165 - 18, p_148129_2_ + 1, 18, 18);
             }
 
-            if (this.field_148218_l == 2)
+            if (this.headerPressed == 2)
             {
                 GuiStats.this.drawSprite(p_148129_1_ + 215 - 18 + 1, p_148129_2_ + 1 + 1, 36, 18);
             }
@@ -757,7 +757,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
     class StatsMobsList extends GuiSlot
     {
-        private final List<EntityList.EntityEggInfo> field_148222_l = Lists.<EntityList.EntityEggInfo>newArrayList();
+        private final List<EntityList.EntityEggInfo> mobs = Lists.<EntityList.EntityEggInfo>newArrayList();
 
         public StatsMobsList(Minecraft mcIn)
         {
@@ -766,16 +766,16 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
             for (EntityList.EntityEggInfo entitylist$entityegginfo : EntityList.entityEggs.values())
             {
-                if (GuiStats.this.field_146546_t.readStat(entitylist$entityegginfo.field_151512_d) > 0 || GuiStats.this.field_146546_t.readStat(entitylist$entityegginfo.field_151513_e) > 0)
+                if (GuiStats.this.stats.readStat(entitylist$entityegginfo.killEntityStat) > 0 || GuiStats.this.stats.readStat(entitylist$entityegginfo.entityKilledByStat) > 0)
                 {
-                    this.field_148222_l.add(entitylist$entityegginfo);
+                    this.mobs.add(entitylist$entityegginfo);
                 }
             }
         }
 
         protected int getSize()
         {
-            return this.field_148222_l.size();
+            return this.mobs.size();
         }
 
         protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
@@ -799,10 +799,10 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
-            EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo)this.field_148222_l.get(entryID);
+            EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo)this.mobs.get(entryID);
             String s = I18n.format("entity." + EntityList.getStringFromID(entitylist$entityegginfo.spawnedID) + ".name", new Object[0]);
-            int i = GuiStats.this.field_146546_t.readStat(entitylist$entityegginfo.field_151512_d);
-            int j = GuiStats.this.field_146546_t.readStat(entitylist$entityegginfo.field_151513_e);
+            int i = GuiStats.this.stats.readStat(entitylist$entityegginfo.killEntityStat);
+            int j = GuiStats.this.stats.readStat(entitylist$entityegginfo.entityKilledByStat);
             String s1 = I18n.format("stat.entityKills", new Object[] {Integer.valueOf(i), s});
             String s2 = I18n.format("stat.entityKilledBy", new Object[] {s, Integer.valueOf(j)});
 

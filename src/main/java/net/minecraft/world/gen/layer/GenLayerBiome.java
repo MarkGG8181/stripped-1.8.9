@@ -6,11 +6,11 @@ import net.minecraft.world.gen.ChunkProviderSettings;
 
 public class GenLayerBiome extends GenLayer
 {
-    private BiomeGenBase[] field_151623_c = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.savanna, BiomeGenBase.savanna, BiomeGenBase.plains};
-    private BiomeGenBase[] field_151621_d = new BiomeGenBase[] {BiomeGenBase.forest, BiomeGenBase.roofedForest, BiomeGenBase.extremeHills, BiomeGenBase.plains, BiomeGenBase.birchForest, BiomeGenBase.swampland};
-    private BiomeGenBase[] field_151622_e = new BiomeGenBase[] {BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.taiga, BiomeGenBase.plains};
-    private BiomeGenBase[] field_151620_f = new BiomeGenBase[] {BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.coldTaiga};
-    private final ChunkProviderSettings field_175973_g;
+    private BiomeGenBase[] warmBiomes = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.savanna, BiomeGenBase.savanna, BiomeGenBase.plains};
+    private BiomeGenBase[] mediumBiomes = new BiomeGenBase[] {BiomeGenBase.forest, BiomeGenBase.roofedForest, BiomeGenBase.extremeHills, BiomeGenBase.plains, BiomeGenBase.birchForest, BiomeGenBase.swampland};
+    private BiomeGenBase[] coldBiomes = new BiomeGenBase[] {BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.taiga, BiomeGenBase.plains};
+    private BiomeGenBase[] iceBiomes = new BiomeGenBase[] {BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.coldTaiga};
+    private final ChunkProviderSettings settings;
 
     public GenLayerBiome(long p_i45560_1_, GenLayer p_i45560_3_, WorldType p_i45560_4_, String p_i45560_5_)
     {
@@ -19,16 +19,16 @@ public class GenLayerBiome extends GenLayer
 
         if (p_i45560_4_ == WorldType.DEFAULT_1_1)
         {
-            this.field_151623_c = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.plains, BiomeGenBase.taiga};
-            this.field_175973_g = null;
+            this.warmBiomes = new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.swampland, BiomeGenBase.plains, BiomeGenBase.taiga};
+            this.settings = null;
         }
         else if (p_i45560_4_ == WorldType.CUSTOMIZED)
         {
-            this.field_175973_g = ChunkProviderSettings.Factory.jsonToFactory(p_i45560_5_).func_177864_b();
+            this.settings = ChunkProviderSettings.Factory.jsonToFactory(p_i45560_5_).func_177864_b();
         }
         else
         {
-            this.field_175973_g = null;
+            this.settings = null;
         }
     }
 
@@ -50,9 +50,9 @@ public class GenLayerBiome extends GenLayer
                 int l = (k & 3840) >> 8;
                 k = k & -3841;
 
-                if (this.field_175973_g != null && this.field_175973_g.fixedBiome >= 0)
+                if (this.settings != null && this.settings.fixedBiome >= 0)
                 {
-                    aint1[j + i * areaWidth] = this.field_175973_g.fixedBiome;
+                    aint1[j + i * areaWidth] = this.settings.fixedBiome;
                 }
                 else if (isBiomeOceanic(k))
                 {
@@ -77,7 +77,7 @@ public class GenLayerBiome extends GenLayer
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = this.field_151623_c[this.nextInt(this.field_151623_c.length)].biomeID;
+                        aint1[j + i * areaWidth] = this.warmBiomes[this.nextInt(this.warmBiomes.length)].biomeID;
                     }
                 }
                 else if (k == 2)
@@ -88,7 +88,7 @@ public class GenLayerBiome extends GenLayer
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = this.field_151621_d[this.nextInt(this.field_151621_d.length)].biomeID;
+                        aint1[j + i * areaWidth] = this.mediumBiomes[this.nextInt(this.mediumBiomes.length)].biomeID;
                     }
                 }
                 else if (k == 3)
@@ -99,12 +99,12 @@ public class GenLayerBiome extends GenLayer
                     }
                     else
                     {
-                        aint1[j + i * areaWidth] = this.field_151622_e[this.nextInt(this.field_151622_e.length)].biomeID;
+                        aint1[j + i * areaWidth] = this.coldBiomes[this.nextInt(this.coldBiomes.length)].biomeID;
                     }
                 }
                 else if (k == 4)
                 {
-                    aint1[j + i * areaWidth] = this.field_151620_f[this.nextInt(this.field_151620_f.length)].biomeID;
+                    aint1[j + i * areaWidth] = this.iceBiomes[this.nextInt(this.iceBiomes.length)].biomeID;
                 }
                 else
                 {

@@ -88,7 +88,7 @@ public class WorldChunkManager
         {
             try
             {
-                float f = (float)BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.field_180279_ad).getIntRainfall() / 65536.0F;
+                float f = (float)BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT).getIntRainfall() / 65536.0F;
 
                 if (f > 1.0F)
                 {
@@ -140,7 +140,7 @@ public class WorldChunkManager
         {
             for (int i = 0; i < width * height; ++i)
             {
-                biomes[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.field_180279_ad);
+                biomes[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT);
             }
 
             return biomes;
@@ -192,7 +192,7 @@ public class WorldChunkManager
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.field_180279_ad);
+                listToReuse[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT);
             }
 
             return listToReuse;

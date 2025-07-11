@@ -105,7 +105,7 @@ public class BlockBrewingStand extends BlockContainer
             if (tileentity instanceof TileEntityBrewingStand)
             {
                 playerIn.displayGUIChest((TileEntityBrewingStand)tileentity);
-                playerIn.triggerAchievement(StatList.field_181729_M);
+                playerIn.triggerAchievement(StatList.brewingStandInteractionStat);
             }
 
             return true;

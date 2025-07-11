@@ -16,22 +16,22 @@ public class EntityAIFindEntityNearest extends EntityAIBase
 {
     private static final Logger LOGGER = LogManager.getLogger();
     private EntityLiving mob;
-    private final Predicate<EntityLivingBase> field_179443_c;
-    private final EntityAINearestAttackableTarget.Sorter field_179440_d;
+    private final Predicate<EntityLivingBase> predicate;
+    private final EntityAINearestAttackableTarget.Sorter sorter;
     private EntityLivingBase target;
-    private Class <? extends EntityLivingBase > field_179439_f;
+    private Class <? extends EntityLivingBase > classToCheck;
 
     public EntityAIFindEntityNearest(EntityLiving mobIn, Class <? extends EntityLivingBase > p_i45884_2_)
     {
         this.mob = mobIn;
-        this.field_179439_f = p_i45884_2_;
+        this.classToCheck = p_i45884_2_;
 
         if (mobIn instanceof EntityCreature)
         {
             LOGGER.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
         }
 
-        this.field_179443_c = new Predicate<EntityLivingBase>()
+        this.predicate = new Predicate<EntityLivingBase>()
         {
             public boolean apply(EntityLivingBase p_apply_1_)
             {
@@ -45,7 +45,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
                 return p_apply_1_.isInvisible() ? false : ((double)p_apply_1_.getDistanceToEntity(EntityAIFindEntityNearest.this.mob) > d0 ? false : EntityAITarget.isSuitableTarget(EntityAIFindEntityNearest.this.mob, p_apply_1_, false, true));
             }
         };
-        this.field_179440_d = new EntityAINearestAttackableTarget.Sorter(mobIn);
+        this.sorter = new EntityAINearestAttackableTarget.Sorter(mobIn);
     }
 
     /**
@@ -54,8 +54,8 @@ public class EntityAIFindEntityNearest extends EntityAIBase
     public boolean shouldExecute()
     {
         double d0 = this.getFollowRange();
-        List<EntityLivingBase> list = this.mob.worldObj.<EntityLivingBase>getEntitiesWithinAABB(this.field_179439_f, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.field_179443_c);
-        Collections.sort(list, this.field_179440_d);
+        List<EntityLivingBase> list = this.mob.worldObj.<EntityLivingBase>getEntitiesWithinAABB(this.classToCheck, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
+        Collections.sort(list, this.sorter);
 
         if (list.isEmpty())
         {

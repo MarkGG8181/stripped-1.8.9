@@ -23,12 +23,12 @@ public class GuiCreateFlatWorld extends GuiScreen
 
     /** The title given to the flat world currently in creation */
     private String flatWorldTitle;
-    private String field_146394_i;
-    private String field_146391_r;
+    private String materialText;
+    private String heightText;
     private GuiCreateFlatWorld.Details createFlatWorldListSlotGui;
-    private GuiButton field_146389_t;
-    private GuiButton field_146388_u;
-    private GuiButton field_146386_v;
+    private GuiButton addLayerButton;
+    private GuiButton editLayerButton;
+    private GuiButton removeLayerButton;
 
     public GuiCreateFlatWorld(GuiCreateWorld createWorldGuiIn, String p_i1029_2_)
     {
@@ -54,16 +54,16 @@ public class GuiCreateFlatWorld extends GuiScreen
     {
         this.buttonList.clear();
         this.flatWorldTitle = I18n.format("createWorld.customize.flat.title", new Object[0]);
-        this.field_146394_i = I18n.format("createWorld.customize.flat.tile", new Object[0]);
-        this.field_146391_r = I18n.format("createWorld.customize.flat.height", new Object[0]);
+        this.materialText = I18n.format("createWorld.customize.flat.tile", new Object[0]);
+        this.heightText = I18n.format("createWorld.customize.flat.height", new Object[0]);
         this.createFlatWorldListSlotGui = new GuiCreateFlatWorld.Details();
-        this.buttonList.add(this.field_146389_t = new GuiButton(2, this.width / 2 - 154, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.addLayer", new Object[0]) + " (NYI)"));
-        this.buttonList.add(this.field_146388_u = new GuiButton(3, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.editLayer", new Object[0]) + " (NYI)"));
-        this.buttonList.add(this.field_146386_v = new GuiButton(4, this.width / 2 - 155, this.height - 52, 150, 20, I18n.format("createWorld.customize.flat.removeLayer", new Object[0])));
+        this.buttonList.add(this.addLayerButton = new GuiButton(2, this.width / 2 - 154, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.addLayer", new Object[0]) + " (NYI)"));
+        this.buttonList.add(this.editLayerButton = new GuiButton(3, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.editLayer", new Object[0]) + " (NYI)"));
+        this.buttonList.add(this.removeLayerButton = new GuiButton(4, this.width / 2 - 155, this.height - 52, 150, 20, I18n.format("createWorld.customize.flat.removeLayer", new Object[0])));
         this.buttonList.add(new GuiButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("gui.done", new Object[0])));
         this.buttonList.add(new GuiButton(5, this.width / 2 + 5, this.height - 52, 150, 20, I18n.format("createWorld.customize.presets", new Object[0])));
         this.buttonList.add(new GuiButton(1, this.width / 2 + 5, this.height - 28, 150, 20, I18n.format("gui.cancel", new Object[0])));
-        this.field_146389_t.visible = this.field_146388_u.visible = false;
+        this.addLayerButton.visible = this.editLayerButton.visible = false;
         this.theFlatGeneratorInfo.func_82645_d();
         this.func_146375_g();
     }
@@ -82,7 +82,7 @@ public class GuiCreateFlatWorld extends GuiScreen
      */
     protected void actionPerformed(GuiButton button) throws IOException
     {
-        int i = this.theFlatGeneratorInfo.getFlatLayers().size() - this.createFlatWorldListSlotGui.field_148228_k - 1;
+        int i = this.theFlatGeneratorInfo.getFlatLayers().size() - this.createFlatWorldListSlotGui.selectedLayer - 1;
 
         if (button.id == 1)
         {
@@ -100,7 +100,7 @@ public class GuiCreateFlatWorld extends GuiScreen
         else if (button.id == 4 && this.func_146382_i())
         {
             this.theFlatGeneratorInfo.getFlatLayers().remove(i);
-            this.createFlatWorldListSlotGui.field_148228_k = Math.min(this.createFlatWorldListSlotGui.field_148228_k, this.theFlatGeneratorInfo.getFlatLayers().size() - 1);
+            this.createFlatWorldListSlotGui.selectedLayer = Math.min(this.createFlatWorldListSlotGui.selectedLayer, this.theFlatGeneratorInfo.getFlatLayers().size() - 1);
         }
 
         this.theFlatGeneratorInfo.func_82645_d();
@@ -110,15 +110,15 @@ public class GuiCreateFlatWorld extends GuiScreen
     public void func_146375_g()
     {
         boolean flag = this.func_146382_i();
-        this.field_146386_v.enabled = flag;
-        this.field_146388_u.enabled = flag;
-        this.field_146388_u.enabled = false;
-        this.field_146389_t.enabled = false;
+        this.removeLayerButton.enabled = flag;
+        this.editLayerButton.enabled = flag;
+        this.editLayerButton.enabled = false;
+        this.addLayerButton.enabled = false;
     }
 
     private boolean func_146382_i()
     {
-        return this.createFlatWorldListSlotGui.field_148228_k > -1 && this.createFlatWorldListSlotGui.field_148228_k < this.theFlatGeneratorInfo.getFlatLayers().size();
+        return this.createFlatWorldListSlotGui.selectedLayer > -1 && this.createFlatWorldListSlotGui.selectedLayer < this.theFlatGeneratorInfo.getFlatLayers().size();
     }
 
     /**
@@ -130,14 +130,14 @@ public class GuiCreateFlatWorld extends GuiScreen
         this.createFlatWorldListSlotGui.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, this.flatWorldTitle, this.width / 2, 8, 16777215);
         int i = this.width / 2 - 92 - 16;
-        this.drawString(this.fontRendererObj, this.field_146394_i, i, 32, 16777215);
-        this.drawString(this.fontRendererObj, this.field_146391_r, i + 2 + 213 - this.fontRendererObj.getStringWidth(this.field_146391_r), 32, 16777215);
+        this.drawString(this.fontRendererObj, this.materialText, i, 32, 16777215);
+        this.drawString(this.fontRendererObj, this.heightText, i + 2 + 213 - this.fontRendererObj.getStringWidth(this.heightText), 32, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     class Details extends GuiSlot
     {
-        public int field_148228_k = -1;
+        public int selectedLayer = -1;
 
         public Details()
         {
@@ -189,13 +189,13 @@ public class GuiCreateFlatWorld extends GuiScreen
 
         protected void elementClicked(int slotIndex, boolean isDoubleClick, int mouseX, int mouseY)
         {
-            this.field_148228_k = slotIndex;
+            this.selectedLayer = slotIndex;
             GuiCreateFlatWorld.this.func_146375_g();
         }
 
         protected boolean isSelected(int slotIndex)
         {
-            return slotIndex == this.field_148228_k;
+            return slotIndex == this.selectedLayer;
         }
 
         protected void drawBackground()

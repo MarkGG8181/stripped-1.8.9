@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 public class JsonToNBT
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final Pattern field_179273_b = Pattern.compile("\\[[-+\\d|,\\s]+\\]");
+    private static final Pattern INT_ARRAY_MATCHER = Pattern.compile("\\[[-+\\d|,\\s]+\\]");
 
     public static NBTTagCompound getTagFromJson(String jsonString) throws NBTException
     {
@@ -122,7 +122,7 @@ public class JsonToNBT
                 if (s1.length() > 0)
                 {
                     boolean flag1 = false;
-                    jsontonbt$compound.field_150491_b.add(func_179270_a(s1, flag1));
+                    jsontonbt$compound.tagList.add(func_179270_a(s1, flag1));
                 }
 
                 if (p_150316_1_.length() < s1.length() + 1)
@@ -140,7 +140,7 @@ public class JsonToNBT
 
             return jsontonbt$compound;
         }
-        else if (p_150316_1_.startsWith("[") && !field_179273_b.matcher(p_150316_1_).matches())
+        else if (p_150316_1_.startsWith("[") && !INT_ARRAY_MATCHER.matcher(p_150316_1_).matches())
         {
             p_150316_1_ = p_150316_1_.substring(1, p_150316_1_.length() - 1);
             JsonToNBT.List jsontonbt$list;
@@ -153,7 +153,7 @@ public class JsonToNBT
                 if (s.length() > 0)
                 {
                     boolean flag = true;
-                    jsontonbt$list.field_150492_b.add(func_179270_a(s, flag));
+                    jsontonbt$list.tagList.add(func_179270_a(s, flag));
                 }
 
                 if (p_150316_1_.length() < s.length() + 1)
@@ -392,7 +392,7 @@ public class JsonToNBT
 
     static class Compound extends JsonToNBT.Any
     {
-        protected java.util.List<JsonToNBT.Any> field_150491_b = Lists.<JsonToNBT.Any>newArrayList();
+        protected java.util.List<JsonToNBT.Any> tagList = Lists.<JsonToNBT.Any>newArrayList();
 
         public Compound(String p_i45137_1_)
         {
@@ -403,7 +403,7 @@ public class JsonToNBT
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-            for (JsonToNBT.Any jsontonbt$any : this.field_150491_b)
+            for (JsonToNBT.Any jsontonbt$any : this.tagList)
             {
                 nbttagcompound.setTag(jsontonbt$any.json, jsontonbt$any.parse());
             }
@@ -414,7 +414,7 @@ public class JsonToNBT
 
     static class List extends JsonToNBT.Any
     {
-        protected java.util.List<JsonToNBT.Any> field_150492_b = Lists.<JsonToNBT.Any>newArrayList();
+        protected java.util.List<JsonToNBT.Any> tagList = Lists.<JsonToNBT.Any>newArrayList();
 
         public List(String json)
         {
@@ -425,7 +425,7 @@ public class JsonToNBT
         {
             NBTTagList nbttaglist = new NBTTagList();
 
-            for (JsonToNBT.Any jsontonbt$any : this.field_150492_b)
+            for (JsonToNBT.Any jsontonbt$any : this.tagList)
             {
                 nbttaglist.appendTag(jsontonbt$any.parse());
             }

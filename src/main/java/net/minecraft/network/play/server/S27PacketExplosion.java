@@ -16,9 +16,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
     private double posZ;
     private float strength;
     private List<BlockPos> affectedBlockPositions;
-    private float field_149152_f;
-    private float field_149153_g;
-    private float field_149159_h;
+    private float motionX;
+    private float motionY;
+    private float motionZ;
 
     public S27PacketExplosion()
     {
@@ -34,9 +34,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
 
         if (p_i45193_9_ != null)
         {
-            this.field_149152_f = (float)p_i45193_9_.xCoord;
-            this.field_149153_g = (float)p_i45193_9_.yCoord;
-            this.field_149159_h = (float)p_i45193_9_.zCoord;
+            this.motionX = (float)p_i45193_9_.xCoord;
+            this.motionY = (float)p_i45193_9_.yCoord;
+            this.motionZ = (float)p_i45193_9_.zCoord;
         }
     }
 
@@ -63,9 +63,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
             this.affectedBlockPositions.add(new BlockPos(j1, k1, l1));
         }
 
-        this.field_149152_f = buf.readFloat();
-        this.field_149153_g = buf.readFloat();
-        this.field_149159_h = buf.readFloat();
+        this.motionX = buf.readFloat();
+        this.motionY = buf.readFloat();
+        this.motionZ = buf.readFloat();
     }
 
     /**
@@ -92,9 +92,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
             buf.writeByte(j1);
         }
 
-        buf.writeFloat(this.field_149152_f);
-        buf.writeFloat(this.field_149153_g);
-        buf.writeFloat(this.field_149159_h);
+        buf.writeFloat(this.motionX);
+        buf.writeFloat(this.motionY);
+        buf.writeFloat(this.motionZ);
     }
 
     /**
@@ -107,17 +107,17 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
 
     public float func_149149_c()
     {
-        return this.field_149152_f;
+        return this.motionX;
     }
 
     public float func_149144_d()
     {
-        return this.field_149153_g;
+        return this.motionY;
     }
 
     public float func_149147_e()
     {
-        return this.field_149159_h;
+        return this.motionZ;
     }
 
     public double getX()

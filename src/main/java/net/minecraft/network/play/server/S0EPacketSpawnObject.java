@@ -19,7 +19,7 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
     private int pitch;
     private int yaw;
     private int type;
-    private int field_149020_k;
+    private int data;
 
     public S0EPacketSpawnObject()
     {
@@ -39,7 +39,7 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
         this.pitch = MathHelper.floor_float(entityIn.rotationPitch * 256.0F / 360.0F);
         this.yaw = MathHelper.floor_float(entityIn.rotationYaw * 256.0F / 360.0F);
         this.type = typeIn;
-        this.field_149020_k = p_i45166_3_;
+        this.data = p_i45166_3_;
 
         if (p_i45166_3_ > 0)
         {
@@ -96,9 +96,9 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
         this.z = buf.readInt();
         this.pitch = buf.readByte();
         this.yaw = buf.readByte();
-        this.field_149020_k = buf.readInt();
+        this.data = buf.readInt();
 
-        if (this.field_149020_k > 0)
+        if (this.data > 0)
         {
             this.speedX = buf.readShort();
             this.speedY = buf.readShort();
@@ -118,9 +118,9 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
         buf.writeInt(this.z);
         buf.writeByte(this.pitch);
         buf.writeByte(this.yaw);
-        buf.writeInt(this.field_149020_k);
+        buf.writeInt(this.data);
 
-        if (this.field_149020_k > 0)
+        if (this.data > 0)
         {
             buf.writeShort(this.speedX);
             buf.writeShort(this.speedY);
@@ -188,7 +188,7 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
 
     public int func_149009_m()
     {
-        return this.field_149020_k;
+        return this.data;
     }
 
     public void setX(int newX)
@@ -223,6 +223,6 @@ public class S0EPacketSpawnObject implements Packet<INetHandlerPlayClient>
 
     public void func_149002_g(int p_149002_1_)
     {
-        this.field_149020_k = p_149002_1_;
+        this.data = p_149002_1_;
     }
 }

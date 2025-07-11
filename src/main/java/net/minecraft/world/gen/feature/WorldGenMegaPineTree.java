@@ -16,14 +16,14 @@ import net.minecraft.world.World;
 
 public class WorldGenMegaPineTree extends WorldGenHugeTrees
 {
-    private static final IBlockState field_181633_e = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
-    private static final IBlockState field_181634_f = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-    private static final IBlockState field_181635_g = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
+    private static final IBlockState TRUNK = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
+    private static final IBlockState LEAF = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState PODZOL = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
     private boolean useBaseHeight;
 
     public WorldGenMegaPineTree(boolean p_i45457_1_, boolean p_i45457_2_)
     {
-        super(p_i45457_1_, 13, 15, field_181633_e, field_181634_f);
+        super(p_i45457_1_, 13, 15, TRUNK, LEAF);
         this.useBaseHeight = p_i45457_2_;
     }
 
@@ -134,7 +134,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 
             if (block == Blocks.grass || block == Blocks.dirt)
             {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos, field_181635_g);
+                this.setBlockAndNotifyAdequately(worldIn, blockpos, PODZOL);
                 break;
             }
 

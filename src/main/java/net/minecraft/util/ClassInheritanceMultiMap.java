@@ -8,7 +8,7 @@ import com.google.common.collect.Sets;
 import java.util.*;
 
 public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
-    private static final Set<Class<?>> field_181158_a = Sets.<Class<?>>newHashSet();
+    private static final Set<Class<?>> ALL_KNOWN = Sets.<Class<?>>newHashSet();
     private final Map<Class<?>, List<T>> map = Maps.<Class<?>, List<T>>newHashMap();
     private final Set<Class<?>> knownKeys = Sets.<Class<?>>newIdentityHashSet();
     private final Class<T> baseClass;
@@ -19,13 +19,13 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
         this.knownKeys.add(baseClassIn);
         this.map.put(baseClassIn, this.values);
 
-        for (Class<?> oclass : field_181158_a) {
+        for (Class<?> oclass : ALL_KNOWN) {
             this.createLookup(oclass);
         }
     }
 
     protected void createLookup(Class<?> clazz) {
-        field_181158_a.add(clazz);
+        ALL_KNOWN.add(clazz);
 
         for (T t : this.values) {
             if (clazz.isAssignableFrom(t.getClass())) {

@@ -87,7 +87,7 @@ public class BlockCake extends Block
     {
         if (player.canEat(false))
         {
-            player.triggerAchievement(StatList.field_181724_H);
+            player.triggerAchievement(StatList.cakeSlicesEatenStat);
             player.getFoodStats().addStats(2, 0.1F);
             int i = ((Integer)state.getValue(BITES)).intValue();
 

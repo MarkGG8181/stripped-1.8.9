@@ -379,8 +379,8 @@ public class EntityEnderman extends EntityMob {
 
     static class AIFindPlayer extends EntityAINearestAttackableTarget {
         private EntityPlayer player;
-        private int field_179450_h;
-        private int field_179451_i;
+        private int aggroTime;
+        private int teleportTime;
         private EntityEnderman enderman;
 
         public AIFindPlayer(EntityEnderman p_i45842_1_) {
@@ -402,8 +402,8 @@ public class EntityEnderman extends EntityMob {
         }
 
         public void startExecuting() {
-            this.field_179450_h = 5;
-            this.field_179451_i = 0;
+            this.aggroTime = 5;
+            this.teleportTime = 0;
         }
 
         public void resetTask() {
@@ -430,7 +430,7 @@ public class EntityEnderman extends EntityMob {
 
         public void updateTask() {
             if (this.player != null) {
-                if (--this.field_179450_h <= 0) {
+                if (--this.aggroTime <= 0) {
                     this.targetEntity = this.player;
                     this.player = null;
                     super.startExecuting();
@@ -446,9 +446,9 @@ public class EntityEnderman extends EntityMob {
                             this.enderman.teleportRandomly();
                         }
 
-                        this.field_179451_i = 0;
-                    } else if (this.targetEntity.getDistanceSqToEntity(this.enderman) > 256.0D && this.field_179451_i++ >= 30 && this.enderman.teleportToEntity(this.targetEntity)) {
-                        this.field_179451_i = 0;
+                        this.teleportTime = 0;
+                    } else if (this.targetEntity.getDistanceSqToEntity(this.enderman) > 256.0D && this.teleportTime++ >= 30 && this.enderman.teleportToEntity(this.targetEntity)) {
+                        this.teleportTime = 0;
                     }
                 }
 

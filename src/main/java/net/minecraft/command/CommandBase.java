@@ -743,30 +743,30 @@ public abstract class CommandBase implements ICommand
 
     public static class CoordinateArg
     {
-        private final double field_179633_a;
-        private final double field_179631_b;
-        private final boolean field_179632_c;
+        private final double result;
+        private final double amount;
+        private final boolean isRelative;
 
         protected CoordinateArg(double p_i46051_1_, double p_i46051_3_, boolean p_i46051_5_)
         {
-            this.field_179633_a = p_i46051_1_;
-            this.field_179631_b = p_i46051_3_;
-            this.field_179632_c = p_i46051_5_;
+            this.result = p_i46051_1_;
+            this.amount = p_i46051_3_;
+            this.isRelative = p_i46051_5_;
         }
 
         public double func_179628_a()
         {
-            return this.field_179633_a;
+            return this.result;
         }
 
         public double func_179629_b()
         {
-            return this.field_179631_b;
+            return this.amount;
         }
 
         public boolean func_179630_c()
         {
-            return this.field_179632_c;
+            return this.isRelative;
         }
     }
 }

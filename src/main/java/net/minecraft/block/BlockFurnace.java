@@ -127,7 +127,7 @@ public class BlockFurnace extends BlockContainer
             if (tileentity instanceof TileEntityFurnace)
             {
                 playerIn.displayGUIChest((TileEntityFurnace)tileentity);
-                playerIn.triggerAchievement(StatList.field_181741_Y);
+                playerIn.triggerAchievement(StatList.furnaceInteractionStat);
             }
 
             return true;

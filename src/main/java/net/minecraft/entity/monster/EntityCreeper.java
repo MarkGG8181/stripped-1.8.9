@@ -37,7 +37,7 @@ public class EntityCreeper extends EntityMob
 
     /** Explosion radius for this creeper. */
     private int explosionRadius = 3;
-    private int field_175494_bm = 0;
+    private int droppedSkulls = 0;
 
     public EntityCreeper(World worldIn)
     {
@@ -305,11 +305,11 @@ public class EntityCreeper extends EntityMob
      */
     public boolean isAIEnabled()
     {
-        return this.field_175494_bm < 1 && this.worldObj.getGameRules().getBoolean("doMobLoot");
+        return this.droppedSkulls < 1 && this.worldObj.getGameRules().getBoolean("doMobLoot");
     }
 
     public void func_175493_co()
     {
-        ++this.field_175494_bm;
+        ++this.droppedSkulls;
     }
 }

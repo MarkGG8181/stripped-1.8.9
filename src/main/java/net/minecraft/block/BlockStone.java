@@ -105,7 +105,7 @@ public class BlockStone extends Block
         private final int meta;
         private final String name;
         private final String unlocalizedName;
-        private final MapColor field_181073_l;
+        private final MapColor mapColor;
 
         private EnumType(int p_i46383_3_, MapColor p_i46383_4_, String p_i46383_5_)
         {
@@ -117,7 +117,7 @@ public class BlockStone extends Block
             this.meta = p_i46384_3_;
             this.name = p_i46384_5_;
             this.unlocalizedName = p_i46384_6_;
-            this.field_181073_l = p_i46384_4_;
+            this.mapColor = p_i46384_4_;
         }
 
         public int getMetadata()
@@ -127,7 +127,7 @@ public class BlockStone extends Block
 
         public MapColor func_181072_c()
         {
-            return this.field_181073_l;
+            return this.mapColor;
         }
 
         public String toString()

@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 
 public class WorldGenTrees extends WorldGenAbstractTree
 {
-    private static final IBlockState field_181653_a = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
-    private static final IBlockState field_181654_b = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState DEFAULT_TRUNK = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
+    private static final IBlockState DEFAULT_LEAF = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
 
     /** The minimum height of a generated tree. */
     private final int minTreeHeight;
@@ -35,7 +35,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
     public WorldGenTrees(boolean p_i2027_1_)
     {
-        this(p_i2027_1_, 4, field_181653_a, field_181654_b, false);
+        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, false);
     }
 
     public WorldGenTrees(boolean p_i46446_1_, int p_i46446_2_, IBlockState p_i46446_3_, IBlockState p_i46446_4_, boolean p_i46446_5_)

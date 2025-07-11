@@ -18,12 +18,12 @@ public class NpcMerchant implements IMerchant
 
     /** The MerchantRecipeList instance. */
     private MerchantRecipeList recipeList;
-    private IChatComponent field_175548_d;
+    private IChatComponent name;
 
     public NpcMerchant(EntityPlayer p_i45817_1_, IChatComponent p_i45817_2_)
     {
         this.customer = p_i45817_1_;
-        this.field_175548_d = p_i45817_2_;
+        this.name = p_i45817_2_;
         this.theMerchantInventory = new InventoryMerchant(p_i45817_1_, this);
     }
 
@@ -64,6 +64,6 @@ public class NpcMerchant implements IMerchant
      */
     public IChatComponent getDisplayName()
     {
-        return (IChatComponent)(this.field_175548_d != null ? this.field_175548_d : new ChatComponentTranslation("entity.Villager.name", new Object[0]));
+        return (IChatComponent)(this.name != null ? this.name : new ChatComponentTranslation("entity.Villager.name", new Object[0]));
     }
 }

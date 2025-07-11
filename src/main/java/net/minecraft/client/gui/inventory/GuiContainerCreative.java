@@ -36,7 +36,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 {
     /** The location of the creative inventory tabs texture */
     private static final ResourceLocation creativeInventoryTabs = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
-    private static InventoryBasic field_147060_v = new InventoryBasic("tmp", true, 45);
+    private static InventoryBasic basicInventory = new InventoryBasic("tmp", true, 45);
 
     /** Currently selected creative inventory tab index. */
     private static int selectedTabIndex = CreativeTabs.tabBlock.getTabIndex();
@@ -52,10 +52,10 @@ public class GuiContainerCreative extends InventoryEffectRenderer
      */
     private boolean wasClicking;
     private GuiTextField searchField;
-    private List<Slot> field_147063_B;
-    private Slot field_147064_C;
-    private boolean field_147057_D;
-    private CreativeCrafting field_147059_E;
+    private List<Slot> originalSlots;
+    private Slot destroyItemSlot;
+    private boolean clearSearch;
+    private CreativeCrafting listener;
 
     public GuiContainerCreative(EntityPlayer p_i1088_1_)
     {
@@ -84,7 +84,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
      */
     protected void handleMouseClick(Slot slotIn, int slotId, int clickedButton, int clickType)
     {
-        this.field_147057_D = true;
+        this.clearSearch = true;
         boolean flag = clickType == 1;
         clickType = slotId == -999 && clickType == 0 ? 4 : clickType;
 
@@ -114,7 +114,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
                 }
             }
         }
-        else if (slotIn == this.field_147064_C && flag)
+        else if (slotIn == this.destroyItemSlot && flag)
         {
             for (int j = 0; j < this.mc.thePlayer.inventoryContainer.getInventory().size(); ++j)
             {
@@ -123,7 +123,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
         }
         else if (selectedTabIndex == CreativeTabs.tabInventory.getTabIndex())
         {
-            if (slotIn == this.field_147064_C)
+            if (slotIn == this.destroyItemSlot)
             {
                 this.mc.thePlayer.inventory.setItemStack((ItemStack)null);
             }
@@ -145,7 +145,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
                 this.mc.thePlayer.inventoryContainer.detectAndSendChanges();
             }
         }
-        else if (clickType != 5 && slotIn.inventory == field_147060_v)
+        else if (clickType != 5 && slotIn.inventory == basicInventory)
         {
             InventoryPlayer inventoryplayer = this.mc.thePlayer.inventory;
             ItemStack itemstack1 = inventoryplayer.getItemStack();
@@ -275,8 +275,8 @@ public class GuiContainerCreative extends InventoryEffectRenderer
             int i = selectedTabIndex;
             selectedTabIndex = -1;
             this.setCurrentCreativeTab(CreativeTabs.creativeTabArray[i]);
-            this.field_147059_E = new CreativeCrafting(this.mc);
-            this.mc.thePlayer.inventoryContainer.onCraftGuiOpened(this.field_147059_E);
+            this.listener = new CreativeCrafting(this.mc);
+            this.mc.thePlayer.inventoryContainer.onCraftGuiOpened(this.listener);
         }
         else
         {
@@ -293,7 +293,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 
         if (this.mc.thePlayer != null && this.mc.thePlayer.inventory != null)
         {
-            this.mc.thePlayer.inventoryContainer.removeCraftingFromCrafters(this.field_147059_E);
+            this.mc.thePlayer.inventoryContainer.removeCraftingFromCrafters(this.listener);
         }
 
         Keyboard.enableRepeatEvents(false);
@@ -318,9 +318,9 @@ public class GuiContainerCreative extends InventoryEffectRenderer
         }
         else
         {
-            if (this.field_147057_D)
+            if (this.clearSearch)
             {
-                this.field_147057_D = false;
+                this.clearSearch = false;
                 this.searchField.setText("");
             }
 
@@ -466,9 +466,9 @@ public class GuiContainerCreative extends InventoryEffectRenderer
         {
             Container container = this.mc.thePlayer.inventoryContainer;
 
-            if (this.field_147063_B == null)
+            if (this.originalSlots == null)
             {
-                this.field_147063_B = guicontainercreative$containercreative.inventorySlots;
+                this.originalSlots = guicontainercreative$containercreative.inventorySlots;
             }
 
             guicontainercreative$containercreative.inventorySlots = Lists.<Slot>newArrayList();
@@ -509,13 +509,13 @@ public class GuiContainerCreative extends InventoryEffectRenderer
                 }
             }
 
-            this.field_147064_C = new Slot(field_147060_v, 0, 173, 112);
-            guicontainercreative$containercreative.inventorySlots.add(this.field_147064_C);
+            this.destroyItemSlot = new Slot(basicInventory, 0, 173, 112);
+            guicontainercreative$containercreative.inventorySlots.add(this.destroyItemSlot);
         }
         else if (i == CreativeTabs.tabInventory.getTabIndex())
         {
-            guicontainercreative$containercreative.inventorySlots = this.field_147063_B;
-            this.field_147063_B = null;
+            guicontainercreative$containercreative.inventorySlots = this.originalSlots;
+            this.originalSlots = null;
         }
 
         if (this.searchField != null)
@@ -610,7 +610,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
             }
         }
 
-        if (this.field_147064_C != null && selectedTabIndex == CreativeTabs.tabInventory.getTabIndex() && this.isPointInRegion(this.field_147064_C.xDisplayPosition, this.field_147064_C.yDisplayPosition, 16, 16, mouseX, mouseY))
+        if (this.destroyItemSlot != null && selectedTabIndex == CreativeTabs.tabInventory.getTabIndex() && this.isPointInRegion(this.destroyItemSlot.xDisplayPosition, this.destroyItemSlot.yDisplayPosition, 16, 16, mouseX, mouseY))
         {
             this.drawCreativeTabHoveringText(I18n.format("inventory.binSlot", new Object[0]), mouseX, mouseY);
         }
@@ -861,7 +861,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer
             {
                 for (int j = 0; j < 9; ++j)
                 {
-                    this.addSlotToContainer(new Slot(GuiContainerCreative.field_147060_v, i * 9 + j, 9 + j * 18, 18 + i * 18));
+                    this.addSlotToContainer(new Slot(GuiContainerCreative.basicInventory, i * 9 + j, 9 + j * 18, 18 + i * 18));
                 }
             }
 
@@ -896,11 +896,11 @@ public class GuiContainerCreative extends InventoryEffectRenderer
 
                     if (i1 >= 0 && i1 < this.itemList.size())
                     {
-                        GuiContainerCreative.field_147060_v.setInventorySlotContents(l + k * 9, (ItemStack)this.itemList.get(i1));
+                        GuiContainerCreative.basicInventory.setInventorySlotContents(l + k * 9, (ItemStack)this.itemList.get(i1));
                     }
                     else
                     {
-                        GuiContainerCreative.field_147060_v.setInventorySlotContents(l + k * 9, (ItemStack)null);
+                        GuiContainerCreative.basicInventory.setInventorySlotContents(l + k * 9, (ItemStack)null);
                     }
                 }
             }

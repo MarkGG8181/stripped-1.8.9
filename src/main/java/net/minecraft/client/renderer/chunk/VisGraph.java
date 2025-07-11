@@ -11,17 +11,17 @@ import net.minecraft.util.IntegerCache;
 
 public class VisGraph
 {
-    private static final int field_178616_a = (int)Math.pow(16.0D, 0.0D);
-    private static final int field_178614_b = (int)Math.pow(16.0D, 1.0D);
-    private static final int field_178615_c = (int)Math.pow(16.0D, 2.0D);
-    private final BitSet field_178612_d = new BitSet(4096);
-    private static final int[] field_178613_e = new int[1352];
-    private int field_178611_f = 4096;
+    private static final int DX = (int)Math.pow(16.0D, 0.0D);
+    private static final int DZ = (int)Math.pow(16.0D, 1.0D);
+    private static final int DY = (int)Math.pow(16.0D, 2.0D);
+    private final BitSet bitSet = new BitSet(4096);
+    private static final int[] INDEX_OF_EDGES = new int[1352];
+    private int empty = 4096;
 
     public void func_178606_a(BlockPos pos)
     {
-        this.field_178612_d.set(getIndex(pos), true);
-        --this.field_178611_f;
+        this.bitSet.set(getIndex(pos), true);
+        --this.empty;
     }
 
     private static int getIndex(BlockPos pos)
@@ -38,19 +38,19 @@ public class VisGraph
     {
         SetVisibility setvisibility = new SetVisibility();
 
-        if (4096 - this.field_178611_f < 256)
+        if (4096 - this.empty < 256)
         {
             setvisibility.setAllVisible(true);
         }
-        else if (this.field_178611_f == 0)
+        else if (this.empty == 0)
         {
             setvisibility.setAllVisible(false);
         }
         else
         {
-            for (int i : field_178613_e)
+            for (int i : INDEX_OF_EDGES)
             {
-                if (!this.field_178612_d.get(i))
+                if (!this.bitSet.get(i))
                 {
                     setvisibility.setManyVisible(this.func_178604_a(i));
                 }
@@ -70,7 +70,7 @@ public class VisGraph
         Set<EnumFacing> set = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
         Queue<Integer> queue = Lists.<Integer>newLinkedList();
         queue.add(IntegerCache.getInteger(p_178604_1_));
-        this.field_178612_d.set(p_178604_1_, true);
+        this.bitSet.set(p_178604_1_, true);
 
         while (!((Queue)queue).isEmpty())
         {
@@ -81,9 +81,9 @@ public class VisGraph
             {
                 int j = this.func_178603_a(i, enumfacing);
 
-                if (j >= 0 && !this.field_178612_d.get(j))
+                if (j >= 0 && !this.bitSet.get(j))
                 {
-                    this.field_178612_d.set(j, true);
+                    this.bitSet.set(j, true);
                     queue.add(IntegerCache.getInteger(j));
                 }
             }
@@ -138,7 +138,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ - field_178615_c;
+                return p_178603_1_ - DY;
 
             case UP:
                 if ((p_178603_1_ >> 8 & 15) == 15)
@@ -146,7 +146,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ + field_178615_c;
+                return p_178603_1_ + DY;
 
             case NORTH:
                 if ((p_178603_1_ >> 4 & 15) == 0)
@@ -154,7 +154,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ - field_178614_b;
+                return p_178603_1_ - DZ;
 
             case SOUTH:
                 if ((p_178603_1_ >> 4 & 15) == 15)
@@ -162,7 +162,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ + field_178614_b;
+                return p_178603_1_ + DZ;
 
             case WEST:
                 if ((p_178603_1_ >> 0 & 15) == 0)
@@ -170,7 +170,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ - field_178616_a;
+                return p_178603_1_ - DX;
 
             case EAST:
                 if ((p_178603_1_ >> 0 & 15) == 15)
@@ -178,7 +178,7 @@ public class VisGraph
                     return -1;
                 }
 
-                return p_178603_1_ + field_178616_a;
+                return p_178603_1_ + DX;
 
             default:
                 return -1;
@@ -199,7 +199,7 @@ public class VisGraph
                 {
                     if (l == 0 || l == 15 || i1 == 0 || i1 == 15 || j1 == 0 || j1 == 15)
                     {
-                        field_178613_e[k++] = getIndex(l, i1, j1);
+                        INDEX_OF_EDGES[k++] = getIndex(l, i1, j1);
                     }
                 }
             }

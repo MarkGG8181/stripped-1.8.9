@@ -12,7 +12,7 @@ public abstract class BaseAttributeMap
 {
     protected final Map<IAttribute, IAttributeInstance> attributes = Maps.<IAttribute, IAttributeInstance>newHashMap();
     protected final Map<String, IAttributeInstance> attributesByName = new LowerStringMap();
-    protected final Multimap<IAttribute, IAttribute> field_180377_c = HashMultimap.<IAttribute, IAttribute>create();
+    protected final Multimap<IAttribute, IAttribute> descendantsByParent = HashMultimap.<IAttribute, IAttribute>create();
 
     public IAttributeInstance getAttributeInstance(IAttribute attribute)
     {
@@ -41,7 +41,7 @@ public abstract class BaseAttributeMap
 
             for (IAttribute iattribute = attribute.func_180372_d(); iattribute != null; iattribute = iattribute.func_180372_d())
             {
-                this.field_180377_c.put(iattribute, attribute);
+                this.descendantsByParent.put(iattribute, attribute);
             }
 
             return iattributeinstance;
