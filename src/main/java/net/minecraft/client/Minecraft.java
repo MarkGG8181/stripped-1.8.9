@@ -2467,7 +2467,7 @@ public class Minecraft implements IThreadListener {
             try {
                 return Futures.<V>immediateFuture(callableToSchedule.call());
             } catch (Exception exception) {
-                return Futures.immediateFailedCheckedFuture(exception);
+                return Futures.immediateFailedFuture(exception);
             }
         }
     }

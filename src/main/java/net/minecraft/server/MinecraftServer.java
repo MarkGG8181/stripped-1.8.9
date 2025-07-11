@@ -15,7 +15,6 @@ import io.netty.buffer.ByteBufOutputStream;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.base64.Base64;
 
-import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -1222,14 +1221,14 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             try {
                 return Futures.<V>immediateFuture(callable.call());
             } catch (Exception exception) {
-                return Futures.immediateFailedCheckedFuture(exception);
+                return Futures.immediateFailedFuture(exception);
             }
         }
     }
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule) {
         Validate.notNull(runnableToSchedule);
-        return this.<Object>callFromMainThread(Executors.callable(runnableToSchedule));
+        return this.callFromMainThread(Executors.callable(runnableToSchedule));
     }
 
     public boolean isCallingFromMinecraftThread() {
