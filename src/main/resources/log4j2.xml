@@ -1,63 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" shutdownHook="enable">
-    <Properties>
-        <Property name="log.dir">logs</Property>
-        <Property name="console.pattern">%style{[%d{HH:mm:ss}]}{blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%c)}{cyan} %highlight{%msg%n%throwable}{FATAL=red, ERROR=red, WARN=normal, INFO=normal, DEBUG=normal, TRACE=normal}</Property>
-        <Property name="file.pattern">[%d{HH:mm:ss}] [%t/%level] (%c) %msg%n%throwable</Property>
-    </Properties>
-
+<Configuration status="WARN">
     <Appenders>
-        <!-- Console Appender -->
         <Console name="SysOut" target="SYSTEM_OUT">
-            <PatternLayout pattern="${sys:console.pattern:-${console.pattern}}" disableAnsi="${sys:log.noColor:-false}"/>
+            <PatternLayout
+                    pattern="%style{[%d{HH:mm:ss}]}{blue} %highlight{[%t/%level]}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=green, TRACE=blue} %style{(%c{1})}{cyan} %highlight{%msg%n}{FATAL=red, ERROR=red, WARN=normal, INFO=normal, DEBUG=normal, TRACE=normal}"/>
         </Console>
-
-        <!-- File Appender for All Logs -->
-        <RollingRandomAccessFile name="File"
-                                 fileName="${sys:log.dir:-${log.dir}}/latest.log"
-                                 filePattern="${sys:log.dir:-${log.dir}}/%d{yyyy-MM-dd}-%i.log.gz">
-            <PatternLayout pattern="${file.pattern}"/>
+        <RollingRandomAccessFile name="File" fileName="logs/latest.log" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level] %msg%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
                 <OnStartupTriggeringPolicy/>
             </Policies>
-            <DefaultRolloverStrategy max="10" compressionLevel="6"/>
         </RollingRandomAccessFile>
-
-        <!-- File Appender for Errors Only -->
-        <RollingRandomAccessFile name="ErrorFile"
-                                 fileName="${sys:log.dir:-${log.dir}}/errors.log"
-                                 filePattern="${sys:log.dir:-${log.dir}}/%d{yyyy-MM-dd}-errors-%i.log.gz">
-            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="${file.pattern}"/>
-            <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="10 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="5" compressionLevel="6"/>
-        </RollingRandomAccessFile>
-
-        <!-- Async Wrapper for Performance -->
-        <Async name="AsyncFile" blocking="false" bufferSize="8192">
-            <AppenderRef ref="File"/>
-            <AppenderRef ref="ErrorFile"/>
-        </Async>
     </Appenders>
-
     <Loggers>
-        <!-- Root Logger -->
-        <Root level="INFO" includeLocation="${sys:log.includeLocation:-false}">
-            <Filters>
+        <Root level="info">
+            <filters>
                 <MarkerFilter marker="NETWORK_PACKETS" onMatch="DENY" onMismatch="NEUTRAL"/>
-            </Filters>
+            </filters>
             <AppenderRef ref="SysOut"/>
-            <AppenderRef ref="AsyncFile"/>
+            <AppenderRef ref="File"/>
         </Root>
-
-        <Logger name="org.lwjgl" level="WARN" additivity="false" includeLocation="${sys:log.includeLocation:-false}">
-            <AppenderRef ref="SysOut"/>
-            <AppenderRef ref="AsyncFile"/>
-        </Logger>
     </Loggers>
 </Configuration>
