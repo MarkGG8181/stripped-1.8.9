@@ -19,8 +19,7 @@ This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessar
     - Snooper implementation & code
     - 3D anaglyph, touchscreen & invert mouse
 - Improved:
-  - Updated all libraries to modern ones
-  - Renamed unnamed variables to proper ones
+  - Updated all libraries to modern ones(lwjgl, guava, netty, etc.)
 - Retains full vanilla functionality (multiplayer, singleplayer, LAN)
 
 ## Goals
