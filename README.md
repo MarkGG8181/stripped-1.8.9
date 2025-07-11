@@ -29,7 +29,7 @@ This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessar
 
 ## Ideal Use Cases
 
-- Client base for clients, utility mods & more
+- Base for clients, utility mods & more
 - Lightweight testing environment
 - Debugging, rendering hacks, shader injection, etc.
 
