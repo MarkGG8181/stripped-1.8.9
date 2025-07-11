@@ -33,13 +33,15 @@ This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessar
 - Lightweight testing environment
 - Debugging, rendering hacks, shader injection, etc.
 
+## Screenshots
+![Main menu](https://i.imgur.com/8L4sMRI.png)
+
 ## How to Build
 
 Make sure you have JDK 21 and Maven installed.
 
 To build the project:
-
-mvn clean install
+``mvn clean install``
 
 The compiled JAR will be located in the target/ directory.
 
