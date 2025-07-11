@@ -12,6 +12,14 @@
         <lwjgl.version>3.3.6</lwjgl.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <name>papermc</name>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
     <profiles>
         <profile>
             <id>lwjgl-natives-linux-amd64</id>
