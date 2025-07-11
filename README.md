@@ -22,6 +22,9 @@ This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessar
   - Updated all libraries to modern ones(lwjgl, guava, netty, etc.)
 - Retains full vanilla functionality (multiplayer, singleplayer, LAN)
 
+## Credits
+- [BoyOrigin](https://github.com/BoyOrigin/lwjglx) for the LWJGL3 impl
+
 ## Goals
 
 - Keep vanilla features intact without the clutter
