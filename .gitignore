@@ -1,9 +1,13 @@
-target/
-.idea/
-run/
 test_run/
+target/
+run/
 out/
+
+.idea/
 .mvn/
 *.iml
+
 .project
 .classpath
+
+*.jar
