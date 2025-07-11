@@ -106,7 +106,6 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -148,8 +147,6 @@ import net.minecraft.util.Session;
 import net.minecraft.util.Timer;
 import net.minecraft.util.Util;
 import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.WorldProviderEnd;
-import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.storage.AnvilSaveConverter;
 import net.minecraft.world.storage.ISaveFormat;
@@ -171,7 +168,7 @@ import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.glu.GLU;
 
 public class Minecraft implements IThreadListener {
-    private static final Logger logger = LogManager.getLogger();
+    public static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
 
@@ -582,30 +579,13 @@ public class Minecraft implements IThreadListener {
         this.metadataSerializer_.registerMetadataSectionType(new LanguageMetadataSectionSerializer(), LanguageMetadataSection.class);
     }
 
-    private void createDisplay() throws LWJGLException {
+    private void createDisplay() {
         Display.setResizable(true);
         Display.setTitle("Minecraft 1.8.9");
-
-        try {
-            Display.create((new PixelFormat()).withDepthBits(24));
-        } catch (LWJGLException lwjglexception) {
-            logger.error((String) "Couldn\'t set pixel format", (Throwable) lwjglexception);
-
-            try {
-                Thread.sleep(1000L);
-            } catch (InterruptedException var3) {
-                ;
-            }
-
-            if (this.fullscreen) {
-                this.updateDisplayMode();
-            }
-
-            Display.create();
-        }
+        Display.create();
     }
 
-    private void setInitialDisplayMode() throws LWJGLException {
+    private void setInitialDisplayMode() {
         if (this.fullscreen) {
             Display.setFullscreen(true);
             DisplayMode displaymode = Display.getDisplayMode();
@@ -746,7 +726,7 @@ public class Minecraft implements IThreadListener {
         return bytebuffer;
     }
 
-    private void updateDisplayMode() throws LWJGLException {
+    private void updateDisplayMode() {
         Set<DisplayMode> set = Sets.<DisplayMode>newHashSet();
         Collections.addAll(set, Display.getAvailableDisplayModes());
         DisplayMode displaymode = Display.getDesktopDisplayMode();
@@ -1447,7 +1427,7 @@ public class Minecraft implements IThreadListener {
     /**
      * Called to resize the current screen.
      */
-    private void resize(int width, int height) {
+    public void resize(int width, int height) {
         this.displayWidth = Math.max(1, width);
         this.displayHeight = Math.max(1, height);
 
