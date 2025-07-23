@@ -355,6 +355,11 @@ public class BlockPos extends Vec3i
             return this.z;
         }
 
+        public void setY(int yIn)
+        {
+            this.y = yIn;
+        }
+
         public BlockPos.MutableBlockPos set(int xIn, int yIn, int zIn)
         {
             this.x = xIn;

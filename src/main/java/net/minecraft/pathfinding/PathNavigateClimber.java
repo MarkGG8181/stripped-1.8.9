@@ -39,7 +39,7 @@ public class PathNavigateClimber extends PathNavigateGround
      */
     public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn)
     {
-        PathEntity pathentity = this.getPathToEntityLiving(entityIn);
+        var pathentity = this.getPathToEntityLiving(entityIn);
 
         if (pathentity != null)
         {
@@ -63,7 +63,7 @@ public class PathNavigateClimber extends PathNavigateGround
         {
             if (this.targetPosition != null)
             {
-                double d0 = (double)(this.theEntity.width * this.theEntity.width);
+                var d0 = (this.theEntity.width * this.theEntity.width);
 
                 if (this.theEntity.getDistanceSqToCenter(this.targetPosition) >= d0 && (this.theEntity.posY <= (double)this.targetPosition.getY() || this.theEntity.getDistanceSqToCenter(new BlockPos(this.targetPosition.getX(), MathHelper.floor_double(this.theEntity.posY), this.targetPosition.getZ())) >= d0))
                 {

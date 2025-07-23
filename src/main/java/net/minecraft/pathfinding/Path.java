@@ -1,5 +1,7 @@
 package net.minecraft.pathfinding;
 
+import java.util.Objects;
+
 public class Path
 {
     /** Contains the points in this path */
@@ -11,7 +13,7 @@ public class Path
     /**
      * Adds a point to the path
      */
-    public PathPoint addPoint(PathPoint point)
+    public void addPoint(PathPoint point)
     {
         if (point.index >= 0)
         {
@@ -21,7 +23,7 @@ public class Path
         {
             if (this.count == this.pathPoints.length)
             {
-                PathPoint[] apathpoint = new PathPoint[this.count << 1];
+                var apathpoint = new PathPoint[this.count << 1];
                 System.arraycopy(this.pathPoints, 0, apathpoint, 0, this.count);
                 this.pathPoints = apathpoint;
             }
@@ -29,7 +31,6 @@ public class Path
             this.pathPoints[this.count] = point;
             point.index = this.count;
             this.sortBack(this.count++);
-            return point;
         }
     }
 
@@ -46,7 +47,7 @@ public class Path
      */
     public PathPoint dequeue()
     {
-        PathPoint pathpoint = this.pathPoints[0];
+        var pathpoint = this.pathPoints[0];
         this.pathPoints[0] = this.pathPoints[--this.count];
         this.pathPoints[this.count] = null;
 
@@ -64,7 +65,7 @@ public class Path
      */
     public void changeDistance(PathPoint p_75850_1_, float p_75850_2_)
     {
-        float f = p_75850_1_.distanceToTarget;
+        var f = p_75850_1_.distanceToTarget;
         p_75850_1_.distanceToTarget = p_75850_2_;
 
         if (p_75850_2_ < f)
@@ -82,13 +83,13 @@ public class Path
      */
     private void sortBack(int p_75847_1_)
     {
-        PathPoint pathpoint = this.pathPoints[p_75847_1_];
-        int i;
+        var pathpoint = this.pathPoints[p_75847_1_];
+        var f = pathpoint.distanceToTarget;
 
-        for (float f = pathpoint.distanceToTarget; p_75847_1_ > 0; p_75847_1_ = i)
+        while (p_75847_1_ > 0)
         {
-            i = p_75847_1_ - 1 >> 1;
-            PathPoint pathpoint1 = this.pathPoints[i];
+            var i = p_75847_1_ - 1 >> 1;
+            var pathpoint1 = this.pathPoints[i];
 
             if (f >= pathpoint1.distanceToTarget)
             {
@@ -97,6 +98,7 @@ public class Path
 
             this.pathPoints[p_75847_1_] = pathpoint1;
             pathpoint1.index = p_75847_1_;
+            p_75847_1_ = i;
         }
 
         this.pathPoints[p_75847_1_] = pathpoint;
@@ -108,21 +110,21 @@ public class Path
      */
     private void sortForward(int p_75846_1_)
     {
-        PathPoint pathpoint = this.pathPoints[p_75846_1_];
-        float f = pathpoint.distanceToTarget;
+        var pathpoint = this.pathPoints[p_75846_1_];
+        var f = pathpoint.distanceToTarget;
 
         while (true)
         {
-            int i = 1 + (p_75846_1_ << 1);
-            int j = i + 1;
+            var i = 1 + (p_75846_1_ << 1);
+            var j = i + 1;
 
             if (i >= this.count)
             {
                 break;
             }
 
-            PathPoint pathpoint1 = this.pathPoints[i];
-            float f1 = pathpoint1.distanceToTarget;
+            var pathpoint1 = this.pathPoints[i];
+            var f1 = pathpoint1.distanceToTarget;
             PathPoint pathpoint2;
             float f2;
 
@@ -156,7 +158,7 @@ public class Path
                 }
 
                 this.pathPoints[p_75846_1_] = pathpoint2;
-                pathpoint2.index = p_75846_1_;
+                Objects.requireNonNull(pathpoint2).index = p_75846_1_;
                 p_75846_1_ = j;
             }
         }

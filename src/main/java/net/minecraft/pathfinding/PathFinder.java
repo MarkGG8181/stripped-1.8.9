@@ -8,11 +8,11 @@ import net.minecraft.world.pathfinder.NodeProcessor;
 public class PathFinder
 {
     /** The path being generated */
-    private Path path = new Path();
+    private final Path path = new Path();
 
     /** Selection of path points to add to the path */
-    private PathPoint[] pathOptions = new PathPoint[32];
-    private NodeProcessor nodeProcessor;
+    private final PathPoint[] pathOptions = new PathPoint[32];
+    private final NodeProcessor nodeProcessor;
 
     public PathFinder(NodeProcessor nodeProcessorIn)
     {
@@ -42,9 +42,9 @@ public class PathFinder
     {
         this.path.clearPath();
         this.nodeProcessor.initProcessor(blockaccess, entityIn);
-        PathPoint pathpoint = this.nodeProcessor.getPathPointTo(entityIn);
-        PathPoint pathpoint1 = this.nodeProcessor.getPathPointToCoords(entityIn, x, y, z);
-        PathEntity pathentity = this.addToPath(entityIn, pathpoint, pathpoint1, distance);
+        var pathpoint = this.nodeProcessor.getPathPointTo(entityIn);
+        var pathpoint1 = this.nodeProcessor.getPathPointToCoords(entityIn, x, y, z);
+        var pathentity = this.addToPath(entityIn, pathpoint, pathpoint1, distance);
         this.nodeProcessor.postProcess();
         return pathentity;
     }
@@ -59,15 +59,15 @@ public class PathFinder
         pathpointStart.distanceToTarget = pathpointStart.distanceToNext;
         this.path.clearPath();
         this.path.addPoint(pathpointStart);
-        PathPoint pathpoint = pathpointStart;
+        var pathpoint = pathpointStart;
 
         while (!this.path.isPathEmpty())
         {
-            PathPoint pathpoint1 = this.path.dequeue();
+            var pathpoint1 = this.path.dequeue();
 
             if (pathpoint1.equals(pathpointEnd))
             {
-                return this.createEntityPath(pathpointStart, pathpointEnd);
+                return this.createEntityPath(pathpointEnd);
             }
 
             if (pathpoint1.distanceToSquared(pathpointEnd) < pathpoint.distanceToSquared(pathpointEnd))
@@ -76,12 +76,12 @@ public class PathFinder
             }
 
             pathpoint1.visited = true;
-            int i = this.nodeProcessor.findPathOptions(this.pathOptions, entityIn, pathpoint1, pathpointEnd, maxDistance);
+            var i = this.nodeProcessor.findPathOptions(this.pathOptions, entityIn, pathpoint1, pathpointEnd, maxDistance);
 
-            for (int j = 0; j < i; ++j)
+            for (var j = 0; j < i; ++j)
             {
-                PathPoint pathpoint2 = this.pathOptions[j];
-                float f = pathpoint1.totalPathDistance + pathpoint1.distanceToSquared(pathpoint2);
+                var pathpoint2 = this.pathOptions[j];
+                var f = pathpoint1.totalPathDistance + pathpoint1.distanceToSquared(pathpoint2);
 
                 if (f < maxDistance * 2.0F && (!pathpoint2.isAssigned() || f < pathpoint2.totalPathDistance))
                 {
@@ -108,24 +108,24 @@ public class PathFinder
         }
         else
         {
-            return this.createEntityPath(pathpointStart, pathpoint);
+            return this.createEntityPath(pathpoint);
         }
     }
 
     /**
      * Returns a new PathEntity for a given start and end point
      */
-    private PathEntity createEntityPath(PathPoint start, PathPoint end)
+    private PathEntity createEntityPath(PathPoint end)
     {
-        int i = 1;
+        var i = 1;
 
-        for (PathPoint pathpoint = end; pathpoint.previous != null; pathpoint = pathpoint.previous)
+        for (var pathpoint = end; pathpoint.previous != null; pathpoint = pathpoint.previous)
         {
             ++i;
         }
 
-        PathPoint[] apathpoint = new PathPoint[i];
-        PathPoint pathpoint1 = end;
+        var apathpoint = new PathPoint[i];
+        var pathpoint1 = end;
         --i;
 
         for (apathpoint[i] = end; pathpoint1.previous != null; apathpoint[i] = pathpoint1)

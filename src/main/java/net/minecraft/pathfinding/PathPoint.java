@@ -52,9 +52,9 @@ public class PathPoint
      */
     public float distanceTo(PathPoint pathpointIn)
     {
-        float f = (float)(pathpointIn.xCoord - this.xCoord);
-        float f1 = (float)(pathpointIn.yCoord - this.yCoord);
-        float f2 = (float)(pathpointIn.zCoord - this.zCoord);
+        var f = (float)(pathpointIn.xCoord - this.xCoord);
+        var f1 = (float)(pathpointIn.yCoord - this.yCoord);
+        var f2 = (float)(pathpointIn.zCoord - this.zCoord);
         return MathHelper.sqrt_float(f * f + f1 * f1 + f2 * f2);
     }
 
@@ -63,23 +63,20 @@ public class PathPoint
      */
     public float distanceToSquared(PathPoint pathpointIn)
     {
-        float f = (float)(pathpointIn.xCoord - this.xCoord);
-        float f1 = (float)(pathpointIn.yCoord - this.yCoord);
-        float f2 = (float)(pathpointIn.zCoord - this.zCoord);
+        var f = (float)(pathpointIn.xCoord - this.xCoord);
+        var f1 = (float)(pathpointIn.yCoord - this.yCoord);
+        var f2 = (float)(pathpointIn.zCoord - this.zCoord);
         return f * f + f1 * f1 + f2 * f2;
     }
 
     public boolean equals(Object p_equals_1_)
     {
-        if (!(p_equals_1_ instanceof PathPoint))
+        if (this == p_equals_1_) return true;
+        if (!(p_equals_1_ instanceof PathPoint pathpoint))
         {
             return false;
         }
-        else
-        {
-            PathPoint pathpoint = (PathPoint)p_equals_1_;
-            return this.hash == pathpoint.hash && this.xCoord == pathpoint.xCoord && this.yCoord == pathpoint.yCoord && this.zCoord == pathpoint.zCoord;
-        }
+        return this.hash == pathpoint.hash && this.xCoord == pathpoint.xCoord && this.yCoord == pathpoint.yCoord && this.zCoord == pathpoint.zCoord;
     }
 
     public int hashCode()

@@ -1,6 +1,5 @@
 package net.minecraft.pathfinding;
 
-import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -84,17 +83,15 @@ public abstract class PathNavigate
         {
             return null;
         }
-        else
-        {
-            float f = this.getPathSearchRange();
-            this.worldObj.theProfiler.startSection("pathfind");
-            BlockPos blockpos = new BlockPos(this.theEntity);
-            int i = (int)(f + 8.0F);
-            ChunkCache chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
-            PathEntity pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, pos, f);
-            this.worldObj.theProfiler.endSection();
-            return pathentity;
-        }
+
+        var f = this.getPathSearchRange();
+        this.worldObj.theProfiler.startSection("pathfind");
+        var blockpos = new BlockPos(this.theEntity);
+        var i = (int)(f + 8.0F);
+        var chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
+        var pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, pos, f);
+        this.worldObj.theProfiler.endSection();
+        return pathentity;
     }
 
     /**
@@ -102,7 +99,7 @@ public abstract class PathNavigate
      */
     public boolean tryMoveToXYZ(double x, double y, double z, double speedIn)
     {
-        PathEntity pathentity = this.getPathToXYZ((double)MathHelper.floor_double(x), (double)((int)y), (double)MathHelper.floor_double(z));
+        var pathentity = this.getPathToXYZ((double)MathHelper.floor_double(x), (double)((int)y), (double)MathHelper.floor_double(z));
         return this.setPath(pathentity, speedIn);
     }
 
@@ -123,17 +120,15 @@ public abstract class PathNavigate
         {
             return null;
         }
-        else
-        {
-            float f = this.getPathSearchRange();
-            this.worldObj.theProfiler.startSection("pathfind");
-            BlockPos blockpos = (new BlockPos(this.theEntity)).up();
-            int i = (int)(f + 16.0F);
-            ChunkCache chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
-            PathEntity pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, entityIn, f);
-            this.worldObj.theProfiler.endSection();
-            return pathentity;
-        }
+
+        var f = this.getPathSearchRange();
+        this.worldObj.theProfiler.startSection("pathfind");
+        var blockpos = (new BlockPos(this.theEntity)).up();
+        var i = (int)(f + 16.0F);
+        var chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
+        var pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, entityIn, f);
+        this.worldObj.theProfiler.endSection();
+        return pathentity;
     }
 
     /**
@@ -141,8 +136,8 @@ public abstract class PathNavigate
      */
     public boolean tryMoveToEntityLiving(Entity entityIn, double speedIn)
     {
-        PathEntity pathentity = this.getPathToEntityLiving(entityIn);
-        return pathentity != null ? this.setPath(pathentity, speedIn) : false;
+        var pathentity = this.getPathToEntityLiving(entityIn);
+        return pathentity != null && this.setPath(pathentity, speedIn);
     }
 
     /**
@@ -156,28 +151,24 @@ public abstract class PathNavigate
             this.currentPath = null;
             return false;
         }
-        else
+
+        if (!pathentityIn.isSamePath(this.currentPath))
         {
-            if (!pathentityIn.isSamePath(this.currentPath))
-            {
-                this.currentPath = pathentityIn;
-            }
-
-            this.removeSunnyPath();
-
-            if (this.currentPath.getCurrentPathLength() == 0)
-            {
-                return false;
-            }
-            else
-            {
-                this.speed = speedIn;
-                Vec3 vec3 = this.getEntityPosition();
-                this.ticksAtLastPos = this.totalTicks;
-                this.lastPosCheck = vec3;
-                return true;
-            }
+            this.currentPath = pathentityIn;
         }
+
+        this.removeSunnyPath();
+
+        if (this.currentPath.getCurrentPathLength() == 0)
+        {
+            return false;
+        }
+
+        this.speed = speedIn;
+        var vec3 = this.getEntityPosition();
+        this.ticksAtLastPos = this.totalTicks;
+        this.lastPosCheck = vec3;
+        return true;
     }
 
     /**
@@ -192,51 +183,50 @@ public abstract class PathNavigate
     {
         ++this.totalTicks;
 
+        if (this.noPath()) return;
+
+        if (this.canNavigate())
+        {
+            this.pathFollow();
+        }
+        else if (this.currentPath != null && this.currentPath.getCurrentPathIndex() < this.currentPath.getCurrentPathLength())
+        {
+            var vec3 = this.getEntityPosition();
+            var vec31 = this.currentPath.getVectorFromIndex(this.theEntity, this.currentPath.getCurrentPathIndex());
+
+            if (vec3.yCoord > vec31.yCoord && !this.theEntity.onGround && MathHelper.floor_double(vec3.xCoord) == MathHelper.floor_double(vec31.xCoord) && MathHelper.floor_double(vec3.zCoord) == MathHelper.floor_double(vec31.zCoord))
+            {
+                this.currentPath.setCurrentPathIndex(this.currentPath.getCurrentPathIndex() + 1);
+            }
+        }
+
         if (!this.noPath())
         {
-            if (this.canNavigate())
-            {
-                this.pathFollow();
-            }
-            else if (this.currentPath != null && this.currentPath.getCurrentPathIndex() < this.currentPath.getCurrentPathLength())
-            {
-                Vec3 vec3 = this.getEntityPosition();
-                Vec3 vec31 = this.currentPath.getVectorFromIndex(this.theEntity, this.currentPath.getCurrentPathIndex());
+            var vec32 = this.currentPath.getPosition(this.theEntity);
 
-                if (vec3.yCoord > vec31.yCoord && !this.theEntity.onGround && MathHelper.floor_double(vec3.xCoord) == MathHelper.floor_double(vec31.xCoord) && MathHelper.floor_double(vec3.zCoord) == MathHelper.floor_double(vec31.zCoord))
+            if (vec32 != null)
+            {
+                var axisalignedbb1 = (new AxisAlignedBB(vec32.xCoord, vec32.yCoord, vec32.zCoord, vec32.xCoord, vec32.yCoord, vec32.zCoord)).expand(0.5D, 0.5D, 0.5D);
+                var list = this.worldObj.getCollidingBoundingBoxes(this.theEntity, axisalignedbb1.addCoord(0.0D, -1.0D, 0.0D));
+                var d0 = -1.0D;
+                axisalignedbb1 = axisalignedbb1.offset(0.0D, 1.0D, 0.0D);
+
+                for (var axisalignedbb : list)
                 {
-                    this.currentPath.setCurrentPathIndex(this.currentPath.getCurrentPathIndex() + 1);
+                    d0 = axisalignedbb.calculateYOffset(axisalignedbb1, d0);
                 }
-            }
 
-            if (!this.noPath())
-            {
-                Vec3 vec32 = this.currentPath.getPosition(this.theEntity);
-
-                if (vec32 != null)
-                {
-                    AxisAlignedBB axisalignedbb1 = (new AxisAlignedBB(vec32.xCoord, vec32.yCoord, vec32.zCoord, vec32.xCoord, vec32.yCoord, vec32.zCoord)).expand(0.5D, 0.5D, 0.5D);
-                    List<AxisAlignedBB> list = this.worldObj.getCollidingBoundingBoxes(this.theEntity, axisalignedbb1.addCoord(0.0D, -1.0D, 0.0D));
-                    double d0 = -1.0D;
-                    axisalignedbb1 = axisalignedbb1.offset(0.0D, 1.0D, 0.0D);
-
-                    for (AxisAlignedBB axisalignedbb : list)
-                    {
-                        d0 = axisalignedbb.calculateYOffset(axisalignedbb1, d0);
-                    }
-
-                    this.theEntity.getMoveHelper().setMoveTo(vec32.xCoord, vec32.yCoord + d0, vec32.zCoord, this.speed);
-                }
+                this.theEntity.getMoveHelper().setMoveTo(vec32.xCoord, vec32.yCoord + d0, vec32.zCoord, this.speed);
             }
         }
     }
 
     protected void pathFollow()
     {
-        Vec3 vec3 = this.getEntityPosition();
-        int i = this.currentPath.getCurrentPathLength();
+        var vec3 = this.getEntityPosition();
+        var i = this.currentPath.getCurrentPathLength();
 
-        for (int j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
+        for (var j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
         {
             if (this.currentPath.getPathPointFromIndex(j).yCoord != (int)vec3.yCoord)
             {
@@ -245,11 +235,11 @@ public abstract class PathNavigate
             }
         }
 
-        float f = this.theEntity.width * this.theEntity.width * this.heightRequirement;
+        var f = this.theEntity.width * this.theEntity.width * this.heightRequirement;
 
-        for (int k = this.currentPath.getCurrentPathIndex(); k < i; ++k)
+        for (var k = this.currentPath.getCurrentPathIndex(); k < i; ++k)
         {
-            Vec3 vec31 = this.currentPath.getVectorFromIndex(this.theEntity, k);
+            var vec31 = this.currentPath.getVectorFromIndex(this.theEntity, k);
 
             if (vec3.squareDistanceTo(vec31) < (double)f)
             {
@@ -257,13 +247,12 @@ public abstract class PathNavigate
             }
         }
 
-        int j1 = MathHelper.ceiling_float_int(this.theEntity.width);
-        int k1 = (int)this.theEntity.height + 1;
-        int l = j1;
+        var j1 = MathHelper.ceiling_float_int(this.theEntity.width);
+        var k1 = (int)this.theEntity.height + 1;
 
-        for (int i1 = i - 1; i1 >= this.currentPath.getCurrentPathIndex(); --i1)
+        for (var i1 = i - 1; i1 >= this.currentPath.getCurrentPathIndex(); --i1)
         {
-            if (this.isDirectPathBetweenPoints(vec3, this.currentPath.getVectorFromIndex(this.theEntity, i1), j1, k1, l))
+            if (this.isDirectPathBetweenPoints(vec3, this.currentPath.getVectorFromIndex(this.theEntity, i1), j1, k1, j1))
             {
                 this.currentPath.setCurrentPathIndex(i1);
                 break;

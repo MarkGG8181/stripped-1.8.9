@@ -1,6 +1,5 @@
 package net.minecraft.pathfinding;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityZombie;
@@ -49,17 +48,19 @@ public class PathNavigateGround extends PathNavigate
     {
         if (this.theEntity.isInWater() && this.getCanSwim())
         {
-            int i = (int)this.theEntity.getEntityBoundingBox().minY;
-            Block block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
-            int j = 0;
+            var i = (int)this.theEntity.getEntityBoundingBox().minY;
+            var x = MathHelper.floor_double(this.theEntity.posX);
+            var z = MathHelper.floor_double(this.theEntity.posZ);
+            var mutablePos = new BlockPos.MutableBlockPos(x, i, z);
+            var block = this.worldObj.getBlockState(mutablePos).getBlock();
+            var j = 0;
 
             while (block == Blocks.flowing_water || block == Blocks.water)
             {
                 ++i;
-                block = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.theEntity.posX), i, MathHelper.floor_double(this.theEntity.posZ))).getBlock();
-                ++j;
-
-                if (j > 16)
+                mutablePos.setY(i);
+                block = this.worldObj.getBlockState(mutablePos).getBlock();
+                if (++j > 16)
                 {
                     return (int)this.theEntity.getEntityBoundingBox().minY;
                 }
@@ -87,11 +88,12 @@ public class PathNavigateGround extends PathNavigate
                 return;
             }
 
-            for (int i = 0; i < this.currentPath.getCurrentPathLength(); ++i)
+            var mutablePos = new BlockPos.MutableBlockPos();
+            for (var i = 0; i < this.currentPath.getCurrentPathLength(); ++i)
             {
-                PathPoint pathpoint = this.currentPath.getPathPointFromIndex(i);
-
-                if (this.worldObj.canSeeSky(new BlockPos(pathpoint.xCoord, pathpoint.yCoord, pathpoint.zCoord)))
+                var pathpoint = this.currentPath.getPathPointFromIndex(i);
+                mutablePos.set(pathpoint.xCoord, pathpoint.yCoord, pathpoint.zCoord);
+                if (this.worldObj.canSeeSky(mutablePos))
                 {
                     this.currentPath.setCurrentPathLength(i - 1);
                     return;
@@ -106,80 +108,69 @@ public class PathNavigateGround extends PathNavigate
      */
     protected boolean isDirectPathBetweenPoints(Vec3 posVec31, Vec3 posVec32, int sizeX, int sizeY, int sizeZ)
     {
-        int i = MathHelper.floor_double(posVec31.xCoord);
-        int j = MathHelper.floor_double(posVec31.zCoord);
-        double d0 = posVec32.xCoord - posVec31.xCoord;
-        double d1 = posVec32.zCoord - posVec31.zCoord;
-        double d2 = d0 * d0 + d1 * d1;
+        var i = MathHelper.floor_double(posVec31.xCoord);
+        var j = MathHelper.floor_double(posVec31.zCoord);
+        var d0 = posVec32.xCoord - posVec31.xCoord;
+        var d1 = posVec32.zCoord - posVec31.zCoord;
+        var d2 = d0 * d0 + d1 * d1;
 
         if (d2 < 1.0E-8D)
         {
             return false;
         }
-        else
-        {
-            double d3 = 1.0D / Math.sqrt(d2);
-            d0 = d0 * d3;
-            d1 = d1 * d3;
-            sizeX = sizeX + 2;
-            sizeZ = sizeZ + 2;
 
-            if (!this.isSafeToStandAt(i, (int)posVec31.yCoord, j, sizeX, sizeY, sizeZ, posVec31, d0, d1))
+        var d3 = 1.0D / Math.sqrt(d2);
+        d0 *= d3;
+        d1 *= d3;
+        sizeX += 2;
+        sizeZ += 2;
+
+        if (this.isSafeToStandAt(i, (int) posVec31.yCoord, j, sizeX, sizeY, sizeZ, posVec31, d0, d1))
+        {
+            return false;
+        }
+
+        sizeX -= 2;
+        sizeZ -= 2;
+        var d4 = 1.0D / Math.abs(d0);
+        var d5 = 1.0D / Math.abs(d1);
+        var d6 = (double)i - posVec31.xCoord;
+        var d7 = (double)j - posVec31.zCoord;
+
+        if (d0 >= 0.0D) ++d6;
+        if (d1 >= 0.0D) ++d7;
+
+        d6 /= d0;
+        d7 /= d1;
+        var k = d0 < 0.0D ? -1 : 1;
+        var l = d1 < 0.0D ? -1 : 1;
+        var i1 = MathHelper.floor_double(posVec32.xCoord);
+        var j1 = MathHelper.floor_double(posVec32.zCoord);
+        var k1 = i1 - i;
+        var l1 = j1 - j;
+
+        while (k1 * k > 0 || l1 * l > 0)
+        {
+            if (d6 < d7)
             {
-                return false;
+                d6 += d4;
+                i += k;
+                k1 = i1 - i;
             }
             else
             {
-                sizeX = sizeX - 2;
-                sizeZ = sizeZ - 2;
-                double d4 = 1.0D / Math.abs(d0);
-                double d5 = 1.0D / Math.abs(d1);
-                double d6 = (double)(i * 1) - posVec31.xCoord;
-                double d7 = (double)(j * 1) - posVec31.zCoord;
+                d7 += d5;
+                j += l;
+                l1 = j1 - j;
+            }
 
-                if (d0 >= 0.0D)
-                {
-                    ++d6;
-                }
-
-                if (d1 >= 0.0D)
-                {
-                    ++d7;
-                }
-
-                d6 = d6 / d0;
-                d7 = d7 / d1;
-                int k = d0 < 0.0D ? -1 : 1;
-                int l = d1 < 0.0D ? -1 : 1;
-                int i1 = MathHelper.floor_double(posVec32.xCoord);
-                int j1 = MathHelper.floor_double(posVec32.zCoord);
-                int k1 = i1 - i;
-                int l1 = j1 - j;
-
-                while (k1 * k > 0 || l1 * l > 0)
-                {
-                    if (d6 < d7)
-                    {
-                        d6 += d4;
-                        i += k;
-                        k1 = i1 - i;
-                    }
-                    else
-                    {
-                        d7 += d5;
-                        j += l;
-                        l1 = j1 - j;
-                    }
-
-                    if (!this.isSafeToStandAt(i, (int)posVec31.yCoord, j, sizeX, sizeY, sizeZ, posVec31, d0, d1))
-                    {
-                        return false;
-                    }
-                }
-
-                return true;
+            if (this.isSafeToStandAt(i, (int) posVec31.yCoord, j, sizeX, sizeY, sizeZ, posVec31, d0, d1))
+            {
+                return false;
             }
         }
+
+        return true;
     }
 
     /**
@@ -187,47 +178,35 @@ public class PathNavigateGround extends PathNavigate
      */
     private boolean isSafeToStandAt(int x, int y, int z, int sizeX, int sizeY, int sizeZ, Vec3 vec31, double p_179683_8_, double p_179683_10_)
     {
-        int i = x - sizeX / 2;
-        int j = z - sizeZ / 2;
+        var i = x - sizeX / 2;
+        var j = z - sizeZ / 2;
 
         if (!this.isPositionClear(i, y, j, sizeX, sizeY, sizeZ, vec31, p_179683_8_, p_179683_10_))
         {
-            return false;
-        }
-        else
-        {
-            for (int k = i; k < i + sizeX; ++k)
-            {
-                for (int l = j; l < j + sizeZ; ++l)
-                {
-                    double d0 = (double)k + 0.5D - vec31.xCoord;
-                    double d1 = (double)l + 0.5D - vec31.zCoord;
-
-                    if (d0 * p_179683_8_ + d1 * p_179683_10_ >= 0.0D)
-                    {
-                        Block block = this.worldObj.getBlockState(new BlockPos(k, y - 1, l)).getBlock();
-                        Material material = block.getMaterial();
-
-                        if (material == Material.air)
-                        {
-                            return false;
-                        }
-
-                        if (material == Material.water && !this.theEntity.isInWater())
-                        {
-                            return false;
-                        }
-
-                        if (material == Material.lava)
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
             return true;
         }
+
+        var mutablePos = new BlockPos.MutableBlockPos();
+        for (var k = i; k < i + sizeX; ++k)
+        {
+            for (var l = j; l < j + sizeZ; ++l)
+            {
+                var d0 = (double)k + 0.5D - vec31.xCoord;
+                var d1 = (double)l + 0.5D - vec31.zCoord;
+
+                if (d0 * p_179683_8_ + d1 * p_179683_10_ >= 0.0D)
+                {
+                    mutablePos.set(k, y - 1, l);
+                    var material = this.worldObj.getBlockState(mutablePos).getBlock().getMaterial();
+
+                    if (material == Material.air) return true;
+                    if (material == Material.water && !this.theEntity.isInWater()) return true;
+                    if (material == Material.lava) return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -235,22 +214,30 @@ public class PathNavigateGround extends PathNavigate
      */
     private boolean isPositionClear(int p_179692_1_, int p_179692_2_, int p_179692_3_, int p_179692_4_, int p_179692_5_, int p_179692_6_, Vec3 p_179692_7_, double p_179692_8_, double p_179692_10_)
     {
-        for (BlockPos blockpos : BlockPos.getAllInBox(new BlockPos(p_179692_1_, p_179692_2_, p_179692_3_), new BlockPos(p_179692_1_ + p_179692_4_ - 1, p_179692_2_ + p_179692_5_ - 1, p_179692_3_ + p_179692_6_ - 1)))
+        var maxX = p_179692_1_ + p_179692_4_ - 1;
+        var maxY = p_179692_2_ + p_179692_5_ - 1;
+        var maxZ = p_179692_3_ + p_179692_6_ - 1;
+
+        var mutablePos = new BlockPos.MutableBlockPos();
+        for (var curX = p_179692_1_; curX <= maxX; ++curX)
         {
-            double d0 = (double)blockpos.getX() + 0.5D - p_179692_7_.xCoord;
-            double d1 = (double)blockpos.getZ() + 0.5D - p_179692_7_.zCoord;
-
-            if (d0 * p_179692_8_ + d1 * p_179692_10_ >= 0.0D)
+            for (var curY = p_179692_2_; curY <= maxY; ++curY)
             {
-                Block block = this.worldObj.getBlockState(blockpos).getBlock();
-
-                if (!block.isPassable(this.worldObj, blockpos))
+                for (var curZ = p_179692_3_; curZ <= maxZ; ++curZ)
                 {
-                    return false;
+                    var d0 = (double)curX + 0.5D - p_179692_7_.xCoord;
+                    var d1 = (double)curZ + 0.5D - p_179692_7_.zCoord;
+                    if (d0 * p_179692_8_ + d1 * p_179692_10_ >= 0.0D)
+                    {
+                        mutablePos.set(curX, curY, curZ);
+                        if (!this.worldObj.getBlockState(mutablePos).getBlock().isPassable(this.worldObj, mutablePos))
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
         }
-
         return true;
     }
 
