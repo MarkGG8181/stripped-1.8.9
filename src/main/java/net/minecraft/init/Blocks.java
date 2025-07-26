@@ -23,7 +23,7 @@ import net.minecraft.block.BlockPortal;
 import net.minecraft.block.BlockRedstoneComparator;
 import net.minecraft.block.BlockRedstoneRepeater;
 import net.minecraft.block.BlockRedstoneWire;
-import net.minecraft.block.BlockReed;
+import net.minecraft.block.BlockSugarcane;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.BlockSlab;
@@ -126,7 +126,7 @@ public class Blocks
     public static final Block snow;
     public static final BlockCactus cactus;
     public static final Block clay;
-    public static final BlockReed reeds;
+    public static final BlockSugarcane sugarcane;
     public static final Block jukebox;
     public static final Block oak_fence;
     public static final Block spruce_fence;
@@ -343,7 +343,7 @@ public class Blocks
             snow = getRegisteredBlock("snow");
             cactus = (BlockCactus)getRegisteredBlock("cactus");
             clay = getRegisteredBlock("clay");
-            reeds = (BlockReed)getRegisteredBlock("reeds");
+            sugarcane = (BlockSugarcane)getRegisteredBlock("sugarcane");
             jukebox = getRegisteredBlock("jukebox");
             oak_fence = getRegisteredBlock("fence");
             spruce_fence = getRegisteredBlock("spruce_fence");

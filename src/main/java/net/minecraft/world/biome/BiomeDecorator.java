@@ -21,7 +21,7 @@ import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenPumpkin;
-import net.minecraft.world.gen.feature.WorldGenReed;
+import net.minecraft.world.gen.feature.WorldGenSugarcane;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenWaterlily;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -94,9 +94,9 @@ public class BiomeDecorator {
     protected WorldGenerator bigMushroomGen = new WorldGenBigMushroom();
 
     /**
-     * Field that holds WorldGenReed
+     * Field that holds WorldGenSugarcane
      */
-    protected WorldGenerator reedGen = new WorldGenReed();
+    protected WorldGenerator sugarcaneGen = new WorldGenSugarcane();
 
     /**
      * Field that holds WorldGenCactus
@@ -141,7 +141,7 @@ public class BiomeDecorator {
     public int mushroomsPerChunk;
 
     /**
-     * The number of reeds to generate per chunk. Reeds won't generate if the randomly selected placement is unsuitable.
+     * The number of sugarcane to generate per chunk. Sugarcane won't generate if the randomly selected placement is unsuitable.
      */
     public int sugarcanePerChunk;
 
@@ -361,7 +361,7 @@ public class BiomeDecorator {
 
             if (i16 > 0) {
                 int l18 = this.randomGenerator.nextInt(i16);
-                this.reedGen.generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(i9, l18, l12));
+                this.sugarcaneGen.generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(i9, l18, l12));
             }
         }
 
@@ -372,7 +372,7 @@ public class BiomeDecorator {
 
             if (j16 > 0) {
                 int i19 = this.randomGenerator.nextInt(j16);
-                this.reedGen.generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(j9, i19, i13));
+                this.sugarcaneGen.generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(j9, i19, i13));
             }
         }
 

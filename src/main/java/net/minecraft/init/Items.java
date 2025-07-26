@@ -101,7 +101,7 @@ public class Items
     public static final Item milk_bucket;
     public static final Item brick;
     public static final Item clay_ball;
-    public static final Item reeds;
+    public static final Item sugarcane;
     public static final Item paper;
     public static final Item book;
     public static final Item slime_ball;
@@ -302,7 +302,7 @@ public class Items
             milk_bucket = getRegisteredItem("milk_bucket");
             brick = getRegisteredItem("brick");
             clay_ball = getRegisteredItem("clay_ball");
-            reeds = getRegisteredItem("reeds");
+            sugarcane = getRegisteredItem("sugarcane");
             paper = getRegisteredItem("paper");
             book = getRegisteredItem("book");
             slime_ball = getRegisteredItem("slime_ball");

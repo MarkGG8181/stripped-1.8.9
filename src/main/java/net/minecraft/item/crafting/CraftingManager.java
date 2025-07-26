@@ -50,7 +50,7 @@ public class CraftingManager
         this.recipes.add(new RecipeFireworks());
         this.recipes.add(new RecipeRepairItem());
         (new RecipesBanners()).addRecipes(this);
-        this.addRecipe(new ItemStack(Items.paper, 3), new Object[] {"###", '#', Items.reeds});
+        this.addRecipe(new ItemStack(Items.paper, 3), new Object[] {"###", '#', Items.sugarcane});
         this.addShapelessRecipe(new ItemStack(Items.book, 1), new Object[] {Items.paper, Items.paper, Items.paper, Items.leather});
         this.addShapelessRecipe(new ItemStack(Items.writable_book, 1), new Object[] {Items.book, new ItemStack(Items.dye, 1, EnumDyeColor.BLACK.getDyeDamage()), Items.feather});
         this.addRecipe(new ItemStack(Blocks.oak_fence, 3), new Object[] {"W#W", "W#W", '#', Items.stick, 'W', new ItemStack(Blocks.planks, 1, BlockPlanks.EnumType.OAK.getMetadata())});
@@ -106,7 +106,7 @@ public class CraftingManager
         this.addRecipe(new ItemStack(Blocks.iron_trapdoor, 1), new Object[] {"##", "##", '#', Items.iron_ingot});
         this.addRecipe(new ItemStack(Items.sign, 3), new Object[] {"###", "###", " X ", '#', Blocks.planks, 'X', Items.stick});
         this.addRecipe(new ItemStack(Items.cake, 1), new Object[] {"AAA", "BEB", "CCC", 'A', Items.milk_bucket, 'B', Items.sugar, 'C', Items.wheat, 'E', Items.egg});
-        this.addRecipe(new ItemStack(Items.sugar, 1), new Object[] {"#", '#', Items.reeds});
+        this.addRecipe(new ItemStack(Items.sugar, 1), new Object[] {"#", '#', Items.sugarcane});
         this.addRecipe(new ItemStack(Blocks.planks, 4, BlockPlanks.EnumType.OAK.getMetadata()), new Object[] {"#", '#', new ItemStack(Blocks.log, 1, BlockPlanks.EnumType.OAK.getMetadata())});
         this.addRecipe(new ItemStack(Blocks.planks, 4, BlockPlanks.EnumType.SPRUCE.getMetadata()), new Object[] {"#", '#', new ItemStack(Blocks.log, 1, BlockPlanks.EnumType.SPRUCE.getMetadata())});
         this.addRecipe(new ItemStack(Blocks.planks, 4, BlockPlanks.EnumType.BIRCH.getMetadata()), new Object[] {"#", '#', new ItemStack(Blocks.log, 1, BlockPlanks.EnumType.BIRCH.getMetadata())});

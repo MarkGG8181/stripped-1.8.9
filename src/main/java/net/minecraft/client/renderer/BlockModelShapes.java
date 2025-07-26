@@ -28,7 +28,7 @@ import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockRedSandstone;
 import net.minecraft.block.BlockRedstoneWire;
-import net.minecraft.block.BlockReed;
+import net.minecraft.block.BlockSugarcane;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.BlockSandStone;
 import net.minecraft.block.BlockSapling;
@@ -164,7 +164,7 @@ public class BlockModelShapes
         this.registerBlockWithStateMapper(Blocks.leaves, (new StateMap.Builder()).withName(BlockOldLeaf.VARIANT).withSuffix("_leaves").ignore(new IProperty[] {BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE}).build());
         this.registerBlockWithStateMapper(Blocks.leaves2, (new StateMap.Builder()).withName(BlockNewLeaf.VARIANT).withSuffix("_leaves").ignore(new IProperty[] {BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE}).build());
         this.registerBlockWithStateMapper(Blocks.cactus, (new StateMap.Builder()).ignore(new IProperty[] {BlockCactus.AGE}).build());
-        this.registerBlockWithStateMapper(Blocks.reeds, (new StateMap.Builder()).ignore(new IProperty[] {BlockReed.AGE}).build());
+        this.registerBlockWithStateMapper(Blocks.sugarcane, (new StateMap.Builder()).ignore(new IProperty[] {BlockSugarcane.AGE}).build());
         this.registerBlockWithStateMapper(Blocks.jukebox, (new StateMap.Builder()).ignore(new IProperty[] {BlockJukebox.HAS_RECORD}).build());
         this.registerBlockWithStateMapper(Blocks.command_block, (new StateMap.Builder()).ignore(new IProperty[] {BlockCommandBlock.TRIGGERED}).build());
         this.registerBlockWithStateMapper(Blocks.cobblestone_wall, (new StateMap.Builder()).withName(BlockWall.VARIANT).withSuffix("_wall").build());

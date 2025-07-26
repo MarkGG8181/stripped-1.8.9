@@ -6,7 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class WorldGenReed extends WorldGenerator
+public class WorldGenSugarcane extends WorldGenerator
 {
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {

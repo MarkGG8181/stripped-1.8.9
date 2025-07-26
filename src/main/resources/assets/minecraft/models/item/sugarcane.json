@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "items/reeds"
+        "layer0": "items/sugarcane"
     },
     "display": {
         "thirdperson": {
