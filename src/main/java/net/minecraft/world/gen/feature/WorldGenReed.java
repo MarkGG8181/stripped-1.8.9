@@ -24,9 +24,9 @@ public class WorldGenReed extends WorldGenerator
 
                     for (int k = 0; k < j; ++k)
                     {
-                        if (Blocks.reeds.canBlockStay(worldIn, blockpos))
+                        if (Blocks.sugarcane.canBlockStay(worldIn, blockpos))
                         {
-                            worldIn.setBlockState(blockpos.up(k), Blocks.reeds.getDefaultState(), 2);
+                            worldIn.setBlockState(blockpos.up(k), Blocks.sugarcane.getDefaultState(), 2);
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package net.minecraft.world.gen.layer;
 
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.gen.ChunkProviderSettings;
 
 public class GenLayerBiome extends GenLayer

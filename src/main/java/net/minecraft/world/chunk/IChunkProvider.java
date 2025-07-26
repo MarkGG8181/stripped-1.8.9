@@ -1,14 +1,14 @@
 package net.minecraft.world.chunk;
 
 import java.util.List;
+
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 
-public interface IChunkProvider
-{
+public interface IChunkProvider {
     /**
      * Checks to see if a chunk exists at x, z
      */
@@ -33,7 +33,7 @@ public interface IChunkProvider
      * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
      * Return true if all chunks have been saved.
      */
-    boolean saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback);
+    void saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback);
 
     /**
      * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
@@ -53,8 +53,6 @@ public interface IChunkProvider
     List<BiomeGenBase.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos);
 
     BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position);
-
-    int getLoadedChunkCount();
 
     void recreateStructures(Chunk chunkIn, int x, int z);
 

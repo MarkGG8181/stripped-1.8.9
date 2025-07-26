@@ -56,7 +56,7 @@ import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.village.VillageCollection;
 import net.minecraft.village.VillageSiege;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;

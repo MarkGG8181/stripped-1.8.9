@@ -13,7 +13,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -500,9 +500,8 @@ public class ChunkProviderGenerate implements IChunkProvider
      * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
      * Return true if all chunks have been saved.
      */
-    public boolean saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback)
+    public void saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback)
     {
-        return true;
     }
 
     /**
@@ -560,11 +559,6 @@ public class ChunkProviderGenerate implements IChunkProvider
     public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
     {
         return "Stronghold".equals(structureName) && this.strongholdGenerator != null ? this.strongholdGenerator.getClosestStrongholdPos(worldIn, position) : null;
-    }
-
-    public int getLoadedChunkCount()
-    {
-        return 0;
     }
 
     public void recreateStructures(Chunk chunkIn, int x, int z)

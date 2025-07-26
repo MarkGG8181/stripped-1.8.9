@@ -1,12 +1,11 @@
-package net.minecraft.world.biome;
+package net.minecraft.world.biome.gen.impl.desert;
 
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 
-public class BiomeGenMushroomIsland extends BiomeGenBase
-{
-    public BiomeGenMushroomIsland(int id)
-    {
+public class BiomeGenMushroomIsland extends BiomeGenBase {
+    public BiomeGenMushroomIsland(int id) {
         super(id);
         this.theBiomeDecorator.treesPerChunk = -100;
         this.theBiomeDecorator.flowersPerChunk = -100;

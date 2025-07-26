@@ -1,6 +1,6 @@
 package net.minecraft.world.gen.layer;
 
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class GenLayerAddMushroomIsland extends GenLayer
 {

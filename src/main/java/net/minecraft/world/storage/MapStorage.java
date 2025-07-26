@@ -52,7 +52,7 @@ public class MapStorage
                     {
                         try
                         {
-                            worldsaveddata = (WorldSavedData)clazz.getConstructor(new Class[] {String.class}).newInstance(new Object[] {dataIdentifier});
+                            worldsaveddata = clazz.getConstructor(new Class[] {String.class}).newInstance(dataIdentifier);
                         }
                         catch (Exception exception)
                         {

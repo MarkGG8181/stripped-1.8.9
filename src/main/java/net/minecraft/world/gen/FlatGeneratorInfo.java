@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class FlatGeneratorInfo
 {

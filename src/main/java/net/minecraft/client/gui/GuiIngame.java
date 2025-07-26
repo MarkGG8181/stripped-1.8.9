@@ -1,6 +1,5 @@
 package net.minecraft.client.gui;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -41,7 +40,6 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import net.minecraft.world.border.WorldBorder;
 
 public class GuiIngame extends Gui {
@@ -102,7 +100,7 @@ public class GuiIngame extends Gui {
     private String displayedTitle = "";
 
     /**
-     * The current sub-title displayed
+     * The current subtitle displayed
      */
     private String displayedSubTitle = "";
 
@@ -360,10 +358,9 @@ public class GuiIngame extends Gui {
     }
 
     protected void renderTooltip(ScaledResolution sr, float partialTicks) {
-        if (mc.getRenderViewEntity() instanceof EntityPlayer) {
+        if (mc.getRenderViewEntity() instanceof EntityPlayer entityplayer) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             mc.getTextureManager().bindTexture(widgetsTexPath);
-            EntityPlayer entityplayer = (EntityPlayer) mc.getRenderViewEntity();
             int i = sr.getScaledWidth() / 2;
             float f = zLevel;
             zLevel = -90.0F;
@@ -427,7 +424,6 @@ public class GuiIngame extends Gui {
             String s = "" + mc.thePlayer.experienceLevel;
             int l1 = (scaledRes.getScaledWidth() - getFontRenderer().getStringWidth(s)) / 2;
             int i1 = scaledRes.getScaledHeight() - 31 - 4;
-            int j1 = 0;
             getFontRenderer().drawString(s, l1 + 1, i1, 0);
             getFontRenderer().drawString(s, l1 - 1, i1, 0);
             getFontRenderer().drawString(s, l1, i1 + 1, 0);
@@ -495,10 +491,9 @@ public class GuiIngame extends Gui {
     private void renderScoreboard(ScoreObjective objective, ScaledResolution scaledRes) {
         Scoreboard scoreboard = objective.getScoreboard();
         Collection<Score> collection = scoreboard.getSortedScores(objective);
-        List<Score> list = Lists.newArrayList(Iterables.filter(collection, new Predicate<Score>() {
-            public boolean apply(Score p_apply_1_) {
-                return p_apply_1_.getPlayerName() != null && !p_apply_1_.getPlayerName().startsWith("#");
-            }
+        List<Score> list = Lists.newArrayList(Iterables.filter(collection, p_apply_1_ -> {
+            assert p_apply_1_ != null;
+            return p_apply_1_.getPlayerName() != null && !p_apply_1_.getPlayerName().startsWith("#");
         }));
 
         if (list.size() > 15) {
@@ -548,10 +543,10 @@ public class GuiIngame extends Gui {
 
             if (i < playerHealth && entityplayer.hurtResistantTime > 0) {
                 lastSystemTime = Minecraft.getSystemTime();
-                healthUpdateCounter = (long) (updateCounter + 20);
+                healthUpdateCounter = updateCounter + 20;
             } else if (i > playerHealth && entityplayer.hurtResistantTime > 0) {
                 lastSystemTime = Minecraft.getSystemTime();
-                healthUpdateCounter = (long) (updateCounter + 10);
+                healthUpdateCounter = updateCounter + 10;
             }
 
             if (Minecraft.getSystemTime() - lastSystemTime > 1000L) {
@@ -563,10 +558,8 @@ public class GuiIngame extends Gui {
             playerHealth = i;
             int j = lastPlayerHealth;
             rand.setSeed(updateCounter * 312871L);
-            boolean flag1 = false;
             FoodStats foodstats = entityplayer.getFoodStats();
             int k = foodstats.getFoodLevel();
-            int l = foodstats.getPrevFoodLevel();
             IAttributeInstance iattributeinstance = entityplayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);
             int i1 = scaledRes.getScaledWidth() / 2 - 91;
             int j1 = scaledRes.getScaledWidth() / 2 + 91;
@@ -718,10 +711,9 @@ public class GuiIngame extends Gui {
 
                     for (int i5 = 0; i5 < l4; ++i5) {
                         int j5 = 52;
-                        int k5 = 0;
 
                         int l5 = j1 - i5 * 8 - 9;
-                        drawTexturedModalRect(l5, j9, j5 + 0, 9, 9, 9);
+                        drawTexturedModalRect(l5, j9, j5, 9, 9, 9);
 
                         if (i5 * 2 + 1 + k9 < j7) {
                             drawTexturedModalRect(l5, j9, j5 + 36, 9, 9, 9);

@@ -59,7 +59,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Mouse;
@@ -1420,7 +1420,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                             blockpos$mutableblockpos.set(l1, k2, k1);
                             float f2 = biomegenbase.getFloatTemperature(blockpos$mutableblockpos);
 
-                            if (world.getWorldChunkManager().getTemperatureAtHeight(f2, j2) >= 0.15F) {
+                            if (world.getWorldChunkManager().getTemperatureAtHeight(f2) >= 0.15F) {
                                 if (j1 != 0) {
                                     if (j1 >= 0) {
                                         tessellator.draw();

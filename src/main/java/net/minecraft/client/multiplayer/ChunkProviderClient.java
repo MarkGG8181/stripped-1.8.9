@@ -8,7 +8,7 @@ import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.LongHashMap;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.EmptyChunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -90,9 +90,8 @@ public class ChunkProviderClient implements IChunkProvider
      * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
      * Return true if all chunks have been saved.
      */
-    public boolean saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback)
+    public void saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback)
     {
-        return true;
     }
 
     /**
@@ -159,11 +158,6 @@ public class ChunkProviderClient implements IChunkProvider
     public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
     {
         return null;
-    }
-
-    public int getLoadedChunkCount()
-    {
-        return this.chunkListing.size();
     }
 
     public void recreateStructures(Chunk chunkIn, int x, int z)
