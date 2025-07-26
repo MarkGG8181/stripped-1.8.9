@@ -154,7 +154,7 @@ import net.minecraft.world.storage.WorldInfo;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jspecify.annotations.NonNull;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -2274,7 +2274,7 @@ public class Minecraft implements IThreadListener {
         this.entityRenderer.loadEntityShader(viewingEntity);
     }
 
-    public <V> ListenableFuture<V> addScheduledTask(@NonNull Callable<V> callableToSchedule) {
+    public <V> ListenableFuture<V> addScheduledTask(@NotNull Callable<V> callableToSchedule) {
         if (!this.isCallingFromMinecraftThread()) {
             ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.create(callableToSchedule);
 
@@ -2291,7 +2291,7 @@ public class Minecraft implements IThreadListener {
         }
     }
 
-    public ListenableFuture<Object> addScheduledTask(@NonNull Runnable runnableToSchedule) {
+    public ListenableFuture<Object> addScheduledTask(@NotNull Runnable runnableToSchedule) {
         return this.addScheduledTask(Executors.callable(runnableToSchedule));
     }
 

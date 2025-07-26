@@ -40,7 +40,6 @@ public class OpenGlHelper {
     public static int GL_FB_INCOMPLETE_READ_BUFFER;
     private static int framebufferType;
     public static boolean framebufferSupported;
-    private static boolean shadersAvailable;
     private static boolean arbShaders;
     public static int GL_LINK_STATUS;
     public static int GL_COMPILE_STATUS;
@@ -60,7 +59,6 @@ public class OpenGlHelper {
      */
     public static int lightmapTexUnit;
     public static int GL_TEXTURE2;
-    private static boolean arbTextureEnvCombine;
     public static int GL_COMBINE;
     public static int GL_INTERPOLATE;
     public static int GL_PRIMARY_COLOR;
@@ -98,63 +96,43 @@ public class OpenGlHelper {
     public static void initializeTextures() {
         ContextCapabilities contextcapabilities = GLContext.getCapabilities();
         arbMultitexture = contextcapabilities.GL_ARB_multitexture && !contextcapabilities.OpenGL13;
-        arbTextureEnvCombine = contextcapabilities.GL_ARB_texture_env_combine && !contextcapabilities.OpenGL13;
+        boolean arbTextureEnvCombine = contextcapabilities.GL_ARB_texture_env_combine && !contextcapabilities.OpenGL13;
 
         if (arbMultitexture) {
             logText = logText + "Using ARB_multitexture.\n";
-            defaultTexUnit = 33984;
-            lightmapTexUnit = 33985;
-            GL_TEXTURE2 = 33986;
         } else {
             logText = logText + "Using GL 1.3 multitexturing.\n";
-            defaultTexUnit = 33984;
-            lightmapTexUnit = 33985;
-            GL_TEXTURE2 = 33986;
         }
+
+        defaultTexUnit = 33984;
+        lightmapTexUnit = 33985;
+        GL_TEXTURE2 = 33986;
 
         if (arbTextureEnvCombine) {
             logText = logText + "Using ARB_texture_env_combine.\n";
-            GL_COMBINE = 34160;
-            GL_INTERPOLATE = 34165;
-            GL_PRIMARY_COLOR = 34167;
-            GL_CONSTANT = 34166;
-            GL_PREVIOUS = 34168;
-            GL_COMBINE_RGB = 34161;
-            GL_SOURCE0_RGB = 34176;
-            GL_SOURCE1_RGB = 34177;
-            GL_SOURCE2_RGB = 34178;
-            GL_OPERAND0_RGB = 34192;
-            GL_OPERAND1_RGB = 34193;
-            GL_OPERAND2_RGB = 34194;
-            GL_COMBINE_ALPHA = 34162;
-            GL_SOURCE0_ALPHA = 34184;
-            GL_SOURCE1_ALPHA = 34185;
-            GL_SOURCE2_ALPHA = 34186;
-            GL_OPERAND0_ALPHA = 34200;
-            GL_OPERAND1_ALPHA = 34201;
-            GL_OPERAND2_ALPHA = 34202;
         } else {
             logText = logText + "Using GL 1.3 texture combiners.\n";
-            GL_COMBINE = 34160;
-            GL_INTERPOLATE = 34165;
-            GL_PRIMARY_COLOR = 34167;
-            GL_CONSTANT = 34166;
-            GL_PREVIOUS = 34168;
-            GL_COMBINE_RGB = 34161;
-            GL_SOURCE0_RGB = 34176;
-            GL_SOURCE1_RGB = 34177;
-            GL_SOURCE2_RGB = 34178;
-            GL_OPERAND0_RGB = 34192;
-            GL_OPERAND1_RGB = 34193;
-            GL_OPERAND2_RGB = 34194;
-            GL_COMBINE_ALPHA = 34162;
-            GL_SOURCE0_ALPHA = 34184;
-            GL_SOURCE1_ALPHA = 34185;
-            GL_SOURCE2_ALPHA = 34186;
-            GL_OPERAND0_ALPHA = 34200;
-            GL_OPERAND1_ALPHA = 34201;
-            GL_OPERAND2_ALPHA = 34202;
         }
+
+        GL_COMBINE = 34160;
+        GL_INTERPOLATE = 34165;
+        GL_PRIMARY_COLOR = 34167;
+        GL_CONSTANT = 34166;
+        GL_PREVIOUS = 34168;
+        GL_COMBINE_RGB = 34161;
+        GL_SOURCE0_RGB = 34176;
+        GL_SOURCE1_RGB = 34177;
+        GL_SOURCE2_RGB = 34178;
+        GL_OPERAND0_RGB = 34192;
+        GL_OPERAND1_RGB = 34193;
+        GL_OPERAND2_RGB = 34194;
+        GL_COMBINE_ALPHA = 34162;
+        GL_SOURCE0_ALPHA = 34184;
+        GL_SOURCE1_ALPHA = 34185;
+        GL_SOURCE2_ALPHA = 34186;
+        GL_OPERAND0_ALPHA = 34200;
+        GL_OPERAND1_ALPHA = 34201;
+        GL_OPERAND2_ALPHA = 34202;
 
         extBlendFuncSeparate = contextcapabilities.GL_EXT_blend_func_separate && !contextcapabilities.OpenGL14;
         openGL14 = contextcapabilities.OpenGL14 || contextcapabilities.GL_EXT_blend_func_separate;
@@ -187,7 +165,7 @@ public class OpenGlHelper {
                 GL_FB_INCOMPLETE_ATTACHMENT = 36054;
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
-            } else if (contextcapabilities.GL_EXT_framebuffer_object) {
+            } else {
                 logText = logText + "EXT_framebuffer_object is supported.\n";
                 framebufferType = 2;
                 GL_FRAMEBUFFER = 36160;
@@ -210,25 +188,22 @@ public class OpenGlHelper {
         }
 
         openGL21 = contextcapabilities.OpenGL21;
-        shadersAvailable = openGL21 || contextcapabilities.GL_ARB_vertex_shader && contextcapabilities.GL_ARB_fragment_shader && contextcapabilities.GL_ARB_shader_objects;
+        boolean shadersAvailable = openGL21 || contextcapabilities.GL_ARB_vertex_shader && contextcapabilities.GL_ARB_fragment_shader && contextcapabilities.GL_ARB_shader_objects;
         logText = logText + "Shaders are " + (shadersAvailable ? "" : "not ") + "available because ";
 
         if (shadersAvailable) {
             if (contextcapabilities.OpenGL21) {
                 logText = logText + "OpenGL 2.1 is supported.\n";
                 arbShaders = false;
-                GL_LINK_STATUS = 35714;
-                GL_COMPILE_STATUS = 35713;
-                GL_VERTEX_SHADER = 35633;
-                GL_FRAGMENT_SHADER = 35632;
             } else {
                 logText = logText + "ARB_shader_objects, ARB_vertex_shader, and ARB_fragment_shader are supported.\n";
                 arbShaders = true;
-                GL_LINK_STATUS = 35714;
-                GL_COMPILE_STATUS = 35713;
-                GL_VERTEX_SHADER = 35633;
-                GL_FRAGMENT_SHADER = 35632;
             }
+
+            GL_LINK_STATUS = 35714;
+            GL_COMPILE_STATUS = 35713;
+            GL_VERTEX_SHADER = 35633;
+            GL_FRAGMENT_SHADER = 35632;
         } else {
             logText = logText + "OpenGL 2.1 is " + (contextcapabilities.OpenGL21 ? "" : "not ") + "supported, ";
             logText = logText + "ARB_shader_objects is " + (contextcapabilities.GL_ARB_shader_objects ? "" : "not ") + "supported, ";
@@ -574,19 +549,12 @@ public class OpenGlHelper {
         if (!framebufferSupported) {
             return -1;
         } else {
-            switch (framebufferType) {
-                case 0:
-                    return GL30.glGenFramebuffers();
-
-                case 1:
-                    return ARBFramebufferObject.glGenFramebuffers();
-
-                case 2:
-                    return EXTFramebufferObject.glGenFramebuffersEXT();
-
-                default:
-                    return -1;
-            }
+            return switch (framebufferType) {
+                case 0 -> GL30.glGenFramebuffers();
+                case 1 -> ARBFramebufferObject.glGenFramebuffers();
+                case 2 -> EXTFramebufferObject.glGenFramebuffersEXT();
+                default -> -1;
+            };
         }
     }
 
@@ -594,19 +562,12 @@ public class OpenGlHelper {
         if (!framebufferSupported) {
             return -1;
         } else {
-            switch (framebufferType) {
-                case 0:
-                    return GL30.glGenRenderbuffers();
-
-                case 1:
-                    return ARBFramebufferObject.glGenRenderbuffers();
-
-                case 2:
-                    return EXTFramebufferObject.glGenRenderbuffersEXT();
-
-                default:
-                    return -1;
-            }
+            return switch (framebufferType) {
+                case 0 -> GL30.glGenRenderbuffers();
+                case 1 -> ARBFramebufferObject.glGenRenderbuffers();
+                case 2 -> EXTFramebufferObject.glGenRenderbuffersEXT();
+                default -> -1;
+            };
         }
     }
 
@@ -648,19 +609,12 @@ public class OpenGlHelper {
         if (!framebufferSupported) {
             return -1;
         } else {
-            switch (framebufferType) {
-                case 0:
-                    return GL30.glCheckFramebufferStatus(target);
-
-                case 1:
-                    return ARBFramebufferObject.glCheckFramebufferStatus(target);
-
-                case 2:
-                    return EXTFramebufferObject.glCheckFramebufferStatusEXT(target);
-
-                default:
-                    return -1;
-            }
+            return switch (framebufferType) {
+                case 0 -> GL30.glCheckFramebufferStatus(target);
+                case 1 -> ARBFramebufferObject.glCheckFramebufferStatus(target);
+                case 2 -> EXTFramebufferObject.glCheckFramebufferStatusEXT(target);
+                default -> -1;
+            };
         }
     }
 
