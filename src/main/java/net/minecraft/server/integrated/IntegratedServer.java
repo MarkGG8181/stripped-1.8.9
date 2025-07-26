@@ -5,11 +5,7 @@ import com.google.common.util.concurrent.Futures;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.util.concurrent.Callable;
-import java.util.concurrent.FutureTask;
 
-import net.minecraft.client.ClientBrandRetriever;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ThreadLanServerPing;
 import net.minecraft.command.ServerCommandManager;
@@ -111,7 +107,7 @@ public class IntegratedServer extends MinecraftServer {
     /**
      * Initialises the server and starts it.
      */
-    protected boolean startServer() throws IOException {
+    protected boolean startServer() {
         logger.info("Starting integrated minecraft server version 1.8.9");
         this.setOnlineMode(false);
         this.setCanSpawnAnimals(true);
@@ -141,14 +137,14 @@ public class IntegratedServer extends MinecraftServer {
         if (this.isGamePaused) {
             synchronized (this.futureTaskQueue) {
                 while (!this.futureTaskQueue.isEmpty()) {
-                    Util.runTask((FutureTask) this.futureTaskQueue.poll(), logger);
+                    Util.runTask(this.futureTaskQueue.poll(), logger);
                 }
             }
         } else {
             super.tick();
 
             if (this.mc.gameSettings.renderDistanceChunks != this.getConfigurationManager().getViewDistance()) {
-                logger.info("Changing view distance to {}, from {}", new Object[]{Integer.valueOf(this.mc.gameSettings.renderDistanceChunks), Integer.valueOf(this.getConfigurationManager().getViewDistance())});
+                logger.info("Changing view distance to {}, from {}", new Object[]{this.mc.gameSettings.renderDistanceChunks, this.getConfigurationManager().getViewDistance()});
                 this.getConfigurationManager().setViewDistance(this.mc.gameSettings.renderDistanceChunks);
             }
 
@@ -236,23 +232,7 @@ public class IntegratedServer extends MinecraftServer {
      */
     public CrashReport addServerInfoToCrashReport(CrashReport report) {
         report = super.addServerInfoToCrashReport(report);
-        report.getCategory().addCrashSectionCallable("Type", new Callable<String>() {
-            public String call() throws Exception {
-                return "Integrated Server (map_client.txt)";
-            }
-        });
-        report.getCategory().addCrashSectionCallable("Is Modded", new Callable<String>() {
-            public String call() throws Exception {
-                String s = ClientBrandRetriever.getClientModName();
-
-                if (!s.equals("vanilla")) {
-                    return "Definitely; Client brand changed to \'" + s + "\'";
-                } else {
-                    s = IntegratedServer.this.getServerModName();
-                    return !s.equals("vanilla") ? "Definitely; Server brand changed to \'" + s + "\'" : (Minecraft.class.getSigners() == null ? "Very likely; Jar signature invalidated" : "Probably not. Jar signature remains and both client + server brands are untouched.");
-                }
-            }
-        });
+        report.getCategory().addCrashSectionCallable("Type", () -> "Integrated Server (map_client.txt)");
         return report;
     }
 
@@ -273,16 +253,15 @@ public class IntegratedServer extends MinecraftServer {
 
             try {
                 i = HttpUtil.getSuitableLanPort();
-            } catch (IOException var5) {
-                ;
+            } catch (IOException ignored) {
             }
 
             if (i <= 0) {
                 i = 25564;
             }
 
-            this.getNetworkSystem().addLanEndpoint((InetAddress) null, i);
-            logger.info("Started on " + i);
+            this.getNetworkSystem().addLanEndpoint(null, i);
+            logger.info("Started on {}", i);
             this.isPublic = true;
             this.lanServerPing = new ThreadLanServerPing(this.getMOTD(), i + "");
             this.lanServerPing.start();
@@ -310,11 +289,9 @@ public class IntegratedServer extends MinecraftServer {
      * Sets the serverRunning variable to false, in order to get the server to shut down.
      */
     public void initiateShutdown() {
-        Futures.getUnchecked(this.addScheduledTask(new Runnable() {
-            public void run() {
-                for (EntityPlayerMP entityplayermp : Lists.newArrayList(IntegratedServer.this.getConfigurationManager().getPlayerList())) {
-                    IntegratedServer.this.getConfigurationManager().playerLoggedOut(entityplayermp);
-                }
+        Futures.getUnchecked(this.addScheduledTask(() -> {
+            for (EntityPlayerMP entityplayermp : Lists.newArrayList(IntegratedServer.this.getConfigurationManager().getPlayerList())) {
+                IntegratedServer.this.getConfigurationManager().playerLoggedOut(entityplayermp);
             }
         }));
         super.initiateShutdown();
