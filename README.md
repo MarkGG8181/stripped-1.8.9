@@ -25,19 +25,8 @@ This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessar
 ## Credits
 - [BoyOrigin](https://github.com/BoyOrigin/lwjglx) for the LWJGL3 impl
 
-## Goals
-
-- Keep vanilla features intact without the clutter
-- Stay true to the behavior of Minecraft 1.8.9
-
-## Ideal Use Cases
-
-- Base for clients, utility mods & more
-- Lightweight testing environment
-- Debugging, rendering hacks, shader injection, etc.
-
 ## Screenshots
-![Main menu](https://i.imgur.com/8L4sMRI.png)
+![Main menu](https://i.imgur.com/rFXRjiG.png)
 
 ## How to Build
 
