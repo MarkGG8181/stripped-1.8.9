@@ -402,6 +402,7 @@ key.command=Open Command
 key.screenshot=Take Screenshot
 key.togglePerspective=Toggle Perspective
 key.smoothCamera=Toggle Cinematic Camera
+key.zoom=Zoom
 key.fullscreen=Toggle Fullscreen
 key.spectatorOutlines=Highlight Players (Spectators)
 key.hotbar.1=Hotbar Slot 1
