@@ -131,20 +131,7 @@ import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.FrameTimer;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MinecraftError;
-import net.minecraft.util.MouseHelper;
-import net.minecraft.util.MovementInputFromOptions;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.ScreenShotHelper;
-import net.minecraft.util.Session;
-import net.minecraft.util.Timer;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.storage.AnvilSaveConverter;
@@ -166,7 +153,7 @@ import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.util.glu.GLU;
 
 public class Minecraft implements IThreadListener {
-    public static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation locationMojangPng = new ResourceLocation("textures/gui/title/mojang.png");
     public static final boolean isRunningOnMac = Util.getOSType() == Util.EnumOS.OSX;
 
@@ -287,6 +274,8 @@ public class Minecraft implements IThreadListener {
      */
     private static int debugFPS;
 
+    private boolean stopTextureFix;
+
     /**
      * When you place a block, it's set to 6, decremented once per tick, when it's 0, you can place another block.
      */
@@ -376,6 +365,7 @@ public class Minecraft implements IThreadListener {
 
     public Minecraft(GameConfiguration gameConfig) {
         theMinecraft = this;
+        this.stopTextureFix = gameConfig.gameInfo.stopTextureFix;
         this.mcDataDir = gameConfig.folderInfo.mcDataDir;
         this.fileAssets = gameConfig.folderInfo.assetsDir;
         this.fileResourcepacks = gameConfig.folderInfo.resourcePacksDir;
@@ -530,6 +520,11 @@ public class Minecraft implements IThreadListener {
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
+
+        if (!stopTextureFix) {
+            TextureFix textureFix = new TextureFix();
+            textureFix.runFix();
+        }
 
         if (this.serverName != null) {
             this.displayGuiScreen(new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort));

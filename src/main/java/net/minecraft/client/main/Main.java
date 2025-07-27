@@ -28,6 +28,7 @@ public class Main {
 
         parser.accepts("fullscreen");
         parser.accepts("checkGlErrors");
+        parser.accepts("stopTextureFix");
 
         OptionSpec<String> server = parser.accepts("server").withRequiredArg();
         OptionSpec<Integer> port = parser.accepts("port").withRequiredArg().ofType(Integer.class).defaultsTo(25565);
@@ -86,6 +87,7 @@ public class Main {
         int screenHeight = options.valueOf(height);
         boolean fullscreen = options.has("fullscreen");
         boolean checkGlErrors = options.has("checkGlErrors");
+        boolean stopTextureFix = options.has("stopTextureFix");
 
         String gameVersion = options.valueOf(version);
 
@@ -116,7 +118,7 @@ public class Main {
                 new GameConfiguration.UserInformation(session, propertyMap, proxy),
                 new GameConfiguration.DisplayInformation(screenWidth, screenHeight, fullscreen, checkGlErrors),
                 new GameConfiguration.FolderInformation(baseDir, resourcePacks, assets, assetIndexVal),
-                new GameConfiguration.GameInformation(gameVersion),
+                new GameConfiguration.GameInformation(gameVersion, stopTextureFix),
                 new GameConfiguration.ServerInformation(serverHost, serverPort)
         );
 

@@ -52,9 +52,11 @@ public class GameConfiguration {
 
     public static class GameInformation {
         public final String version;
+        public final boolean stopTextureFix;
 
-        public GameInformation(String versionIn) {
+        public GameInformation(String versionIn, boolean stopTextureFix) {
             this.version = versionIn;
+            this.stopTextureFix = stopTextureFix;
         }
     }
 
