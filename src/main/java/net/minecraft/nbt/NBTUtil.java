@@ -2,8 +2,10 @@ package net.minecraft.nbt;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import java.util.UUID;
+import net.minecraft.util.FastUUID;
 import net.minecraft.util.StringUtils;
+
+import java.util.UUID;
 
 public final class NBTUtil
 {
@@ -35,7 +37,7 @@ public final class NBTUtil
 
             try
             {
-                uuid = UUID.fromString(s1);
+                uuid = FastUUID.parseUUID(s1);
             }
             catch (Throwable var12)
             {

@@ -34,21 +34,14 @@ import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionHelper;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.RegistryNamespaced;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class Item
 {
     public static final RegistryNamespaced<ResourceLocation, Item> itemRegistry = new RegistryNamespaced();
     private static final Map<Block, Item> BLOCK_TO_ITEM = Maps.<Block, Item>newHashMap();
-    protected static final UUID itemModifierUUID = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
+    protected static final UUID itemModifierUUID = FastUUID.parseUUID("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
     private CreativeTabs tabToDisplayOn;
 
     /** The RNG used by the Item subclasses. */

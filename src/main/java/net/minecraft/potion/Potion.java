@@ -3,7 +3,6 @@ package net.minecraft.potion;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.Map.Entry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,6 +13,7 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.FastUUID;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 
@@ -333,7 +333,7 @@ public class Potion
      */
     public Potion registerPotionAttributeModifier(IAttribute p_111184_1_, String p_111184_2_, double p_111184_3_, int p_111184_5_)
     {
-        AttributeModifier attributemodifier = new AttributeModifier(UUID.fromString(p_111184_2_), this.getName(), p_111184_3_, p_111184_5_);
+        AttributeModifier attributemodifier = new AttributeModifier(FastUUID.parseUUID(p_111184_2_), this.getName(), p_111184_3_, p_111184_5_);
         this.attributeModifierMap.put(p_111184_1_, attributemodifier);
         return this;
     }

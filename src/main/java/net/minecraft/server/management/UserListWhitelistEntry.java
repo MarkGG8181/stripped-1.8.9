@@ -2,6 +2,8 @@ package net.minecraft.server.management;
 
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.util.FastUUID;
+
 import java.util.UUID;
 
 public class UserListWhitelistEntry extends UserListEntry<GameProfile>
@@ -35,7 +37,7 @@ public class UserListWhitelistEntry extends UserListEntry<GameProfile>
 
             try
             {
-                uuid = UUID.fromString(s);
+                uuid = FastUUID.parseUUID(s);
             }
             catch (Throwable var4)
             {

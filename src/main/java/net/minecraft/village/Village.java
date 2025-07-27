@@ -6,7 +6,6 @@ import com.mojang.authlib.GameProfile;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.UUID;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -19,10 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerProfileCache;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -395,7 +391,7 @@ public class Village {
 
             if (nbttagcompound1.hasKey("UUID")) {
                 PlayerProfileCache playerprofilecache = MinecraftServer.getServer().getPlayerProfileCache();
-                GameProfile gameprofile = playerprofilecache.getProfileByUUID(UUID.fromString(nbttagcompound1.getString("UUID")));
+                GameProfile gameprofile = playerprofilecache.getProfileByUUID(FastUUID.parseUUID(nbttagcompound1.getString("UUID")));
 
                 if (gameprofile != null) {
                     this.playerReputation.put(gameprofile.getName(), nbttagcompound1.getInteger("S"));

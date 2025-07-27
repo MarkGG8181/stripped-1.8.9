@@ -15,13 +15,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.FastUUID;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityPigZombie extends EntityZombie
 {
-    private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+    private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = FastUUID.parseUUID("49455A49-7EC5-45BA-B886-3B90B23A1718");
     private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
 
     /** Above zero if this PigZombie is Angry. */
@@ -148,7 +149,7 @@ public class EntityPigZombie extends EntityZombie
 
         if (s.length() > 0)
         {
-            this.angerTargetUUID = UUID.fromString(s);
+            this.angerTargetUUID = FastUUID.parseUUID(s);
             EntityPlayer entityplayer = this.worldObj.getPlayerEntityByUUID(this.angerTargetUUID);
             this.setRevengeTarget(entityplayer);
 
