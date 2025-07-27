@@ -17,7 +17,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class TextureFix {
-
     private static final Logger logger = LogManager.getLogger("TextureFix");
     public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("#.###");
     public static final LinkedList<UnloadEntry> toUnload = new LinkedList<>();
