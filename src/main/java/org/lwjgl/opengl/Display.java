@@ -1,6 +1,8 @@
 package org.lwjgl.opengl;
 
 import net.minecraft.client.Minecraft;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
 import org.lwjgl.input.Keyboard;
@@ -16,13 +18,11 @@ import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.channels.SeekableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class Display {
+    private static final Logger logger = LogManager.getLogger("LWJGL");
+
     // ------------------------------ Variables here ------------------------------
 
     private static long windowHandle = -1L;
@@ -70,7 +70,7 @@ public class Display {
             GLFW.glfwInitHint(GLFW.GLFW_PLATFORM, GLFW.GLFW_PLATFORM_WAYLAND);
             GLFW.glfwInitHint(GLFW.GLFW_WAYLAND_LIBDECOR, GLFW.GLFW_WAYLAND_PREFER_LIBDECOR);
             wayland = true;
-            Minecraft.logger.info("Using Wayland as windowing system with libdecor");
+            logger.info("Using Wayland as windowing system with libdecor");
         }
 
         GLFW.glfwDefaultWindowHints();
