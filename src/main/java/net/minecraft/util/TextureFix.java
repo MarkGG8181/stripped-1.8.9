@@ -1,122 +1,124 @@
 package net.minecraft.util;
 
-import java.text.*;
+import java.awt.image.BufferedImage;
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.util.LinkedList;
+import java.util.Map;
 
-import net.minecraft.client.*;
-
-import java.lang.reflect.*;
-import java.awt.image.*;
-
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.client.resources.data.*;
-import net.minecraft.client.resources.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
-
 public class TextureFix {
+
     private static final Logger logger = LogManager.getLogger("TextureFix");
-    public static final DecimalFormat DECIMALFORMAT;
-    public static LinkedList<UnloadEntry> toUnload;
+    public static final DecimalFormat DECIMALFORMAT = new DecimalFormat("#.###");
+    public static final LinkedList<UnloadEntry> toUnload = new LinkedList<>();
 
     public void runFix() {
-        ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager -> {
-            final TextureMap textureMapBlocks = Minecraft.getMinecraft().getTextureMapBlocks();
-            if (textureMapBlocks == null) {
-                return;
-            }
-            long n = 0L;
-            int n2 = 0;
-            for (final TextureAtlasSprite textureAtlasSprite : this.getData(textureMapBlocks).values()) {
-                if (!textureAtlasSprite.hasAnimationMetadata()) {
-                    ++n2;
-                    n += (long) textureAtlasSprite.getIconWidth() * textureAtlasSprite.getIconHeight() * 4;
-                    textureAtlasSprite.setFramesTextureData(new FixList(textureAtlasSprite));
+        Minecraft mc = Minecraft.getMinecraft();
+        IReloadableResourceManager manager = (IReloadableResourceManager) mc.getResourceManager();
+
+        manager.registerReloadListener(resourceManager -> {
+            TextureMap textureMap = mc.getTextureMapBlocks();
+            if (textureMap == null) return;
+
+            Map<String, TextureAtlasSprite> spriteMap = getData(textureMap);
+            if (spriteMap == null) return;
+
+            long savedBytes = 0L;
+            int fixedCount = 0;
+
+            for (TextureAtlasSprite sprite : spriteMap.values()) {
+                if (!sprite.hasAnimationMetadata()) {
+                    fixedCount++;
+                    savedBytes += (long) sprite.getIconWidth() * sprite.getIconHeight() * 4;
+                    sprite.setFramesTextureData(new FixList(sprite));
                 }
             }
-            final long n3 = n * (1 + Minecraft.getMinecraft().gameSettings.mipmapLevels);
-            logger.info("Fixed Textures: {} Saved: {}MB ({} bytes)", n2, TextureFix.DECIMALFORMAT.format(this.toMB(n3)), n3);
+
+            int mipmaps = 1 + mc.gameSettings.mipmapLevels;
+            long totalSaved = savedBytes * mipmaps;
+
+            logger.info("Fixed {} texture(s), saved: {}MB ({} bytes)", fixedCount, DECIMALFORMAT.format(toMB(totalSaved)), totalSaved);
         });
     }
 
-    public static void markForUnload(final TextureAtlasSprite textureAtlasSprite) {
-        TextureFix.toUnload.add(new TextureFix.UnloadEntry(textureAtlasSprite));
+    public static void markForUnload(TextureAtlasSprite sprite) {
+        toUnload.add(new UnloadEntry(sprite));
     }
 
-    public static void onClientTick() {
-        if (TextureFix.toUnload.size() > 0 && TextureFix.toUnload.getFirst().unload()) {
-            TextureFix.toUnload.removeFirst();
-        }
+    private long toMB(long bytes) {
+        return bytes / 1024L / 1024L;
     }
 
-    private long toMB(final long n) {
-        return n / 1024L / 1024L;
-    }
-
-    Map<String, TextureAtlasSprite> getData(final TextureMap textureMap) {
+    @SuppressWarnings("unchecked")
+    private Map<String, TextureAtlasSprite> getData(TextureMap map) {
         try {
-            for (final Field field : textureMap.getClass().getDeclaredFields()) {
+            for (Field field : map.getClass().getDeclaredFields()) {
                 if (field.getType() == Map.class) {
                     field.setAccessible(true);
-                    return (Map<String, TextureAtlasSprite>) field.get(textureMap);
+                    return (Map<String, TextureAtlasSprite>) field.get(map);
                 }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
 
-    public static void reloadTextureData(final TextureAtlasSprite textureAtlasSprite) {
-        final Minecraft minecraft = Minecraft.getMinecraft();
-        reloadTextureData(textureAtlasSprite, minecraft.getResourceManager(), minecraft.getTextureMapBlocks());
+    public static void reloadTextureData(TextureAtlasSprite sprite) {
+        Minecraft mc = Minecraft.getMinecraft();
+        reloadTextureData(sprite, mc.getResourceManager(), mc.getTextureMapBlocks());
     }
 
-    private static void reloadTextureData(final TextureAtlasSprite textureAtlasSprite, final IResourceManager resourceManager, final TextureMap textureMap) {
-        final ResourceLocation resourceLocation = getResourceLocation(textureAtlasSprite, textureMap);
-        if (textureAtlasSprite.hasCustomLoader(resourceManager, resourceLocation)) {
-            textureAtlasSprite.load(resourceManager, resourceLocation);
-        } else {
-            try {
-                final IResource resource = resourceManager.getResource(resourceLocation);
-                final BufferedImage[] array = new BufferedImage[1 + Minecraft.getMinecraft().gameSettings.mipmapLevels];
-                array[0] = TextureUtil.readBufferedImage(resource.getInputStream());
-                textureAtlasSprite.loadSprite(array, (AnimationMetadataSection) null);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+    private static void reloadTextureData(TextureAtlasSprite sprite, IResourceManager manager, TextureMap map) {
+        ResourceLocation location = getResourceLocation(sprite);
+
+        if (sprite.hasCustomLoader(manager, location)) {
+            sprite.load(manager, location);
+            return;
+        }
+
+        try {
+            IResource resource = manager.getResource(location);
+            int mipLevels = 1 + Minecraft.getMinecraft().gameSettings.mipmapLevels;
+
+            BufferedImage[] images = new BufferedImage[mipLevels];
+            images[0] = TextureUtil.readBufferedImage(resource.getInputStream());
+
+            sprite.loadSprite(images, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private static ResourceLocation getResourceLocation(final TextureAtlasSprite textureAtlasSprite, final TextureMap textureMap) {
-        final ResourceLocation resourceLocation = new ResourceLocation(textureAtlasSprite.getIconName());
-        return new ResourceLocation(resourceLocation.getResourceDomain(), String.format("%s/%s%s", "texures", resourceLocation.getResourcePath(), ".png"));
+    private static ResourceLocation getResourceLocation(TextureAtlasSprite sprite) {
+        ResourceLocation base = new ResourceLocation(sprite.getIconName());
+        return new ResourceLocation(base.getResourceDomain(), String.format("texures/%s.png", base.getResourcePath()));
     }
-
-    static {
-        DECIMALFORMAT = new DecimalFormat("#.###");
-        TextureFix.toUnload = new LinkedList<TextureFix.UnloadEntry>();
-    }
-
 
     public static class UnloadEntry {
-        int count;
-        final TextureAtlasSprite sprite;
+        private int countdown = 2;
+        private final TextureAtlasSprite sprite;
 
-        public UnloadEntry(final TextureAtlasSprite sprite) {
-            this.count = 2;
+        public UnloadEntry(TextureAtlasSprite sprite) {
             this.sprite = sprite;
         }
 
         public boolean unload() {
-            --this.count;
-            if (this.count <= 0) {
-                this.sprite.clearFramesTextureData();
+            if (--countdown <= 0) {
+                sprite.clearFramesTextureData();
                 return true;
             }
             return false;
         }
     }
-
 }
