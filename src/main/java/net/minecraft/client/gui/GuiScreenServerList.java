@@ -1,6 +1,9 @@
 package net.minecraft.client.gui;
 
 import java.io.IOException;
+
+import net.minecraft.client.gui.element.impl.GuiButton;
+import net.minecraft.client.gui.element.impl.GuiTextField;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Keyboard;

@@ -2,7 +2,7 @@ package net.minecraft.client.resources;
 
 import com.google.gson.JsonParseException;
 import java.io.IOException;
-import net.minecraft.client.gui.GuiScreenResourcePacks;
+import net.minecraft.client.gui.options.impl.GuiResourcePackSettings;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.client.resources.data.PackMetadataSection;
@@ -17,7 +17,7 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntry
     private final IResourcePack resourcePack;
     private final ResourceLocation resourcePackIcon;
 
-    public ResourcePackListEntryDefault(GuiScreenResourcePacks resourcePacksGUIIn)
+    public ResourcePackListEntryDefault(GuiResourcePackSettings resourcePacksGUIIn)
     {
         super(resourcePacksGUIIn);
         this.resourcePack = this.mc.getResourcePackRepository().rprDefaultResourcePack;

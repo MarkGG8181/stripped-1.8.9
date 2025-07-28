@@ -3,6 +3,10 @@ package net.minecraft.client.gui;
 import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.List;
+
+import net.minecraft.client.gui.element.impl.GuiButton;
+import net.minecraft.client.gui.element.impl.GuiSlot;
+import net.minecraft.client.gui.element.impl.GuiTextField;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;

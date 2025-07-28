@@ -38,17 +38,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiChat;
-import net.minecraft.client.gui.GuiControls;
-import net.minecraft.client.gui.GuiGameOver;
-import net.minecraft.client.gui.GuiIngame;
-import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.util.FontRenderer;
+import net.minecraft.client.gui.ingame.GuiChat;
+import net.minecraft.client.gui.options.impl.GuiControlSettings;
+import net.minecraft.client.gui.ingame.GuiGameOver;
+import net.minecraft.client.gui.ingame.GuiIngame;
+import net.minecraft.client.gui.ingame.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiMemoryErrorScreen;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiSleepMP;
-import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.ingame.GuiSleepMP;
+import net.minecraft.client.gui.util.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.main.GameConfiguration;
@@ -2240,7 +2240,7 @@ public class Minecraft implements IThreadListener {
         int i = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() : Keyboard.getEventKey();
 
         if (i != 0 && !Keyboard.isRepeatEvent()) {
-            if (!(this.currentScreen instanceof GuiControls) || ((GuiControls) this.currentScreen).time <= getSystemTime() - 20L) {
+            if (!(this.currentScreen instanceof GuiControlSettings) || ((GuiControlSettings) this.currentScreen).time <= getSystemTime() - 20L) {
                 if (Keyboard.getEventKeyState()) {
                     if (i == this.gameSettings.keyBindFullscreen.getKeyCode()) {
                         this.toggleFullscreen();

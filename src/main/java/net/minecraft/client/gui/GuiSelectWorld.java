@@ -8,6 +8,10 @@ import java.util.Date;
 
 import net.minecraft.client.AnvilConverterException;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.element.data.GuiYesNoCallback;
+import net.minecraft.client.gui.element.impl.GuiButton;
+import net.minecraft.client.gui.element.impl.GuiSlot;
+import net.minecraft.client.gui.element.impl.GuiYesNo;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.WorldSettings;

@@ -14,6 +14,8 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.element.Gui;
+import net.minecraft.client.gui.element.impl.GuiListExtended;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;

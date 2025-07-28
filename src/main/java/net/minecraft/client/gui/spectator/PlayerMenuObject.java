@@ -3,7 +3,7 @@ package net.minecraft.client.gui.spectator;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.element.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.network.play.client.C18PacketSpectate;
 import net.minecraft.util.ChatComponentText;

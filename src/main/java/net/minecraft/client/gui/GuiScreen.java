@@ -18,6 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.element.Gui;
+import net.minecraft.client.gui.element.data.GuiYesNoCallback;
+import net.minecraft.client.gui.element.impl.GuiButton;
+import net.minecraft.client.gui.element.impl.GuiConfirmOpenLink;
+import net.minecraft.client.gui.element.impl.GuiLabel;
+import net.minecraft.client.gui.util.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;

@@ -2,7 +2,7 @@ package net.minecraft.client.renderer.tileentity;
 
 import com.google.common.collect.Maps;
 import java.util.Map;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.util.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.TextureManager;

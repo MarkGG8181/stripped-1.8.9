@@ -4,6 +4,9 @@ import com.google.common.base.Predicate;
 import com.google.common.primitives.Floats;
 import java.io.IOException;
 import java.util.Random;
+
+import net.minecraft.client.gui.element.Gui;
+import net.minecraft.client.gui.element.impl.*;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;

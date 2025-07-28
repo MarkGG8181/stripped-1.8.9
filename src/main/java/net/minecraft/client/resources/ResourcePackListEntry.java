@@ -3,11 +3,11 @@ package net.minecraft.client.resources;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiListExtended;
-import net.minecraft.client.gui.GuiScreenResourcePacks;
-import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.GuiYesNoCallback;
+import net.minecraft.client.gui.element.Gui;
+import net.minecraft.client.gui.element.impl.GuiListExtended;
+import net.minecraft.client.gui.options.impl.GuiResourcePackSettings;
+import net.minecraft.client.gui.element.impl.GuiYesNo;
+import net.minecraft.client.gui.element.data.GuiYesNoCallback;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
@@ -19,9 +19,9 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
     private static final IChatComponent INCOMPATIBLE_OLD = new ChatComponentTranslation("resourcePack.incompatible.old", new Object[0]);
     private static final IChatComponent INCOMPATIBLE_NEW = new ChatComponentTranslation("resourcePack.incompatible.new", new Object[0]);
     protected final Minecraft mc;
-    protected final GuiScreenResourcePacks resourcePacksGUI;
+    protected final GuiResourcePackSettings resourcePacksGUI;
 
-    public ResourcePackListEntry(GuiScreenResourcePacks resourcePacksGUIIn) {
+    public ResourcePackListEntry(GuiResourcePackSettings resourcePacksGUIIn) {
         this.resourcePacksGUI = resourcePacksGUIIn;
         this.mc = Minecraft.getMinecraft();
     }

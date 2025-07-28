@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Random;
 
+import net.minecraft.client.gui.element.data.GuiYesNoCallback;
+import net.minecraft.client.gui.element.impl.GuiButton;
+import net.minecraft.client.gui.element.impl.GuiConfirmOpenLink;
+import net.minecraft.client.gui.options.GuiOptions;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;

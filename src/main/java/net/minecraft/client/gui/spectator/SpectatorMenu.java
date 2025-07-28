@@ -6,8 +6,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiSpectator;
+import net.minecraft.client.gui.element.Gui;
 import net.minecraft.client.gui.spectator.categories.SpectatorDetails;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
