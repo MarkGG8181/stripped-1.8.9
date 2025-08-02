@@ -274,7 +274,7 @@ public class Minecraft implements IThreadListener {
      */
     private static int debugFPS;
 
-    private boolean stopTextureFix;
+    private final boolean stopTextureFix;
 
     /**
      * When you place a block, it's set to 6, decremented once per tick, when it's 0, you can place another block.

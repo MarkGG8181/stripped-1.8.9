@@ -205,7 +205,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private long nanoTimeSinceStatusRefresh = 0L;
     private final GameProfileRepository profileRepo;
     private final PlayerProfileCache profileCache;
-    protected final Queue<FutureTask<?>> futureTaskQueue = Queues.<FutureTask<?>>newArrayDeque();
+    protected final Queue<FutureTask<?>> futureTaskQueue = Queues.newArrayDeque();
     private Thread serverThread;
     private long currentTime = getCurrentTimeMillis();
 
@@ -643,7 +643,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
         synchronized (this.futureTaskQueue) {
             while (!this.futureTaskQueue.isEmpty()) {
-                Util.runTask((FutureTask) this.futureTaskQueue.poll(), logger);
+                Util.runTask(this.futureTaskQueue.poll(), logger);
             }
         }
 
