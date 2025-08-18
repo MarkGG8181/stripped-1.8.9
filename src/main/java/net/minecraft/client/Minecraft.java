@@ -52,7 +52,6 @@ import net.minecraft.client.gui.util.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.main.GameConfiguration;
-import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -280,8 +279,6 @@ public class Minecraft implements IThreadListener {
      * When you place a block, it's set to 6, decremented once per tick, when it's 0, you can place another block.
      */
     private int rightClickDelayTimer;
-    private String serverName;
-    private int serverPort;
 
     /**
      * Does the actual gameplay have focus. If so then mouse and keys will affect the player instead of menus.
@@ -365,31 +362,26 @@ public class Minecraft implements IThreadListener {
 
     public Minecraft(GameConfiguration gameConfig) {
         theMinecraft = this;
-        this.stopTextureFix = gameConfig.gameInfo.stopTextureFix;
-        this.mcDataDir = gameConfig.folderInfo.mcDataDir;
-        this.fileAssets = gameConfig.folderInfo.assetsDir;
-        this.fileResourcepacks = gameConfig.folderInfo.resourcePacksDir;
-        this.launchedVersion = gameConfig.gameInfo.version;
-        this.profileProperties = gameConfig.userInfo.profileProperties;
-        this.mcDefaultResourcePack = new DefaultResourcePack((new ResourceIndex(gameConfig.folderInfo.assetsDir, gameConfig.folderInfo.assetIndex)).getResourceMap());
-        this.proxy = gameConfig.userInfo.proxy == null ? Proxy.NO_PROXY : gameConfig.userInfo.proxy;
-        assert gameConfig.userInfo.proxy != null;
-        this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo.proxy, UUID.randomUUID().toString())).createMinecraftSessionService();
-        this.session = gameConfig.userInfo.session;
+        this.stopTextureFix = gameConfig.gameInfo().stopTextureFix();
+        this.mcDataDir = gameConfig.folderInfo().mcDataDir();
+        this.fileAssets = gameConfig.folderInfo().assetsDir();
+        this.fileResourcepacks = gameConfig.folderInfo().resourcePacksDir();
+        this.launchedVersion = gameConfig.gameInfo().version();
+        this.profileProperties = gameConfig.userInfo().profileProperties();
+        this.mcDefaultResourcePack = new DefaultResourcePack((new ResourceIndex(gameConfig.folderInfo().assetsDir(), gameConfig.folderInfo().assetIndex())).getResourceMap());
+        this.proxy = gameConfig.userInfo().proxy() == null ? Proxy.NO_PROXY : gameConfig.userInfo().proxy();
+        assert gameConfig.userInfo().proxy() != null;
+        this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo().proxy(), UUID.randomUUID().toString())).createMinecraftSessionService();
+        this.session = gameConfig.userInfo().session();
         logger.info("Setting user: {}", this.session.getUsername());
         logger.info("(Session ID is {})", this.session.getSessionID());
-        this.displayWidth = gameConfig.displayInfo.width > 0 ? gameConfig.displayInfo.width : 1;
-        this.displayHeight = gameConfig.displayInfo.height > 0 ? gameConfig.displayInfo.height : 1;
-        this.tempDisplayWidth = gameConfig.displayInfo.width;
-        this.tempDisplayHeight = gameConfig.displayInfo.height;
-        this.fullscreen = gameConfig.displayInfo.fullscreen;
+        this.displayWidth = gameConfig.displayInfo().width() > 0 ? gameConfig.displayInfo().width() : 1;
+        this.displayHeight = gameConfig.displayInfo().height() > 0 ? gameConfig.displayInfo().height() : 1;
+        this.tempDisplayWidth = gameConfig.displayInfo().width();
+        this.tempDisplayHeight = gameConfig.displayInfo().height();
+        this.fullscreen = gameConfig.displayInfo().fullscreen();
         this.jvm64bit = isJvm64bit();
         this.theIntegratedServer = new IntegratedServer(this);
-
-        if (gameConfig.serverInfo.serverName != null) {
-            this.serverName = gameConfig.serverInfo.serverName;
-            this.serverPort = gameConfig.serverInfo.serverPort;
-        }
 
         ImageIO.setUseCache(false);
         Bootstrap.register();
@@ -526,11 +518,7 @@ public class Minecraft implements IThreadListener {
             textureFix.runFix();
         }
 
-        if (this.serverName != null) {
-            this.displayGuiScreen(new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort));
-        } else {
-            this.displayGuiScreen(new GuiMainMenu());
-        }
+        this.displayGuiScreen(new GuiMainMenu());
 
         this.renderEngine.deleteTexture(this.mojangLogo);
         this.mojangLogo = null;

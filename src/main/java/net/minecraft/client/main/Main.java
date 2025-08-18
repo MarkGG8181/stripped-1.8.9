@@ -10,7 +10,6 @@ import java.net.Authenticator;
 import java.net.InetSocketAddress;
 import java.net.PasswordAuthentication;
 import java.net.Proxy;
-import java.net.Proxy.Type;
 import java.util.List;
 
 import joptsimple.OptionParser;
@@ -30,8 +29,6 @@ public class Main {
         parser.accepts("checkGlErrors");
         parser.accepts("stopTextureFix");
 
-        OptionSpec<String> server = parser.accepts("server").withRequiredArg();
-        OptionSpec<Integer> port = parser.accepts("port").withRequiredArg().ofType(Integer.class).defaultsTo(25565);
         OptionSpec<File> gameDir = parser.accepts("gameDir").withRequiredArg().ofType(File.class).defaultsTo(new File("."));
         OptionSpec<File> assetsDir = parser.accepts("assetsDir").withRequiredArg().ofType(File.class);
         OptionSpec<File> resourcePackDir = parser.accepts("resourcePackDir").withRequiredArg().ofType(File.class);
@@ -104,9 +101,6 @@ public class Main {
         String sessionUUID = options.has(uuid) ? options.valueOf(uuid) : options.valueOf(username);
         String assetIndexVal = options.has(assetIndex) ? options.valueOf(assetIndex) : null;
 
-        String serverHost = options.valueOf(server);
-        int serverPort = options.valueOf(port);
-
         Session session = new Session(
                 options.valueOf(username),
                 sessionUUID,
@@ -118,8 +112,7 @@ public class Main {
                 new GameConfiguration.UserInformation(session, propertyMap, proxy),
                 new GameConfiguration.DisplayInformation(screenWidth, screenHeight, fullscreen, checkGlErrors),
                 new GameConfiguration.FolderInformation(baseDir, resourcePacks, assets, assetIndexVal),
-                new GameConfiguration.GameInformation(gameVersion, stopTextureFix),
-                new GameConfiguration.ServerInformation(serverHost, serverPort)
+                new GameConfiguration.GameInformation(gameVersion, stopTextureFix)
         );
 
         // Shutdown hook
