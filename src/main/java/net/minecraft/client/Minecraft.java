@@ -34,6 +34,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
+import com.port.gpuTape.GpuTape;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.SoundHandler;
@@ -1756,6 +1757,8 @@ public class Minecraft implements IThreadListener {
 
         this.mcProfiler.endSection();
         this.systemTime = getSystemTime();
+
+        GpuTape.onTick();
     }
 
     /**
