@@ -60,7 +60,13 @@ public class Display {
     }
 
     public static void create() {
-        GLFWErrorCallback.createPrint(System.err).set();
+        GLFWErrorCallback.create((error, description) -> {
+            if (error == GLFW.GLFW_FEATURE_UNAVAILABLE) {
+                return;
+            }
+
+            System.err.println("[GLFW] " + error + ": " + GLFWErrorCallback.getDescription(description));
+        }).set();
 
         if (!GLFW.glfwInit()) {
             throw new RuntimeException("Unable to initialize GLFW");
