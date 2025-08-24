@@ -1186,7 +1186,6 @@ death.attack.outOfWorld=%1$s fell out of the world
 deathScreen.respawn=Respawn
 deathScreen.deleteWorld=Delete world
 deathScreen.titleScreen=Title screen
-deathScreen.score=Score
 deathScreen.title.hardcore=Game over!
 deathScreen.hardcoreInfo=You cannot respawn in hardcore mode!
 deathScreen.title=You died!
