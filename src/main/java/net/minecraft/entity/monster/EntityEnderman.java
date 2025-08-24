@@ -71,9 +71,9 @@ public class EntityEnderman extends EntityMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Short((short) 0));
-        this.dataWatcher.addObject(17, new Byte((byte) 0));
-        this.dataWatcher.addObject(18, new Byte((byte) 0));
+        this.dataWatcher.addObject(16, (short) 0);
+        this.dataWatcher.addObject(17, (byte) 0);
+        this.dataWatcher.addObject(18, (byte) 0);
     }
 
     /**
@@ -179,9 +179,9 @@ public class EntityEnderman extends EntityMob {
         Vec3 vec3 = new Vec3(this.posX - p_70816_1_.posX, this.getEntityBoundingBox().minY + (double) (this.height / 2.0F) - p_70816_1_.posY + (double) p_70816_1_.getEyeHeight(), this.posZ - p_70816_1_.posZ);
         vec3 = vec3.normalize();
         double d0 = 16.0D;
-        double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.xCoord * d0;
-        double d2 = this.posY + (double) (this.rand.nextInt(16) - 8) - vec3.yCoord * d0;
-        double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.zCoord * d0;
+        double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.x * d0;
+        double d2 = this.posY + (double) (this.rand.nextInt(16) - 8) - vec3.y * d0;
+        double d3 = this.posZ + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3.z * d0;
         return this.teleportTo(d1, d2, d3);
     }
 

@@ -3,20 +3,7 @@ package net.minecraft.util;
 import com.google.common.base.MoreObjects;
 
 public class Vec3i implements Comparable<Vec3i> {
-    /**
-     * X coordinate
-     */
-    private final int x;
-
-    /**
-     * Y coordinate
-     */
-    private final int y;
-
-    /**
-     * Z coordinate
-     */
-    private final int z;
+    private final int x, y, z;
 
     public Vec3i(int xIn, int yIn, int zIn) {
         this.x = xIn;
@@ -31,11 +18,10 @@ public class Vec3i implements Comparable<Vec3i> {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (!(p_equals_1_ instanceof Vec3i)) {
+        } else if (!(p_equals_1_ instanceof Vec3i vec3i)) {
             return false;
         } else {
-            Vec3i vec3i = (Vec3i) p_equals_1_;
-            return this.getX() != vec3i.getX() ? false : (this.getY() != vec3i.getY() ? false : this.getZ() == vec3i.getZ());
+            return this.getX() == vec3i.getX() && (this.getY() == vec3i.getY() && this.getZ() == vec3i.getZ());
         }
     }
 
@@ -47,23 +33,14 @@ public class Vec3i implements Comparable<Vec3i> {
         return this.getY() == p_compareTo_1_.getY() ? (this.getZ() == p_compareTo_1_.getZ() ? this.getX() - p_compareTo_1_.getX() : this.getZ() - p_compareTo_1_.getZ()) : this.getY() - p_compareTo_1_.getY();
     }
 
-    /**
-     * Get the X coordinate
-     */
     public int getX() {
         return this.x;
     }
 
-    /**
-     * Get the Y coordinate
-     */
     public int getY() {
         return this.y;
     }
 
-    /**
-     * Get the Z coordinate
-     */
     public int getZ() {
         return this.z;
     }
@@ -99,7 +76,7 @@ public class Vec3i implements Comparable<Vec3i> {
      * Calculate squared distance to the given Vector
      */
     public double distanceSq(Vec3i to) {
-        return this.distanceSq((double) to.getX(), (double) to.getY(), (double) to.getZ());
+        return this.distanceSq(to.getX(), to.getY(), to.getZ());
     }
 
     public String toString() {

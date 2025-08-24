@@ -385,7 +385,7 @@ public class RenderManager
                 {
                     if (!this.renderOutlines)
                     {
-                        render.doRenderShadowAndFire(entity, x, y, z, entityYaw, partialTicks);
+                        render.doRenderShadowAndFire(entity, x, y, z, partialTicks);
                     }
                 }
                 catch (Throwable throwable1)
@@ -458,7 +458,7 @@ public class RenderManager
         Vec3 vec3 = entityIn.getLook(partialTicks);
         worldrenderer.begin(3, DefaultVertexFormats.POSITION_COLOR);
         worldrenderer.pos(x, y + (double)entityIn.getEyeHeight(), z).color(0, 0, 255, 255).endVertex();
-        worldrenderer.pos(x + vec3.xCoord * 2.0D, y + (double)entityIn.getEyeHeight() + vec3.yCoord * 2.0D, z + vec3.zCoord * 2.0D).color(0, 0, 255, 255).endVertex();
+        worldrenderer.pos(x + vec3.x * 2.0D, y + (double)entityIn.getEyeHeight() + vec3.y * 2.0D, z + vec3.z * 2.0D).color(0, 0, 255, 255).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
         GlStateManager.enableLighting();

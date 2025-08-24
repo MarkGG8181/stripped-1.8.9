@@ -37,9 +37,9 @@ public class EntityAIPanic extends EntityAIBase
             }
             else
             {
-                this.randPosX = vec3.xCoord;
-                this.randPosY = vec3.yCoord;
-                this.randPosZ = vec3.zCoord;
+                this.randPosX = vec3.x;
+                this.randPosY = vec3.y;
+                this.randPosZ = vec3.z;
                 return true;
             }
         }

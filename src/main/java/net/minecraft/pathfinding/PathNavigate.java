@@ -194,7 +194,7 @@ public abstract class PathNavigate
             var vec3 = this.getEntityPosition();
             var vec31 = this.currentPath.getVectorFromIndex(this.theEntity, this.currentPath.getCurrentPathIndex());
 
-            if (vec3.yCoord > vec31.yCoord && !this.theEntity.onGround && MathHelper.floor_double(vec3.xCoord) == MathHelper.floor_double(vec31.xCoord) && MathHelper.floor_double(vec3.zCoord) == MathHelper.floor_double(vec31.zCoord))
+            if (vec3.y > vec31.y && !this.theEntity.onGround && MathHelper.floor_double(vec3.x) == MathHelper.floor_double(vec31.x) && MathHelper.floor_double(vec3.z) == MathHelper.floor_double(vec31.z))
             {
                 this.currentPath.setCurrentPathIndex(this.currentPath.getCurrentPathIndex() + 1);
             }
@@ -206,7 +206,7 @@ public abstract class PathNavigate
 
             if (vec32 != null)
             {
-                var axisalignedbb1 = (new AxisAlignedBB(vec32.xCoord, vec32.yCoord, vec32.zCoord, vec32.xCoord, vec32.yCoord, vec32.zCoord)).expand(0.5D, 0.5D, 0.5D);
+                var axisalignedbb1 = (new AxisAlignedBB(vec32.x, vec32.y, vec32.z, vec32.x, vec32.y, vec32.z)).expand(0.5D, 0.5D, 0.5D);
                 var list = this.worldObj.getCollidingBoundingBoxes(this.theEntity, axisalignedbb1.addCoord(0.0D, -1.0D, 0.0D));
                 var d0 = -1.0D;
                 axisalignedbb1 = axisalignedbb1.offset(0.0D, 1.0D, 0.0D);
@@ -216,7 +216,7 @@ public abstract class PathNavigate
                     d0 = axisalignedbb.calculateYOffset(axisalignedbb1, d0);
                 }
 
-                this.theEntity.getMoveHelper().setMoveTo(vec32.xCoord, vec32.yCoord + d0, vec32.zCoord, this.speed);
+                this.theEntity.getMoveHelper().setMoveTo(vec32.x, vec32.y + d0, vec32.z, this.speed);
             }
         }
     }
@@ -228,7 +228,7 @@ public abstract class PathNavigate
 
         for (var j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
         {
-            if (this.currentPath.getPathPointFromIndex(j).yCoord != (int)vec3.yCoord)
+            if (this.currentPath.getPathPointFromIndex(j).yCoord != (int) vec3.y)
             {
                 i = j;
                 break;

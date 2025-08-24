@@ -1,6 +1,5 @@
 package net.minecraft.server.network;
 
-import com.google.common.base.Charsets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import io.netty.channel.ChannelFuture;
@@ -11,6 +10,7 @@ import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.charset.StandardCharsets;
 import java.security.PrivateKey;
 import java.util.Arrays;
 import java.util.Random;
@@ -194,7 +194,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable 
     }
 
     protected GameProfile getOfflineProfile(GameProfile original) {
-        UUID uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + original.getName()).getBytes(Charsets.UTF_8));
+        UUID uuid = UUID.nameUUIDFromBytes(("OfflinePlayer:" + original.getName()).getBytes(StandardCharsets.UTF_8));
         return new GameProfile(uuid, original.getName());
     }
 

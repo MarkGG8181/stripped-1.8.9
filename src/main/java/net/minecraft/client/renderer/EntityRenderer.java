@@ -384,11 +384,11 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 }
 
                 Vec3 vec31 = entity.getLook(partialTicks);
-                Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
+                Vec3 vec32 = vec3.addVector(vec31.x * d0, vec31.y * d0, vec31.z * d0);
                 Entity pointedEntity = null;
                 Vec3 vec33 = null;
                 float f = 1.0F;
-                List<Entity> list = this.mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double) f, (double) f, (double) f), Predicates.and(EntitySelectors.NOT_SPECTATING, p_apply_1_ -> {
+                List<Entity> list = this.mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.x * d0, vec31.y * d0, vec31.z * d0).expand((double) f, (double) f, (double) f), Predicates.and(EntitySelectors.NOT_SPECTATING, p_apply_1_ -> {
                     assert p_apply_1_ != null;
                     return p_apply_1_.canBeCollidedWith();
                 }));
@@ -479,7 +479,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 f = this.mc.gameSettings.fovSetting;
                 f = f * (this.fovModifierHandPrev + (this.fovModifierHand - this.fovModifierHandPrev) * partialTicks);
             }
-            
+
             if (mc.currentScreen == null && GameSettings.isKeyDown(this.mc.gameSettings.keyBindZoom)) {
                 this.mc.gameSettings.smoothCamera = true;
                 this.mc.renderGlobal.displayListEntitiesDirty = true;
@@ -1463,13 +1463,13 @@ public class EntityRenderer implements IResourceManagerReloadListener {
         float f = 0.25F + 0.75F * (float) this.mc.gameSettings.renderDistanceChunks / 32.0F;
         f = 1.0F - (float) Math.pow((double) f, 0.25D);
         Vec3 vec3 = world.getSkyColor(this.mc.getRenderViewEntity(), partialTicks);
-        float f1 = (float) vec3.xCoord;
-        float f2 = (float) vec3.yCoord;
-        float f3 = (float) vec3.zCoord;
+        float f1 = (float) vec3.x;
+        float f2 = (float) vec3.y;
+        float f3 = (float) vec3.z;
         Vec3 vec31 = world.getFogColor(partialTicks);
-        this.fogColorRed = (float) vec31.xCoord;
-        this.fogColorGreen = (float) vec31.yCoord;
-        this.fogColorBlue = (float) vec31.zCoord;
+        this.fogColorRed = (float) vec31.x;
+        this.fogColorGreen = (float) vec31.y;
+        this.fogColorBlue = (float) vec31.z;
 
         if (this.mc.gameSettings.renderDistanceChunks >= 4) {
             double d0 = -1.0D;
@@ -1518,9 +1518,9 @@ public class EntityRenderer implements IResourceManagerReloadListener {
 
         if (this.cloudFog) {
             Vec3 vec33 = world.getCloudColour(partialTicks);
-            this.fogColorRed = (float) vec33.xCoord;
-            this.fogColorGreen = (float) vec33.yCoord;
-            this.fogColorBlue = (float) vec33.zCoord;
+            this.fogColorRed = (float) vec33.x;
+            this.fogColorGreen = (float) vec33.y;
+            this.fogColorBlue = (float) vec33.z;
         } else if (block.getMaterial() == Material.water) {
             float f12 = (float) EnchantmentHelper.getRespiration(entity) * 0.2F;
 

@@ -34,9 +34,9 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
 
         if (p_i45193_9_ != null)
         {
-            this.motionX = (float)p_i45193_9_.xCoord;
-            this.motionY = (float)p_i45193_9_.yCoord;
-            this.motionZ = (float)p_i45193_9_.zCoord;
+            this.motionX = (float) p_i45193_9_.x;
+            this.motionY = (float) p_i45193_9_.y;
+            this.motionZ = (float) p_i45193_9_.z;
         }
     }
 

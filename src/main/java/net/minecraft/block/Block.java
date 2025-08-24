@@ -705,21 +705,21 @@ public class Block {
      * Checks if a vector is within the Y and Z bounds of the block.
      */
     private boolean isVecInsideYZBounds(Vec3 point) {
-        return point == null ? false : point.yCoord >= this.minY && point.yCoord <= this.maxY && point.zCoord >= this.minZ && point.zCoord <= this.maxZ;
+        return point == null ? false : point.y >= this.minY && point.y <= this.maxY && point.z >= this.minZ && point.z <= this.maxZ;
     }
 
     /**
      * Checks if a vector is within the X and Z bounds of the block.
      */
     private boolean isVecInsideXZBounds(Vec3 point) {
-        return point == null ? false : point.xCoord >= this.minX && point.xCoord <= this.maxX && point.zCoord >= this.minZ && point.zCoord <= this.maxZ;
+        return point == null ? false : point.x >= this.minX && point.x <= this.maxX && point.z >= this.minZ && point.z <= this.maxZ;
     }
 
     /**
      * Checks if a vector is within the X and Y bounds of the block.
      */
     private boolean isVecInsideXYBounds(Vec3 point) {
-        return point == null ? false : point.xCoord >= this.minX && point.xCoord <= this.maxX && point.yCoord >= this.minY && point.yCoord <= this.maxY;
+        return point == null ? false : point.x >= this.minX && point.x <= this.maxX && point.y >= this.minY && point.y <= this.maxY;
     }
 
     /**

@@ -180,7 +180,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
         if (movingobjectposition != null)
         {
-            vec31 = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+            vec31 = new Vec3(movingobjectposition.hitVec.x, movingobjectposition.hitVec.y, movingobjectposition.hitVec.z);
         }
 
         if (!this.worldObj.isRemote)

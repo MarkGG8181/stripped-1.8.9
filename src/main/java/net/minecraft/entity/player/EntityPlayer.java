@@ -1,9 +1,9 @@
 package net.minecraft.entity.player;
 
-import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -435,9 +435,9 @@ public abstract class EntityPlayer extends EntityLivingBase {
                 vec31 = vec31.addVector(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ);
 
                 if (itemStackIn.getHasSubtypes()) {
-                    this.worldObj.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord + 0.05D, vec3.zCoord, new int[]{Item.getIdFromItem(itemStackIn.getItem()), itemStackIn.getMetadata()});
+                    this.worldObj.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec31.x, vec31.y, vec31.z, vec3.x, vec3.y + 0.05D, vec3.z, Item.getIdFromItem(itemStackIn.getItem()), itemStackIn.getMetadata());
                 } else {
-                    this.worldObj.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec31.xCoord, vec31.yCoord, vec31.zCoord, vec3.xCoord, vec3.yCoord + 0.05D, vec3.zCoord, new int[]{Item.getIdFromItem(itemStackIn.getItem())});
+                    this.worldObj.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec31.x, vec31.y, vec31.z, vec3.x, vec3.y + 0.05D, vec3.z, Item.getIdFromItem(itemStackIn.getItem()));
                 }
             }
 
@@ -617,10 +617,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         this.setSize(0.2F, 0.2F);
         this.setPosition(this.posX, this.posY, this.posZ);
         this.motionY = 0.10000000149011612D;
-
-        if (this.getName().equals("Notch")) {
-            this.dropItem(new ItemStack(Items.apple, 1), true, false);
-        }
 
         if (!this.worldObj.getGameRules().getBoolean("keepInventory")) {
             this.inventory.dropAllItems();
@@ -1946,7 +1942,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     }
 
     public static UUID getOfflineUUID(String username) {
-        return UUID.nameUUIDFromBytes(("OfflinePlayer:" + username).getBytes(Charsets.UTF_8));
+        return UUID.nameUUIDFromBytes(("OfflinePlayer:" + username).getBytes(StandardCharsets.UTF_8));
     }
 
     /**

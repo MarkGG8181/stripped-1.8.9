@@ -82,7 +82,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
 
             if (vec3 != null)
             {
-                this.entityObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0D);
+                this.entityObj.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, 1.0D);
             }
         }
         else

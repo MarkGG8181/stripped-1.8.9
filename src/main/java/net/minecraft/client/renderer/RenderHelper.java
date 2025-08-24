@@ -35,11 +35,11 @@ public class RenderHelper
         float f = 0.4F;
         float f1 = 0.6F;
         float f2 = 0.0F;
-        GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, (FloatBuffer)setColorBuffer(LIGHT0_POS.xCoord, LIGHT0_POS.yCoord, LIGHT0_POS.zCoord, 0.0D));
+        GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, (FloatBuffer)setColorBuffer(LIGHT0_POS.x, LIGHT0_POS.y, LIGHT0_POS.z, 0.0D));
         GL11.glLight(GL11.GL_LIGHT0, GL11.GL_DIFFUSE, (FloatBuffer)setColorBuffer(f1, f1, f1, 1.0F));
         GL11.glLight(GL11.GL_LIGHT0, GL11.GL_AMBIENT, (FloatBuffer)setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
         GL11.glLight(GL11.GL_LIGHT0, GL11.GL_SPECULAR, (FloatBuffer)setColorBuffer(f2, f2, f2, 1.0F));
-        GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, (FloatBuffer)setColorBuffer(LIGHT1_POS.xCoord, LIGHT1_POS.yCoord, LIGHT1_POS.zCoord, 0.0D));
+        GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, (FloatBuffer)setColorBuffer(LIGHT1_POS.x, LIGHT1_POS.y, LIGHT1_POS.z, 0.0D));
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, (FloatBuffer)setColorBuffer(f1, f1, f1, 1.0F));
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_AMBIENT, (FloatBuffer)setColorBuffer(0.0F, 0.0F, 0.0F, 1.0F));
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_SPECULAR, (FloatBuffer)setColorBuffer(f2, f2, f2, 1.0F));

@@ -71,7 +71,7 @@ public class RandomPositionGenerator
             int k1 = random.nextInt(2 * y + 1) - y;
             int i1 = random.nextInt(2 * xz + 1) - xz;
 
-            if (targetVec3 == null || (double)l * targetVec3.xCoord + (double)i1 * targetVec3.zCoord >= 0.0D)
+            if (targetVec3 == null || (double)l * targetVec3.x + (double)i1 * targetVec3.z >= 0.0D)
             {
                 if (entitycreatureIn.hasHome() && xz > 1)
                 {

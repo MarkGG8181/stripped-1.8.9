@@ -206,7 +206,7 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                     GlStateManager.popMatrix();
                 } else {
-                    this.renderLivingLabel(entity, s, x, y, z, 64);
+                    this.renderLivingLabel(entity, s, x, y, z);
                 }
             }
         }

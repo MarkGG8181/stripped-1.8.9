@@ -118,7 +118,7 @@ public class EntityAIPlay extends EntityAIBase
                 return;
             }
 
-            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.speed);
+            this.villagerObj.getNavigator().tryMoveToXYZ(vec3.x, vec3.y, vec3.z, this.speed);
         }
     }
 }

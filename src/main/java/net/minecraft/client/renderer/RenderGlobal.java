@@ -78,7 +78,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
-import net.minecraft.util.Vector3d;
 import net.minecraft.world.IWorldAccess;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.Chunk;
@@ -181,7 +180,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private boolean debugFixTerrainFrustum = false;
     private ClippingHelper debugFixedClippingHelper;
     private final Vector4f[] debugTerrainMatrix = new Vector4f[8];
-    private final Vector3d debugTerrainFrustumPosition = new Vector3d();
+    private final Vec3 debugTerrainFrustumPosition = new Vec3();
     private boolean vboEnabled = false;
     IRenderChunkFactory renderChunkFactory;
     private double prevRenderSortX;
@@ -1073,9 +1072,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         } else if (this.mc.theWorld.provider.isSurfaceWorld()) {
             GlStateManager.disableTexture2D();
             Vec3 vec3 = this.theWorld.getSkyColor(this.mc.getRenderViewEntity(), partialTicks);
-            float f = (float) vec3.xCoord;
-            float f1 = (float) vec3.yCoord;
-            float f2 = (float) vec3.zCoord;
+            float f = (float) vec3.x;
+            float f1 = (float) vec3.y;
+            float f2 = (float) vec3.z;
 
             if (pass != 2) {
                 float f3 = (f * 30.0F + f1 * 59.0F + f2 * 11.0F) / 100.0F;
@@ -1202,7 +1201,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             GlStateManager.popMatrix();
             GlStateManager.disableTexture2D();
             GlStateManager.color(0.0F, 0.0F, 0.0F);
-            double d0 = this.mc.thePlayer.getPositionEyes(partialTicks).yCoord - this.theWorld.getHorizon();
+            double d0 = this.mc.thePlayer.getPositionEyes(partialTicks).y - this.theWorld.getHorizon();
 
             if (d0 < 0.0D) {
                 GlStateManager.pushMatrix();
@@ -1277,9 +1276,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
                 Vec3 vec3 = this.theWorld.getCloudColour(partialTicks);
-                float f1 = (float) vec3.xCoord;
-                float f2 = (float) vec3.yCoord;
-                float f3 = (float) vec3.zCoord;
+                float f1 = (float) vec3.x;
+                float f2 = (float) vec3.y;
+                float f3 = (float) vec3.z;
 
                 if (pass != 2) {
                     float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
@@ -1346,9 +1345,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         Vec3 vec3 = this.theWorld.getCloudColour(partialTicks);
-        float f4 = (float) vec3.xCoord;
-        float f5 = (float) vec3.yCoord;
-        float f6 = (float) vec3.zCoord;
+        float f4 = (float) vec3.x;
+        float f5 = (float) vec3.y;
+        float f6 = (float) vec3.z;
 
         if (pass != 2) {
             float f7 = (f4 * 30.0F + f5 * 59.0F + f6 * 11.0F) / 100.0F;

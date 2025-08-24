@@ -83,7 +83,7 @@ public class Village {
 
             if (vec3 != null) {
                 EntityIronGolem entityirongolem = new EntityIronGolem(this.worldObj);
-                entityirongolem.setPosition(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+                entityirongolem.setPosition(vec3.x, vec3.y, vec3.z);
                 this.worldObj.spawnEntityInWorld(entityirongolem);
                 ++this.numIronGolems;
             }

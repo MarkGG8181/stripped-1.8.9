@@ -94,12 +94,12 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     protected void entityInit() {
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(1));
-        this.dataWatcher.addObject(19, new Float(0.0F));
-        this.dataWatcher.addObject(20, new Integer(0));
-        this.dataWatcher.addObject(21, new Integer(6));
-        this.dataWatcher.addObject(22, Byte.valueOf((byte) 0));
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 1);
+        this.dataWatcher.addObject(19, 0.0F);
+        this.dataWatcher.addObject(20, 0);
+        this.dataWatcher.addObject(21, 6);
+        this.dataWatcher.addObject(22, (byte) 0);
     }
 
     /**
@@ -519,7 +519,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         Vec3 vec31 = this.func_70489_a(this.posX, this.posY, this.posZ);
 
         if (vec31 != null && vec3 != null) {
-            double d14 = (vec3.yCoord - vec31.yCoord) * 0.05D;
+            double d14 = (vec3.y - vec31.y) * 0.05D;
             d5 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
             if (d5 > 0.0D) {
@@ -527,7 +527,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
                 this.motionZ = this.motionZ / d5 * (d5 + d14);
             }
 
-            this.setPosition(this.posX, vec31.yCoord, this.posZ);
+            this.setPosition(this.posX, vec31.y, this.posZ);
         }
 
         int j = MathHelper.floor_double(this.posX);
