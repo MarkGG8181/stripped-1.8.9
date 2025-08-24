@@ -4,13 +4,12 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 
 public class StringTranslate {
@@ -38,7 +37,7 @@ public class StringTranslate {
     public StringTranslate() {
         InputStream inputstream = StringTranslate.class.getResourceAsStream("/assets/minecraft/lang/en_US.lang");
 
-        for (String s : IOUtils.readLines(inputstream, Charsets.UTF_8)) {
+        for (String s : IOUtils.readLines(inputstream, StandardCharsets.UTF_8)) {
             if (!s.isEmpty() && s.charAt(0) != 35) {
                 String[] astring = (String[]) Iterables.toArray(equalSignSplitter.split(s), String.class);
 

@@ -1,6 +1,5 @@
 package net.minecraft.client.resources;
 
-import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import com.google.gson.JsonElement;
@@ -12,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -31,7 +31,7 @@ public class ResourceIndex {
             BufferedReader bufferedreader = null;
 
             try {
-                bufferedreader = Files.newReader(file2, Charsets.UTF_8);
+                bufferedreader = Files.newReader(file2, StandardCharsets.UTF_8);
                 JsonObject jsonobject = (new JsonParser()).parse((Reader) bufferedreader).getAsJsonObject();
                 JsonObject jsonobject1 = JsonUtils.getJsonObject(jsonobject, "objects", (JsonObject) null);
 

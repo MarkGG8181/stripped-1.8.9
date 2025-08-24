@@ -1,6 +1,5 @@
 package net.minecraft.client.shader;
 
-import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonArray;
@@ -10,6 +9,7 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +28,7 @@ import org.apache.logging.log4j.Logger;
 public class ShaderManager {
     private static final Logger logger = LogManager.getLogger();
     private static final ShaderDefault defaultShaderUniform = new ShaderDefault();
-    private static ShaderManager staticShaderManager = null;
     private static int currentProgram = -1;
-    private static boolean lastCull = true;
     private final Map<String, Object> shaderSamplers = Maps.<String, Object>newHashMap();
     private final List<String> samplerNames = Lists.<String>newArrayList();
     private final List<Integer> shaderSamplerLocations = Lists.<Integer>newArrayList();
@@ -40,14 +38,13 @@ public class ShaderManager {
     private final int program;
     private final String programFilename;
     private final boolean useFaceCulling;
-    private boolean isDirty;
     private final JsonBlendingMode blendingMode;
     private final List<Integer> attribLocations;
     private final List<String> attributes;
     private final ShaderLoader vertexShaderLoader;
     private final ShaderLoader fragmentShaderLoader;
 
-    public ShaderManager(IResourceManager resourceManager, String programName) throws JsonException, IOException {
+    public ShaderManager(IResourceManager resourceManager, String programName) throws IOException {
         JsonParser jsonparser = new JsonParser();
         ResourceLocation resourcelocation = new ResourceLocation("shaders/program/" + programName + ".json");
         this.programFilename = programName;
@@ -55,7 +52,7 @@ public class ShaderManager {
 
         try {
             inputstream = resourceManager.getResource(resourcelocation).getInputStream();
-            JsonObject jsonobject = jsonparser.parse(IOUtils.toString(inputstream, Charsets.UTF_8)).getAsJsonObject();
+            JsonObject jsonobject = jsonparser.parse(IOUtils.toString(inputstream, StandardCharsets.UTF_8)).getAsJsonObject();
             String s = JsonUtils.getString(jsonobject, "vertex");
             String s1 = JsonUtils.getString(jsonobject, "fragment");
             JsonArray jsonarray = JsonUtils.getJsonArray(jsonobject, "samplers", (JsonArray) null);
@@ -149,8 +146,6 @@ public class ShaderManager {
     public void endShader() {
         OpenGlHelper.glUseProgram(0);
         currentProgram = -1;
-        staticShaderManager = null;
-        lastCull = true;
 
         for (int i = 0; i < this.shaderSamplerLocations.size(); ++i) {
             if (this.shaderSamplers.get(this.samplerNames.get(i)) != null) {
@@ -161,8 +156,6 @@ public class ShaderManager {
     }
 
     public void useShader() {
-        this.isDirty = false;
-        staticShaderManager = this;
         this.blendingMode.func_148109_a();
 
         if (this.program != currentProgram) {
@@ -204,7 +197,6 @@ public class ShaderManager {
     }
 
     public void markDirty() {
-        this.isDirty = true;
     }
 
     /**

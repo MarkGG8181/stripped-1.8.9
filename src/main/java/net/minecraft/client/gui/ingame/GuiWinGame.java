@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 
@@ -19,7 +20,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.network.play.client.C16PacketClientStatus;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.io.Charsets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -86,7 +86,7 @@ public class GuiWinGame extends GuiScreen {
                 String s1 = "" + EnumChatFormatting.WHITE + EnumChatFormatting.OBFUSCATED + EnumChatFormatting.GREEN + EnumChatFormatting.AQUA;
                 int i = 274;
                 InputStream inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("texts/end.txt")).getInputStream();
-                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
+                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
                 Random random = new Random(8124371L);
 
                 while ((s = bufferedreader.readLine()) != null) {
@@ -110,7 +110,7 @@ public class GuiWinGame extends GuiScreen {
                 }
 
                 inputstream = this.mc.getResourceManager().getResource(new ResourceLocation("texts/credits.txt")).getInputStream();
-                bufferedreader = new BufferedReader(new InputStreamReader(inputstream, Charsets.UTF_8));
+                bufferedreader = new BufferedReader(new InputStreamReader(inputstream, StandardCharsets.UTF_8));
 
                 while ((s = bufferedreader.readLine()) != null) {
                     s = s.replaceAll("PLAYERNAME", this.mc.getSession().getUsername());
