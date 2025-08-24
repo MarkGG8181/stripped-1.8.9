@@ -609,25 +609,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         p_71044_1_.onCollideWithPlayer(this);
     }
 
-    public int getScore() {
-        return this.dataWatcher.getWatchableObjectInt(18);
-    }
-
-    /**
-     * Set player's score
-     */
-    public void setScore(int p_85040_1_) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(p_85040_1_));
-    }
-
-    /**
-     * Add to player's score
-     */
-    public void addScore(int p_85039_1_) {
-        int i = this.getScore();
-        this.dataWatcher.updateObject(18, Integer.valueOf(i + p_85039_1_));
-    }
-
     /**
      * Called when the mob's health reaches 0.
      */
@@ -668,28 +649,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
      */
     protected String getDeathSound() {
         return "game.player.die";
-    }
-
-    /**
-     * Adds a value to the player score. Currently not actually used and the entity passed in does nothing. Args:
-     * entity, scoreToAdd
-     */
-    public void addToPlayerScore(Entity entityIn, int amount) {
-        this.addScore(amount);
-        Collection<ScoreObjective> collection = this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.totalKillCount);
-
-        if (entityIn instanceof EntityPlayer) {
-            this.triggerAchievement(StatList.playerKillsStat);
-            collection.addAll(this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.playerKillCount));
-            collection.addAll(this.func_175137_e(entityIn));
-        } else {
-            this.triggerAchievement(StatList.mobKillsStat);
-        }
-
-        for (ScoreObjective scoreobjective : collection) {
-            Score score = this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective);
-            score.func_96648_a();
-        }
     }
 
     private Collection<ScoreObjective> func_175137_e(Entity p_175137_1_) {
@@ -863,8 +822,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.xpSeed = this.rand.nextInt();
         }
 
-        this.setScore(tagCompund.getInteger("Score"));
-
         if (this.sleeping) {
             this.playerLocation = new BlockPos(this);
             this.wakeUpPlayer(true, true, false);
@@ -897,7 +854,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         tagCompound.setInteger("XpLevel", this.experienceLevel);
         tagCompound.setInteger("XpTotal", this.experienceTotal);
         tagCompound.setInteger("XpSeed", this.xpSeed);
-        tagCompound.setInteger("Score", this.getScore());
 
         if (this.spawnChunk != null) {
             tagCompound.setInteger("SpawnX", this.spawnChunk.getX());
@@ -1678,7 +1634,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
      * Add experience points to player.
      */
     public void addExperience(int amount) {
-        this.addScore(amount);
         int i = Integer.MAX_VALUE - this.experienceTotal;
 
         if (amount > i) {
@@ -1830,7 +1785,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.experienceLevel = oldPlayer.experienceLevel;
             this.experienceTotal = oldPlayer.experienceTotal;
             this.experience = oldPlayer.experience;
-            this.setScore(oldPlayer.getScore());
             this.lastPortalPos = oldPlayer.lastPortalPos;
             this.lastPortalVec = oldPlayer.lastPortalVec;
             this.teleportDirection = oldPlayer.teleportDirection;
@@ -1839,7 +1793,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.experienceLevel = oldPlayer.experienceLevel;
             this.experienceTotal = oldPlayer.experienceTotal;
             this.experience = oldPlayer.experience;
-            this.setScore(oldPlayer.getScore());
         }
 
         this.xpSeed = oldPlayer.xpSeed;

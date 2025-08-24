@@ -530,8 +530,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             {
                 this.triggerAchievement(entitylist$entityegginfo.entityKilledByStat);
             }
-
-            entitylivingbase.addToPlayerScore(this, this.scoreValue);
         }
 
         this.triggerAchievement(StatList.deathsStat);

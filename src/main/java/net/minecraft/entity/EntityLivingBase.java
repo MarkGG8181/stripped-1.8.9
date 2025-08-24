@@ -1015,11 +1015,6 @@ public abstract class EntityLivingBase extends Entity
         Entity entity = cause.getEntity();
         EntityLivingBase entitylivingbase = this.getAttackingEntity();
 
-        if (this.scoreValue >= 0 && entitylivingbase != null)
-        {
-            entitylivingbase.addToPlayerScore(this, this.scoreValue);
-        }
-
         if (entity != null)
         {
             entity.onKillEntity(this);
