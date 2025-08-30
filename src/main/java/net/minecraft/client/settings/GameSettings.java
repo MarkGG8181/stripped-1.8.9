@@ -66,6 +66,7 @@ public class GameSettings {
     public boolean fboEnable = true;
     public boolean showFramerate = false;
     public boolean renderVignette = true;
+    public boolean renderFog = true;
     public int limitFramerate = 120;
 
     /**
@@ -340,6 +341,10 @@ public class GameSettings {
             this.renderVignette = !this.renderVignette;
         }
 
+        if (settingsOption == Options.RENDER_FOG) {
+            this.renderFog = !this.renderFog;
+        }
+
         if (settingsOption == Options.GRAPHICS) {
             this.fancyGraphics = !this.fancyGraphics;
             this.mc.renderGlobal.loadRenderers();
@@ -406,6 +411,7 @@ public class GameSettings {
             case FBO_ENABLE -> this.fboEnable;
             case SHOW_FRAMERATE -> this.showFramerate;
             case RENDER_VIGNETTE -> this.renderVignette;
+            case RENDER_FOG -> this.renderFog;
             case CHAT_COLOR -> this.chatColours;
             case CHAT_LINKS -> this.chatLinks;
             case CHAT_LINKS_PROMPT -> this.chatLinksPrompt;
@@ -532,6 +538,10 @@ public class GameSettings {
 
                     if (astring[0].equals("renderVignette")) {
                         this.renderVignette = astring[1].equals("true");
+                    }
+
+                    if (astring[0].equals("renderFog")) {
+                        this.renderFog = astring[1].equals("true");
                     }
 
                     if (astring[0].equals("difficulty")) {
@@ -731,7 +741,8 @@ public class GameSettings {
             printwriter.println("maxFps:" + this.limitFramerate);
             printwriter.println("fboEnable:" + this.fboEnable);
             printwriter.println("showFramerate:" + this.showFramerate);
-            printwriter.println("renderVignette:" + this.showFramerate);
+            printwriter.println("renderVignette:" + this.renderVignette);
+            printwriter.println("renderFog:" + this.renderFog);
             printwriter.println("difficulty:" + this.difficulty.getDifficultyId());
             printwriter.println("fancyGraphics:" + this.fancyGraphics);
             printwriter.println("ao:" + this.ambientOcclusion);
@@ -870,6 +881,7 @@ public class GameSettings {
         FBO_ENABLE("options.fboEnable", false, true),
         SHOW_FRAMERATE("options.showFramerate", false, true),
         RENDER_VIGNETTE("options.renderVignette", false, true),
+        RENDER_FOG("options.renderFog", false, true),
         RENDER_CLOUDS("options.renderClouds", false, false),
         GRAPHICS("options.graphics", false, false),
         AMBIENT_OCCLUSION("options.ao", false, false),

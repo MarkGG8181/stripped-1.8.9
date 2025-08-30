@@ -324,6 +324,7 @@ options.advancedOpengl=Advanced OpenGL
 options.fboEnable=Enable FBOs
 options.showFramerate=Show Framerate
 options.renderVignette=Render Vignette
+options.renderFog=Render Fog
 options.postProcessEnable=Enable Post-Processing
 options.renderClouds=Clouds
 options.qualityButton=Video Quality Settings...

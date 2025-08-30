@@ -536,6 +536,10 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             List<Entity> list = this.theWorld.getLoadedEntityList();
             this.countEntitiesTotal = list.size();
 
+            if (!mc.gameSettings.renderFog && mc.entityRenderer.fogStandard) {
+                GlStateManager.disableFog();
+            }
+
             for (int i = 0; i < this.theWorld.weatherEffects.size(); ++i) {
                 Entity entity1 = (Entity) this.theWorld.weatherEffects.get(i);
                 ++this.countEntitiesRendered;
@@ -949,6 +953,10 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 ++l;
                 this.renderContainer.addRenderChunk(renderchunk, blockLayerIn);
             }
+        }
+
+        if (!mc.gameSettings.renderFog && mc.entityRenderer.fogStandard) {
+            GlStateManager.disableFog();
         }
 
         this.mc.mcProfiler.endStartSection("render_" + blockLayerIn);

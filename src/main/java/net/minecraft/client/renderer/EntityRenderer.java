@@ -178,16 +178,10 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private float fogColorRed;
     private float fogColorGreen;
     private float fogColorBlue;
-
-    /**
-     * Fog color 2
-     */
     private float fogColor2;
-
-    /**
-     * Fog color 1
-     */
     private float fogColor1;
+    public boolean fogStandard = false;
+
     private final boolean debugView = false;
     private double cameraYaw;
     private double cameraPitch;
@@ -1598,6 +1592,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
      * @param startCoords If is -1 the fog start at 0.0
      */
     private void setupFog(int startCoords, float partialTicks) {
+        fogStandard = false;
         Entity entity = this.mc.getRenderViewEntity();
 
         GL11.glFog(GL11.GL_FOG_COLOR, this.setFogColorBuffer(this.fogColorRed, this.fogColorGreen, this.fogColorBlue, 1.0F));
@@ -1641,6 +1636,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             GlStateManager.setFog(2048);
             GlStateManager.setFogDensity(2.0F);
         } else {
+            fogStandard = true;
             float f = this.farPlaneDistance;
             GlStateManager.setFog(9729);
 
