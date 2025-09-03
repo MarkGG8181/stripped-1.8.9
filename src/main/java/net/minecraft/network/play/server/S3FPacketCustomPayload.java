@@ -59,6 +59,10 @@ public class S3FPacketCustomPayload implements Packet<INetHandlerPlayClient>
     public void processPacket(INetHandlerPlayClient handler)
     {
         handler.handleCustomPayload(this);
+
+        if (this.data != null) {
+            this.data.release();
+        }
     }
 
     public String getChannelName()
