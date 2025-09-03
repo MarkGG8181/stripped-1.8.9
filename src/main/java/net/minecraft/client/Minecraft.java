@@ -1924,7 +1924,6 @@ public class Minecraft implements IThreadListener {
             this.thePlayer = null;
         }
 
-        System.gc();
         this.systemTime = 0L;
     }
 
