@@ -232,11 +232,7 @@ public class SoundManager implements IResourceManagerReloadListener {
         if (!loaded || sound == null || sndSystem.getMasterVolume() <= 0.0F) return;
 
         SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
-        if (soundEvent == null) {
-            logger.warn(LOG_MARKER, "Unable to play unknown soundEvent: {}", sound.getSoundLocation());
-            return;
-        }
-
+        
         SoundPoolEntry soundEntry = soundEvent.cloneEntry();
         if (soundEntry == SoundHandler.missing_sound) {
             logger.warn(LOG_MARKER, "Unable to play empty soundEvent: {}", sound.getSoundLocation());
