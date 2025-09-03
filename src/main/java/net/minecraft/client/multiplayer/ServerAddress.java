@@ -1,115 +1,99 @@
 package net.minecraft.client.multiplayer;
 
 import java.net.IDN;
-import java.util.Hashtable;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.DirContext;
-import javax.naming.directory.InitialDirContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Record;
+import org.xbill.DNS.SRVRecord;
+import org.xbill.DNS.TextParseException;
+import org.xbill.DNS.Type;
 
-public class ServerAddress
-{
+public final class ServerAddress {
+
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final int DEFAULT_PORT = 25565;
+
     private final String ipAddress;
     private final int serverPort;
 
-    private ServerAddress(String address, int port)
-    {
+    private ServerAddress(String address, int port) {
         this.ipAddress = address;
         this.serverPort = port;
     }
 
-    public String getIP()
-    {
+    public String getIP() {
         return IDN.toASCII(this.ipAddress);
     }
 
-    public int getPort()
-    {
+    public int getPort() {
         return this.serverPort;
     }
 
-    public static ServerAddress fromString(String p_78860_0_)
-    {
-        if (p_78860_0_ == null)
-        {
+    public static ServerAddress fromString(String addressString) {
+        if (addressString == null) {
             return null;
         }
-        else
-        {
-            String[] astring = p_78860_0_.split(":");
 
-            if (p_78860_0_.startsWith("["))
-            {
-                int i = p_78860_0_.indexOf("]");
+        String[] parts;
+        String host;
 
-                if (i > 0)
-                {
-                    String s = p_78860_0_.substring(1, i);
-                    String s1 = p_78860_0_.substring(i + 1).trim();
-
-                    if (s1.startsWith(":") && s1.length() > 0)
-                    {
-                        s1 = s1.substring(1);
-                        astring = new String[] {s, s1};
-                    }
-                    else
-                    {
-                        astring = new String[] {s};
-                    }
+        if (addressString.startsWith("[")) {
+            int closingBracketIndex = addressString.indexOf(']');
+            if (closingBracketIndex > 0) {
+                host = addressString.substring(1, closingBracketIndex);
+                String portPart = addressString.substring(closingBracketIndex + 1).trim();
+                if (portPart.startsWith(":")) {
+                    parts = new String[] { host, portPart.substring(1) };
+                } else {
+                    parts = new String[] { host };
                 }
+            } else {
+                parts = new String[] { addressString };
             }
-
-            if (astring.length > 2)
-            {
-                astring = new String[] {p_78860_0_};
-            }
-
-            String s2 = astring[0];
-            int j = astring.length > 1 ? parseIntWithDefault(astring[1], 25565) : 25565;
-
-            if (j == 25565)
-            {
-                String[] astring1 = getServerAddress(s2);
-                s2 = astring1[0];
-                j = parseIntWithDefault(astring1[1], 25565);
-            }
-
-            return new ServerAddress(s2, j);
+        } else {
+            parts = addressString.split(":");
         }
+
+        if (parts.length > 2) {
+            parts = new String[] { addressString };
+        }
+
+        host = parts[0];
+        int port = parts.length > 1 ? parseIntWithDefault(parts[1], DEFAULT_PORT) : DEFAULT_PORT;
+
+        if (port == DEFAULT_PORT) {
+            String[] srvResult = getServerAddress(host);
+            host = srvResult[0];
+            port = parseIntWithDefault(srvResult[1], DEFAULT_PORT);
+        }
+
+        return new ServerAddress(host, port);
     }
 
-    /**
-     * Returns a server's address and port for the specified hostname, looking up the SRV record if possible
-     */
-    private static String[] getServerAddress(String p_78863_0_)
-    {
-        try
-        {
-            String s = "com.sun.jndi.dns.DnsContextFactory";
-            Class.forName("com.sun.jndi.dns.DnsContextFactory");
-            Hashtable hashtable = new Hashtable();
-            hashtable.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
-            hashtable.put("java.naming.provider.url", "dns:");
-            hashtable.put("com.sun.jndi.dns.timeout.retries", "1");
-            DirContext dircontext = new InitialDirContext(hashtable);
-            Attributes attributes = dircontext.getAttributes("_minecraft._tcp." + p_78863_0_, new String[] {"SRV"});
-            String[] astring = attributes.get("srv").get().toString().split(" ", 4);
-            return new String[] {astring[3], astring[2]};
+    private static String[] getServerAddress(String hostname) {
+        try {
+            String srvQuery = "_minecraft._tcp." + hostname;
+            Lookup lookup = new Lookup(srvQuery, Type.SRV);
+            Record[] records = lookup.run();
+
+            if (records != null && records.length > 0) {
+                SRVRecord srvRecord = (SRVRecord) records[0];
+                String targetHost = srvRecord.getTarget().toString().replaceAll("\\.$", "");
+                int targetPort = srvRecord.getPort();
+                return new String[] { targetHost, Integer.toString(targetPort) };
+            }
+        } catch (TextParseException e) {
+            LOGGER.debug("Invalid SRV query for {}: {}", hostname, e.getMessage());
         }
-        catch (Throwable var6)
-        {
-            return new String[] {p_78863_0_, Integer.toString(25565)};
-        }
+        return new String[] { hostname, Integer.toString(DEFAULT_PORT) };
     }
 
-    private static int parseIntWithDefault(String p_78862_0_, int p_78862_1_)
-    {
-        try
-        {
-            return Integer.parseInt(p_78862_0_.trim());
-        }
-        catch (Exception var3)
-        {
-            return p_78862_1_;
+    private static int parseIntWithDefault(String portString, int defaultValue) {
+        try {
+            return Integer.parseInt(portString.trim());
+        } catch (NumberFormatException e) {
+            return defaultValue;
         }
     }
 }
