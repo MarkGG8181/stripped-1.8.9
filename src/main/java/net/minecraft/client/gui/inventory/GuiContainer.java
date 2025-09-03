@@ -339,6 +339,11 @@ public abstract class GuiContainer extends GuiScreen {
      * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        if (mouseButton - 100 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
+            this.mc.thePlayer.closeScreen();
+            return;
+        }
+
         super.mouseClicked(mouseX, mouseY, mouseButton);
         boolean flag = mouseButton == this.mc.gameSettings.keyBindPickBlock.getKeyCode() + 100;
         Slot slot = this.getSlotAtPosition(mouseX, mouseY);
