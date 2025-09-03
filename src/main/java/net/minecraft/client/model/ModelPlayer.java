@@ -12,26 +12,26 @@ public class ModelPlayer extends ModelBiped {
     private final ModelRenderer bipedCape;
     private final boolean smallArms;
 
-    public ModelPlayer(float p_i46304_1_, boolean p_i46304_2_) {
+    public ModelPlayer(float p_i46304_1_, boolean useSmallArms) {
         super(p_i46304_1_, 0.0F, 64, 64);
-        this.smallArms = p_i46304_2_;
+        this.smallArms = useSmallArms;
         this.bipedCape = new ModelRenderer(this, 0, 0);
         this.bipedCape.setTextureSize(64, 32);
         this.bipedCape.addBox(-5.0F, 0.0F, -1.0F, 10, 16, 1, p_i46304_1_);
 
-        if (p_i46304_2_) {
+        if (useSmallArms) {
             this.bipedLeftArm = new ModelRenderer(this, 32, 48);
             this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 3, 12, 4, p_i46304_1_);
-            this.bipedLeftArm.setRotationPoint(5.0F, 2.5F, 0.0F);
+            this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
             this.bipedRightArm = new ModelRenderer(this, 40, 16);
             this.bipedRightArm.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, p_i46304_1_);
-            this.bipedRightArm.setRotationPoint(-5.0F, 2.5F, 0.0F);
+            this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
             this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
             this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 3, 12, 4, p_i46304_1_ + 0.25F);
-            this.bipedLeftArmwear.setRotationPoint(5.0F, 2.5F, 0.0F);
+            this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, p_i46304_1_ + 0.25F);
-            this.bipedRightArmwear.setRotationPoint(-5.0F, 2.5F, 10.0F);
+            this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 10.0F);
         } else {
             this.bipedLeftArm = new ModelRenderer(this, 32, 48);
             this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, p_i46304_1_);
@@ -130,9 +130,9 @@ public class ModelPlayer extends ModelBiped {
 
     public void postRenderArm(float scale) {
         if (this.smallArms) {
-            ++this.bipedRightArm.rotationPointX;
+            this.bipedRightArm.rotationPointX += 0.5F;
             this.bipedRightArm.postRender(scale);
-            --this.bipedRightArm.rotationPointX;
+            this.bipedRightArm.rotationPointZ -= 0.5F;
         } else {
             this.bipedRightArm.postRender(scale);
         }
