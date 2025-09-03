@@ -36,6 +36,7 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.util.FontRenderer;
@@ -360,6 +361,10 @@ public class Minecraft implements IThreadListener {
      * Profiler currently displayed in the debug screen pie chart
      */
     private String debugProfilerName = "root";
+
+    private boolean isWindowInactive = false;
+    private int previousFramerateLimit;
+    private int previousRenderDistance;
 
     public Minecraft(GameConfiguration gameConfig) {
         theMinecraft = this;
@@ -999,6 +1004,34 @@ public class Minecraft implements IThreadListener {
         Display.update();
         this.mcProfiler.endSection();
         this.checkWindowResize();
+
+        //TODO ADD CUSTOMIZATION OPTIONS
+
+        if (Display.isCloseRequested() || this.theWorld == null) {
+            return;
+        }
+
+        GameSettings gameSettings = this.gameSettings;
+
+        this.addScheduledTask(() -> {
+            if (!Display.isActive()) {
+                if (!this.isWindowInactive) {
+                    this.previousFramerateLimit = gameSettings.limitFramerate;
+                    this.previousRenderDistance = gameSettings.renderDistanceChunks;
+                    gameSettings.limitFramerate = 30;
+                    gameSettings.renderDistanceChunks = 3;
+                    this.getSoundHandler().stopSounds();
+                    this.isWindowInactive = true;
+                }
+            } else {
+                if (this.isWindowInactive) {
+                    gameSettings.limitFramerate = this.previousFramerateLimit;
+                    gameSettings.renderDistanceChunks = this.previousRenderDistance;
+                    this.getSoundHandler().resumeSounds();
+                    this.isWindowInactive = false;
+                }
+            }
+        });
     }
 
     protected void checkWindowResize() {
