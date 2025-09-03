@@ -229,14 +229,7 @@ public class ChunkRenderDispatcher
     {
         if (Minecraft.getMinecraft().isCallingFromMinecraftThread())
         {
-            if (OpenGlHelper.useVbo())
-            {
-                this.uploadVertexBuffer(p_178503_2_, chunkRenderer.getVertexBufferByLayer(player.ordinal()));
-            }
-            else
-            {
-                this.uploadDisplayList(p_178503_2_, ((ListedRenderChunk)chunkRenderer).getDisplayList(player, compiledChunkIn), chunkRenderer);
-            }
+            this.uploadVertexBuffer(p_178503_2_, chunkRenderer.getVertexBufferByLayer(player.ordinal()));
 
             p_178503_2_.setTranslation(0.0D, 0.0D, 0.0D);
             return Futures.<Object>immediateFuture((Object)null);

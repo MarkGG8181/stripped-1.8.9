@@ -88,7 +88,6 @@ public class GameSettings {
     public float chatOpacity = 1.0F;
     public boolean fullScreen;
     public boolean enableVsync = false;
-    public boolean useVbo = true;
     public boolean allowBlockAlternatives = true;
     public boolean hideServerAddress;
 
@@ -384,11 +383,6 @@ public class GameSettings {
             Display.setVSyncEnabled(this.enableVsync);
         }
 
-        if (settingsOption == Options.USE_VBO) {
-            this.useVbo = !this.useVbo;
-            this.mc.renderGlobal.loadRenderers();
-        }
-
         if (settingsOption == Options.BLOCK_ALTERNATIVES) {
             this.allowBlockAlternatives = !this.allowBlockAlternatives;
             this.mc.renderGlobal.loadRenderers();
@@ -417,7 +411,6 @@ public class GameSettings {
             case CHAT_LINKS_PROMPT -> this.chatLinksPrompt;
             case USE_FULLSCREEN -> this.fullScreen;
             case ENABLE_VSYNC -> this.enableVsync;
-            case USE_VBO -> this.useVbo;
             case BLOCK_ALTERNATIVES -> this.allowBlockAlternatives;
             case ENTITY_SHADOWS -> this.entityShadows;
             default -> false;
@@ -622,10 +615,6 @@ public class GameSettings {
                         this.enableVsync = astring[1].equals("true");
                     }
 
-                    if (astring[0].equals("useVbo")) {
-                        this.useVbo = astring[1].equals("true");
-                    }
-
                     if (astring[0].equals("hideServerAddress")) {
                         this.hideServerAddress = astring[1].equals("true");
                     }
@@ -771,7 +760,6 @@ public class GameSettings {
             printwriter.println("chatOpacity:" + this.chatOpacity);
             printwriter.println("fullscreen:" + this.fullScreen);
             printwriter.println("enableVsync:" + this.enableVsync);
-            printwriter.println("useVbo:" + this.useVbo);
             printwriter.println("hideServerAddress:" + this.hideServerAddress);
             printwriter.println("advancedItemTooltips:" + this.advancedItemTooltips);
             printwriter.println("pauseOnLostFocus:" + this.pauseOnLostFocus);
@@ -894,7 +882,6 @@ public class GameSettings {
         CHAT_LINKS_PROMPT("options.chat.links.prompt", false, true),
         USE_FULLSCREEN("options.fullscreen", false, true),
         ENABLE_VSYNC("options.vsync", false, true),
-        USE_VBO("options.vbo", false, true),
         CHAT_SCALE("options.chat.scale", true, false),
         CHAT_WIDTH("options.chat.width", true, false),
         CHAT_HEIGHT_FOCUSED("options.chat.height.focused", true, false),

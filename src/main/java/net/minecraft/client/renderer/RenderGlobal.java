@@ -197,15 +197,9 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
         GlStateManager.bindTexture(0);
         this.updateDestroyBlockIcons();
-        this.vboEnabled = OpenGlHelper.useVbo();
 
-        if (this.vboEnabled) {
-            this.renderContainer = new VboRenderList();
-            this.renderChunkFactory = new VboChunkFactory();
-        } else {
-            this.renderContainer = new RenderList();
-            this.renderChunkFactory = new ListChunkFactory();
-        }
+        this.renderContainer = new VboRenderList();
+        this.renderChunkFactory = new VboChunkFactory();
 
         this.vertexBufferFormat = new VertexFormat();
         this.vertexBufferFormat.addElement(new VertexFormatElement(0, VertexFormatElement.EnumType.FLOAT, VertexFormatElement.EnumUsage.POSITION, 3));
@@ -282,19 +276,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             this.glSkyList2 = -1;
         }
 
-        if (this.vboEnabled) {
-            this.sky2VBO = new VertexBuffer(this.vertexBufferFormat);
-            this.renderSky(worldrenderer, -16.0F, true);
-            worldrenderer.finishDrawing();
-            worldrenderer.reset();
-            this.sky2VBO.bufferData(worldrenderer.getByteBuffer());
-        } else {
-            this.glSkyList2 = GLAllocation.generateDisplayLists(1);
-            GL11.glNewList(this.glSkyList2, GL11.GL_COMPILE);
-            this.renderSky(worldrenderer, -16.0F, true);
-            tessellator.draw();
-            GL11.glEndList();
-        }
+        this.sky2VBO = new VertexBuffer(this.vertexBufferFormat);
+        this.renderSky(worldrenderer, -16.0F, true);
+        worldrenderer.finishDrawing();
+        worldrenderer.reset();
+        this.sky2VBO.bufferData(worldrenderer.getByteBuffer());
     }
 
     private void generateSky() {
@@ -310,19 +296,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             this.glSkyList = -1;
         }
 
-        if (this.vboEnabled) {
-            this.skyVBO = new VertexBuffer(this.vertexBufferFormat);
-            this.renderSky(worldrenderer, 16.0F, false);
-            worldrenderer.finishDrawing();
-            worldrenderer.reset();
-            this.skyVBO.bufferData(worldrenderer.getByteBuffer());
-        } else {
-            this.glSkyList = GLAllocation.generateDisplayLists(1);
-            GL11.glNewList(this.glSkyList, GL11.GL_COMPILE);
-            this.renderSky(worldrenderer, 16.0F, false);
-            tessellator.draw();
-            GL11.glEndList();
-        }
+        this.skyVBO = new VertexBuffer(this.vertexBufferFormat);
+        this.renderSky(worldrenderer, 16.0F, false);
+        worldrenderer.finishDrawing();
+        worldrenderer.reset();
+        this.skyVBO.bufferData(worldrenderer.getByteBuffer());
     }
 
     private void renderSky(WorldRenderer worldRendererIn, float posY, boolean reverseX) {
@@ -361,21 +339,11 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             this.starGLCallList = -1;
         }
 
-        if (this.vboEnabled) {
-            this.starVBO = new VertexBuffer(this.vertexBufferFormat);
-            this.renderStars(worldrenderer);
-            worldrenderer.finishDrawing();
-            worldrenderer.reset();
-            this.starVBO.bufferData(worldrenderer.getByteBuffer());
-        } else {
-            this.starGLCallList = GLAllocation.generateDisplayLists(1);
-            GlStateManager.pushMatrix();
-            GL11.glNewList(this.starGLCallList, GL11.GL_COMPILE);
-            this.renderStars(worldrenderer);
-            tessellator.draw();
-            GL11.glEndList();
-            GlStateManager.popMatrix();
-        }
+        this.starVBO = new VertexBuffer(this.vertexBufferFormat);
+        this.renderStars(worldrenderer);
+        worldrenderer.finishDrawing();
+        worldrenderer.reset();
+        this.starVBO.bufferData(worldrenderer.getByteBuffer());
     }
 
     private void renderStars(WorldRenderer worldRendererIn) {
@@ -456,22 +424,6 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             Blocks.leaves.setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
             Blocks.leaves2.setGraphicsLevel(this.mc.gameSettings.fancyGraphics);
             this.renderDistanceChunks = this.mc.gameSettings.renderDistanceChunks;
-            boolean flag = this.vboEnabled;
-            this.vboEnabled = OpenGlHelper.useVbo();
-
-            if (flag && !this.vboEnabled) {
-                this.renderContainer = new RenderList();
-                this.renderChunkFactory = new ListChunkFactory();
-            } else if (!flag && this.vboEnabled) {
-                this.renderContainer = new VboRenderList();
-                this.renderChunkFactory = new VboChunkFactory();
-            }
-
-            if (flag != this.vboEnabled) {
-                this.generateStars();
-                this.generateSky();
-                this.generateSky2();
-            }
 
             if (this.viewFrustum != null) {
                 this.viewFrustum.deleteGlResources();
@@ -969,38 +921,34 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     private void renderBlockLayer(EnumWorldBlockLayer blockLayerIn) {
         this.mc.entityRenderer.enableLightmap();
 
-        if (OpenGlHelper.useVbo()) {
-            GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-            OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
-            GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-            OpenGlHelper.setClientActiveTexture(OpenGlHelper.lightmapTexUnit);
-            GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-            OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
-            GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
-        }
+        GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+        OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
+        GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+        OpenGlHelper.setClientActiveTexture(OpenGlHelper.lightmapTexUnit);
+        GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+        OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
+        GL11.glEnableClientState(GL11.GL_COLOR_ARRAY);
 
         this.renderContainer.renderChunkLayer(blockLayerIn);
 
-        if (OpenGlHelper.useVbo()) {
-            for (VertexFormatElement vertexformatelement : DefaultVertexFormats.BLOCK.getElements()) {
-                VertexFormatElement.EnumUsage vertexformatelement$enumusage = vertexformatelement.getUsage();
-                int i = vertexformatelement.getIndex();
+        for (VertexFormatElement vertexformatelement : DefaultVertexFormats.BLOCK.getElements()) {
+            VertexFormatElement.EnumUsage vertexformatelement$enumusage = vertexformatelement.getUsage();
+            int i = vertexformatelement.getIndex();
 
-                switch (vertexformatelement$enumusage) {
-                    case POSITION:
-                        GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
-                        break;
+            switch (vertexformatelement$enumusage) {
+                case POSITION:
+                    GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
+                    break;
 
-                    case UV:
-                        OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit + i);
-                        GL11.glDisableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-                        OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
-                        break;
+                case UV:
+                    OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit + i);
+                    GL11.glDisableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+                    OpenGlHelper.setClientActiveTexture(OpenGlHelper.defaultTexUnit);
+                    break;
 
-                    case COLOR:
-                        GL11.glDisableClientState(GL11.GL_COLOR_ARRAY);
-                        GlStateManager.resetColor();
-                }
+                case COLOR:
+                    GL11.glDisableClientState(GL11.GL_COLOR_ARRAY);
+                    GlStateManager.resetColor();
             }
         }
 
@@ -1100,16 +1048,12 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             GlStateManager.enableFog();
             GlStateManager.color(f, f1, f2);
 
-            if (this.vboEnabled) {
-                this.skyVBO.bindBuffer();
-                GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-                GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
-                this.skyVBO.drawArrays(7);
-                this.skyVBO.unbindBuffer();
-                GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
-            } else {
-                GlStateManager.callList(this.glSkyList);
-            }
+            this.skyVBO.bindBuffer();
+            GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+            GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
+            this.skyVBO.drawArrays(7);
+            this.skyVBO.unbindBuffer();
+            GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
 
             GlStateManager.disableFog();
             GlStateManager.disableAlpha();
@@ -1190,16 +1134,12 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             if (f15 > 0.0F) {
                 GlStateManager.color(f15, f15, f15, f15);
 
-                if (this.vboEnabled) {
-                    this.starVBO.bindBuffer();
-                    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-                    GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
-                    this.starVBO.drawArrays(7);
-                    this.starVBO.unbindBuffer();
-                    GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
-                } else {
-                    GlStateManager.callList(this.starGLCallList);
-                }
+                this.starVBO.bindBuffer();
+                GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+                GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
+                this.starVBO.drawArrays(7);
+                this.starVBO.unbindBuffer();
+                GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
             }
 
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -1215,16 +1155,12 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(0.0F, 12.0F, 0.0F);
 
-                if (this.vboEnabled) {
-                    this.sky2VBO.bindBuffer();
-                    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-                    GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
-                    this.sky2VBO.drawArrays(7);
-                    this.sky2VBO.unbindBuffer();
-                    GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
-                } else {
-                    GlStateManager.callList(this.glSkyList2);
-                }
+                this.sky2VBO.bindBuffer();
+                GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+                GL11.glVertexPointer(3, GL11.GL_FLOAT, 12, 0L);
+                this.sky2VBO.drawArrays(7);
+                this.sky2VBO.unbindBuffer();
+                GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
 
                 GlStateManager.popMatrix();
                 float f18 = 1.0F;
