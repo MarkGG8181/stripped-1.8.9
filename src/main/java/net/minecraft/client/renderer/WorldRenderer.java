@@ -31,7 +31,7 @@ public class WorldRenderer
     private double yOffset;
     private double zOffset;
     private VertexFormat vertexFormat;
-    private boolean isDrawing;
+    public boolean isDrawing;
 
     public WorldRenderer(int bufferSizeIn)
     {

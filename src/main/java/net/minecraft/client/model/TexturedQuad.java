@@ -10,6 +10,8 @@ public class TexturedQuad {
     public int nVertices;
     private boolean invertNormal;
 
+    private boolean patcherDrawOnSelf;
+
     public TexturedQuad(PositionTextureVertex[] vertices) {
         this.vertexPositions = vertices;
         this.nVertices = vertices.length;
@@ -35,10 +37,6 @@ public class TexturedQuad {
         this.vertexPositions = apositiontexturevertex;
     }
 
-    /**
-     * Draw this primitve. This is typically called only once as the generated drawing instructions are saved by the
-     * renderer and reused later.
-     */
     public void draw(WorldRenderer renderer, float scale) {
         Vec3 vec3 = this.vertexPositions[1].vector3D.subtractReverse(this.vertexPositions[0].vector3D);
         Vec3 vec31 = this.vertexPositions[1].vector3D.subtractReverse(this.vertexPositions[2].vector3D);
@@ -53,13 +51,19 @@ public class TexturedQuad {
             f2 = -f2;
         }
 
-        renderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
+        this.patcherDrawOnSelf = !renderer.isDrawing;
+
+        if (this.patcherDrawOnSelf) {
+            renderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
+        }
 
         for (int i = 0; i < 4; ++i) {
             PositionTextureVertex positiontexturevertex = this.vertexPositions[i];
             renderer.pos(positiontexturevertex.vector3D.x * (double) scale, positiontexturevertex.vector3D.y * (double) scale, positiontexturevertex.vector3D.z * (double) scale).tex((double) positiontexturevertex.texturePositionX, (double) positiontexturevertex.texturePositionY).normal(f, f1, f2).endVertex();
         }
 
-        Tessellator.getInstance().draw();
+        if (this.patcherDrawOnSelf) {
+            Tessellator.getInstance().draw();
+        }
     }
 }

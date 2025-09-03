@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import org.lwjgl.opengl.GL11;
 
 public class ModelRenderer
@@ -291,12 +292,13 @@ public class ModelRenderer
         this.displayList = GLAllocation.generateDisplayLists(1);
         GL11.glNewList(this.displayList, GL11.GL_COMPILE);
         WorldRenderer worldrenderer = Tessellator.getInstance().getWorldRenderer();
+        worldrenderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
 
-        for (int i = 0; i < this.cubeList.size(); ++i)
-        {
-            ((ModelBox)this.cubeList.get(i)).render(worldrenderer, scale);
+        for (ModelBox modelBox : this.cubeList) {
+            modelBox.render(worldrenderer, scale);
         }
 
+        Tessellator.getInstance().draw();
         GL11.glEndList();
         this.compiled = true;
     }
