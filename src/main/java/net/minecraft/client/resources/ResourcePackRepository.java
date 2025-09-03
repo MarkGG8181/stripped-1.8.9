@@ -207,13 +207,17 @@ public class ResourcePackRepository {
      * Keep only the 10 most recent resources packs, delete the others
      */
     private void deleteOldServerResourcesPacks() {
-        List<File> list = Lists.newArrayList(FileUtils.listFiles(this.dirServerResourcepacks, TrueFileFilter.TRUE, (IOFileFilter) null));
-        Collections.sort(list, LastModifiedFileComparator.LASTMODIFIED_REVERSE);
+        if (!this.dirServerResourcepacks.exists()) {
+            this.dirServerResourcepacks.mkdirs();
+        }
+
+        List<File> list = Lists.newArrayList(FileUtils.listFiles(this.dirServerResourcepacks, TrueFileFilter.TRUE, null));
+        list.sort(LastModifiedFileComparator.LASTMODIFIED_REVERSE);
         int i = 0;
 
         for (File file1 : list) {
             if (i++ >= 10) {
-                logger.info("Deleting old server resource pack " + file1.getName());
+                logger.info("Deleting old server resource pack {}", file1.getName());
                 FileUtils.deleteQuietly(file1);
             }
         }
