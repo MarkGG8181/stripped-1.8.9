@@ -1,8 +1,3 @@
-
-language.name=English
-language.region=US
-language.code=en_US
-
 gui.done=Done
 gui.cancel=Cancel
 gui.back=Back
@@ -14,14 +9,6 @@ gui.yes=Yes
 gui.no=No
 gui.none=None
 gui.all=All
-
-translation.test.none=Hello, world!
-translation.test.complex=Prefix, %s%2$s again %s and %1$s lastly %s and also %1$s again!
-translation.test.escape=%%s %%%s %%%%s %%%%%s
-translation.test.invalid=hi %
-translation.test.invalid2=hi %  s
-translation.test.args=%s %s
-translation.test.world=world
 
 menu.game=Game menu
 menu.singleplayer=Singleplayer
@@ -46,7 +33,6 @@ selectWorld.world=World
 selectWorld.select=Play Selected World
 selectWorld.create=Create New World
 selectWorld.recreate=Re-Create
-selectWorld.createDemo=Play New Demo World
 selectWorld.delete=Delete
 selectWorld.rename=Rename
 selectWorld.deleteQuestion=Are you sure you want to delete this world?
@@ -150,21 +136,6 @@ gameMode.hardcore=Hardcore Mode!
 gameMode.changed=Your game mode has been updated
 
 selectWorld.gameMode=Game Mode
-selectWorld.gameMode.survival=Survival
-selectWorld.gameMode.survival.line1=Search for resources, crafting, gain
-selectWorld.gameMode.survival.line2=levels, health and hunger
-selectWorld.gameMode.creative=Creative
-selectWorld.gameMode.creative.line1=Unlimited resources, free flying and
-selectWorld.gameMode.creative.line2=destroy blocks instantly
-selectWorld.gameMode.spectator=Spectator
-selectWorld.gameMode.spectator.line1=You can look but don't touch
-selectWorld.gameMode.spectator.line2=
-selectWorld.gameMode.hardcore=Hardcore
-selectWorld.gameMode.hardcore.line1=Same as survival mode, locked at hardest
-selectWorld.gameMode.hardcore.line2=difficulty, and one life only
-selectWorld.gameMode.adventure=Adventure
-selectWorld.gameMode.adventure.line1=Same as survival mode, but blocks can't
-selectWorld.gameMode.adventure.line2=be added or removed
 selectWorld.moreWorldOptions=More World Options...
 selectWorld.mapFeatures=Generate Structures:
 selectWorld.mapFeatures.info=Villages, dungeons etc
@@ -181,7 +152,6 @@ generator.flat=Superflat
 generator.largeBiomes=Large Biomes
 generator.amplified=AMPLIFIED
 generator.customized=Customized
-generator.debug_all_block_states=Debug Mode
 
 generator.amplified.info=Notice: Just for fun, requires beefy computer
 
@@ -215,9 +185,6 @@ mcoServer.title=Minecraft Online World
 
 multiplayer.title=Play Multiplayer
 multiplayer.connect=Connect
-multiplayer.info1=Minecraft Multiplayer is currently not finished, but there
-multiplayer.info2=is some buggy early testing going on.
-multiplayer.ipinfo=Enter the IP of a server to connect to it:
 multiplayer.texturePrompt.line1=This server recommends the use of a custom resource pack.
 multiplayer.texturePrompt.line2=Would you like to download and install it automagically?
 multiplayer.downloadingTerrain=Downloading terrain
@@ -320,23 +287,11 @@ options.guiScale.auto=Auto
 options.guiScale.small=Small
 options.guiScale.normal=Normal
 options.guiScale.large=Large
-options.advancedOpengl=Advanced OpenGL
 options.fboEnable=Enable FBOs
 options.showFramerate=Show Framerate
 options.renderVignette=Render Vignette
 options.renderFog=Render Fog
-options.postProcessEnable=Enable Post-Processing
 options.renderClouds=Clouds
-options.qualityButton=Video Quality Settings...
-options.qualityVideoTitle=Video Quality Settings
-options.performanceButton=Video Performance Settings...
-options.performanceVideoTitle=Video Performance Settings
-options.advancedButton=Advanced Video Settings...
-options.advancedVideoTitle=Advanced Video Settings
-options.postButton=Post-Processing Settings...
-options.postVideoTitle=Post-Processing Settings
-options.farWarning1=A 64 bit Java installation is recommended
-options.farWarning2=for 'Far' render distance (you have 32 bit)
 options.particles=Particles
 options.particles.all=All
 options.particles.decreased=Decreased
@@ -367,12 +322,10 @@ options.modelPart.right_pants_leg=Right Pants Leg
 options.resourcepack=Resource Packs...
 options.fullscreen=Fullscreen
 options.vsync=Use VSync
-options.vbo=Use VBOs
 options.blockAlternatives=Alternate Blocks
 options.entityShadows=Entity Shadows
 
 options.mipmapLevels=Mipmap Levels
-options.forceUnicodeFont=Force Unicode Font
 
 difficulty.lock.title=Lock World Difficulty
 difficulty.lock.question=Are you sure you want to lock the difficulty of this world? This will set this world to always be %1$s, and you will never be able to change that again.
