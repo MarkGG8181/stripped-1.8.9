@@ -24,7 +24,7 @@ public class ChunkProviderClient implements IChunkProvider
      * coordinates.
      */
     private Chunk blankChunk;
-    private LongHashMap<Chunk> chunkMapping = new LongHashMap();
+    public LongHashMap<Chunk> chunkMapping = new LongHashMap();
     private List<Chunk> chunkListing = Lists.<Chunk>newArrayList();
 
     /** Reference to the World object. */

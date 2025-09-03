@@ -25,6 +25,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import phosphor.api.ILightingEngineProvider;
 
 public class ChunkProviderServer implements IChunkProvider {
     private static final Logger logger = LogManager.getLogger();
@@ -46,7 +47,7 @@ public class ChunkProviderServer implements IChunkProvider {
      * possible
      */
     public boolean chunkLoadOverride = true;
-    private final LongHashMap<Chunk> id2ChunkMap = new LongHashMap<>();
+    public final LongHashMap<Chunk> id2ChunkMap = new LongHashMap<>();
     private final List<Chunk> loadedChunks = Lists.newArrayList();
     private final WorldServer worldObj;
 
@@ -213,6 +214,7 @@ public class ChunkProviderServer implements IChunkProvider {
      * Return true if all chunks have been saved.
      */
     public void saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback) {
+        ((ILightingEngineProvider) this.worldObj).getLightingEngine().processLightUpdates();
         int i = 0;
         List<Chunk> list = Lists.newArrayList(this.loadedChunks);
 
@@ -248,6 +250,12 @@ public class ChunkProviderServer implements IChunkProvider {
      * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
      */
     public boolean unloadQueuedChunks() {
+        if (!this.worldObj.disableLevelSaving) {
+            if (!this.droppedChunksSet.isEmpty()) {
+                ((ILightingEngineProvider) this.worldObj).getLightingEngine().processLightUpdates();
+            }
+        }
+
         if (!this.worldObj.disableLevelSaving) {
             for (int i = 0; i < 100; ++i) {
                 if (!this.droppedChunksSet.isEmpty()) {

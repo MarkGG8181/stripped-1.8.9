@@ -29,6 +29,9 @@ import net.minecraft.world.storage.IThreadedFileIO;
 import net.minecraft.world.storage.ThreadedFileIOBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import phosphor.api.IChunkLightingData;
+import phosphor.api.ILightingEngineProvider;
+import phosphor.mod.world.lighting.LightingHooks;
 
 public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
     private static final Logger logger = LogManager.getLogger();
@@ -188,6 +191,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
      * the Chunk's last update time.
      */
     private void writeChunkToNBT(Chunk chunkIn, World worldIn, NBTTagCompound p_75820_3_) {
+        ((ILightingEngineProvider) worldIn).getLightingEngine().processLightUpdates();
         p_75820_3_.setByte("V", (byte) 1);
         p_75820_3_.setInteger("xPos", chunkIn.xPosition);
         p_75820_3_.setInteger("zPos", chunkIn.zPosition);
@@ -402,6 +406,8 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
                 }
             }
         }
+        LightingHooks.readNeighborLightChecksFromNBT(chunk, p_75823_2_);
+        chunk.setLightInitialized(p_75823_2_.getBoolean("LightPopulated"));
 
         return chunk;
     }

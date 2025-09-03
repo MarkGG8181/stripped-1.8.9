@@ -8,6 +8,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
+import phosphor.api.ILightingEngineProvider;
 
 public class S21PacketChunkData implements Packet<INetHandlerPlayClient>
 {
@@ -22,6 +23,8 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient>
 
     public S21PacketChunkData(Chunk chunkIn, boolean p_i45196_2_, int p_i45196_3_)
     {
+        ((ILightingEngineProvider) chunkIn.getWorld()).getLightingEngine().processLightUpdates();
+
         this.chunkX = chunkIn.xPosition;
         this.chunkZ = chunkIn.zPosition;
         this.loadChunk = p_i45196_2_;

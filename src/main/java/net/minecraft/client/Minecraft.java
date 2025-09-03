@@ -150,6 +150,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.OpenGLException;
 import org.lwjgl.system.MemoryUtil;
 import org.lwjgl.util.glu.GLU;
+import phosphor.api.ILightingEngineProvider;
 
 public class Minecraft implements IThreadListener {
     private static final Logger logger = LogManager.getLogger();
@@ -1693,6 +1694,11 @@ public class Minecraft implements IThreadListener {
 
             if (!this.isGamePaused) {
                 this.entityRenderer.updateRenderer();
+            }
+
+            if (this.theWorld != null) {
+                this.mcProfiler.endStartSection("lighting");
+                ((ILightingEngineProvider) this.theWorld).getLightingEngine().processLightUpdates();
             }
 
             this.mcProfiler.endStartSection("levelRenderer");
