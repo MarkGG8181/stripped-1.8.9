@@ -30,6 +30,7 @@ public abstract class NodeProcessor
      */
     public void postProcess()
     {
+        this.blockaccess = null;
     }
 
     /**
