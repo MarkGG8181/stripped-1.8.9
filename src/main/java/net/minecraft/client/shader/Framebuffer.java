@@ -2,7 +2,6 @@ package net.minecraft.client.shader;
 
 import java.nio.ByteBuffer;
 
-import com.port.gpuTape.GpuTape;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -23,8 +22,6 @@ public class Framebuffer {
     public float[] framebufferColor;
     public int framebufferFilter;
 
-    private long videoTape_lastUseFrame = 0;
-
     public Framebuffer(int p_i45078_1_, int p_i45078_2_, boolean p_i45078_3_) {
         this.useDepth = p_i45078_3_;
         this.framebufferObject = -1;
@@ -36,17 +33,6 @@ public class Framebuffer {
         this.framebufferColor[2] = 1.0F;
         this.framebufferColor[3] = 0.0F;
         this.createBindFramebuffer(p_i45078_1_, p_i45078_2_);
-
-        GpuTape.TRACKED_FRAMEBUFFERS.add(this);
-        this.updateLastUseFrame();
-    }
-
-    public long getLastUseFrame() {
-        return this.videoTape_lastUseFrame;
-    }
-
-    private void updateLastUseFrame() {
-        this.videoTape_lastUseFrame = GpuTape.frameCounter;
     }
 
     public void createBindFramebuffer(int width, int height) {
@@ -67,8 +53,6 @@ public class Framebuffer {
     }
 
     public void deleteFramebuffer() {
-        GpuTape.TRACKED_FRAMEBUFFERS.remove(this);
-
         if (OpenGlHelper.isFramebufferEnabled()) {
             this.unbindFramebufferTexture();
             this.unbindFramebuffer();
@@ -155,7 +139,6 @@ public class Framebuffer {
     }
 
     public void bindFramebufferTexture() {
-        this.updateLastUseFrame();
         if (OpenGlHelper.isFramebufferEnabled()) {
             GlStateManager.bindTexture(this.framebufferTexture);
         }
@@ -168,7 +151,6 @@ public class Framebuffer {
     }
 
     public void bindFramebuffer(boolean p_147610_1_) {
-        this.updateLastUseFrame();
         if (OpenGlHelper.isFramebufferEnabled()) {
             OpenGlHelper.glBindFramebuffer(OpenGlHelper.GL_FRAMEBUFFER, this.framebufferObject);
 
@@ -196,7 +178,6 @@ public class Framebuffer {
     }
 
     public void framebufferRenderExt(int p_178038_1_, int p_178038_2_, boolean p_178038_3_) {
-        this.updateLastUseFrame();
         if (OpenGlHelper.isFramebufferEnabled()) {
             GlStateManager.colorMask(true, true, true, false);
             GlStateManager.disableDepth();
@@ -238,19 +219,16 @@ public class Framebuffer {
     }
 
     public void framebufferClear() {
-        this.updateLastUseFrame();
-        if (OpenGlHelper.isFramebufferEnabled()) {
-            this.bindFramebuffer(true);
-            GlStateManager.clearColor(this.framebufferColor[0], this.framebufferColor[1], this.framebufferColor[2], this.framebufferColor[3]);
-            int i = 16384;
+        this.bindFramebuffer(true);
+        GlStateManager.clearColor(this.framebufferColor[0], this.framebufferColor[1], this.framebufferColor[2], this.framebufferColor[3]);
+        int i = 16384;
 
-            if (this.useDepth) {
-                GlStateManager.clearDepth(1.0D);
-                i |= 256;
-            }
-
-            GlStateManager.clear(i);
-            this.unbindFramebuffer();
+        if (this.useDepth) {
+            GlStateManager.clearDepth(1.0D);
+            i |= 256;
         }
+
+        GlStateManager.clear(i);
+        this.unbindFramebuffer();
     }
 }
