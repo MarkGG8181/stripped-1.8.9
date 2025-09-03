@@ -232,6 +232,10 @@ public class SoundManager implements IResourceManagerReloadListener {
         if (!loaded || sound == null || sndSystem.getMasterVolume() <= 0.0F) return;
 
         SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
+
+        if (soundEvent == null) {
+            return;
+        }
         
         SoundPoolEntry soundEntry = soundEvent.cloneEntry();
         if (soundEntry == SoundHandler.missing_sound) {
