@@ -161,7 +161,6 @@ public class Minecraft implements IThreadListener {
     /**
      * A 10MiB preallocation to ensure the heap is reasonably sized.
      */
-    public static byte[] memoryReserve = new byte[10485760];
     private static final List<DisplayMode> macDisplayModes = Lists.newArrayList(new DisplayMode(2560, 1600), new DisplayMode(2880, 1800));
     private final File fileResourcepacks;
 
@@ -413,7 +412,6 @@ public class Minecraft implements IThreadListener {
                     } catch (OutOfMemoryError oom) {
                         this.freeMemory();
                         this.displayGuiScreen(new GuiMemoryErrorScreen());
-                        System.gc();
                     }
                 } else {
                     this.displayCrashReport(this.crashReporter);
@@ -441,7 +439,6 @@ public class Minecraft implements IThreadListener {
     private void startGame() {
         this.gameSettings = new GameSettings(this, this.mcDataDir);
         this.defaultResourcePacks.add(this.mcDefaultResourcePack);
-        this.startTimerHackThread();
 
         if (this.gameSettings.overrideHeight > 0 && this.gameSettings.overrideWidth > 0) {
             this.displayWidth = this.gameSettings.overrideWidth;
@@ -483,7 +480,6 @@ public class Minecraft implements IThreadListener {
             }
         });
         this.mouseHelper = new MouseHelper();
-        this.checkGLError("Pre startup");
         GlStateManager.enableTexture2D();
         GlStateManager.shadeModel(7425);
         GlStateManager.clearDepth(1.0D);
@@ -495,7 +491,6 @@ public class Minecraft implements IThreadListener {
         GlStateManager.matrixMode(5889);
         GlStateManager.loadIdentity();
         GlStateManager.matrixMode(5888);
-        this.checkGLError("Startup");
         this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
         this.renderEngine.loadTickableTexture(TextureMap.locationBlocksTexture, this.textureMapBlocks);
@@ -516,7 +511,6 @@ public class Minecraft implements IThreadListener {
         this.guiAchievement = new GuiAchievement(this);
         GlStateManager.viewport(0, 0, this.displayWidth, this.displayHeight);
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
-        this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
 
         if (!stopTextureFix) {
@@ -612,17 +606,6 @@ public class Minecraft implements IThreadListener {
 
     public String getVersion() {
         return this.launchedVersion;
-    }
-
-    private void startTimerHackThread() {
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(Long.MAX_VALUE); // ~292 million years
-            } catch (InterruptedException ignored) {
-            }
-        }, "Timer hack thread");
-        thread.setDaemon(true);
-        thread.start();
     }
 
     public void crashed(CrashReport crash) {
@@ -850,25 +833,6 @@ public class Minecraft implements IThreadListener {
         }
     }
 
-    boolean enableGLErrorChecking = true;
-
-    /**
-     * Checks for an OpenGL error. If there is one, prints the error ID and error string.
-     */
-    private void checkGLError(String message) {
-
-        if (enableGLErrorChecking) {
-            int i = GL11.glGetError();
-
-            if (i != 0) {
-                String s = GLU.gluErrorString(i);
-                logger.error("########## GL ERROR ##########");
-                logger.error("@ {}", message);
-                logger.error("{}: {}", i, s);
-            }
-        }
-    }
-
     /**
      * Shuts down the minecraft applet by stopping the resource downloads, and clearing up GL stuff; called when the
      * application (or web page) is exited.
@@ -890,8 +854,6 @@ public class Minecraft implements IThreadListener {
                 System.exit(0);
             }
         }
-
-        System.gc();
     }
 
     /**
@@ -929,7 +891,6 @@ public class Minecraft implements IThreadListener {
         }
 
         this.mcProfiler.endStartSection("preRenderErrors");
-        this.checkGLError("Pre render");
         this.mcProfiler.endStartSection("sound");
         this.mcSoundHandler.setListener(this.thePlayer, this.timer.renderPartialTicks);
         this.mcProfiler.endSection();
@@ -975,7 +936,6 @@ public class Minecraft implements IThreadListener {
         this.mcProfiler.startSection("root");
         this.updateDisplay();
         Thread.yield();
-        this.checkGLError("Post render");
         ++this.fpsCounter;
         this.isGamePaused = this.isSingleplayer() && this.currentScreen != null && this.currentScreen.doesGuiPauseGame() && !this.theIntegratedServer.getPublic();
         long k = System.nanoTime();
@@ -984,7 +944,9 @@ public class Minecraft implements IThreadListener {
 
         while (getSystemTime() >= this.debugUpdateTime + 1000L) {
             debugFPS = this.fpsCounter;
-            this.debug = String.format("%d fps (%d chunk update%s) T: %s%s%s%s%s", debugFPS, RenderChunk.renderChunksUpdated, RenderChunk.renderChunksUpdated != 1 ? "s" : "", (float) this.gameSettings.limitFramerate == GameSettings.Options.FRAMERATE_LIMIT.getValueMax() ? "inf" : Integer.valueOf(this.gameSettings.limitFramerate), this.gameSettings.enableVsync ? " vsync" : "", this.gameSettings.fancyGraphics ? "" : " fast", this.gameSettings.clouds == 0 ? "" : (this.gameSettings.clouds == 1 ? " fast-clouds" : " fancy-clouds"), OpenGlHelper.useVbo() ? " vbo" : "");
+            StringBuilder debugBuilder = new StringBuilder();
+            debugBuilder.append(debugFPS).append(" fps (").append(RenderChunk.renderChunksUpdated);
+            this.debug = debugBuilder.toString();
             RenderChunk.renderChunksUpdated = 0;
             this.debugUpdateTime += 1000L;
             this.fpsCounter = 0;
@@ -1065,18 +1027,15 @@ public class Minecraft implements IThreadListener {
 
     public void freeMemory() {
         try {
-            memoryReserve = new byte[0];
             this.renderGlobal.deleteAllDisplayLists();
         } catch (Throwable ignored) {
         }
 
         try {
-            System.gc();
             this.loadWorld(null);
         } catch (Throwable ignored) {
-        }
 
-        System.gc();
+        }
     }
 
     /**
@@ -1802,7 +1761,6 @@ public class Minecraft implements IThreadListener {
      */
     public void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn) {
         this.loadWorld(null);
-        System.gc();
         ISaveHandler isavehandler = this.saveLoader.getSaveLoader(folderName, false);
         WorldInfo worldinfo = isavehandler.loadWorldInfo();
 
