@@ -1,7 +1,5 @@
 package net.minecraft.server.management;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,9 +18,7 @@ import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -32,7 +28,7 @@ public class UserList<K, V extends UserListEntry<K>> {
     protected static final Logger logger = LogManager.getLogger();
     protected final Gson gson;
     private final File saveFile;
-    private final Map<String, V> values = Maps.<String, V>newHashMap();
+    private final Map<String, V> values = new HashMap<>();
     private boolean lanServer = true;
     private static final ParameterizedType saveFileFormat = new ParameterizedType() {
         public Type[] getActualTypeArguments() {
@@ -110,7 +106,7 @@ public class UserList<K, V extends UserListEntry<K>> {
      * Removes expired bans from the list. See {@link BanEntry#hasBanExpired}
      */
     private void removeExpired() {
-        List<K> list = Lists.<K>newArrayList();
+        List<K> list = new ArrayList<>();
 
         for (V v : this.values.values()) {
             if (v.hasBanExpired()) {

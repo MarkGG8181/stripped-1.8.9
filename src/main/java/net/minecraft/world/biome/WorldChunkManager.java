@@ -1,7 +1,6 @@
 package net.minecraft.world.biome;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,7 +30,7 @@ public class WorldChunkManager {
 
     protected WorldChunkManager() {
         this.biomeCache = new BiomeCache(this);
-        this.biomesToSpawnIn = Lists.newArrayList();
+        this.biomesToSpawnIn = new ArrayList<>();
         this.biomesToSpawnIn.add(BiomeGenBase.forest);
         this.biomesToSpawnIn.add(BiomeGenBase.plains);
         this.biomesToSpawnIn.add(BiomeGenBase.taiga);

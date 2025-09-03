@@ -1,6 +1,8 @@
 package net.minecraft.command;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import net.minecraft.block.Block;
@@ -110,10 +112,10 @@ public class CommandClone extends CommandBase
                                 }
                             }
 
-                            List<CommandClone.StaticCloneData> list = Lists.<CommandClone.StaticCloneData>newArrayList();
-                            List<CommandClone.StaticCloneData> list1 = Lists.<CommandClone.StaticCloneData>newArrayList();
-                            List<CommandClone.StaticCloneData> list2 = Lists.<CommandClone.StaticCloneData>newArrayList();
-                            LinkedList<BlockPos> linkedlist = Lists.<BlockPos>newLinkedList();
+                            List<CommandClone.StaticCloneData> list = new ArrayList<>();
+                            List<CommandClone.StaticCloneData> list1 = new ArrayList<>();
+                            List<CommandClone.StaticCloneData> list2 = new ArrayList<>();
+                            LinkedList<BlockPos> linkedlist = new LinkedList<>();
                             BlockPos blockpos3 = new BlockPos(structureboundingbox1.minX - structureboundingbox.minX, structureboundingbox1.minY - structureboundingbox.minY, structureboundingbox1.minZ - structureboundingbox.minZ);
 
                             for (int k = structureboundingbox.minZ; k <= structureboundingbox.maxZ; ++k)
@@ -172,7 +174,7 @@ public class CommandClone extends CommandBase
                                 }
                             }
 
-                            List<CommandClone.StaticCloneData> list3 = Lists.<CommandClone.StaticCloneData>newArrayList();
+                            List<CommandClone.StaticCloneData> list3 = new ArrayList<>();
                             list3.addAll(list);
                             list3.addAll(list1);
                             list3.addAll(list2);

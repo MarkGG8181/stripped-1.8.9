@@ -1,7 +1,5 @@
 package net.minecraft.stats;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -10,6 +8,8 @@ import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -29,7 +29,7 @@ public class StatisticsFile extends StatFileWriter {
     private static final Logger logger = LogManager.getLogger();
     private final MinecraftServer mcServer;
     private final File statsFile;
-    private final Set<StatBase> dirty = Sets.<StatBase>newHashSet();
+    private final Set<StatBase> dirty = new HashSet<>();
     private int lastStatRequest = -300;
     private boolean hasUnsentAchievement = false;
 
@@ -85,7 +85,7 @@ public class StatisticsFile extends StatFileWriter {
     }
 
     public Set<StatBase> func_150878_c() {
-        Set<StatBase> set = Sets.newHashSet(this.dirty);
+        Set<StatBase> set = new HashSet<>(this.dirty);
         this.dirty.clear();
         this.hasUnsentAchievement = false;
         return set;
@@ -95,10 +95,10 @@ public class StatisticsFile extends StatFileWriter {
         JsonElement jsonelement = (new JsonParser()).parse(p_150881_1_);
 
         if (!jsonelement.isJsonObject()) {
-            return Maps.<StatBase, TupleIntJsonSerializable>newHashMap();
+            return new HashMap<>();
         } else {
             JsonObject jsonobject = jsonelement.getAsJsonObject();
-            Map<StatBase, TupleIntJsonSerializable> map = Maps.<StatBase, TupleIntJsonSerializable>newHashMap();
+            Map<StatBase, TupleIntJsonSerializable> map = new HashMap<>();
 
             for (Entry<String, JsonElement> entry : jsonobject.entrySet()) {
                 StatBase statbase = StatList.getOneShotStat((String) entry.getKey());
@@ -168,7 +168,7 @@ public class StatisticsFile extends StatFileWriter {
 
     public void func_150876_a(EntityPlayerMP p_150876_1_) {
         int i = this.mcServer.getTickCounter();
-        Map<StatBase, Integer> map = Maps.<StatBase, Integer>newHashMap();
+        Map<StatBase, Integer> map = new HashMap<>();
 
         if (this.hasUnsentAchievement || i - this.lastStatRequest > 300) {
             this.lastStatRequest = i;
@@ -182,7 +182,7 @@ public class StatisticsFile extends StatFileWriter {
     }
 
     public void sendAchievements(EntityPlayerMP player) {
-        Map<StatBase, Integer> map = Maps.<StatBase, Integer>newHashMap();
+        Map<StatBase, Integer> map = new HashMap<>();
 
         for (Achievement achievement : AchievementList.achievementList) {
             if (this.hasAchievementUnlocked(achievement)) {

@@ -1,6 +1,6 @@
 package net.minecraft.client.gui.ingame;
 
-import com.google.common.collect.Maps;
+import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +17,7 @@ public class MapItemRenderer
 {
     private static final ResourceLocation mapIcons = new ResourceLocation("textures/map/map_icons.png");
     private final TextureManager textureManager;
-    private final Map<String, MapItemRenderer.Instance> loadedMaps = Maps.<String, MapItemRenderer.Instance>newHashMap();
+    private final Map<String, MapItemRenderer.Instance> loadedMaps = new HashMap<>();
 
     public MapItemRenderer(TextureManager textureManagerIn)
     {

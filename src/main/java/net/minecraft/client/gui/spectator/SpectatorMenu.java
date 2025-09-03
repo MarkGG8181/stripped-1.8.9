@@ -1,8 +1,8 @@
 package net.minecraft.client.gui.spectator;
 
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
@@ -32,7 +32,7 @@ public class SpectatorMenu {
         }
     };
     private final ISpectatorMenuRecipient listener;
-    private final List<SpectatorDetails> previousCategories = Lists.<SpectatorDetails>newArrayList();
+    private final List<SpectatorDetails> previousCategories = new ArrayList<>();
     private ISpectatorMenuView category = new BaseSpectatorGroup();
     private int selectedSlot = -1;
     private int page;
@@ -47,7 +47,7 @@ public class SpectatorMenu {
     }
 
     public List<ISpectatorMenuObject> func_178642_a() {
-        List<ISpectatorMenuObject> list = Lists.<ISpectatorMenuObject>newArrayList();
+        List<ISpectatorMenuObject> list = new ArrayList<>();
 
         for (int i = 0; i <= 8; ++i) {
             list.add(this.func_178643_a(i));

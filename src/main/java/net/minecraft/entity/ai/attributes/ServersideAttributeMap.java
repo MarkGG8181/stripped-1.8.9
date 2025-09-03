@@ -2,13 +2,14 @@ package net.minecraft.entity.ai.attributes;
 
 import com.google.common.collect.Sets;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import net.minecraft.server.management.LowerStringMap;
 
 public class ServersideAttributeMap extends BaseAttributeMap
 {
-    private final Set<IAttributeInstance> attributeInstanceSet = Sets.<IAttributeInstance>newHashSet();
+    private final Set<IAttributeInstance> attributeInstanceSet = new HashSet<>();
     protected final Map<String, IAttributeInstance> descriptionToAttributeInstanceMap = new LowerStringMap();
 
     public ModifiableAttributeInstance getAttributeInstance(IAttribute attribute)
@@ -73,7 +74,7 @@ public class ServersideAttributeMap extends BaseAttributeMap
 
     public Collection<IAttributeInstance> getWatchedAttributes()
     {
-        Set<IAttributeInstance> set = Sets.<IAttributeInstance>newHashSet();
+        Set<IAttributeInstance> set = new HashSet<>();
 
         for (IAttributeInstance iattributeinstance : this.getAllAttributes())
         {

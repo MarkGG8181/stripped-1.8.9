@@ -1,7 +1,6 @@
 package net.minecraft.tileentity;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -19,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class TileEntity {
     private static final Logger logger = LogManager.getLogger();
-    private static Map<String, Class<? extends TileEntity>> nameToClassMap = Maps.<String, Class<? extends TileEntity>>newHashMap();
-    private static Map<Class<? extends TileEntity>, String> classToNameMap = Maps.<Class<? extends TileEntity>, String>newHashMap();
+    private static Map<String, Class<? extends TileEntity>> nameToClassMap = new HashMap<>();
+    private static Map<Class<? extends TileEntity>, String> classToNameMap = new HashMap<>();
 
     /**
      * the instance of the world the tile entity is in.

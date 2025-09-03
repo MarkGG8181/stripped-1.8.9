@@ -1,11 +1,11 @@
 package net.minecraft.client.audio;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SoundList
 {
-    private final List<SoundList.SoundEntry> soundList = Lists.<SoundList.SoundEntry>newArrayList();
+    private final List<SoundList.SoundEntry> soundList = new ArrayList<>();
 
     /**
      * if true it will override all the sounds from the resourcepacks loaded before

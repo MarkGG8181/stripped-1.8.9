@@ -1,6 +1,6 @@
 package net.minecraft.block;
 
-import com.google.common.collect.Maps;
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Random;
 import net.minecraft.block.material.MapColor;
@@ -30,8 +30,8 @@ public class BlockFire extends Block
     public static final PropertyBool SOUTH = PropertyBool.create("south");
     public static final PropertyBool WEST = PropertyBool.create("west");
     public static final PropertyInteger UPPER = PropertyInteger.create("upper", 0, 2);
-    private final Map<Block, Integer> encouragements = Maps.<Block, Integer>newIdentityHashMap();
-    private final Map<Block, Integer> flammabilities = Maps.<Block, Integer>newIdentityHashMap();
+    private final Map<Block, Integer> encouragements = new IdentityHashMap<>();
+    private final Map<Block, Integer> flammabilities = new IdentityHashMap<>();
 
     /**
      * Get the actual Block state of this Block at the given position. This applies properties not visible in the

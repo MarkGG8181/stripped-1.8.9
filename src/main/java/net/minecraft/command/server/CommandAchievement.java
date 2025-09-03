@@ -3,6 +3,8 @@ package net.minecraft.command.server;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -103,7 +105,7 @@ public class CommandAchievement extends CommandBase
 
                                 List<Achievement> list;
 
-                                for (list = Lists.<Achievement>newArrayList(); achievement.parentAchievement != null && !entityplayermp.getStatFile().hasAchievementUnlocked(achievement.parentAchievement); achievement = achievement.parentAchievement)
+                                for (list = new ArrayList<>(); achievement.parentAchievement != null && !entityplayermp.getStatFile().hasAchievementUnlocked(achievement.parentAchievement); achievement = achievement.parentAchievement)
                                 {
                                     list.add(achievement.parentAchievement);
                                 }
@@ -186,7 +188,7 @@ public class CommandAchievement extends CommandBase
         }
         else
         {
-            List<String> list = Lists.<String>newArrayList();
+            List<String> list = new ArrayList<>();
 
             for (StatBase statbase : StatList.allStats)
             {

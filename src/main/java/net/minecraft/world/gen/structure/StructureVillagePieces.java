@@ -1,6 +1,8 @@
 package net.minecraft.world.gen.structure;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -47,7 +49,7 @@ public class StructureVillagePieces
 
     public static List<StructureVillagePieces.PieceWeight> getStructureVillageWeightedPieceList(Random random, int size)
     {
-        List<StructureVillagePieces.PieceWeight> list = Lists.<StructureVillagePieces.PieceWeight>newArrayList();
+        List<StructureVillagePieces.PieceWeight> list = new ArrayList<>();
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House4Garden.class, 4, MathHelper.getRandomIntegerInRange(random, 2 + size, 4 + size * 2)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.Church.class, 20, MathHelper.getRandomIntegerInRange(random, 0 + size, 1 + size)));
         list.add(new StructureVillagePieces.PieceWeight(StructureVillagePieces.House1.class, 20, MathHelper.getRandomIntegerInRange(random, 0 + size, 2 + size)));
@@ -1411,8 +1413,8 @@ public class StructureVillagePieces
         public int terrainType;
         public StructureVillagePieces.PieceWeight structVillagePieceWeight;
         public List<StructureVillagePieces.PieceWeight> structureVillageWeightedPieceList;
-        public List<StructureComponent> pendingHouses = Lists.<StructureComponent>newArrayList();
-        public List<StructureComponent> pendingRoads = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingHouses = new ArrayList<>();
+        public List<StructureComponent> pendingRoads = new ArrayList<>();
 
         public Start()
         {

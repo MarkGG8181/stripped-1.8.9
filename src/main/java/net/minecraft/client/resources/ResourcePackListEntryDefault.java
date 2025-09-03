@@ -48,7 +48,7 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntry
 
             if (packmetadatasection != null)
             {
-                return packmetadatasection.getPackDescription().getFormattedText();
+                return packmetadatasection.packDescription().getFormattedText();
             }
         }
         catch (JsonParseException jsonparseexception)

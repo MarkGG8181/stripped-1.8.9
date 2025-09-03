@@ -1,10 +1,6 @@
 package net.minecraft.world.gen.structure;
 
-import com.google.common.collect.Maps;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.Callable;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -20,7 +16,7 @@ import net.minecraft.world.gen.MapGenBase;
 public abstract class MapGenStructure extends MapGenBase
 {
     private MapGenStructureData structureData;
-    protected Map<Long, StructureStart> structureMap = Maps.<Long, StructureStart>newHashMap();
+    protected Map<Long, StructureStart> structureMap = new HashMap<>();
 
     public abstract String getStructureName();
 

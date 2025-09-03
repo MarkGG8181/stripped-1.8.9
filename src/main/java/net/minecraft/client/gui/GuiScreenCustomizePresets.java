@@ -1,7 +1,7 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.element.impl.GuiButton;
@@ -18,7 +18,7 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiScreenCustomizePresets extends GuiScreen
 {
-    private static final List<GuiScreenCustomizePresets.Info> PRESETS = Lists.<GuiScreenCustomizePresets.Info>newArrayList();
+    private static final List<GuiScreenCustomizePresets.Info> PRESETS = new ArrayList<>();
     private GuiScreenCustomizePresets.ListPreset list;
     private GuiButton select;
     private GuiTextField export;

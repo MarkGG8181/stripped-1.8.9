@@ -1,6 +1,6 @@
 package net.minecraft.client.multiplayer;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.BlockPos;
@@ -24,8 +24,8 @@ public class ChunkProviderClient implements IChunkProvider
      * coordinates.
      */
     private Chunk blankChunk;
-    public LongHashMap<Chunk> chunkMapping = new LongHashMap();
-    private List<Chunk> chunkListing = Lists.<Chunk>newArrayList();
+    public LongHashMap<Chunk> chunkMapping = new LongHashMap<>();
+    private List<Chunk> chunkListing = new ArrayList<>();
 
     /** Reference to the World object. */
     private World worldObj;

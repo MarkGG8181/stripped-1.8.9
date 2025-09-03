@@ -1,6 +1,8 @@
 package net.minecraft.client.renderer;
 
 import com.google.common.collect.Maps;
+
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.block.Block;
@@ -58,7 +60,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BlockModelShapes
 {
-    private final Map<IBlockState, IBakedModel> bakedModelStore = Maps.<IBlockState, IBakedModel>newIdentityHashMap();
+    private final Map<IBlockState, IBakedModel> bakedModelStore = new IdentityHashMap<>();
     private final BlockStateMapper blockStateMapper = new BlockStateMapper();
     private final ModelManager modelManager;
 

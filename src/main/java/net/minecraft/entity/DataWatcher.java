@@ -1,8 +1,8 @@
 package net.minecraft.entity;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -22,8 +22,8 @@ public class DataWatcher
 
     /** When isBlank is true the DataWatcher is not watching any objects */
     private boolean isBlank = true;
-    private static final Map < Class<?>, Integer > dataTypes = Maps. < Class<?>, Integer > newHashMap();
-    private final Map<Integer, DataWatcher.WatchableObject> watchedObjects = Maps.<Integer, DataWatcher.WatchableObject>newHashMap();
+    private static final Map < Class<?>, Integer > dataTypes = new HashMap<>();
+    private final Map<Integer, DataWatcher.WatchableObject> watchedObjects = new HashMap<>();
 
     /** true if one or more object was changed */
     private boolean objectChanged;
@@ -203,7 +203,7 @@ public class DataWatcher
 
                     if (list == null)
                     {
-                        list = Lists.<DataWatcher.WatchableObject>newArrayList();
+                        list = new ArrayList<>();
                     }
 
                     list.add(datawatcher$watchableobject);
@@ -239,7 +239,7 @@ public class DataWatcher
         {
             if (list == null)
             {
-                list = Lists.<DataWatcher.WatchableObject>newArrayList();
+                list = new ArrayList<>();
             }
 
             list.add(datawatcher$watchableobject);
@@ -308,7 +308,7 @@ public class DataWatcher
         {
             if (list == null)
             {
-                list = Lists.<DataWatcher.WatchableObject>newArrayList();
+                list = new ArrayList<>();
             }
 
             int j = (i & 224) >> 5;

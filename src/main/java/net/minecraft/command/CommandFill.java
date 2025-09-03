@@ -1,6 +1,8 @@
 package net.minecraft.command;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -102,7 +104,7 @@ public class CommandFill extends CommandBase
                     }
                 }
 
-                List<BlockPos> list = Lists.<BlockPos>newArrayList();
+                List<BlockPos> list = new ArrayList<>();
                 j = 0;
 
                 for (int i1 = blockpos2.getZ(); i1 <= blockpos3.getZ(); ++i1)

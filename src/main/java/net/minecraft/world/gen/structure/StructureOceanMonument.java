@@ -2,11 +2,8 @@ package net.minecraft.world.gen.structure;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+
+import java.util.*;
 import java.util.Map.Entry;
 import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,7 +20,7 @@ public class StructureOceanMonument extends MapGenStructure
     private int spacing;
     private int separation;
     public static final List<BiomeGenBase> WATER_BIOMES = Arrays.<BiomeGenBase>asList(new BiomeGenBase[] {BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river, BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver});
-    private static final List<BiomeGenBase.SpawnListEntry> MONUMENT_ENEMIES = Lists.<BiomeGenBase.SpawnListEntry>newArrayList();
+    private static final List<BiomeGenBase.SpawnListEntry> MONUMENT_ENEMIES = new ArrayList<>();
 
     public StructureOceanMonument()
     {
@@ -111,7 +108,7 @@ public class StructureOceanMonument extends MapGenStructure
 
     public static class StartMonument extends StructureStart
     {
-        private Set<ChunkCoordIntPair> processed = Sets.<ChunkCoordIntPair>newHashSet();
+        private Set<ChunkCoordIntPair> processed = new HashSet<>();
         private boolean wasCreated;
 
         public StartMonument()

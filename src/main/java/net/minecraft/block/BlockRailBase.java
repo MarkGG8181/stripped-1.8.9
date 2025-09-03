@@ -1,6 +1,8 @@
 package net.minecraft.block;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -249,7 +251,7 @@ public abstract class BlockRailBase extends Block
         private final BlockRailBase block;
         private IBlockState state;
         private final boolean isPowered;
-        private final List<BlockPos> connectedRails = Lists.<BlockPos>newArrayList();
+        private final List<BlockPos> connectedRails = new ArrayList<>();
 
         public Rail(World worldIn, BlockPos pos, IBlockState state)
         {

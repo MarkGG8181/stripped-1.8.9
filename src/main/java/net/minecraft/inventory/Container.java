@@ -1,7 +1,7 @@
 package net.minecraft.inventory;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +13,8 @@ import net.minecraft.util.MathHelper;
 
 public abstract class Container
 {
-    public List<ItemStack> inventoryItemStacks = Lists.<ItemStack>newArrayList();
-    public List<Slot> inventorySlots = Lists.<Slot>newArrayList();
+    public List<ItemStack> inventoryItemStacks = new ArrayList<>();
+    public List<Slot> inventorySlots = new ArrayList<>();
     public int windowId;
     private short transactionID;
 
@@ -25,9 +25,9 @@ public abstract class Container
 
     /** The current drag event (0 : start, 1 : add slot : 2 : end) */
     private int dragEvent;
-    private final Set<Slot> dragSlots = Sets.<Slot>newHashSet();
-    protected List<ICrafting> crafters = Lists.<ICrafting>newArrayList();
-    private Set<EntityPlayer> playerList = Sets.<EntityPlayer>newHashSet();
+    private final Set<Slot> dragSlots = new HashSet<>();
+    protected List<ICrafting> crafters = new ArrayList<>();
+    private Set<EntityPlayer> playerList = new HashSet<>();
 
     /**
      * Adds an item slot to this container
@@ -64,7 +64,7 @@ public abstract class Container
 
     public List<ItemStack> getInventory()
     {
-        List<ItemStack> list = Lists.<ItemStack>newArrayList();
+        List<ItemStack> list = new ArrayList<>();
 
         for (int i = 0; i < this.inventorySlots.size(); ++i)
         {

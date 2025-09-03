@@ -1,7 +1,8 @@
 package net.minecraft.command.server;
 
-import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -67,7 +68,7 @@ public class CommandOp extends CommandBase
         if (args.length == 1)
         {
             String s = args[args.length - 1];
-            List<String> list = Lists.<String>newArrayList();
+            List<String> list = new ArrayList<>();
 
             for (GameProfile gameprofile : MinecraftServer.getServer().getGameProfiles())
             {

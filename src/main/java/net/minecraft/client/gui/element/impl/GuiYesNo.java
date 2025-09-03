@@ -1,7 +1,7 @@
 package net.minecraft.client.gui.element.impl;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -16,7 +16,7 @@ public class GuiYesNo extends GuiScreen
     protected GuiYesNoCallback parentScreen;
     protected String messageLine1;
     private String messageLine2;
-    private final List<String> listLines = Lists.<String>newArrayList();
+    private final List<String> listLines = new ArrayList<>();
 
     /** The text shown for the first button in GuiYesNo */
     protected String confirmButtonText;

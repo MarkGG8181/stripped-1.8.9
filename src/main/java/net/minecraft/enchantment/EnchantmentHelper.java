@@ -2,10 +2,9 @@ package net.minecraft.enchantment;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
+import java.util.*;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -72,7 +71,7 @@ public class EnchantmentHelper
 
     public static Map<Integer, Integer> getEnchantments(ItemStack stack)
     {
-        Map<Integer, Integer> map = Maps.<Integer, Integer>newLinkedHashMap();
+        Map<Integer, Integer> map = new LinkedHashMap<>();
         NBTTagList nbttaglist = stack.getItem() == Items.enchanted_book ? Items.enchanted_book.getEnchantments(stack) : stack.getEnchantmentTagList();
 
         if (nbttaglist != null)
@@ -440,7 +439,7 @@ public class EnchantmentHelper
 
                 if (enchantmentdata != null)
                 {
-                    list = Lists.<EnchantmentData>newArrayList();
+                    list = new ArrayList<>();
                     list.add(enchantmentdata);
 
                     for (int l = k; randomIn.nextInt(50) <= l; l >>= 1)
@@ -496,7 +495,7 @@ public class EnchantmentHelper
                     {
                         if (map == null)
                         {
-                            map = Maps.<Integer, EnchantmentData>newHashMap();
+                            map = new HashMap<>();
                         }
 
                         map.put(Integer.valueOf(enchantment.effectId), new EnchantmentData(enchantment, i));

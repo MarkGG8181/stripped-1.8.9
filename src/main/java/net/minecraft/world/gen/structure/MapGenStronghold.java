@@ -1,6 +1,6 @@
 package net.minecraft.world.gen.structure;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -28,7 +28,7 @@ public class MapGenStronghold extends MapGenStructure
         this.structureCoords = new ChunkCoordIntPair[3];
         this.distance = 32.0D;
         this.spread = 3;
-        this.allowedBiomes = Lists.<BiomeGenBase>newArrayList();
+        this.allowedBiomes = new ArrayList<>();
 
         for (BiomeGenBase biomegenbase : BiomeGenBase.getBiomeGenArray())
         {
@@ -113,7 +113,7 @@ public class MapGenStronghold extends MapGenStructure
 
     protected List<BlockPos> getCoordList()
     {
-        List<BlockPos> list = Lists.<BlockPos>newArrayList();
+        List<BlockPos> list = new ArrayList<>();
 
         for (ChunkCoordIntPair chunkcoordintpair : this.structureCoords)
         {

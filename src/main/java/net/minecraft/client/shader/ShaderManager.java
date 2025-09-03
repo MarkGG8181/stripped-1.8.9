@@ -1,7 +1,6 @@
 package net.minecraft.client.shader;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,6 +9,8 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,12 +30,12 @@ public class ShaderManager {
     private static final Logger logger = LogManager.getLogger();
     private static final ShaderDefault defaultShaderUniform = new ShaderDefault();
     private static int currentProgram = -1;
-    private final Map<String, Object> shaderSamplers = Maps.<String, Object>newHashMap();
-    private final List<String> samplerNames = Lists.<String>newArrayList();
-    private final List<Integer> shaderSamplerLocations = Lists.<Integer>newArrayList();
-    private final List<ShaderUniform> shaderUniforms = Lists.<ShaderUniform>newArrayList();
-    private final List<Integer> shaderUniformLocations = Lists.<Integer>newArrayList();
-    private final Map<String, ShaderUniform> mappedShaderUniforms = Maps.<String, ShaderUniform>newHashMap();
+    private final Map<String, Object> shaderSamplers = new HashMap<>();
+    private final List<String> samplerNames = new ArrayList<>();
+    private final List<Integer> shaderSamplerLocations = new ArrayList<>();
+    private final List<ShaderUniform> shaderUniforms = new ArrayList<>();
+    private final List<Integer> shaderUniformLocations = new ArrayList<>();
+    private final Map<String, ShaderUniform> mappedShaderUniforms = new HashMap<>();
     private final int program;
     private final String programFilename;
     private final boolean useFaceCulling;

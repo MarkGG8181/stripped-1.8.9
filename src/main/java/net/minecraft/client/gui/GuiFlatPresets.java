@@ -1,9 +1,9 @@
 package net.minecraft.client.gui;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.client.gui.element.Gui;
@@ -27,7 +27,7 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiFlatPresets extends GuiScreen
 {
-    private static final List<GuiFlatPresets.LayerItem> FLAT_WORLD_PRESETS = Lists.<GuiFlatPresets.LayerItem>newArrayList();
+    private static final List<GuiFlatPresets.LayerItem> FLAT_WORLD_PRESETS = new ArrayList<>();
 
     /** The parent GUI */
     private final GuiCreateFlatWorld parentScreen;
@@ -177,7 +177,7 @@ public class GuiFlatPresets extends GuiScreen
         {
             for (String s : p_175354_4_)
             {
-                flatgeneratorinfo.getWorldFeatures().put(s, Maps.<String, String>newHashMap());
+                flatgeneratorinfo.getWorldFeatures().put(s, new HashMap<>());
             }
         }
 

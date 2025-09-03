@@ -1,12 +1,9 @@
 package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 import net.minecraft.client.Minecraft;
@@ -43,9 +40,9 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     public TextureMap(String p_i46100_1_, IIconCreator iconCreatorIn)
     {
-        this.listAnimatedSprites = Lists.<TextureAtlasSprite>newArrayList();
-        this.mapRegisteredSprites = Maps.<String, TextureAtlasSprite>newHashMap();
-        this.mapUploadedSprites = Maps.<String, TextureAtlasSprite>newHashMap();
+        this.listAnimatedSprites = new ArrayList<>();
+        this.mapRegisteredSprites = new HashMap<>();
+        this.mapUploadedSprites = new HashMap<>();
         this.missingImage = new TextureAtlasSprite("missingno");
         this.basePath = p_i46100_1_;
         this.iconCreator = iconCreatorIn;
@@ -102,7 +99,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
                 if (texturemetadatasection != null)
                 {
-                    List<Integer> list = texturemetadatasection.getListMipmaps();
+                    List<Integer> list = texturemetadatasection.listMipmaps();
 
                     if (!list.isEmpty())
                     {
@@ -222,7 +219,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
         logger.info("Created: {}x{} {}-atlas", new Object[] {Integer.valueOf(stitcher.getCurrentWidth()), Integer.valueOf(stitcher.getCurrentHeight()), this.basePath});
         TextureUtil.allocateTextureImpl(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight());
-        Map<String, TextureAtlasSprite> map = Maps.<String, TextureAtlasSprite>newHashMap(this.mapRegisteredSprites);
+        Map<String, TextureAtlasSprite> map = new HashMap<>(this.mapRegisteredSprites);
 
         for (TextureAtlasSprite textureatlassprite2 : stitcher.getStichSlots())
         {

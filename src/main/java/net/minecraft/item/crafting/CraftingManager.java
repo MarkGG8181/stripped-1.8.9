@@ -2,10 +2,9 @@ package net.minecraft.item.crafting;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockStone;
@@ -24,7 +23,7 @@ public class CraftingManager
 {
     /** The static instance of this class */
     private static final CraftingManager instance = new CraftingManager();
-    private final List<IRecipe> recipes = Lists.<IRecipe>newArrayList();
+    private final List<IRecipe> recipes = new ArrayList<>();
 
     /**
      * Returns the static instance of this class
@@ -228,7 +227,7 @@ public class CraftingManager
 
         Map<Character, ItemStack> map;
 
-        for (map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
+        for (map = new HashMap<>(); i < recipeComponents.length; i += 2)
         {
             Character character = (Character)recipeComponents[i];
             ItemStack itemstack = null;
@@ -275,7 +274,7 @@ public class CraftingManager
      */
     public void addShapelessRecipe(ItemStack stack, Object... recipeComponents)
     {
-        List<ItemStack> list = Lists.<ItemStack>newArrayList();
+        List<ItemStack> list = new ArrayList<>();
 
         for (Object object : recipeComponents)
         {

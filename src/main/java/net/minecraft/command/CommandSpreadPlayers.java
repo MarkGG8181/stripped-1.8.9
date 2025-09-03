@@ -3,10 +3,9 @@ package net.minecraft.command;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+
+import java.util.*;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -61,7 +60,7 @@ public class CommandSpreadPlayers extends CommandBase
             double d2 = parseDouble(args[i++], 0.0D);
             double d3 = parseDouble(args[i++], d2 + 1.0D);
             boolean flag = parseBoolean(args[i++]);
-            List<Entity> list = Lists.<Entity>newArrayList();
+            List<Entity> list = new ArrayList<>();
 
             while (i < args.length)
             {
@@ -125,7 +124,7 @@ public class CommandSpreadPlayers extends CommandBase
 
     private int func_110667_a(List<Entity> p_110667_1_)
     {
-        Set<Team> set = Sets.<Team>newHashSet();
+        Set<Team> set = new HashSet<>();
 
         for (Entity entity : p_110667_1_)
         {
@@ -228,7 +227,7 @@ public class CommandSpreadPlayers extends CommandBase
     {
         double d0 = 0.0D;
         int i = 0;
-        Map<Team, CommandSpreadPlayers.Position> map = Maps.<Team, CommandSpreadPlayers.Position>newHashMap();
+        Map<Team, CommandSpreadPlayers.Position> map = new HashMap<>();
 
         for (int j = 0; j < p_110671_1_.size(); ++j)
         {

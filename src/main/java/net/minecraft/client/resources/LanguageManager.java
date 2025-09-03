@@ -1,13 +1,9 @@
 package net.minecraft.client.resources;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
+import java.util.*;
 
 import net.minecraft.client.resources.data.IMetadataSerializer;
 import net.minecraft.client.resources.data.LanguageMetadataSection;
@@ -20,7 +16,7 @@ public class LanguageManager implements IResourceManagerReloadListener {
     private final IMetadataSerializer theMetadataSerializer;
     private String currentLanguage;
     protected static final Locale currentLocale = new Locale();
-    private Map<String, Language> languageMap = Maps.<String, Language>newHashMap();
+    private Map<String, Language> languageMap = new HashMap<>();
 
     public LanguageManager(IMetadataSerializer theMetadataSerializerIn, String currentLanguageIn) {
         this.theMetadataSerializer = theMetadataSerializerIn;
@@ -36,7 +32,7 @@ public class LanguageManager implements IResourceManagerReloadListener {
                 LanguageMetadataSection languagemetadatasection = (LanguageMetadataSection) iresourcepack.getPackMetadata(this.theMetadataSerializer, "language");
 
                 if (languagemetadatasection != null) {
-                    for (Language language : languagemetadatasection.getLanguages()) {
+                    for (Language language : languagemetadatasection.languages()) {
                         if (!this.languageMap.containsKey(language.getLanguageCode())) {
                             this.languageMap.put(language.getLanguageCode(), language);
                         }
@@ -51,7 +47,7 @@ public class LanguageManager implements IResourceManagerReloadListener {
     }
 
     public void onResourceManagerReload(IResourceManager resourceManager) {
-        List<String> list = Lists.newArrayList(new String[]{"en_US"});
+        List<String> list = Lists.newArrayList("en_US");
 
         if (!"en_US".equals(this.currentLanguage)) {
             list.add(this.currentLanguage);
@@ -61,19 +57,7 @@ public class LanguageManager implements IResourceManagerReloadListener {
         StringTranslate.replaceWith(currentLocale.properties);
     }
 
-    public boolean isCurrentLocaleUnicode() {
-        return currentLocale.isUnicode();
-    }
-
-    public void setCurrentLanguage(Language currentLanguageIn) {
-        this.currentLanguage = currentLanguageIn.getLanguageCode();
-    }
-
     public Language getCurrentLanguage() {
         return this.languageMap.containsKey(this.currentLanguage) ? (Language) this.languageMap.get(this.currentLanguage) : (Language) this.languageMap.get("en_US");
-    }
-
-    public SortedSet<Language> getLanguages() {
-        return Sets.newTreeSet(this.languageMap.values());
     }
 }

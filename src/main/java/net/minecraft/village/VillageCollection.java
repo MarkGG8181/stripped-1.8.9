@@ -1,7 +1,6 @@
 package net.minecraft.village;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,9 +17,9 @@ import net.minecraft.world.WorldSavedData;
 
 public class VillageCollection extends WorldSavedData {
     private World worldObj;
-    private final List<BlockPos> villagerPositionsList = Lists.newArrayList();
-    private final List<VillageDoorInfo> newDoors = Lists.newArrayList();
-    private final List<Village> villageList = Lists.newArrayList();
+    private final List<BlockPos> villagerPositionsList = new ArrayList<>();
+    private final List<VillageDoorInfo> newDoors = new ArrayList<>();
+    private final List<Village> villageList = new ArrayList<>();
     private int tickCounter;
 
     public VillageCollection(String name) {

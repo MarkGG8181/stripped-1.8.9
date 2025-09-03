@@ -1,10 +1,7 @@
 package net.minecraft.client.model;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
@@ -13,8 +10,8 @@ public abstract class ModelBase
     public float swingProgress;
     public boolean isRiding;
     public boolean isChild = true;
-    public List<ModelRenderer> boxList = Lists.<ModelRenderer>newArrayList();
-    private Map<String, TextureOffset> modelTextureMap = Maps.<String, TextureOffset>newHashMap();
+    public List<ModelRenderer> boxList = new ArrayList<>();
+    private Map<String, TextureOffset> modelTextureMap = new HashMap<>();
     public int textureWidth = 64;
     public int textureHeight = 32;
 

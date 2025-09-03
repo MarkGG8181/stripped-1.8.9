@@ -1,7 +1,9 @@
 package net.minecraft.client.renderer.block.model;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,8 +18,8 @@ public class ItemModelGenerator
 
     public ModelBlock makeItemModel(TextureMap textureMapIn, ModelBlock blockModel)
     {
-        Map<String, String> map = Maps.<String, String>newHashMap();
-        List<BlockPart> list = Lists.<BlockPart>newArrayList();
+        Map<String, String> map = new HashMap<>();
+        List<BlockPart> list = new ArrayList<>();
 
         for (int i = 0; i < LAYERS.size(); ++i)
         {
@@ -47,10 +49,10 @@ public class ItemModelGenerator
 
     private List<BlockPart> func_178394_a(int p_178394_1_, String p_178394_2_, TextureAtlasSprite p_178394_3_)
     {
-        Map<EnumFacing, BlockPartFace> map = Maps.<EnumFacing, BlockPartFace>newHashMap();
+        Map<EnumFacing, BlockPartFace> map = new HashMap<>();
         map.put(EnumFacing.SOUTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[] {0.0F, 0.0F, 16.0F, 16.0F}, 0)));
         map.put(EnumFacing.NORTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[] {16.0F, 0.0F, 0.0F, 16.0F}, 0)));
-        List<BlockPart> list = Lists.<BlockPart>newArrayList();
+        List<BlockPart> list = new ArrayList<>();
         list.add(new BlockPart(new Vector3f(0.0F, 0.0F, 7.5F), new Vector3f(16.0F, 16.0F, 8.5F), map, (BlockPartRotation)null, true));
         list.addAll(this.func_178397_a(p_178394_3_, p_178394_2_, p_178394_1_));
         return list;
@@ -60,7 +62,7 @@ public class ItemModelGenerator
     {
         float f = (float)p_178397_1_.getIconWidth();
         float f1 = (float)p_178397_1_.getIconHeight();
-        List<BlockPart> list = Lists.<BlockPart>newArrayList();
+        List<BlockPart> list = new ArrayList<>();
 
         for (ItemModelGenerator.Span itemmodelgenerator$span : this.func_178393_a(p_178397_1_))
         {
@@ -141,7 +143,7 @@ public class ItemModelGenerator
             f7 = f7 * f10;
             f8 = f8 * f11;
             f9 = f9 * f11;
-            Map<EnumFacing, BlockPartFace> map = Maps.<EnumFacing, BlockPartFace>newHashMap();
+            Map<EnumFacing, BlockPartFace> map = new HashMap<>();
             map.put(itemmodelgenerator$spanfacing.getFacing(), new BlockPartFace((EnumFacing)null, p_178397_3_, p_178397_2_, new BlockFaceUV(new float[] {f6, f8, f7, f9}, 0)));
 
             switch (itemmodelgenerator$spanfacing)
@@ -170,7 +172,7 @@ public class ItemModelGenerator
     {
         int i = p_178393_1_.getIconWidth();
         int j = p_178393_1_.getIconHeight();
-        List<ItemModelGenerator.Span> list = Lists.<ItemModelGenerator.Span>newArrayList();
+        List<ItemModelGenerator.Span> list = new ArrayList<>();
 
         for (int k = 0; k < p_178393_1_.getFrameCount(); ++k)
         {

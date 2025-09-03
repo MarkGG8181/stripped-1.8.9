@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.tileentity;
 
-import com.google.common.collect.Maps;
+import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.client.gui.util.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 public class TileEntityRendererDispatcher
 {
-    private Map < Class <? extends TileEntity > , TileEntitySpecialRenderer <? extends TileEntity >> mapSpecialRenderers = Maps. < Class <? extends TileEntity > , TileEntitySpecialRenderer <? extends TileEntity >> newHashMap();
+    private Map < Class <? extends TileEntity > , TileEntitySpecialRenderer <? extends TileEntity >> mapSpecialRenderers = new HashMap<>();
     public static TileEntityRendererDispatcher instance = new TileEntityRendererDispatcher();
     private FontRenderer fontRenderer;
 

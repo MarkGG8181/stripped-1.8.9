@@ -1,15 +1,14 @@
 package net.minecraft.client.util;
 
-import com.google.common.collect.Lists;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 public class JsonException extends IOException {
-    private final List<JsonException.Entry> entries = Lists.<JsonException.Entry>newArrayList();
+    private final List<JsonException.Entry> entries = new ArrayList<>();
     private final String exceptionMessage;
 
     public JsonException(String message) {
@@ -56,7 +55,7 @@ public class JsonException extends IOException {
 
         private Entry() {
             this.filename = null;
-            this.jsonKeys = Lists.<String>newArrayList();
+            this.jsonKeys = new ArrayList<>();
         }
 
         private void func_151373_a(String p_151373_1_) {

@@ -1,7 +1,6 @@
 package net.minecraft.entity.ai;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 public class EntityAITasks {
     private static final Logger logger = LogManager.getLogger();
-    private List<EntityAITasks.EntityAITaskEntry> taskEntries = Lists.<EntityAITasks.EntityAITaskEntry>newArrayList();
-    private List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = Lists.<EntityAITasks.EntityAITaskEntry>newArrayList();
+    private List<EntityAITasks.EntityAITaskEntry> taskEntries = new ArrayList<>();
+    private List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = new ArrayList<>();
 
     /**
      * Instance of Profiler.

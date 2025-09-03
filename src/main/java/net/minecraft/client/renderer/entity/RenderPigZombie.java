@@ -3,10 +3,10 @@ package net.minecraft.client.renderer.entity;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityZombiePigman;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderPigZombie extends RenderBiped<EntityPigZombie>
+public class RenderPigZombie extends RenderBiped<EntityZombiePigman>
 {
     private static final ResourceLocation ZOMBIE_PIGMAN_TEXTURE = new ResourceLocation("textures/entity/zombie_pigman.png");
 
@@ -27,7 +27,7 @@ public class RenderPigZombie extends RenderBiped<EntityPigZombie>
     /**
      * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
      */
-    protected ResourceLocation getEntityTexture(EntityPigZombie entity)
+    protected ResourceLocation getEntityTexture(EntityZombiePigman entity)
     {
         return ZOMBIE_PIGMAN_TEXTURE;
     }

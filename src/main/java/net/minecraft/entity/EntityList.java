@@ -1,10 +1,7 @@
 package net.minecraft.entity;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 import net.minecraft.entity.ai.EntityMinecartMobSpawner;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -39,7 +36,7 @@ import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityZombiePigman;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
@@ -77,12 +74,12 @@ import org.apache.logging.log4j.Logger;
 public class EntityList
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final Map < String, Class <? extends Entity >> stringToClassMapping = Maps. < String, Class <? extends Entity >> newHashMap();
-    private static final Map < Class <? extends Entity > , String > classToStringMapping = Maps. < Class <? extends Entity > , String > newHashMap();
-    private static final Map < Integer, Class <? extends Entity >> idToClassMapping = Maps. < Integer, Class <? extends Entity >> newHashMap();
-    private static final Map < Class <? extends Entity > , Integer > classToIDMapping = Maps. < Class <? extends Entity > , Integer > newHashMap();
-    private static final Map<String, Integer> stringToIDMapping = Maps.<String, Integer>newHashMap();
-    public static final Map<Integer, EntityList.EntityEggInfo> entityEggs = Maps.<Integer, EntityList.EntityEggInfo>newLinkedHashMap();
+    private static final Map < String, Class <? extends Entity >> stringToClassMapping = new HashMap<>();
+    private static final Map < Class <? extends Entity > , String > classToStringMapping = new HashMap<>();
+    private static final Map < Integer, Class <? extends Entity >> idToClassMapping = new HashMap<>();
+    private static final Map < Class <? extends Entity > , Integer > classToIDMapping = new HashMap<>();
+    private static final Map<String, Integer> stringToIDMapping = new HashMap<>();
+    public static final Map<Integer, EntityList.EntityEggInfo> entityEggs = new LinkedHashMap<>();
 
     /**
      * adds a mapping between Entity classes and both a string representation and an ID
@@ -262,7 +259,7 @@ public class EntityList
     public static List<String> getEntityNameList()
     {
         Set<String> set = stringToClassMapping.keySet();
-        List<String> list = Lists.<String>newArrayList();
+        List<String> list = new ArrayList<>();
 
         for (String s : set)
         {
@@ -337,7 +334,7 @@ public class EntityList
         addMapping(EntityZombie.class, "Zombie", 54, 44975, 7969893);
         addMapping(EntitySlime.class, "Slime", 55, 5349438, 8306542);
         addMapping(EntityGhast.class, "Ghast", 56, 16382457, 12369084);
-        addMapping(EntityPigZombie.class, "PigZombie", 57, 15373203, 5009705);
+        addMapping(EntityZombiePigman.class, "PigZombie", 57, 15373203, 5009705);
         addMapping(EntityEnderman.class, "Enderman", 58, 1447446, 0);
         addMapping(EntityCaveSpider.class, "CaveSpider", 59, 803406, 11013646);
         addMapping(EntitySilverfish.class, "Silverfish", 60, 7237230, 3158064);

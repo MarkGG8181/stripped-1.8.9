@@ -1,7 +1,7 @@
 package net.minecraft.client.gui.achievement;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -457,7 +457,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         public StatsBlock(Minecraft mcIn)
         {
             super(mcIn);
-            this.statsHolder = Lists.<StatCrafting>newArrayList();
+            this.statsHolder = new ArrayList<>();
 
             for (StatCrafting statcrafting : StatList.objectMineStats)
             {
@@ -629,7 +629,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
         public StatsItem(Minecraft mcIn)
         {
             super(mcIn);
-            this.statsHolder = Lists.<StatCrafting>newArrayList();
+            this.statsHolder = new ArrayList<>();
 
             for (StatCrafting statcrafting : StatList.itemStats)
             {
@@ -757,7 +757,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
     class StatsMobsList extends GuiSlot
     {
-        private final List<EntityList.EntityEggInfo> mobs = Lists.<EntityList.EntityEggInfo>newArrayList();
+        private final List<EntityList.EntityEggInfo> mobs = new ArrayList<>();
 
         public StatsMobsList(Minecraft mcIn)
         {

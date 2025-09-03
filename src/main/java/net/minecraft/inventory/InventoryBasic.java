@@ -1,6 +1,6 @@
 package net.minecraft.inventory;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,7 +38,7 @@ public class InventoryBasic implements IInventory
     {
         if (this.changeListeners == null)
         {
-            this.changeListeners = Lists.<IInvBasic>newArrayList();
+            this.changeListeners = new ArrayList<>();
         }
 
         this.changeListeners.add(listener);

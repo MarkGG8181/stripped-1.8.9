@@ -1,6 +1,8 @@
 package net.minecraft.command;
 
 import com.google.common.collect.Maps;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.block.Block;
@@ -19,7 +21,7 @@ import net.minecraft.world.World;
 
 public class CommandReplaceItem extends CommandBase
 {
-    private static final Map<String, Integer> SHORTCUTS = Maps.<String, Integer>newHashMap();
+    private static final Map<String, Integer> SHORTCUTS = new HashMap<>();
 
     /**
      * Gets the name of the command

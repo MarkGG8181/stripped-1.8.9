@@ -1,8 +1,6 @@
 package net.minecraft.client.settings;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 
@@ -13,9 +11,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
@@ -79,8 +75,8 @@ public class GameSettings {
      * Smooth Lighting
      */
     public int ambientOcclusion = 2;
-    public List<String> resourcePacks = Lists.newArrayList();
-    public List<String> incompatibleResourcePacks = Lists.newArrayList();
+    public List<String> resourcePacks = new ArrayList<>();
+    public List<String> incompatibleResourcePacks = new ArrayList<>();
     public EntityPlayer.EnumChatVisibility chatVisibility = EntityPlayer.EnumChatVisibility.FULL;
     public boolean chatColours = true;
     public boolean chatLinks = true;
@@ -110,7 +106,7 @@ public class GameSettings {
     public float chatHeightFocused = 1.0F;
     public boolean showInventoryAchievementHint = true;
     public int mipmapLevels = 4;
-    private final Map<SoundCategory, Float> mapSoundLevels = Maps.newEnumMap(SoundCategory.class);
+    private final Map<SoundCategory, Float> mapSoundLevels = new EnumMap<>(SoundCategory.class);
     public boolean useNativeTransport = true;
     public boolean entityShadows = true;
     public KeyBinding keyBindForward = new KeyBinding("key.forward", 17, "key.categories.movement");
@@ -572,7 +568,7 @@ public class GameSettings {
                         this.resourcePacks = gson.fromJson(s.substring(s.indexOf(58) + 1), typeListString);
 
                         if (this.resourcePacks == null) {
-                            this.resourcePacks = Lists.newArrayList();
+                            this.resourcePacks = new ArrayList<>();
                         }
                     }
 
@@ -580,7 +576,7 @@ public class GameSettings {
                         this.incompatibleResourcePacks = gson.fromJson(s.substring(s.indexOf(58) + 1), typeListString);
 
                         if (this.incompatibleResourcePacks == null) {
-                            this.incompatibleResourcePacks = Lists.newArrayList();
+                            this.incompatibleResourcePacks = new ArrayList<>();
                         }
                     }
 

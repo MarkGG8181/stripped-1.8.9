@@ -2,10 +2,10 @@ package net.minecraft.util;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -27,7 +27,7 @@ public class StringTranslate {
      * Is the private singleton instance of StringTranslate.
      */
     private static StringTranslate instance = new StringTranslate();
-    private final Map<String, String> languageList = Maps.<String, String>newHashMap();
+    private final Map<String, String> languageList = new HashMap<>();
 
     /**
      * The time, in milliseconds since epoch, that this instance was last updated

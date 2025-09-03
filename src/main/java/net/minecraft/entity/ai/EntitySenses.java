@@ -1,6 +1,6 @@
 package net.minecraft.entity.ai;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -8,8 +8,8 @@ import net.minecraft.entity.EntityLiving;
 public class EntitySenses
 {
     EntityLiving entityObj;
-    List<Entity> seenEntities = Lists.<Entity>newArrayList();
-    List<Entity> unseenEntities = Lists.<Entity>newArrayList();
+    List<Entity> seenEntities = new ArrayList<>();
+    List<Entity> unseenEntities = new ArrayList<>();
 
     public EntitySenses(EntityLiving entityObjIn)
     {

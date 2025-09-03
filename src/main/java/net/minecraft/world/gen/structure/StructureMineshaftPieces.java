@@ -1,6 +1,8 @@
 package net.minecraft.world.gen.structure;
 
 import com.google.common.collect.Lists;
+
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.material.Material;
@@ -584,7 +586,7 @@ public class StructureMineshaftPieces
 
     public static class Room extends StructureComponent
     {
-        private List<StructureBoundingBox> roomsLinkedToTheRoom = Lists.<StructureBoundingBox>newLinkedList();
+        private List<StructureBoundingBox> roomsLinkedToTheRoom = new LinkedList<>();
 
         public Room()
         {

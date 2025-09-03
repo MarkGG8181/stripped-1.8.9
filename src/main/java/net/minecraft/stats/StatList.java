@@ -1,11 +1,7 @@
 package net.minecraft.stats;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
@@ -20,11 +16,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class StatList
 {
-    protected static Map<String, StatBase> oneShotStats = Maps.<String, StatBase>newHashMap();
-    public static List<StatBase> allStats = Lists.<StatBase>newArrayList();
-    public static List<StatBase> generalStats = Lists.<StatBase>newArrayList();
-    public static List<StatCrafting> itemStats = Lists.<StatCrafting>newArrayList();
-    public static List<StatCrafting> objectMineStats = Lists.<StatCrafting>newArrayList();
+    protected static Map<String, StatBase> oneShotStats = new HashMap<>();
+    public static List<StatBase> allStats = new ArrayList<>();
+    public static List<StatBase> generalStats = new ArrayList<>();
+    public static List<StatCrafting> itemStats = new ArrayList<>();
+    public static List<StatCrafting> objectMineStats = new ArrayList<>();
 
     /** number of times you've left a game */
     public static StatBase leaveGameStat = (new StatBasic("stat.leaveGame", new ChatComponentTranslation("stat.leaveGame", new Object[0]))).initIndependentStat().registerStat();
@@ -138,7 +134,7 @@ public class StatList
      */
     private static void initCraftableStats()
     {
-        Set<Item> set = Sets.<Item>newHashSet();
+        Set<Item> set = new HashSet<>();
 
         for (IRecipe irecipe : CraftingManager.getInstance().getRecipeList())
         {

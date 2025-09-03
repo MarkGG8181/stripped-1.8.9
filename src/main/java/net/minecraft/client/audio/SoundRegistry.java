@@ -1,6 +1,6 @@
 package net.minecraft.client.audio;
 
-import com.google.common.collect.Maps;
+import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.util.RegistrySimple;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +11,7 @@ public class SoundRegistry extends RegistrySimple<ResourceLocation, SoundEventAc
 
     protected Map<ResourceLocation, SoundEventAccessorComposite> createUnderlyingMap()
     {
-        this.soundRegistry = Maps.<ResourceLocation, SoundEventAccessorComposite>newHashMap();
+        this.soundRegistry = new HashMap<>();
         return this.soundRegistry;
     }
 

@@ -1,7 +1,7 @@
 package net.minecraft.network.play.server;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
@@ -25,14 +25,14 @@ public class S3EPacketTeams implements Packet<INetHandlerPlayClient>
     {
         this.nameTagVisibility = Team.EnumVisible.ALWAYS.internalName;
         this.color = -1;
-        this.players = Lists.<String>newArrayList();
+        this.players = new ArrayList<>();
     }
 
     public S3EPacketTeams(ScorePlayerTeam teamIn, int actionIn)
     {
         this.nameTagVisibility = Team.EnumVisible.ALWAYS.internalName;
         this.color = -1;
-        this.players = Lists.<String>newArrayList();
+        this.players = new ArrayList<>();
         this.name = teamIn.getRegisteredName();
         this.action = actionIn;
 
@@ -56,7 +56,7 @@ public class S3EPacketTeams implements Packet<INetHandlerPlayClient>
     {
         this.nameTagVisibility = Team.EnumVisible.ALWAYS.internalName;
         this.color = -1;
-        this.players = Lists.<String>newArrayList();
+        this.players = new ArrayList<>();
 
         if (actionIn != 3 && actionIn != 4)
         {

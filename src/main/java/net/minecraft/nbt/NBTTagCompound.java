@@ -1,10 +1,9 @@
 package net.minecraft.nbt;
 
-import com.google.common.collect.Maps;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -15,7 +14,7 @@ import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 
 public class NBTTagCompound extends NBTBase {
-    private Map<String, NBTBase> tagMap = Maps.<String, NBTBase>newHashMap();
+    private final Map<String, NBTBase> tagMap = new HashMap<>();
 
     /**
      * Write the actual data contents of the tag, implemented in NBT extension classes

@@ -11,11 +11,7 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 
 import net.minecraft.client.Minecraft;
@@ -31,19 +27,16 @@ import net.minecraft.util.ResourceLocation;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.comparator.LastModifiedFileComparator;
-import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ResourcePackRepository {
     private static final Logger logger = LogManager.getLogger();
-    private static final FileFilter resourcePackFilter = new FileFilter() {
-        public boolean accept(File p_accept_1_) {
-            boolean flag = p_accept_1_.isFile() && p_accept_1_.getName().endsWith(".zip");
-            boolean flag1 = p_accept_1_.isDirectory() && (new File(p_accept_1_, "pack.mcmeta")).isFile();
-            return flag || flag1;
-        }
+    private static final FileFilter resourcePackFilter = p_accept_1_ -> {
+        boolean flag = p_accept_1_.isFile() && p_accept_1_.getName().endsWith(".zip");
+        boolean flag1 = p_accept_1_.isDirectory() && (new File(p_accept_1_, "pack.mcmeta")).isFile();
+        return flag || flag1;
     };
     private final File dirResourcepacks;
     public final IResourcePack rprDefaultResourcePack;
@@ -52,8 +45,8 @@ public class ResourcePackRepository {
     private IResourcePack resourcePackInstance;
     private final ReentrantLock lock = new ReentrantLock();
     private ListenableFuture<Object> downloadingPacks;
-    private List<ResourcePackRepository.Entry> repositoryEntriesAll = Lists.<ResourcePackRepository.Entry>newArrayList();
-    private List<ResourcePackRepository.Entry> repositoryEntries = Lists.<ResourcePackRepository.Entry>newArrayList();
+    private List<ResourcePackRepository.Entry> repositoryEntriesAll = new ArrayList<>();
+    private List<ResourcePackRepository.Entry> repositoryEntries = new ArrayList<>();
 
     public ResourcePackRepository(File dirResourcepacksIn, File dirServerResourcepacksIn, IResourcePack rprDefaultResourcePackIn, IMetadataSerializer rprMetadataSerializerIn, GameSettings settings) {
         this.dirResourcepacks = dirResourcepacksIn;
@@ -96,7 +89,7 @@ public class ResourcePackRepository {
     }
 
     public void updateRepositoryEntriesAll() {
-        List<ResourcePackRepository.Entry> list = Lists.<ResourcePackRepository.Entry>newArrayList();
+        List<ResourcePackRepository.Entry> list = new ArrayList<>();
 
         for (File file1 : this.getResourcePackFiles()) {
             ResourcePackRepository.Entry resourcepackrepository$entry = new ResourcePackRepository.Entry(file1);
@@ -305,11 +298,11 @@ public class ResourcePackRepository {
         }
 
         public String getTexturePackDescription() {
-            return this.rePackMetadataSection == null ? EnumChatFormatting.RED + "Invalid pack.mcmeta (or missing \'pack\' section)" : this.rePackMetadataSection.getPackDescription().getFormattedText();
+            return this.rePackMetadataSection == null ? EnumChatFormatting.RED + "Invalid pack.mcmeta (or missing \'pack\' section)" : this.rePackMetadataSection.packDescription().getFormattedText();
         }
 
         public int func_183027_f() {
-            return this.rePackMetadataSection.getPackFormat();
+            return this.rePackMetadataSection.packFormat();
         }
 
         public boolean equals(Object p_equals_1_) {

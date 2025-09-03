@@ -1,10 +1,7 @@
 package net.minecraft.client.renderer.chunk;
 
-import com.google.common.collect.Lists;
-import java.util.BitSet;
-import java.util.EnumSet;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
+
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IntegerCache;
@@ -68,7 +65,7 @@ public class VisGraph
     private Set<EnumFacing> func_178604_a(int p_178604_1_)
     {
         Set<EnumFacing> set = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
-        Queue<Integer> queue = Lists.<Integer>newLinkedList();
+        Queue<Integer> queue = new LinkedList<>();
         queue.add(IntegerCache.getInteger(p_178604_1_));
         this.bitSet.set(p_178604_1_, true);
 

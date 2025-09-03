@@ -1,7 +1,6 @@
 package net.minecraft.client.audio;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 public enum SoundCategory {
@@ -14,8 +13,8 @@ public enum SoundCategory {
     PLAYERS("player", 7),
     AMBIENT("ambient", 8);
 
-    private static final Map<String, SoundCategory> NAME_CATEGORY_MAP = Maps.<String, SoundCategory>newHashMap();
-    private static final Map<Integer, SoundCategory> ID_CATEGORY_MAP = Maps.<Integer, SoundCategory>newHashMap();
+    private static final Map<String, SoundCategory> NAME_CATEGORY_MAP = new HashMap<>();
+    private static final Map<Integer, SoundCategory> ID_CATEGORY_MAP = new HashMap<>();
     private final String categoryName;
     private final int categoryId;
 

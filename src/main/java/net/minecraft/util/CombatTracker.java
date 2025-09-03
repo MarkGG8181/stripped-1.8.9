@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 public class CombatTracker
 {
-    private final List<CombatEntry> combatEntries = Lists.<CombatEntry>newArrayList();
+    private final List<CombatEntry> combatEntries = new ArrayList<>();
 
     /** The entity tracked. */
     private final EntityLivingBase fighter;

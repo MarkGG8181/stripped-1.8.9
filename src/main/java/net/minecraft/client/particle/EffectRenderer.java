@@ -1,10 +1,6 @@
 package net.minecraft.client.particle;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.Callable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -33,13 +29,13 @@ public class EffectRenderer
 
     /** Reference to the World object. */
     protected World worldObj;
-    private List<EntityFX>[][] fxLayers = new List[4][];
-    private List<EntityParticleEmitter> particleEmitters = Lists.<EntityParticleEmitter>newArrayList();
-    private TextureManager renderer;
+    private final List<EntityFX>[][] fxLayers = new List[4][];
+    private final List<EntityParticleEmitter> particleEmitters = new ArrayList<>();
+    private final TextureManager renderer;
 
     /** RNG. */
-    private Random rand = new Random();
-    private Map<Integer, IParticleFactory> particleTypes = Maps.<Integer, IParticleFactory>newHashMap();
+    private final Random rand = new Random();
+    private final Map<Integer, IParticleFactory> particleTypes = new HashMap<>();
 
     public EffectRenderer(World worldIn, TextureManager rendererIn)
     {
@@ -52,7 +48,7 @@ public class EffectRenderer
 
             for (int j = 0; j < 2; ++j)
             {
-                this.fxLayers[i][j] = Lists.newArrayList();
+                this.fxLayers[i][j] = new ArrayList<>();
             }
         }
 
@@ -163,7 +159,7 @@ public class EffectRenderer
             this.updateEffectLayer(i);
         }
 
-        List<EntityParticleEmitter> list = Lists.<EntityParticleEmitter>newArrayList();
+        List<EntityParticleEmitter> list = new ArrayList<>();
 
         for (EntityParticleEmitter entityparticleemitter : this.particleEmitters)
         {
@@ -188,7 +184,7 @@ public class EffectRenderer
 
     private void updateEffectAlphaLayer(List<EntityFX> entitiesFX)
     {
-        List<EntityFX> list = Lists.<EntityFX>newArrayList();
+        List<EntityFX> list = new ArrayList<>();
 
         for (int i = 0; i < entitiesFX.size(); ++i)
         {

@@ -2,6 +2,7 @@ package net.minecraft.client.resources.model;
 
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -92,11 +93,11 @@ public class SimpleBakedModel implements IBakedModel {
         }
 
         private Builder(boolean ambientOcclusion, boolean gui3d, ItemCameraTransforms cameraTransforms) {
-            this.builderGeneralQuads = Lists.<BakedQuad>newArrayList();
+            this.builderGeneralQuads = new ArrayList<>();
             this.builderFaceQuads = Lists.<List<BakedQuad>>newArrayListWithCapacity(6);
 
             for (EnumFacing enumfacing : EnumFacing.values()) {
-                this.builderFaceQuads.add(Lists.<BakedQuad>newArrayList());
+                this.builderFaceQuads.add(new ArrayList<>());
             }
 
             this.builderAmbientOcclusion = ambientOcclusion;

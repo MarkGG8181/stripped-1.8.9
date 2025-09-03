@@ -1,9 +1,8 @@
 package net.minecraft.client.renderer.texture;
 
-import com.google.common.collect.Lists;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -18,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class TextureAtlasSprite {
     private final String iconName;
-    protected List<int[][]> framesTextureData = Lists.<int[][]>newArrayList();
+    protected List<int[][]> framesTextureData = new ArrayList<>();
     protected int[][] interpolatedFrameData;
     private AnimationMetadataSection animationMetadata;
     protected boolean rotated;
@@ -165,7 +164,7 @@ public class TextureAtlasSprite {
             if (i != k && k >= 0 && k < this.framesTextureData.size()) {
                 TextureUtil.uploadTextureMipmap((int[][]) this.framesTextureData.get(k), this.width, this.height, this.originX, this.originY, false, false);
             }
-        } else if (this.animationMetadata.isInterpolate()) {
+        } else if (this.animationMetadata.interpolate()) {
             this.updateAnimationInterpolated();
         }
     }
@@ -270,20 +269,20 @@ public class TextureAtlasSprite {
 
                 this.animationMetadata = meta;
             } else {
-                List<AnimationFrame> list = Lists.<AnimationFrame>newArrayList();
+                List<AnimationFrame> list = new ArrayList<>();
 
                 for (int l1 = 0; l1 < j1; ++l1) {
                     this.framesTextureData.add(getFrameTextureData(aint, k1, l, l1));
                     list.add(new AnimationFrame(l1, -1));
                 }
 
-                this.animationMetadata = new AnimationMetadataSection(list, this.width, this.height, meta.getFrameTime(), meta.isInterpolate());
+                this.animationMetadata = new AnimationMetadataSection(list, this.width, this.height, meta.frameTime(), meta.interpolate());
             }
         }
     }
 
     public void generateMipmaps(int level) {
-        List<int[][]> list = Lists.<int[][]>newArrayList();
+        List<int[][]> list = new ArrayList<>();
 
         for (int i = 0; i < this.framesTextureData.size(); ++i) {
             final int[][] aint = (int[][]) this.framesTextureData.get(i);
@@ -355,7 +354,7 @@ public class TextureAtlasSprite {
 
     private void resetSprite() {
         this.animationMetadata = null;
-        this.setFramesTextureData(Lists.<int[][]>newArrayList());
+        this.setFramesTextureData(new ArrayList<>());
         this.frameCounter = 0;
         this.tickCounter = 0;
     }

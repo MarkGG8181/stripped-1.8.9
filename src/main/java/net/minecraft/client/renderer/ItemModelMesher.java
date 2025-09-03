@@ -1,6 +1,8 @@
 package net.minecraft.client.renderer;
 
 import com.google.common.collect.Maps;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -12,9 +14,9 @@ import net.minecraft.item.ItemStack;
 
 public class ItemModelMesher
 {
-    private final Map<Integer, ModelResourceLocation> simpleShapes = Maps.<Integer, ModelResourceLocation>newHashMap();
-    private final Map<Integer, IBakedModel> simpleShapesCache = Maps.<Integer, IBakedModel>newHashMap();
-    private final Map<Item, ItemMeshDefinition> shapers = Maps.<Item, ItemMeshDefinition>newHashMap();
+    private final Map<Integer, ModelResourceLocation> simpleShapes = new HashMap<>();
+    private final Map<Integer, IBakedModel> simpleShapesCache = new HashMap<>();
+    private final Map<Item, ItemMeshDefinition> shapers = new HashMap<>();
     private final ModelManager modelManager;
 
     public ItemModelMesher(ModelManager modelManager)

@@ -1,8 +1,8 @@
 package net.minecraft.client.resources.model;
 
 import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class WeightedBakedModel implements IBakedModel {
     }
 
     public static class Builder {
-        private List<WeightedBakedModel.MyWeighedRandomItem> listItems = Lists.<WeightedBakedModel.MyWeighedRandomItem>newArrayList();
+        private List<WeightedBakedModel.MyWeighedRandomItem> listItems = new ArrayList<>();
 
         public WeightedBakedModel.Builder add(IBakedModel p_177677_1_, int p_177677_2_) {
             this.listItems.add(new WeightedBakedModel.MyWeighedRandomItem(p_177677_1_, p_177677_2_));

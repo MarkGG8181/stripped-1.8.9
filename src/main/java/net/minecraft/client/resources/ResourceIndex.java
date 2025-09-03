@@ -1,6 +1,5 @@
 package net.minecraft.client.resources;
 
-import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ResourceIndex {
     private static final Logger logger = LogManager.getLogger();
-    private final Map<String, File> resourceMap = Maps.<String, File>newHashMap();
+    private final Map<String, File> resourceMap = new HashMap<>();
 
     public ResourceIndex(File p_i1047_1_, String p_i1047_2_) {
         if (p_i1047_2_ != null) {

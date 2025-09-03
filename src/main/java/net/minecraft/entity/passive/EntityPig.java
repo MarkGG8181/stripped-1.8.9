@@ -13,7 +13,7 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityZombiePigman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -200,7 +200,7 @@ public class EntityPig extends EntityAnimal
     {
         if (!this.worldObj.isRemote && !this.isDead)
         {
-            EntityPigZombie entitypigzombie = new EntityPigZombie(this.worldObj);
+            EntityZombiePigman entitypigzombie = new EntityZombiePigman(this.worldObj);
             entitypigzombie.setCurrentItemOrArmor(0, new ItemStack(Items.golden_sword));
             entitypigzombie.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             entitypigzombie.setNoAI(this.isAIDisabled());

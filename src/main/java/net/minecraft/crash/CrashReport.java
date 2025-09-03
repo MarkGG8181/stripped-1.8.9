@@ -1,6 +1,5 @@
 package net.minecraft.crash;
 
-import com.google.common.collect.Lists;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -9,6 +8,7 @@ import java.io.Writer;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -31,7 +31,7 @@ public class CrashReport
 
     /** Category of crash */
     private final CrashReportCategory theReportCategory = new CrashReportCategory(this, "System Details");
-    private final List<CrashReportCategory> crashReportSections = Lists.<CrashReportCategory>newArrayList();
+    private final List<CrashReportCategory> crashReportSections = new ArrayList<>();
 
     /** File of crash report. */
     private File crashReportFile;

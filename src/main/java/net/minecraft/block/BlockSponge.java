@@ -1,10 +1,9 @@
 package net.minecraft.block;
 
 import com.google.common.collect.Lists;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+
+import java.util.*;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -74,8 +73,8 @@ public class BlockSponge extends Block
 
     private boolean absorb(World worldIn, BlockPos pos)
     {
-        Queue<Tuple<BlockPos, Integer>> queue = Lists.<Tuple<BlockPos, Integer>>newLinkedList();
-        ArrayList<BlockPos> arraylist = Lists.<BlockPos>newArrayList();
+        Queue<Tuple<BlockPos, Integer>> queue = new LinkedList<>();
+        ArrayList<BlockPos> arraylist = new ArrayList<>();
         queue.add(new Tuple(pos, Integer.valueOf(0)));
         int i = 0;
 

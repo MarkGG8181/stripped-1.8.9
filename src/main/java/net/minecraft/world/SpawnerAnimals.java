@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-import com.google.common.collect.Sets;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -20,7 +20,7 @@ import net.minecraft.world.chunk.Chunk;
 public final class SpawnerAnimals
 {
     private static final int MOB_COUNT_DIV = (int)Math.pow(17.0D, 2.0D);
-    private final Set<ChunkCoordIntPair> eligibleChunksForSpawning = Sets.<ChunkCoordIntPair>newHashSet();
+    private final Set<ChunkCoordIntPair> eligibleChunksForSpawning = new HashSet<>();
 
     /**
      * adds all chunks within the spawn radius of the players to eligibleChunksForSpawning. pars: the world,

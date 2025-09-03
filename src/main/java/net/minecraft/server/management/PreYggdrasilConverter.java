@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.ProfileLookupCallback;
-import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -19,10 +19,6 @@ import org.apache.logging.log4j.Logger;
 public class PreYggdrasilConverter
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    public static final File OLD_IPBAN_FILE = new File("banned-ips.txt");
-    public static final File OLD_PLAYERBAN_FILE = new File("banned-players.txt");
-    public static final File OLD_OPS_FILE = new File("ops.txt");
-    public static final File OLD_WHITELIST_FILE = new File("white-list.txt");
 
     private static void lookupNames(MinecraftServer server, Collection<String> names, ProfileLookupCallback callback)
     {
@@ -62,7 +58,7 @@ public class PreYggdrasilConverter
             }
             else if (!minecraftserver.isSinglePlayer() && minecraftserver.isServerInOnlineMode())
             {
-                final List<GameProfile> list = Lists.<GameProfile>newArrayList();
+                final List<GameProfile> list = new ArrayList<>();
                 ProfileLookupCallback profilelookupcallback = new ProfileLookupCallback()
                 {
                     public void onProfileLookupSucceeded(GameProfile p_onProfileLookupSucceeded_1_)

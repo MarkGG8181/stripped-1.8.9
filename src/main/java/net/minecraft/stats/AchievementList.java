@@ -1,6 +1,8 @@
 package net.minecraft.stats;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -20,7 +22,7 @@ public class AchievementList
 
     /** Is the biggest row used to display a achievement on the GUI. */
     public static int maxDisplayRow;
-    public static List<Achievement> achievementList = Lists.<Achievement>newArrayList();
+    public static List<Achievement> achievementList = new ArrayList<>();
 
     /** Is the 'open inventory' achievement. */
     public static Achievement openInventory = (new Achievement("achievement.openInventory", "openInventory", 0, 0, Items.book, (Achievement)null)).initIndependentStat().registerStat();

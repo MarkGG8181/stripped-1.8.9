@@ -2,6 +2,7 @@ package net.minecraft.client.gui.ingame;
 
 import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -245,7 +246,7 @@ public class GuiEnchantment extends GuiContainer
 
             if (this.isPointInRegion(60, 14 + 19 * j, 108, 17, mouseX, mouseY) && k > 0 && l >= 0)
             {
-                List<String> list = Lists.<String>newArrayList();
+                List<String> list = new ArrayList<>();
 
                 if (l >= 0 && Enchantment.getEnchantmentById(l & 255) != null)
                 {

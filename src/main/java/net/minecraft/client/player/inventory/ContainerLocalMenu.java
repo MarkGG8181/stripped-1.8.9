@@ -1,6 +1,6 @@
 package net.minecraft.client.player.inventory;
 
-import com.google.common.collect.Maps;
+import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +13,7 @@ import net.minecraft.world.LockCode;
 public class ContainerLocalMenu extends InventoryBasic implements ILockableContainer
 {
     private String guiID;
-    private Map<Integer, Integer> dataValues = Maps.<Integer, Integer>newHashMap();
+    private Map<Integer, Integer> dataValues = new HashMap<>();
 
     public ContainerLocalMenu(String id, IChatComponent title, int slotCount)
     {

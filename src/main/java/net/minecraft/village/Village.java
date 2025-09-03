@@ -1,8 +1,8 @@
 package net.minecraft.village;
 
-import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Village {
     private World worldObj;
-    private final List<VillageDoorInfo> villageDoorInfoList = Lists.newArrayList();
+    private final List<VillageDoorInfo> villageDoorInfoList = new ArrayList<>();
 
     /**
      * This is the sum of all door coordinates and used to calculate the actual village center by dividing by the number
@@ -46,7 +46,7 @@ public class Village {
      */
     private int noBreedTicks;
     private final TreeMap<String, Integer> playerReputation = new TreeMap<>();
-    private final List<Village.VillageAggressor> villageAgressors = Lists.newArrayList();
+    private final List<Village.VillageAggressor> villageAgressors = new ArrayList<>();
     private int numIronGolems;
 
     public Village() {

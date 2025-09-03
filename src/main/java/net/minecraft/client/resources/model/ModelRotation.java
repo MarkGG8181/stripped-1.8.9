@@ -1,7 +1,6 @@
 package net.minecraft.client.resources.model;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.util.EnumFacing;
@@ -27,7 +26,7 @@ public enum ModelRotation {
     X270_Y180(270, 180),
     X270_Y270(270, 270);
 
-    private static final Map<Integer, ModelRotation> mapRotations = Maps.<Integer, ModelRotation>newHashMap();
+    private static final Map<Integer, ModelRotation> mapRotations = new HashMap<>();
     private final int combinedXY;
     private final Matrix4f matrix4d;
     private final int quartersX;

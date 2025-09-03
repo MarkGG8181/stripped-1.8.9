@@ -1,6 +1,8 @@
 package net.minecraft.world.gen.structure;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.block.BlockEndPortalFrame;
@@ -61,7 +63,7 @@ public class StructureStrongholdPieces
      */
     public static void prepareStructurePieces()
     {
-        structurePieceList = Lists.<StructureStrongholdPieces.PieceWeight>newArrayList();
+        structurePieceList = new ArrayList<>();
 
         for (StructureStrongholdPieces.PieceWeight structurestrongholdpieces$pieceweight : pieceWeightArray)
         {
@@ -1265,7 +1267,7 @@ public class StructureStrongholdPieces
     {
         public StructureStrongholdPieces.PieceWeight strongholdPieceWeight;
         public StructureStrongholdPieces.PortalRoom strongholdPortalRoom;
-        public List<StructureComponent> pendingChildren = Lists.<StructureComponent>newArrayList();
+        public List<StructureComponent> pendingChildren = new ArrayList<>();
 
         public Stairs2()
         {

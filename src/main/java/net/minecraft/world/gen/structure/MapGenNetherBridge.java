@@ -1,23 +1,23 @@
 package net.minecraft.world.gen.structure;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
-import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityZombiePigman;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class MapGenNetherBridge extends MapGenStructure
 {
-    private List<BiomeGenBase.SpawnListEntry> spawnList = Lists.<BiomeGenBase.SpawnListEntry>newArrayList();
+    private List<BiomeGenBase.SpawnListEntry> spawnList = new ArrayList<>();
 
     public MapGenNetherBridge()
     {
         this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityBlaze.class, 10, 2, 3));
-        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityPigZombie.class, 5, 4, 4));
+        this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityZombiePigman.class, 5, 4, 4));
         this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
         this.spawnList.add(new BiomeGenBase.SpawnListEntry(EntityMagmaCube.class, 3, 4, 4));
     }

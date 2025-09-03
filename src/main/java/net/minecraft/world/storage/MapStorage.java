@@ -1,12 +1,12 @@
 package net.minecraft.world.storage;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -18,9 +18,9 @@ import net.minecraft.world.WorldSavedData;
 public class MapStorage
 {
     private ISaveHandler saveHandler;
-    protected Map<String, WorldSavedData> loadedDataMap = Maps.<String, WorldSavedData>newHashMap();
-    private List<WorldSavedData> loadedDataList = Lists.<WorldSavedData>newArrayList();
-    private Map<String, Short> idCounts = Maps.<String, Short>newHashMap();
+    protected Map<String, WorldSavedData> loadedDataMap = new HashMap<>();
+    private List<WorldSavedData> loadedDataList = new ArrayList<>();
+    private Map<String, Short> idCounts = new HashMap<>();
 
     public MapStorage(ISaveHandler saveHandlerIn)
     {

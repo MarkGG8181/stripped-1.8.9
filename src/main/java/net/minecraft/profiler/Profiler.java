@@ -1,19 +1,14 @@
 package net.minecraft.profiler;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Profiler {
     private static final Logger logger = LogManager.getLogger();
-    private final List<String> sectionList = Lists.<String>newArrayList();
-    private final List<Long> timestampList = Lists.<Long>newArrayList();
+    private final List<String> sectionList = new ArrayList<>();
+    private final List<Long> timestampList = new ArrayList<>();
 
     /**
      * Flag profiling enabled
@@ -24,7 +19,7 @@ public class Profiler {
      * Current profiling section
      */
     private String profilingSection = "";
-    private final Map<String, Long> profilingMap = Maps.<String, Long>newHashMap();
+    private final Map<String, Long> profilingMap = new HashMap<>();
 
     /**
      * Clear profiling.
@@ -80,7 +75,7 @@ public class Profiler {
         } else {
             long i = this.profilingMap.containsKey("root") ? ((Long) this.profilingMap.get("root")).longValue() : 0L;
             long j = this.profilingMap.containsKey(profilerName) ? ((Long) this.profilingMap.get(profilerName)).longValue() : -1L;
-            List<Profiler.Result> list = Lists.<Profiler.Result>newArrayList();
+            List<Profiler.Result> list = new ArrayList<>();
 
             if (profilerName.length() > 0) {
                 profilerName = profilerName + ".";

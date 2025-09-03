@@ -5,15 +5,15 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.util.IStringSerializable;
 
 public class PropertyEnum<T extends Enum<T> & IStringSerializable> extends PropertyHelper<T>
 {
     private final ImmutableSet<T> allowedValues;
-    private final Map<String, T> nameToValue = Maps.<String, T>newHashMap();
+    private final Map<String, T> nameToValue = new HashMap<>();
 
     protected PropertyEnum(String name, Class<T> valueClass, Collection<T> allowedValues)
     {

@@ -1,6 +1,6 @@
 package net.minecraft.world.gen;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -17,7 +17,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class ChunkProviderDebug implements IChunkProvider
 {
-    private static final List<IBlockState> ALL_VALID_STATES = Lists.<IBlockState>newArrayList();
+    private static final List<IBlockState> ALL_VALID_STATES = new ArrayList<>();
     private static final int GRID_WIDTH;
     private static final int GRID_HEIGHT;
     private final World world;

@@ -1,6 +1,6 @@
 package net.minecraft.tileentity;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
@@ -155,8 +155,8 @@ public class TileEntityBanner extends TileEntity
             }
             else
             {
-                this.patternList = Lists.<TileEntityBanner.EnumBannerPattern>newArrayList();
-                this.colorList = Lists.<EnumDyeColor>newArrayList();
+                this.patternList = new ArrayList<>();
+                this.colorList = new ArrayList<>();
                 this.patternList.add(TileEntityBanner.EnumBannerPattern.BASE);
                 this.colorList.add(EnumDyeColor.byDyeDamage(this.baseColor));
                 this.patternResourceLocation = "b" + this.baseColor;

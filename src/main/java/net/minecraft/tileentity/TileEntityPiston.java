@@ -1,6 +1,8 @@
 package net.minecraft.tileentity;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +25,7 @@ public class TileEntityPiston extends TileEntity implements ITickable
 
     /** the progress in (de)extending */
     private float lastProgress;
-    private List<Entity> field_174933_k = Lists.<Entity>newArrayList();
+    private List<Entity> field_174933_k = new ArrayList<>();
 
     public TileEntityPiston()
     {

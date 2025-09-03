@@ -1,12 +1,11 @@
 package net.minecraft.client.network;
 
-import com.google.common.collect.Lists;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -45,7 +44,7 @@ public class LanServerDetector {
     }
 
     public static class LanServerList {
-        private List<LanServerDetector.LanServer> listOfLanServers = Lists.<LanServerDetector.LanServer>newArrayList();
+        private List<LanServerDetector.LanServer> listOfLanServers = new ArrayList<>();
         boolean wasUpdated;
 
         public synchronized boolean getWasUpdated() {

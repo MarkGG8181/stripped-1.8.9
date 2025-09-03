@@ -1,9 +1,6 @@
 package net.minecraft.client;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Queues;
-import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
@@ -21,14 +18,7 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -132,6 +122,7 @@ import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatFileWriter;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.Timer;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.storage.AnvilSaveConverter;
@@ -316,7 +307,7 @@ public class Minecraft implements IThreadListener {
     private long debugCrashKeyPressTime = -1L;
     private IReloadableResourceManager mcResourceManager;
     private final IMetadataSerializer metadataSerializer_ = new IMetadataSerializer();
-    private final List<IResourcePack> defaultResourcePacks = Lists.newArrayList();
+    private final List<IResourcePack> defaultResourcePacks = new ArrayList<>();
     private final DefaultResourcePack mcDefaultResourcePack;
     private ResourcePackRepository mcResourcePackRepository;
     private LanguageManager mcLanguageManager;
@@ -326,7 +317,7 @@ public class Minecraft implements IThreadListener {
     private ResourceLocation mojangLogo;
     private final MinecraftSessionService sessionService;
     private SkinManager skinManager;
-    private final Queue<FutureTask<?>> scheduledTasks = Queues.newArrayDeque();
+    private final Queue<FutureTask<?>> scheduledTasks = new ArrayDeque<>();
     private final Thread mcThread = Thread.currentThread();
 
     /**
@@ -634,7 +625,7 @@ public class Minecraft implements IThreadListener {
     }
 
     public void refreshResources() {
-        List<IResourcePack> list = Lists.newArrayList(this.defaultResourcePacks);
+        List<IResourcePack> list = new ArrayList<>(this.defaultResourcePacks);
 
         for (ResourcePackRepository.Entry resourcepackrepository$entry : this.mcResourcePackRepository.getRepositoryEntries()) {
             list.add(resourcepackrepository$entry.getResourcePack());
@@ -678,7 +669,7 @@ public class Minecraft implements IThreadListener {
     }
 
     private void updateDisplayMode() {
-        Set<DisplayMode> set = Sets.newHashSet();
+        Set<DisplayMode> set = new HashSet<>();
         Collections.addAll(set, Display.getAvailableDisplayModes());
         DisplayMode displaymode = Display.getDesktopDisplayMode();
 
@@ -2306,7 +2297,7 @@ public class Minecraft implements IThreadListener {
     }
 
     public static Map<String, String> getSessionInfo() {
-        Map<String, String> map = Maps.newHashMap();
+        Map<String, String> map = new HashMap<>();
         map.put("X-Minecraft-Username", getMinecraft().getSession().getUsername());
         map.put("X-Minecraft-UUID", getMinecraft().getSession().getPlayerID());
         map.put("X-Minecraft-Version", "1.8.9");

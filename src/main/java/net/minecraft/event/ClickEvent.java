@@ -1,22 +1,15 @@
 package net.minecraft.event;
 
-import com.google.common.collect.Maps;
-
+import java.util.HashMap;
 import java.util.Map;
 
-public class ClickEvent {
-    private final ClickEvent.Action action;
-    private final String value;
-
-    public ClickEvent(ClickEvent.Action theAction, String theValue) {
-        this.action = theAction;
-        this.value = theValue;
-    }
+public record ClickEvent(Action action, String value) {
 
     /**
      * Gets the action to perform when this event is raised.
      */
-    public ClickEvent.Action getAction() {
+    @Override
+    public Action action() {
         return this.action;
     }
 
@@ -24,7 +17,8 @@ public class ClickEvent {
      * Gets the value to perform the action on when this event is raised.  For example, if the action is "open URL",
      * this would be the URL to open.
      */
-    public String getValue() {
+    @Override
+    public String value() {
         return this.value;
     }
 
@@ -56,12 +50,6 @@ public class ClickEvent {
         return "ClickEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
     }
 
-    public int hashCode() {
-        int i = this.action.hashCode();
-        i = 31 * i + (this.value != null ? this.value.hashCode() : 0);
-        return i;
-    }
-
     public static enum Action {
         OPEN_URL("open_url", true),
         OPEN_FILE("open_file", false),
@@ -69,7 +57,7 @@ public class ClickEvent {
         SUGGEST_COMMAND("suggest_command", true),
         CHANGE_PAGE("change_page", true);
 
-        private static final Map<String, ClickEvent.Action> nameMapping = Maps.<String, ClickEvent.Action>newHashMap();
+        private static final Map<String, Action> nameMapping = new HashMap<>();
         private final boolean allowedInChat;
         private final String canonicalName;
 
@@ -86,12 +74,12 @@ public class ClickEvent {
             return this.canonicalName;
         }
 
-        public static ClickEvent.Action getValueByCanonicalName(String canonicalNameIn) {
-            return (ClickEvent.Action) nameMapping.get(canonicalNameIn);
+        public static Action getValueByCanonicalName(String canonicalNameIn) {
+            return (Action) nameMapping.get(canonicalNameIn);
         }
 
         static {
-            for (ClickEvent.Action clickevent$action : values()) {
+            for (Action clickevent$action : values()) {
                 nameMapping.put(clickevent$action.getCanonicalName(), clickevent$action);
             }
         }

@@ -1,6 +1,5 @@
 package net.minecraft.server;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -22,13 +21,7 @@ import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -86,7 +79,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private final ISaveFormat anvilConverterForAnvilFile;
 
     private final File anvilFile;
-    private final List<ITickable> playersOnline = Lists.<ITickable>newArrayList();
+    private final List<ITickable> playersOnline = new ArrayList<>();
     protected final ICommandManager commandManager;
     public final Profiler theProfiler = new Profiler();
     private final NetworkSystem networkSystem;
@@ -205,7 +198,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private long nanoTimeSinceStatusRefresh = 0L;
     private final GameProfileRepository profileRepo;
     private final PlayerProfileCache profileCache;
-    protected final Queue<FutureTask<?>> futureTaskQueue = Queues.newArrayDeque();
+    protected final Queue<FutureTask<?>> futureTaskQueue = new ArrayDeque<>();
     private Thread serverThread;
     private long currentTime = getCurrentTimeMillis();
 
@@ -794,7 +787,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public List<String> getTabCompletions(ICommandSender sender, String input, BlockPos pos) {
-        List<String> list = Lists.<String>newArrayList();
+        List<String> list = new ArrayList<>();
 
         if (input.startsWith("/")) {
             input = input.substring(1);

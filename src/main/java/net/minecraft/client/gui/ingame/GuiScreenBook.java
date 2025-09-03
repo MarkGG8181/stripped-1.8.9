@@ -462,8 +462,8 @@ public class GuiScreenBook extends GuiScreen {
 
         if (clickevent == null) {
             return false;
-        } else if (clickevent.getAction() == ClickEvent.Action.CHANGE_PAGE) {
-            String s = clickevent.getValue();
+        } else if (clickevent.action() == ClickEvent.Action.CHANGE_PAGE) {
+            String s = clickevent.value();
 
             try {
                 int i = Integer.parseInt(s) - 1;
@@ -481,7 +481,7 @@ public class GuiScreenBook extends GuiScreen {
         } else {
             boolean flag = super.handleComponentClick(component);
 
-            if (flag && clickevent.getAction() == ClickEvent.Action.RUN_COMMAND) {
+            if (flag && clickevent.action() == ClickEvent.Action.RUN_COMMAND) {
                 this.mc.displayGuiScreen((GuiScreen) null);
             }
 

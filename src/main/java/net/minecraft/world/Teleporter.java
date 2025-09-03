@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -20,8 +20,8 @@ public class Teleporter
 
     /** A private Random() function in Teleporter */
     private final Random random;
-    private final LongHashMap<Teleporter.PortalPosition> destinationCoordinateCache = new LongHashMap();
-    private final List<Long> destinationCoordinateKeys = Lists.<Long>newArrayList();
+    private final LongHashMap<Teleporter.PortalPosition> destinationCoordinateCache = new LongHashMap<>();
+    private final List<Long> destinationCoordinateKeys = new ArrayList<>();
 
     public Teleporter(WorldServer worldIn)
     {

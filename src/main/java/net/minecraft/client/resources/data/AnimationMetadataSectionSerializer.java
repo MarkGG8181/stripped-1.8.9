@@ -1,6 +1,5 @@
 package net.minecraft.client.resources.data;
 
-import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
@@ -11,6 +10,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.util.JsonUtils;
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.Validate;
 
 public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSerializer<AnimationMetadataSection> implements JsonSerializer<AnimationMetadataSection> {
     public AnimationMetadataSection deserialize(JsonElement p_deserialize_1_, Type p_deserialize_2_, JsonDeserializationContext p_deserialize_3_) throws JsonParseException {
-        List<AnimationFrame> list = Lists.<AnimationFrame>newArrayList();
+        List<AnimationFrame> list = new ArrayList<>();
         JsonObject jsonobject = JsonUtils.getJsonObject(p_deserialize_1_, "metadata section");
         int i = JsonUtils.getInt(jsonobject, "frametime", 1);
 
@@ -79,14 +79,14 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
 
     public JsonElement serialize(AnimationMetadataSection p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_) {
         JsonObject jsonobject = new JsonObject();
-        jsonobject.addProperty("frametime", (Number) Integer.valueOf(p_serialize_1_.getFrameTime()));
+        jsonobject.addProperty("frametime", (Number) Integer.valueOf(p_serialize_1_.frameTime()));
 
-        if (p_serialize_1_.getFrameWidth() != -1) {
-            jsonobject.addProperty("width", (Number) Integer.valueOf(p_serialize_1_.getFrameWidth()));
+        if (p_serialize_1_.frameWidth() != -1) {
+            jsonobject.addProperty("width", (Number) Integer.valueOf(p_serialize_1_.frameWidth()));
         }
 
-        if (p_serialize_1_.getFrameHeight() != -1) {
-            jsonobject.addProperty("height", (Number) Integer.valueOf(p_serialize_1_.getFrameHeight()));
+        if (p_serialize_1_.frameHeight() != -1) {
+            jsonobject.addProperty("height", (Number) Integer.valueOf(p_serialize_1_.frameHeight()));
         }
 
         if (p_serialize_1_.getFrameCount() > 0) {

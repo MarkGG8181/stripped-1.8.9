@@ -1,6 +1,6 @@
 package net.minecraft.client.gui.element.impl;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.util.FontRenderer;
@@ -34,7 +34,7 @@ public class GuiLabel extends Gui
         this.y = p_i45540_4_;
         this.width = p_i45540_5_;
         this.height = p_i45540_6_;
-        this.labels = Lists.<String>newArrayList();
+        this.labels = new ArrayList<>();
         this.centered = false;
         this.labelBgEnabled = false;
         this.textColor = p_i45540_7_;

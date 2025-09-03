@@ -1,13 +1,6 @@
 package net.minecraft.world.biome.gen;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSand;
@@ -82,8 +75,8 @@ public abstract class BiomeGenBase {
      * An array of all the biomes, indexed by biome id.
      */
     private static final BiomeGenBase[] biomeList = new BiomeGenBase[256];
-    public static final Set<BiomeGenBase> explorationBiomesList = Sets.newHashSet();
-    public static final Map<String, BiomeGenBase> BIOME_ID_MAP = Maps.newHashMap();
+    public static final Set<BiomeGenBase> explorationBiomesList = new HashSet<>();
+    public static final Map<String, BiomeGenBase> BIOME_ID_MAP = new HashMap<>();
     public static final BiomeGenBase ocean = (new BiomeGenOcean(0)).setColor(112).setBiomeName("Ocean").setHeight(height_Oceans);
     public static final BiomeGenBase plains = (new BiomeGenPlains(1)).setColor(9286496).setBiomeName("Plains");
     public static final BiomeGenBase desert = (new BiomeGenDesert(2)).setColor(16421912).setBiomeName("Desert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setHeight(height_LowPlains);
@@ -241,10 +234,10 @@ public abstract class BiomeGenBase {
         this.temperature = 0.5F;
         this.rainfall = 0.5F;
         this.waterColorMultiplier = 16777215;
-        this.spawnableMonsterList = Lists.newArrayList();
-        this.spawnableCreatureList = Lists.newArrayList();
-        this.spawnableWaterCreatureList = Lists.newArrayList();
-        this.spawnableCaveCreatureList = Lists.newArrayList();
+        this.spawnableMonsterList = new ArrayList<>();
+        this.spawnableCreatureList = new ArrayList<>();
+        this.spawnableWaterCreatureList = new ArrayList<>();
+        this.spawnableCaveCreatureList = new ArrayList<>();
         this.enableRain = true;
         this.worldGeneratorTrees = new WorldGenTrees(false);
         this.worldGeneratorBigTree = new WorldGenBigTree(false);

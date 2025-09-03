@@ -3,9 +3,8 @@ package net.minecraft.command;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 import java.util.Map.Entry;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
@@ -17,8 +16,8 @@ import org.apache.logging.log4j.Logger;
 public class CommandHandler implements ICommandManager
 {
     private static final Logger logger = LogManager.getLogger();
-    private final Map<String, ICommand> commandMap = Maps.<String, ICommand>newHashMap();
-    private final Set<ICommand> commandSet = Sets.<ICommand>newHashSet();
+    private final Map<String, ICommand> commandMap = new HashMap<>();
+    private final Set<ICommand> commandSet = new HashSet<>();
 
     /**
      * Attempt to execute a command. This method should return the number of times that the command was executed. If the
@@ -160,7 +159,7 @@ public class CommandHandler implements ICommandManager
 
         if (astring.length == 1)
         {
-            List<String> list = Lists.<String>newArrayList();
+            List<String> list = new ArrayList<>();
 
             for (Entry<String, ICommand> entry : this.commandMap.entrySet())
             {
@@ -190,7 +189,7 @@ public class CommandHandler implements ICommandManager
 
     public List<ICommand> getPossibleCommands(ICommandSender sender)
     {
-        List<ICommand> list = Lists.<ICommand>newArrayList();
+        List<ICommand> list = new ArrayList<>();
 
         for (ICommand icommand : this.commandSet)
         {

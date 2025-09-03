@@ -1,10 +1,7 @@
 package net.minecraft.world.gen.structure;
 
-import com.google.common.collect.Lists;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+
 import net.minecraft.block.BlockPrismarine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -680,7 +677,7 @@ public class StructureOceanMonumentPieces
     {
         private StructureOceanMonumentPieces.RoomDefinition sourceRoom;
         private StructureOceanMonumentPieces.RoomDefinition coreRoom;
-        private List<StructureOceanMonumentPieces.Piece> childPieces = Lists.<StructureOceanMonumentPieces.Piece>newArrayList();
+        private List<StructureOceanMonumentPieces.Piece> childPieces = new ArrayList<>();
 
         public MonumentBuilding()
         {
@@ -706,7 +703,7 @@ public class StructureOceanMonumentPieces
             this.sourceRoom.claimed = true;
             this.childPieces.add(new StructureOceanMonumentPieces.EntryRoom(this.coordBaseMode, this.sourceRoom));
             this.childPieces.add(new StructureOceanMonumentPieces.MonumentCoreRoom(this.coordBaseMode, this.coreRoom, p_i45599_1_));
-            List<StructureOceanMonumentPieces.MonumentRoomFitHelper> list1 = Lists.<StructureOceanMonumentPieces.MonumentRoomFitHelper>newArrayList();
+            List<StructureOceanMonumentPieces.MonumentRoomFitHelper> list1 = new ArrayList<>();
             list1.add(new StructureOceanMonumentPieces.XYDoubleRoomFitHelper());
             list1.add(new StructureOceanMonumentPieces.YZDoubleRoomFitHelper());
             list1.add(new StructureOceanMonumentPieces.ZDoubleRoomFitHelper());
@@ -853,7 +850,7 @@ public class StructureOceanMonumentPieces
             this.coreRoom.connections[EnumFacing.EAST.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
             this.coreRoom.connections[EnumFacing.NORTH.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
             this.coreRoom.connections[EnumFacing.EAST.getIndex()].connections[EnumFacing.NORTH.getIndex()].connections[EnumFacing.UP.getIndex()].claimed = true;
-            List<StructureOceanMonumentPieces.RoomDefinition> list = Lists.<StructureOceanMonumentPieces.RoomDefinition>newArrayList();
+            List<StructureOceanMonumentPieces.RoomDefinition> list = new ArrayList<>();
 
             for (StructureOceanMonumentPieces.RoomDefinition structureoceanmonumentpieces$roomdefinition4 : astructureoceanmonumentpieces$roomdefinition)
             {

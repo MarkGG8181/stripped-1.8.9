@@ -1,6 +1,8 @@
 package net.minecraft.tileentity;
 
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -23,7 +25,7 @@ public abstract class MobSpawnerBaseLogic
     /** The delay to spawn. */
     private int spawnDelay = 20;
     private String mobID = "Pig";
-    private final List<MobSpawnerBaseLogic.WeightedRandomMinecart> minecartToSpawn = Lists.<MobSpawnerBaseLogic.WeightedRandomMinecart>newArrayList();
+    private final List<MobSpawnerBaseLogic.WeightedRandomMinecart> minecartToSpawn = new ArrayList<>();
     private MobSpawnerBaseLogic.WeightedRandomMinecart randomEntity;
 
     /** The rotation of the mob inside the mob spawner */

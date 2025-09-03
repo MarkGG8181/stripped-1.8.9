@@ -2,7 +2,8 @@ package net.minecraft.util;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class ObjectIntIdentityMap<T> implements IObjectIntIterable<T>
 {
     private final IdentityHashMap<T, Integer> identityMap = new IdentityHashMap(512);
-    private final List<T> objectList = Lists.<T>newArrayList();
+    private final List<T> objectList = new ArrayList<>();
 
     public void put(T key, int value)
     {

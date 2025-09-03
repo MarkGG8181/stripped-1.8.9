@@ -1,6 +1,8 @@
 package net.minecraft.item;
 
 import com.google.common.collect.Maps;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minecraft.block.BlockJukebox;
@@ -16,7 +18,7 @@ import net.minecraft.world.World;
 
 public class ItemRecord extends Item
 {
-    private static final Map<String, ItemRecord> RECORDS = Maps.<String, ItemRecord>newHashMap();
+    private static final Map<String, ItemRecord> RECORDS = new HashMap<>();
 
     /** The name of the record. */
     public final String recordName;

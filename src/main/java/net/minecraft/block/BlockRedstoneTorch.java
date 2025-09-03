@@ -1,10 +1,8 @@
 package net.minecraft.block;
 
 import com.google.common.collect.Lists;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.WeakHashMap;
+
+import java.util.*;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,7 +23,7 @@ public class BlockRedstoneTorch extends BlockTorch
     {
         if (!toggles.containsKey(worldIn))
         {
-            toggles.put(worldIn, Lists.<BlockRedstoneTorch.Toggle>newArrayList());
+            toggles.put(worldIn, new ArrayList<>());
         }
 
         List<BlockRedstoneTorch.Toggle> list = (List)toggles.get(worldIn);

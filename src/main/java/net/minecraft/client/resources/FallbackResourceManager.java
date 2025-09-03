@@ -1,12 +1,11 @@
 package net.minecraft.client.resources;
 
-import com.google.common.collect.Lists;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 public class FallbackResourceManager implements IResourceManager {
     private static final Logger logger = LogManager.getLogger();
-    protected final List<IResourcePack> resourcePacks = Lists.<IResourcePack>newArrayList();
+    protected final List<IResourcePack> resourcePacks = new ArrayList<>();
     private final IMetadataSerializer frmMetadataSerializer;
 
     public FallbackResourceManager(IMetadataSerializer frmMetadataSerializerIn) {
@@ -63,7 +62,7 @@ public class FallbackResourceManager implements IResourceManager {
     }
 
     public List<IResource> getAllResources(ResourceLocation location) throws IOException {
-        List<IResource> list = Lists.<IResource>newArrayList();
+        List<IResource> list = new ArrayList<>();
         ResourceLocation resourcelocation = getLocationMcmeta(location);
 
         for (IResourcePack iresourcepack : this.resourcePacks) {

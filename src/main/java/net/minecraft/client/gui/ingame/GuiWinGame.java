@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -79,7 +80,7 @@ public class GuiWinGame extends GuiScreen {
      */
     public void initGui() {
         if (this.lines == null) {
-            this.lines = Lists.<String>newArrayList();
+            this.lines = new ArrayList<>();
 
             try {
                 String s = "";

@@ -1,8 +1,8 @@
 package net.minecraft.block.properties;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 public class PropertyInteger extends PropertyHelper<Integer>
@@ -23,7 +23,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
         }
         else
         {
-            Set<Integer> set = Sets.<Integer>newHashSet();
+            Set<Integer> set = new HashSet<>();
 
             for (int i = min; i <= max; ++i)
             {

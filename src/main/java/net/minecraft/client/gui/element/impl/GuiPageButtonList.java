@@ -3,7 +3,8 @@ package net.minecraft.client.gui.element.impl;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -12,9 +13,9 @@ import net.minecraft.util.IntHashMap;
 
 public class GuiPageButtonList extends GuiListExtended
 {
-    private final List<GuiPageButtonList.GuiEntry> entries = Lists.<GuiPageButtonList.GuiEntry>newArrayList();
-    private final IntHashMap<Gui> componentMap = new IntHashMap();
-    private final List<GuiTextField> editBoxes = Lists.<GuiTextField>newArrayList();
+    private final List<GuiPageButtonList.GuiEntry> entries = new ArrayList<>();
+    private final IntHashMap<Gui> componentMap = new IntHashMap<>();
+    private final List<GuiTextField> editBoxes = new ArrayList<>();
     private final GuiPageButtonList.GuiListEntry[][] pages;
     private int page;
     private GuiPageButtonList.GuiResponder responder;

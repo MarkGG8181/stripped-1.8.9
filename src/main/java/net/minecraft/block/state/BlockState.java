@@ -7,16 +7,10 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -33,8 +27,8 @@ public class BlockState {
         this.block = blockIn;
         Arrays.sort(properties, Comparator.comparing(IProperty::getName));
         this.properties = ImmutableList.copyOf(properties);
-        Map<Map<IProperty, Comparable>, BlockState.StateImplementation> map = Maps.newLinkedHashMap();
-        List<BlockState.StateImplementation> list = Lists.newArrayList();
+        Map<Map<IProperty, Comparable>, BlockState.StateImplementation> map = new LinkedHashMap<>();
+        List<BlockState.StateImplementation> list = new ArrayList<>();
 
         for (List<Comparable> list1 : Cartesian.cartesianProduct(this.getAllowedValues())) {
             Map<IProperty, Comparable> map1 = MapPopulator.createMap(this.properties, list1);
@@ -55,7 +49,7 @@ public class BlockState {
     }
 
     private List<Iterable<Comparable>> getAllowedValues() {
-        List<Iterable<Comparable>> list = Lists.newArrayList();
+        List<Iterable<Comparable>> list = new ArrayList<>();
 
         for (int i = 0; i < this.properties.size(); ++i) {
             list.add(this.properties.get(i).getAllowedValues());

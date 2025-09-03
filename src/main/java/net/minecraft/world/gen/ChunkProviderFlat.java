@@ -1,6 +1,6 @@
 package net.minecraft.world.gen;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -30,7 +30,7 @@ public class ChunkProviderFlat implements IChunkProvider
     private Random random;
     private final IBlockState[] cachedBlockIDs = new IBlockState[256];
     private final FlatGeneratorInfo flatWorldGenInfo;
-    private final List<MapGenStructure> structureGenerators = Lists.<MapGenStructure>newArrayList();
+    private final List<MapGenStructure> structureGenerators = new ArrayList<>();
     private final boolean hasDecoration;
     private final boolean hasDungeons;
     private WorldGenLakes waterLakeGenerator;

@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.network.handshake.client.C00Handshake;
@@ -245,7 +246,7 @@ public enum EnumConnectionState {
     private static int field_181136_e = -1;
     private static int field_181137_f = 2;
     private static final EnumConnectionState[] STATES_BY_ID = new EnumConnectionState[field_181137_f - field_181136_e + 1];
-    private static final Map<Class<? extends Packet>, EnumConnectionState> STATES_BY_CLASS = Maps.<Class<? extends Packet>, EnumConnectionState>newHashMap();
+    private static final Map<Class<? extends Packet>, EnumConnectionState> STATES_BY_CLASS = new HashMap<>();
     private final int id;
     private final Map<EnumPacketDirection, BiMap<Integer, Class<? extends Packet>>> directionMaps;
 

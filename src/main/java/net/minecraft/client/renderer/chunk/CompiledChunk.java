@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.chunk;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -27,7 +27,7 @@ public class CompiledChunk
     private final boolean[] layersUsed = new boolean[EnumWorldBlockLayer.values().length];
     private final boolean[] layersStarted = new boolean[EnumWorldBlockLayer.values().length];
     private boolean empty = true;
-    private final List<TileEntity> tileEntities = Lists.<TileEntity>newArrayList();
+    private final List<TileEntity> tileEntities = new ArrayList<>();
     private SetVisibility setVisibility = new SetVisibility();
     private WorldRenderer.State state;
 

@@ -8,11 +8,11 @@ import com.google.common.collect.Sets;
 import java.util.*;
 
 public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
-    private static final Set<Class<?>> ALL_KNOWN = Sets.<Class<?>>newHashSet();
-    private final Map<Class<?>, List<T>> map = Maps.<Class<?>, List<T>>newHashMap();
+    private static final Set<Class<?>> ALL_KNOWN = new HashSet<>();
+    private final Map<Class<?>, List<T>> map = new HashMap<>();
     private final Set<Class<?>> knownKeys = Sets.<Class<?>>newIdentityHashSet();
     private final Class<T> baseClass;
-    private final List<T> values = Lists.<T>newArrayList();
+    private final List<T> values = new ArrayList<>();
 
     public ClassInheritanceMultiMap(Class<T> baseClassIn) {
         this.baseClass = baseClassIn;

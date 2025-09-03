@@ -623,16 +623,16 @@ public class ChatStyle
                 if (p_serialize_1_.chatClickEvent != null)
                 {
                     JsonObject jsonobject1 = new JsonObject();
-                    jsonobject1.addProperty("action", p_serialize_1_.chatClickEvent.getAction().getCanonicalName());
-                    jsonobject1.addProperty("value", p_serialize_1_.chatClickEvent.getValue());
+                    jsonobject1.addProperty("action", p_serialize_1_.chatClickEvent.action().getCanonicalName());
+                    jsonobject1.addProperty("value", p_serialize_1_.chatClickEvent.value());
                     jsonobject.add("clickEvent", jsonobject1);
                 }
 
                 if (p_serialize_1_.chatHoverEvent != null)
                 {
                     JsonObject jsonobject2 = new JsonObject();
-                    jsonobject2.addProperty("action", p_serialize_1_.chatHoverEvent.getAction().getCanonicalName());
-                    jsonobject2.add("value", p_serialize_3_.serialize(p_serialize_1_.chatHoverEvent.getValue()));
+                    jsonobject2.addProperty("action", p_serialize_1_.chatHoverEvent.action().getCanonicalName());
+                    jsonobject2.add("value", p_serialize_3_.serialize(p_serialize_1_.chatHoverEvent.value()));
                     jsonobject.add("hoverEvent", jsonobject2);
                 }
 

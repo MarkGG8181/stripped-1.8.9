@@ -1,6 +1,6 @@
 package net.minecraft.client.gui.ingame;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -19,9 +19,9 @@ public class GuiNewChat extends Gui
 {
     private static final Logger logger = LogManager.getLogger();
     private final Minecraft mc;
-    private final List<String> sentMessages = Lists.<String>newArrayList();
-    private final List<ChatLine> chatLines = Lists.<ChatLine>newArrayList();
-    private final List<ChatLine> drawnChatLines = Lists.<ChatLine>newArrayList();
+    private final List<String> sentMessages = new ArrayList<>();
+    private final List<ChatLine> chatLines = new ArrayList<>();
+    private final List<ChatLine> drawnChatLines = new ArrayList<>();
     private int scrollPos;
     private boolean isScrolled;
 

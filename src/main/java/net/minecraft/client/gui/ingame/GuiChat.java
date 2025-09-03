@@ -1,7 +1,7 @@
 package net.minecraft.client.gui.ingame;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -13,14 +13,11 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class GuiChat extends GuiScreen
 {
-    private static final Logger logger = LogManager.getLogger();
     private String historyBuffer = "";
 
     /**
@@ -31,7 +28,7 @@ public class GuiChat extends GuiScreen
     private boolean playerNamesFound;
     private boolean waitingOnAutocomplete;
     private int autocompleteIndex;
-    private List<String> foundPlayerNames = Lists.<String>newArrayList();
+    private List<String> foundPlayerNames = new ArrayList<>();
 
     /** Chat entry field */
     protected GuiTextField inputField;

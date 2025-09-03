@@ -1,13 +1,10 @@
 package net.minecraft.entity.player;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import io.netty.buffer.Unpooled;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -117,8 +114,8 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     /** player Z position as seen by PlayerManager */
     public double managedPosZ;
-    public final List<ChunkCoordIntPair> loadedChunks = Lists.<ChunkCoordIntPair>newLinkedList();
-    private final List<Integer> destroyedItemsNetCache = Lists.<Integer>newLinkedList();
+    public final List<ChunkCoordIntPair> loadedChunks = new LinkedList<>();
+    private final List<Integer> destroyedItemsNetCache = new LinkedList<>();
     private final StatisticsFile statsFile;
 
     /**
@@ -305,9 +302,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (!this.loadedChunks.isEmpty())
         {
-            List<Chunk> list = Lists.<Chunk>newArrayList();
+            List<Chunk> list = new ArrayList<>();
             Iterator<ChunkCoordIntPair> iterator1 = this.loadedChunks.iterator();
-            List<TileEntity> list1 = Lists.<TileEntity>newArrayList();
+            List<TileEntity> list1 = new ArrayList<>();
 
             while (iterator1.hasNext() && ((List)list).size() < 10)
             {
@@ -454,7 +451,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (this.getStatFile().canUnlockAchievement(AchievementList.exploreAllBiomes) && jsonserializableset.size() >= BiomeGenBase.explorationBiomesList.size())
         {
-            Set<BiomeGenBase> set = Sets.newHashSet(BiomeGenBase.explorationBiomesList);
+            Set<BiomeGenBase> set = new HashSet<>(BiomeGenBase.explorationBiomesList);
 
             for (String s1 : jsonserializableset)
             {

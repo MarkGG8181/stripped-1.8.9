@@ -2,6 +2,8 @@ package net.minecraft.client.renderer.texture;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -11,8 +13,8 @@ import net.minecraft.util.MathHelper;
 public class Stitcher
 {
     private final int mipmapLevelStitcher;
-    private final Set<Stitcher.Holder> setStitchHolders = Sets.<Stitcher.Holder>newHashSetWithExpectedSize(256);
-    private final List<Stitcher.Slot> stitchSlots = Lists.<Stitcher.Slot>newArrayListWithCapacity(256);
+    private final Set<Stitcher.Holder> setStitchHolders = Sets.newHashSetWithExpectedSize(256);
+    private final List<Stitcher.Slot> stitchSlots = Lists.newArrayListWithCapacity(256);
     private int currentWidth;
     private int currentHeight;
     private final int maxWidth;
@@ -76,14 +78,14 @@ public class Stitcher
 
     public List<TextureAtlasSprite> getStichSlots()
     {
-        List<Stitcher.Slot> list = Lists.<Stitcher.Slot>newArrayList();
+        List<Stitcher.Slot> list = new ArrayList<>();
 
         for (Stitcher.Slot stitcher$slot : this.stitchSlots)
         {
             stitcher$slot.getAllStitchSlots(list);
         }
 
-        List<TextureAtlasSprite> list1 = Lists.<TextureAtlasSprite>newArrayList();
+        List<TextureAtlasSprite> list1 = new ArrayList<>();
 
         for (Stitcher.Slot stitcher$slot1 : list)
         {

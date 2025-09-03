@@ -1,7 +1,6 @@
 package net.minecraft.world.biome;
 
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.server.MinecraftServer;
@@ -19,7 +18,7 @@ public class BiomeCache {
      */
     private long lastCleanupTime;
     private final LongHashMap<BiomeCache.Block> cacheMap = new LongHashMap<>();
-    private final List<BiomeCache.Block> cache = Lists.newArrayList();
+    private final List<BiomeCache.Block> cache = new ArrayList<>();
 
     public BiomeCache(WorldChunkManager chunkManagerIn) {
         this.chunkManager = chunkManagerIn;

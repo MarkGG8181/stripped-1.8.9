@@ -41,8 +41,8 @@ public class SimpleTexture extends AbstractTexture
 
                     if (texturemetadatasection != null)
                     {
-                        flag = texturemetadatasection.getTextureBlur();
-                        flag1 = texturemetadatasection.getTextureClamp();
+                        flag = texturemetadatasection.textureBlur();
+                        flag1 = texturemetadatasection.textureClamp();
                     }
                 }
                 catch (RuntimeException runtimeexception)

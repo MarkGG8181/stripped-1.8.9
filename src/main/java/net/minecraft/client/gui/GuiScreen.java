@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -52,7 +53,7 @@ import org.lwjgl.input.Mouse;
 
 public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final Set<String> PROTOCOLS = Sets.newHashSet(new String[]{"http", "https"});
+    private static final Set<String> PROTOCOLS = Sets.newHashSet("http", "https");
     private static final Splitter NEWLINE_SPLITTER = Splitter.on('\n');
 
     /**
@@ -74,8 +75,8 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
      * The height of the screen object.
      */
     public int height;
-    protected List<GuiButton> buttonList = Lists.<GuiButton>newArrayList();
-    protected List<GuiLabel> labelList = Lists.<GuiLabel>newArrayList();
+    protected List<GuiButton> buttonList = new ArrayList<>();
+    protected List<GuiLabel> labelList = new ArrayList<>();
     public boolean allowUserInput;
 
     /**
@@ -257,11 +258,11 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
         if (component != null && component.getChatStyle().getChatHoverEvent() != null) {
             HoverEvent hoverevent = component.getChatStyle().getChatHoverEvent();
 
-            if (hoverevent.getAction() == HoverEvent.Action.SHOW_ITEM) {
+            if (hoverevent.action() == HoverEvent.Action.SHOW_ITEM) {
                 ItemStack itemstack = null;
 
                 try {
-                    NBTBase nbtbase = JsonToNBT.getTagFromJson(hoverevent.getValue().getUnformattedText());
+                    NBTBase nbtbase = JsonToNBT.getTagFromJson(hoverevent.value().getUnformattedText());
 
                     if (nbtbase instanceof NBTTagCompound) {
                         itemstack = ItemStack.loadItemStackFromNBT((NBTTagCompound) nbtbase);
@@ -275,13 +276,13 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                 } else {
                     this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid Item!", x, y);
                 }
-            } else if (hoverevent.getAction() == HoverEvent.Action.SHOW_ENTITY) {
+            } else if (hoverevent.action() == HoverEvent.Action.SHOW_ENTITY) {
                 if (this.mc.gameSettings.advancedItemTooltips) {
                     try {
-                        NBTBase nbtbase1 = JsonToNBT.getTagFromJson(hoverevent.getValue().getUnformattedText());
+                        NBTBase nbtbase1 = JsonToNBT.getTagFromJson(hoverevent.value().getUnformattedText());
 
                         if (nbtbase1 instanceof NBTTagCompound) {
-                            List<String> list1 = Lists.<String>newArrayList();
+                            List<String> list1 = new ArrayList<>();
                             NBTTagCompound nbttagcompound = (NBTTagCompound) nbtbase1;
                             list1.add(nbttagcompound.getString("name"));
 
@@ -299,10 +300,10 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                         this.drawCreativeTabHoveringText(EnumChatFormatting.RED + "Invalid Entity!", x, y);
                     }
                 }
-            } else if (hoverevent.getAction() == HoverEvent.Action.SHOW_TEXT) {
-                this.drawHoveringText(NEWLINE_SPLITTER.splitToList(hoverevent.getValue().getFormattedText()), x, y);
-            } else if (hoverevent.getAction() == HoverEvent.Action.SHOW_ACHIEVEMENT) {
-                StatBase statbase = StatList.getOneShotStat(hoverevent.getValue().getUnformattedText());
+            } else if (hoverevent.action() == HoverEvent.Action.SHOW_TEXT) {
+                this.drawHoveringText(NEWLINE_SPLITTER.splitToList(hoverevent.value().getFormattedText()), x, y);
+            } else if (hoverevent.action() == HoverEvent.Action.SHOW_ACHIEVEMENT) {
+                StatBase statbase = StatList.getOneShotStat(hoverevent.value().getUnformattedText());
 
                 if (statbase != null) {
                     IChatComponent ichatcomponent = statbase.getStatName();
@@ -347,39 +348,39 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                     this.setText(component.getChatStyle().getInsertion(), false);
                 }
             } else if (clickevent != null) {
-                if (clickevent.getAction() == ClickEvent.Action.OPEN_URL) {
+                if (clickevent.action() == ClickEvent.Action.OPEN_URL) {
                     if (!this.mc.gameSettings.chatLinks) {
                         return false;
                     }
 
                     try {
-                        URI uri = new URI(clickevent.getValue());
+                        URI uri = new URI(clickevent.value());
                         String s = uri.getScheme();
 
                         if (s == null) {
-                            throw new URISyntaxException(clickevent.getValue(), "Missing protocol");
+                            throw new URISyntaxException(clickevent.value(), "Missing protocol");
                         }
 
                         if (!PROTOCOLS.contains(s.toLowerCase())) {
-                            throw new URISyntaxException(clickevent.getValue(), "Unsupported protocol: " + s.toLowerCase());
+                            throw new URISyntaxException(clickevent.value(), "Unsupported protocol: " + s.toLowerCase());
                         }
 
                         if (this.mc.gameSettings.chatLinksPrompt) {
                             this.clickedLinkURI = uri;
-                            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, clickevent.getValue(), 31102009, false));
+                            this.mc.displayGuiScreen(new GuiConfirmOpenLink(this, clickevent.value(), 31102009, false));
                         } else {
                             this.openWebLink(uri);
                         }
                     } catch (URISyntaxException urisyntaxexception) {
                         LOGGER.error((String) ("Can\'t open url for " + clickevent), (Throwable) urisyntaxexception);
                     }
-                } else if (clickevent.getAction() == ClickEvent.Action.OPEN_FILE) {
-                    URI uri1 = (new File(clickevent.getValue())).toURI();
+                } else if (clickevent.action() == ClickEvent.Action.OPEN_FILE) {
+                    URI uri1 = (new File(clickevent.value())).toURI();
                     this.openWebLink(uri1);
-                } else if (clickevent.getAction() == ClickEvent.Action.SUGGEST_COMMAND) {
-                    this.setText(clickevent.getValue(), true);
-                } else if (clickevent.getAction() == ClickEvent.Action.RUN_COMMAND) {
-                    this.sendChatMessage(clickevent.getValue(), false);
+                } else if (clickevent.action() == ClickEvent.Action.SUGGEST_COMMAND) {
+                    this.setText(clickevent.value(), true);
+                } else if (clickevent.action() == ClickEvent.Action.RUN_COMMAND) {
+                    this.sendChatMessage(clickevent.value(), false);
                 } else {
                     LOGGER.error("Don\'t know how to handle " + clickevent);
                 }

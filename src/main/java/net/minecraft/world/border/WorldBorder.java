@@ -2,6 +2,7 @@ package net.minecraft.world.border;
 
 import com.google.common.collect.Lists;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -10,7 +11,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.ChunkCoordIntPair;
 
 public class WorldBorder {
-    private final List<IBorderListener> listeners = Lists.newArrayList();
+    private final List<IBorderListener> listeners = new ArrayList<>();
     private double centerX = 0.0D;
     private double centerZ = 0.0D;
     private double startDiameter = 6.0E7D;
@@ -164,7 +165,7 @@ public class WorldBorder {
     }
 
     protected List<IBorderListener> getListeners() {
-        return Lists.newArrayList(this.listeners);
+        return new ArrayList<>(this.listeners);
     }
 
     public void addListener(IBorderListener listener) {

@@ -2,10 +2,10 @@ package net.minecraft.client.resources;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.IllegalFormatException;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +21,7 @@ public class Locale {
      */
     private static final Splitter splitter = Splitter.on('=').limit(2);
     private static final Pattern pattern = Pattern.compile("%(\\d+\\$)?[\\d\\.]*[df]");
-    Map<String, String> properties = Maps.<String, String>newHashMap();
-    private boolean unicode;
+    Map<String, String> properties = new HashMap<>();
 
     /**
      * For each domain $D and language $L, attempts to load the resource $D:lang/$L.lang
@@ -41,32 +40,6 @@ public class Locale {
                 }
             }
         }
-
-        this.checkUnicode();
-    }
-
-    public boolean isUnicode() {
-        return this.unicode;
-    }
-
-    private void checkUnicode() {
-        this.unicode = false;
-        int i = 0;
-        int j = 0;
-
-        for (String s : this.properties.values()) {
-            int k = s.length();
-            j += k;
-
-            for (int l = 0; l < k; ++l) {
-                if (s.charAt(l) >= 256) {
-                    ++i;
-                }
-            }
-        }
-
-        float f = (float) i / (float) j;
-        this.unicode = (double) f > 0.1D;
     }
 
     /**

@@ -4,11 +4,9 @@ import com.google.common.base.Functions;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Doubles;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -628,7 +626,7 @@ public abstract class CommandBase implements ICommand
                 s = Integer.toString(p_175771_2_.getZ());
             }
 
-            return Lists.newArrayList(new String[] {s});
+            return Lists.newArrayList(s);
         }
     }
 
@@ -657,7 +655,7 @@ public abstract class CommandBase implements ICommand
                 s = Integer.toString(p_181043_2_.getZ());
             }
 
-            return Lists.newArrayList(new String[] {s});
+            return Lists.newArrayList(s);
         }
     }
 
@@ -677,7 +675,7 @@ public abstract class CommandBase implements ICommand
     public static List<String> getListOfStringsMatchingLastWord(String[] p_175762_0_, Collection<?> p_175762_1_)
     {
         String s = p_175762_0_[p_175762_0_.length - 1];
-        List<String> list = Lists.<String>newArrayList();
+        List<String> list = new ArrayList<>();
 
         if (!p_175762_1_.isEmpty())
         {

@@ -2,8 +2,6 @@ package net.minecraft.client.resources.model;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
 
 import java.io.FileNotFoundException;
@@ -13,13 +11,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Deque;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.Map.Entry;
 
 import net.minecraft.client.renderer.BlockModelShapes;
@@ -50,12 +42,12 @@ public class ModelBakery {
     private static final Set<ResourceLocation> LOCATIONS_BUILTIN_TEXTURES = Sets.newHashSet(new ResourceLocation[]{new ResourceLocation("blocks/water_flow"), new ResourceLocation("blocks/water_still"), new ResourceLocation("blocks/lava_flow"), new ResourceLocation("blocks/lava_still"), new ResourceLocation("blocks/destroy_stage_0"), new ResourceLocation("blocks/destroy_stage_1"), new ResourceLocation("blocks/destroy_stage_2"), new ResourceLocation("blocks/destroy_stage_3"), new ResourceLocation("blocks/destroy_stage_4"), new ResourceLocation("blocks/destroy_stage_5"), new ResourceLocation("blocks/destroy_stage_6"), new ResourceLocation("blocks/destroy_stage_7"), new ResourceLocation("blocks/destroy_stage_8"), new ResourceLocation("blocks/destroy_stage_9"), new ResourceLocation("items/empty_armor_slot_helmet"), new ResourceLocation("items/empty_armor_slot_chestplate"), new ResourceLocation("items/empty_armor_slot_leggings"), new ResourceLocation("items/empty_armor_slot_boots")});
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final ModelResourceLocation MODEL_MISSING = new ModelResourceLocation("builtin/missing", "missing");
-    private static final Map<String, String> BUILT_IN_MODELS = Maps.<String, String>newHashMap();
+    private static final Map<String, String> BUILT_IN_MODELS = new HashMap<>();
     private static final Joiner JOINER = Joiner.on(" -> ");
     private final IResourceManager resourceManager;
-    private final Map<ResourceLocation, TextureAtlasSprite> sprites = Maps.<ResourceLocation, TextureAtlasSprite>newHashMap();
-    private final Map<ResourceLocation, ModelBlock> models = Maps.<ResourceLocation, ModelBlock>newLinkedHashMap();
-    private final Map<ModelResourceLocation, ModelBlockDefinition.Variants> variants = Maps.<ModelResourceLocation, ModelBlockDefinition.Variants>newLinkedHashMap();
+    private final Map<ResourceLocation, TextureAtlasSprite> sprites = new HashMap<>();
+    private final Map<ResourceLocation, ModelBlock> models = new LinkedHashMap<>();
+    private final Map<ModelResourceLocation, ModelBlockDefinition.Variants> variants = new LinkedHashMap<>();
     private final TextureMap textureMap;
     private final BlockModelShapes blockModelShapes;
     private final FaceBakery faceBakery = new FaceBakery();
@@ -65,9 +57,9 @@ public class ModelBakery {
     private static final ModelBlock MODEL_COMPASS = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
     private static final ModelBlock MODEL_CLOCK = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
     private static final ModelBlock MODEL_ENTITY = ModelBlock.deserialize("{\"elements\":[{  \"from\": [0, 0, 0],   \"to\": [16, 16, 16],   \"faces\": {       \"down\": {\"uv\": [0, 0, 16, 16], \"texture\":\"\"}   }}]}");
-    private Map<String, ResourceLocation> itemLocations = Maps.<String, ResourceLocation>newLinkedHashMap();
-    private final Map<ResourceLocation, ModelBlockDefinition> blockDefinitions = Maps.<ResourceLocation, ModelBlockDefinition>newHashMap();
-    private Map<Item, List<String>> variantNames = Maps.<Item, List<String>>newIdentityHashMap();
+    private Map<String, ResourceLocation> itemLocations = new LinkedHashMap<>();
+    private final Map<ResourceLocation, ModelBlockDefinition> blockDefinitions = new HashMap<>();
+    private Map<Item, List<String>> variantNames = new IdentityHashMap<>();
 
     public ModelBakery(IResourceManager p_i46085_1_, TextureMap p_i46085_2_, BlockModelShapes p_i46085_3_) {
         this.resourceManager = p_i46085_1_;
@@ -120,7 +112,7 @@ public class ModelBakery {
         ModelBlockDefinition modelblockdefinition = (ModelBlockDefinition) this.blockDefinitions.get(resourcelocation);
 
         if (modelblockdefinition == null) {
-            List<ModelBlockDefinition> list = Lists.<ModelBlockDefinition>newArrayList();
+            List<ModelBlockDefinition> list = new ArrayList<>();
 
             try {
                 for (IResource iresource : this.resourceManager.getAllResources(resourcelocation)) {
@@ -337,7 +329,7 @@ public class ModelBakery {
     }
 
     private Set<ResourceLocation> getVariantsTextureLocations() {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Set<ResourceLocation> set = new HashSet<>();
         List<ModelResourceLocation> list = Lists.newArrayList(this.variants.keySet());
         Collections.sort(list, new Comparator<ModelResourceLocation>() {
             public int compare(ModelResourceLocation p_compare_1_, ModelResourceLocation p_compare_2_) {
@@ -398,8 +390,8 @@ public class ModelBakery {
     }
 
     private void loadModels() {
-        Deque<ResourceLocation> deque = Queues.<ResourceLocation>newArrayDeque();
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Deque<ResourceLocation> deque = new ArrayDeque<>();
+        Set<ResourceLocation> set = new HashSet<>();
 
         for (ResourceLocation resourcelocation : this.models.keySet()) {
             set.add(resourcelocation);
@@ -457,7 +449,7 @@ public class ModelBakery {
     }
 
     private Set<ResourceLocation> getTextureLocations(ModelBlock p_177585_1_) {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Set<ResourceLocation> set = new HashSet<>();
 
         for (BlockPart blockpart : p_177585_1_.getElements()) {
             for (BlockPartFace blockpartface : blockpart.mapFaces.values()) {
@@ -487,7 +479,7 @@ public class ModelBakery {
     }
 
     private Set<ResourceLocation> getItemsTextureLocations() {
-        Set<ResourceLocation> set = Sets.<ResourceLocation>newHashSet();
+        Set<ResourceLocation> set = new HashSet<>();
 
         for (ResourceLocation resourcelocation : this.itemLocations.values()) {
             ModelBlock modelblock = (ModelBlock) this.models.get(resourcelocation);

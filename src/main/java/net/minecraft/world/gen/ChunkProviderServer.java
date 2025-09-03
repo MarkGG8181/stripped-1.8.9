@@ -1,8 +1,7 @@
 package net.minecraft.world.gen;
 
-import com.google.common.collect.Lists;
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -48,7 +47,7 @@ public class ChunkProviderServer implements IChunkProvider {
      */
     public boolean chunkLoadOverride = true;
     public final LongHashMap<Chunk> id2ChunkMap = new LongHashMap<>();
-    private final List<Chunk> loadedChunks = Lists.newArrayList();
+    private final List<Chunk> loadedChunks = new ArrayList<>();
     private final WorldServer worldObj;
 
     public ChunkProviderServer(WorldServer p_i1520_1_, IChunkLoader p_i1520_2_, IChunkProvider p_i1520_3_) {
@@ -216,7 +215,7 @@ public class ChunkProviderServer implements IChunkProvider {
     public void saveChunks(boolean saveAllChunks, IProgressUpdate progressCallback) {
         ((ILightingEngineProvider) this.worldObj).getLightingEngine().processLightUpdates();
         int i = 0;
-        List<Chunk> list = Lists.newArrayList(this.loadedChunks);
+        List<Chunk> list = new ArrayList<>(this.loadedChunks);
 
         for (Chunk chunk : list) {
             if (saveAllChunks) {
