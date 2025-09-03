@@ -53,17 +53,15 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             this.server.pingToServer = -2L;
             this.server.serverMOTD = "";
             this.server.populationInfo = "";
-            EXECUTOR.submit(new Runnable() {
-                public void run() {
-                    try {
-                        ServerListEntryNormal.this.owner.getOldServerPinger().ping(ServerListEntryNormal.this.server);
-                    } catch (UnknownHostException var2) {
-                        ServerListEntryNormal.this.server.pingToServer = -1L;
-                        ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can\'t resolve hostname";
-                    } catch (Exception var3) {
-                        ServerListEntryNormal.this.server.pingToServer = -1L;
-                        ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can\'t connect to server.";
-                    }
+            EXECUTOR.submit(() -> {
+                try {
+                    ServerListEntryNormal.this.owner.getOldServerPinger().ping(ServerListEntryNormal.this.server);
+                } catch (UnknownHostException var2) {
+                    ServerListEntryNormal.this.server.pingToServer = -1L;
+                    ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can't resolve hostname";
+                } catch (Exception var3) {
+                    ServerListEntryNormal.this.server.pingToServer = -1L;
+                    ServerListEntryNormal.this.server.serverMOTD = EnumChatFormatting.DARK_RED + "Can't connect to server.";
                 }
             });
         }
@@ -113,7 +111,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             }
         } else {
             k = 1;
-            l = (int) (Minecraft.getSystemTime() / 100L + (long) (slotIndex * 2) & 7L);
+            l = (int) (Minecraft.getSystemTime() / 100L + (slotIndex * 2L) & 7L);
 
             if (l > 4) {
                 l = 8 - l;
@@ -128,7 +126,12 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
 
         if (this.server.getBase64EncodedIconData() != null && !this.server.getBase64EncodedIconData().equals(this.lastIconB64)) {
             this.lastIconB64 = this.server.getBase64EncodedIconData();
-            this.prepareServerIcon();
+            try {
+                this.prepareServerIcon();
+            } catch (Exception var3) {
+                logger.error("Failed to prepare server icon, defaulting to UNKNOWN_SERVER png");
+                this.server.setBase64EncodedIconData(null);
+            }
             this.owner.getServerList().saveServerList();
         }
 
