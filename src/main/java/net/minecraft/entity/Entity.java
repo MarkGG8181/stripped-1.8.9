@@ -43,6 +43,8 @@ public abstract class Entity implements ICommandSender
     private int entityId;
     public double renderDistanceWeight;
 
+    private boolean glowing;
+
     /**
      * Blocks entities from spawning when they do their AABB check to make sure the spot is clear of entities that can
      * prevent spawning.
@@ -1248,6 +1250,20 @@ public abstract class Entity implements ICommandSender
         return this.worldObj.isBlockLoaded(blockpos) ? this.worldObj.getLightBrightness(blockpos) : 0.0F;
     }
 
+    public boolean isGlowing()
+    {
+        return this.glowing || this.worldObj.isRemote && this.getFlag(6);
+    }
+
+    public void setGlowing(boolean glowingIn)
+    {
+        this.glowing = glowingIn;
+        if (!this.worldObj.isRemote)
+        {
+            this.setFlag(6, this.glowing);
+        }
+    }
+
     /**
      * Sets the reference to the World object.
      */
@@ -1600,6 +1616,7 @@ public abstract class Entity implements ICommandSender
             tagCompund.setShort("Air", (short)this.getAir());
             tagCompund.setBoolean("OnGround", this.onGround);
             tagCompund.setInteger("Dimension", this.dimension);
+            tagCompund.setBoolean("Glowing", this.glowing);
             tagCompund.setBoolean("Invulnerable", this.invulnerable);
             tagCompund.setInteger("PortalCooldown", this.timeUntilPortal);
             tagCompund.setLong("UUIDMost", this.getUniqueID().getMostSignificantBits());
@@ -1680,6 +1697,7 @@ public abstract class Entity implements ICommandSender
             this.setAir(tagCompund.getShort("Air"));
             this.onGround = tagCompund.getBoolean("OnGround");
             this.dimension = tagCompund.getInteger("Dimension");
+            this.setGlowing(tagCompund.getBoolean("Glowing"));
             this.invulnerable = tagCompund.getBoolean("Invulnerable");
             this.timeUntilPortal = tagCompund.getInteger("PortalCooldown");
 

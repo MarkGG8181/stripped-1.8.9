@@ -44,6 +44,7 @@ import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.client.shader.ShaderGroup;
 import net.minecraft.client.shader.ShaderLinkHelper;
+import net.minecraft.config.EntityGlowConfig;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
@@ -199,6 +200,19 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         this.generateSky2();
     }
 
+    private boolean isOutlineActive(Entity entityIn, Entity viewer, ICamera camera) {
+        boolean flag = viewer instanceof EntityLivingBase && ((EntityLivingBase) viewer).isPlayerSleeping();
+        if (entityIn == viewer && this.mc.gameSettings.thirdPersonView == 0 && !flag) {
+            return false;
+        } else if (entityIn.isGlowing() && EntityGlowConfig.entityGlow) {
+            return true;
+        } else {
+            return this.mc.thePlayer.isSpectator() && this.mc.gameSettings.keyBindSpectatorOutlines.isKeyDown() && entityIn instanceof EntityPlayer && (entityIn.ignoreFrustumCheck
+                    || camera.isBoundingBoxInFrustum(entityIn.getEntityBoundingBox())
+                    || entityIn.isRiding());
+        }
+    }
+
     public void onResourceManagerReload(IResourceManager resourceManager) {
         this.updateDestroyBlockIcons();
     }
@@ -251,7 +265,10 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     }
 
     protected boolean isRenderEntityOutlines() {
-        return this.entityOutlineFramebuffer != null && this.entityOutlineShader != null && this.mc.thePlayer != null && this.mc.thePlayer.isSpectator() && this.mc.gameSettings.keyBindSpectatorOutlines.isKeyDown();
+        boolean spectatorChecks = (EntityGlowConfig.entityGlow || (this.mc.thePlayer != null && this.mc.thePlayer.isSpectator()))
+                && (EntityGlowConfig.entityGlow || this.mc.gameSettings.keyBindSpectatorOutlines.isKeyDown());
+
+        return this.entityOutlineFramebuffer != null && this.entityOutlineShader != null && this.mc.thePlayer != null && spectatorChecks;
     }
 
     private void generateSky2() {
@@ -501,10 +518,18 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 RenderHelper.disableStandardItemLighting();
                 this.renderManager.setRenderOutlines(true);
 
-                for (int j = 0; j < list.size(); ++j) {
-                    Entity entity3 = (Entity) list.get(j);
+                for (Entity value : list) {
+                    Entity entity3 = value;
                     boolean flag = this.mc.getRenderViewEntity() instanceof EntityLivingBase && ((EntityLivingBase) this.mc.getRenderViewEntity()).isPlayerSleeping();
-                    boolean flag1 = entity3.isInRangeToRender3d(d0, d1, d2) && (entity3.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(entity3.getEntityBoundingBox()) || entity3.riddenByEntity == this.mc.thePlayer) && entity3 instanceof EntityPlayer;
+
+                    boolean flag1;
+                    {
+                        boolean inRange = entity3.isInRangeToRender3d(d0, d1, d2);
+                        boolean isActive = this.isOutlineActive(entity3, this.mc.getRenderViewEntity(), camera);
+                        boolean isSameTeam = EntityGlowConfig.highlightTeams && entity3 instanceof EntityPlayer && ((EntityPlayer) entity3).isOnSameTeam(this.mc.thePlayer);
+                        boolean shouldOutline = inRange && (isActive || isSameTeam);
+                        flag1 = shouldOutline && (entity3.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(entity3.getEntityBoundingBox()) || entity3.riddenByEntity == this.mc.thePlayer) && entity3 instanceof EntityPlayer;
+                    }
 
                     if ((entity3 != this.mc.getRenderViewEntity() || this.mc.gameSettings.thirdPersonView != 0 || flag) && flag1) {
                         this.renderManager.renderEntitySimple(entity3, partialTicks);
