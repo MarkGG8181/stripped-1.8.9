@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.mopti.AssociatedMutableBlockPos;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -149,49 +150,57 @@ public abstract class BlockLiquid extends Block
 
     protected Vec3 getFlowVector(IBlockAccess worldIn, BlockPos pos)
     {
-        Vec3 vec3 = new Vec3(0.0D, 0.0D, 0.0D);
-        int i = this.getEffectiveFlowDecay(worldIn, pos);
-
-        for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+        AssociatedMutableBlockPos mutablePos = AssociatedMutableBlockPos.get(pos);
+        try
         {
-            BlockPos blockpos = pos.offset(enumfacing);
-            int j = this.getEffectiveFlowDecay(worldIn, blockpos);
+            Vec3 vec3 = new Vec3(0.0D, 0.0D, 0.0D);
+            int i = this.getEffectiveFlowDecay(worldIn, mutablePos);
 
-            if (j < 0)
+            for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                if (!worldIn.getBlockState(blockpos).getBlock().getMaterial().blocksMovement())
-                {
-                    j = this.getEffectiveFlowDecay(worldIn, blockpos.down());
+                BlockPos blockpos = mutablePos.associateWithOwnBlockPos().move(enumfacing);
+                int j = this.getEffectiveFlowDecay(worldIn, blockpos);
 
-                    if (j >= 0)
+                if (j < 0)
+                {
+                    if (!worldIn.getBlockState(blockpos).getBlock().getMaterial().blocksMovement())
                     {
-                        int k = j - (i - 8);
-                        vec3 = vec3.addVector((double)((blockpos.getX() - pos.getX()) * k), (double)((blockpos.getY() - pos.getY()) * k), (double)((blockpos.getZ() - pos.getZ()) * k));
+                        j = this.getEffectiveFlowDecay(worldIn, blockpos.down());
+
+                        if (j >= 0)
+                        {
+                            int k = j - (i - 8);
+                            vec3 = vec3.addVector((blockpos.getX() - mutablePos.getX()) * k, (blockpos.getY() - mutablePos.getY()) * k, (blockpos.getZ() - mutablePos.getZ()) * k);
+                        }
+                    }
+                }
+                else if (j >= 0)
+                {
+                    int l = j - i;
+                    vec3 = vec3.addVector((blockpos.getX() - mutablePos.getX()) * l, (blockpos.getY() - mutablePos.getY()) * l, (blockpos.getZ() - mutablePos.getZ()) * l);
+                }
+            }
+
+            if (worldIn.getBlockState(mutablePos).getValue(LEVEL) >= 8)
+            {
+                for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL)
+                {
+                    BlockPos blockpos1 = mutablePos.associateWithOwnBlockPos().move(enumfacing1);
+
+                    if (this.isBlockSolid(worldIn, blockpos1, enumfacing1) || this.isBlockSolid(worldIn, blockpos1.up(), enumfacing1))
+                    {
+                        vec3 = vec3.normalize().addVector(0.0D, -6.0D, 0.0D);
+                        break;
                     }
                 }
             }
-            else if (j >= 0)
-            {
-                int l = j - i;
-                vec3 = vec3.addVector((double)((blockpos.getX() - pos.getX()) * l), (double)((blockpos.getY() - pos.getY()) * l), (double)((blockpos.getZ() - pos.getZ()) * l));
-            }
-        }
 
-        if (((Integer)worldIn.getBlockState(pos).getValue(LEVEL)).intValue() >= 8)
+            return vec3.normalize();
+        }
+        finally
         {
-            for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL)
-            {
-                BlockPos blockpos1 = pos.offset(enumfacing1);
-
-                if (this.isBlockSolid(worldIn, blockpos1, enumfacing1) || this.isBlockSolid(worldIn, blockpos1.up(), enumfacing1))
-                {
-                    vec3 = vec3.normalize().addVector(0.0D, -6.0D, 0.0D);
-                    break;
-                }
-            }
+            mutablePos.release();
         }
-
-        return vec3.normalize();
     }
 
     public Vec3 modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3 motion)

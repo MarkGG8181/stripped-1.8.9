@@ -6,9 +6,13 @@ public abstract class PropertyHelper<T extends Comparable<T>> implements IProper
     private final Class<T> valueClass;
     private final String name;
 
+    private final int cachedHashCode;
+
     protected PropertyHelper(String name, Class<T> valueClass) {
         this.valueClass = valueClass;
         this.name = name;
+
+        this.cachedHashCode = 31 * this.valueClass.hashCode() + this.name.hashCode();
     }
 
     public String getName() {
@@ -34,7 +38,8 @@ public abstract class PropertyHelper<T extends Comparable<T>> implements IProper
         }
     }
 
-    public int hashCode() {
-        return 31 * this.valueClass.hashCode() + this.name.hashCode();
+    public int hashCode()
+    {
+        return this.cachedHashCode;
     }
 }

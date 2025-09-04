@@ -79,32 +79,50 @@ public class BlockState {
         private final ImmutableMap<IProperty, Comparable> properties;
         private ImmutableTable<IProperty, Comparable, IBlockState> propertyValueTable;
 
+        private final int cachedHashCode;
+
         private StateImplementation(Block blockIn, ImmutableMap<IProperty, Comparable> propertiesIn) {
             this.block = blockIn;
             this.properties = propertiesIn;
+            this.cachedHashCode = propertiesIn.hashCode();
         }
 
         public Collection<IProperty> getPropertyNames() {
             return Collections.unmodifiableCollection(this.properties.keySet());
         }
 
-        public <T extends Comparable<T>> T getValue(IProperty<T> property) {
-            if (!this.properties.containsKey(property)) {
+        public <T extends Comparable<T>> T getValue(IProperty<T> property)
+        {
+            Comparable<?> comparable = this.properties.get(property);
+
+            if (comparable == null)
+            {
                 throw new IllegalArgumentException("Cannot get property " + property + " as it does not exist in " + this.block.getBlockState());
-            } else {
-                return property.getValueClass().cast(this.properties.get(property));
+            }
+            else
+            {
+                return (T)property.getValueClass().cast(comparable);
             }
         }
 
-        public <T extends Comparable<T>, V extends T> IBlockState withProperty(IProperty<T> property, V value) {
-            if (!this.properties.containsKey(property)) {
+        public <T extends Comparable<T>, V extends T> IBlockState withProperty(IProperty<T> property, V value)
+        {
+            Comparable<?> comparable = this.properties.get(property);
+
+            if (comparable == null)
+            {
                 throw new IllegalArgumentException("Cannot set property " + property + " as it does not exist in " + this.block.getBlockState());
-            } else if (!property.getAllowedValues().contains(value)) {
+            }
+            else if (!property.getAllowedValues().contains(value))
+            {
                 throw new IllegalArgumentException("Cannot set property " + property + " to " + value + " on block " + Block.blockRegistry.getNameForObject(this.block) + ", it is not an allowed value");
-            } else {
-                return this.properties.get(property) == value ? this : this.propertyValueTable.get(property, value);
+            }
+            else
+            {
+                return comparable == value ? this : this.propertyValueTable.get(property, value);
             }
         }
+
 
         public ImmutableMap<IProperty, Comparable> getProperties() {
             return this.properties;
@@ -118,8 +136,9 @@ public class BlockState {
             return this == p_equals_1_;
         }
 
-        public int hashCode() {
-            return this.properties.hashCode();
+        public int hashCode()
+        {
+            return this.cachedHashCode;
         }
 
         public void buildPropertyValueTable(Map<Map<IProperty, Comparable>, BlockState.StateImplementation> map) {

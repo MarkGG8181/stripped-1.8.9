@@ -9,6 +9,8 @@ public class PropertyInteger extends PropertyHelper<Integer>
 {
     private final ImmutableSet<Integer> allowedValues;
 
+    private final int cachedHashCode;
+
     protected PropertyInteger(String name, int min, int max)
     {
         super(name, Integer.class);
@@ -31,6 +33,8 @@ public class PropertyInteger extends PropertyHelper<Integer>
             }
 
             this.allowedValues = ImmutableSet.copyOf(set);
+
+            this.cachedHashCode = 31 * super.hashCode() + this.allowedValues.hashCode();
         }
     }
 
@@ -65,9 +69,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
 
     public int hashCode()
     {
-        int i = super.hashCode();
-        i = 31 * i + this.allowedValues.hashCode();
-        return i;
+        return this.cachedHashCode;
     }
 
     public static PropertyInteger create(String name, int min, int max)
