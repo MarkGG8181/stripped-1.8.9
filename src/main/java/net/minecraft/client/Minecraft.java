@@ -26,7 +26,6 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.util.FontRenderer;
@@ -141,8 +140,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.OpenGLException;
 import org.lwjgl.system.MemoryUtil;
-import org.lwjgl.util.glu.GLU;
-import phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
 
 public class Minecraft implements IThreadListener {
     private static final Logger logger = LogManager.getLogger();

@@ -46,8 +46,8 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldInfo;
-import phosphor.api.ILightingEngineProvider;
-import phosphor.mod.world.lighting.LightingEngine;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.mod.world.lighting.LightingEngine;
 
 public abstract class World implements IBlockAccess, ILightingEngineProvider {
     private int seaLevel = 63;

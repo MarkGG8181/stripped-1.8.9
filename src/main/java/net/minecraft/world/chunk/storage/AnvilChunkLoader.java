@@ -29,9 +29,8 @@ import net.minecraft.world.storage.IThreadedFileIO;
 import net.minecraft.world.storage.ThreadedFileIOBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import phosphor.api.IChunkLightingData;
-import phosphor.api.ILightingEngineProvider;
-import phosphor.mod.world.lighting.LightingHooks;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.mod.world.lighting.LightingHooks;
 
 public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
     private static final Logger logger = LogManager.getLogger();

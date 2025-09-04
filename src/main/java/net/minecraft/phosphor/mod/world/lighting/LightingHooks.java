@@ -1,4 +1,4 @@
-package phosphor.mod.world.lighting;
+package net.minecraft.phosphor.mod.world.lighting;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,10 +10,10 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
-import phosphor.api.IChunkLightingData;
-import phosphor.api.ILightingEngine;
-import phosphor.api.ILightingEngineProvider;
-import phosphor.mod.world.ChunkHelper;
+import net.minecraft.phosphor.api.IChunkLightingData;
+import net.minecraft.phosphor.api.ILightingEngine;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.mod.world.ChunkHelper;
 
 @SuppressWarnings("unused")
 public class LightingHooks {

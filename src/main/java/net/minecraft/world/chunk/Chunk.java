@@ -28,12 +28,12 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import phosphor.api.IChunkLighting;
-import phosphor.api.IChunkLightingData;
-import phosphor.api.ILightingEngine;
-import phosphor.api.ILightingEngineProvider;
-import phosphor.mod.world.WorldChunkSlice;
-import phosphor.mod.world.lighting.LightingHooks;
+import net.minecraft.phosphor.api.IChunkLighting;
+import net.minecraft.phosphor.api.IChunkLightingData;
+import net.minecraft.phosphor.api.ILightingEngine;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.mod.world.WorldChunkSlice;
+import net.minecraft.phosphor.mod.world.lighting.LightingHooks;
 
 public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngineProvider {
     private static final Logger logger = LogManager.getLogger();

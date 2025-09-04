@@ -9,7 +9,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
-import phosphor.api.ILightingEngineProvider;
+import net.minecraft.phosphor.api.ILightingEngineProvider;
 
 public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
     private int chunkX;

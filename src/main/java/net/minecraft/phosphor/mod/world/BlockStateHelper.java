@@ -1,4 +1,4 @@
-package phosphor.mod.world;
+package net.minecraft.phosphor.mod.world;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

@@ -1,4 +1,4 @@
-package phosphor.api;
+package net.minecraft.phosphor.api;
 
 public interface IChunkLightingData {
     short[] getNeighborLightChecks();

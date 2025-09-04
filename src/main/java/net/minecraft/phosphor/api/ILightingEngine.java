@@ -1,4 +1,4 @@
-package phosphor.api;
+package net.minecraft.phosphor.api;
 
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.EnumSkyBlock;

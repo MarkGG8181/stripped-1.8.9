@@ -1,4 +1,4 @@
-package phosphor.mod.world.lighting;
+package net.minecraft.phosphor.mod.world.lighting;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -8,11 +8,10 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
-import phosphor.api.IChunkLighting;
-import phosphor.api.ILightingEngine;
-import phosphor.mod.collections.PooledLongQueue;
-import phosphor.mod.world.BlockStateHelper;
-import phosphor.mod.world.ChunkHelper;
+import net.minecraft.phosphor.api.ILightingEngine;
+import net.minecraft.phosphor.mod.collections.PooledLongQueue;
+import net.minecraft.phosphor.mod.world.BlockStateHelper;
+import net.minecraft.phosphor.mod.world.ChunkHelper;
 
 import java.util.concurrent.locks.ReentrantLock;
 
