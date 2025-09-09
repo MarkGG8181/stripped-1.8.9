@@ -43,13 +43,6 @@ public class WorldRenderer {
         this.rawFloatBuffer = this.byteBuffer.asFloatBuffer();
     }
 
-    public WorldRenderer(ByteBuffer providedBuffer) {
-        this.byteBuffer = providedBuffer;
-        this.rawIntBuffer = this.byteBuffer.asIntBuffer();
-        this.rawShortBuffer = this.byteBuffer.asShortBuffer();
-        this.rawFloatBuffer = this.byteBuffer.asFloatBuffer();
-    }
-
     private void growBuffer(int p_181670_1_) {
         if (p_181670_1_ > this.rawIntBuffer.remaining()) {
             int i = this.byteBuffer.capacity();

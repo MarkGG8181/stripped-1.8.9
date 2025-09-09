@@ -1,11 +1,9 @@
 package net.minecraft.client.renderer.chunk;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 import net.minecraft.client.renderer.RegionRenderCacheBuilder;
-import net.minecraft.port.melod.buffer.BufferPool;
 
 public class ChunkCompileTaskGenerator
 {
@@ -81,14 +79,6 @@ public class ChunkCompileTaskGenerator
 
             this.finished = true;
             this.status = ChunkCompileTaskGenerator.Status.DONE;
-
-            if (this.regionRenderCacheBuilder != null) {
-                for (ByteBuffer buffer : this.regionRenderCacheBuilder.getAcquiredBuffers()) {
-                    if (buffer != null) {
-                        BufferPool.release(buffer);
-                    }
-                }
-            }
 
             for (Runnable runnable : this.listFinishRunnables)
             {
