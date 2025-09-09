@@ -23,6 +23,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
+import net.minecraft.port.melod.FastRenderRegion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -111,7 +112,7 @@ public class RenderChunk {
                 return;
             }
 
-            iblockaccess = new RegionRenderCache(this.world, blockpos.add(-1, -1, -1), blockpos1.add(1, 1, 1), 1);
+            iblockaccess = new FastRenderRegion(this.world, blockpos);
             generator.setCompiledChunk(compiledchunk);
         } finally {
             generator.getLock().unlock();
