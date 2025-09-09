@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTSizeTracker;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.port.krypton.VarIntUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IChatComponent;
@@ -42,13 +43,7 @@ public class PacketBuffer extends ByteBuf {
      * readVarIntFromBuffer or writeVarIntToBuffer
      */
     public static int getVarIntSize(int input) {
-        for (int i = 1; i < 5; ++i) {
-            if ((input & -1 << i * 7) == 0) {
-                return i;
-            }
-        }
-
-        return 5;
+        return VarIntUtil.getVarIntLength(input);
     }
 
     public PacketBuffer writeByteArray(byte[] array) {
@@ -230,13 +225,38 @@ public class PacketBuffer extends ByteBuf {
      * values below 128.
      */
     public PacketBuffer writeVarIntToBuffer(int input) {
-        while ((input & -128) != 0) {
-            this.writeByte(input & 127 | 128);
-            input >>>= 7;
+        if ((input & (0xFFFFFFFF << 7)) == 0) {
+            this.buf.writeByte(input);
+        } else if ((input & (0xFFFFFFFF << 14)) == 0) {
+            int w = (input & 0x7F | 0x80) << 8 | (input >>> 7);
+            this.buf.writeShort(w);
+        } else {
+            writeVarIntFull(this.buf, input);
         }
 
-        this.writeByte(input);
         return this;
+    }
+
+    private static void writeVarIntFull(ByteBuf buf, int value) {
+        // See https://steinborn.me/posts/performance/how-fast-can-you-write-a-varint/
+        if ((value & (0xFFFFFFFF << 7)) == 0) {
+            buf.writeByte(value);
+        } else if ((value & (0xFFFFFFFF << 14)) == 0) {
+            int w = (value & 0x7F | 0x80) << 8 | (value >>> 7);
+            buf.writeShort(w);
+        } else if ((value & (0xFFFFFFFF << 21)) == 0) {
+            int w = (value & 0x7F | 0x80) << 16 | ((value >>> 7) & 0x7F | 0x80) << 8 | (value >>> 14);
+            buf.writeMedium(w);
+        } else if ((value & (0xFFFFFFFF << 28)) == 0) {
+            int w = (value & 0x7F | 0x80) << 24 | (((value >>> 7) & 0x7F | 0x80) << 16)
+                    | ((value >>> 14) & 0x7F | 0x80) << 8 | (value >>> 21);
+            buf.writeInt(w);
+        } else {
+            int w = (value & 0x7F | 0x80) << 24 | ((value >>> 7) & 0x7F | 0x80) << 16
+                    | ((value >>> 14) & 0x7F | 0x80) << 8 | ((value >>> 21) & 0x7F | 0x80);
+            buf.writeInt(w);
+            buf.writeByte(value >>> 28);
+        }
     }
 
     public PacketBuffer writeVarLong(long value) {

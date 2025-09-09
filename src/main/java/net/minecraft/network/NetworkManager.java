@@ -1,6 +1,8 @@
 package net.minecraft.network;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.velocitypowered.natives.compression.VelocityCompressor;
+import com.velocitypowered.natives.util.Natives;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelException;
@@ -34,6 +36,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import javax.crypto.SecretKey;
 
+import net.minecraft.port.krypton.compress.MinecraftCompressDecoder;
+import net.minecraft.port.krypton.compress.MinecraftCompressEncoder;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.CryptManager;
@@ -383,23 +387,25 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
 
     public void setCompressionTreshold(int treshold) {
         if (treshold >= 0) {
-            if (this.channel.pipeline().get("decompress") instanceof NettyCompressionDecoder) {
-                ((NettyCompressionDecoder) this.channel.pipeline().get("decompress")).setCompressionTreshold(treshold);
-            } else {
-                this.channel.pipeline().addBefore("decoder", "decompress", new NettyCompressionDecoder(treshold));
-            }
-
-            if (this.channel.pipeline().get("compress") instanceof NettyCompressionEncoder) {
-                ((NettyCompressionEncoder) this.channel.pipeline().get("decompress")).setCompressionTreshold(treshold);
-            } else {
-                this.channel.pipeline().addBefore("encoder", "compress", new NettyCompressionEncoder(treshold));
-            }
-        } else {
-            if (this.channel.pipeline().get("decompress") instanceof NettyCompressionDecoder) {
+            if (this.channel.pipeline().get("decompress") != null) {
                 this.channel.pipeline().remove("decompress");
             }
+            if (this.channel.pipeline().get("compress") != null) {
+                this.channel.pipeline().remove("compress");
+            }
 
-            if (this.channel.pipeline().get("compress") instanceof NettyCompressionEncoder) {
+            VelocityCompressor compressor = Natives.compress.get().create(4);
+
+            MinecraftCompressEncoder encoder = new MinecraftCompressEncoder(treshold, compressor);
+            MinecraftCompressDecoder decoder = new MinecraftCompressDecoder(treshold, compressor);
+
+            this.channel.pipeline().addBefore("decoder", "decompress", decoder);
+            this.channel.pipeline().addBefore("encoder", "compress", encoder);
+        } else {
+            if (this.channel.pipeline().get("decompress") != null) {
+                this.channel.pipeline().remove("decompress");
+            }
+            if (this.channel.pipeline().get("compress") != null) {
                 this.channel.pipeline().remove("compress");
             }
         }
