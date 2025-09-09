@@ -1,5 +1,7 @@
 package net.minecraft.util;
 
+import net.minecraft.port.lithium.CompactSineLUT;
+
 import java.util.Random;
 import java.util.UUID;
 
@@ -10,7 +12,7 @@ public class MathHelper
     /**
      * A table of sin values computed from 0 (inclusive) to 2*pi (exclusive), with steps of 2*PI / 65536.
      */
-    private static final float[] SIN_TABLE = new float[65536];
+    public static final float[] SIN_TABLE = new float[65536];
 
     /**
      * Though it looks like an array, this is really more like a mapping.  Key (index of this array) is the upper 5 bits
@@ -27,17 +29,17 @@ public class MathHelper
     /**
      * sin looked up in a table
      */
-    public static float sin(float p_76126_0_)
+    public static float sin(float f)
     {
-        return SIN_TABLE[(int)(p_76126_0_ * 10430.378F) & 65535];
+        return CompactSineLUT.sin(f);
     }
 
     /**
      * cos looked up in the sin table with the appropriate offset
      */
-    public static float cos(float value)
+    public static float cos(float f)
     {
-        return SIN_TABLE[(int)(value * 10430.378F + 16384.0F) & 65535];
+        return CompactSineLUT.cos(f);
     }
 
     public static float sqrt_float(float value)
