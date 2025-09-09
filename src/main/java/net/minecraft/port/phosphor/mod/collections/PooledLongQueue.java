@@ -1,4 +1,4 @@
-package net.minecraft.phosphor.mod.collections;
+package net.minecraft.port.phosphor.mod.collections;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

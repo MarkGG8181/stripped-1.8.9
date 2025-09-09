@@ -140,7 +140,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.OpenGLException;
 import org.lwjgl.system.MemoryUtil;
-import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.port.phosphor.api.ILightingEngineProvider;
 
 public class Minecraft implements IThreadListener {
     private static final Logger logger = LogManager.getLogger();

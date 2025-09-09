@@ -24,7 +24,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.chunk.storage.IChunkLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import net.minecraft.phosphor.api.ILightingEngineProvider;
+import net.minecraft.port.phosphor.api.ILightingEngineProvider;
 
 public class ChunkProviderServer implements IChunkProvider {
     private static final Logger logger = LogManager.getLogger();

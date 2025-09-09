@@ -1,4 +1,4 @@
-package net.minecraft.phosphor.mod.world;
+package net.minecraft.port.phosphor.mod.world;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
