@@ -1231,7 +1231,7 @@ public class Minecraft implements IThreadListener {
                 logger.error("Null returned as 'hitResult', this shouldn't happen!");
 
                 if (this.playerController.isNotCreative()) {
-                    this.leftClickCounter = 10;
+                    this.leftClickCounter = 0;
                 }
             } else {
                 switch (this.objectMouseOver.typeOfHit) {
@@ -1250,7 +1250,7 @@ public class Minecraft implements IThreadListener {
                     case MISS:
                     default:
                         if (this.playerController.isNotCreative()) {
-                            this.leftClickCounter = 10;
+                            this.leftClickCounter = 0;
                         }
                 }
             }
