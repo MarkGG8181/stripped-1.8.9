@@ -49,6 +49,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.port.sneak.SmoothSneakingState;
 import net.minecraft.potion.Potion;
 import net.minecraft.scoreboard.IScoreObjectiveCriteria;
 import net.minecraft.scoreboard.Score;
@@ -84,6 +85,8 @@ public abstract class EntityPlayer extends EntityLivingBase {
      */
     public InventoryPlayer inventory = new InventoryPlayer(this);
     private InventoryEnderChest theInventoryEnderChest = new InventoryEnderChest();
+
+    private SmoothSneakingState smoothSneakingState = new SmoothSneakingState();
 
     /**
      * The Container for the player's inventory (which opens when they press E)
@@ -1903,17 +1906,16 @@ public abstract class EntityPlayer extends EntityLivingBase {
     }
 
     public float getEyeHeight() {
-        float f = 1.62F;
+        float eyeHeight = 1.62F;
 
         if (this.isPlayerSleeping()) {
-            f = 0.2F;
+            return 0.2F;
         }
 
-        if (this.isSneaking()) {
-            f -= 0.08F;
-        }
+        boolean isSneaking = this.isSneaking();
+        eyeHeight += this.smoothSneakingState.getSneakingHeightOffset(isSneaking);
 
-        return f;
+        return eyeHeight;
     }
 
     public void setAbsorptionAmount(float amount) {
