@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.port.melod.NeighborInfoCache;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
@@ -31,8 +32,10 @@ public class BlockModelRenderer {
 
         try {
             Block block = blockStateIn.getBlock();
-            return flag ? this.renderModelAmbientOcclusion(blockAccessIn, modelIn, block, blockPosIn, worldRendererIn, checkSides) : this.renderModelStandard(blockAccessIn, modelIn, block, blockPosIn, worldRendererIn, checkSides);
-        } catch (Throwable throwable) {
+
+            IBlockAccess fastAccess = new NeighborInfoCache(blockAccessIn, blockPosIn);
+
+            return flag ? this.renderModelAmbientOcclusion(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides) : this.renderModelStandard(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides);        } catch (Throwable throwable) {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Tesselating block model");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Block model being tesselated");
             CrashReportCategory.addBlockInfo(crashreportcategory, blockPosIn, blockStateIn);
