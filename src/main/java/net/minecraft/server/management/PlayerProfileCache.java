@@ -251,7 +251,7 @@ public class PlayerProfileCache {
         return arraylist;
     }
 
-    class ProfileEntry {
+    final class ProfileEntry {
         private final GameProfile gameProfile;
         private final Date expirationDate;
 
@@ -269,7 +269,7 @@ public class PlayerProfileCache {
         }
     }
 
-    class Serializer implements JsonDeserializer<PlayerProfileCache.ProfileEntry>, JsonSerializer<PlayerProfileCache.ProfileEntry> {
+    final class Serializer implements JsonDeserializer<PlayerProfileCache.ProfileEntry>, JsonSerializer<PlayerProfileCache.ProfileEntry> {
         private Serializer() {
         }
 
@@ -311,8 +311,7 @@ public class PlayerProfileCache {
                             return null;
                         }
 
-                        PlayerProfileCache.ProfileEntry playerprofilecache$profileentry = PlayerProfileCache.this.new ProfileEntry(new GameProfile(uuid, s1), date);
-                        return playerprofilecache$profileentry;
+                        return PlayerProfileCache.this.new ProfileEntry(new GameProfile(uuid, s1), date);
                     }
                     else {
                         return null;

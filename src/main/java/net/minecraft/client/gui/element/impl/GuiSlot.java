@@ -62,7 +62,7 @@ public abstract class GuiSlot
     protected int headerPadding;
     private boolean enabled = true;
 
-    public GuiSlot(Minecraft mcIn, int width, int height, int topIn, int bottomIn, int slotHeightIn)
+    protected GuiSlot(Minecraft mcIn, int width, int height, int topIn, int bottomIn, int slotHeightIn)
     {
         this.mc = mcIn;
         this.width = width;
@@ -126,7 +126,7 @@ public abstract class GuiSlot
 
     protected abstract void drawBackground();
 
-    protected void func_178040_a(int p_178040_1_, int p_178040_2_, int p_178040_3_)
+    protected void func178040A(int p_178040_1_, int p_178040_2_, int p_178040_3_)
     {
     }
 
@@ -139,11 +139,11 @@ public abstract class GuiSlot
     {
     }
 
-    protected void func_148132_a(int p_148132_1_, int p_148132_2_)
+    protected void func148132A(int p_148132_1_, int p_148132_2_)
     {
     }
 
-    protected void func_148142_b(int p_148142_1_, int p_148142_2_)
+    protected void func148142B(int p_148142_1_, int p_148142_2_)
     {
     }
 
@@ -306,7 +306,7 @@ public abstract class GuiSlot
                 tessellator.draw();
             }
 
-            this.func_148142_b(mouseXIn, mouseYIn);
+            this.func148142B(mouseXIn, mouseYIn);
             GlStateManager.enableTexture2D();
             GlStateManager.shadeModel(7424);
             GlStateManager.enableAlpha();
@@ -332,7 +332,7 @@ public abstract class GuiSlot
                 }
                 else if (this.mouseX >= i && this.mouseX <= j && k < 0)
                 {
-                    this.func_148132_a(this.mouseX - i, this.mouseY - this.top + (int)this.amountScrolled - 4);
+                    this.func148132A(this.mouseX - i, this.mouseY - this.top + (int)this.amountScrolled - 4);
                 }
             }
 
@@ -358,7 +358,7 @@ public abstract class GuiSlot
                         }
                         else if (this.mouseX >= j2 && this.mouseX <= k2 && l2 < 0)
                         {
-                            this.func_148132_a(this.mouseX - j2, this.mouseY - this.top + (int)this.amountScrolled - 4);
+                            this.func148132A(this.mouseX - j2, this.mouseY - this.top + (int)this.amountScrolled - 4);
                             flag1 = false;
                         }
 
@@ -461,7 +461,7 @@ public abstract class GuiSlot
 
             if (k > this.bottom || k + l < this.top)
             {
-                this.func_178040_a(j, p_148120_1_, k);
+                this.func178040A(j, p_148120_1_, k);
             }
 
             if (this.showSelectionBox && this.isSelected(j))

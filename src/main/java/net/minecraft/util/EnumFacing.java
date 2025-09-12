@@ -328,7 +328,7 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum Axis implements Predicate<EnumFacing>, IStringSerializable {
+    public enum Axis implements Predicate<EnumFacing>, IStringSerializable {
         X("x", EnumFacing.Plane.HORIZONTAL),
         Y("y", EnumFacing.Plane.VERTICAL),
         Z("z", EnumFacing.Plane.HORIZONTAL);
@@ -381,7 +381,7 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum AxisDirection {
+    public enum AxisDirection {
         POSITIVE(1, "Towards positive"),
         NEGATIVE(-1, "Towards negative");
 
@@ -402,7 +402,7 @@ public enum EnumFacing implements IStringSerializable {
         }
     }
 
-    public static enum Plane implements Predicate<EnumFacing>, Iterable<EnumFacing> {
+    public enum Plane implements Predicate<EnumFacing>, Iterable<EnumFacing> {
         HORIZONTAL,
         VERTICAL;
 

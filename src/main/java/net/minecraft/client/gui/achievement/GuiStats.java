@@ -308,7 +308,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             }
         }
 
-        protected void func_148132_a(int p_148132_1_, int p_148132_2_)
+        protected void func148132A(int p_148132_1_, int p_148132_2_)
         {
             this.headerPressed = -1;
 
@@ -327,7 +327,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
             if (this.headerPressed >= 0)
             {
-                this.func_148212_h(this.headerPressed);
+                this.func148212H(this.headerPressed);
                 this.mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
             }
         }
@@ -337,14 +337,14 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             return this.statsHolder.size();
         }
 
-        protected final StatCrafting func_148211_c(int p_148211_1_)
+        protected final StatCrafting func148211C(int p_148211_1_)
         {
             return (StatCrafting)this.statsHolder.get(p_148211_1_);
         }
 
-        protected abstract String func_148210_b(int p_148210_1_);
+        protected abstract String func148210B(int p_148210_1_);
 
-        protected void func_148209_a(StatBase p_148209_1_, int p_148209_2_, int p_148209_3_, boolean p_148209_4_)
+        protected void func148209A(StatBase p_148209_1_, int p_148209_2_, int p_148209_3_, boolean p_148209_4_)
         {
             if (p_148209_1_ != null)
             {
@@ -358,7 +358,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             }
         }
 
-        protected void func_148142_b(int p_148142_1_, int p_148142_2_)
+        protected void func148142B(int p_148142_1_, int p_148142_2_)
         {
             if (p_148142_2_ >= this.top && p_148142_2_ <= this.bottom)
             {
@@ -372,8 +372,8 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                         return;
                     }
 
-                    StatCrafting statcrafting = this.func_148211_c(i);
-                    this.func_148213_a(statcrafting, p_148142_1_, p_148142_2_);
+                    StatCrafting statcrafting = this.func148211C(i);
+                    this.func148213A(statcrafting, p_148142_1_, p_148142_2_);
                 }
                 else
                 {
@@ -381,11 +381,11 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
                     if (p_148142_1_ >= j + 115 - 18 && p_148142_1_ <= j + 115)
                     {
-                        s = this.func_148210_b(0);
+                        s = this.func148210B(0);
                     }
                     else if (p_148142_1_ >= j + 165 - 18 && p_148142_1_ <= j + 165)
                     {
-                        s = this.func_148210_b(1);
+                        s = this.func148210B(1);
                     }
                     else
                     {
@@ -394,7 +394,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                             return;
                         }
 
-                        s = this.func_148210_b(2);
+                        s = this.func148210B(2);
                     }
 
                     s = ("" + I18n.format(s, new Object[0])).trim();
@@ -411,7 +411,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             }
         }
 
-        protected void func_148213_a(StatCrafting p_148213_1_, int p_148213_2_, int p_148213_3_)
+        protected void func148213A(StatCrafting p_148213_1_, int p_148213_2_, int p_148213_3_)
         {
             if (p_148213_1_ != null)
             {
@@ -431,7 +431,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             }
         }
 
-        protected void func_148212_h(int p_148212_1_)
+        protected void func148212H(int p_148212_1_)
         {
             if (p_148212_1_ != this.sortColumn)
             {
@@ -483,7 +483,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 }
             }
 
-            this.statSorter = new Comparator<StatCrafting>()
+            this.statSorter = new Comparator<>()
             {
                 public int compare(StatCrafting p_compare_1_, StatCrafting p_compare_2_)
                 {
@@ -568,16 +568,16 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
-            StatCrafting statcrafting = this.func_148211_c(entryID);
+            StatCrafting statcrafting = this.func148211C(entryID);
             Item item = statcrafting.func_150959_a();
             GuiStats.this.drawStatsScreen(p_180791_2_ + 40, p_180791_3_, item);
             int i = Item.getIdFromItem(item);
-            this.func_148209_a(StatList.objectCraftStats[i], p_180791_2_ + 115, p_180791_3_, entryID % 2 == 0);
-            this.func_148209_a(StatList.objectUseStats[i], p_180791_2_ + 165, p_180791_3_, entryID % 2 == 0);
-            this.func_148209_a(statcrafting, p_180791_2_ + 215, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(StatList.objectCraftStats[i], p_180791_2_ + 115, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(StatList.objectUseStats[i], p_180791_2_ + 165, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(statcrafting, p_180791_2_ + 215, p_180791_3_, entryID % 2 == 0);
         }
 
-        protected String func_148210_b(int p_148210_1_)
+        protected String func148210B(int p_148210_1_)
         {
             return p_148210_1_ == 0 ? "stat.crafted" : (p_148210_1_ == 1 ? "stat.used" : "stat.mined");
         }
@@ -655,7 +655,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
                 }
             }
 
-            this.statSorter = new Comparator<StatCrafting>()
+            this.statSorter = new Comparator<>()
             {
                 public int compare(StatCrafting p_compare_1_, StatCrafting p_compare_2_)
                 {
@@ -740,16 +740,16 @@ public class GuiStats extends GuiScreen implements IProgressMeter
 
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
-            StatCrafting statcrafting = this.func_148211_c(entryID);
+            StatCrafting statcrafting = this.func148211C(entryID);
             Item item = statcrafting.func_150959_a();
             GuiStats.this.drawStatsScreen(p_180791_2_ + 40, p_180791_3_, item);
             int i = Item.getIdFromItem(item);
-            this.func_148209_a(StatList.objectBreakStats[i], p_180791_2_ + 115, p_180791_3_, entryID % 2 == 0);
-            this.func_148209_a(StatList.objectCraftStats[i], p_180791_2_ + 165, p_180791_3_, entryID % 2 == 0);
-            this.func_148209_a(statcrafting, p_180791_2_ + 215, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(StatList.objectBreakStats[i], p_180791_2_ + 115, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(StatList.objectCraftStats[i], p_180791_2_ + 165, p_180791_3_, entryID % 2 == 0);
+            this.func148209A(statcrafting, p_180791_2_ + 215, p_180791_3_, entryID % 2 == 0);
         }
 
-        protected String func_148210_b(int p_148210_1_)
+        protected String func148210B(int p_148210_1_)
         {
             return p_148210_1_ == 1 ? "stat.crafted" : (p_148210_1_ == 2 ? "stat.used" : "stat.depleted");
         }

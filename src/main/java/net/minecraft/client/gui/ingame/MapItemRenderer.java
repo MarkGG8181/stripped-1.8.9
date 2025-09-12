@@ -66,7 +66,7 @@ public class MapItemRenderer
         this.loadedMaps.clear();
     }
 
-    class Instance
+    final class Instance
     {
         private final MapData mapData;
         private final DynamicTexture mapTexture;

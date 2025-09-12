@@ -230,7 +230,7 @@ public class CommandResultStats
         }
     }
 
-    public static enum Type
+    public enum Type
     {
         SUCCESS_COUNT(0, "SuccessCount"),
         AFFECTED_BLOCKS(1, "AffectedBlocks"),

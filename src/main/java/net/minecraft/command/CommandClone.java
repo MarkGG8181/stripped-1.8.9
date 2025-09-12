@@ -178,7 +178,7 @@ public class CommandClone extends CommandBase
                             list3.addAll(list);
                             list3.addAll(list1);
                             list3.addAll(list2);
-                            List<CommandClone.StaticCloneData> list4 = Lists.<CommandClone.StaticCloneData>reverse(list3);
+                            List<CommandClone.StaticCloneData> list4 = Lists.reverse(list3);
 
                             for (CommandClone.StaticCloneData commandclone$staticclonedata : list4)
                             {

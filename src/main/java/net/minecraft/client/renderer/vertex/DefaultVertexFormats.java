@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.vertex;
 
-public class DefaultVertexFormats
+public final class DefaultVertexFormats
 {
     public static final VertexFormat BLOCK = new VertexFormat();
     public static final VertexFormat ITEM = new VertexFormat();

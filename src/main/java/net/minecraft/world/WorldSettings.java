@@ -132,7 +132,7 @@ public final class WorldSettings
         return this.worldName;
     }
 
-    public static enum GameType
+    public enum GameType
     {
         NOT_SET(-1, ""),
         SURVIVAL(0, "survival"),

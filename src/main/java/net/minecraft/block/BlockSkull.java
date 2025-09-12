@@ -37,7 +37,7 @@ public class BlockSkull extends BlockContainer
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     public static final PropertyBool NODROP = PropertyBool.create("nodrop");
-    private static final Predicate<BlockWorldState> IS_WITHER_SKELETON = new Predicate<BlockWorldState>()
+    private static final Predicate<BlockWorldState> IS_WITHER_SKELETON = new Predicate<>()
     {
         public boolean apply(BlockWorldState p_apply_1_)
         {

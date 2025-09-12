@@ -45,7 +45,7 @@ import java.nio.IntBuffer;
  * Created 23-dec-2003
  * @author Erik Duijs
  */
-public class GLU {
+public final class GLU {
     static final float PI = (float)Math.PI;
 
     /* Errors: (return value 0 = no error) */

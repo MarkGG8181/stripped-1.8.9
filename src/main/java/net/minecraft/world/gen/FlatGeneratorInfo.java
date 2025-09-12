@@ -116,7 +116,7 @@ public class FlatGeneratorInfo
         return stringbuilder.toString();
     }
 
-    private static FlatLayerInfo func_180715_a(int p_180715_0_, String p_180715_1_, int p_180715_2_)
+    private static FlatLayerInfo func180715A(int p_180715_0_, String p_180715_1_, int p_180715_2_)
     {
         String[] astring = p_180715_0_ >= 3 ? p_180715_1_.split("\\*", 2) : p_180715_1_.split("x", 2);
         int i = 1;
@@ -206,7 +206,7 @@ public class FlatGeneratorInfo
         return flatlayerinfo;
     }
 
-    private static List<FlatLayerInfo> func_180716_a(int p_180716_0_, String p_180716_1_)
+    private static List<FlatLayerInfo> func180716A(int p_180716_0_, String p_180716_1_)
     {
         if (p_180716_1_ != null && p_180716_1_.length() >= 1)
         {
@@ -216,7 +216,7 @@ public class FlatGeneratorInfo
 
             for (String s : astring)
             {
-                FlatLayerInfo flatlayerinfo = func_180715_a(p_180716_0_, s, i);
+                FlatLayerInfo flatlayerinfo = func180715A(p_180716_0_, s, i);
 
                 if (flatlayerinfo == null)
                 {
@@ -250,7 +250,7 @@ public class FlatGeneratorInfo
             {
                 FlatGeneratorInfo flatgeneratorinfo = new FlatGeneratorInfo();
                 int j = astring.length == 1 ? 0 : 1;
-                List<FlatLayerInfo> list = func_180716_a(i, astring[j++]);
+                List<FlatLayerInfo> list = func180716A(i, astring[j++]);
 
                 if (list != null && !list.isEmpty())
                 {

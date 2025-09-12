@@ -18,7 +18,7 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 
-public class CompressedStreamTools
+public final class CompressedStreamTools
 {
     /**
      * Load the gzipped compound from the inputstream.
@@ -134,7 +134,7 @@ public class CompressedStreamTools
      */
     public static NBTTagCompound read(DataInput p_152456_0_, NBTSizeTracker p_152456_1_) throws IOException
     {
-        NBTBase nbtbase = func_152455_a(p_152456_0_, 0, p_152456_1_);
+        NBTBase nbtbase = func152455A(p_152456_0_, 0, p_152456_1_);
 
         if (nbtbase instanceof NBTTagCompound compound)
         {
@@ -162,7 +162,7 @@ public class CompressedStreamTools
         }
     }
 
-    private static NBTBase func_152455_a(DataInput p_152455_0_, int p_152455_1_, NBTSizeTracker p_152455_2_) throws IOException
+    private static NBTBase func152455A(DataInput p_152455_0_, int p_152455_1_, NBTSizeTracker p_152455_2_) throws IOException
     {
         byte b0 = p_152455_0_.readByte();
 

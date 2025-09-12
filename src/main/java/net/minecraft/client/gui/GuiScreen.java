@@ -173,7 +173,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
      * mouse x position, current mouse y position.
      */
     protected void drawCreativeTabHoveringText(String tabName, int mouseX, int mouseY) {
-        this.drawHoveringText(Arrays.<String>asList(new String[]{tabName}), mouseX, mouseY);
+        this.drawHoveringText(Arrays.asList(tabName), mouseX, mouseY);
     }
 
     /**

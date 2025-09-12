@@ -12,7 +12,7 @@ import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemShears;
 import net.minecraft.util.ResourceLocation;
 
-public class Items
+public final class Items
 {
     public static final Item iron_shovel;
     public static final Item iron_pickaxe;

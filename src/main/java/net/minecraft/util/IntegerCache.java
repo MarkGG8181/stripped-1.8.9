@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-public class IntegerCache
+public final class IntegerCache
 {
     private static final Integer[] CACHE = new Integer[65535];
 

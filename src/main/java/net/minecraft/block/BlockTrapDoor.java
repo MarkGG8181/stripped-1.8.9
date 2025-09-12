@@ -25,7 +25,7 @@ public class BlockTrapDoor extends Block
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final PropertyBool OPEN = PropertyBool.create("open");
-    public static final PropertyEnum<BlockTrapDoor.DoorHalf> HALF = PropertyEnum.<BlockTrapDoor.DoorHalf>create("half", BlockTrapDoor.DoorHalf.class);
+    public static final PropertyEnum<BlockTrapDoor.DoorHalf> HALF = PropertyEnum.create("half", BlockTrapDoor.DoorHalf.class);
 
     protected BlockTrapDoor(Material materialIn)
     {
@@ -287,7 +287,7 @@ public class BlockTrapDoor extends Block
         return new BlockState(this, new IProperty[]{FACING, OPEN, HALF});
     }
 
-    public static enum DoorHalf implements IStringSerializable
+    public enum DoorHalf implements IStringSerializable
     {
         TOP("top"),
         BOTTOM("bottom");

@@ -969,7 +969,7 @@ public class Item
         itemRegistry.register(id, textualID, itemIn);
     }
 
-    public static enum ToolMaterial
+    public enum ToolMaterial
     {
         WOOD(0, 59, 2.0F, 0.0F, 15),
         STONE(1, 131, 4.0F, 1.0F, 5),

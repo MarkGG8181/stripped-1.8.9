@@ -179,21 +179,21 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable1, "Applying mipmap");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Sprite being mipmapped");
-                crashreportcategory.addCrashSectionCallable("Sprite name", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Sprite name", new Callable<>()
                 {
                     public String call() throws Exception
                     {
                         return textureatlassprite1.getIconName();
                     }
                 });
-                crashreportcategory.addCrashSectionCallable("Sprite size", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Sprite size", new Callable<>()
                 {
                     public String call() throws Exception
                     {
                         return textureatlassprite1.getIconWidth() + " x " + textureatlassprite1.getIconHeight();
                     }
                 });
-                crashreportcategory.addCrashSectionCallable("Sprite frames", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Sprite frames", new Callable<>()
                 {
                     public String call() throws Exception
                     {
@@ -207,15 +207,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
         this.missingImage.generateMipmaps(this.mipmapLevels);
         stitcher.addSprite(this.missingImage);
-
-        try
-        {
-            stitcher.doStitch();
-        }
-        catch (StitcherException stitcherexception)
-        {
-            throw stitcherexception;
-        }
+        stitcher.doStitch();
 
         logger.info("Created: {}x{} {}-atlas", new Object[]{Integer.valueOf(stitcher.getCurrentWidth()), Integer.valueOf(stitcher.getCurrentHeight()), this.basePath});
         TextureUtil.allocateTextureImpl(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight());

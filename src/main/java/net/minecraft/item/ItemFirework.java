@@ -62,7 +62,7 @@ public class ItemFirework extends Item
                         List<String> list = new ArrayList<>();
                         ItemFireworkCharge.addExplosionInfo(nbttagcompound1, list);
 
-                        if (list.size() > 0)
+                        if (!list.isEmpty())
                         {
                             for (int j = 1; j < ((List)list).size(); j++)
                             {

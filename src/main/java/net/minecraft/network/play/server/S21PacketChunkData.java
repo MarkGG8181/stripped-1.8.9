@@ -63,7 +63,7 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
         return this.extractedData.data;
     }
 
-    protected static int func_180737_a(int p_180737_0_, boolean p_180737_1_, boolean p_180737_2_) {
+    protected static int func180737A(int p_180737_0_, boolean p_180737_1_, boolean p_180737_2_) {
         int i = p_180737_0_ * 2 * 16 * 16 * 16;
         int j = p_180737_0_ * 16 * 16 * 16 / 2;
         int k = p_180737_1_ ? p_180737_0_ * 16 * 16 * 16 / 2 : 0;
@@ -85,7 +85,7 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
             }
         }
 
-        s21packetchunkdata$extracted.data = new byte[func_180737_a(Integer.bitCount(s21packetchunkdata$extracted.dataSize), p_179756_2_, p_179756_1_)];
+        s21packetchunkdata$extracted.data = new byte[func180737A(Integer.bitCount(s21packetchunkdata$extracted.dataSize), p_179756_2_, p_179756_1_)];
         int j = 0;
 
         for (ExtendedBlockStorage extendedblockstorage1 : list) {
@@ -98,23 +98,23 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
         }
 
         for (ExtendedBlockStorage extendedblockstorage2 : list) {
-            j = func_179757_a(extendedblockstorage2.getBlocklightArray().getData(), s21packetchunkdata$extracted.data, j);
+            j = func179757A(extendedblockstorage2.getBlocklightArray().getData(), s21packetchunkdata$extracted.data, j);
         }
 
         if (p_179756_2_) {
             for (ExtendedBlockStorage extendedblockstorage3 : list) {
-                j = func_179757_a(extendedblockstorage3.getSkylightArray().getData(), s21packetchunkdata$extracted.data, j);
+                j = func179757A(extendedblockstorage3.getSkylightArray().getData(), s21packetchunkdata$extracted.data, j);
             }
         }
 
         if (p_179756_1_) {
-            func_179757_a(p_179756_0_.getBiomeArray(), s21packetchunkdata$extracted.data, j);
+            func179757A(p_179756_0_.getBiomeArray(), s21packetchunkdata$extracted.data, j);
         }
 
         return s21packetchunkdata$extracted;
     }
 
-    private static int func_179757_a(byte[] p_179757_0_, byte[] p_179757_1_, int p_179757_2_) {
+    private static int func179757A(byte[] p_179757_0_, byte[] p_179757_1_, int p_179757_2_) {
         System.arraycopy(p_179757_0_, 0, p_179757_1_, p_179757_2_, p_179757_0_.length);
         return p_179757_2_ + p_179757_0_.length;
     }

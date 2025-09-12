@@ -1,6 +1,6 @@
 package net.minecraft.config;
 
-public class EntityGlowConfig {
+public final class EntityGlowConfig {
     public static boolean entityGlow;
     public static boolean highlightTeams;
 

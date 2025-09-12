@@ -95,10 +95,10 @@ public class CommandClearInventory extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.func_147209_d()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, Item.itemRegistry.getKeys()) : null);
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, this.func147209D()) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, Item.itemRegistry.getKeys()) : null);
     }
 
-    protected String[] func_147209_d()
+    protected String[] func147209D()
     {
         return MinecraftServer.getServer().getAllUsernames();
     }

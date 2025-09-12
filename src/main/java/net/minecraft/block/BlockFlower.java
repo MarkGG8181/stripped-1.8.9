@@ -61,7 +61,7 @@ public abstract class BlockFlower extends BlockBush
     {
         if (this.type == null)
         {
-            this.type = PropertyEnum.<BlockFlower.EnumFlowerType>create("type", BlockFlower.EnumFlowerType.class, new Predicate<BlockFlower.EnumFlowerType>()
+            this.type = PropertyEnum.create("type", BlockFlower.EnumFlowerType.class, new Predicate<BlockFlower.EnumFlowerType>()
             {
                 public boolean apply(BlockFlower.EnumFlowerType p_apply_1_)
                 {
@@ -94,7 +94,7 @@ public abstract class BlockFlower extends BlockBush
         return Block.EnumOffsetType.XZ;
     }
 
-    public static enum EnumFlowerColor
+    public enum EnumFlowerColor
     {
         YELLOW,
         RED;
@@ -105,7 +105,7 @@ public abstract class BlockFlower extends BlockBush
         }
     }
 
-    public static enum EnumFlowerType implements IStringSerializable
+    public enum EnumFlowerType implements IStringSerializable
     {
         DANDELION(BlockFlower.EnumFlowerColor.YELLOW, 0, "dandelion"),
         POPPY(BlockFlower.EnumFlowerColor.RED, 0, "poppy"),
@@ -182,7 +182,7 @@ public abstract class BlockFlower extends BlockBush
         static {
             for (final BlockFlower.EnumFlowerColor blockflower$enumflowercolor : BlockFlower.EnumFlowerColor.values())
             {
-                Collection<BlockFlower.EnumFlowerType> collection = Collections2.<BlockFlower.EnumFlowerType>filter(Lists.newArrayList(values()), new Predicate<BlockFlower.EnumFlowerType>()
+                Collection<BlockFlower.EnumFlowerType> collection = Collections2.filter(Lists.newArrayList(values()), new Predicate<BlockFlower.EnumFlowerType>()
                 {
                     public boolean apply(BlockFlower.EnumFlowerType p_apply_1_)
                     {

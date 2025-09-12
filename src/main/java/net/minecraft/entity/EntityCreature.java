@@ -21,7 +21,7 @@ public abstract class EntityCreature extends EntityLiving
     private final EntityAIBase aiBase = new EntityAIMoveTowardsRestriction(this, 1.0D);
     private boolean isMovementAITaskSet;
 
-    public EntityCreature(World worldIn)
+    protected EntityCreature(World worldIn)
     {
         super(worldIn);
     }
@@ -124,7 +124,7 @@ public abstract class EntityCreature extends EntityLiving
                 this.isMovementAITaskSet = true;
             }
 
-            this.func_142017_o(f);
+            this.func142017O(f);
 
             if (f > 4.0F)
             {
@@ -160,7 +160,7 @@ public abstract class EntityCreature extends EntityLiving
         }
     }
 
-    protected void func_142017_o(float p_142017_1_)
+    protected void func142017O(float p_142017_1_)
     {
     }
 }

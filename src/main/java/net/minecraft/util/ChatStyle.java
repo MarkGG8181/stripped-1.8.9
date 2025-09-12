@@ -393,7 +393,6 @@ public class ChatStyle
         }
         else
         {
-            boolean flag;
             label0:
             {
                 ChatStyle chatstyle = (ChatStyle)p_equals_1_;
@@ -440,11 +439,9 @@ public class ChatStyle
                     }
                 }
 
-                flag = false;
-                return flag;
+                return false;
             }
-            flag = true;
-            return flag;
+            return true;
         }
     }
 
@@ -458,8 +455,7 @@ public class ChatStyle
         i = 31 * i + this.obfuscated.hashCode();
         i = 31 * i + this.chatClickEvent.hashCode();
         i = 31 * i + this.chatHoverEvent.hashCode();
-        i = 31 * i + this.insertion.hashCode();
-        return i;
+        return 31 * i + this.insertion.hashCode();
     }
 
     /**

@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-public class ColorizerGrass
+public final class ColorizerGrass
 {
     /** Color buffer for grass */
     private static int[] grassBuffer = new int[65536];

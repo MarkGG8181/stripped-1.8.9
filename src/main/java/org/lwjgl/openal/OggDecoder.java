@@ -13,7 +13,7 @@ import java.nio.ShortBuffer;
 
 import static org.lwjgl.openal.AL10.*;
 
-public class OggDecoder {
+public final class OggDecoder {
     private static final Logger logger = LogManager.getLogger("OggDecoder");
 
     public static int loadOgg(ByteBuffer vorbisData) {

@@ -550,7 +550,7 @@ public final class ItemStack {
      * Returns true if the itemstack has a display name
      */
     public boolean hasDisplayName() {
-        return this.stackTagCompound == null ? false : (!this.stackTagCompound.hasKey("display", 10) ? false : this.stackTagCompound.getCompoundTag("display").hasKey("Name", 8));
+        return this.stackTagCompound == null ? false : (this.stackTagCompound.hasKey("display", 10) ? this.stackTagCompound.getCompoundTag("display").hasKey("Name", 8) : false);
     }
 
     public List<String> getTooltip(EntityPlayer playerIn, boolean advanced) {
@@ -738,7 +738,7 @@ public final class ItemStack {
      * True if it is a tool and has no enchantments to begin with
      */
     public boolean isItemEnchantable() {
-        return !this.getItem().isItemTool(this) ? false : !this.isItemEnchanted();
+        return this.getItem().isItemTool(this) ? !this.isItemEnchanted() : false;
     }
 
     /**

@@ -84,8 +84,8 @@ public class ModelIronGolem extends ModelBase
     {
         this.ironGolemHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.ironGolemHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
-        this.ironGolemLeftLeg.rotateAngleX = -1.5F * this.func_78172_a(limbSwing, 13.0F) * limbSwingAmount;
-        this.ironGolemRightLeg.rotateAngleX = 1.5F * this.func_78172_a(limbSwing, 13.0F) * limbSwingAmount;
+        this.ironGolemLeftLeg.rotateAngleX = -1.5F * this.func78172A(limbSwing, 13.0F) * limbSwingAmount;
+        this.ironGolemRightLeg.rotateAngleX = 1.5F * this.func78172A(limbSwing, 13.0F) * limbSwingAmount;
         this.ironGolemLeftLeg.rotateAngleY = 0.0F;
         this.ironGolemRightLeg.rotateAngleY = 0.0F;
     }
@@ -101,8 +101,8 @@ public class ModelIronGolem extends ModelBase
 
         if (i > 0)
         {
-            this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a((float)i - partialTickTime, 10.0F);
-            this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.func_78172_a((float)i - partialTickTime, 10.0F);
+            this.ironGolemRightArm.rotateAngleX = -2.0F + 1.5F * this.func78172A((float)i - partialTickTime, 10.0F);
+            this.ironGolemLeftArm.rotateAngleX = -2.0F + 1.5F * this.func78172A((float)i - partialTickTime, 10.0F);
         }
         else
         {
@@ -110,18 +110,18 @@ public class ModelIronGolem extends ModelBase
 
             if (j > 0)
             {
-                this.ironGolemRightArm.rotateAngleX = -0.8F + 0.025F * this.func_78172_a((float)j, 70.0F);
+                this.ironGolemRightArm.rotateAngleX = -0.8F + 0.025F * this.func78172A((float)j, 70.0F);
                 this.ironGolemLeftArm.rotateAngleX = 0.0F;
             }
             else
             {
-                this.ironGolemRightArm.rotateAngleX = (-0.2F + 1.5F * this.func_78172_a(p_78086_2_, 13.0F)) * p_78086_3_;
-                this.ironGolemLeftArm.rotateAngleX = (-0.2F - 1.5F * this.func_78172_a(p_78086_2_, 13.0F)) * p_78086_3_;
+                this.ironGolemRightArm.rotateAngleX = (-0.2F + 1.5F * this.func78172A(p_78086_2_, 13.0F)) * p_78086_3_;
+                this.ironGolemLeftArm.rotateAngleX = (-0.2F - 1.5F * this.func78172A(p_78086_2_, 13.0F)) * p_78086_3_;
             }
         }
     }
 
-    private float func_78172_a(float p_78172_1_, float p_78172_2_)
+    private float func78172A(float p_78172_1_, float p_78172_2_)
     {
         return (Math.abs(p_78172_1_ % p_78172_2_ - p_78172_2_ * 0.5F) - p_78172_2_ * 0.25F) / (p_78172_2_ * 0.25F);
     }

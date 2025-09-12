@@ -167,8 +167,7 @@ public class ChunkRenderDispatcher {
             final ChunkCompileTaskGenerator chunkcompiletaskgenerator = chunkRenderer.makeCompileTaskTransparency();
 
             if (chunkcompiletaskgenerator == null) {
-                flag = true;
-                return flag;
+                return true;
             }
 
             chunkcompiletaskgenerator.addFinishRunnable(new Runnable() {
@@ -189,10 +188,10 @@ public class ChunkRenderDispatcher {
             this.uploadVertexBuffer(p_178503_2_, chunkRenderer.getVertexBufferByLayer(player.ordinal()));
 
             p_178503_2_.setTranslation(0.0D, 0.0D, 0.0D);
-            return Futures.<Object>immediateFuture((Object)null);
+            return Futures.immediateFuture((Object)null);
         }
         else {
-            ListenableFutureTask<Object> listenablefuturetask = ListenableFutureTask.<Object>create(new Runnable() {
+            ListenableFutureTask<Object> listenablefuturetask = ListenableFutureTask.create(new Runnable() {
                 public void run() {
                     ChunkRenderDispatcher.this.uploadChunk(player, p_178503_2_, chunkRenderer, compiledChunkIn);
                 }

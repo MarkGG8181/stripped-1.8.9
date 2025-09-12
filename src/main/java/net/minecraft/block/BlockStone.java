@@ -17,7 +17,7 @@ import net.minecraft.util.StatCollector;
 
 public class BlockStone extends Block
 {
-    public static final PropertyEnum<BlockStone.EnumType> VARIANT = PropertyEnum.<BlockStone.EnumType>create("variant", BlockStone.EnumType.class);
+    public static final PropertyEnum<BlockStone.EnumType> VARIANT = PropertyEnum.create("variant", BlockStone.EnumType.class);
 
     public BlockStone()
     {
@@ -91,7 +91,7 @@ public class BlockStone extends Block
         return new BlockState(this, new IProperty[]{VARIANT});
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         STONE(0, MapColor.stoneColor, "stone"),
         GRANITE(1, MapColor.dirtColor, "granite"),

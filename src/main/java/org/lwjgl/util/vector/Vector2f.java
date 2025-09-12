@@ -49,7 +49,8 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float x, y;
+    public float x;
+    public float y;
 
     /**
      * Constructor for Vector2f.
@@ -306,12 +307,7 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
             return false;
         }
         Vector2f other = (Vector2f)obj;
-
-        if (x == other.x && y == other.y) {
-            return true;
-        }
-
-        return false;
+        return x == other.x && y == other.y;
     }
 
 }

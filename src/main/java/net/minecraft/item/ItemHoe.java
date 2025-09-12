@@ -48,13 +48,11 @@ public class ItemHoe extends Item
 
                 if (block == Blocks.dirt)
                 {
-                    switch ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT))
-                    {
-                        case DIRT:
-                            return this.useHoe(stack, playerIn, worldIn, pos, Blocks.farmland.getDefaultState());
-
-                        case COARSE_DIRT:
-                            return this.useHoe(stack, playerIn, worldIn, pos, Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
+                    if ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.DIRT) {
+                        return this.useHoe(stack, playerIn, worldIn, pos, Blocks.farmland.getDefaultState());
+                    }
+                    else if ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.COARSE_DIRT) {
+                        return this.useHoe(stack, playerIn, worldIn, pos, Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
                     }
                 }
             }

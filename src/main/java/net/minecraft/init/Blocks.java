@@ -34,7 +34,7 @@ import net.minecraft.block.BlockTallGrass;
 import net.minecraft.block.BlockTripWireHook;
 import net.minecraft.util.ResourceLocation;
 
-public class Blocks
+public final class Blocks
 {
     public static final Block air;
     public static final Block stone;

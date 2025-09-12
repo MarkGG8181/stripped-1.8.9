@@ -45,12 +45,12 @@ public abstract class EntityAITarget extends EntityAIBase
      */
     private int targetUnseenTicks;
 
-    public EntityAITarget(EntityCreature creature, boolean checkSight)
+    protected EntityAITarget(EntityCreature creature, boolean checkSight)
     {
         this(creature, checkSight, false);
     }
 
-    public EntityAITarget(EntityCreature creature, boolean checkSight, boolean onlyNearby)
+    protected EntityAITarget(EntityCreature creature, boolean checkSight, boolean onlyNearby)
     {
         this.taskOwner = creature;
         this.shouldCheckSight = checkSight;

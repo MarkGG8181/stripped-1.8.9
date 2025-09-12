@@ -49,15 +49,15 @@ public class Matrix3f extends Matrix implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float m00,
-        m01,
-        m02,
-        m10,
-        m11,
-        m12,
-        m20,
-        m21,
-        m22;
+    public float m00;
+    public float m01;
+    public float m02;
+    public float m10;
+    public float m11;
+    public float m12;
+    public float m20;
+    public float m21;
+    public float m22;
 
     /**
      * Constructor for Matrix3f. Matrix is initialised to the identity.
@@ -351,11 +351,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the determinant of the matrix
      */
     public float determinant() {
-        float f =
-            m00 * (m11 * m22 - m12 * m21)
+        return m00 * (m11 * m22 - m12 * m21)
                 + m01 * (m12 * m20 - m10 * m22)
                 + m02 * (m10 * m21 - m11 * m20);
-        return f;
     }
 
     /**

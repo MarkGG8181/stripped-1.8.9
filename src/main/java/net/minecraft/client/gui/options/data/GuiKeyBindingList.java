@@ -106,7 +106,7 @@ public class GuiKeyBindingList extends GuiListExtended
         }
     }
 
-    public class KeyEntry implements GuiListExtended.IGuiListEntry
+    public final class KeyEntry implements GuiListExtended.IGuiListEntry
     {
         private final KeyBinding keybinding;
         private final String keyDesc;

@@ -24,7 +24,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
     protected int iconIndex;
     protected boolean isTransparent;
 
-    public BlockLeaves()
+    protected BlockLeaves()
     {
         super(Material.leaves, false);
         this.setTickRandomly(true);

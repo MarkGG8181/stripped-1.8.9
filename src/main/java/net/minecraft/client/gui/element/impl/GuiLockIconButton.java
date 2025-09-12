@@ -66,7 +66,7 @@ public class GuiLockIconButton extends GuiButton
         }
     }
 
-    static enum Icon
+    enum Icon
     {
         LOCKED(0, 146),
         LOCKED_HOVER(0, 166),

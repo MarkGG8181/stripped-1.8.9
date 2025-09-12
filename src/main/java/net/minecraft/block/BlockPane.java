@@ -48,7 +48,7 @@ public class BlockPane extends Block
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return !this.canDrop ? null : super.getItemDropped(state, rand, fortune);
+        return this.canDrop ? super.getItemDropped(state, rand, fortune) : null;
     }
 
     /**

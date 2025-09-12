@@ -569,7 +569,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
     public boolean isRidingHorse()
     {
-        return this.ridingEntity != null && this.ridingEntity instanceof EntityHorse eh && eh.isHorseSaddled();
+        return this.ridingEntity instanceof EntityHorse eh && eh.isHorseSaddled();
     }
 
     public float getHorseJumpPower()

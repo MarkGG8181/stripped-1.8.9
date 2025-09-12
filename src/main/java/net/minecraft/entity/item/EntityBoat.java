@@ -441,7 +441,7 @@ public class EntityBoat extends Entity {
      * First layer of player interaction
      */
     public boolean interactFirst(EntityPlayer playerIn) {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != playerIn) {
+        if (this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != playerIn) {
             return true;
         }
         else {

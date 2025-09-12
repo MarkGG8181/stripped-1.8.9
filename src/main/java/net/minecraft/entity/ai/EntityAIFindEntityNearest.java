@@ -31,7 +31,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
             LOGGER.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
         }
 
-        this.predicate = new Predicate<EntityLivingBase>()
+        this.predicate = new Predicate<>()
         {
             public boolean apply(EntityLivingBase p_apply_1_)
             {
@@ -54,7 +54,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
     public boolean shouldExecute()
     {
         double d0 = this.getFollowRange();
-        List<EntityLivingBase> list = this.mob.worldObj.<EntityLivingBase>getEntitiesWithinAABB(this.classToCheck, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
+        List<EntityLivingBase> list = this.mob.worldObj.getEntitiesWithinAABB(this.classToCheck, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
         Collections.sort(list, this.sorter);
 
         if (list.isEmpty())

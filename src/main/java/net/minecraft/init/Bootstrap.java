@@ -52,7 +52,7 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Bootstrap
+public final class Bootstrap
 {
     private static final PrintStream SYSOUT = System.out;
 
@@ -100,14 +100,14 @@ public class Bootstrap
                 return new EntityExpBottle(worldIn, position.getX(), position.getY(), position.getZ());
             }
 
-            protected float func_82498_a()
+            protected float func82498A()
             {
-                return super.func_82498_a() * 0.5F;
+                return super.func82498A() * 0.5F;
             }
 
-            protected float func_82500_b()
+            protected float func82500B()
             {
-                return super.func_82500_b() * 1.25F;
+                return super.func82500B() * 1.25F;
             }
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.potionitem, new IBehaviorDispenseItem()
@@ -123,14 +123,14 @@ public class Bootstrap
                         return new EntityPotion(worldIn, position.getX(), position.getY(), position.getZ(), stack.copy());
                     }
 
-                    protected float func_82498_a()
+                    protected float func82498A()
                     {
-                        return super.func_82498_a() * 0.5F;
+                        return super.func82498A() * 0.5F;
                     }
 
-                    protected float func_82500_b()
+                    protected float func82500B()
                     {
-                        return super.func_82500_b() * 1.25F;
+                        return super.func82500B() * 1.25F;
                     }
                 }.dispense(source, stack) : this.field_150843_b.dispense(source, stack);
             }

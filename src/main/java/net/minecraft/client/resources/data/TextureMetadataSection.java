@@ -8,6 +8,6 @@ public record TextureMetadataSection(boolean textureBlur, boolean textureClamp,
 
     @Override
     public List<Integer> listMipmaps() {
-        return Collections.<Integer>unmodifiableList(this.listMipmaps);
+        return Collections.unmodifiableList(this.listMipmaps);
     }
 }

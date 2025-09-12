@@ -72,7 +72,6 @@ public class ChatComponentTranslation extends ChatComponentStyle
      */
     protected void initializeFromFormat(String format)
     {
-        boolean flag = false;
         Matcher matcher = stringVariablePattern.matcher(format);
         int i = 0;
         int j = 0;
@@ -183,7 +182,7 @@ public class ChatComponentTranslation extends ChatComponentStyle
     public Iterator<IChatComponent> iterator()
     {
         this.ensureInitialized();
-        return Iterators.<IChatComponent>concat(createDeepCopyIterator(this.children), createDeepCopyIterator(this.siblings));
+        return Iterators.concat(createDeepCopyIterator(this.children), createDeepCopyIterator(this.siblings));
     }
 
     /**
@@ -254,8 +253,7 @@ public class ChatComponentTranslation extends ChatComponentStyle
     {
         int i = super.hashCode();
         i = 31 * i + this.key.hashCode();
-        i = 31 * i + Arrays.hashCode(this.formatArgs);
-        return i;
+        return 31 * i + Arrays.hashCode(this.formatArgs);
     }
 
     public String toString()

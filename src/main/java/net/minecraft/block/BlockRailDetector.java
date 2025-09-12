@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 public class BlockRailDetector extends BlockRailBase
 {
-    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
@@ -90,7 +90,7 @@ public class BlockRailDetector extends BlockRailBase
 
     public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
     {
-        return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (side == EnumFacing.UP ? 15 : 0);
+        return ((Boolean)state.getValue(POWERED)).booleanValue() ? (side == EnumFacing.UP ? 15 : 0) : 0;
     }
 
     private void updatePoweredState(World worldIn, BlockPos pos, IBlockState state)

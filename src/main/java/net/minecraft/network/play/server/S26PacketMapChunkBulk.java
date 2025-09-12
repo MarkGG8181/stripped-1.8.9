@@ -53,7 +53,7 @@ public class S26PacketMapChunkBulk implements Packet<INetHandlerPlayClient>
             this.zPositions[j] = buf.readInt();
             this.chunksData[j] = new S21PacketChunkData.Extracted();
             this.chunksData[j].dataSize = buf.readShort() & 65535;
-            this.chunksData[j].data = new byte[S21PacketChunkData.func_180737_a(Integer.bitCount(this.chunksData[j].dataSize), this.isOverworld, true)];
+            this.chunksData[j].data = new byte[S21PacketChunkData.func180737A(Integer.bitCount(this.chunksData[j].dataSize), this.isOverworld, true)];
         }
 
         for (int k = 0; k < i; k++)

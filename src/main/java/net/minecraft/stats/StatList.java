@@ -14,7 +14,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
 
-public class StatList
+public final class StatList
 {
     protected static Map<String, StatBase> oneShotStats = new HashMap<>();
     public static List<StatBase> allStats = new ArrayList<>();
@@ -154,7 +154,7 @@ public class StatList
             if (item != null)
             {
                 int i = Item.getIdFromItem(item);
-                String s = func_180204_a(item);
+                String s = func180204A(item);
 
                 if (s != null)
                 {
@@ -175,7 +175,7 @@ public class StatList
             if (item != null)
             {
                 int i = Block.getIdFromBlock(block);
-                String s = func_180204_a(item);
+                String s = func180204A(item);
 
                 if (s != null && block.getEnableStats())
                 {
@@ -195,7 +195,7 @@ public class StatList
             if (item != null)
             {
                 int i = Item.getIdFromItem(item);
-                String s = func_180204_a(item);
+                String s = func180204A(item);
 
                 if (s != null)
                 {
@@ -219,7 +219,7 @@ public class StatList
             if (item != null)
             {
                 int i = Item.getIdFromItem(item);
-                String s = func_180204_a(item);
+                String s = func180204A(item);
 
                 if (s != null && item.isDamageable())
                 {
@@ -231,7 +231,7 @@ public class StatList
         replaceAllSimilarBlocks(objectBreakStats);
     }
 
-    private static String func_180204_a(Item p_180204_0_)
+    private static String func180204A(Item p_180204_0_)
     {
         ResourceLocation resourcelocation = (ResourceLocation)Item.itemRegistry.getNameForObject(p_180204_0_);
         return resourcelocation != null ? resourcelocation.toString().replace(':', '.') : null;

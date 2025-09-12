@@ -14,7 +14,7 @@ import net.minecraft.util.IStringSerializable;
 
 public class BlockPlanks extends Block
 {
-    public static final PropertyEnum<BlockPlanks.EnumType> VARIANT = PropertyEnum.<BlockPlanks.EnumType>create("variant", BlockPlanks.EnumType.class);
+    public static final PropertyEnum<BlockPlanks.EnumType> VARIANT = PropertyEnum.create("variant", BlockPlanks.EnumType.class);
 
     public BlockPlanks()
     {
@@ -72,7 +72,7 @@ public class BlockPlanks extends Block
         return new BlockState(this, new IProperty[]{VARIANT});
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         OAK(0, "oak", MapColor.woodColor),
         SPRUCE(1, "spruce", MapColor.obsidianColor),

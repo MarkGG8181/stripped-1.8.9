@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class BlockTallGrass extends BlockBush implements IGrowable
 {
-    public static final PropertyEnum<BlockTallGrass.EnumType> TYPE = PropertyEnum.<BlockTallGrass.EnumType>create("type", BlockTallGrass.EnumType.class);
+    public static final PropertyEnum<BlockTallGrass.EnumType> TYPE = PropertyEnum.create("type", BlockTallGrass.EnumType.class);
 
     protected BlockTallGrass()
     {
@@ -175,7 +175,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
         return Block.EnumOffsetType.XYZ;
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         DEAD_BUSH(0, "dead_bush"),
         GRASS(1, "tall_grass"),

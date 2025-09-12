@@ -385,10 +385,10 @@ public class EntityArmorStand extends EntityLivingBase {
             }
             else {
                 if (flag) {
-                    this.func_175422_a(player, i);
+                    this.func175422A(player, i);
                 }
                 else if (flag2) {
-                    this.func_175422_a(player, j);
+                    this.func175422A(player, j);
                 }
 
                 return true;
@@ -399,7 +399,7 @@ public class EntityArmorStand extends EntityLivingBase {
         }
     }
 
-    private void func_175422_a(EntityPlayer p_175422_1_, int p_175422_2_) {
+    private void func175422A(EntityPlayer p_175422_1_, int p_175422_2_) {
         ItemStack itemstack = this.contents[p_175422_2_];
 
         if (itemstack == null || (this.disabledSlots & 1 << p_175422_2_ + 8) == 0) {
@@ -615,20 +615,20 @@ public class EntityArmorStand extends EntityLivingBase {
         boolean flag = this.hasMarker();
 
         if (!this.wasMarker && flag) {
-            this.func_181550_a(false);
+            this.func181550A(false);
         }
         else {
             if (!this.wasMarker || flag) {
                 return;
             }
 
-            this.func_181550_a(true);
+            this.func181550A(true);
         }
 
         this.wasMarker = flag;
     }
 
-    private void func_181550_a(boolean p_181550_1_) {
+    private void func181550A(boolean p_181550_1_) {
         double d0 = this.posX;
         double d1 = this.posY;
         double d2 = this.posZ;

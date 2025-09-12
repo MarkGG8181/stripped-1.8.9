@@ -4,7 +4,7 @@ import java.nio.FloatBuffer;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
-public class RenderHelper
+public final class RenderHelper
 {
     /** Float buffer used to set OpenGL material colors */
     private static final FloatBuffer colorBuffer = GLAllocation.createDirectFloatBuffer(16);

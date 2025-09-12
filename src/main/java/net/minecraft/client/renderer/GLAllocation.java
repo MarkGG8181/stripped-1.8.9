@@ -7,7 +7,7 @@ import java.nio.IntBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-public class GLAllocation
+public final class GLAllocation
 {
 
     /**

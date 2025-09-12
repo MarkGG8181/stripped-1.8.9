@@ -107,7 +107,7 @@ public class SoundList
             this.streaming = isStreaming;
         }
 
-        public static enum Type
+        public enum Type
         {
             FILE("file"),
             SOUND_EVENT("event");

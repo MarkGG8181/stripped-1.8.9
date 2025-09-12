@@ -114,8 +114,7 @@ public class EntityAITasks {
      * Determine if a specific AI Task should continue being executed.
      */
     private boolean canContinue(EntityAITasks.EntityAITaskEntry taskEntry) {
-        boolean flag = taskEntry.action.continueExecuting();
-        return flag;
+        return taskEntry.action.continueExecuting();
     }
 
     /**

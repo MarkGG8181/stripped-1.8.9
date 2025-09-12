@@ -184,7 +184,7 @@ public class VertexFormat
         else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass())
         {
             VertexFormat vertexformat = (VertexFormat)p_equals_1_;
-            return this.nextOffset != vertexformat.nextOffset ? false : (!this.elements.equals(vertexformat.elements) ? false : this.offsets.equals(vertexformat.offsets));
+            return this.nextOffset != vertexformat.nextOffset ? false : (this.elements.equals(vertexformat.elements) ? this.offsets.equals(vertexformat.offsets) : false);
         }
         else
         {
@@ -196,7 +196,6 @@ public class VertexFormat
     {
         int i = this.elements.hashCode();
         i = 31 * i + this.offsets.hashCode();
-        i = 31 * i + this.nextOffset;
-        return i;
+        return 31 * i + this.nextOffset;
     }
 }

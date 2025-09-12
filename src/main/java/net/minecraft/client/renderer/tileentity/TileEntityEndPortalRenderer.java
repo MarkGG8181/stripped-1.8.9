@@ -67,10 +67,10 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
             GlStateManager.texGen(GlStateManager.TexGen.T, 9217);
             GlStateManager.texGen(GlStateManager.TexGen.R, 9217);
             GlStateManager.texGen(GlStateManager.TexGen.Q, 9216);
-            GlStateManager.texGen(GlStateManager.TexGen.S, 9473, this.func_147525_a(1.0F, 0.0F, 0.0F, 0.0F));
-            GlStateManager.texGen(GlStateManager.TexGen.T, 9473, this.func_147525_a(0.0F, 0.0F, 1.0F, 0.0F));
-            GlStateManager.texGen(GlStateManager.TexGen.R, 9473, this.func_147525_a(0.0F, 0.0F, 0.0F, 1.0F));
-            GlStateManager.texGen(GlStateManager.TexGen.Q, 9474, this.func_147525_a(0.0F, 1.0F, 0.0F, 0.0F));
+            GlStateManager.texGen(GlStateManager.TexGen.S, 9473, this.func147525A(1.0F, 0.0F, 0.0F, 0.0F));
+            GlStateManager.texGen(GlStateManager.TexGen.T, 9473, this.func147525A(0.0F, 0.0F, 1.0F, 0.0F));
+            GlStateManager.texGen(GlStateManager.TexGen.R, 9473, this.func147525A(0.0F, 0.0F, 0.0F, 1.0F));
+            GlStateManager.texGen(GlStateManager.TexGen.Q, 9474, this.func147525A(0.0F, 1.0F, 0.0F, 0.0F));
             GlStateManager.enableTexGenCoord(GlStateManager.TexGen.S);
             GlStateManager.enableTexGenCoord(GlStateManager.TexGen.T);
             GlStateManager.enableTexGenCoord(GlStateManager.TexGen.R);
@@ -117,7 +117,7 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
         GlStateManager.enableLighting();
     }
 
-    private FloatBuffer func_147525_a(float p_147525_1_, float p_147525_2_, float p_147525_3_, float p_147525_4_)
+    private FloatBuffer func147525A(float p_147525_1_, float p_147525_2_, float p_147525_3_, float p_147525_4_)
     {
         this.buffer.clear();
         this.buffer.put(p_147525_1_).put(p_147525_2_).put(p_147525_3_).put(p_147525_4_);

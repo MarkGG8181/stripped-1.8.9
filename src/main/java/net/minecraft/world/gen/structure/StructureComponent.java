@@ -28,7 +28,7 @@ public abstract class StructureComponent
     /** The type ID of this component. */
     protected int componentType;
 
-    public StructureComponent()
+    protected StructureComponent()
     {
     }
 
@@ -604,7 +604,7 @@ public abstract class StructureComponent
         int j = this.getYWithOffset(y);
         int k = this.getZWithOffset(x, z);
         BlockPos blockpos = new BlockPos(i, j, k);
-        return !boundingboxIn.isVecInside(blockpos) ? Blocks.air.getDefaultState() : worldIn.getBlockState(blockpos);
+        return boundingboxIn.isVecInside(blockpos) ? worldIn.getBlockState(blockpos) : Blocks.air.getDefaultState();
     }
 
     /**
@@ -674,7 +674,7 @@ public abstract class StructureComponent
         }
     }
 
-    protected void func_175805_a(World worldIn, StructureBoundingBox boundingboxIn, Random rand, float chance, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, IBlockState blockstate1, IBlockState blockstate2, boolean p_175805_13_)
+    protected void func175805A(World worldIn, StructureBoundingBox boundingboxIn, Random rand, float chance, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, IBlockState blockstate1, IBlockState blockstate2, boolean p_175805_13_)
     {
         for (int i = minY; i <= maxY; i++)
         {

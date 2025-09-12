@@ -100,7 +100,7 @@ public class GuiCreateFlatWorld extends GuiScreen
         {
             this.mc.displayGuiScreen(new GuiFlatPresets(this));
         }
-        else if (button.id == 4 && this.func_146382_i())
+        else if (button.id == 4 && this.func146382I())
         {
             this.theFlatGeneratorInfo.getFlatLayers().remove(i);
             this.createFlatWorldListSlotGui.selectedLayer = Math.min(this.createFlatWorldListSlotGui.selectedLayer, this.theFlatGeneratorInfo.getFlatLayers().size() - 1);
@@ -112,14 +112,14 @@ public class GuiCreateFlatWorld extends GuiScreen
 
     public void func_146375_g()
     {
-        boolean flag = this.func_146382_i();
+        boolean flag = this.func146382I();
         this.removeLayerButton.enabled = flag;
         this.editLayerButton.enabled = flag;
         this.editLayerButton.enabled = false;
         this.addLayerButton.enabled = false;
     }
 
-    private boolean func_146382_i()
+    private boolean func146382I()
     {
         return this.createFlatWorldListSlotGui.selectedLayer > -1 && this.createFlatWorldListSlotGui.selectedLayer < this.theFlatGeneratorInfo.getFlatLayers().size();
     }
@@ -147,9 +147,9 @@ public class GuiCreateFlatWorld extends GuiScreen
             super(GuiCreateFlatWorld.this.mc, GuiCreateFlatWorld.this.width, GuiCreateFlatWorld.this.height, 43, GuiCreateFlatWorld.this.height - 60, 24);
         }
 
-        private void func_148225_a(int p_148225_1_, int p_148225_2_, ItemStack p_148225_3_)
+        private void func148225A(int p_148225_1_, int p_148225_2_, ItemStack p_148225_3_)
         {
-            this.func_148226_e(p_148225_1_ + 1, p_148225_2_ + 1);
+            this.func148226E(p_148225_1_ + 1, p_148225_2_ + 1);
             GlStateManager.enableRescaleNormal();
 
             if (p_148225_3_ != null && p_148225_3_.getItem() != null)
@@ -162,12 +162,12 @@ public class GuiCreateFlatWorld extends GuiScreen
             GlStateManager.disableRescaleNormal();
         }
 
-        private void func_148226_e(int p_148226_1_, int p_148226_2_)
+        private void func148226E(int p_148226_1_, int p_148226_2_)
         {
-            this.func_148224_c(p_148226_1_, p_148226_2_, 0, 0);
+            this.func148224C(p_148226_1_, p_148226_2_, 0, 0);
         }
 
-        private void func_148224_c(int p_148224_1_, int p_148224_2_, int p_148224_3_, int p_148224_4_)
+        private void func148224C(int p_148224_1_, int p_148224_2_, int p_148224_3_, int p_148224_4_)
         {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             this.mc.getTextureManager().bindTexture(Gui.statIcons);
@@ -235,7 +235,7 @@ public class GuiCreateFlatWorld extends GuiScreen
                 }
             }
 
-            this.func_148225_a(p_180791_2_, p_180791_3_, itemstack);
+            this.func148225A(p_180791_2_, p_180791_3_, itemstack);
             GuiCreateFlatWorld.this.fontRendererObj.drawString(s, p_180791_2_ + 18 + 5, p_180791_3_ + 3, 16777215);
             String s1;
 

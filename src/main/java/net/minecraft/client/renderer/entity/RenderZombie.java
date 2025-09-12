@@ -56,7 +56,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
      */
     public void doRender(EntityZombie entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        this.func_82427_a(entity);
+        this.func82427A(entity);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
@@ -68,7 +68,7 @@ public class RenderZombie extends RenderBiped<EntityZombie>
         return entity.isVillager() ? zombieVillagerTextures : zombieTextures;
     }
 
-    private void func_82427_a(EntityZombie zombie)
+    private void func82427A(EntityZombie zombie)
     {
         if (zombie.isVillager())
         {

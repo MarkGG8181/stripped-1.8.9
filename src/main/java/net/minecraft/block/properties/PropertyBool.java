@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class PropertyBool extends PropertyHelper<Boolean>
 {
-    private static final ImmutableSet<Boolean> ALLOWED_VALUES = ImmutableSet.<Boolean>of(Boolean.valueOf(true), Boolean.valueOf(false));
+    private static final ImmutableSet<Boolean> ALLOWED_VALUES = ImmutableSet.of(Boolean.valueOf(true), Boolean.valueOf(false));
 
     protected PropertyBool(String name)
     {

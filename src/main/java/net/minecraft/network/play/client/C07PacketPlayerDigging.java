@@ -69,7 +69,7 @@ public class C07PacketPlayerDigging implements Packet<INetHandlerPlayServer>
         return this.status;
     }
 
-    public static enum Action
+    public enum Action
     {
         START_DESTROY_BLOCK,
         ABORT_DESTROY_BLOCK,

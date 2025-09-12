@@ -92,11 +92,11 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         this.selectedIndex = -1;
     }
 
-    protected String func_146621_a(int p_146621_1_) {
+    protected String func146621A(int p_146621_1_) {
         return ((SaveFormatComparator)this.field_146639_s.get(p_146621_1_)).getFileName();
     }
 
-    protected String func_146614_d(int p_146614_1_) {
+    protected String func146614D(int p_146614_1_) {
         String s = ((SaveFormatComparator)this.field_146639_s.get(p_146614_1_)).getDisplayName();
 
         if (StringUtils.isEmpty(s)) {
@@ -125,7 +125,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
             if (button.id == 2) {
-                String s = this.func_146614_d(this.selectedIndex);
+                String s = this.func146614D(this.selectedIndex);
 
                 if (s != null) {
                     this.confirmingDelete = true;
@@ -140,14 +140,14 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
                 this.mc.displayGuiScreen(new GuiCreateWorld(this));
             }
             else if (button.id == 6) {
-                this.mc.displayGuiScreen(new GuiRenameWorld(this, this.func_146621_a(this.selectedIndex)));
+                this.mc.displayGuiScreen(new GuiRenameWorld(this, this.func146621A(this.selectedIndex)));
             }
             else if (button.id == 0) {
                 this.mc.displayGuiScreen(this.parentScreen);
             }
             else if (button.id == 7) {
                 GuiCreateWorld guicreateworld = new GuiCreateWorld(this);
-                ISaveHandler isavehandler = this.mc.getSaveLoader().getSaveLoader(this.func_146621_a(this.selectedIndex), false);
+                ISaveHandler isavehandler = this.mc.getSaveLoader().getSaveLoader(this.func146621A(this.selectedIndex), false);
                 WorldInfo worldinfo = isavehandler.loadWorldInfo();
                 isavehandler.flush();
                 guicreateworld.recreateFromExistingWorld(worldinfo);
@@ -162,13 +162,13 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
     public void func_146615_e(int p_146615_1_) {
         this.mc.displayGuiScreen((GuiScreen)null);
 
-        String s = this.func_146621_a(p_146615_1_);
+        String s = this.func146621A(p_146615_1_);
 
         if (s == null) {
             s = "World" + p_146615_1_;
         }
 
-        String s1 = this.func_146614_d(p_146615_1_);
+        String s1 = this.func146614D(p_146615_1_);
 
         if (s1 == null) {
             s1 = "World" + p_146615_1_;
@@ -186,7 +186,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
             if (result) {
                 ISaveFormat isaveformat = this.mc.getSaveLoader();
                 isaveformat.flushCache();
-                isaveformat.deleteWorldDirectory(this.func_146621_a(id));
+                isaveformat.deleteWorldDirectory(this.func146621A(id));
 
                 try {
                     this.loadLevelList();
@@ -222,8 +222,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         String s1 = "\'" + name + "\' " + I18n.format("selectWorld.deleteWarning", new Object[0]);
         String s2 = I18n.format("selectWorld.deleteButton", new Object[0]);
         String s3 = I18n.format("gui.cancel", new Object[0]);
-        GuiYesNo guiyesno = new GuiYesNo(selectWorld, s, s1, s2, s3, id);
-        return guiyesno;
+        return new GuiYesNo(selectWorld, s, s1, s2, s3, id);
     }
 
     class List extends GuiSlot {

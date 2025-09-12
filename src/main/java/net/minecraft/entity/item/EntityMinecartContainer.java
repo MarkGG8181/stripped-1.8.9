@@ -21,12 +21,12 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     private boolean dropContentsWhenDead = true;
 
-    public EntityMinecartContainer(World worldIn)
+    protected EntityMinecartContainer(World worldIn)
     {
         super(worldIn);
     }
 
-    public EntityMinecartContainer(World worldIn, double x, double y, double z)
+    protected EntityMinecartContainer(World worldIn, double x, double y, double z)
     {
         super(worldIn, x, y, z);
     }

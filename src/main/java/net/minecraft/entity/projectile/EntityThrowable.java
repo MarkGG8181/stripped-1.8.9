@@ -28,7 +28,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
     private int ticksInGround;
     private int ticksInAir;
 
-    public EntityThrowable(World worldIn)
+    protected EntityThrowable(World worldIn)
     {
         super(worldIn);
         this.setSize(0.25F, 0.25F);
@@ -55,7 +55,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         return distance < d0 * d0;
     }
 
-    public EntityThrowable(World worldIn, EntityLivingBase throwerIn)
+    protected EntityThrowable(World worldIn, EntityLivingBase throwerIn)
     {
         super(worldIn);
         this.thrower = throwerIn;
@@ -72,7 +72,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.getVelocity(), 1.0F);
     }
 
-    public EntityThrowable(World worldIn, double x, double y, double z)
+    protected EntityThrowable(World worldIn, double x, double y, double z)
     {
         super(worldIn);
         this.ticksInGround = 0;

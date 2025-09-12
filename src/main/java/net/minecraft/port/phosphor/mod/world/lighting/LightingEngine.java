@@ -30,9 +30,19 @@ public class LightingEngine implements ILightingEngine {
 
     private boolean updating;
 
-    private static final int lX = 26, lY = 8, lZ = 26, lL = 4;
-    private static final int sZ = 0, sX = sZ + lZ, sY = sX + lX, sL = sY + lY;
-    private static final long mX = (1L << lX) - 1, mY = (1L << lY) - 1, mZ = (1L << lZ) - 1, mL = (1L << lL) - 1, mPos = (mY << sY) | (mX << sX) | (mZ << sZ);
+    private static final int lX = 26;
+    private static final int lY = 8;
+    private static final int lZ = 26;
+    private static final int lL = 4;
+    private static final int sZ = 0;
+    private static final int sX = sZ + lZ;
+    private static final int sY = sX + lX;
+    private static final int sL = sY + lY;
+    private static final long mX = (1L << lX) - 1;
+    private static final long mY = (1L << lY) - 1;
+    private static final long mZ = (1L << lZ) - 1;
+    private static final long mL = (1L << lL) - 1;
+    private static final long mPos = (mY << sY) | (mX << sX) | (mZ << sZ);
     private static final long yCheck = 1L << (sY + lY);
     private static final long[] neighborShifts = new long[6];
 

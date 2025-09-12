@@ -33,7 +33,7 @@ public class ItemModelGenerator
             String s1 = blockModel.resolveTextureName(s);
             map.put(s, s1);
             TextureAtlasSprite textureatlassprite = textureMapIn.getAtlasSprite(new ResourceLocation(s1).toString());
-            list.addAll(this.func_178394_a(i, s, textureatlassprite));
+            list.addAll(this.func178394A(i, s, textureatlassprite));
         }
 
         if (list.isEmpty())
@@ -47,24 +47,24 @@ public class ItemModelGenerator
         }
     }
 
-    private List<BlockPart> func_178394_a(int p_178394_1_, String p_178394_2_, TextureAtlasSprite p_178394_3_)
+    private List<BlockPart> func178394A(int p_178394_1_, String p_178394_2_, TextureAtlasSprite p_178394_3_)
     {
         Map<EnumFacing, BlockPartFace> map = new HashMap<>();
         map.put(EnumFacing.SOUTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[]{0.0F, 0.0F, 16.0F, 16.0F}, 0)));
         map.put(EnumFacing.NORTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[]{16.0F, 0.0F, 0.0F, 16.0F}, 0)));
         List<BlockPart> list = new ArrayList<>();
         list.add(new BlockPart(new Vector3f(0.0F, 0.0F, 7.5F), new Vector3f(16.0F, 16.0F, 8.5F), map, (BlockPartRotation)null, true));
-        list.addAll(this.func_178397_a(p_178394_3_, p_178394_2_, p_178394_1_));
+        list.addAll(this.func178397A(p_178394_3_, p_178394_2_, p_178394_1_));
         return list;
     }
 
-    private List<BlockPart> func_178397_a(TextureAtlasSprite p_178397_1_, String p_178397_2_, int p_178397_3_)
+    private List<BlockPart> func178397A(TextureAtlasSprite p_178397_1_, String p_178397_2_, int p_178397_3_)
     {
         float f = (float)p_178397_1_.getIconWidth();
         float f1 = (float)p_178397_1_.getIconHeight();
         List<BlockPart> list = new ArrayList<>();
 
-        for (ItemModelGenerator.Span itemmodelgenerator$span : this.func_178393_a(p_178397_1_))
+        for (ItemModelGenerator.Span itemmodelgenerator$span : this.func178393A(p_178397_1_))
         {
             float f2 = 0.0F;
             float f3 = 0.0F;
@@ -168,7 +168,7 @@ public class ItemModelGenerator
         return list;
     }
 
-    private List<ItemModelGenerator.Span> func_178393_a(TextureAtlasSprite p_178393_1_)
+    private List<ItemModelGenerator.Span> func178393A(TextureAtlasSprite p_178393_1_)
     {
         int i = p_178393_1_.getIconWidth();
         int j = p_178393_1_.getIconHeight();
@@ -182,11 +182,11 @@ public class ItemModelGenerator
             {
                 for (int i1 = 0; i1 < i; i1++)
                 {
-                    boolean flag = !this.func_178391_a(aint, i1, l, i, j);
-                    this.func_178396_a(ItemModelGenerator.SpanFacing.UP, list, aint, i1, l, i, j, flag);
-                    this.func_178396_a(ItemModelGenerator.SpanFacing.DOWN, list, aint, i1, l, i, j, flag);
-                    this.func_178396_a(ItemModelGenerator.SpanFacing.LEFT, list, aint, i1, l, i, j, flag);
-                    this.func_178396_a(ItemModelGenerator.SpanFacing.RIGHT, list, aint, i1, l, i, j, flag);
+                    boolean flag = !this.func178391A(aint, i1, l, i, j);
+                    this.func178396A(ItemModelGenerator.SpanFacing.UP, list, aint, i1, l, i, j, flag);
+                    this.func178396A(ItemModelGenerator.SpanFacing.DOWN, list, aint, i1, l, i, j, flag);
+                    this.func178396A(ItemModelGenerator.SpanFacing.LEFT, list, aint, i1, l, i, j, flag);
+                    this.func178396A(ItemModelGenerator.SpanFacing.RIGHT, list, aint, i1, l, i, j, flag);
                 }
             }
         }
@@ -194,17 +194,17 @@ public class ItemModelGenerator
         return list;
     }
 
-    private void func_178396_a(ItemModelGenerator.SpanFacing p_178396_1_, List<ItemModelGenerator.Span> p_178396_2_, int[] p_178396_3_, int p_178396_4_, int p_178396_5_, int p_178396_6_, int p_178396_7_, boolean p_178396_8_)
+    private void func178396A(ItemModelGenerator.SpanFacing p_178396_1_, List<ItemModelGenerator.Span> p_178396_2_, int[] p_178396_3_, int p_178396_4_, int p_178396_5_, int p_178396_6_, int p_178396_7_, boolean p_178396_8_)
     {
-        boolean flag = this.func_178391_a(p_178396_3_, p_178396_4_ + p_178396_1_.func_178372_b(), p_178396_5_ + p_178396_1_.func_178371_c(), p_178396_6_, p_178396_7_) && p_178396_8_;
+        boolean flag = this.func178391A(p_178396_3_, p_178396_4_ + p_178396_1_.func_178372_b(), p_178396_5_ + p_178396_1_.func_178371_c(), p_178396_6_, p_178396_7_) && p_178396_8_;
 
         if (flag)
         {
-            this.func_178395_a(p_178396_2_, p_178396_1_, p_178396_4_, p_178396_5_);
+            this.func178395A(p_178396_2_, p_178396_1_, p_178396_4_, p_178396_5_);
         }
     }
 
-    private void func_178395_a(List<ItemModelGenerator.Span> p_178395_1_, ItemModelGenerator.SpanFacing p_178395_2_, int p_178395_3_, int p_178395_4_)
+    private void func178395A(List<ItemModelGenerator.Span> p_178395_1_, ItemModelGenerator.SpanFacing p_178395_2_, int p_178395_3_, int p_178395_4_)
     {
         ItemModelGenerator.Span itemmodelgenerator$span = null;
 
@@ -235,7 +235,7 @@ public class ItemModelGenerator
         }
     }
 
-    private boolean func_178391_a(int[] p_178391_1_, int p_178391_2_, int p_178391_3_, int p_178391_4_, int p_178391_5_)
+    private boolean func178391A(int[] p_178391_1_, int p_178391_2_, int p_178391_3_, int p_178391_4_, int p_178391_5_)
     {
         return p_178391_2_ >= 0 && p_178391_3_ >= 0 && p_178391_2_ < p_178391_4_ && p_178391_3_ < p_178391_5_ ? (p_178391_1_[p_178391_3_ * p_178391_4_ + p_178391_2_] >> 24 & 255) == 0 : true;
     }
@@ -288,7 +288,7 @@ public class ItemModelGenerator
         }
     }
 
-    static enum SpanFacing
+    enum SpanFacing
     {
         UP(EnumFacing.UP, 0, -1),
         DOWN(EnumFacing.DOWN, 0, 1),

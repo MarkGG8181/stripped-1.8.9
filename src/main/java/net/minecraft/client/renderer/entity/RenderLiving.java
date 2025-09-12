@@ -13,7 +13,7 @@ import net.minecraft.entity.EntityLiving;
 
 public abstract class RenderLiving<T extends EntityLiving> extends RendererLivingEntity<T>
 {
-    public RenderLiving(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn)
+    protected RenderLiving(RenderManager rendermanagerIn, ModelBase modelbaseIn, float shadowsizeIn)
     {
         super(rendermanagerIn, modelbaseIn, shadowsizeIn);
     }

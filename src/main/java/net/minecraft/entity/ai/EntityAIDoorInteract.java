@@ -24,7 +24,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
     float entityPositionX;
     float entityPositionZ;
 
-    public EntityAIDoorInteract(EntityLiving entityIn)
+    protected EntityAIDoorInteract(EntityLiving entityIn)
     {
         this.theEntity = entityIn;
 

@@ -136,8 +136,7 @@ public class ItemRenderer
     {
         float f = 1.0F - pitch / 45.0F + 0.1F;
         f = MathHelper.clamp_float(f, 0.0F, 1.0F);
-        f = -MathHelper.cos(f * (float)Math.PI) * 0.5F + 0.5F;
-        return f;
+        return -MathHelper.cos(f * (float)Math.PI) * 0.5F + 0.5F;
     }
 
     private void renderRightArm(RenderPlayer renderPlayerIn)
@@ -165,7 +164,7 @@ public class ItemRenderer
     private void renderPlayerArms(AbstractClientPlayer clientPlayer)
     {
         this.mc.getTextureManager().bindTexture(clientPlayer.getLocationSkin());
-        Render<AbstractClientPlayer> render = this.renderManager.<AbstractClientPlayer>getEntityRenderObject(this.mc.thePlayer);
+        Render<AbstractClientPlayer> render = this.renderManager.getEntityRenderObject(this.mc.thePlayer);
         RenderPlayer renderplayer = (RenderPlayer)render;
 
         if (!clientPlayer.isInvisible())
@@ -246,7 +245,7 @@ public class ItemRenderer
         GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.scale(1.0F, 1.0F, 1.0F);
         GlStateManager.translate(5.6F, 0.0F, 0.0F);
-        Render<AbstractClientPlayer> render = this.renderManager.<AbstractClientPlayer>getEntityRenderObject(this.mc.thePlayer);
+        Render<AbstractClientPlayer> render = this.renderManager.getEntityRenderObject(this.mc.thePlayer);
         GlStateManager.disableCull();
         RenderPlayer renderplayer = (RenderPlayer)render;
         renderplayer.renderRightArm(this.mc.thePlayer);
@@ -474,14 +473,8 @@ public class ItemRenderer
         this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        float f = 0.1F;
         GlStateManager.color(0.1F, 0.1F, 0.1F, 0.5F);
         GlStateManager.pushMatrix();
-        float f1 = -1.0F;
-        float f2 = 1.0F;
-        float f3 = -1.0F;
-        float f4 = 1.0F;
-        float f5 = -0.5F;
         float f6 = atlas.getMinU();
         float f7 = atlas.getMaxU();
         float f8 = atlas.getMinV();
@@ -512,12 +505,6 @@ public class ItemRenderer
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         GlStateManager.pushMatrix();
-        float f1 = 4.0F;
-        float f2 = -1.0F;
-        float f3 = 1.0F;
-        float f4 = -1.0F;
-        float f5 = 1.0F;
-        float f6 = -0.5F;
         float f7 = -this.mc.thePlayer.rotationYaw / 64.0F;
         float f8 = this.mc.thePlayer.rotationPitch / 64.0F;
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);

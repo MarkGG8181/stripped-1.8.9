@@ -535,7 +535,7 @@ public class Block {
      */
     public float getPlayerRelativeBlockHardness(EntityPlayer playerIn, World worldIn, BlockPos pos) {
         float f = this.getBlockHardness(worldIn, pos);
-        return f < 0.0F ? 0.0F : (!playerIn.canHarvestBlock(this) ? playerIn.getToolDigEfficiency(this) / f / 100.0F : playerIn.getToolDigEfficiency(this) / f / 30.0F);
+        return f < 0.0F ? 0.0F : (playerIn.canHarvestBlock(this) ? playerIn.getToolDigEfficiency(this) / f / 30.0F : playerIn.getToolDigEfficiency(this) / f / 100.0F);
     }
 
     /**
@@ -1337,7 +1337,7 @@ public class Block {
         registerBlock(id, new ResourceLocation(textualID), block_);
     }
 
-    public static enum EnumOffsetType {
+    public enum EnumOffsetType {
         NONE,
         XZ,
         XYZ

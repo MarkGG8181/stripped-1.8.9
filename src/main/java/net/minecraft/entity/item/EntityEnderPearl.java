@@ -95,7 +95,7 @@ public class EntityEnderPearl extends EntityThrowable
     {
         EntityLivingBase entitylivingbase = this.getThrower();
 
-        if (entitylivingbase != null && entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
+        if (entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
         {
             this.setDead();
         }

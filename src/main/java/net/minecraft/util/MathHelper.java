@@ -5,7 +5,7 @@ import net.minecraft.port.lithium.CompactSineLUT;
 import java.util.Random;
 import java.util.UUID;
 
-public class MathHelper
+public final class MathHelper
 {
     public static final float SQRT_2 = sqrt_float(2.0F);
 
@@ -363,8 +363,7 @@ public class MathHelper
     public static int func_180181_b(int p_180181_0_, int p_180181_1_, int p_180181_2_)
     {
         int lvt_3_1_ = (p_180181_0_ << 8) + p_180181_1_;
-        lvt_3_1_ = (lvt_3_1_ << 8) + p_180181_2_;
-        return lvt_3_1_;
+        return (lvt_3_1_ << 8) + p_180181_2_;
     }
 
     public static int func_180188_d(int p_180188_0_, int p_180188_1_)
@@ -394,8 +393,7 @@ public class MathHelper
     public static long getCoordinateRandom(int x, int y, int z)
     {
         long i = (long)(x * 3129871) ^ (long)z * 116129781L ^ (long)y;
-        i = i * i * 42317861L + i * 11L;
-        return i;
+        return i * i * 42317861L + i * 11L;
     }
 
     public static UUID getRandomUuid(Random rand)
@@ -480,8 +478,7 @@ public class MathHelper
         long i = Double.doubleToRawLongBits(p_181161_0_);
         i = 6910469410427058090L - (i >> 1);
         p_181161_0_ = Double.longBitsToDouble(i);
-        p_181161_0_ = p_181161_0_ * (1.5D - d0 * p_181161_0_ * p_181161_0_);
-        return p_181161_0_;
+        return p_181161_0_ * (1.5D - d0 * p_181161_0_ * p_181161_0_);
     }
 
     public static int hsvToRGB(float p_181758_0_, float p_181758_1_, float p_181758_2_)

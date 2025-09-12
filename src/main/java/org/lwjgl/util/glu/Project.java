@@ -100,7 +100,10 @@ public class Project extends Util {
      * @return true if the matrix was succesfully inverted
      */
     private static boolean __gluInvertMatrixf(FloatBuffer src, FloatBuffer inverse) {
-        int i, j, k, swap;
+        int i;
+        int j;
+        int k;
+        int swap;
         float t;
         FloatBuffer temp = Project.tempMatrix;
 
@@ -193,7 +196,9 @@ public class Project extends Util {
      * @param zFar
      */
     public static void gluPerspective(float fovy, float aspect, float zNear, float zFar) {
-        float sine, cotangent, deltaZ;
+        float sine;
+        float cotangent;
+        float deltaZ;
         float radians = (float)(fovy / 2 * Math.PI / 180);
 
         deltaZ = zFar - zNear;

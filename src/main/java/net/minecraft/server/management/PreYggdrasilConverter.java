@@ -16,7 +16,7 @@ import net.minecraft.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PreYggdrasilConverter
+public final class PreYggdrasilConverter
 {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -73,7 +73,7 @@ public class PreYggdrasilConverter
                     }
                 };
                 lookupNames(minecraftserver, Lists.newArrayList(new String[]{p_152719_0_}), profilelookupcallback);
-                return list.size() > 0 && ((GameProfile)list.getFirst()).getId() != null ? ((GameProfile)list.getFirst()).getId().toString() : "";
+                return !list.isEmpty() && ((GameProfile)list.getFirst()).getId() != null ? ((GameProfile)list.getFirst()).getId().toString() : "";
             }
             else
             {

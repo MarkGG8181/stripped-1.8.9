@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-public class WorldType
+public final class WorldType
 {
     /** List of world types. */
     public static final WorldType[] worldTypes = new WorldType[16];

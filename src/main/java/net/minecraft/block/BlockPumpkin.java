@@ -26,7 +26,7 @@ public class BlockPumpkin extends BlockDirectional
     private BlockPattern snowmanPattern;
     private BlockPattern golemBasePattern;
     private BlockPattern golemPattern;
-    private static final Predicate<IBlockState> IS_PUMPKIN = new Predicate<IBlockState>()
+    private static final Predicate<IBlockState> IS_PUMPKIN = new Predicate<>()
     {
         public boolean apply(IBlockState p_apply_1_)
         {

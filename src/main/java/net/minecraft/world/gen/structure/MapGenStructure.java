@@ -44,7 +44,7 @@ public abstract class MapGenStructure extends MapGenBase
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Exception preparing structure feature");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Feature being prepared");
-                crashreportcategory.addCrashSectionCallable("Is feature chunk", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Is feature chunk", new Callable<>()
                 {
                     public String call() throws Exception
                     {
@@ -52,14 +52,14 @@ public abstract class MapGenStructure extends MapGenBase
                     }
                 });
                 crashreportcategory.addCrashSection("Chunk location", "%d,%d".formatted(new Object[]{Integer.valueOf(chunkX), Integer.valueOf(chunkZ)}));
-                crashreportcategory.addCrashSectionCallable("Chunk pos hash", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Chunk pos hash", new Callable<>()
                 {
                     public String call() throws Exception
                     {
                         return String.valueOf(ChunkCoordIntPair.chunkXZ2Int(chunkX, chunkZ));
                     }
                 });
-                crashreportcategory.addCrashSectionCallable("Structure type", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Structure type", new Callable<>()
                 {
                     public String call() throws Exception
                     {
@@ -95,10 +95,10 @@ public abstract class MapGenStructure extends MapGenBase
     public boolean func_175795_b(BlockPos pos)
     {
         this.initializeStructureData(this.worldObj);
-        return this.func_175797_c(pos) != null;
+        return this.func175797C(pos) != null;
     }
 
-    protected StructureStart func_175797_c(BlockPos pos)
+    protected StructureStart func175797C(BlockPos pos)
     {
         label24:
 

@@ -26,7 +26,7 @@ public class RecipesBanners
         p_179534_1_.addRecipe(new RecipesBanners.RecipeAddPattern());
     }
 
-    static class RecipeAddPattern implements IRecipe
+    static final class RecipeAddPattern implements IRecipe
     {
         private RecipeAddPattern()
         {
@@ -62,7 +62,7 @@ public class RecipesBanners
             }
             else
             {
-                return this.func_179533_c(inv) != null;
+                return this.func179533C(inv) != null;
             }
         }
 
@@ -82,7 +82,7 @@ public class RecipesBanners
                 }
             }
 
-            TileEntityBanner.EnumBannerPattern tileentitybanner$enumbannerpattern = this.func_179533_c(inv);
+            TileEntityBanner.EnumBannerPattern tileentitybanner$enumbannerpattern = this.func179533C(inv);
 
             if (tileentitybanner$enumbannerpattern != null)
             {
@@ -148,7 +148,7 @@ public class RecipesBanners
             return aitemstack;
         }
 
-        private TileEntityBanner.EnumBannerPattern func_179533_c(InventoryCrafting p_179533_1_)
+        private TileEntityBanner.EnumBannerPattern func179533C(InventoryCrafting p_179533_1_)
         {
             for (TileEntityBanner.EnumBannerPattern tileentitybanner$enumbannerpattern : TileEntityBanner.EnumBannerPattern.values())
             {
@@ -250,7 +250,7 @@ public class RecipesBanners
         }
     }
 
-    static class RecipeDuplicatePattern implements IRecipe
+    static final class RecipeDuplicatePattern implements IRecipe
     {
         private RecipeDuplicatePattern()
         {

@@ -8,14 +8,14 @@ import com.google.gson.JsonSyntaxException;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class JsonUtils
+public final class JsonUtils
 {
     /**
      * Does the given JsonObject contain a string field with the given name?
      */
     public static boolean isString(JsonObject p_151205_0_, String p_151205_1_)
     {
-        return !isJsonPrimitive(p_151205_0_, p_151205_1_) ? false : p_151205_0_.getAsJsonPrimitive(p_151205_1_).isString();
+        return isJsonPrimitive(p_151205_0_, p_151205_1_) ? p_151205_0_.getAsJsonPrimitive(p_151205_1_).isString() : false;
     }
 
     /**
@@ -23,12 +23,12 @@ public class JsonUtils
      */
     public static boolean isString(JsonElement p_151211_0_)
     {
-        return !p_151211_0_.isJsonPrimitive() ? false : p_151211_0_.getAsJsonPrimitive().isString();
+        return p_151211_0_.isJsonPrimitive() ? p_151211_0_.getAsJsonPrimitive().isString() : false;
     }
 
     public static boolean isBoolean(JsonObject p_180199_0_, String p_180199_1_)
     {
-        return !isJsonPrimitive(p_180199_0_, p_180199_1_) ? false : p_180199_0_.getAsJsonPrimitive(p_180199_1_).isBoolean();
+        return isJsonPrimitive(p_180199_0_, p_180199_1_) ? p_180199_0_.getAsJsonPrimitive(p_180199_1_).isBoolean() : false;
     }
 
     /**
@@ -36,7 +36,7 @@ public class JsonUtils
      */
     public static boolean isJsonArray(JsonObject p_151202_0_, String p_151202_1_)
     {
-        return !hasField(p_151202_0_, p_151202_1_) ? false : p_151202_0_.get(p_151202_1_).isJsonArray();
+        return hasField(p_151202_0_, p_151202_1_) ? p_151202_0_.get(p_151202_1_).isJsonArray() : false;
     }
 
     /**
@@ -45,7 +45,7 @@ public class JsonUtils
      */
     public static boolean isJsonPrimitive(JsonObject p_151201_0_, String p_151201_1_)
     {
-        return !hasField(p_151201_0_, p_151201_1_) ? false : p_151201_0_.get(p_151201_1_).isJsonPrimitive();
+        return hasField(p_151201_0_, p_151201_1_) ? p_151201_0_.get(p_151201_1_).isJsonPrimitive() : false;
     }
 
     /**

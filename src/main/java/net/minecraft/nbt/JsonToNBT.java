@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
-public class JsonToNBT
+public final class JsonToNBT
 {
     private static final Pattern INT_ARRAY_MATCHER = Pattern.compile("\\[[-+\\d|,\\s]+\\]");
 
@@ -19,17 +19,17 @@ public class JsonToNBT
         {
             throw new NBTException("Invalid tag encountered, expected \'{\' as first char.");
         }
-        else if (func_150310_b(jsonString) != 1)
+        else if (func150310B(jsonString) != 1)
         {
             throw new NBTException("Encountered multiple top tags, only one expected");
         }
         else
         {
-            return (NBTTagCompound)func_150316_a("tag", jsonString).parse();
+            return (NBTTagCompound)func150316A("tag", jsonString).parse();
         }
     }
 
-    static int func_150310_b(String p_150310_0_) throws NBTException
+    static int func150310B(String p_150310_0_) throws NBTException
     {
         int i = 0;
         boolean flag = false;
@@ -41,7 +41,7 @@ public class JsonToNBT
 
             if (c0 == 34)
             {
-                if (func_179271_b(p_150310_0_, j))
+                if (func179271B(p_150310_0_, j))
                 {
                     if (!flag)
                     {
@@ -98,12 +98,12 @@ public class JsonToNBT
         }
     }
 
-    static JsonToNBT.Any func_179272_a(String... p_179272_0_) throws NBTException
+    static JsonToNBT.Any func179272A(String... p_179272_0_) throws NBTException
     {
-        return func_150316_a(p_179272_0_[0], p_179272_0_[1]);
+        return func150316A(p_179272_0_[0], p_179272_0_[1]);
     }
 
-    static JsonToNBT.Any func_150316_a(String p_150316_0_, String p_150316_1_) throws NBTException
+    static JsonToNBT.Any func150316A(String p_150316_0_, String p_150316_1_) throws NBTException
     {
         p_150316_1_ = p_150316_1_.trim();
 
@@ -115,12 +115,12 @@ public class JsonToNBT
 
             for (jsontonbt$compound = new JsonToNBT.Compound(p_150316_0_); p_150316_1_.length() > 0; p_150316_1_ = p_150316_1_.substring(s1.length() + 1))
             {
-                s1 = func_150314_a(p_150316_1_, true);
+                s1 = func150314A(p_150316_1_, true);
 
                 if (s1.length() > 0)
                 {
                     boolean flag1 = false;
-                    jsontonbt$compound.tagList.add(func_179270_a(s1, flag1));
+                    jsontonbt$compound.tagList.add(func179270A(s1, flag1));
                 }
 
                 if (p_150316_1_.length() < s1.length() + 1)
@@ -146,12 +146,12 @@ public class JsonToNBT
 
             for (jsontonbt$list = new JsonToNBT.List(p_150316_0_); p_150316_1_.length() > 0; p_150316_1_ = p_150316_1_.substring(s.length() + 1))
             {
-                s = func_150314_a(p_150316_1_, false);
+                s = func150314A(p_150316_1_, false);
 
                 if (s.length() > 0)
                 {
                     boolean flag = true;
-                    jsontonbt$list.tagList.add(func_179270_a(s, flag));
+                    jsontonbt$list.tagList.add(func179270A(s, flag));
                 }
 
                 if (p_150316_1_.length() < s.length() + 1)
@@ -175,17 +175,17 @@ public class JsonToNBT
         }
     }
 
-    private static JsonToNBT.Any func_179270_a(String p_179270_0_, boolean p_179270_1_) throws NBTException
+    private static JsonToNBT.Any func179270A(String p_179270_0_, boolean p_179270_1_) throws NBTException
     {
-        String s = func_150313_b(p_179270_0_, p_179270_1_);
-        String s1 = func_150311_c(p_179270_0_, p_179270_1_);
-        return func_179272_a(new String[]{s, s1});
+        String s = func150313B(p_179270_0_, p_179270_1_);
+        String s1 = func150311C(p_179270_0_, p_179270_1_);
+        return func179272A(new String[]{s, s1});
     }
 
-    private static String func_150314_a(String p_150314_0_, boolean p_150314_1_) throws NBTException
+    private static String func150314A(String p_150314_0_, boolean p_150314_1_) throws NBTException
     {
-        int i = func_150312_a(p_150314_0_, ':');
-        int j = func_150312_a(p_150314_0_, ',');
+        int i = func150312A(p_150314_0_, ':');
+        int j = func150312A(p_150314_0_, ',');
 
         if (p_150314_1_)
         {
@@ -204,10 +204,10 @@ public class JsonToNBT
             i = -1;
         }
 
-        return func_179269_a(p_150314_0_, i);
+        return func179269A(p_150314_0_, i);
     }
 
-    private static String func_179269_a(String p_179269_0_, int p_179269_1_) throws NBTException
+    private static String func179269A(String p_179269_0_, int p_179269_1_) throws NBTException
     {
         Stack<Character> stack = new Stack();
         int i = p_179269_1_ + 1;
@@ -221,7 +221,7 @@ public class JsonToNBT
 
             if (c0 == 34)
             {
-                if (func_179271_b(p_179269_0_, i))
+                if (func179271B(p_179269_0_, i))
                 {
                     if (!flag)
                     {
@@ -282,7 +282,7 @@ public class JsonToNBT
         return p_179269_0_.substring(0, i);
     }
 
-    private static String func_150313_b(String p_150313_0_, boolean p_150313_1_) throws NBTException
+    private static String func150313B(String p_150313_0_, boolean p_150313_1_) throws NBTException
     {
         if (p_150313_1_)
         {
@@ -294,7 +294,7 @@ public class JsonToNBT
             }
         }
 
-        int i = func_150312_a(p_150313_0_, ':');
+        int i = func150312A(p_150313_0_, ':');
 
         if (i == -1)
         {
@@ -313,7 +313,7 @@ public class JsonToNBT
         }
     }
 
-    private static String func_150311_c(String p_150311_0_, boolean p_150311_1_) throws NBTException
+    private static String func150311C(String p_150311_0_, boolean p_150311_1_) throws NBTException
     {
         if (p_150311_1_)
         {
@@ -325,7 +325,7 @@ public class JsonToNBT
             }
         }
 
-        int i = func_150312_a(p_150311_0_, ':');
+        int i = func150312A(p_150311_0_, ':');
 
         if (i == -1)
         {
@@ -344,7 +344,7 @@ public class JsonToNBT
         }
     }
 
-    private static int func_150312_a(String p_150312_0_, char p_150312_1_)
+    private static int func150312A(String p_150312_0_, char p_150312_1_)
     {
         int i = 0;
 
@@ -354,7 +354,7 @@ public class JsonToNBT
 
             if (c0 == 34)
             {
-                if (!func_179271_b(p_150312_0_, i))
+                if (!func179271B(p_150312_0_, i))
                 {
                     flag = !flag;
                 }
@@ -376,9 +376,9 @@ public class JsonToNBT
         return -1;
     }
 
-    private static boolean func_179271_b(String p_179271_0_, int p_179271_1_)
+    private static boolean func179271B(String p_179271_0_, int p_179271_1_)
     {
-        return p_179271_1_ > 0 && p_179271_0_.charAt(p_179271_1_ - 1) == 92 && !func_179271_b(p_179271_0_, p_179271_1_ - 1);
+        return p_179271_1_ > 0 && p_179271_0_.charAt(p_179271_1_ - 1) == 92 && !func179271B(p_179271_0_, p_179271_1_ - 1);
     }
 
     abstract static class Any

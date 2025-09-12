@@ -110,7 +110,6 @@ public class SimpleResource implements IResource {
 
     public int hashCode() {
         int i = this.resourcePackName != null ? this.resourcePackName.hashCode() : 0;
-        i = 31 * i + (this.srResourceLocation != null ? this.srResourceLocation.hashCode() : 0);
-        return i;
+        return 31 * i + (this.srResourceLocation != null ? this.srResourceLocation.hashCode() : 0);
     }
 }

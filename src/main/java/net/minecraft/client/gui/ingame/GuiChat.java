@@ -335,7 +335,7 @@ public class GuiChat extends GuiScreen
                 this.inputField.deleteFromCursor(this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false) - this.inputField.getCursorPosition());
                 this.inputField.writeText(s2);
             }
-            else if (this.foundPlayerNames.size() > 0)
+            else if (!this.foundPlayerNames.isEmpty())
             {
                 this.playerNamesFound = true;
                 this.autocompletePlayerNames();

@@ -518,9 +518,9 @@ public class EntityZombie extends EntityMob
         return f;
     }
 
-    protected boolean func_175448_a(ItemStack stack)
+    protected boolean func175448A(ItemStack stack)
     {
-        return stack.getItem() == Items.egg && this.isChild() && this.isRiding() ? false : super.func_175448_a(stack);
+        return stack.getItem() == Items.egg && this.isChild() && this.isRiding() ? false : super.func175448A(stack);
     }
 
     /**
@@ -552,7 +552,7 @@ public class EntityZombie extends EntityMob
 
                 if ((double)this.worldObj.rand.nextFloat() < 0.05D)
                 {
-                    List<EntityChicken> list = this.worldObj.<EntityChicken>getEntitiesWithinAABB(EntityChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
+                    List<EntityChicken> list = this.worldObj.getEntitiesWithinAABB(EntityChicken.class, this.getEntityBoundingBox().expand(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
 
                     if (!list.isEmpty())
                     {
@@ -801,7 +801,7 @@ public class EntityZombie extends EntityMob
         }
     }
 
-    class GroupData implements IEntityLivingData
+    final class GroupData implements IEntityLivingData
     {
         public boolean isChild;
         public boolean isVillager;

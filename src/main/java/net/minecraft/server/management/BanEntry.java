@@ -13,7 +13,7 @@ public abstract class BanEntry<T> extends UserListEntry<T>
     protected final Date banEndDate;
     protected final String reason;
 
-    public BanEntry(T valueIn, Date startDate, String banner, Date endDate, String banReason)
+    protected BanEntry(T valueIn, Date startDate, String banner, Date endDate, String banReason)
     {
         super(valueIn);
         this.banStartDate = startDate == null ? new Date() : startDate;

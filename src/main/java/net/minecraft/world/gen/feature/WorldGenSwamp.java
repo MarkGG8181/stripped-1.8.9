@@ -89,7 +89,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
                 if ((block1 == Blocks.grass || block1 == Blocks.dirt) && position.getY() < 256 - i - 1)
                 {
-                    this.func_175921_a(worldIn, position.down());
+                    this.func175921A(worldIn, position.down());
 
                     for (int l1 = position.getY() - 3 + i; l1 <= position.getY() + i; l1++)
                     {
@@ -148,22 +148,22 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
                                     if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos3).getBlock().getMaterial() == Material.air)
                                     {
-                                        this.func_181647_a(worldIn, blockpos3, BlockVine.EAST);
+                                        this.func181647A(worldIn, blockpos3, BlockVine.EAST);
                                     }
 
                                     if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos4).getBlock().getMaterial() == Material.air)
                                     {
-                                        this.func_181647_a(worldIn, blockpos4, BlockVine.WEST);
+                                        this.func181647A(worldIn, blockpos4, BlockVine.WEST);
                                     }
 
                                     if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos1).getBlock().getMaterial() == Material.air)
                                     {
-                                        this.func_181647_a(worldIn, blockpos1, BlockVine.SOUTH);
+                                        this.func181647A(worldIn, blockpos1, BlockVine.SOUTH);
                                     }
 
                                     if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos2).getBlock().getMaterial() == Material.air)
                                     {
-                                        this.func_181647_a(worldIn, blockpos2, BlockVine.NORTH);
+                                        this.func181647A(worldIn, blockpos2, BlockVine.NORTH);
                                     }
                                 }
                             }
@@ -184,7 +184,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
         }
     }
 
-    private void func_181647_a(World p_181647_1_, BlockPos p_181647_2_, PropertyBool p_181647_3_)
+    private void func181647A(World p_181647_1_, BlockPos p_181647_2_, PropertyBool p_181647_3_)
     {
         IBlockState iblockstate = Blocks.vine.getDefaultState().withProperty(p_181647_3_, Boolean.valueOf(true));
         this.setBlockAndNotifyAdequately(p_181647_1_, p_181647_2_, iblockstate);

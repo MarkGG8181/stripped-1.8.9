@@ -65,7 +65,6 @@ public class Vec4b
         int i = this.type;
         i = 31 * i + this.x;
         i = 31 * i + this.y;
-        i = 31 * i + this.rotation;
-        return i;
+        return 31 * i + this.rotation;
     }
 }

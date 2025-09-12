@@ -18,7 +18,7 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class ScreenShotHelper
+public final class ScreenShotHelper
 {
     private static final Logger logger = LogManager.getLogger();
     private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
@@ -134,7 +134,7 @@ public class ScreenShotHelper
      */
     private static File getTimestampedPNGFileForDirectory(File gameDirectory)
     {
-        String s = dateFormat.format(new Date()).toString();
+        String s = dateFormat.format(new Date());
         int i = 1;
 
         while (true)

@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonSerializableSet;
 
-public class AchievementList
+public final class AchievementList
 {
     /** Is the smallest column used to display a achievement on the GUI. */
     public static int minDisplayColumn;

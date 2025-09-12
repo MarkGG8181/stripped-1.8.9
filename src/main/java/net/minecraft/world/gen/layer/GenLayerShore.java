@@ -52,7 +52,7 @@ public class GenLayerShore extends GenLayer
                     int k3 = aint[j + 1 - 1 + (i + 1) * (areaWidth + 2)];
                     int j4 = aint[j + 1 + (i + 1 + 1) * (areaWidth + 2)];
 
-                    if (this.func_151631_c(i2) && this.func_151631_c(l2) && this.func_151631_c(k3) && this.func_151631_c(j4))
+                    if (this.func151631C(i2) && this.func151631C(l2) && this.func151631C(k3) && this.func151631C(j4))
                     {
                         if (!isBiomeOceanic(i2) && !isBiomeOceanic(l2) && !isBiomeOceanic(k3) && !isBiomeOceanic(j4))
                         {
@@ -72,7 +72,7 @@ public class GenLayerShore extends GenLayer
                 {
                     if (biomegenbase != null && biomegenbase.isSnowyBiome())
                     {
-                        this.func_151632_a(aint, aint1, j, i, areaWidth, k, BiomeGenBase.coldBeach.biomeID);
+                        this.func151632A(aint, aint1, j, i, areaWidth, k, BiomeGenBase.coldBeach.biomeID);
                     }
                     else if (k != BiomeGenBase.mesa.biomeID && k != BiomeGenBase.mesaPlateau_F.biomeID)
                     {
@@ -106,7 +106,7 @@ public class GenLayerShore extends GenLayer
 
                         if (!isBiomeOceanic(l) && !isBiomeOceanic(i1) && !isBiomeOceanic(j1) && !isBiomeOceanic(k1))
                         {
-                            if (this.func_151633_d(l) && this.func_151633_d(i1) && this.func_151633_d(j1) && this.func_151633_d(k1))
+                            if (this.func151633D(l) && this.func151633D(i1) && this.func151633D(j1) && this.func151633D(k1))
                             {
                                 aint1[j + i * areaWidth] = k;
                             }
@@ -123,7 +123,7 @@ public class GenLayerShore extends GenLayer
                 }
                 else
                 {
-                    this.func_151632_a(aint, aint1, j, i, areaWidth, k, BiomeGenBase.stoneBeach.biomeID);
+                    this.func151632A(aint, aint1, j, i, areaWidth, k, BiomeGenBase.stoneBeach.biomeID);
                 }
             }
         }
@@ -131,7 +131,7 @@ public class GenLayerShore extends GenLayer
         return aint1;
     }
 
-    private void func_151632_a(int[] p_151632_1_, int[] p_151632_2_, int p_151632_3_, int p_151632_4_, int p_151632_5_, int p_151632_6_, int p_151632_7_)
+    private void func151632A(int[] p_151632_1_, int[] p_151632_2_, int p_151632_3_, int p_151632_4_, int p_151632_5_, int p_151632_6_, int p_151632_7_)
     {
         if (isBiomeOceanic(p_151632_6_))
         {
@@ -155,12 +155,12 @@ public class GenLayerShore extends GenLayer
         }
     }
 
-    private boolean func_151631_c(int p_151631_1_)
+    private boolean func151631C(int p_151631_1_)
     {
         return BiomeGenBase.getBiome(p_151631_1_) != null && BiomeGenBase.getBiome(p_151631_1_).getBiomeClass() == BiomeGenJungle.class ? true : p_151631_1_ == BiomeGenBase.jungleEdge.biomeID || p_151631_1_ == BiomeGenBase.jungle.biomeID || p_151631_1_ == BiomeGenBase.jungleHills.biomeID || p_151631_1_ == BiomeGenBase.forest.biomeID || p_151631_1_ == BiomeGenBase.taiga.biomeID || isBiomeOceanic(p_151631_1_);
     }
 
-    private boolean func_151633_d(int p_151633_1_)
+    private boolean func151633D(int p_151633_1_)
     {
         return BiomeGenBase.getBiome(p_151633_1_) instanceof BiomeGenMesa;
     }

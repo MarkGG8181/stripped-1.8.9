@@ -29,7 +29,7 @@ public class CombatTracker
 
     public void func_94545_a()
     {
-        this.func_94542_g();
+        this.func94542G();
 
         if (this.fighter.isOnLadder())
         {
@@ -73,13 +73,13 @@ public class CombatTracker
 
     public IChatComponent getDeathMessage()
     {
-        if (this.combatEntries.size() == 0)
+        if (this.combatEntries.isEmpty())
         {
             return new ChatComponentTranslation("death.attack.generic", new Object[]{this.fighter.getDisplayName()});
         }
         else
         {
-            CombatEntry combatentry = this.func_94544_f();
+            CombatEntry combatentry = this.func94544F();
             CombatEntry combatentry1 = (CombatEntry)this.combatEntries.get(this.combatEntries.size() - 1);
             IChatComponent ichatcomponent1 = combatentry1.getDamageSrcDisplayName();
             Entity entity = combatentry1.getDamageSrc().getEntity();
@@ -125,7 +125,7 @@ public class CombatTracker
                 }
                 else
                 {
-                    ichatcomponent = new ChatComponentTranslation("death.fell.accident." + this.func_94548_b(combatentry), new Object[]{this.fighter.getDisplayName()});
+                    ichatcomponent = new ChatComponentTranslation("death.fell.accident." + this.func94548B(combatentry), new Object[]{this.fighter.getDisplayName()});
                 }
             }
             else
@@ -169,7 +169,7 @@ public class CombatTracker
         }
     }
 
-    private CombatEntry func_94544_f()
+    private CombatEntry func94544F()
     {
         CombatEntry combatentry = null;
         CombatEntry combatentry1 = null;
@@ -215,7 +215,7 @@ public class CombatTracker
         }
     }
 
-    private String func_94548_b(CombatEntry p_94548_1_)
+    private String func94548B(CombatEntry p_94548_1_)
     {
         return p_94548_1_.func_94562_g() == null ? "generic" : p_94548_1_.func_94562_g();
     }
@@ -225,7 +225,7 @@ public class CombatTracker
         return this.inCombat ? this.fighter.ticksExisted - this.combatStartTime : this.combatEndTime - this.combatStartTime;
     }
 
-    private void func_94542_g()
+    private void func94542G()
     {
         this.fallSuffix = null;
     }

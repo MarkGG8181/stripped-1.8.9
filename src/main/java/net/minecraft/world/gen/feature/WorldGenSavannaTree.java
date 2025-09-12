@@ -52,7 +52,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                     {
                         if (j >= 0 && j < 256)
                         {
-                            if (!this.func_150523_a(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
+                            if (!this.func150523A(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
                             {
                                 flag = false;
                             }
@@ -75,7 +75,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                 if ((block == Blocks.grass || block == Blocks.dirt) && position.getY() < 256 - i - 1)
                 {
-                    this.func_175921_a(worldIn, position.down());
+                    this.func175921A(worldIn, position.down());
                     EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
                     int k2 = i - rand.nextInt(4) - 1;
                     int l2 = 3 - rand.nextInt(3);
@@ -99,7 +99,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                         if (material == Material.air || material == Material.leaves)
                         {
-                            this.func_181642_b(worldIn, blockpos);
+                            this.func181642B(worldIn, blockpos);
                             k1 = i2;
                         }
                     }
@@ -112,7 +112,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                         {
                             if (Math.abs(j3) != 3 || Math.abs(i4) != 3)
                             {
-                                this.func_175924_b(worldIn, blockpos2.add(j3, 0, i4));
+                                this.func175924B(worldIn, blockpos2.add(j3, 0, i4));
                             }
                         }
                     }
@@ -123,14 +123,14 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                     {
                         for (int j4 = -1; j4 <= 1; j4++)
                         {
-                            this.func_175924_b(worldIn, blockpos2.add(k3, 0, j4));
+                            this.func175924B(worldIn, blockpos2.add(k3, 0, j4));
                         }
                     }
 
-                    this.func_175924_b(worldIn, blockpos2.east(2));
-                    this.func_175924_b(worldIn, blockpos2.west(2));
-                    this.func_175924_b(worldIn, blockpos2.south(2));
-                    this.func_175924_b(worldIn, blockpos2.north(2));
+                    this.func175924B(worldIn, blockpos2.east(2));
+                    this.func175924B(worldIn, blockpos2.west(2));
+                    this.func175924B(worldIn, blockpos2.south(2));
+                    this.func175924B(worldIn, blockpos2.north(2));
                     i3 = position.getX();
                     j1 = position.getZ();
                     EnumFacing enumfacing1 = EnumFacing.Plane.HORIZONTAL.random(rand);
@@ -141,7 +141,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                         int k4 = 1 + rand.nextInt(3);
                         k1 = 0;
 
-                        for (int l4 = l3; l4 < i && k4 > 0; k4--)
+                        for (int l4 = l3; l4 < i && k4 > 0; ++l4, k4--)
                         {
                             if (l4 >= 1)
                             {
@@ -153,12 +153,10 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                                 if (material1 == Material.air || material1 == Material.leaves)
                                 {
-                                    this.func_181642_b(worldIn, blockpos1);
+                                    this.func181642B(worldIn, blockpos1);
                                     k1 = j2;
                                 }
                             }
-
-                            ++l4;
                         }
 
                         if (k1 > 0)
@@ -171,7 +169,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                                 {
                                     if (Math.abs(i5) != 2 || Math.abs(k5) != 2)
                                     {
-                                        this.func_175924_b(worldIn, blockpos3.add(i5, 0, k5));
+                                        this.func175924B(worldIn, blockpos3.add(i5, 0, k5));
                                     }
                                 }
                             }
@@ -182,7 +180,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                             {
                                 for (int l5 = -1; l5 <= 1; l5++)
                                 {
-                                    this.func_175924_b(worldIn, blockpos3.add(j5, 0, l5));
+                                    this.func175924B(worldIn, blockpos3.add(j5, 0, l5));
                                 }
                             }
                         }
@@ -202,12 +200,12 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
         }
     }
 
-    private void func_181642_b(World p_181642_1_, BlockPos p_181642_2_)
+    private void func181642B(World p_181642_1_, BlockPos p_181642_2_)
     {
         this.setBlockAndNotifyAdequately(p_181642_1_, p_181642_2_, TRUNK);
     }
 
-    private void func_175924_b(World worldIn, BlockPos p_175924_2_)
+    private void func175924B(World worldIn, BlockPos p_175924_2_)
     {
         Material material = worldIn.getBlockState(p_175924_2_).getBlock().getMaterial();
 

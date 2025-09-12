@@ -10,7 +10,8 @@ public class PooledLongQueue {
 
     private final Pool pool;
 
-    private Segment cur, last;
+    private Segment cur;
+    private Segment last;
 
     private int size;
 
@@ -88,11 +89,12 @@ public class PooledLongQueue {
         this.empty = true;
     }
 
-    public class LongQueueIterator {
+    public final class LongQueueIterator {
         private Segment cur;
         private long[] curArray;
 
-        private int index, capacity;
+        private int index;
+        private int capacity;
 
         private LongQueueIterator(Segment cur) {
             this.cur = cur;
@@ -147,7 +149,7 @@ public class PooledLongQueue {
         }
     }
 
-    private static class Segment {
+    private static final class Segment {
         private final long[] longArray = new long[QUEUE_SEGMENT_SIZE];
         private int index;
         private Segment next;

@@ -12,7 +12,7 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class MapGenScatteredFeature extends MapGenStructure
 {
-    private static final List<BiomeGenBase> biomelist = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.swampland});
+    private static final List<BiomeGenBase> biomelist = Arrays.asList(BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.swampland);
     private List<BiomeGenBase.SpawnListEntry> scatteredFeatureSpawnList;
 
     /** the maximum distance between scattered features */
@@ -98,9 +98,9 @@ public class MapGenScatteredFeature extends MapGenStructure
 
     public boolean func_175798_a(BlockPos p_175798_1_)
     {
-        StructureStart structurestart = this.func_175797_c(p_175798_1_);
+        StructureStart structurestart = this.func175797C(p_175798_1_);
 
-        if (structurestart != null && structurestart instanceof MapGenScatteredFeature.Start && !structurestart.components.isEmpty())
+        if (structurestart instanceof MapGenScatteredFeature.Start && !structurestart.components.isEmpty())
         {
             StructureComponent structurecomponent = (StructureComponent)structurestart.components.getFirst();
             return structurecomponent instanceof ComponentScatteredFeaturePieces.SwampHut;

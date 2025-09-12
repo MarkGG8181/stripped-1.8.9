@@ -2,7 +2,7 @@ package net.minecraft.network;
 
 import net.minecraft.util.IThreadListener;
 
-public class PacketThreadUtil
+public final class PacketThreadUtil
 {
     public static <T extends INetHandler> void checkThreadAndEnqueue(final Packet<T> p_180031_0_, final T p_180031_1_, IThreadListener p_180031_2_) throws ThreadQuickExitException
     {

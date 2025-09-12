@@ -215,7 +215,7 @@ public class CrashReportCategory
     public static void addBlockInfo(CrashReportCategory category, final BlockPos pos, final Block blockIn, final int blockData)
     {
         final int i = Block.getIdFromBlock(blockIn);
-        category.addCrashSectionCallable("Block type", new Callable<String>()
+        category.addCrashSectionCallable("Block type", new Callable<>()
         {
             public String call() throws Exception
             {
@@ -229,7 +229,7 @@ public class CrashReportCategory
                 }
             }
         });
-        category.addCrashSectionCallable("Block data value", new Callable<String>()
+        category.addCrashSectionCallable("Block data value", new Callable<>()
         {
             public String call() throws Exception
             {
@@ -244,7 +244,7 @@ public class CrashReportCategory
                 }
             }
         });
-        category.addCrashSectionCallable("Block location", new Callable<String>()
+        category.addCrashSectionCallable("Block location", new Callable<>()
         {
             public String call() throws Exception
             {
@@ -255,14 +255,14 @@ public class CrashReportCategory
 
     public static void addBlockInfo(CrashReportCategory category, final BlockPos pos, final IBlockState state)
     {
-        category.addCrashSectionCallable("Block", new Callable<String>()
+        category.addCrashSectionCallable("Block", new Callable<>()
         {
             public String call() throws Exception
             {
                 return state.toString();
             }
         });
-        category.addCrashSectionCallable("Block location", new Callable<String>()
+        category.addCrashSectionCallable("Block location", new Callable<>()
         {
             public String call() throws Exception
             {

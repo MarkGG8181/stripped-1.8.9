@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.BufferUtils;
 
-public class ShaderLoader {
+public final class ShaderLoader {
     private final ShaderLoader.ShaderType shaderType;
     private final String shaderFilename;
     private final int shader;
@@ -85,7 +85,7 @@ public class ShaderLoader {
         return abyte;
     }
 
-    public static enum ShaderType {
+    public enum ShaderType {
         VERTEX("vertex", ".vsh", OpenGlHelper.GL_VERTEX_SHADER),
         FRAGMENT("fragment", ".fsh", OpenGlHelper.GL_FRAGMENT_SHADER);
 

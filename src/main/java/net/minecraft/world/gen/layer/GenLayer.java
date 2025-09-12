@@ -98,7 +98,7 @@ public abstract class GenLayer
         return new GenLayer[]{genlayerrivermix, genlayer3, genlayerrivermix};
     }
 
-    public GenLayer(long p_i2125_1_)
+    protected GenLayer(long p_i2125_1_)
     {
         this.baseSeed = p_i2125_1_;
         this.baseSeed *= this.baseSeed * 6364136223846793005L + 1442695040888963407L;
@@ -190,14 +190,14 @@ public abstract class GenLayer
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Biomes being compared");
                 crashreportcategory.addCrashSection("Biome A ID", Integer.valueOf(biomeIDA));
                 crashreportcategory.addCrashSection("Biome B ID", Integer.valueOf(biomeIDB));
-                crashreportcategory.addCrashSectionCallable("Biome A", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Biome A", new Callable<>()
                 {
                     public String call() throws Exception
                     {
                         return String.valueOf((Object)biomegenbase);
                     }
                 });
-                crashreportcategory.addCrashSectionCallable("Biome B", new Callable<String>()
+                crashreportcategory.addCrashSectionCallable("Biome B", new Callable<>()
                 {
                     public String call() throws Exception
                     {

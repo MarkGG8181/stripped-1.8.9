@@ -27,7 +27,7 @@ import net.minecraft.util.MathHelper;
  *  https://gitlab.com/coderbot16/i73/-/tree/master/i73-trig/src
  * @author jellysquid3  Additional optimizations, port to Java
  */
-public class CompactSineLUT {
+public final class CompactSineLUT {
 
     private static final int[] SINE_TABLE_INT = new int[16384 + 1];
     private static final float SINE_TABLE_MIDPOINT;

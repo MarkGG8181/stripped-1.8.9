@@ -18,7 +18,7 @@ public abstract class BehaviorProjectileDispense extends BehaviorDefaultDispense
         IPosition iposition = BlockDispenser.getDispensePosition(source);
         EnumFacing enumfacing = BlockDispenser.getFacing(source.getBlockMetadata());
         IProjectile iprojectile = this.getProjectileEntity(world, iposition);
-        iprojectile.setThrowableHeading((double)enumfacing.getFrontOffsetX(), (double)((float)enumfacing.getFrontOffsetY() + 0.1F), (double)enumfacing.getFrontOffsetZ(), this.func_82500_b(), this.func_82498_a());
+        iprojectile.setThrowableHeading((double)enumfacing.getFrontOffsetX(), (double)((float)enumfacing.getFrontOffsetY() + 0.1F), (double)enumfacing.getFrontOffsetZ(), this.func82500B(), this.func82498A());
         world.spawnEntityInWorld((Entity)iprojectile);
         stack.splitStack(1);
         return stack;
@@ -37,12 +37,12 @@ public abstract class BehaviorProjectileDispense extends BehaviorDefaultDispense
      */
     protected abstract IProjectile getProjectileEntity(World worldIn, IPosition position);
 
-    protected float func_82498_a()
+    protected float func82498A()
     {
         return 6.0F;
     }
 
-    protected float func_82500_b()
+    protected float func82500B()
     {
         return 1.1F;
     }

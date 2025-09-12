@@ -197,7 +197,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
      */
     public EntityFishHook fishEntity;
 
-    public EntityPlayer(World worldIn, GameProfile gameProfileIn) {
+    protected EntityPlayer(World worldIn, GameProfile gameProfileIn) {
         super(worldIn);
         this.entityUniqueID = getUUID(gameProfileIn);
         this.gameProfile = gameProfileIn;
@@ -659,7 +659,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return "game.player.die";
     }
 
-    private Collection<ScoreObjective> func_175137_e(Entity p_175137_1_) {
+    private Collection<ScoreObjective> func175137E(Entity p_175137_1_) {
         ScorePlayerTeam scoreplayerteam = this.getWorldScoreboard().getPlayersTeam(this.getName());
 
         if (scoreplayerteam != null) {
@@ -928,7 +928,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public boolean canAttackPlayer(EntityPlayer other) {
         Team team = this.getTeam();
         Team team1 = other.getTeam();
-        return team == null ? true : (!team.isSameTeam(team1) ? true : team.getAllowFriendlyFire());
+        return team == null ? true : (team.isSameTeam(team1) ? team.getAllowFriendlyFire() : true);
     }
 
     protected void damageArmor(float p_70675_1_) {
@@ -1261,7 +1261,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
             double d0 = 8.0D;
             double d1 = 5.0D;
-            List<EntityMob> list = this.worldObj.<EntityMob>getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB((double)bedLocation.getX() - d0, (double)bedLocation.getY() - d1, (double)bedLocation.getZ() - d0, (double)bedLocation.getX() + d0, (double)bedLocation.getY() + d1, (double)bedLocation.getZ() + d0));
+            List<EntityMob> list = this.worldObj.getEntitiesWithinAABB(EntityMob.class, new AxisAlignedBB((double)bedLocation.getX() - d0, (double)bedLocation.getY() - d1, (double)bedLocation.getZ() - d0, (double)bedLocation.getX() + d0, (double)bedLocation.getY() + d1, (double)bedLocation.getZ() + d0));
 
             if (!list.isEmpty()) {
                 return EntityPlayer.EnumStatus.NOT_SAFE;
@@ -1296,7 +1296,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
                     f = 0.9F;
             }
 
-            this.func_175139_a(enumfacing);
+            this.func175139A(enumfacing);
             this.setPosition((double)((float)bedLocation.getX() + f), (double)((float)bedLocation.getY() + 0.6875F), (double)((float)bedLocation.getZ() + f1));
         }
         else {
@@ -1315,7 +1315,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return EntityPlayer.EnumStatus.OK;
     }
 
-    private void func_175139_a(EnumFacing p_175139_1_) {
+    private void func175139A(EnumFacing p_175139_1_) {
         this.renderOffsetX = 0.0F;
         this.renderOffsetZ = 0.0F;
 
@@ -2043,7 +2043,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
     }
 
-    public static enum EnumChatVisibility {
+    public enum EnumChatVisibility {
         FULL(0, "options.chat.visibility.full"),
         SYSTEM(1, "options.chat.visibility.system"),
         HIDDEN(2, "options.chat.visibility.hidden");
@@ -2076,7 +2076,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
     }
 
-    public static enum EnumStatus {
+    public enum EnumStatus {
         OK,
         NOT_POSSIBLE_HERE,
         NOT_POSSIBLE_NOW,

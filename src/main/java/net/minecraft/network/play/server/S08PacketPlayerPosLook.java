@@ -94,7 +94,7 @@ public class S08PacketPlayerPosLook implements Packet<INetHandlerPlayClient>
         return this.flags;
     }
 
-    public static enum EnumFlags
+    public enum EnumFlags
     {
         X(0),
         Y(1),

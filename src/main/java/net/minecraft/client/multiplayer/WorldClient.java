@@ -388,28 +388,28 @@ public class WorldClient extends World
     public CrashReportCategory addWorldInfoToCrashReport(CrashReport report)
     {
         CrashReportCategory crashreportcategory = super.addWorldInfoToCrashReport(report);
-        crashreportcategory.addCrashSectionCallable("Forced entities", new Callable<String>()
+        crashreportcategory.addCrashSectionCallable("Forced entities", new Callable<>()
         {
             public String call()
             {
                 return WorldClient.this.entityList.size() + " total; " + WorldClient.this.entityList.toString();
             }
         });
-        crashreportcategory.addCrashSectionCallable("Retry entities", new Callable<String>()
+        crashreportcategory.addCrashSectionCallable("Retry entities", new Callable<>()
         {
             public String call()
             {
                 return WorldClient.this.entitySpawnQueue.size() + " total; " + WorldClient.this.entitySpawnQueue.toString();
             }
         });
-        crashreportcategory.addCrashSectionCallable("Server brand", new Callable<String>()
+        crashreportcategory.addCrashSectionCallable("Server brand", new Callable<>()
         {
             public String call() throws Exception
             {
                 return WorldClient.this.mc.thePlayer.getClientBrand();
             }
         });
-        crashreportcategory.addCrashSectionCallable("Server type", new Callable<String>()
+        crashreportcategory.addCrashSectionCallable("Server type", new Callable<>()
         {
             public String call() throws Exception
             {

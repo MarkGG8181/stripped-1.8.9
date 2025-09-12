@@ -57,7 +57,7 @@ public class CommandScoreboard extends CommandBase
      */
     public void processCommand(ICommandSender sender, String[] args) throws CommandException
     {
-        if (!this.func_175780_b(sender, args))
+        if (!this.func175780B(sender, args))
         {
             if (args.length < 1)
             {
@@ -168,7 +168,7 @@ public class CommandScoreboard extends CommandBase
                             throw new WrongUsageException("commands.scoreboard.players.enable.usage", new Object[0]);
                         }
 
-                        this.func_175779_n(sender, args, 2);
+                        this.func175779N(sender, args, 2);
                     }
                     else if ("test".equalsIgnoreCase(args[1]))
                     {
@@ -177,7 +177,7 @@ public class CommandScoreboard extends CommandBase
                             throw new WrongUsageException("commands.scoreboard.players.test.usage", new Object[0]);
                         }
 
-                        this.func_175781_o(sender, args, 2);
+                        this.func175781O(sender, args, 2);
                     }
                     else
                     {
@@ -191,7 +191,7 @@ public class CommandScoreboard extends CommandBase
                             throw new WrongUsageException("commands.scoreboard.players.operation.usage", new Object[0]);
                         }
 
-                        this.func_175778_p(sender, args, 2);
+                        this.func175778P(sender, args, 2);
                     }
                 }
                 else
@@ -279,7 +279,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    private boolean func_175780_b(ICommandSender p_175780_1_, String[] p_175780_2_) throws CommandException
+    private boolean func175780B(ICommandSender p_175780_1_, String[] p_175780_2_) throws CommandException
     {
         int i = -1;
 
@@ -326,7 +326,7 @@ public class CommandScoreboard extends CommandBase
             p_175780_2_[i] = s;
             p_175780_1_.setCommandStat(CommandResultStats.Type.AFFECTED_ENTITIES, list.size());
 
-            if (list.size() == 0)
+            if (list.isEmpty())
             {
                 throw new WrongUsageException("commands.scoreboard.allMatchesFailed", new Object[0]);
             }
@@ -505,7 +505,7 @@ public class CommandScoreboard extends CommandBase
                 }
                 else
                 {
-                    throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList(new String[]{"true", "false"}))});
+                    throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList("true", "false"))});
                 }
             }
             else
@@ -529,7 +529,7 @@ public class CommandScoreboard extends CommandBase
                 {
                     if (!"true".equalsIgnoreCase(s1) && !"false".equalsIgnoreCase(s1))
                     {
-                        throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList(new String[]{"true", "false"}))});
+                        throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList("true", "false"))});
                     }
 
                     scoreplayerteam.setAllowFriendlyFire("true".equalsIgnoreCase(s1));
@@ -538,7 +538,7 @@ public class CommandScoreboard extends CommandBase
                 {
                     if (!"true".equalsIgnoreCase(s1) && !"false".equalsIgnoreCase(s1))
                     {
-                        throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList(new String[]{"true", "false"}))});
+                        throw new WrongUsageException("commands.scoreboard.teams.option.noValue", new Object[]{s, joinNiceStringFromCollection(Arrays.asList("true", "false"))});
                     }
 
                     scoreplayerteam.setSeeFriendlyInvisiblesEnabled("true".equalsIgnoreCase(s1));
@@ -971,7 +971,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    protected void func_175779_n(ICommandSender p_175779_1_, String[] p_175779_2_, int p_175779_3_) throws CommandException
+    protected void func175779N(ICommandSender p_175779_1_, String[] p_175779_2_, int p_175779_3_) throws CommandException
     {
         Scoreboard scoreboard = this.getScoreboard();
         String s = getPlayerName(p_175779_1_, p_175779_2_[p_175779_3_++]);
@@ -997,7 +997,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    protected void func_175781_o(ICommandSender p_175781_1_, String[] p_175781_2_, int p_175781_3_) throws CommandException
+    protected void func175781O(ICommandSender p_175781_1_, String[] p_175781_2_, int p_175781_3_) throws CommandException
     {
         Scoreboard scoreboard = this.getScoreboard();
         String s = getEntityName(p_175781_1_, p_175781_2_[p_175781_3_++]);
@@ -1033,7 +1033,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    protected void func_175778_p(ICommandSender p_175778_1_, String[] p_175778_2_, int p_175778_3_) throws CommandException
+    protected void func175778P(ICommandSender p_175778_1_, String[] p_175778_2_, int p_175778_3_) throws CommandException
     {
         Scoreboard scoreboard = this.getScoreboard();
         String s = getEntityName(p_175778_1_, p_175778_2_[p_175778_3_++]);
@@ -1144,7 +1144,7 @@ public class CommandScoreboard extends CommandBase
                 {
                     if (args.length == 3)
                     {
-                        return getListOfStringsMatchingLastWord(args, this.func_147184_a(false));
+                        return getListOfStringsMatchingLastWord(args, this.func147184A(false));
                     }
                 }
                 else if ("setdisplay".equalsIgnoreCase(args[1]))
@@ -1156,7 +1156,7 @@ public class CommandScoreboard extends CommandBase
 
                     if (args.length == 4)
                     {
-                        return getListOfStringsMatchingLastWord(args, this.func_147184_a(false));
+                        return getListOfStringsMatchingLastWord(args, this.func147184A(false));
                     }
                 }
             }
@@ -1178,7 +1178,7 @@ public class CommandScoreboard extends CommandBase
 
                         if (args.length == 4)
                         {
-                            return getListOfStringsMatchingLastWord(args, this.func_175782_e());
+                            return getListOfStringsMatchingLastWord(args, this.func175782E());
                         }
                     }
                     else if (!"list".equalsIgnoreCase(args[1]) && !"test".equalsIgnoreCase(args[1]))
@@ -1192,7 +1192,7 @@ public class CommandScoreboard extends CommandBase
 
                             if (args.length == 4)
                             {
-                                return getListOfStringsMatchingLastWord(args, this.func_147184_a(true));
+                                return getListOfStringsMatchingLastWord(args, this.func147184A(true));
                             }
 
                             if (args.length == 5)
@@ -1207,7 +1207,7 @@ public class CommandScoreboard extends CommandBase
 
                             if (args.length == 7)
                             {
-                                return getListOfStringsMatchingLastWord(args, this.func_147184_a(false));
+                                return getListOfStringsMatchingLastWord(args, this.func147184A(false));
                             }
                         }
                     }
@@ -1220,7 +1220,7 @@ public class CommandScoreboard extends CommandBase
 
                         if (args.length == 4 && "test".equalsIgnoreCase(args[1]))
                         {
-                            return getListOfStringsMatchingLastWord(args, this.func_147184_a(false));
+                            return getListOfStringsMatchingLastWord(args, this.func147184A(false));
                         }
                     }
                 }
@@ -1233,7 +1233,7 @@ public class CommandScoreboard extends CommandBase
 
                     if (args.length == 4)
                     {
-                        return getListOfStringsMatchingLastWord(args, this.func_147184_a(true));
+                        return getListOfStringsMatchingLastWord(args, this.func147184A(true));
                     }
                 }
             }
@@ -1307,7 +1307,7 @@ public class CommandScoreboard extends CommandBase
         }
     }
 
-    protected List<String> func_147184_a(boolean p_147184_1_)
+    protected List<String> func147184A(boolean p_147184_1_)
     {
         Collection<ScoreObjective> collection = this.getScoreboard().getScoreObjectives();
         List<String> list = new ArrayList<>();
@@ -1323,7 +1323,7 @@ public class CommandScoreboard extends CommandBase
         return list;
     }
 
-    protected List<String> func_175782_e()
+    protected List<String> func175782E()
     {
         Collection<ScoreObjective> collection = this.getScoreboard().getScoreObjectives();
         List<String> list = new ArrayList<>();
@@ -1344,6 +1344,6 @@ public class CommandScoreboard extends CommandBase
      */
     public boolean isUsernameIndex(String[] args, int index)
     {
-        return !"players".equalsIgnoreCase(args[0]) ? ("teams".equalsIgnoreCase(args[0]) ? index == 2 : false) : (args.length > 1 && "operation".equalsIgnoreCase(args[1]) ? index == 2 || index == 5 : index == 2);
+        return "players".equalsIgnoreCase(args[0]) ? (args.length > 1 && "operation".equalsIgnoreCase(args[1]) ? index == 2 || index == 5 : index == 2) : ("teams".equalsIgnoreCase(args[0]) ? index == 2 : false);
     }
 }

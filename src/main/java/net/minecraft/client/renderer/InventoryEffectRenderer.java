@@ -12,7 +12,7 @@ public abstract class InventoryEffectRenderer extends GuiContainer
     /** True if there is some potion effect to display */
     private boolean hasActivePotionEffects;
 
-    public InventoryEffectRenderer(Container inventorySlotsIn)
+    protected InventoryEffectRenderer(Container inventorySlotsIn)
     {
         super(inventorySlotsIn);
     }

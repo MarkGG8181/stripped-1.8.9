@@ -21,26 +21,26 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
     protected final Minecraft mc;
     protected final GuiResourcePackSettings resourcePacksGUI;
 
-    public ResourcePackListEntry(GuiResourcePackSettings resourcePacksGUIIn) {
+    protected ResourcePackListEntry(GuiResourcePackSettings resourcePacksGUIIn) {
         this.resourcePacksGUI = resourcePacksGUIIn;
         this.mc = Minecraft.getMinecraft();
     }
 
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected) {
-        int i = this.func_183019_a();
+        int i = this.func183019A();
 
         if (i != 1) {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             Gui.drawRect(x - 1, y - 1, x + listWidth - 9, y + slotHeight + 1, -8978432);
         }
 
-        this.func_148313_c();
+        this.func148313C();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 0.0F, 32, 32, 32.0F, 32.0F);
-        String s = this.func_148312_b();
-        String s1 = this.func_148311_a();
+        String s = this.func148312B();
+        String s1 = this.func148311A();
 
-        if (isSelected && this.func_148310_d()) {
+        if (isSelected && this.func148310D()) {
             this.mc.getTextureManager().bindTexture(RESOURCE_PACKS_TEXTURE);
             Gui.drawRect(x, y, x + 32, y + 32, -1601138544);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -56,7 +56,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                 s1 = INCOMPATIBLE_NEW.getFormattedText();
             }
 
-            if (this.func_148309_e()) {
+            if (this.func148309E()) {
                 if (j < 32) {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 32.0F, 32, 32, 256.0F, 256.0F);
                 }
@@ -65,7 +65,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                 }
             }
             else {
-                if (this.func_148308_f()) {
+                if (this.func148308F()) {
                     if (j < 16) {
                         Gui.drawModalRectWithCustomSizedTexture(x, y, 32.0F, 32.0F, 32, 32, 256.0F, 256.0F);
                     }
@@ -74,7 +74,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                     }
                 }
 
-                if (this.func_148314_g()) {
+                if (this.func148314G()) {
                     if (j < 32 && j > 16 && k < 16) {
                         Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 32.0F, 32, 32, 256.0F, 256.0F);
                     }
@@ -83,7 +83,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                     }
                 }
 
-                if (this.func_148307_h()) {
+                if (this.func148307H()) {
                     if (j < 32 && j > 16 && k > 16) {
                         Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 32.0F, 32, 32, 256.0F, 256.0F);
                     }
@@ -108,46 +108,46 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
         }
     }
 
-    protected abstract int func_183019_a();
+    protected abstract int func183019A();
 
-    protected abstract String func_148311_a();
+    protected abstract String func148311A();
 
-    protected abstract String func_148312_b();
+    protected abstract String func148312B();
 
-    protected abstract void func_148313_c();
+    protected abstract void func148313C();
 
-    protected boolean func_148310_d() {
+    protected boolean func148310D() {
         return true;
     }
 
-    protected boolean func_148309_e() {
+    protected boolean func148309E() {
         return !this.resourcePacksGUI.hasResourcePackEntry(this);
     }
 
-    protected boolean func_148308_f() {
+    protected boolean func148308F() {
         return this.resourcePacksGUI.hasResourcePackEntry(this);
     }
 
-    protected boolean func_148314_g() {
+    protected boolean func148314G() {
         List<ResourcePackListEntry> list = this.resourcePacksGUI.getListContaining(this);
         int i = list.indexOf(this);
-        return i > 0 && ((ResourcePackListEntry)list.get(i - 1)).func_148310_d();
+        return i > 0 && ((ResourcePackListEntry)list.get(i - 1)).func148310D();
     }
 
-    protected boolean func_148307_h() {
+    protected boolean func148307H() {
         List<ResourcePackListEntry> list = this.resourcePacksGUI.getListContaining(this);
         int i = list.indexOf(this);
-        return i >= 0 && i < list.size() - 1 && ((ResourcePackListEntry)list.get(i + 1)).func_148310_d();
+        return i >= 0 && i < list.size() - 1 && ((ResourcePackListEntry)list.get(i + 1)).func148310D();
     }
 
     /**
      * Returns true if the mouse has been pressed on this control.
      */
     public boolean mousePressed(int slotIndex, int p_148278_2_, int p_148278_3_, int p_148278_4_, int p_148278_5_, int p_148278_6_) {
-        if (this.func_148310_d() && p_148278_5_ <= 32) {
-            if (this.func_148309_e()) {
+        if (this.func148310D() && p_148278_5_ <= 32) {
+            if (this.func148309E()) {
                 this.resourcePacksGUI.markChanged();
-                int j = this.func_183019_a();
+                int j = this.func183019A();
 
                 if (j != 1) {
                     String s1 = I18n.format("resourcePack.incompatible.confirm.title", new Object[0]);
@@ -172,14 +172,14 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                 return true;
             }
 
-            if (p_148278_5_ < 16 && this.func_148308_f()) {
+            if (p_148278_5_ < 16 && this.func148308F()) {
                 this.resourcePacksGUI.getListContaining(this).remove(this);
                 this.resourcePacksGUI.getAvailableResourcePacks().addFirst(this);
                 this.resourcePacksGUI.markChanged();
                 return true;
             }
 
-            if (p_148278_5_ > 16 && p_148278_6_ < 16 && this.func_148314_g()) {
+            if (p_148278_5_ > 16 && p_148278_6_ < 16 && this.func148314G()) {
                 List<ResourcePackListEntry> list1 = this.resourcePacksGUI.getListContaining(this);
                 int k = list1.indexOf(this);
                 list1.remove(this);
@@ -188,7 +188,7 @@ public abstract class ResourcePackListEntry implements GuiListExtended.IGuiListE
                 return true;
             }
 
-            if (p_148278_5_ > 16 && p_148278_6_ > 16 && this.func_148307_h()) {
+            if (p_148278_5_ > 16 && p_148278_6_ > 16 && this.func148307H()) {
                 List<ResourcePackListEntry> list = this.resourcePacksGUI.getListContaining(this);
                 int i = list.indexOf(this);
                 list.remove(this);

@@ -28,7 +28,7 @@ public abstract class CommandBase implements ICommand
 
     public List<String> getCommandAliases()
     {
-        return Collections.<String>emptyList();
+        return Collections.emptyList();
     }
 
     /**

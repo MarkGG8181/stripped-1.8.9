@@ -13,7 +13,7 @@ import java.lang.reflect.Type;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 
-public class ChunkProviderSettings
+public final class ChunkProviderSettings
 {
     public final float coordinateScale;
     public final float heightScale;
@@ -465,8 +465,7 @@ public class ChunkProviderSettings
             i = 31 * i + this.lapisSize;
             i = 31 * i + this.lapisCount;
             i = 31 * i + this.lapisCenterHeight;
-            i = 31 * i + this.lapisSpread;
-            return i;
+            return 31 * i + this.lapisSpread;
         }
 
         public ChunkProviderSettings func_177864_b()

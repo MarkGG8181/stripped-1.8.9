@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class BlockPortal extends BlockBreakable
 {
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, new EnumFacing.Axis[]{EnumFacing.Axis.X, EnumFacing.Axis.Z});
+    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.create("axis", EnumFacing.Axis.class, new EnumFacing.Axis[]{EnumFacing.Axis.X, EnumFacing.Axis.Z});
 
     public BlockPortal()
     {
@@ -340,16 +340,16 @@ public class BlockPortal extends BlockBreakable
                 this.rightDir = EnumFacing.SOUTH;
             }
 
-            for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.func_150857_a(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
+            for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.func150857A(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
             {
             }
 
-            int i = this.func_180120_a(p_i45694_2_, this.leftDir) - 1;
+            int i = this.func180120A(p_i45694_2_, this.leftDir) - 1;
 
             if (i >= 0)
             {
                 this.bottomLeft = p_i45694_2_.offset(this.leftDir, i);
-                this.width = this.func_180120_a(this.bottomLeft, this.rightDir);
+                this.width = this.func180120A(this.bottomLeft, this.rightDir);
 
                 if (this.width < 2 || this.width > 21)
                 {
@@ -360,11 +360,11 @@ public class BlockPortal extends BlockBreakable
 
             if (this.bottomLeft != null)
             {
-                this.height = this.func_150858_a();
+                this.height = this.func150858A();
             }
         }
 
-        protected int func_180120_a(BlockPos p_180120_1_, EnumFacing p_180120_2_)
+        protected int func180120A(BlockPos p_180120_1_, EnumFacing p_180120_2_)
         {
             int i;
 
@@ -372,7 +372,7 @@ public class BlockPortal extends BlockBreakable
             {
                 BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
 
-                if (!this.func_150857_a(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.obsidian)
+                if (!this.func150857A(this.world.getBlockState(blockpos).getBlock()) || this.world.getBlockState(blockpos.down()).getBlock() != Blocks.obsidian)
                 {
                     break;
                 }
@@ -392,7 +392,7 @@ public class BlockPortal extends BlockBreakable
             return this.width;
         }
 
-        protected int func_150858_a()
+        protected int func150858A()
         {
             label24:
 
@@ -403,7 +403,7 @@ public class BlockPortal extends BlockBreakable
                     BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
                     Block block = this.world.getBlockState(blockpos).getBlock();
 
-                    if (!this.func_150857_a(block))
+                    if (!this.func150857A(block))
                     {
                         break label24;
                     }
@@ -456,7 +456,7 @@ public class BlockPortal extends BlockBreakable
             }
         }
 
-        protected boolean func_150857_a(Block p_150857_1_)
+        protected boolean func150857A(Block p_150857_1_)
         {
             return p_150857_1_.blockMaterial == Material.air || p_150857_1_ == Blocks.fire || p_150857_1_ == Blocks.portal;
         }

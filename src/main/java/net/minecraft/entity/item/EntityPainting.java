@@ -138,7 +138,7 @@ public class EntityPainting extends EntityHanging
         this.setPosition((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
     }
 
-    public static enum EnumArt
+    public enum EnumArt
     {
         KEBAB("Kebab", 16, 16, 0, 0),
         AZTEC("Aztec", 16, 16, 16, 0),

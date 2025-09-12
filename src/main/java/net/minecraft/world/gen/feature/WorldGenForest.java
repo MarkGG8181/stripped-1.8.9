@@ -58,7 +58,7 @@ public class WorldGenForest extends WorldGenAbstractTree
                     {
                         if (j >= 0 && j < 256)
                         {
-                            if (!this.func_150523_a(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
+                            if (!this.func150523A(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
                             {
                                 flag = false;
                             }
@@ -81,7 +81,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                 if ((block1 == Blocks.grass || block1 == Blocks.dirt || block1 == Blocks.farmland) && position.getY() < 256 - i - 1)
                 {
-                    this.func_175921_a(worldIn, position.down());
+                    this.func175921A(worldIn, position.down());
 
                     for (int i2 = position.getY() - 3 + i; i2 <= position.getY() + i; i2++)
                     {

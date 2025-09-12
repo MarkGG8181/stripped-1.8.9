@@ -114,7 +114,7 @@ public class ChunkProviderGenerate implements IChunkProvider
     public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
     {
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-        this.func_147423_a(x * 4, 0, z * 4);
+        this.func147423A(x * 4, 0, z * 4);
 
         for (int i = 0; i < 4; i++)
         {
@@ -258,7 +258,7 @@ public class ChunkProviderGenerate implements IChunkProvider
         return chunk;
     }
 
-    private void func_147423_a(int x, int y, int z)
+    private void func147423A(int x, int y, int z)
     {
         this.depthNoiseArray = this.noiseGen6.generateNoiseOctaves(this.depthNoiseArray, x, z, 5, 5, (double)this.settings.depthNoiseScaleX, (double)this.settings.depthNoiseScaleZ, (double)this.settings.depthNoiseScaleExponent);
         float f = this.settings.coordinateScale;

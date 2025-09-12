@@ -12,7 +12,7 @@ import java.util.List;
  * BlockPos with an associated {@link ExtendedMutableBlockPos}. Used when some methods are called concurrently,
  * so we can't use a class variable to store a {@link PooledMutableBlockPos}.
  */
-public class AssociatedMutableBlockPos extends ExtendedMutableBlockPos implements AutoCloseable {
+public final class AssociatedMutableBlockPos extends ExtendedMutableBlockPos implements AutoCloseable {
     private static final List<AssociatedMutableBlockPos> POOL = new ArrayList<>(100);
 
     private boolean released;

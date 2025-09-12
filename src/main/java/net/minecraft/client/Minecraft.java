@@ -1283,39 +1283,36 @@ public class Minecraft implements IThreadListener {
                 logger.warn("Null returned as 'hitResult', this shouldn't happen!");
             }
             else {
-                switch (this.objectMouseOver.typeOfHit) {
-                    case ENTITY:
-                        if (this.playerController.isPlayerRightClickingOnEntity(this.thePlayer, this.objectMouseOver.entityHit, this.objectMouseOver)) {
+                if (this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY) {
+                    if (this.playerController.isPlayerRightClickingOnEntity(this.thePlayer, this.objectMouseOver.entityHit, this.objectMouseOver)) {
+                        flag = false;
+                    }
+                    else if (this.playerController.interactWithEntitySendPacket(this.thePlayer, this.objectMouseOver.entityHit)) {
+                        flag = false;
+                    }
+                }
+                else if (this.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+                    BlockPos blockpos = this.objectMouseOver.getBlockPos();
+
+                    if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air) {
+                        int i = itemstack != null ? itemstack.stackSize : 0;
+
+                        if (this.playerController.onPlayerRightClick(this.thePlayer, this.theWorld, itemstack, blockpos, this.objectMouseOver.sideHit, this.objectMouseOver.hitVec)) {
                             flag = false;
-                        }
-                        else if (this.playerController.interactWithEntitySendPacket(this.thePlayer, this.objectMouseOver.entityHit)) {
-                            flag = false;
+                            this.thePlayer.swingItem();
                         }
 
-                        break;
-
-                    case BLOCK:
-                        BlockPos blockpos = this.objectMouseOver.getBlockPos();
-
-                        if (this.theWorld.getBlockState(blockpos).getBlock().getMaterial() != Material.air) {
-                            int i = itemstack != null ? itemstack.stackSize : 0;
-
-                            if (this.playerController.onPlayerRightClick(this.thePlayer, this.theWorld, itemstack, blockpos, this.objectMouseOver.sideHit, this.objectMouseOver.hitVec)) {
-                                flag = false;
-                                this.thePlayer.swingItem();
-                            }
-
-                            if (itemstack == null) {
-                                return;
-                            }
-
-                            if (itemstack.stackSize == 0) {
-                                this.thePlayer.inventory.mainInventory[this.thePlayer.inventory.currentItem] = null;
-                            }
-                            else if (itemstack.stackSize != i || this.playerController.isInCreativeMode()) {
-                                this.entityRenderer.itemRenderer.resetEquippedProgress();
-                            }
+                        if (itemstack == null) {
+                            return;
                         }
+
+                        if (itemstack.stackSize == 0) {
+                            this.thePlayer.inventory.mainInventory[this.thePlayer.inventory.currentItem] = null;
+                        }
+                        else if (itemstack.stackSize != i || this.playerController.isInCreativeMode()) {
+                            this.entityRenderer.itemRenderer.resetEquippedProgress();
+                        }
+                    }
                 }
             }
 
@@ -1430,7 +1427,7 @@ public class Minecraft implements IThreadListener {
                 this.displayGuiScreen(new GuiSleepMP());
             }
         }
-        else if (this.currentScreen != null && this.currentScreen instanceof GuiSleepMP && !this.thePlayer.isPlayerSleeping()) {
+        else if (this.currentScreen instanceof GuiSleepMP && !this.thePlayer.isPlayerSleeping()) {
             this.displayGuiScreen(null);
         }
 
@@ -2037,6 +2034,7 @@ public class Minecraft implements IThreadListener {
                         }
                     }
                 }
+
             }
 
             InventoryPlayer inventoryplayer = this.thePlayer.inventory;

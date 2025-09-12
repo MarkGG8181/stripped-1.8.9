@@ -44,7 +44,7 @@ public class ServersideAttributeMap extends BaseAttributeMap
         return iattributeinstance;
     }
 
-    protected IAttributeInstance func_180376_c(IAttribute attribute)
+    protected IAttributeInstance func180376C(IAttribute attribute)
     {
         return new ModifiableAttributeInstance(this, attribute);
     }

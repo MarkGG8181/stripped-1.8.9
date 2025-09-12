@@ -24,7 +24,7 @@ public interface IScoreObjectiveCriteria {
 
     IScoreObjectiveCriteria.EnumRenderType getRenderType();
 
-    public static enum EnumRenderType {
+    public enum EnumRenderType {
         INTEGER("integer"),
         HEARTS("hearts");
 

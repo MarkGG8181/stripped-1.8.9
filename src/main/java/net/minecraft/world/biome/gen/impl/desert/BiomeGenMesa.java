@@ -65,7 +65,7 @@ public class BiomeGenMesa extends BiomeGenBase {
 
     public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
         if (this.clayBands == null || this.worldSeed != worldIn.getSeed()) {
-            this.func_150619_a(worldIn.getSeed());
+            this.func150619A(worldIn.getSeed());
         }
 
         if (this.pillarNoise == null || this.pillarRoofNoise == null || this.worldSeed != worldIn.getSeed()) {
@@ -166,7 +166,7 @@ public class BiomeGenMesa extends BiomeGenBase {
                                     iblockstate4 = Blocks.hardened_clay.getDefaultState();
                                 }
                                 else {
-                                    iblockstate4 = this.func_180629_a(x, i1);
+                                    iblockstate4 = this.func180629A(x, i1);
                                 }
                             }
                             else {
@@ -184,7 +184,7 @@ public class BiomeGenMesa extends BiomeGenBase {
                             chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE));
                         }
                         else {
-                            IBlockState iblockstate2 = this.func_180629_a(x, i1);
+                            IBlockState iblockstate2 = this.func180629A(x, i1);
                             chunkPrimerIn.setBlockState(k1, i1, j1, iblockstate2);
                         }
                     }
@@ -193,7 +193,7 @@ public class BiomeGenMesa extends BiomeGenBase {
         }
     }
 
-    private void func_150619_a(long p_150619_1_) {
+    private void func150619A(long p_150619_1_) {
         this.clayBands = new IBlockState[64];
         Arrays.fill(this.clayBands, Blocks.hardened_clay.getDefaultState());
         Random random = new Random(p_150619_1_);
@@ -261,7 +261,7 @@ public class BiomeGenMesa extends BiomeGenBase {
         }
     }
 
-    private IBlockState func_180629_a(int p_180629_1_, int p_180629_2_) {
+    private IBlockState func180629A(int p_180629_1_, int p_180629_2_) {
         int i = (int)Math.round(this.clayBandsOffsetNoise.func_151601_a((double)p_180629_1_ * 1.0D / 512.0D, (double)p_180629_1_ * 1.0D / 512.0D) * 2.0D);
         return this.clayBands[(p_180629_2_ + i + 64) % 64];
     }
@@ -278,7 +278,7 @@ public class BiomeGenMesa extends BiomeGenBase {
             biomegenmesa.setBiomeName(this.biomeName + " (Bryce)");
         }
 
-        biomegenmesa.func_150557_a(this.color, true);
+        biomegenmesa.func150557A(this.color, true);
         return biomegenmesa;
     }
 }

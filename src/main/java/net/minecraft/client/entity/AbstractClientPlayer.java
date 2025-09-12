@@ -22,7 +22,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
 {
     private NetworkPlayerInfo playerInfo;
 
-    public AbstractClientPlayer(World worldIn, GameProfile playerProfile)
+    protected AbstractClientPlayer(World worldIn, GameProfile playerProfile)
     {
         super(worldIn, playerProfile);
     }

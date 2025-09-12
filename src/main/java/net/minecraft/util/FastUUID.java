@@ -3,7 +3,7 @@ package net.minecraft.util;
 import java.util.Arrays;
 import java.util.UUID;
 
-public class FastUUID
+public final class FastUUID
 {
     private static final boolean USE_JDK_UUID_TO_STRING;
     private static final int UUID_STRING_LENGTH = 36;

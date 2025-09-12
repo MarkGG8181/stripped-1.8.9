@@ -28,7 +28,7 @@ public class BlockFaceUV
         }
         else
         {
-            int i = this.func_178347_d(p_178348_1_);
+            int i = this.func178347D(p_178348_1_);
             return i != 0 && i != 1 ? this.uvs[2] : this.uvs[0];
         }
     }
@@ -41,12 +41,12 @@ public class BlockFaceUV
         }
         else
         {
-            int i = this.func_178347_d(p_178346_1_);
+            int i = this.func178347D(p_178346_1_);
             return i != 0 && i != 3 ? this.uvs[3] : this.uvs[1];
         }
     }
 
-    private int func_178347_d(int p_178347_1_)
+    private int func178347D(int p_178347_1_)
     {
         return (p_178347_1_ + this.rotation / 90) % 4;
     }

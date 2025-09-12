@@ -6,7 +6,7 @@ import com.google.common.collect.UnmodifiableIterator;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class Cartesian
+public final class Cartesian
 {
     public static <T> Iterable<T[]> cartesianProduct(Class<T> clazz, Iterable<? extends Iterable<? extends T>> sets)
     {
@@ -40,7 +40,7 @@ public class Cartesian
         return (T[])((Object[])((Object[])Array.newInstance(p_179319_0_, p_179319_1_)));
     }
 
-    static class GetList<T> implements Function<Object[], List<T>>
+    static final class GetList<T> implements Function<Object[], List<T>>
     {
         private GetList()
         {
@@ -48,11 +48,11 @@ public class Cartesian
 
         public List<T> apply(Object[] p_apply_1_)
         {
-            return Arrays.<T>asList((T[])p_apply_1_);
+            return Arrays.asList((T[])p_apply_1_);
         }
     }
 
-    static class Product<T> implements Iterable<T[]>
+    static final class Product<T> implements Iterable<T[]>
     {
         private final Class<T> clazz;
         private final Iterable<? extends T>[] iterables;
@@ -68,7 +68,7 @@ public class Cartesian
             return this.iterables.length <= 0 ? Collections.singletonList(Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables);
         }
 
-        static class ProductIterator<T> extends UnmodifiableIterator<T[]>
+        static final class ProductIterator<T> extends UnmodifiableIterator<T[]>
         {
             private int index;
             private final Iterable<? extends T>[] iterables;

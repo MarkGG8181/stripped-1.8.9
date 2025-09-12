@@ -49,45 +49,43 @@ public class ARBShaderObjects {
     public static final int GL_PROGRAM_OBJECT_ARB = 0x8B40;
 
     /** Accepted by the {@code pname} parameter of GetObjectParameter{fi}vARB. */
-    public static final int
-        GL_OBJECT_TYPE_ARB = 0x8B4E,
-        GL_OBJECT_SUBTYPE_ARB = 0x8B4F,
-        GL_OBJECT_DELETE_STATUS_ARB = 0x8B80,
-        GL_OBJECT_COMPILE_STATUS_ARB = 0x8B81,
-        GL_OBJECT_LINK_STATUS_ARB = 0x8B82,
-        GL_OBJECT_VALIDATE_STATUS_ARB = 0x8B83,
-        GL_OBJECT_INFO_LOG_LENGTH_ARB = 0x8B84,
-        GL_OBJECT_ATTACHED_OBJECTS_ARB = 0x8B85,
-        GL_OBJECT_ACTIVE_UNIFORMS_ARB = 0x8B86,
-        GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 0x8B87,
-        GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 0x8B88;
+    public static final int GL_OBJECT_TYPE_ARB = 0x8B4E;
+    public static final int GL_OBJECT_SUBTYPE_ARB = 0x8B4F;
+    public static final int GL_OBJECT_DELETE_STATUS_ARB = 0x8B80;
+    public static final int GL_OBJECT_COMPILE_STATUS_ARB = 0x8B81;
+    public static final int GL_OBJECT_LINK_STATUS_ARB = 0x8B82;
+    public static final int GL_OBJECT_VALIDATE_STATUS_ARB = 0x8B83;
+    public static final int GL_OBJECT_INFO_LOG_LENGTH_ARB = 0x8B84;
+    public static final int GL_OBJECT_ATTACHED_OBJECTS_ARB = 0x8B85;
+    public static final int GL_OBJECT_ACTIVE_UNIFORMS_ARB = 0x8B86;
+    public static final int GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 0x8B87;
+    public static final int GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 0x8B88;
 
     /** Returned by the {@code params} parameter of GetObjectParameter{fi}vARB. */
     public static final int GL_SHADER_OBJECT_ARB = 0x8B48;
 
     /** Returned by the {@code type} parameter of GetActiveUniformARB. */
-    public static final int
-        GL_FLOAT_VEC2_ARB = 0x8B50,
-        GL_FLOAT_VEC3_ARB = 0x8B51,
-        GL_FLOAT_VEC4_ARB = 0x8B52,
-        GL_INT_VEC2_ARB = 0x8B53,
-        GL_INT_VEC3_ARB = 0x8B54,
-        GL_INT_VEC4_ARB = 0x8B55,
-        GL_BOOL_ARB = 0x8B56,
-        GL_BOOL_VEC2_ARB = 0x8B57,
-        GL_BOOL_VEC3_ARB = 0x8B58,
-        GL_BOOL_VEC4_ARB = 0x8B59,
-        GL_FLOAT_MAT2_ARB = 0x8B5A,
-        GL_FLOAT_MAT3_ARB = 0x8B5B,
-        GL_FLOAT_MAT4_ARB = 0x8B5C,
-        GL_SAMPLER_1D_ARB = 0x8B5D,
-        GL_SAMPLER_2D_ARB = 0x8B5E,
-        GL_SAMPLER_3D_ARB = 0x8B5F,
-        GL_SAMPLER_CUBE_ARB = 0x8B60,
-        GL_SAMPLER_1D_SHADOW_ARB = 0x8B61,
-        GL_SAMPLER_2D_SHADOW_ARB = 0x8B62,
-        GL_SAMPLER_2D_RECT_ARB = 0x8B63,
-        GL_SAMPLER_2D_RECT_SHADOW_ARB = 0x8B64;
+    public static final int GL_FLOAT_VEC2_ARB = 0x8B50;
+    public static final int GL_FLOAT_VEC3_ARB = 0x8B51;
+    public static final int GL_FLOAT_VEC4_ARB = 0x8B52;
+    public static final int GL_INT_VEC2_ARB = 0x8B53;
+    public static final int GL_INT_VEC3_ARB = 0x8B54;
+    public static final int GL_INT_VEC4_ARB = 0x8B55;
+    public static final int GL_BOOL_ARB = 0x8B56;
+    public static final int GL_BOOL_VEC2_ARB = 0x8B57;
+    public static final int GL_BOOL_VEC3_ARB = 0x8B58;
+    public static final int GL_BOOL_VEC4_ARB = 0x8B59;
+    public static final int GL_FLOAT_MAT2_ARB = 0x8B5A;
+    public static final int GL_FLOAT_MAT3_ARB = 0x8B5B;
+    public static final int GL_FLOAT_MAT4_ARB = 0x8B5C;
+    public static final int GL_SAMPLER_1D_ARB = 0x8B5D;
+    public static final int GL_SAMPLER_2D_ARB = 0x8B5E;
+    public static final int GL_SAMPLER_3D_ARB = 0x8B5F;
+    public static final int GL_SAMPLER_CUBE_ARB = 0x8B60;
+    public static final int GL_SAMPLER_1D_SHADOW_ARB = 0x8B61;
+    public static final int GL_SAMPLER_2D_SHADOW_ARB = 0x8B62;
+    public static final int GL_SAMPLER_2D_RECT_ARB = 0x8B63;
+    public static final int GL_SAMPLER_2D_RECT_SHADOW_ARB = 0x8B64;
 
     protected ARBShaderObjects() {
         throw new UnsupportedOperationException();

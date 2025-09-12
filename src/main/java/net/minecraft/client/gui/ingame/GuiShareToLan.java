@@ -34,10 +34,10 @@ public class GuiShareToLan extends GuiScreen
         this.buttonList.add(new GuiButton(102, this.width / 2 + 5, this.height - 28, 150, 20, I18n.format("gui.cancel", new Object[0])));
         this.buttonList.add(this.gameModeButton = new GuiButton(104, this.width / 2 - 155, 100, 150, 20, I18n.format("selectWorld.gameMode", new Object[0])));
         this.buttonList.add(this.allowCheatsButton = new GuiButton(103, this.width / 2 + 5, 100, 150, 20, I18n.format("selectWorld.allowCommands", new Object[0])));
-        this.func_146595_g();
+        this.func146595G();
     }
 
-    private void func_146595_g()
+    private void func146595G()
     {
         this.gameModeButton.displayString = I18n.format("selectWorld.gameMode", new Object[0]) + " " + I18n.format("selectWorld.gameMode." + this.gameMode, new Object[0]);
         this.allowCheatsButton.displayString = I18n.format("selectWorld.allowCommands", new Object[0]) + " ";
@@ -80,12 +80,12 @@ public class GuiShareToLan extends GuiScreen
                 this.gameMode = "spectator";
             }
 
-            this.func_146595_g();
+            this.func146595G();
         }
         else if (button.id == 103)
         {
             this.allowCheats = !this.allowCheats;
-            this.func_146595_g();
+            this.func146595G();
         }
         else if (button.id == 101)
         {

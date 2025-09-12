@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-public class InventoryHelper
+public final class InventoryHelper
 {
     private static final Random RANDOM = new Random();
 

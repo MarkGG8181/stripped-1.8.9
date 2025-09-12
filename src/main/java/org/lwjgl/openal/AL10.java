@@ -16,91 +16,76 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class AL10 {
 
-    public static final int
-        AL_INVALID = 0xFFFFFFFF,
-        AL_NONE = 0x0,
-        AL_FALSE = 0x0,
-        AL_TRUE = 0x1;
+    public static final int AL_INVALID = 0xFFFFFFFF;
+    public static final int AL_NONE = 0x0;
+    public static final int AL_FALSE = 0x0;
+    public static final int AL_TRUE = 0x1;
 
-    public static final int
-        AL_NO_ERROR = 0x0,
-        AL_INVALID_NAME = 0xA001,
-        AL_INVALID_ENUM = 0xA002,
-        AL_INVALID_VALUE = 0xA003,
-        AL_INVALID_OPERATION = 0xA004,
-        AL_OUT_OF_MEMORY = 0xA005;
+    public static final int AL_NO_ERROR = 0x0;
+    public static final int AL_INVALID_NAME = 0xA001;
+    public static final int AL_INVALID_ENUM = 0xA002;
+    public static final int AL_INVALID_VALUE = 0xA003;
+    public static final int AL_INVALID_OPERATION = 0xA004;
+    public static final int AL_OUT_OF_MEMORY = 0xA005;
 
-    public static final int
-        AL_DOPPLER_FACTOR = 0xC000,
-        AL_DISTANCE_MODEL = 0xD000;
+    public static final int AL_DOPPLER_FACTOR = 0xC000;
+    public static final int AL_DISTANCE_MODEL = 0xD000;
 
-    public static final int
-        AL_VENDOR = 0xB001,
-        AL_VERSION = 0xB002,
-        AL_RENDERER = 0xB003,
-        AL_EXTENSIONS = 0xB004;
+    public static final int AL_VENDOR = 0xB001;
+    public static final int AL_VERSION = 0xB002;
+    public static final int AL_RENDERER = 0xB003;
+    public static final int AL_EXTENSIONS = 0xB004;
 
-    public static final int
-        AL_INVERSE_DISTANCE = 0xD001,
-        AL_INVERSE_DISTANCE_CLAMPED = 0xD002;
+    public static final int AL_INVERSE_DISTANCE = 0xD001;
+    public static final int AL_INVERSE_DISTANCE_CLAMPED = 0xD002;
 
-    public static final int
-        AL_SOURCE_ABSOLUTE = 0x201,
-        AL_SOURCE_RELATIVE = 0x202;
+    public static final int AL_SOURCE_ABSOLUTE = 0x201;
+    public static final int AL_SOURCE_RELATIVE = 0x202;
 
-    public static final int
-        AL_POSITION = 0x1004,
-        AL_VELOCITY = 0x1006,
-        AL_GAIN = 0x100A;
+    public static final int AL_POSITION = 0x1004;
+    public static final int AL_VELOCITY = 0x1006;
+    public static final int AL_GAIN = 0x100A;
 
-    public static final int
-        AL_CONE_INNER_ANGLE = 0x1001,
-        AL_CONE_OUTER_ANGLE = 0x1002,
-        AL_PITCH = 0x1003,
-        AL_DIRECTION = 0x1005,
-        AL_LOOPING = 0x1007,
-        AL_BUFFER = 0x1009,
-        AL_SOURCE_STATE = 0x1010,
-        AL_CONE_OUTER_GAIN = 0x1022,
-        AL_SOURCE_TYPE = 0x1027;
+    public static final int AL_CONE_INNER_ANGLE = 0x1001;
+    public static final int AL_CONE_OUTER_ANGLE = 0x1002;
+    public static final int AL_PITCH = 0x1003;
+    public static final int AL_DIRECTION = 0x1005;
+    public static final int AL_LOOPING = 0x1007;
+    public static final int AL_BUFFER = 0x1009;
+    public static final int AL_SOURCE_STATE = 0x1010;
+    public static final int AL_CONE_OUTER_GAIN = 0x1022;
+    public static final int AL_SOURCE_TYPE = 0x1027;
 
-    public static final int
-        AL_INITIAL = 0x1011,
-        AL_PLAYING = 0x1012,
-        AL_PAUSED = 0x1013,
-        AL_STOPPED = 0x1014;
+    public static final int AL_INITIAL = 0x1011;
+    public static final int AL_PLAYING = 0x1012;
+    public static final int AL_PAUSED = 0x1013;
+    public static final int AL_STOPPED = 0x1014;
 
     public static final int AL_ORIENTATION = 0x100F;
 
-    public static final int
-        AL_BUFFERS_QUEUED = 0x1015,
-        AL_BUFFERS_PROCESSED = 0x1016;
+    public static final int AL_BUFFERS_QUEUED = 0x1015;
+    public static final int AL_BUFFERS_PROCESSED = 0x1016;
 
-    public static final int
-        AL_MIN_GAIN = 0x100D,
-        AL_MAX_GAIN = 0x100E;
+    public static final int AL_MIN_GAIN = 0x100D;
+    public static final int AL_MAX_GAIN = 0x100E;
 
-    public static final int
-        AL_REFERENCE_DISTANCE = 0x1020,
-        AL_ROLLOFF_FACTOR = 0x1021,
-        AL_MAX_DISTANCE = 0x1023;
+    public static final int AL_REFERENCE_DISTANCE = 0x1020;
+    public static final int AL_ROLLOFF_FACTOR = 0x1021;
+    public static final int AL_MAX_DISTANCE = 0x1023;
 
-    public static final int
-        AL_FREQUENCY = 0x2001,
-        AL_BITS = 0x2002,
-        AL_CHANNELS = 0x2003,
-        AL_SIZE = 0x2004;
+    public static final int AL_FREQUENCY = 0x2001;
+    public static final int AL_BITS = 0x2002;
+    public static final int AL_CHANNELS = 0x2003;
+    public static final int AL_SIZE = 0x2004;
 
-    public static final int
-        AL_FORMAT_MONO8 = 0x1100,
-        AL_FORMAT_MONO16 = 0x1101,
-        AL_FORMAT_STEREO8 = 0x1102,
-        AL_FORMAT_STEREO16 = 0x1103;
+    public static final int AL_FORMAT_MONO8 = 0x1100;
+    public static final int AL_FORMAT_MONO16 = 0x1101;
+    public static final int AL_FORMAT_STEREO8 = 0x1102;
+    public static final int AL_FORMAT_STEREO16 = 0x1103;
 
-    public static final int
-        AL_UNUSED = 0x2010,
-        AL_PENDING = 0x2011,
-        AL_PROCESSED = 0x2012;
+    public static final int AL_UNUSED = 0x2010;
+    public static final int AL_PENDING = 0x2011;
+    public static final int AL_PROCESSED = 0x2012;
 
     protected AL10() {
         throw new UnsupportedOperationException();

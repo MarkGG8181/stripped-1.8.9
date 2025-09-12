@@ -64,7 +64,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
         float f3 = (float)(blockpos.getX() * 7 + blockpos.getY() * 9 + blockpos.getZ() * 13) + (float)j + partialTicks;
         this.bannerModel.bannerSlate.rotateAngleX = (-0.0125F + 0.01F * MathHelper.cos(f3 * (float)Math.PI * 0.02F)) * (float)Math.PI;
         GlStateManager.enableRescaleNormal();
-        ResourceLocation resourcelocation = this.func_178463_a(te);
+        ResourceLocation resourcelocation = this.func178463A(te);
 
         if (resourcelocation != null)
         {
@@ -79,7 +79,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
         GlStateManager.popMatrix();
     }
 
-    private ResourceLocation func_178463_a(TileEntityBanner bannerObj)
+    private ResourceLocation func178463A(TileEntityBanner bannerObj)
     {
         String s = bannerObj.getPatternResourceLocation();
 
@@ -136,7 +136,7 @@ public class TileEntityBannerRenderer extends TileEntitySpecialRenderer<TileEnti
         }
     }
 
-    static class TimedBannerTexture
+    static final class TimedBannerTexture
     {
         public long systemTime;
         public ResourceLocation bannerTexture;

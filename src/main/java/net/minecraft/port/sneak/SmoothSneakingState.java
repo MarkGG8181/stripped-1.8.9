@@ -4,14 +4,14 @@ import org.lwjgl.Sys;
 
 public class SmoothSneakingState {
 
-    private float crouchProgress = 0.0f;
-    private float lastFrameTime = 0.0f;
+    private float crouchProgress = 0.0F;
+    private float lastFrameTime = 0.0F;
 
     public float getSneakingHeightOffset(boolean isSneaking) {
         float target = isSneaking ? 1.0f : 0.0f;
 
         float now = (float)Sys.getTime() / Sys.getTimerResolution();
-        float deltaTime = 0.0f;
+        float deltaTime = 0.0F;
 
         if (lastFrameTime > 0.0f) {
             deltaTime = now - lastFrameTime;

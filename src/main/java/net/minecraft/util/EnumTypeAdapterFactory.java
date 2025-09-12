@@ -28,10 +28,10 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
 
             for (T t : oclass.getEnumConstants())
             {
-                map.put(this.func_151232_a(t), t);
+                map.put(this.func151232A(t), t);
             }
 
-            return new TypeAdapter<T>()
+            return new TypeAdapter<>()
             {
                 public void write(JsonWriter p_write_1_, T p_write_2_) throws IOException
                 {
@@ -41,7 +41,7 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
                     }
                     else
                     {
-                        p_write_1_.value(EnumTypeAdapterFactory.this.func_151232_a(p_write_2_));
+                        p_write_1_.value(EnumTypeAdapterFactory.this.func151232A(p_write_2_));
                     }
                 }
 
@@ -61,7 +61,7 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
         }
     }
 
-    private String func_151232_a(Object p_151232_1_)
+    private String func151232A(Object p_151232_1_)
     {
         return p_151232_1_ instanceof Enum e ? e.name().toLowerCase(Locale.US) : p_151232_1_.toString().toLowerCase(Locale.US);
     }

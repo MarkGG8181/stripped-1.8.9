@@ -49,7 +49,10 @@ public class Matrix2f extends Matrix implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float m00, m01, m10, m11;
+    public float m00;
+    public float m01;
+    public float m10;
+    public float m11;
 
     /**
      * Constructor for Matrix2f. The matrix is initialised to the identity.

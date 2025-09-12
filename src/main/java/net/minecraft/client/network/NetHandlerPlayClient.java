@@ -1535,7 +1535,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
                 int i = packetbuffer.readInt();
                 GuiScreen guiscreen = this.gameController.currentScreen;
 
-                if (guiscreen != null && guiscreen instanceof GuiMerchant merchant && i == this.gameController.thePlayer.openContainer.windowId) {
+                if (guiscreen instanceof GuiMerchant merchant && i == this.gameController.thePlayer.openContainer.windowId) {
                     IMerchant imerchant = merchant.getMerchant();
                     MerchantRecipeList merchantrecipelist = MerchantRecipeList.readFromBuf(packetbuffer);
                     imerchant.setRecipes(merchantrecipelist);

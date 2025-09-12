@@ -65,11 +65,11 @@ public class RenderHorse extends RenderLiving<EntityHorse> {
             }
         }
         else {
-            return this.func_110848_b(entity);
+            return this.func110848B(entity);
         }
     }
 
-    private ResourceLocation func_110848_b(EntityHorse horse) {
+    private ResourceLocation func110848B(EntityHorse horse) {
         String s = horse.getHorseTexture();
 
         if (!horse.func_175507_cI()) {

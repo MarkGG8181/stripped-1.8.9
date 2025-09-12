@@ -65,14 +65,14 @@ public abstract class BlockButton extends Block
      */
     public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
     {
-        return func_181088_a(worldIn, pos, side.getOpposite());
+        return func181088A(worldIn, pos, side.getOpposite());
     }
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         for (EnumFacing enumfacing : EnumFacing.values())
         {
-            if (func_181088_a(worldIn, pos, enumfacing))
+            if (func181088A(worldIn, pos, enumfacing))
             {
                 return true;
             }
@@ -81,7 +81,7 @@ public abstract class BlockButton extends Block
         return false;
     }
 
-    protected static boolean func_181088_a(World p_181088_0_, BlockPos p_181088_1_, EnumFacing p_181088_2_)
+    protected static boolean func181088A(World p_181088_0_, BlockPos p_181088_1_, EnumFacing p_181088_2_)
     {
         BlockPos blockpos = p_181088_1_.offset(p_181088_2_);
         return p_181088_2_ == EnumFacing.DOWN ? World.doesBlockHaveSolidTopSurface(p_181088_0_, blockpos) : p_181088_0_.getBlockState(blockpos).getBlock().isNormalCube();
@@ -93,7 +93,7 @@ public abstract class BlockButton extends Block
      */
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return func_181088_a(worldIn, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, Boolean.valueOf(false)) : this.getDefaultState().withProperty(FACING, EnumFacing.DOWN).withProperty(POWERED, Boolean.valueOf(false));
+        return func181088A(worldIn, pos, facing.getOpposite()) ? this.getDefaultState().withProperty(FACING, facing).withProperty(POWERED, Boolean.valueOf(false)) : this.getDefaultState().withProperty(FACING, EnumFacing.DOWN).withProperty(POWERED, Boolean.valueOf(false));
     }
 
     /**
@@ -101,7 +101,7 @@ public abstract class BlockButton extends Block
      */
     public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
-        if (this.checkForDrop(worldIn, pos, state) && !func_181088_a(worldIn, pos, ((EnumFacing)state.getValue(FACING)).getOpposite()))
+        if (this.checkForDrop(worldIn, pos, state) && !func181088A(worldIn, pos, ((EnumFacing)state.getValue(FACING)).getOpposite()))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
@@ -198,7 +198,7 @@ public abstract class BlockButton extends Block
 
     public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
     {
-        return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (state.getValue(FACING) == side ? 15 : 0);
+        return ((Boolean)state.getValue(POWERED)).booleanValue() ? (state.getValue(FACING) == side ? 15 : 0) : 0;
     }
 
     /**

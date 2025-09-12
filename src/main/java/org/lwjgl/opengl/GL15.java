@@ -26,71 +26,65 @@ import static org.lwjgl.system.Checks.*;
 public class GL15 extends GL14 {
 
     /** New token names. */
-    public static final int
-        GL_FOG_COORD_SRC = 0x8450,
-        GL_FOG_COORD = 0x8451,
-        GL_CURRENT_FOG_COORD = 0x8453,
-        GL_FOG_COORD_ARRAY_TYPE = 0x8454,
-        GL_FOG_COORD_ARRAY_STRIDE = 0x8455,
-        GL_FOG_COORD_ARRAY_POINTER = 0x8456,
-        GL_FOG_COORD_ARRAY = 0x8457,
-        GL_FOG_COORD_ARRAY_BUFFER_BINDING = 0x889D,
-        GL_SRC0_RGB = 0x8580,
-        GL_SRC1_RGB = 0x8581,
-        GL_SRC2_RGB = 0x8582,
-        GL_SRC0_ALPHA = 0x8588,
-        GL_SRC1_ALPHA = 0x8589,
-        GL_SRC2_ALPHA = 0x858A;
+    public static final int GL_FOG_COORD_SRC = 0x8450;
+    public static final int GL_FOG_COORD = 0x8451;
+    public static final int GL_CURRENT_FOG_COORD = 0x8453;
+    public static final int GL_FOG_COORD_ARRAY_TYPE = 0x8454;
+    public static final int GL_FOG_COORD_ARRAY_STRIDE = 0x8455;
+    public static final int GL_FOG_COORD_ARRAY_POINTER = 0x8456;
+    public static final int GL_FOG_COORD_ARRAY = 0x8457;
+    public static final int GL_FOG_COORD_ARRAY_BUFFER_BINDING = 0x889D;
+    public static final int GL_SRC0_RGB = 0x8580;
+    public static final int GL_SRC1_RGB = 0x8581;
+    public static final int GL_SRC2_RGB = 0x8582;
+    public static final int GL_SRC0_ALPHA = 0x8588;
+    public static final int GL_SRC1_ALPHA = 0x8589;
+    public static final int GL_SRC2_ALPHA = 0x858A;
 
     /**
      * Accepted by the {@code target} parameters of BindBuffer, BufferData, BufferSubData, MapBuffer, UnmapBuffer, GetBufferSubData,
      * GetBufferParameteriv, and GetBufferPointerv.
      */
-    public static final int
-        GL_ARRAY_BUFFER = 0x8892,
-        GL_ELEMENT_ARRAY_BUFFER = 0x8893;
+    public static final int GL_ARRAY_BUFFER = 0x8892;
+    public static final int GL_ELEMENT_ARRAY_BUFFER = 0x8893;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_ARRAY_BUFFER_BINDING = 0x8894,
-        GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895,
-        GL_VERTEX_ARRAY_BUFFER_BINDING = 0x8896,
-        GL_NORMAL_ARRAY_BUFFER_BINDING = 0x8897,
-        GL_COLOR_ARRAY_BUFFER_BINDING = 0x8898,
-        GL_INDEX_ARRAY_BUFFER_BINDING = 0x8899,
-        GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = 0x889A,
-        GL_EDGE_FLAG_ARRAY_BUFFER_BINDING = 0x889B,
-        GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING = 0x889C,
-        GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING = 0x889D,
-        GL_WEIGHT_ARRAY_BUFFER_BINDING = 0x889E;
+    public static final int GL_ARRAY_BUFFER_BINDING = 0x8894;
+    public static final int GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
+    public static final int GL_VERTEX_ARRAY_BUFFER_BINDING = 0x8896;
+    public static final int GL_NORMAL_ARRAY_BUFFER_BINDING = 0x8897;
+    public static final int GL_COLOR_ARRAY_BUFFER_BINDING = 0x8898;
+    public static final int GL_INDEX_ARRAY_BUFFER_BINDING = 0x8899;
+    public static final int GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = 0x889A;
+    public static final int GL_EDGE_FLAG_ARRAY_BUFFER_BINDING = 0x889B;
+    public static final int GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING = 0x889C;
+    public static final int GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING = 0x889D;
+    public static final int GL_WEIGHT_ARRAY_BUFFER_BINDING = 0x889E;
 
     /** Accepted by the {@code pname} parameter of GetVertexAttribiv. */
     public static final int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
 
     /** Accepted by the {@code usage} parameter of BufferData. */
-    public static final int
-        GL_STREAM_DRAW = 0x88E0,
-        GL_STREAM_READ = 0x88E1,
-        GL_STREAM_COPY = 0x88E2,
-        GL_STATIC_DRAW = 0x88E4,
-        GL_STATIC_READ = 0x88E5,
-        GL_STATIC_COPY = 0x88E6,
-        GL_DYNAMIC_DRAW = 0x88E8,
-        GL_DYNAMIC_READ = 0x88E9,
-        GL_DYNAMIC_COPY = 0x88EA;
+    public static final int GL_STREAM_DRAW = 0x88E0;
+    public static final int GL_STREAM_READ = 0x88E1;
+    public static final int GL_STREAM_COPY = 0x88E2;
+    public static final int GL_STATIC_DRAW = 0x88E4;
+    public static final int GL_STATIC_READ = 0x88E5;
+    public static final int GL_STATIC_COPY = 0x88E6;
+    public static final int GL_DYNAMIC_DRAW = 0x88E8;
+    public static final int GL_DYNAMIC_READ = 0x88E9;
+    public static final int GL_DYNAMIC_COPY = 0x88EA;
 
     /** Accepted by the {@code access} parameter of MapBuffer. */
-    public static final int
-        GL_READ_ONLY = 0x88B8,
-        GL_WRITE_ONLY = 0x88B9,
-        GL_READ_WRITE = 0x88BA;
+    public static final int GL_READ_ONLY = 0x88B8;
+    public static final int GL_WRITE_ONLY = 0x88B9;
+    public static final int GL_READ_WRITE = 0x88BA;
 
     /** Accepted by the {@code pname} parameter of GetBufferParameteriv. */
-    public static final int
-        GL_BUFFER_SIZE = 0x8764,
-        GL_BUFFER_USAGE = 0x8765,
-        GL_BUFFER_ACCESS = 0x88BB,
-        GL_BUFFER_MAPPED = 0x88BC;
+    public static final int GL_BUFFER_SIZE = 0x8764;
+    public static final int GL_BUFFER_USAGE = 0x8765;
+    public static final int GL_BUFFER_ACCESS = 0x88BB;
+    public static final int GL_BUFFER_MAPPED = 0x88BC;
 
     /** Accepted by the {@code pname} parameter of GetBufferPointerv. */
     public static final int GL_BUFFER_MAP_POINTER = 0x88BD;
@@ -99,14 +93,12 @@ public class GL15 extends GL14 {
     public static final int GL_SAMPLES_PASSED = 0x8914;
 
     /** Accepted by the {@code pname} parameter of GetQueryiv. */
-    public static final int
-        GL_QUERY_COUNTER_BITS = 0x8864,
-        GL_CURRENT_QUERY = 0x8865;
+    public static final int GL_QUERY_COUNTER_BITS = 0x8864;
+    public static final int GL_CURRENT_QUERY = 0x8865;
 
     /** Accepted by the {@code pname} parameter of GetQueryObjectiv and GetQueryObjectuiv. */
-    public static final int
-        GL_QUERY_RESULT = 0x8866,
-        GL_QUERY_RESULT_AVAILABLE = 0x8867;
+    public static final int GL_QUERY_RESULT = 0x8866;
+    public static final int GL_QUERY_RESULT_AVAILABLE = 0x8867;
 
     static {
         GL.initialize();

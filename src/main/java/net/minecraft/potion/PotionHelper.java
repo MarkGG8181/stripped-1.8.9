@@ -4,7 +4,7 @@ import java.util.*;
 
 import net.minecraft.util.IntegerCache;
 
-public class PotionHelper
+public final class PotionHelper
 {
     public static final String sugarEffect = "-0+1-2-3&4-4+13";
     public static final String ghastTearEffect = "+0-1-2-3&4-4+13";

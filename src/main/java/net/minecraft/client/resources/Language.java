@@ -20,7 +20,7 @@ public class Language implements Comparable<Language> {
     }
 
     public boolean equals(Object p_equals_1_) {
-        return this == p_equals_1_ ? true : (!(p_equals_1_ instanceof Language) ? false : this.languageCode.equals(((Language)p_equals_1_).languageCode));
+        return this == p_equals_1_ ? true : (p_equals_1_ instanceof Language ? this.languageCode.equals(((Language)p_equals_1_).languageCode) : false);
     }
 
     public int hashCode() {

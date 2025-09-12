@@ -28,8 +28,8 @@ import net.minecraft.world.World;
 public class BlockStairs extends Block
 {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static final PropertyEnum<BlockStairs.EnumHalf> HALF = PropertyEnum.<BlockStairs.EnumHalf>create("half", BlockStairs.EnumHalf.class);
-    public static final PropertyEnum<BlockStairs.EnumShape> SHAPE = PropertyEnum.<BlockStairs.EnumShape>create("shape", BlockStairs.EnumShape.class);
+    public static final PropertyEnum<BlockStairs.EnumHalf> HALF = PropertyEnum.create("half", BlockStairs.EnumHalf.class);
+    public static final PropertyEnum<BlockStairs.EnumShape> SHAPE = PropertyEnum.create("shape", BlockStairs.EnumShape.class);
     private static final int[][] field_150150_a = new int[][]{{4, 5}, {5, 7}, {6, 7}, {4, 6}, {0, 1}, {1, 3}, {2, 3}, {0, 2}};
     private final Block modelBlock;
     private final IBlockState modelState;
@@ -726,8 +726,7 @@ public class BlockStairs extends Block
     public IBlockState getStateFromMeta(int meta)
     {
         IBlockState iblockstate = this.getDefaultState().withProperty(HALF, (meta & 4) > 0 ? BlockStairs.EnumHalf.TOP : BlockStairs.EnumHalf.BOTTOM);
-        iblockstate = iblockstate.withProperty(FACING, EnumFacing.getFront(5 - (meta & 3)));
-        return iblockstate;
+        return iblockstate.withProperty(FACING, EnumFacing.getFront(5 - (meta & 3)));
     }
 
     /**
@@ -742,8 +741,7 @@ public class BlockStairs extends Block
             i |= 4;
         }
 
-        i = i | 5 - ((EnumFacing)state.getValue(FACING)).getIndex();
-        return i;
+        return i | 5 - ((EnumFacing)state.getValue(FACING)).getIndex();
     }
 
     /**
@@ -793,7 +791,7 @@ public class BlockStairs extends Block
         return new BlockState(this, new IProperty[]{FACING, HALF, SHAPE});
     }
 
-    public static enum EnumHalf implements IStringSerializable
+    public enum EnumHalf implements IStringSerializable
     {
         TOP("top"),
         BOTTOM("bottom");
@@ -816,7 +814,7 @@ public class BlockStairs extends Block
         }
     }
 
-    public static enum EnumShape implements IStringSerializable
+    public enum EnumShape implements IStringSerializable
     {
         STRAIGHT("straight"),
         INNER_LEFT("inner_left"),

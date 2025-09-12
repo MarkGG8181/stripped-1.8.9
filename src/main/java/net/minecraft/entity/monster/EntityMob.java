@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityMob extends EntityCreature implements IMob
 {
-    public EntityMob(World worldIn)
+    protected EntityMob(World worldIn)
     {
         super(worldIn);
         this.experienceValue = 5;

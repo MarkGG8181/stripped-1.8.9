@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityWaterMob extends EntityLiving implements IAnimals
 {
-    public EntityWaterMob(World worldIn)
+    protected EntityWaterMob(World worldIn)
     {
         super(worldIn);
     }

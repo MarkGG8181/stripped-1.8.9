@@ -15,7 +15,7 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
         super(renderManagerIn);
     }
 
-    protected void func_180560_a(EntityMinecartTNT minecart, float partialTicks, IBlockState state)
+    protected void func180560A(EntityMinecartTNT minecart, float partialTicks, IBlockState state)
     {
         int i = minecart.getFuseTicks();
 
@@ -29,7 +29,7 @@ public class RenderTntMinecart extends RenderMinecart<EntityMinecartTNT>
             GlStateManager.scale(f1, f1, f1);
         }
 
-        super.func_180560_a(minecart, partialTicks, state);
+        super.func180560A(minecart, partialTicks, state);
 
         if (i > -1 && i / 5 % 2 == 0)
         {

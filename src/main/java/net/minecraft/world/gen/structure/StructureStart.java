@@ -15,11 +15,11 @@ public abstract class StructureStart
     private int chunkPosX;
     private int chunkPosZ;
 
-    public StructureStart()
+    protected StructureStart()
     {
     }
 
-    public StructureStart(int chunkX, int chunkZ)
+    protected StructureStart(int chunkX, int chunkZ)
     {
         this.chunkPosX = chunkX;
         this.chunkPosZ = chunkZ;

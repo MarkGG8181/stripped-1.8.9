@@ -40,7 +40,7 @@ public abstract class PathNavigate
     private float heightRequirement = 1.0F;
     private final PathFinder pathFinder;
 
-    public PathNavigate(EntityLiving entitylivingIn, World worldIn)
+    protected PathNavigate(EntityLiving entitylivingIn, World worldIn)
     {
         this.theEntity = entitylivingIn;
         this.worldObj = worldIn;

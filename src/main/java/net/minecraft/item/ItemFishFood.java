@@ -76,7 +76,7 @@ public class ItemFishFood extends ItemFood
         return this.getUnlocalizedName() + "." + itemfishfood$fishtype.getUnlocalizedName() + "." + (this.cooked && itemfishfood$fishtype.canCook() ? "cooked" : "raw");
     }
 
-    public static enum FishType
+    public enum FishType
     {
         COD(0, "cod", 2, 0.1F, 5, 0.6F),
         SALMON(1, "salmon", 2, 0.1F, 6, 0.8F),

@@ -41,26 +41,22 @@ public class GL32C extends GL31C {
     public static final int GL_CONTEXT_PROFILE_MASK = 0x9126;
 
     /** Context profile bits. */
-    public static final int
-        GL_CONTEXT_CORE_PROFILE_BIT = 0x1,
-        GL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x2;
+    public static final int GL_CONTEXT_CORE_PROFILE_BIT = 0x1;
+    public static final int GL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x2;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_MAX_VERTEX_OUTPUT_COMPONENTS = 0x9122,
-        GL_MAX_GEOMETRY_INPUT_COMPONENTS = 0x9123,
-        GL_MAX_GEOMETRY_OUTPUT_COMPONENTS = 0x9124,
-        GL_MAX_FRAGMENT_INPUT_COMPONENTS = 0x9125;
+    public static final int GL_MAX_VERTEX_OUTPUT_COMPONENTS = 0x9122;
+    public static final int GL_MAX_GEOMETRY_INPUT_COMPONENTS = 0x9123;
+    public static final int GL_MAX_GEOMETRY_OUTPUT_COMPONENTS = 0x9124;
+    public static final int GL_MAX_FRAGMENT_INPUT_COMPONENTS = 0x9125;
 
     /** Accepted by the {@code mode} parameter of ProvokingVertex. */
-    public static final int
-        GL_FIRST_VERTEX_CONVENTION = 0x8E4D,
-        GL_LAST_VERTEX_CONVENTION = 0x8E4E;
+    public static final int GL_FIRST_VERTEX_CONVENTION = 0x8E4D;
+    public static final int GL_LAST_VERTEX_CONVENTION = 0x8E4E;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_PROVOKING_VERTEX = 0x8E4F,
-        GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION = 0x8E4C;
+    public static final int GL_PROVOKING_VERTEX = 0x8E4F;
+    public static final int GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION = 0x8E4C;
 
     /**
      * Accepted by the {@code cap} parameter of Enable, Disable and IsEnabled, and by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv and
@@ -93,27 +89,24 @@ public class GL32C extends GL31C {
     public static final int GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY = 0x9103;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
-    public static final int
-        GL_MAX_SAMPLE_MASK_WORDS = 0x8E59,
-        GL_MAX_COLOR_TEXTURE_SAMPLES = 0x910E,
-        GL_MAX_DEPTH_TEXTURE_SAMPLES = 0x910F,
-        GL_MAX_INTEGER_SAMPLES = 0x9110,
-        GL_TEXTURE_BINDING_2D_MULTISAMPLE = 0x9104,
-        GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY = 0x9105;
+    public static final int GL_MAX_SAMPLE_MASK_WORDS = 0x8E59;
+    public static final int GL_MAX_COLOR_TEXTURE_SAMPLES = 0x910E;
+    public static final int GL_MAX_DEPTH_TEXTURE_SAMPLES = 0x910F;
+    public static final int GL_MAX_INTEGER_SAMPLES = 0x9110;
+    public static final int GL_TEXTURE_BINDING_2D_MULTISAMPLE = 0x9104;
+    public static final int GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY = 0x9105;
 
     /** Accepted by the {@code pname} parameter of GetTexLevelParameter. */
-    public static final int
-        GL_TEXTURE_SAMPLES = 0x9106,
-        GL_TEXTURE_FIXED_SAMPLE_LOCATIONS = 0x9107;
+    public static final int GL_TEXTURE_SAMPLES = 0x9106;
+    public static final int GL_TEXTURE_FIXED_SAMPLE_LOCATIONS = 0x9107;
 
     /** Returned by the {@code type} parameter of GetActiveUniform. */
-    public static final int
-        GL_SAMPLER_2D_MULTISAMPLE = 0x9108,
-        GL_INT_SAMPLER_2D_MULTISAMPLE = 0x9109,
-        GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 0x910A,
-        GL_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910B,
-        GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910C,
-        GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910D;
+    public static final int GL_SAMPLER_2D_MULTISAMPLE = 0x9108;
+    public static final int GL_INT_SAMPLER_2D_MULTISAMPLE = 0x9109;
+    public static final int GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 0x910A;
+    public static final int GL_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910B;
+    public static final int GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910C;
+    public static final int GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910D;
 
     /**
      * Accepted by the {@code cap} parameter of Enable, Disable, and IsEnabled, and by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and
@@ -125,24 +118,21 @@ public class GL32C extends GL31C {
     public static final int GL_GEOMETRY_SHADER = 0x8DD9;
 
     /** Accepted by the {@code pname} parameter of ProgramParameteri and GetProgramiv. */
-    public static final int
-        GL_GEOMETRY_VERTICES_OUT = 0x8DDA,
-        GL_GEOMETRY_INPUT_TYPE = 0x8DDB,
-        GL_GEOMETRY_OUTPUT_TYPE = 0x8DDC;
+    public static final int GL_GEOMETRY_VERTICES_OUT = 0x8DDA;
+    public static final int GL_GEOMETRY_INPUT_TYPE = 0x8DDB;
+    public static final int GL_GEOMETRY_OUTPUT_TYPE = 0x8DDC;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8C29,
-        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS = 0x8DDF,
-        GL_MAX_GEOMETRY_OUTPUT_VERTICES = 0x8DE0,
-        GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS = 0x8DE1;
+    public static final int GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8C29;
+    public static final int GL_MAX_GEOMETRY_UNIFORM_COMPONENTS = 0x8DDF;
+    public static final int GL_MAX_GEOMETRY_OUTPUT_VERTICES = 0x8DE0;
+    public static final int GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS = 0x8DE1;
 
     /** Accepted by the {@code mode} parameter of Begin, DrawArrays, MultiDrawArrays, DrawElements, MultiDrawElements, and DrawRangeElements. */
-    public static final int
-        GL_LINES_ADJACENCY = 0xA,
-        GL_LINE_STRIP_ADJACENCY = 0xB,
-        GL_TRIANGLES_ADJACENCY = 0xC,
-        GL_TRIANGLE_STRIP_ADJACENCY = 0xD;
+    public static final int GL_LINES_ADJACENCY = 0xA;
+    public static final int GL_LINE_STRIP_ADJACENCY = 0xB;
+    public static final int GL_TRIANGLES_ADJACENCY = 0xC;
+    public static final int GL_TRIANGLE_STRIP_ADJACENCY = 0xD;
 
     /** Returned by CheckFramebufferStatus. */
     public static final int GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS = 0x8DA8;
@@ -160,11 +150,10 @@ public class GL32C extends GL31C {
     public static final int GL_MAX_SERVER_WAIT_TIMEOUT = 0x9111;
 
     /** Accepted as the {@code pname} parameter of GetSynciv. */
-    public static final int
-        GL_OBJECT_TYPE = 0x9112,
-        GL_SYNC_CONDITION = 0x9113,
-        GL_SYNC_STATUS = 0x9114,
-        GL_SYNC_FLAGS = 0x9115;
+    public static final int GL_OBJECT_TYPE = 0x9112;
+    public static final int GL_SYNC_CONDITION = 0x9113;
+    public static final int GL_SYNC_STATUS = 0x9114;
+    public static final int GL_SYNC_FLAGS = 0x9115;
 
     /** Returned in {@code values} for GetSynciv {@code pname} OBJECT_TYPE. */
     public static final int GL_SYNC_FENCE = 0x9116;
@@ -173,9 +162,8 @@ public class GL32C extends GL31C {
     public static final int GL_SYNC_GPU_COMMANDS_COMPLETE = 0x9117;
 
     /** Returned in {@code values} for GetSynciv {@code pname} SYNC_STATUS. */
-    public static final int
-        GL_UNSIGNALED = 0x9118,
-        GL_SIGNALED = 0x9119;
+    public static final int GL_UNSIGNALED = 0x9118;
+    public static final int GL_SIGNALED = 0x9119;
 
     /** Accepted in the {@code flags} parameter of ClientWaitSync. */
     public static final int GL_SYNC_FLUSH_COMMANDS_BIT = 0x1;
@@ -184,11 +172,10 @@ public class GL32C extends GL31C {
     public static final long GL_TIMEOUT_IGNORED = 0xFFFFFFFFFFFFFFFFL;
 
     /** Returned by ClientWaitSync. */
-    public static final int
-        GL_ALREADY_SIGNALED = 0x911A,
-        GL_TIMEOUT_EXPIRED = 0x911B,
-        GL_CONDITION_SATISFIED = 0x911C,
-        GL_WAIT_FAILED = 0x911D;
+    public static final int GL_ALREADY_SIGNALED = 0x911A;
+    public static final int GL_TIMEOUT_EXPIRED = 0x911B;
+    public static final int GL_CONDITION_SATISFIED = 0x911C;
+    public static final int GL_WAIT_FAILED = 0x911D;
 
     static {
         GL.initialize();

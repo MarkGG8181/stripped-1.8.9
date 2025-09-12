@@ -13,7 +13,7 @@ import net.minecraft.util.IStringSerializable;
 
 public class BlockSand extends BlockFalling
 {
-    public static final PropertyEnum<BlockSand.EnumType> VARIANT = PropertyEnum.<BlockSand.EnumType>create("variant", BlockSand.EnumType.class);
+    public static final PropertyEnum<BlockSand.EnumType> VARIANT = PropertyEnum.create("variant", BlockSand.EnumType.class);
 
     public BlockSand()
     {
@@ -69,7 +69,7 @@ public class BlockSand extends BlockFalling
         return new BlockState(this, new IProperty[]{VARIANT});
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         SAND(0, "sand", "default", MapColor.sandColor),
         RED_SAND(1, "red_sand", "red", MapColor.adobeColor);

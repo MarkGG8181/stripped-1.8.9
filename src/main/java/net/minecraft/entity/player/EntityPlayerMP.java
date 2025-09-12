@@ -409,7 +409,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.health))
                 {
-                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(Arrays.<EntityPlayer>asList(new EntityPlayer[]{this}));
+                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(Arrays.asList(this));
                 }
             }
 
@@ -579,7 +579,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public boolean canAttackPlayer(EntityPlayer other)
     {
-        return !this.canPlayersAttack() ? false : super.canAttackPlayer(other);
+        return this.canPlayersAttack() ? super.canAttackPlayer(other) : false;
     }
 
     /**
@@ -1163,8 +1163,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         String s = this.playerNetServerHandler.netManager.getRemoteAddress().toString();
         s = s.substring(s.indexOf("/") + 1);
-        s = s.substring(0, s.indexOf(":"));
-        return s;
+        return s.substring(0, s.indexOf(":"));
     }
 
     public void handleClientSettings(C15PacketClientSettings packetIn)

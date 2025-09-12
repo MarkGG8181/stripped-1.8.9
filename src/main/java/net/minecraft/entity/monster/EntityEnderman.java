@@ -38,7 +38,7 @@ import net.minecraft.world.World;
 public class EntityEnderman extends EntityMob {
     private static final UUID attackingSpeedBoostModifierUUID = FastUUID.parseUUID("020E0DFB-87AE-4653-9556-831010E291A0");
     private static final AttributeModifier attackingSpeedBoostModifier = new AttributeModifier(attackingSpeedBoostModifierUUID, "Attacking speed boost", 0.15000000596046448D, 0).setSaved(false);
-    private static final Set<Block> carriableBlocks = Sets.<Block>newIdentityHashSet();
+    private static final Set<Block> carriableBlocks = Sets.newIdentityHashSet();
     private boolean isAggressive;
 
     public EntityEnderman(World worldIn) {
@@ -470,7 +470,7 @@ public class EntityEnderman extends EntityMob {
         }
 
         public boolean shouldExecute() {
-            return !this.enderman.worldObj.getGameRules().getBoolean("mobGriefing") ? false : (this.enderman.getHeldBlockState().getBlock().getMaterial() == Material.air ? false : this.enderman.getRNG().nextInt(2000) == 0);
+            return this.enderman.worldObj.getGameRules().getBoolean("mobGriefing") ? (this.enderman.getHeldBlockState().getBlock().getMaterial() == Material.air ? false : this.enderman.getRNG().nextInt(2000) == 0) : false;
         }
 
         public void updateTask() {
@@ -483,14 +483,14 @@ public class EntityEnderman extends EntityMob {
             Block block = world.getBlockState(blockpos).getBlock();
             Block block1 = world.getBlockState(blockpos.down()).getBlock();
 
-            if (this.func_179474_a(world, blockpos, this.enderman.getHeldBlockState().getBlock(), block, block1)) {
+            if (this.func179474A(world, blockpos, this.enderman.getHeldBlockState().getBlock(), block, block1)) {
                 world.setBlockState(blockpos, this.enderman.getHeldBlockState(), 3);
                 this.enderman.setHeldBlockState(Blocks.air.getDefaultState());
             }
         }
 
-        private boolean func_179474_a(World worldIn, BlockPos p_179474_2_, Block p_179474_3_, Block p_179474_4_, Block p_179474_5_) {
-            return !p_179474_3_.canPlaceBlockAt(worldIn, p_179474_2_) ? false : (p_179474_4_.getMaterial() != Material.air ? false : (p_179474_5_.getMaterial() == Material.air ? false : p_179474_5_.isFullCube()));
+        private boolean func179474A(World worldIn, BlockPos p_179474_2_, Block p_179474_3_, Block p_179474_4_, Block p_179474_5_) {
+            return p_179474_3_.canPlaceBlockAt(worldIn, p_179474_2_) ? (p_179474_4_.getMaterial() != Material.air ? false : (p_179474_5_.getMaterial() == Material.air ? false : p_179474_5_.isFullCube())) : false;
         }
     }
 
@@ -502,7 +502,7 @@ public class EntityEnderman extends EntityMob {
         }
 
         public boolean shouldExecute() {
-            return !this.enderman.worldObj.getGameRules().getBoolean("mobGriefing") ? false : (this.enderman.getHeldBlockState().getBlock().getMaterial() != Material.air ? false : this.enderman.getRNG().nextInt(20) == 0);
+            return this.enderman.worldObj.getGameRules().getBoolean("mobGriefing") ? (this.enderman.getHeldBlockState().getBlock().getMaterial() != Material.air ? false : this.enderman.getRNG().nextInt(20) == 0) : false;
         }
 
         public void updateTask() {

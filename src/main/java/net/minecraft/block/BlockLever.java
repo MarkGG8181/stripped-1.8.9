@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockLever extends Block
 {
-    public static final PropertyEnum<BlockLever.EnumOrientation> FACING = PropertyEnum.<BlockLever.EnumOrientation>create("facing", BlockLever.EnumOrientation.class);
+    public static final PropertyEnum<BlockLever.EnumOrientation> FACING = PropertyEnum.create("facing", BlockLever.EnumOrientation.class);
     public static final PropertyBool POWERED = PropertyBool.create("powered");
 
     protected BlockLever()
@@ -51,14 +51,14 @@ public class BlockLever extends Block
      */
     public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
     {
-        return func_181090_a(worldIn, pos, side.getOpposite());
+        return func181090A(worldIn, pos, side.getOpposite());
     }
 
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         for (EnumFacing enumfacing : EnumFacing.values())
         {
-            if (func_181090_a(worldIn, pos, enumfacing))
+            if (func181090A(worldIn, pos, enumfacing))
             {
                 return true;
             }
@@ -67,9 +67,9 @@ public class BlockLever extends Block
         return false;
     }
 
-    protected static boolean func_181090_a(World p_181090_0_, BlockPos p_181090_1_, EnumFacing p_181090_2_)
+    protected static boolean func181090A(World p_181090_0_, BlockPos p_181090_1_, EnumFacing p_181090_2_)
     {
-        return BlockButton.func_181088_a(p_181090_0_, p_181090_1_, p_181090_2_);
+        return BlockButton.func181088A(p_181090_0_, p_181090_1_, p_181090_2_);
     }
 
     /**
@@ -80,7 +80,7 @@ public class BlockLever extends Block
     {
         IBlockState iblockstate = this.getDefaultState().withProperty(POWERED, Boolean.valueOf(false));
 
-        if (func_181090_a(worldIn, pos, facing.getOpposite()))
+        if (func181090A(worldIn, pos, facing.getOpposite()))
         {
             return iblockstate.withProperty(FACING, BlockLever.EnumOrientation.forFacings(facing, placer.getHorizontalFacing()));
         }
@@ -88,7 +88,7 @@ public class BlockLever extends Block
         {
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                if (enumfacing != facing && func_181090_a(worldIn, pos, enumfacing.getOpposite()))
+                if (enumfacing != facing && func181090A(worldIn, pos, enumfacing.getOpposite()))
                 {
                     return iblockstate.withProperty(FACING, BlockLever.EnumOrientation.forFacings(enumfacing, placer.getHorizontalFacing()));
                 }
@@ -130,14 +130,14 @@ public class BlockLever extends Block
      */
     public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
-        if (this.func_181091_e(worldIn, pos, state) && !func_181090_a(worldIn, pos, ((BlockLever.EnumOrientation)state.getValue(FACING)).getFacing().getOpposite()))
+        if (this.func181091E(worldIn, pos, state) && !func181090A(worldIn, pos, ((BlockLever.EnumOrientation)state.getValue(FACING)).getFacing().getOpposite()))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
         }
     }
 
-    private boolean func_181091_e(World p_181091_1_, BlockPos p_181091_2_, IBlockState p_181091_3_)
+    private boolean func181091E(World p_181091_1_, BlockPos p_181091_2_, IBlockState p_181091_3_)
     {
         if (this.canPlaceBlockAt(p_181091_1_, p_181091_2_))
         {
@@ -223,7 +223,7 @@ public class BlockLever extends Block
 
     public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
     {
-        return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (((BlockLever.EnumOrientation)state.getValue(FACING)).getFacing() == side ? 15 : 0);
+        return ((Boolean)state.getValue(POWERED)).booleanValue() ? (((BlockLever.EnumOrientation)state.getValue(FACING)).getFacing() == side ? 15 : 0) : 0;
     }
 
     /**
@@ -263,7 +263,7 @@ public class BlockLever extends Block
         return new BlockState(this, new IProperty[]{FACING, POWERED});
     }
 
-    public static enum EnumOrientation implements IStringSerializable
+    public enum EnumOrientation implements IStringSerializable
     {
         DOWN_X(0, "down_x", EnumFacing.DOWN),
         EAST(1, "east", EnumFacing.EAST),

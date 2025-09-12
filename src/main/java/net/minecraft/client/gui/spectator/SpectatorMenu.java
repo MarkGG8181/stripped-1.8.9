@@ -96,7 +96,7 @@ public class SpectatorMenu {
         return new SpectatorDetails(this.func_178642_a(), this.selectedSlot);
     }
 
-    static class EndSpectatorObject implements ISpectatorMenuObject {
+    static final class EndSpectatorObject implements ISpectatorMenuObject {
         private EndSpectatorObject() {
         }
 

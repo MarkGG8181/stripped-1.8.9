@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class BlockRail extends BlockRailBase
 {
-    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class);
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.create("shape", BlockRailBase.EnumRailDirection.class);
 
     protected BlockRail()
     {
@@ -21,7 +21,7 @@ public class BlockRail extends BlockRailBase
     {
         if (neighborBlock.canProvidePower() && new BlockRailBase.Rail(worldIn, pos, state).countAdjacentRails() == 3)
         {
-            this.func_176564_a(worldIn, pos, state, false);
+            this.func176564A(worldIn, pos, state, false);
         }
     }
 

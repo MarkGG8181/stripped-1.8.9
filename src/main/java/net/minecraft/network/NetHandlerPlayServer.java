@@ -192,7 +192,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
         this.playerEntity.setEntityActionState(packetIn.getStrafeSpeed(), packetIn.getForwardSpeed(), packetIn.isJumping(), packetIn.isSneaking());
     }
 
-    private boolean func_183006_b(C03PacketPlayer p_183006_1_) {
+    private boolean func183006B(C03PacketPlayer p_183006_1_) {
         return !Doubles.isFinite(p_183006_1_.getPositionX()) || !Doubles.isFinite(p_183006_1_.getPositionY()) || !Doubles.isFinite(p_183006_1_.getPositionZ()) || !Floats.isFinite(p_183006_1_.getPitch()) || !Floats.isFinite(p_183006_1_.getYaw());
     }
 
@@ -202,7 +202,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
     public void processPlayer(C03PacketPlayer packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
-        if (this.func_183006_b(packetIn)) {
+        if (this.func183006B(packetIn)) {
             this.kickPlayerFromServer("Invalid move packet received");
         }
         else {
@@ -650,7 +650,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
         } catch (Throwable throwable) {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Sending packet");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Packet being sent");
-            crashreportcategory.addCrashSectionCallable("Packet class", new Callable<String>() {
+            crashreportcategory.addCrashSectionCallable("Packet class", new Callable<>() {
                 public String call() throws Exception {
                     return packetIn.getClass().getCanonicalName();
                 }
@@ -1102,8 +1102,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             } finally {
                 packetbuffer3.release();
             }
-
-            return;
         }
         else if ("MC|BSign".equals(packetIn.getChannelName())) {
             PacketBuffer packetbuffer2 = new PacketBuffer(Unpooled.wrappedBuffer((ByteBuf)packetIn.getBufferData()));
@@ -1137,8 +1135,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             } finally {
                 packetbuffer2.release();
             }
-
-            return;
         }
         else if ("MC|TrSel".equals(packetIn.getChannelName())) {
             try {

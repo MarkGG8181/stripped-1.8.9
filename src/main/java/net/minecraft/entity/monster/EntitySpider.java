@@ -228,7 +228,7 @@ public class EntitySpider extends EntityMob {
             }
         }
 
-        protected double func_179512_a(EntityLivingBase attackTarget) {
+        protected double func179512A(EntityLivingBase attackTarget) {
             return (double)(4.0F + attackTarget.width);
         }
     }

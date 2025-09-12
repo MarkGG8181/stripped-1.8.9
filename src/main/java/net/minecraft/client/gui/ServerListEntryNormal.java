@@ -167,7 +167,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             int k1 = mouseX - x;
             int l1 = mouseY - y;
 
-            if (this.func_178013_b()) {
+            if (this.func178013B()) {
                 if (k1 < 32 && k1 > 16) {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 32.0F, 32, 32, 256.0F, 256.0F);
                 }
@@ -203,7 +203,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
         GlStateManager.disableBlend();
     }
 
-    private boolean func_178013_b() {
+    private boolean func178013B() {
         return true;
     }
 
@@ -249,7 +249,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
      */
     public boolean mousePressed(int slotIndex, int p_148278_2_, int p_148278_3_, int p_148278_4_, int p_148278_5_, int p_148278_6_) {
         if (p_148278_5_ <= 32) {
-            if (p_148278_5_ < 32 && p_148278_5_ > 16 && this.func_178013_b()) {
+            if (p_148278_5_ < 32 && p_148278_5_ > 16 && this.func178013B()) {
                 this.owner.selectServer(slotIndex);
                 this.owner.connectToSelected();
                 return true;

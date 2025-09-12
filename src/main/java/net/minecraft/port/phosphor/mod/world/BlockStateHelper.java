@@ -6,7 +6,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 
-public class BlockStateHelper {
+public final class BlockStateHelper {
 
     private static final IBlockState DEFAULT_AIR_STATE = Blocks.air.getDefaultState();
 

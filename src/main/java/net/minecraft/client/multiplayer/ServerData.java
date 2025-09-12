@@ -139,7 +139,7 @@ public class ServerData
         this.lanServer = serverDataIn.lanServer;
     }
 
-    public static enum ServerResourceMode
+    public enum ServerResourceMode
     {
         ENABLED("enabled"),
         DISABLED("disabled"),

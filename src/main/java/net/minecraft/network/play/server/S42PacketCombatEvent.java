@@ -25,17 +25,14 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
         this.eventType = combatEventType;
         EntityLivingBase entitylivingbase = combatTrackerIn.func_94550_c();
 
-        switch (combatEventType)
-        {
-            case END_COMBAT:
-                this.duration = combatTrackerIn.func_180134_f();
-                this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
-                break;
-
-            case ENTITY_DIED:
-                this.playerId = combatTrackerIn.getFighter().getEntityId();
-                this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
-                this.deathMessage = combatTrackerIn.getDeathMessage().getUnformattedText();
+        if (combatEventType == S42PacketCombatEvent.Event.END_COMBAT) {
+            this.duration = combatTrackerIn.func_180134_f();
+            this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
+        }
+        else if (combatEventType == S42PacketCombatEvent.Event.ENTITY_DIED) {
+            this.playerId = combatTrackerIn.getFighter().getEntityId();
+            this.entityId = entitylivingbase == null ? -1 : entitylivingbase.getEntityId();
+            this.deathMessage = combatTrackerIn.getDeathMessage().getUnformattedText();
         }
     }
 
@@ -87,7 +84,7 @@ public class S42PacketCombatEvent implements Packet<INetHandlerPlayClient>
         handler.handleCombatEvent(this);
     }
 
-    public static enum Event
+    public enum Event
     {
         ENTER_COMBAT,
         END_COMBAT,

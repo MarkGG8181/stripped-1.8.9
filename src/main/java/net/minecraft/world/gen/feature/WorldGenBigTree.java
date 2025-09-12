@@ -86,7 +86,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         }
     }
 
-    void func_181631_a(BlockPos p_181631_1_, float p_181631_2_, IBlockState p_181631_3_) {
+    void func181631A(BlockPos p_181631_1_, float p_181631_2_, IBlockState p_181631_3_) {
         int i = (int)((double)p_181631_2_ + 0.618D);
 
         for (int j = -i; j <= i; j++) {
@@ -135,11 +135,11 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
      */
     void generateLeafNode(BlockPos pos) {
         for (int i = 0; i < this.leafDistanceLimit; i++) {
-            this.func_181631_a(pos.up(i), this.leafSize(i), Blocks.leaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
+            this.func181631A(pos.up(i), this.leafSize(i), Blocks.leaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
         }
     }
 
-    void func_175937_a(BlockPos p_175937_1_, BlockPos p_175937_2_, Block p_175937_3_) {
+    void func175937A(BlockPos p_175937_1_, BlockPos p_175937_2_, Block p_175937_3_) {
         BlockPos blockpos = p_175937_2_.add(-p_175937_1_.getX(), -p_175937_1_.getY(), -p_175937_1_.getZ());
         int i = this.getGreatestDistance(blockpos);
         float f = (float)blockpos.getX() / (float)i;
@@ -148,7 +148,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
 
         for (int j = 0; j <= i; j++) {
             BlockPos blockpos1 = p_175937_1_.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
-            BlockLog.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
+            BlockLog.EnumAxis blocklog$enumaxis = this.func175938B(p_175937_1_, blockpos1);
             this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
         }
     }
@@ -163,7 +163,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         return k > i && k > j ? k : (j > i ? j : i);
     }
 
-    private BlockLog.EnumAxis func_175938_b(BlockPos p_175938_1_, BlockPos p_175938_2_) {
+    private BlockLog.EnumAxis func175938B(BlockPos p_175938_1_, BlockPos p_175938_2_) {
         BlockLog.EnumAxis blocklog$enumaxis = BlockLog.EnumAxis.Y;
         int i = Math.abs(p_175938_2_.getX() - p_175938_1_.getX());
         int j = Math.abs(p_175938_2_.getZ() - p_175938_1_.getZ());
@@ -205,12 +205,12 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         BlockPos blockpos = this.basePos;
         BlockPos blockpos1 = this.basePos.up(this.height);
         Block block = Blocks.log;
-        this.func_175937_a(blockpos, blockpos1, block);
+        this.func175937A(blockpos, blockpos1, block);
 
         if (this.trunkSize == 2) {
-            this.func_175937_a(blockpos.east(), blockpos1.east(), block);
-            this.func_175937_a(blockpos.east().south(), blockpos1.east().south(), block);
-            this.func_175937_a(blockpos.south(), blockpos1.south(), block);
+            this.func175937A(blockpos.east(), blockpos1.east(), block);
+            this.func175937A(blockpos.east().south(), blockpos1.east().south(), block);
+            this.func175937A(blockpos.south(), blockpos1.south(), block);
         }
     }
 
@@ -223,7 +223,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
 
             if (!blockpos.equals(worldgenbigtree$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY())) {
-                this.func_175937_a(blockpos, worldgenbigtree$foliagecoordinates, Blocks.log);
+                this.func175937A(blockpos, worldgenbigtree$foliagecoordinates, Blocks.log);
             }
         }
     }
@@ -246,7 +246,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
             for (int j = 0; j <= i; j++) {
                 BlockPos blockpos1 = posOne.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
 
-                if (!this.func_150523_a(this.world.getBlockState(blockpos1).getBlock())) {
+                if (!this.func150523A(this.world.getBlockState(blockpos1).getBlock())) {
                     return j;
                 }
             }

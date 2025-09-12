@@ -145,8 +145,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
     {
         int i = 0;
         i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
-        i = i | ((Integer)state.getValue(DELAY)).intValue() - 1 << 2;
-        return i;
+        return i | ((Integer)state.getValue(DELAY)).intValue() - 1 << 2;
     }
 
     protected BlockState createBlockState()

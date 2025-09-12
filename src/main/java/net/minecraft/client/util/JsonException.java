@@ -23,7 +23,7 @@ public class JsonException extends IOException {
     }
 
     public void func_151380_a(String p_151380_1_) {
-        ((JsonException.Entry)this.entries.getFirst()).func_151373_a(p_151380_1_);
+        ((JsonException.Entry)this.entries.getFirst()).func151373A(p_151380_1_);
     }
 
     public void func_151381_b(String p_151381_1_) {
@@ -50,7 +50,7 @@ public class JsonException extends IOException {
         }
     }
 
-    public static class Entry {
+    public static final class Entry {
         private String filename;
         private final List<String> jsonKeys;
 
@@ -59,7 +59,7 @@ public class JsonException extends IOException {
             this.jsonKeys = new ArrayList<>();
         }
 
-        private void func_151373_a(String p_151373_1_) {
+        private void func151373A(String p_151373_1_) {
             this.jsonKeys.addFirst(p_151373_1_);
         }
 
@@ -68,7 +68,7 @@ public class JsonException extends IOException {
         }
 
         public String toString() {
-            return this.filename != null ? (!this.jsonKeys.isEmpty() ? this.filename + " " + this.func_151372_b() : this.filename) : (!this.jsonKeys.isEmpty() ? "(Unknown file) " + this.func_151372_b() : "(Unknown file)");
+            return this.filename != null ? (this.jsonKeys.isEmpty() ? this.filename : this.filename + " " + this.func_151372_b()) : (this.jsonKeys.isEmpty() ? "(Unknown file)" : "(Unknown file) " + this.func_151372_b());
         }
     }
 }

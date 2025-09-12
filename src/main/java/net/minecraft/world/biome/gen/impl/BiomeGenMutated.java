@@ -16,7 +16,7 @@ public class BiomeGenMutated extends BiomeGenBase {
     public BiomeGenMutated(int id, BiomeGenBase biome) {
         super(id);
         this.baseBiome = biome;
-        this.func_150557_a(biome.color, true);
+        this.func150557A(biome.color, true);
         this.biomeName = biome.biomeName + " M";
         this.topBlock = biome.topBlock;
         this.fillerBlock = biome.fillerBlock;

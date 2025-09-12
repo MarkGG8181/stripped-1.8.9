@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class MapPopulator
+public final class MapPopulator
 {
     public static <K, V> Map<K, V> createMap(Iterable<K> keys, Iterable<V> values)
     {

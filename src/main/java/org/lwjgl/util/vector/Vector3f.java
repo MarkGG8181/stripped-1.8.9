@@ -49,7 +49,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float x, y, z;
+    public float x;
+    public float y;
+    public float z;
 
     /**
      * Constructor for Vector3f.
@@ -365,11 +367,6 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
             return false;
         }
         Vector3f other = (Vector3f)obj;
-
-        if (x == other.x && y == other.y && z == other.z) {
-            return true;
-        }
-
-        return false;
+        return x == other.x && y == other.y && z == other.z;
     }
 }

@@ -20,9 +20,9 @@ import net.minecraft.world.World;
 public abstract class BlockStoneSlab extends BlockSlab
 {
     public static final PropertyBool SEAMLESS = PropertyBool.create("seamless");
-    public static final PropertyEnum<BlockStoneSlab.EnumType> VARIANT = PropertyEnum.<BlockStoneSlab.EnumType>create("variant", BlockStoneSlab.EnumType.class);
+    public static final PropertyEnum<BlockStoneSlab.EnumType> VARIANT = PropertyEnum.create("variant", BlockStoneSlab.EnumType.class);
 
-    public BlockStoneSlab()
+    protected BlockStoneSlab()
     {
         super(Material.rock);
         IBlockState iblockstate = this.blockState.getBaseState();
@@ -152,7 +152,7 @@ public abstract class BlockStoneSlab extends BlockSlab
         return ((BlockStoneSlab.EnumType)state.getValue(VARIANT)).func_181074_c();
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         STONE(0, MapColor.stoneColor, "stone"),
         SAND(1, MapColor.sandColor, "sandstone", "sand"),

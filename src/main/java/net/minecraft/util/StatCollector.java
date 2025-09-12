@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-public class StatCollector
+public final class StatCollector
 {
     private static final StringTranslate localizedName = StringTranslate.getInstance();
 

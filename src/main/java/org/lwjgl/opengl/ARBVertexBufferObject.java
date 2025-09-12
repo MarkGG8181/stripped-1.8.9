@@ -64,51 +64,46 @@ public class ARBVertexBufferObject {
      * Accepted by the {@code target} parameters of BindBufferARB, BufferDataARB, BufferSubDataARB, MapBufferARB, UnmapBufferARB, GetBufferSubDataARB,
      * GetBufferParameterivARB, and GetBufferPointervARB.
      */
-    public static final int
-        GL_ARRAY_BUFFER_ARB = 0x8892,
-        GL_ELEMENT_ARRAY_BUFFER_ARB = 0x8893;
+    public static final int GL_ARRAY_BUFFER_ARB = 0x8892;
+    public static final int GL_ELEMENT_ARRAY_BUFFER_ARB = 0x8893;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_ARRAY_BUFFER_BINDING_ARB = 0x8894,
-        GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB = 0x8895,
-        GL_VERTEX_ARRAY_BUFFER_BINDING_ARB = 0x8896,
-        GL_NORMAL_ARRAY_BUFFER_BINDING_ARB = 0x8897,
-        GL_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x8898,
-        GL_INDEX_ARRAY_BUFFER_BINDING_ARB = 0x8899,
-        GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB = 0x889A,
-        GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB = 0x889B,
-        GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x889C,
-        GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB = 0x889D,
-        GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB = 0x889E;
+    public static final int GL_ARRAY_BUFFER_BINDING_ARB = 0x8894;
+    public static final int GL_ELEMENT_ARRAY_BUFFER_BINDING_ARB = 0x8895;
+    public static final int GL_VERTEX_ARRAY_BUFFER_BINDING_ARB = 0x8896;
+    public static final int GL_NORMAL_ARRAY_BUFFER_BINDING_ARB = 0x8897;
+    public static final int GL_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x8898;
+    public static final int GL_INDEX_ARRAY_BUFFER_BINDING_ARB = 0x8899;
+    public static final int GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING_ARB = 0x889A;
+    public static final int GL_EDGE_FLAG_ARRAY_BUFFER_BINDING_ARB = 0x889B;
+    public static final int GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING_ARB = 0x889C;
+    public static final int GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING_ARB = 0x889D;
+    public static final int GL_WEIGHT_ARRAY_BUFFER_BINDING_ARB = 0x889E;
 
     /** Accepted by the {@code pname} parameter of GetVertexAttribivARB. */
     public static final int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB = 0x889F;
 
     /** Accepted by the {@code usage} parameter of BufferDataARB. */
-    public static final int
-        GL_STREAM_DRAW_ARB = 0x88E0,
-        GL_STREAM_READ_ARB = 0x88E1,
-        GL_STREAM_COPY_ARB = 0x88E2,
-        GL_STATIC_DRAW_ARB = 0x88E4,
-        GL_STATIC_READ_ARB = 0x88E5,
-        GL_STATIC_COPY_ARB = 0x88E6,
-        GL_DYNAMIC_DRAW_ARB = 0x88E8,
-        GL_DYNAMIC_READ_ARB = 0x88E9,
-        GL_DYNAMIC_COPY_ARB = 0x88EA;
+    public static final int GL_STREAM_DRAW_ARB = 0x88E0;
+    public static final int GL_STREAM_READ_ARB = 0x88E1;
+    public static final int GL_STREAM_COPY_ARB = 0x88E2;
+    public static final int GL_STATIC_DRAW_ARB = 0x88E4;
+    public static final int GL_STATIC_READ_ARB = 0x88E5;
+    public static final int GL_STATIC_COPY_ARB = 0x88E6;
+    public static final int GL_DYNAMIC_DRAW_ARB = 0x88E8;
+    public static final int GL_DYNAMIC_READ_ARB = 0x88E9;
+    public static final int GL_DYNAMIC_COPY_ARB = 0x88EA;
 
     /** Accepted by the {@code access} parameter of MapBufferARB. */
-    public static final int
-        GL_READ_ONLY_ARB = 0x88B8,
-        GL_WRITE_ONLY_ARB = 0x88B9,
-        GL_READ_WRITE_ARB = 0x88BA;
+    public static final int GL_READ_ONLY_ARB = 0x88B8;
+    public static final int GL_WRITE_ONLY_ARB = 0x88B9;
+    public static final int GL_READ_WRITE_ARB = 0x88BA;
 
     /** Accepted by the {@code pname} parameter of GetBufferParameterivARB. */
-    public static final int
-        GL_BUFFER_SIZE_ARB = 0x8764,
-        GL_BUFFER_USAGE_ARB = 0x8765,
-        GL_BUFFER_ACCESS_ARB = 0x88BB,
-        GL_BUFFER_MAPPED_ARB = 0x88BC;
+    public static final int GL_BUFFER_SIZE_ARB = 0x8764;
+    public static final int GL_BUFFER_USAGE_ARB = 0x8765;
+    public static final int GL_BUFFER_ACCESS_ARB = 0x88BB;
+    public static final int GL_BUFFER_MAPPED_ARB = 0x88BC;
 
     /** Accepted by the {@code pname} parameter of GetBufferPointervARB. */
     public static final int GL_BUFFER_MAP_POINTER_ARB = 0x88BD;

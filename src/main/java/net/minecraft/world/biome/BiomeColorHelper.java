@@ -4,7 +4,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 
-public class BiomeColorHelper {
+public final class BiomeColorHelper {
     private static final BiomeColorHelper.ColorResolver GRASS_COLOR = BiomeGenBase::getGrassColorAtPos;
     private static final BiomeColorHelper.ColorResolver FOLIAGE_COLOR = BiomeGenBase::getFoliageColorAtPos;
     private static final BiomeColorHelper.ColorResolver WATER_COLOR_MULTIPLIER = (biome, blockPosition) -> biome.waterColorMultiplier;

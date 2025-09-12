@@ -110,7 +110,7 @@ public abstract class ServerConfigurationManager {
      */
     private int playerPingIndex;
 
-    public ServerConfigurationManager(MinecraftServer server) {
+    protected ServerConfigurationManager(MinecraftServer server) {
         this.bannedPlayers = new UserListBans(FILE_PLAYERBANS);
         this.bannedIPs = new BanList(FILE_IPBANS);
         this.ops = new UserListOps(FILE_OPS);

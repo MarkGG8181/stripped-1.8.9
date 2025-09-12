@@ -63,7 +63,7 @@ public class CommandBanIp extends CommandBase
 
             if (matcher.matches())
             {
-                this.func_147210_a(sender, args[0], ichatcomponent == null ? null : ichatcomponent.getUnformattedText());
+                this.func147210A(sender, args[0], ichatcomponent == null ? null : ichatcomponent.getUnformattedText());
             }
             else
             {
@@ -74,7 +74,7 @@ public class CommandBanIp extends CommandBase
                     throw new PlayerNotFoundException("commands.banip.invalid", new Object[0]);
                 }
 
-                this.func_147210_a(sender, entityplayermp.getPlayerIP(), ichatcomponent == null ? null : ichatcomponent.getUnformattedText());
+                this.func147210A(sender, entityplayermp.getPlayerIP(), ichatcomponent == null ? null : ichatcomponent.getUnformattedText());
             }
         }
         else
@@ -88,7 +88,7 @@ public class CommandBanIp extends CommandBase
         return args.length == 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : null;
     }
 
-    protected void func_147210_a(ICommandSender sender, String address, String reason)
+    protected void func147210A(ICommandSender sender, String address, String reason)
     {
         IPBanEntry ipbanentry = new IPBanEntry(address, (Date)null, sender.getName(), (Date)null, reason);
         MinecraftServer.getServer().getConfigurationManager().getBannedIPs().addEntry(ipbanentry);

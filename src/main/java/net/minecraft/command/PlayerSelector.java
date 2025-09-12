@@ -29,7 +29,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
 
-public class PlayerSelector
+public final class PlayerSelector
 {
     /**
      * This matches the at-tokens introduced for command blocks, including their arguments, if any.
@@ -92,12 +92,12 @@ public class PlayerSelector
 
             if (!isEntityTypeValid(sender, map))
             {
-                return Collections.<T>emptyList();
+                return Collections.emptyList();
             }
             else
             {
                 String s = matcher.group(1);
-                BlockPos blockpos = func_179664_b(map, sender.getPosition());
+                BlockPos blockpos = func179664B(map, sender.getPosition());
                 List<World> list = getWorlds(sender, map);
                 List<T> list1 = new ArrayList<>();
 
@@ -106,24 +106,24 @@ public class PlayerSelector
                     if (world != null)
                     {
                         List<Predicate<Entity>> list2 = new ArrayList<>();
-                        list2.addAll(func_179663_a(map, s));
+                        list2.addAll(func179663A(map, s));
                         list2.addAll(getXpLevelPredicates(map));
                         list2.addAll(getGamemodePredicates(map));
                         list2.addAll(getTeamPredicates(map));
                         list2.addAll(getScorePredicates(map));
                         list2.addAll(getNamePredicates(map));
-                        list2.addAll(func_180698_a(map, blockpos));
+                        list2.addAll(func180698A(map, blockpos));
                         list2.addAll(getRotationsPredicates(map));
                         list1.addAll(filterResults(map, targetClass, list2, s, world, blockpos));
                     }
                 }
 
-                return func_179658_a(list1, map, sender, targetClass, s, blockpos);
+                return func179658A(list1, map, sender, targetClass, s, blockpos);
             }
         }
         else
         {
-            return Collections.<T>emptyList();
+            return Collections.emptyList();
         }
     }
 
@@ -131,7 +131,7 @@ public class PlayerSelector
     {
         List<World> list = new ArrayList<>();
 
-        if (func_179665_h(argumentMap))
+        if (func179665H(argumentMap))
         {
             list.add(sender.getEntityWorld());
         }
@@ -145,7 +145,7 @@ public class PlayerSelector
 
     private static <T extends Entity> boolean isEntityTypeValid(ICommandSender commandSender, Map<String, String> params)
     {
-        String s = func_179651_b(params, "type");
+        String s = func179651B(params, "type");
         s = s != null && s.startsWith("!") ? s.substring(1) : s;
 
         if (s != null && !EntityList.isStringValidEntityName(s))
@@ -161,10 +161,10 @@ public class PlayerSelector
         }
     }
 
-    private static List<Predicate<Entity>> func_179663_a(Map<String, String> p_179663_0_, String p_179663_1_)
+    private static List<Predicate<Entity>> func179663A(Map<String, String> p_179663_0_, String p_179663_1_)
     {
         List<Predicate<Entity>> list = new ArrayList<>();
-        String s = func_179651_b(p_179663_0_, "type");
+        String s = func179651B(p_179663_0_, "type");
         final boolean flag = s != null && s.startsWith("!");
 
         if (flag)
@@ -261,7 +261,7 @@ public class PlayerSelector
     private static List<Predicate<Entity>> getTeamPredicates(Map<String, String> p_179659_0_)
     {
         List<Predicate<Entity>> list = new ArrayList<>();
-        String s = func_179651_b(p_179659_0_, "team");
+        String s = func179651B(p_179659_0_, "team");
         final boolean flag = s != null && s.startsWith("!");
 
         if (flag)
@@ -357,7 +357,7 @@ public class PlayerSelector
     private static List<Predicate<Entity>> getNamePredicates(Map<String, String> p_179647_0_)
     {
         List<Predicate<Entity>> list = new ArrayList<>();
-        String s = func_179651_b(p_179647_0_, "name");
+        String s = func179651B(p_179647_0_, "name");
         final boolean flag = s != null && s.startsWith("!");
 
         if (flag)
@@ -380,7 +380,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static List<Predicate<Entity>> func_180698_a(Map<String, String> p_180698_0_, final BlockPos p_180698_1_)
+    private static List<Predicate<Entity>> func180698A(Map<String, String> p_180698_0_, final BlockPos p_180698_1_)
     {
         List<Predicate<Entity>> list = new ArrayList<>();
         final int i = parseIntWithDefault(p_180698_0_, "rm", -1);
@@ -441,7 +441,7 @@ public class PlayerSelector
     private static <T extends Entity> List<T> filterResults(Map<String, String> params, Class<? extends T> entityClass, List<Predicate<Entity>> inputList, String type, World worldIn, BlockPos position)
     {
         List<T> list = new ArrayList<>();
-        String s = func_179651_b(params, "type");
+        String s = func179651B(params, "type");
         s = s != null && s.startsWith("!") ? s.substring(1) : s;
         boolean flag = !"e".equals(type);
         boolean flag1 = "r".equals(type) && s != null;
@@ -450,7 +450,7 @@ public class PlayerSelector
         int k = parseIntWithDefault(params, "dz", 0);
         int l = parseIntWithDefault(params, "r", -1);
         Predicate<Entity> predicate = Predicates.and(inputList);
-        Predicate<Entity> predicate1 = Predicates.<Entity>and(EntitySelectors.selectAnything, predicate);
+        Predicate<Entity> predicate1 = Predicates.and(EntitySelectors.selectAnything, predicate);
 
         if (position != null)
         {
@@ -488,18 +488,18 @@ public class PlayerSelector
             }
             else
             {
-                final AxisAlignedBB axisalignedbb = func_179661_a(position, i, j, k);
+                final AxisAlignedBB axisalignedbb = func179661A(position, i, j, k);
 
                 if (flag && flag2 && !flag1)
                 {
-                    Predicate<Entity> predicate2 = new Predicate<Entity>()
+                    Predicate<Entity> predicate2 = new Predicate<>()
                     {
                         public boolean apply(Entity p_apply_1_)
                         {
                             return p_apply_1_.posX >= axisalignedbb.minX && p_apply_1_.posY >= axisalignedbb.minY && p_apply_1_.posZ >= axisalignedbb.minZ ? p_apply_1_.posX < axisalignedbb.maxX && p_apply_1_.posY < axisalignedbb.maxY && p_apply_1_.posZ < axisalignedbb.maxZ : false;
                         }
                     };
-                    list.addAll(worldIn.<T>getPlayers(entityClass, Predicates.<T>and(predicate1, predicate2)));
+                    list.addAll(worldIn.<T>getPlayers(entityClass, Predicates.and(predicate1, predicate2)));
                 }
                 else
                 {
@@ -523,7 +523,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class<? extends T> p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
+    private static <T extends Entity> List<T> func179658A(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class<? extends T> p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
     {
         int i = parseIntWithDefault(p_179658_1_, "c", !"a".equals(p_179658_4_) && !"e".equals(p_179658_4_) ? 1 : 0);
 
@@ -565,7 +565,7 @@ public class PlayerSelector
         return (List)p_179658_0_;
     }
 
-    private static AxisAlignedBB func_179661_a(BlockPos p_179661_0_, int p_179661_1_, int p_179661_2_, int p_179661_3_)
+    private static AxisAlignedBB func179661A(BlockPos p_179661_0_, int p_179661_1_, int p_179661_2_, int p_179661_3_)
     {
         boolean flag = p_179661_1_ < 0;
         boolean flag1 = p_179661_2_ < 0;
@@ -596,12 +596,12 @@ public class PlayerSelector
         return p_179650_0_;
     }
 
-    private static BlockPos func_179664_b(Map<String, String> p_179664_0_, BlockPos p_179664_1_)
+    private static BlockPos func179664B(Map<String, String> p_179664_0_, BlockPos p_179664_1_)
     {
         return new BlockPos(parseIntWithDefault(p_179664_0_, "x", p_179664_1_.getX()), parseIntWithDefault(p_179664_0_, "y", p_179664_1_.getY()), parseIntWithDefault(p_179664_0_, "z", p_179664_1_.getZ()));
     }
 
-    private static boolean func_179665_h(Map<String, String> p_179665_0_)
+    private static boolean func179665H(Map<String, String> p_179665_0_)
     {
         for (String s : WORLD_BINDING_ARGS)
         {
@@ -619,7 +619,7 @@ public class PlayerSelector
         return p_179653_0_.containsKey(p_179653_1_) ? MathHelper.parseIntWithDefault((String)p_179653_0_.get(p_179653_1_), p_179653_2_) : p_179653_2_;
     }
 
-    private static String func_179651_b(Map<String, String> p_179651_0_, String p_179651_1_)
+    private static String func179651B(Map<String, String> p_179651_0_, String p_179651_1_)
     {
         return (String)p_179651_0_.get(p_179651_1_);
     }

@@ -30,7 +30,6 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
         }
         else
         {
-            BlockDoor blockdoor = this.doorBlock;
             return !BlockDoor.isOpen(this.theEntity.worldObj, this.doorPosition);
         }
     }
@@ -50,21 +49,17 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
     public boolean continueExecuting()
     {
         double d0 = this.theEntity.getDistanceSq(this.doorPosition);
-        boolean flag;
 
         if (this.breakingTime <= 240)
         {
-            BlockDoor blockdoor = this.doorBlock;
 
             if (!BlockDoor.isOpen(this.theEntity.worldObj, this.doorPosition) && d0 < 4.0D)
             {
-                flag = true;
-                return flag;
+                return true;
             }
         }
 
-        flag = false;
-        return flag;
+        return false;
     }
 
     /**

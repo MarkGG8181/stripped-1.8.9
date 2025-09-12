@@ -51,7 +51,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
      * Time before the Wither tries to break blocks
      */
     private int blockBreakCounter;
-    private static final Predicate<Entity> attackEntitySelector = new Predicate<Entity>() {
+    private static final Predicate<Entity> attackEntitySelector = new Predicate<>() {
         public boolean apply(Entity p_apply_1_) {
             return p_apply_1_ instanceof EntityLivingBase elb && elb.getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
         }
@@ -169,29 +169,29 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
             }
 
             if (entity1 != null) {
-                double d11 = this.func_82214_u(j + 1);
-                double d12 = this.func_82208_v(j + 1);
-                double d13 = this.func_82213_w(j + 1);
+                double d11 = this.func82214U(j + 1);
+                double d12 = this.func82208V(j + 1);
+                double d13 = this.func82213W(j + 1);
                 double d6 = entity1.posX - d11;
                 double d7 = entity1.posY + (double)entity1.getEyeHeight() - d12;
                 double d8 = entity1.posZ - d13;
                 double d9 = (double)MathHelper.sqrt_double(d6 * d6 + d8 * d8);
                 float f = (float)(MathHelper.atan2(d8, d6) * 180.0D / Math.PI) - 90.0F;
                 float f1 = (float)(-(MathHelper.atan2(d7, d9) * 180.0D / Math.PI));
-                this.xRotationHeads[j] = this.func_82204_b(this.xRotationHeads[j], f1, 40.0F);
-                this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], f, 10.0F);
+                this.xRotationHeads[j] = this.func82204B(this.xRotationHeads[j], f1, 40.0F);
+                this.yRotationHeads[j] = this.func82204B(this.yRotationHeads[j], f, 10.0F);
             }
             else {
-                this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
+                this.yRotationHeads[j] = this.func82204B(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
             }
         }
 
         boolean flag = this.isArmored();
 
         for (int l = 0; l < 3; l++) {
-            double d10 = this.func_82214_u(l);
-            double d2 = this.func_82208_v(l);
-            double d4 = this.func_82213_w(l);
+            double d10 = this.func82214U(l);
+            double d2 = this.func82208V(l);
+            double d4 = this.func82213W(l);
             this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d10 + this.rand.nextGaussian() * 0.30000001192092896D, d2 + this.rand.nextGaussian() * 0.30000001192092896D, d4 + this.rand.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
 
             if (flag && this.worldObj.rand.nextInt(4) == 0) {
@@ -264,7 +264,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                         }
                     }
                     else {
-                        List<EntityLivingBase> list = this.worldObj.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(20.0D, 8.0D, 20.0D), Predicates.<EntityLivingBase>and(attackEntitySelector, EntitySelectors.NOT_SPECTATING));
+                        List<EntityLivingBase> list = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(20.0D, 8.0D, 20.0D), Predicates.<EntityLivingBase>and(attackEntitySelector, EntitySelectors.NOT_SPECTATING));
 
                         for (int j2 = 0; j2 < 10 && !list.isEmpty(); j2++) {
                             EntityLivingBase entitylivingbase = (EntityLivingBase)list.get(this.rand.nextInt(list.size()));
@@ -354,7 +354,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         return 4;
     }
 
-    private double func_82214_u(int p_82214_1_) {
+    private double func82214U(int p_82214_1_) {
         if (p_82214_1_ <= 0) {
             return this.posX;
         }
@@ -365,11 +365,11 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
     }
 
-    private double func_82208_v(int p_82208_1_) {
+    private double func82208V(int p_82208_1_) {
         return p_82208_1_ <= 0 ? this.posY + 3.0D : this.posY + 2.2D;
     }
 
-    private double func_82213_w(int p_82213_1_) {
+    private double func82213W(int p_82213_1_) {
         if (p_82213_1_ <= 0) {
             return this.posZ;
         }
@@ -380,7 +380,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
     }
 
-    private float func_82204_b(float p_82204_1_, float p_82204_2_, float p_82204_3_) {
+    private float func82204B(float p_82204_1_, float p_82204_2_, float p_82204_3_) {
         float f = MathHelper.wrapAngleTo180_float(p_82204_2_ - p_82204_1_);
 
         if (f > p_82204_3_) {
@@ -403,9 +403,9 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
      */
     private void launchWitherSkullToCoords(int p_82209_1_, double x, double y, double z, boolean invulnerable) {
         this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
-        double d0 = this.func_82214_u(p_82209_1_);
-        double d1 = this.func_82208_v(p_82209_1_);
-        double d2 = this.func_82213_w(p_82209_1_);
+        double d0 = this.func82214U(p_82209_1_);
+        double d1 = this.func82208V(p_82209_1_);
+        double d2 = this.func82213W(p_82209_1_);
         double d3 = x - d0;
         double d4 = y - d1;
         double d5 = z - d2;

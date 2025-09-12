@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-public class ActiveRenderInfo {
+public final class ActiveRenderInfo {
     /**
      * The current GL viewport
      */

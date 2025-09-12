@@ -31,7 +31,7 @@ public abstract class BaseAttributeMap {
             throw new IllegalArgumentException("Attribute is already registered!");
         }
         else {
-            IAttributeInstance iattributeinstance = this.func_180376_c(attribute);
+            IAttributeInstance iattributeinstance = this.func180376C(attribute);
             this.attributesByName.put(attribute.getAttributeUnlocalizedName(), iattributeinstance);
             this.attributes.put(attribute, iattributeinstance);
 
@@ -43,7 +43,7 @@ public abstract class BaseAttributeMap {
         }
     }
 
-    protected abstract IAttributeInstance func_180376_c(IAttribute attribute);
+    protected abstract IAttributeInstance func180376C(IAttribute attribute);
 
     public Collection<IAttributeInstance> getAllAttributes() {
         return this.attributesByName.values();

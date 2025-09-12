@@ -1,6 +1,6 @@
 package net.minecraft.util;
 
-public class ChatAllowedCharacters
+public final class ChatAllowedCharacters
 {
     /**
      * Array of the special characters that are allowed in any text drawing of Minecraft.

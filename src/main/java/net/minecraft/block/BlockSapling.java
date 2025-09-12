@@ -26,7 +26,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BlockSapling extends BlockBush implements IGrowable
 {
-    public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.<BlockPlanks.EnumType>create("type", BlockPlanks.EnumType.class);
+    public static final PropertyEnum<BlockPlanks.EnumType> TYPE = PropertyEnum.create("type", BlockPlanks.EnumType.class);
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
 
     protected BlockSapling()
@@ -85,7 +85,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 {
                     for (j = 0; j >= -1; j--)
                     {
-                        if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.SPRUCE))
+                        if (this.func181624A(worldIn, pos, i, j, BlockPlanks.EnumType.SPRUCE))
                         {
                             worldgenerator = new WorldGenMegaPineTree(false, rand.nextBoolean());
                             flag = true;
@@ -116,7 +116,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 {
                     for (j = 0; j >= -1; j--)
                     {
-                        if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.JUNGLE))
+                        if (this.func181624A(worldIn, pos, i, j, BlockPlanks.EnumType.JUNGLE))
                         {
                             worldgenerator = new WorldGenMegaJungle(true, 10, 20, iblockstate, iblockstate1);
                             flag = true;
@@ -144,7 +144,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 {
                     for (j = 0; j >= -1; j--)
                     {
-                        if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.DARK_OAK))
+                        if (this.func181624A(worldIn, pos, i, j, BlockPlanks.EnumType.DARK_OAK))
                         {
                             worldgenerator = new WorldGenCanopyTree(true);
                             flag = true;
@@ -192,7 +192,7 @@ public class BlockSapling extends BlockBush implements IGrowable
         }
     }
 
-    private boolean func_181624_a(World p_181624_1_, BlockPos p_181624_2_, int p_181624_3_, int p_181624_4_, BlockPlanks.EnumType p_181624_5_)
+    private boolean func181624A(World p_181624_1_, BlockPos p_181624_2_, int p_181624_3_, int p_181624_4_, BlockPlanks.EnumType p_181624_5_)
     {
         return this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_, 0, p_181624_4_), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_ + 1, 0, p_181624_4_), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_, 0, p_181624_4_ + 1), p_181624_5_) && this.isTypeAt(p_181624_1_, p_181624_2_.add(p_181624_3_ + 1, 0, p_181624_4_ + 1), p_181624_5_);
     }
@@ -259,8 +259,7 @@ public class BlockSapling extends BlockBush implements IGrowable
     {
         int i = 0;
         i = i | ((BlockPlanks.EnumType)state.getValue(TYPE)).getMetadata();
-        i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
-        return i;
+        return i | ((Integer)state.getValue(STAGE)).intValue() << 3;
     }
 
     protected BlockState createBlockState()

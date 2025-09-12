@@ -8,7 +8,8 @@ public class WorldChunkSlice {
 
     private final Chunk[] chunks;
 
-    private final int x, z;
+    private final int x;
+    private final int z;
 
     public WorldChunkSlice(World world, int x, int z) {
         this.chunks = new Chunk[DIAMETER * DIAMETER];

@@ -174,7 +174,7 @@ public class BlockDynamicLiquid extends BlockLiquid
         }
     }
 
-    private int func_176374_a(World worldIn, BlockPos pos, int distance, EnumFacing calculateFlowCost)
+    private int func176374A(World worldIn, BlockPos pos, int distance, EnumFacing calculateFlowCost)
     {
         int i = 1000;
 
@@ -194,7 +194,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 
                     if (distance < 4)
                     {
-                        int j = this.func_176374_a(worldIn, blockpos, distance + 1, enumfacing.getOpposite());
+                        int j = this.func176374A(worldIn, blockpos, distance + 1, enumfacing.getOpposite());
 
                         if (j < i)
                         {
@@ -224,7 +224,7 @@ public class BlockDynamicLiquid extends BlockLiquid
 
                 if (this.isBlocked(worldIn, blockpos.down(), worldIn.getBlockState(blockpos.down())))
                 {
-                    j = this.func_176374_a(worldIn, blockpos, 1, enumfacing.getOpposite());
+                    j = this.func176374A(worldIn, blockpos, 1, enumfacing.getOpposite());
                 }
                 else
                 {

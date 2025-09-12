@@ -52,7 +52,7 @@ import java.nio.ByteBuffer;
  * @author elias_naur <elias_naur@users.sourceforge.net>
  * @author Brian Matzon <brian@matzon.dk>
  */
-public class Keyboard {
+public final class Keyboard {
     /**
      * Internal use - event size in bytes
      */
@@ -315,6 +315,7 @@ public class Keyboard {
 
         boolean result;
         while ((result = readNext(current_event)) && current_event.repeat && !repeat_enabled) {
+            continue;
         }
         return result;
 //        }

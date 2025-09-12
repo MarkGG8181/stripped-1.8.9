@@ -231,7 +231,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
     }
 
     @SuppressWarnings("incomplete-switch")
-    private void func_174910_a(TileEntityChest chestTe, EnumFacing side)
+    private void func174910A(TileEntityChest chestTe, EnumFacing side)
     {
         if (chestTe.isInvalid())
         {
@@ -299,7 +299,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 
             if (tileentity instanceof TileEntityChest tileentitychest)
             {
-                tileentitychest.func_174910_a(this, side.getOpposite());
+                tileentitychest.func174910A(this, side.getOpposite());
                 return tileentitychest;
             }
         }

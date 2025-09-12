@@ -22,7 +22,7 @@ public class FixList extends ArrayList<int[][]> {
 
     @Override
     public boolean isEmpty() {
-        return this.size() == 0;
+        return this.isEmpty();
     }
 
     @Override

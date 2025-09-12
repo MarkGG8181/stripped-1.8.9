@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityFlying extends EntityLiving
 {
-    public EntityFlying(World worldIn)
+    protected EntityFlying(World worldIn)
     {
         super(worldIn);
     }

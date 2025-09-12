@@ -180,10 +180,10 @@ public class EntityItemFrame extends EntityHanging
 
     public void setItemRotation(int p_82336_1_)
     {
-        this.func_174865_a(p_82336_1_, true);
+        this.func174865A(p_82336_1_, true);
     }
 
-    private void func_174865_a(int p_174865_1_, boolean p_174865_2_)
+    private void func174865A(int p_174865_1_, boolean p_174865_2_)
     {
         this.getDataWatcher().updateObject(9, Byte.valueOf((byte)(p_174865_1_ % 8)));
 
@@ -218,7 +218,7 @@ public class EntityItemFrame extends EntityHanging
         if (nbttagcompound != null && !nbttagcompound.hasNoTags())
         {
             this.setDisplayedItemWithUpdate(ItemStack.loadItemStackFromNBT(nbttagcompound), false);
-            this.func_174865_a(tagCompund.getByte("ItemRotation"), false);
+            this.func174865A(tagCompund.getByte("ItemRotation"), false);
 
             if (tagCompund.hasKey("ItemDropChance", 99))
             {
@@ -227,7 +227,7 @@ public class EntityItemFrame extends EntityHanging
 
             if (tagCompund.hasKey("Direction"))
             {
-                this.func_174865_a(this.getRotation() * 2, false);
+                this.func174865A(this.getRotation() * 2, false);
             }
         }
 

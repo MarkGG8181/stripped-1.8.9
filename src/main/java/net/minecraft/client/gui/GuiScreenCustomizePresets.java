@@ -95,15 +95,12 @@ public class GuiScreenCustomizePresets extends GuiScreen
      */
     protected void actionPerformed(GuiButton button) throws IOException
     {
-        switch (button.id)
-        {
-            case 0:
-                this.parent.func_175324_a(this.export.getText());
-                this.mc.displayGuiScreen(this.parent);
-                break;
-
-            case 1:
-                this.mc.displayGuiScreen(this.parent);
+        if (button.id == 0) {
+            this.parent.func_175324_a(this.export.getText());
+            this.mc.displayGuiScreen(this.parent);
+        }
+        else if (button.id == 1) {
+            this.mc.displayGuiScreen(this.parent);
         }
     }
 
@@ -132,10 +129,10 @@ public class GuiScreenCustomizePresets extends GuiScreen
 
     public void func_175304_a()
     {
-        this.select.enabled = this.func_175305_g();
+        this.select.enabled = this.func175305G();
     }
 
-    private boolean func_175305_g()
+    private boolean func175305G()
     {
         return this.list.selected > -1 && this.list.selected < PRESETS.size() || this.export.getText().length() > 1;
     }
@@ -209,7 +206,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
         {
         }
 
-        private void func_178051_a(int p_178051_1_, int p_178051_2_, ResourceLocation p_178051_3_)
+        private void func178051A(int p_178051_1_, int p_178051_2_, ResourceLocation p_178051_3_)
         {
             int i = p_178051_1_ + 5;
             GuiScreenCustomizePresets.this.drawHorizontalLine(i - 1, i + 32, p_178051_2_ - 1, -2039584);
@@ -233,7 +230,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
         protected void drawSlot(int entryID, int p_180791_2_, int p_180791_3_, int p_180791_4_, int mouseXIn, int mouseYIn)
         {
             GuiScreenCustomizePresets.Info guiscreencustomizepresets$info = (GuiScreenCustomizePresets.Info)GuiScreenCustomizePresets.PRESETS.get(entryID);
-            this.func_178051_a(p_180791_2_, p_180791_3_, guiscreencustomizepresets$info.texture);
+            this.func178051A(p_180791_2_, p_180791_3_, guiscreencustomizepresets$info.texture);
             GuiScreenCustomizePresets.this.fontRendererObj.drawString(guiscreencustomizepresets$info.name, p_180791_2_ + 32 + 10, p_180791_3_ + 14, 16777215);
         }
     }

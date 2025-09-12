@@ -435,7 +435,7 @@ public class EntityWolf extends EntityTameable {
      * the animal type)
      */
     public boolean isBreedingItem(ItemStack stack) {
-        return stack == null ? false : (!(stack.getItem() instanceof ItemFood) ? false : ((ItemFood)stack.getItem()).isWolfsFavoriteMeat());
+        return stack == null ? false : (stack.getItem() instanceof ItemFood ? ((ItemFood)stack.getItem()).isWolfsFavoriteMeat() : false);
     }
 
     /**
@@ -510,7 +510,7 @@ public class EntityWolf extends EntityTameable {
         }
         else {
             EntityWolf entitywolf = (EntityWolf)otherAnimal;
-            return !entitywolf.isTamed() ? false : (entitywolf.isSitting() ? false : this.isInLove() && entitywolf.isInLove());
+            return entitywolf.isTamed() ? (entitywolf.isSitting() ? false : this.isInLove() && entitywolf.isInLove()) : false;
         }
     }
 

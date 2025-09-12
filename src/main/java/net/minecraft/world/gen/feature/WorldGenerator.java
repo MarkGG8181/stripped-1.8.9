@@ -13,12 +13,12 @@ public abstract class WorldGenerator
      */
     private final boolean doBlockNotify;
 
-    public WorldGenerator()
+    protected WorldGenerator()
     {
         this(false);
     }
 
-    public WorldGenerator(boolean notify)
+    protected WorldGenerator(boolean notify)
     {
         this.doBlockNotify = notify;
     }

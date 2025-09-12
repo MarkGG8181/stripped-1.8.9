@@ -31,9 +31,9 @@ public class ItemArmor extends Item
             int j = blockpos.getY();
             int k = blockpos.getZ();
             AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)i, (double)j, (double)k, (double)(i + 1), (double)(j + 1), (double)(k + 1));
-            List<EntityLivingBase> list = source.getWorld().<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, Predicates.<EntityLivingBase>and(EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
+            List<EntityLivingBase> list = source.getWorld().getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, Predicates.<EntityLivingBase>and(EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
 
-            if (list.size() > 0)
+            if (!list.isEmpty())
             {
                 EntityLivingBase entitylivingbase = (EntityLivingBase)list.getFirst();
                 int l = entitylivingbase instanceof EntityPlayer ? 1 : 0;
@@ -126,7 +126,7 @@ public class ItemArmor extends Item
      */
     public boolean hasColor(ItemStack stack)
     {
-        return this.material != ItemArmor.ArmorMaterial.LEATHER ? false : (!stack.hasTagCompound() ? false : (!stack.getTagCompound().hasKey("display", 10) ? false : stack.getTagCompound().getCompoundTag("display").hasKey("color", 3)));
+        return this.material != ItemArmor.ArmorMaterial.LEATHER ? false : (stack.hasTagCompound() ? (stack.getTagCompound().hasKey("display", 10) ? stack.getTagCompound().getCompoundTag("display").hasKey("color", 3) : false) : false);
     }
 
     /**
@@ -232,7 +232,7 @@ public class ItemArmor extends Item
         return itemStackIn;
     }
 
-    public static enum ArmorMaterial
+    public enum ArmorMaterial
     {
         LEATHER("leather", 5, new int[]{1, 3, 2, 1}, 15),
         CHAIN("chainmail", 15, new int[]{2, 5, 4, 1}, 12),

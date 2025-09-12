@@ -114,7 +114,7 @@ public abstract class CreativeTabs
     private EnumEnchantmentType[] enchantmentTypes;
     private ItemStack iconItemStack;
 
-    public CreativeTabs(int index, String label)
+    protected CreativeTabs(int index, String label)
     {
         this.tabIndex = index;
         this.tabLabel = label;

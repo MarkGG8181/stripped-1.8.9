@@ -128,7 +128,7 @@ public class EntityGuardian extends EntityMob {
         return this.isSyncedFlagSet(2);
     }
 
-    private void func_175476_l(boolean p_175476_1_) {
+    private void func175476L(boolean p_175476_1_) {
         this.setSyncedFlag(2, p_175476_1_);
     }
 
@@ -219,21 +219,21 @@ public class EntityGuardian extends EntityMob {
      * Returns the sound this mob makes while it's alive.
      */
     protected String getLivingSound() {
-        return !this.isInWater() ? "mob.guardian.land.idle" : (this.isElder() ? "mob.guardian.elder.idle" : "mob.guardian.idle");
+        return this.isInWater() ? (this.isElder() ? "mob.guardian.elder.idle" : "mob.guardian.idle") : "mob.guardian.land.idle";
     }
 
     /**
      * Returns the sound this mob makes when it is hurt.
      */
     protected String getHurtSound() {
-        return !this.isInWater() ? "mob.guardian.land.hit" : (this.isElder() ? "mob.guardian.elder.hit" : "mob.guardian.hit");
+        return this.isInWater() ? (this.isElder() ? "mob.guardian.elder.hit" : "mob.guardian.hit") : "mob.guardian.land.hit";
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     protected String getDeathSound() {
-        return !this.isInWater() ? "mob.guardian.land.death" : (this.isElder() ? "mob.guardian.elder.death" : "mob.guardian.death");
+        return this.isInWater() ? (this.isElder() ? "mob.guardian.elder.death" : "mob.guardian.death") : "mob.guardian.land.death";
     }
 
     /**
@@ -609,11 +609,11 @@ public class EntityGuardian extends EntityMob {
                 }
 
                 this.entityGuardian.getLookHelper().setLookPosition(d10 + (d7 - d10) * 0.125D, d11 + (d8 - d11) * 0.125D, d12 + (d9 - d12) * 0.125D, 10.0F, 40.0F);
-                this.entityGuardian.func_175476_l(true);
+                this.entityGuardian.func175476L(true);
             }
             else {
                 this.entityGuardian.setAIMoveSpeed(0.0F);
-                this.entityGuardian.func_175476_l(false);
+                this.entityGuardian.func175476L(false);
             }
         }
     }

@@ -159,8 +159,7 @@ public class ResourcePackRepository {
                     String s1 = Hashing.sha1().hashBytes(Files.toByteArray(file1)).toString();
 
                     if (s1.equals(hash)) {
-                        ListenableFuture listenablefuture1 = this.setResourcePackInstance(file1);
-                        return listenablefuture1;
+                        return this.setResourcePackInstance(file1);
                     }
 
                     logger.warn("File " + file1 + " had wrong hash (expected " + hash + ", found " + s1 + "). Deleting it.");
@@ -180,7 +179,7 @@ public class ResourcePackRepository {
                     minecraft.displayGuiScreen(guiscreenworking);
                 }
             }));
-            final SettableFuture<Object> settablefuture = SettableFuture.<Object>create();
+            final SettableFuture<Object> settablefuture = SettableFuture.create();
             this.downloadingPacks = HttpUtil.downloadResourcePack(file1, url, map, 52428800, guiscreenworking, minecraft.getProxy());
             Futures.addCallback(this.downloadingPacks, new FutureCallback<Object>() {
                 public void onSuccess(Object p_onSuccess_1_) {
@@ -192,8 +191,7 @@ public class ResourcePackRepository {
                     settablefuture.setException(p_onFailure_1_);
                 }
             }, MoreExecutors.directExecutor());
-            ListenableFuture listenablefuture = this.downloadingPacks;
-            return listenablefuture;
+            return this.downloadingPacks;
         } finally {
             this.lock.unlock();
         }
@@ -250,7 +248,7 @@ public class ResourcePackRepository {
         }
     }
 
-    public class Entry {
+    public final class Entry {
         private final File resourcePackFile;
         private IResourcePack reResourcePack;
         private PackMetadataSection rePackMetadataSection;

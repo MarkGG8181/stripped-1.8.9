@@ -165,17 +165,17 @@ public class BlockTripWireHook extends Block {
             BlockPos blockpos1 = pos.offset(enumfacing, i);
             EnumFacing enumfacing1 = enumfacing.getOpposite();
             worldIn.setBlockState(blockpos1, iblockstate1.withProperty(FACING, enumfacing1), 3);
-            this.func_176262_b(worldIn, blockpos1, enumfacing1);
-            this.func_180694_a(worldIn, blockpos1, flag3, flag4, flag, flag1);
+            this.func176262B(worldIn, blockpos1, enumfacing1);
+            this.func180694A(worldIn, blockpos1, flag3, flag4, flag, flag1);
         }
 
-        this.func_180694_a(worldIn, pos, flag3, flag4, flag, flag1);
+        this.func180694A(worldIn, pos, flag3, flag4, flag, flag1);
 
         if (!p_176260_4_) {
             worldIn.setBlockState(pos, iblockstate1.withProperty(FACING, enumfacing), 3);
 
             if (p_176260_5_) {
-                this.func_176262_b(worldIn, pos, enumfacing);
+                this.func176262B(worldIn, pos, enumfacing);
             }
         }
 
@@ -201,7 +201,7 @@ public class BlockTripWireHook extends Block {
         this.func_176260_a(worldIn, pos, state, false, true, -1, (IBlockState)null);
     }
 
-    private void func_180694_a(World worldIn, BlockPos pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_) {
+    private void func180694A(World worldIn, BlockPos pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_) {
         if (p_180694_4_ && !p_180694_6_) {
             worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
         }
@@ -216,7 +216,7 @@ public class BlockTripWireHook extends Block {
         }
     }
 
-    private void func_176262_b(World worldIn, BlockPos p_176262_2_, EnumFacing p_176262_3_) {
+    private void func176262B(World worldIn, BlockPos p_176262_2_, EnumFacing p_176262_3_) {
         worldIn.notifyNeighborsOfStateChange(p_176262_2_, this);
         worldIn.notifyNeighborsOfStateChange(p_176262_2_.offset(p_176262_3_.getOpposite()), this);
     }
@@ -275,7 +275,7 @@ public class BlockTripWireHook extends Block {
     }
 
     public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
-        return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (state.getValue(FACING) == side ? 15 : 0);
+        return ((Boolean)state.getValue(POWERED)).booleanValue() ? (state.getValue(FACING) == side ? 15 : 0) : 0;
     }
 
     /**

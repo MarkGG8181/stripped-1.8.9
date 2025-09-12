@@ -19,7 +19,7 @@ public class StructureOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    public static final List<BiomeGenBase> WATER_BIOMES = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river, BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver});
+    public static final List<BiomeGenBase> WATER_BIOMES = Arrays.asList(BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river, BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver);
     private static final List<BiomeGenBase.SpawnListEntry> MONUMENT_ENEMIES = new ArrayList<>();
 
     public StructureOceanMonument()
@@ -118,10 +118,10 @@ public class StructureOceanMonument extends MapGenStructure
         public StartMonument(World worldIn, Random p_i45607_2_, int p_i45607_3_, int p_i45607_4_)
         {
             super(p_i45607_3_, p_i45607_4_);
-            this.func_175789_b(worldIn, p_i45607_2_, p_i45607_3_, p_i45607_4_);
+            this.func175789B(worldIn, p_i45607_2_, p_i45607_3_, p_i45607_4_);
         }
 
-        private void func_175789_b(World worldIn, Random p_175789_2_, int p_175789_3_, int p_175789_4_)
+        private void func175789B(World worldIn, Random p_175789_2_, int p_175789_3_, int p_175789_4_)
         {
             p_175789_2_.setSeed(worldIn.getSeed());
             long i = p_175789_2_.nextLong();
@@ -142,7 +142,7 @@ public class StructureOceanMonument extends MapGenStructure
             if (!this.wasCreated)
             {
                 this.components.clear();
-                this.func_175789_b(worldIn, rand, this.getChunkPosX(), this.getChunkPosZ());
+                this.func175789B(worldIn, rand, this.getChunkPosX(), this.getChunkPosZ());
             }
 
             super.generateStructure(worldIn, rand, structurebb);

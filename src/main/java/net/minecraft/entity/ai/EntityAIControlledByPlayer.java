@@ -59,7 +59,7 @@ public class EntityAIControlledByPlayer extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        return this.thisEntity.isEntityAlive() && this.thisEntity.riddenByEntity != null && this.thisEntity.riddenByEntity instanceof EntityPlayer && (this.speedBoosted || this.thisEntity.canBeSteered());
+        return this.thisEntity.isEntityAlive() && this.thisEntity.riddenByEntity instanceof EntityPlayer && (this.speedBoosted || this.thisEntity.canBeSteered());
     }
 
     /**

@@ -3,7 +3,7 @@ package net.minecraft.util;
 import java.util.Collection;
 import java.util.Random;
 
-public class WeightedRandom
+public final class WeightedRandom
 {
     /**
      * Returns the total weight of all items in a collection.

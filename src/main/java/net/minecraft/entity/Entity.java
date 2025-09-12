@@ -252,7 +252,7 @@ public abstract class Entity implements ICommandSender
         this.setDead();
     }
 
-    public Entity(World worldIn)
+    protected Entity(World worldIn)
     {
         this.entityId = nextEntityID++;
         this.renderDistanceWeight = 1.0D;
@@ -2546,7 +2546,7 @@ public abstract class Entity implements ICommandSender
 
     public void addEntityCrashInfo(CrashReportCategory category)
     {
-        category.addCrashSectionCallable("Entity Type", new Callable<String>()
+        category.addCrashSectionCallable("Entity Type", new Callable<>()
         {
             public String call() throws Exception
             {
@@ -2554,7 +2554,7 @@ public abstract class Entity implements ICommandSender
             }
         });
         category.addCrashSection("Entity ID", Integer.valueOf(this.entityId));
-        category.addCrashSectionCallable("Entity Name", new Callable<String>()
+        category.addCrashSectionCallable("Entity Name", new Callable<>()
         {
             public String call() throws Exception
             {
@@ -2564,14 +2564,14 @@ public abstract class Entity implements ICommandSender
         category.addCrashSection("Entity\'s Exact location", "%.2f, %.2f, %.2f".formatted(new Object[]{Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)}));
         category.addCrashSection("Entity\'s Block location", CrashReportCategory.getCoordinateInfo((double)MathHelper.floor_double(this.posX), (double)MathHelper.floor_double(this.posY), (double)MathHelper.floor_double(this.posZ)));
         category.addCrashSection("Entity\'s Momentum", "%.2f, %.2f, %.2f".formatted(new Object[]{Double.valueOf(this.motionX), Double.valueOf(this.motionY), Double.valueOf(this.motionZ)}));
-        category.addCrashSectionCallable("Entity\'s Rider", new Callable<String>()
+        category.addCrashSectionCallable("Entity\'s Rider", new Callable<>()
         {
             public String call() throws Exception
             {
                 return Entity.this.riddenByEntity.toString();
             }
         });
-        category.addCrashSectionCallable("Entity\'s Vehicle", new Callable<String>()
+        category.addCrashSectionCallable("Entity\'s Vehicle", new Callable<>()
         {
             public String call() throws Exception
             {

@@ -81,8 +81,7 @@ public class JsonBlendingMode {
         i = 31 * i + this.destAlphaFactor;
         i = 31 * i + this.blendFunction;
         i = 31 * i + (this.separateBlend ? 1 : 0);
-        i = 31 * i + (this.opaque ? 1 : 0);
-        return i;
+        return 31 * i + (this.opaque ? 1 : 0);
     }
 
     public boolean func_148111_b() {
@@ -103,7 +102,7 @@ public class JsonBlendingMode {
             boolean flag1 = false;
 
             if (JsonUtils.isString(p_148110_0_, "func")) {
-                i = func_148108_a(p_148110_0_.get("func").getAsString());
+                i = func148108A(p_148110_0_.get("func").getAsString());
 
                 if (i != 32774) {
                     flag = false;
@@ -111,7 +110,7 @@ public class JsonBlendingMode {
             }
 
             if (JsonUtils.isString(p_148110_0_, "srcrgb")) {
-                j = func_148107_b(p_148110_0_.get("srcrgb").getAsString());
+                j = func148107B(p_148110_0_.get("srcrgb").getAsString());
 
                 if (j != 1) {
                     flag = false;
@@ -119,7 +118,7 @@ public class JsonBlendingMode {
             }
 
             if (JsonUtils.isString(p_148110_0_, "dstrgb")) {
-                k = func_148107_b(p_148110_0_.get("dstrgb").getAsString());
+                k = func148107B(p_148110_0_.get("dstrgb").getAsString());
 
                 if (k != 0) {
                     flag = false;
@@ -127,7 +126,7 @@ public class JsonBlendingMode {
             }
 
             if (JsonUtils.isString(p_148110_0_, "srcalpha")) {
-                l = func_148107_b(p_148110_0_.get("srcalpha").getAsString());
+                l = func148107B(p_148110_0_.get("srcalpha").getAsString());
 
                 if (l != 1) {
                     flag = false;
@@ -137,7 +136,7 @@ public class JsonBlendingMode {
             }
 
             if (JsonUtils.isString(p_148110_0_, "dstalpha")) {
-                i1 = func_148107_b(p_148110_0_.get("dstalpha").getAsString());
+                i1 = func148107B(p_148110_0_.get("dstalpha").getAsString());
 
                 if (i1 != 0) {
                     flag = false;
@@ -150,12 +149,12 @@ public class JsonBlendingMode {
         }
     }
 
-    private static int func_148108_a(String p_148108_0_) {
+    private static int func148108A(String p_148108_0_) {
         String s = p_148108_0_.trim().toLowerCase();
         return "add".equals(s) ? 32774 : ("subtract".equals(s) ? 32778 : ("reversesubtract".equals(s) ? 32779 : ("reverse_subtract".equals(s) ? 32779 : ("min".equals(s) ? 32775 : ("max".equals(s) ? 32776 : 32774)))));
     }
 
-    private static int func_148107_b(String p_148107_0_) {
+    private static int func148107B(String p_148107_0_) {
         String s = p_148107_0_.trim().toLowerCase();
         s = s.replaceAll("_", "");
         s = s.replaceAll("one", "1");

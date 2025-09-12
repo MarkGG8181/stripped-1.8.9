@@ -12,7 +12,7 @@ import net.minecraft.block.properties.IProperty;
 public abstract class BlockStateBase implements IBlockState
 {
     private static final Joiner COMMA_JOINER = Joiner.on(',');
-    private static final Function<Entry<IProperty, Comparable>, String> MAP_ENTRY_TO_STRING = new Function<Entry<IProperty, Comparable>, String>()
+    private static final Function<Entry<IProperty, Comparable>, String> MAP_ENTRY_TO_STRING = new Function<>()
     {
         public String apply(Entry<IProperty, Comparable> p_apply_1_)
         {

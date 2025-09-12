@@ -86,7 +86,7 @@ public final class AL {
         create(null, 44100, 60, false);
     }
 
-    private static final IntBuffer createAttributeList(int contextFrequency, int contextRefresh, int contextSynchronized, MemoryStack stack) {
+    private static IntBuffer createAttributeList(int contextFrequency, int contextRefresh, int contextSynchronized, MemoryStack stack) {
         IntBuffer buffer = stack.callocInt(7);
         buffer.put(0, 4103);
         buffer.put(1, contextFrequency);
@@ -111,13 +111,13 @@ public final class AL {
         }
 
         _created = false;
-        al_destroy();
+        alDestroy();
     }
 
     static void init() {
     }
 
-    static void al_destroy() {
+    static void alDestroy() {
         setCurrentProcess(null);
     }
 

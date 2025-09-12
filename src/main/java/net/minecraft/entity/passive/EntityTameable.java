@@ -17,7 +17,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 {
     protected EntityAISit aiSit = new EntityAISit(this);
 
-    public EntityTameable(World worldIn)
+    protected EntityTameable(World worldIn)
     {
         super(worldIn);
         this.setupTamedAI();

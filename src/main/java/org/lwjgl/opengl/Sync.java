@@ -23,7 +23,7 @@ import org.lwjgl.Sys;
  * @author Riven
  * @author kappaOne
  */
-class Sync {
+final class Sync {
 
     /** number of nano seconds in a second */
     private static final long NANOS_IN_SECOND = 1000L * 1000L * 1000L;
@@ -124,7 +124,7 @@ class Sync {
         private int offset;
 
         private static final long DAMPEN_THRESHOLD = 10 * 1000L * 1000L; // 10ms
-        private static final float DAMPEN_FACTOR = 0.9f; // don't change: 0.9f is exactly right!
+        private static final float DAMPEN_FACTOR = 0.9F; // don't change: 0.9f is exactly right!
 
         public RunningAvg(int slotCount) {
             this.slots = new long[slotCount];

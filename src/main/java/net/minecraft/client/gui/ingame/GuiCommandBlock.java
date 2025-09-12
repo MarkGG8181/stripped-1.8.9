@@ -65,7 +65,7 @@ public class GuiCommandBlock extends GuiScreen
         this.previousOutputTextField.setEnabled(false);
         this.previousOutputTextField.setText("-");
         this.trackOutput = this.localCommandBlock.shouldTrackOutput();
-        this.func_175388_a();
+        this.func175388A();
         this.doneBtn.enabled = this.commandTextField.getText().trim().length() > 0;
     }
 
@@ -108,7 +108,7 @@ public class GuiCommandBlock extends GuiScreen
             else if (button.id == 4)
             {
                 this.localCommandBlock.setTrackOutput(!this.localCommandBlock.shouldTrackOutput());
-                this.func_175388_a();
+                this.func175388A();
             }
         }
     }
@@ -173,7 +173,7 @@ public class GuiCommandBlock extends GuiScreen
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
-    private void func_175388_a()
+    private void func175388A()
     {
         if (this.localCommandBlock.shouldTrackOutput())
         {

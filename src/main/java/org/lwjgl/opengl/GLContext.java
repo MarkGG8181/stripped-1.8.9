@@ -1,6 +1,6 @@
 package org.lwjgl.opengl;
 
-public class GLContext {
+public final class GLContext {
 
     private static final ContextCapabilities contextCapabilities = new ContextCapabilities();
 

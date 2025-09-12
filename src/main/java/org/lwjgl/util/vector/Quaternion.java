@@ -47,7 +47,10 @@ public class Quaternion extends Vector implements ReadableVector4f {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float x, y, z, w;
+    public float x;
+    public float y;
+    public float z;
+    public float w;
 
     /**
      * C'tor. The quaternion will be initialized to the identity.

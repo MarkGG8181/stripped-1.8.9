@@ -50,7 +50,7 @@ public enum EnumFaceDirection
         }
     }
 
-    public static class VertexInformation {
+    public static final class VertexInformation {
         public final int xIndex;
         public final int yIndex;
         public final int zIndex;

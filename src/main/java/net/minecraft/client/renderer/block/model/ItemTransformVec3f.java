@@ -38,7 +38,7 @@ public class ItemTransformVec3f
         else
         {
             ItemTransformVec3f itemtransformvec3f = (ItemTransformVec3f)p_equals_1_;
-            return !this.rotation.equals(itemtransformvec3f.rotation) ? false : (!this.scale.equals(itemtransformvec3f.scale) ? false : this.translation.equals(itemtransformvec3f.translation));
+            return this.rotation.equals(itemtransformvec3f.rotation) ? (this.scale.equals(itemtransformvec3f.scale) ? this.translation.equals(itemtransformvec3f.translation) : false) : false;
         }
     }
 
@@ -46,8 +46,7 @@ public class ItemTransformVec3f
     {
         int i = this.rotation.hashCode();
         i = 31 * i + this.translation.hashCode();
-        i = 31 * i + this.scale.hashCode();
-        return i;
+        return 31 * i + this.scale.hashCode();
     }
 
     static class Deserializer implements JsonDeserializer<ItemTransformVec3f>

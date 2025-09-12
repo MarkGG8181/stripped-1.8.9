@@ -3,7 +3,7 @@ package net.minecraft.port.krypton;
 /**
  * Maps VarInt byte sizes to a lookup table of 64 entries.
  */
-public class VarIntUtil {
+public final class VarIntUtil {
     private static final int[] VARINT_EXACT_BYTE_LENGTHS = new int[33];
 
     static {

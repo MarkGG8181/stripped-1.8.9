@@ -8,7 +8,7 @@ import net.minecraft.util.Vec3i;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PooledMutableBlockPos extends ExtendedMutableBlockPos implements AutoCloseable {
+public final class PooledMutableBlockPos extends ExtendedMutableBlockPos implements AutoCloseable {
     private static final List<PooledMutableBlockPos> POOL = new ArrayList<>(100);
     private boolean released;
 

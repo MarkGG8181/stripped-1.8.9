@@ -54,7 +54,7 @@ public record ClickEvent(Action action, String value) {
         return "ClickEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
     }
 
-    public static enum Action {
+    public enum Action {
         OPEN_URL("open_url", true),
         OPEN_FILE("open_file", false),
         RUN_COMMAND("run_command", true),

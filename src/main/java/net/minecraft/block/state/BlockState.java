@@ -41,7 +41,7 @@ public class BlockState {
             blockstate$stateimplementation1.buildPropertyValueTable(map);
         }
 
-        this.validStates = ImmutableList.<IBlockState>copyOf(list);
+        this.validStates = ImmutableList.copyOf(list);
     }
 
     public ImmutableList<IBlockState> getValidStates() {
@@ -74,7 +74,7 @@ public class BlockState {
         return MoreObjects.toStringHelper(this).add("block", Block.blockRegistry.getNameForObject(this.block)).add("properties", Iterables.transform(this.properties, GET_NAME_FUNC)).toString();
     }
 
-    static class StateImplementation extends BlockStateBase {
+    static final class StateImplementation extends BlockStateBase {
         private final Block block;
         private final ImmutableMap<IProperty, Comparable> properties;
         private ImmutableTable<IProperty, Comparable, IBlockState> propertyValueTable;

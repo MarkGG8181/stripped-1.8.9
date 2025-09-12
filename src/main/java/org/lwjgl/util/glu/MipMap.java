@@ -193,11 +193,17 @@ public class MipMap extends Util {
             return GLU_INVALID_ENUM;
         }
 
-        int i, j, k;
-        float[] tempIn, tempOut;
-        float sx, sy;
-        int sizein, sizeout;
-        int rowstride, rowlen;
+        int i;
+        int j;
+        int k;
+        float[] tempIn;
+        float[] tempOut;
+        float sx;
+        float sy;
+        int sizein;
+        int sizeout;
+        int rowstride;
+        int rowlen;
 
         // temp image data
         tempIn = new float[widthIn * heightIn * components];
@@ -278,7 +284,8 @@ public class MipMap extends Util {
         sy = (float)heightIn / (float)heightOut;
 
         float[] c = new float[components];
-        int src, dst;
+        int src;
+        int dst;
 
         for (int iy = 0; iy < heightOut; iy++) {
             for (int ix = 0; ix < widthOut; ix++) {

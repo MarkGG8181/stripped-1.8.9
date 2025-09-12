@@ -3,7 +3,7 @@ package net.minecraft.client.renderer;
 import java.nio.FloatBuffer;
 import org.lwjgl.opengl.GL11;
 
-public class GlStateManager
+public final class GlStateManager
 {
     public static void pushAttrib()
     {

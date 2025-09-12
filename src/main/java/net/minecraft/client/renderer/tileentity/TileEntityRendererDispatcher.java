@@ -24,7 +24,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
 
-public class TileEntityRendererDispatcher
+public final class TileEntityRendererDispatcher
 {
     private final Map<Class<? extends TileEntity> , TileEntitySpecialRenderer<? extends TileEntity>> mapSpecialRenderers = new HashMap<>();
     public static TileEntityRendererDispatcher instance = new TileEntityRendererDispatcher();
@@ -125,7 +125,7 @@ public class TileEntityRendererDispatcher
 
     public void renderTileEntityAt(TileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        TileEntitySpecialRenderer<TileEntity> tileentityspecialrenderer = this.<TileEntity>getSpecialRenderer(tileEntityIn);
+        TileEntitySpecialRenderer<TileEntity> tileentityspecialrenderer = this.getSpecialRenderer(tileEntityIn);
 
         if (tileentityspecialrenderer != null)
         {

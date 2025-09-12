@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegionFileCache {
+public final class RegionFileCache {
     private static final Map<File, RegionFile> regionsByFilename = new HashMap<>();
 
     public static synchronized RegionFile createOrLoadRegionFile(File worldDir, int chunkX, int chunkZ) {

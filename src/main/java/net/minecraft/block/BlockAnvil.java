@@ -142,8 +142,7 @@ public class BlockAnvil extends BlockFalling
     {
         int i = 0;
         i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
-        i = i | ((Integer)state.getValue(DAMAGE)).intValue() << 2;
-        return i;
+        return i | ((Integer)state.getValue(DAMAGE)).intValue() << 2;
     }
 
     protected BlockState createBlockState()

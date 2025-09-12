@@ -355,7 +355,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             int j = mouseY - this.guiTop;
 
             for (CreativeTabs creativetabs : CreativeTabs.creativeTabArray) {
-                if (this.func_147049_a(creativetabs, i, j)) {
+                if (this.func147049A(creativetabs, i, j)) {
                     return;
                 }
             }
@@ -373,7 +373,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             int j = mouseY - this.guiTop;
 
             for (CreativeTabs creativetabs : CreativeTabs.creativeTabArray) {
-                if (this.func_147049_a(creativetabs, i, j)) {
+                if (this.func147049A(creativetabs, i, j)) {
                     this.setCurrentCreativeTab(creativetabs);
                     return;
                 }
@@ -584,7 +584,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             this.mc.getTextureManager().bindTexture(creativeInventoryTabs);
 
             if (creativetabs1.getTabIndex() != selectedTabIndex) {
-                this.func_147051_a(creativetabs1);
+                this.func147051A(creativetabs1);
             }
         }
 
@@ -601,14 +601,14 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             this.drawTexturedModalRect(i, j + (int)((float)(k - j - 17) * this.currentScroll), 232 + (this.needsScrollBars() ? 0 : 12), 0, 12, 15);
         }
 
-        this.func_147051_a(creativetabs);
+        this.func147051A(creativetabs);
 
         if (creativetabs == CreativeTabs.tabInventory) {
             GuiInventory.drawEntityOnScreen(this.guiLeft + 43, this.guiTop + 45, 20, (float)(this.guiLeft + 43 - mouseX), (float)(this.guiTop + 45 - 30 - mouseY), this.mc.thePlayer);
         }
     }
 
-    protected boolean func_147049_a(CreativeTabs p_147049_1_, int p_147049_2_, int p_147049_3_) {
+    protected boolean func147049A(CreativeTabs p_147049_1_, int p_147049_2_, int p_147049_3_) {
         int i = p_147049_1_.getTabColumn();
         int j = 28 * i;
         int k = 0;
@@ -662,7 +662,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
         }
     }
 
-    protected void func_147051_a(CreativeTabs p_147051_1_) {
+    protected void func147051A(CreativeTabs p_147051_1_) {
         boolean flag = p_147051_1_.getTabIndex() == selectedTabIndex;
         boolean flag1 = p_147051_1_.isTabInFirstRow();
         int i = p_147051_1_.getTabColumn();

@@ -49,7 +49,7 @@ public class BlockWorldState
 
     public static Predicate<BlockWorldState> hasState(final Predicate<IBlockState> predicatesIn)
     {
-        return new Predicate<BlockWorldState>()
+        return new Predicate<>()
         {
             public boolean apply(BlockWorldState p_apply_1_)
             {

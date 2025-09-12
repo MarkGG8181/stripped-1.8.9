@@ -71,7 +71,7 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class EntityList
+public final class EntityList
 {
     private static final Logger logger = LogManager.getLogger();
     private static final Map<String, Class<? extends Entity>> stringToClassMapping = new HashMap<>();

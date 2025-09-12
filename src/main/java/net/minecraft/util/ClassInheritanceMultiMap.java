@@ -10,7 +10,7 @@ import java.util.*;
 public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     private static final Set<Class<?>> ALL_KNOWN = new HashSet<>();
     private final Map<Class<?>, List<T>> map = new HashMap<>();
-    private final Set<Class<?>> knownKeys = Sets.<Class<?>>newIdentityHashSet();
+    private final Set<Class<?>> knownKeys = Sets.newIdentityHashSet();
     private final Class<T> baseClass;
     private final List<T> values = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     }
 
     public <S> Iterable<S> getByClass(final Class<S> clazz) {
-        return new Iterable<S>() {
+        return new Iterable<>() {
             public Iterator<S> iterator() {
                 List<T> list = (List)ClassInheritanceMultiMap.this.map.get(ClassInheritanceMultiMap.this.initializeClassLookup(clazz));
 

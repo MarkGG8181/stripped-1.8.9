@@ -84,7 +84,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
             int k = this.pos.getY();
             int l = this.pos.getZ();
             AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)j, (double)k, (double)l, (double)(j + 1), (double)(k + 1), (double)(l + 1)).expand(d0, d0, d0).addCoord(0.0D, (double)this.worldObj.getHeight(), 0.0D);
-            List<EntityPlayer> list = this.worldObj.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+            List<EntityPlayer> list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
 
             for (EntityPlayer entityplayer : list)
             {
@@ -261,7 +261,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
         return 65536.0D;
     }
 
-    private int func_183001_h(int p_183001_1_)
+    private int func183001H(int p_183001_1_)
     {
         if (p_183001_1_ >= 0 && p_183001_1_ < Potion.potionTypes.length && Potion.potionTypes[p_183001_1_] != null)
         {
@@ -277,8 +277,8 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.primaryEffect = this.func_183001_h(compound.getInteger("Primary"));
-        this.secondaryEffect = this.func_183001_h(compound.getInteger("Secondary"));
+        this.primaryEffect = this.func183001H(compound.getInteger("Primary"));
+        this.secondaryEffect = this.func183001H(compound.getInteger("Secondary"));
         this.levels = compound.getInteger("Levels");
     }
 
@@ -445,11 +445,11 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
                 break;
 
             case 1:
-                this.primaryEffect = this.func_183001_h(value);
+                this.primaryEffect = this.func183001H(value);
                 break;
 
             case 2:
-                this.secondaryEffect = this.func_183001_h(value);
+                this.secondaryEffect = this.func183001H(value);
         }
     }
 

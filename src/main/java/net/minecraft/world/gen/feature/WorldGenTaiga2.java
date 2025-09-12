@@ -78,7 +78,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                 if ((block1 == Blocks.grass || block1 == Blocks.dirt || block1 == Blocks.farmland) && position.getY() < 256 - i - 1)
                 {
-                    this.func_175921_a(worldIn, position.down());
+                    this.func175921A(worldIn, position.down());
                     int i3 = rand.nextInt(2);
                     int j3 = 1;
                     int k3 = 0;

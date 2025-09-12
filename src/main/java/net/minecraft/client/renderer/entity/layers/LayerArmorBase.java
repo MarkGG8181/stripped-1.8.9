@@ -23,7 +23,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
     private boolean skipRenderGlint;
     private static final Map<String, ResourceLocation> ARMOR_TEXTURE_RES_MAP = new HashMap<>();
 
-    public LayerArmorBase(RendererLivingEntity<?> rendererIn)
+    protected LayerArmorBase(RendererLivingEntity<?> rendererIn)
     {
         this.renderer = rendererIn;
         this.initArmor();

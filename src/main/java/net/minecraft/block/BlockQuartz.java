@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class BlockQuartz extends Block
 {
-    public static final PropertyEnum<BlockQuartz.EnumType> VARIANT = PropertyEnum.<BlockQuartz.EnumType>create("variant", BlockQuartz.EnumType.class);
+    public static final PropertyEnum<BlockQuartz.EnumType> VARIANT = PropertyEnum.create("variant", BlockQuartz.EnumType.class);
 
     public BlockQuartz()
     {
@@ -109,7 +109,7 @@ public class BlockQuartz extends Block
         return new BlockState(this, new IProperty[]{VARIANT});
     }
 
-    public static enum EnumType implements IStringSerializable
+    public enum EnumType implements IStringSerializable
     {
         DEFAULT(0, "default", "default"),
         CHISELED(1, "chiseled", "chiseled"),

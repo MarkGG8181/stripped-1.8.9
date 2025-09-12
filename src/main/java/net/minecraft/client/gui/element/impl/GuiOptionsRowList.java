@@ -18,13 +18,13 @@ public class GuiOptionsRowList extends GuiListExtended
         {
             GameSettings.Options gamesettings$options = p_i45015_7_[i];
             GameSettings.Options gamesettings$options1 = i < p_i45015_7_.length - 1 ? p_i45015_7_[i + 1] : null;
-            GuiButton guibutton = this.func_148182_a(mcIn, p_i45015_2_ / 2 - 155, 0, gamesettings$options);
-            GuiButton guibutton1 = this.func_148182_a(mcIn, p_i45015_2_ / 2 - 155 + 160, 0, gamesettings$options1);
+            GuiButton guibutton = this.func148182A(mcIn, p_i45015_2_ / 2 - 155, 0, gamesettings$options);
+            GuiButton guibutton1 = this.func148182A(mcIn, p_i45015_2_ / 2 - 155 + 160, 0, gamesettings$options1);
             this.options.add(new GuiOptionsRowList.Row(guibutton, guibutton1));
         }
     }
 
-    private GuiButton func_148182_a(Minecraft mcIn, int p_148182_2_, int p_148182_3_, GameSettings.Options p_148182_4_)
+    private GuiButton func148182A(Minecraft mcIn, int p_148182_2_, int p_148182_3_, GameSettings.Options p_148182_4_)
     {
         if (p_148182_4_ == null)
         {

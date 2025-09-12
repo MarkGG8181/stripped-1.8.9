@@ -141,7 +141,7 @@ public class EntityRabbit extends EntityAnimal {
         if (this.onGround) {
             if (!this.wasOnGround) {
                 this.setJumping(false, EntityRabbit.EnumMoveType.NONE);
-                this.func_175517_cu();
+                this.func175517Cu();
             }
 
             if (this.getRabbitType() == 99 && this.currentMoveTypeDuration == 0) {
@@ -171,7 +171,7 @@ public class EntityRabbit extends EntityAnimal {
                 }
             }
             else if (!entityrabbit$rabbitjumphelper.func_180065_d()) {
-                this.func_175518_cr();
+                this.func175518Cr();
             }
         }
 
@@ -188,11 +188,11 @@ public class EntityRabbit extends EntityAnimal {
         this.rotationYaw = (float)(MathHelper.atan2(z - this.posZ, x - this.posX) * 180.0D / Math.PI) - 90.0F;
     }
 
-    private void func_175518_cr() {
+    private void func175518Cr() {
         ((EntityRabbit.RabbitJumpHelper)this.jumpHelper).func_180066_a(true);
     }
 
-    private void func_175520_cs() {
+    private void func175520Cs() {
         ((EntityRabbit.RabbitJumpHelper)this.jumpHelper).func_180066_a(false);
     }
 
@@ -200,9 +200,9 @@ public class EntityRabbit extends EntityAnimal {
         this.currentMoveTypeDuration = this.getMoveTypeDuration();
     }
 
-    private void func_175517_cu() {
+    private void func175517Cu() {
         this.updateMoveTypeDuration();
-        this.func_175520_cs();
+        this.func175520Cs();
     }
 
     /**
@@ -447,7 +447,7 @@ public class EntityRabbit extends EntityAnimal {
             super(rabbit, EntityLivingBase.class, 1.4D, true);
         }
 
-        protected double func_179512_a(EntityLivingBase attackTarget) {
+        protected double func179512A(EntityLivingBase attackTarget) {
             return (double)(4.0F + attackTarget.width);
         }
     }
@@ -540,7 +540,7 @@ public class EntityRabbit extends EntityAnimal {
         }
     }
 
-    static enum EnumMoveType {
+    enum EnumMoveType {
         NONE(0.0F, 0.0F, 30, 1),
         HOP(0.8F, 0.2F, 20, 10),
         STEP(1.0F, 0.45F, 14, 14),

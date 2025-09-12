@@ -72,8 +72,8 @@ public class EntityMinecartFurnace extends EntityMinecart {
         }
     }
 
-    protected void func_180460_a(BlockPos p_180460_1_, IBlockState p_180460_2_) {
-        super.func_180460_a(p_180460_1_, p_180460_2_);
+    protected void func180460A(BlockPos p_180460_1_, IBlockState p_180460_2_) {
+        super.func180460A(p_180460_1_, p_180460_2_);
         double d0 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
         if (d0 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {

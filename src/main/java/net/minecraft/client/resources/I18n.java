@@ -1,6 +1,6 @@
 package net.minecraft.client.resources;
 
-public class I18n
+public final class I18n
 {
     private static Locale i18nLocale;
 

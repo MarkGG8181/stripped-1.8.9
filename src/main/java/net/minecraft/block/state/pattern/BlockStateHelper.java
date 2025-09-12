@@ -10,7 +10,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 
-public class BlockStateHelper implements Predicate<IBlockState>
+public final class BlockStateHelper implements Predicate<IBlockState>
 {
     private final BlockState blockstate;
     private final Map<IProperty, Predicate> propertyPredicates = new HashMap<>();

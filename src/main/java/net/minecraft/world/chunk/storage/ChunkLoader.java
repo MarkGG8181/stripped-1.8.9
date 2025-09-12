@@ -7,7 +7,7 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.NibbleArray;
 
-public class ChunkLoader {
+public final class ChunkLoader {
     public static ChunkLoader.AnvilConverterData load(NBTTagCompound nbt) {
         int i = nbt.getInteger("xPos");
         int j = nbt.getInteger("zPos");

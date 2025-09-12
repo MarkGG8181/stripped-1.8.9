@@ -52,7 +52,7 @@ public class Session {
         return this.sessionType;
     }
 
-    public static enum Type {
+    public enum Type {
         LEGACY("legacy"),
         MOJANG("mojang");
 

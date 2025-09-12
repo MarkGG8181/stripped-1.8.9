@@ -39,16 +39,16 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
             {
                 return false;
             }
-            else if (!this.func_181638_a(worldIn, position, i))
+            else if (!this.func181638A(worldIn, position, i))
             {
                 return false;
             }
             else
             {
-                this.func_175921_a(worldIn, blockpos);
-                this.func_175921_a(worldIn, blockpos.east());
-                this.func_175921_a(worldIn, blockpos.south());
-                this.func_175921_a(worldIn, blockpos.south().east());
+                this.func175921A(worldIn, blockpos);
+                this.func175921A(worldIn, blockpos.east());
+                this.func175921A(worldIn, blockpos.south());
+                this.func175921A(worldIn, blockpos.south().east());
                 EnumFacing enumfacing = EnumFacing.Plane.HORIZONTAL.random(rand);
                 int i1 = i - rand.nextInt(4);
                 int j1 = 2 - rand.nextInt(3);
@@ -71,10 +71,10 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
                     if (material == Material.air || material == Material.leaves)
                     {
-                        this.func_181639_b(worldIn, blockpos1);
-                        this.func_181639_b(worldIn, blockpos1.east());
-                        this.func_181639_b(worldIn, blockpos1.south());
-                        this.func_181639_b(worldIn, blockpos1.east().south());
+                        this.func181639B(worldIn, blockpos1);
+                        this.func181639B(worldIn, blockpos1.east());
+                        this.func181639B(worldIn, blockpos1.south());
+                        this.func181639B(worldIn, blockpos1.east().south());
                     }
                 }
 
@@ -83,28 +83,28 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                     for (int l3 = -2; l3 <= 0; l3++)
                     {
                         int k4 = -1;
-                        this.func_150526_a(worldIn, k1 + i3, i2 + k4, l1 + l3);
-                        this.func_150526_a(worldIn, 1 + k1 - i3, i2 + k4, l1 + l3);
-                        this.func_150526_a(worldIn, k1 + i3, i2 + k4, 1 + l1 - l3);
-                        this.func_150526_a(worldIn, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
+                        this.func150526A(worldIn, k1 + i3, i2 + k4, l1 + l3);
+                        this.func150526A(worldIn, 1 + k1 - i3, i2 + k4, l1 + l3);
+                        this.func150526A(worldIn, k1 + i3, i2 + k4, 1 + l1 - l3);
+                        this.func150526A(worldIn, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
 
                         if ((i3 > -2 || l3 > -1) && (i3 != -1 || l3 != -2))
                         {
                             k4 = 1;
-                            this.func_150526_a(worldIn, k1 + i3, i2 + k4, l1 + l3);
-                            this.func_150526_a(worldIn, 1 + k1 - i3, i2 + k4, l1 + l3);
-                            this.func_150526_a(worldIn, k1 + i3, i2 + k4, 1 + l1 - l3);
-                            this.func_150526_a(worldIn, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
+                            this.func150526A(worldIn, k1 + i3, i2 + k4, l1 + l3);
+                            this.func150526A(worldIn, 1 + k1 - i3, i2 + k4, l1 + l3);
+                            this.func150526A(worldIn, k1 + i3, i2 + k4, 1 + l1 - l3);
+                            this.func150526A(worldIn, 1 + k1 - i3, i2 + k4, 1 + l1 - l3);
                         }
                     }
                 }
 
                 if (rand.nextBoolean())
                 {
-                    this.func_150526_a(worldIn, k1, i2 + 2, l1);
-                    this.func_150526_a(worldIn, k1 + 1, i2 + 2, l1);
-                    this.func_150526_a(worldIn, k1 + 1, i2 + 2, l1 + 1);
-                    this.func_150526_a(worldIn, k1, i2 + 2, l1 + 1);
+                    this.func150526A(worldIn, k1, i2 + 2, l1);
+                    this.func150526A(worldIn, k1 + 1, i2 + 2, l1);
+                    this.func150526A(worldIn, k1 + 1, i2 + 2, l1 + 1);
+                    this.func150526A(worldIn, k1, i2 + 2, l1 + 1);
                 }
 
                 for (int j3 = -3; j3 <= 4; j3++)
@@ -113,7 +113,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                     {
                         if ((j3 != -3 || i4 != -3) && (j3 != -3 || i4 != 4) && (j3 != 4 || i4 != -3) && (j3 != 4 || i4 != 4) && (Math.abs(j3) < 3 || Math.abs(i4) < 3))
                         {
-                            this.func_150526_a(worldIn, k1 + j3, i2, l1 + i4);
+                            this.func150526A(worldIn, k1 + j3, i2, l1 + i4);
                         }
                     }
                 }
@@ -128,14 +128,14 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
                             for (int i5 = 0; i5 < l4; i5++)
                             {
-                                this.func_181639_b(worldIn, new BlockPos(j + k3, i2 - i5 - 1, l + j4));
+                                this.func181639B(worldIn, new BlockPos(j + k3, i2 - i5 - 1, l + j4));
                             }
 
                             for (int j5 = -1; j5 <= 1; j5++)
                             {
                                 for (int l2 = -1; l2 <= 1; l2++)
                                 {
-                                    this.func_150526_a(worldIn, k1 + k3 + j5, i2, l1 + j4 + l2);
+                                    this.func150526A(worldIn, k1 + k3 + j5, i2, l1 + j4 + l2);
                                 }
                             }
 
@@ -145,7 +145,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                                 {
                                     if (Math.abs(k5) != 2 || Math.abs(l5) != 2)
                                     {
-                                        this.func_150526_a(worldIn, k1 + k3 + k5, i2 - 1, l1 + j4 + l5);
+                                        this.func150526A(worldIn, k1 + k3 + k5, i2 - 1, l1 + j4 + l5);
                                     }
                                 }
                             }
@@ -162,7 +162,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
         }
     }
 
-    private boolean func_181638_a(World p_181638_1_, BlockPos p_181638_2_, int p_181638_3_)
+    private boolean func181638A(World p_181638_1_, BlockPos p_181638_2_, int p_181638_3_)
     {
         int i = p_181638_2_.getX();
         int j = p_181638_2_.getY();
@@ -187,7 +187,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
             {
                 for (int k1 = -i1; k1 <= i1; k1++)
                 {
-                    if (!this.func_150523_a(p_181638_1_.getBlockState(blockpos$mutableblockpos.set(i + j1, j + l, k + k1)).getBlock()))
+                    if (!this.func150523A(p_181638_1_.getBlockState(blockpos$mutableblockpos.set(i + j1, j + l, k + k1)).getBlock()))
                     {
                         return false;
                     }
@@ -198,15 +198,15 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
         return true;
     }
 
-    private void func_181639_b(World p_181639_1_, BlockPos p_181639_2_)
+    private void func181639B(World p_181639_1_, BlockPos p_181639_2_)
     {
-        if (this.func_150523_a(p_181639_1_.getBlockState(p_181639_2_).getBlock()))
+        if (this.func150523A(p_181639_1_.getBlockState(p_181639_2_).getBlock()))
         {
             this.setBlockAndNotifyAdequately(p_181639_1_, p_181639_2_, DARK_OAK_LOG);
         }
     }
 
-    private void func_150526_a(World worldIn, int p_150526_2_, int p_150526_3_, int p_150526_4_)
+    private void func150526A(World worldIn, int p_150526_2_, int p_150526_3_, int p_150526_4_)
     {
         BlockPos blockpos = new BlockPos(p_150526_2_, p_150526_3_, p_150526_4_);
         Block block = worldIn.getBlockState(blockpos).getBlock();

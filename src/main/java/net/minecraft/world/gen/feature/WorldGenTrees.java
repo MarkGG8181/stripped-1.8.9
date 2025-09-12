@@ -76,7 +76,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                     {
                         if (j >= 0 && j < 256)
                         {
-                            if (!this.func_150523_a(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
+                            if (!this.func150523A(worldIn.getBlockState(blockpos$mutableblockpos.set(l, j, i1)).getBlock()))
                             {
                                 flag = false;
                             }
@@ -99,7 +99,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                 if ((block1 == Blocks.grass || block1 == Blocks.dirt || block1 == Blocks.farmland) && position.getY() < 256 - i - 1)
                 {
-                    this.func_175921_a(worldIn, position.down());
+                    this.func175921A(worldIn, position.down());
                     int k2 = 3;
                     int l2 = 0;
 
@@ -142,22 +142,22 @@ public class WorldGenTrees extends WorldGenAbstractTree
                             {
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(-1, j3, 0)))
                                 {
-                                    this.func_181651_a(worldIn, position.add(-1, j3, 0), BlockVine.EAST);
+                                    this.func181651A(worldIn, position.add(-1, j3, 0), BlockVine.EAST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(1, j3, 0)))
                                 {
-                                    this.func_181651_a(worldIn, position.add(1, j3, 0), BlockVine.WEST);
+                                    this.func181651A(worldIn, position.add(1, j3, 0), BlockVine.WEST);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, -1)))
                                 {
-                                    this.func_181651_a(worldIn, position.add(0, j3, -1), BlockVine.SOUTH);
+                                    this.func181651A(worldIn, position.add(0, j3, -1), BlockVine.SOUTH);
                                 }
 
                                 if (rand.nextInt(3) > 0 && worldIn.isAirBlock(position.add(0, j3, 1)))
                                 {
-                                    this.func_181651_a(worldIn, position.add(0, j3, 1), BlockVine.NORTH);
+                                    this.func181651A(worldIn, position.add(0, j3, 1), BlockVine.NORTH);
                                 }
                             }
                         }
@@ -186,22 +186,22 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos2).getBlock().getMaterial() == Material.air)
                                         {
-                                            this.func_181650_b(worldIn, blockpos2, BlockVine.EAST);
+                                            this.func181650B(worldIn, blockpos2, BlockVine.EAST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos3).getBlock().getMaterial() == Material.air)
                                         {
-                                            this.func_181650_b(worldIn, blockpos3, BlockVine.WEST);
+                                            this.func181650B(worldIn, blockpos3, BlockVine.WEST);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos4).getBlock().getMaterial() == Material.air)
                                         {
-                                            this.func_181650_b(worldIn, blockpos4, BlockVine.SOUTH);
+                                            this.func181650B(worldIn, blockpos4, BlockVine.SOUTH);
                                         }
 
                                         if (rand.nextInt(4) == 0 && worldIn.getBlockState(blockpos1).getBlock().getMaterial() == Material.air)
                                         {
-                                            this.func_181650_b(worldIn, blockpos1, BlockVine.NORTH);
+                                            this.func181650B(worldIn, blockpos1, BlockVine.NORTH);
                                         }
                                     }
                                 }
@@ -217,7 +217,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                                     if (rand.nextInt(4 - l3) == 0)
                                     {
                                         EnumFacing enumfacing1 = enumfacing.getOpposite();
-                                        this.func_181652_a(worldIn, rand.nextInt(3), position.add(enumfacing1.getFrontOffsetX(), i - 5 + l3, enumfacing1.getFrontOffsetZ()), enumfacing);
+                                        this.func181652A(worldIn, rand.nextInt(3), position.add(enumfacing1.getFrontOffsetX(), i - 5 + l3, enumfacing1.getFrontOffsetZ()), enumfacing);
                                     }
                                 }
                             }
@@ -238,24 +238,24 @@ public class WorldGenTrees extends WorldGenAbstractTree
         }
     }
 
-    private void func_181652_a(World p_181652_1_, int p_181652_2_, BlockPos p_181652_3_, EnumFacing p_181652_4_)
+    private void func181652A(World p_181652_1_, int p_181652_2_, BlockPos p_181652_3_, EnumFacing p_181652_4_)
     {
         this.setBlockAndNotifyAdequately(p_181652_1_, p_181652_3_, Blocks.cocoa.getDefaultState().withProperty(BlockCocoa.AGE, Integer.valueOf(p_181652_2_)).withProperty(BlockCocoa.FACING, p_181652_4_));
     }
 
-    private void func_181651_a(World p_181651_1_, BlockPos p_181651_2_, PropertyBool p_181651_3_)
+    private void func181651A(World p_181651_1_, BlockPos p_181651_2_, PropertyBool p_181651_3_)
     {
         this.setBlockAndNotifyAdequately(p_181651_1_, p_181651_2_, Blocks.vine.getDefaultState().withProperty(p_181651_3_, Boolean.valueOf(true)));
     }
 
-    private void func_181650_b(World p_181650_1_, BlockPos p_181650_2_, PropertyBool p_181650_3_)
+    private void func181650B(World p_181650_1_, BlockPos p_181650_2_, PropertyBool p_181650_3_)
     {
-        this.func_181651_a(p_181650_1_, p_181650_2_, p_181650_3_);
+        this.func181651A(p_181650_1_, p_181650_2_, p_181650_3_);
         int i = 4;
 
         for (p_181650_2_ = p_181650_2_.down(); p_181650_1_.getBlockState(p_181650_2_).getBlock().getMaterial() == Material.air && i > 0; i--)
         {
-            this.func_181651_a(p_181650_1_, p_181650_2_, p_181650_3_);
+            this.func181651A(p_181650_1_, p_181650_2_, p_181650_3_);
             p_181650_2_ = p_181650_2_.down();
         }
     }

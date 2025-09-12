@@ -177,7 +177,8 @@ public class Util {
      * @return int
      */
     protected static int bytesPerPixel(int format, int type) {
-        int n, m;
+        int n;
+        int m;
 
         switch (format) {
             case GL11.GL_COLOR_INDEX:

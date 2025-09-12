@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 
 public class BlockDirt extends Block
 {
-    public static final PropertyEnum<BlockDirt.DirtType> VARIANT = PropertyEnum.<BlockDirt.DirtType>create("variant", BlockDirt.DirtType.class);
+    public static final PropertyEnum<BlockDirt.DirtType> VARIANT = PropertyEnum.create("variant", BlockDirt.DirtType.class);
     public static final PropertyBool SNOWY = PropertyBool.create("snowy");
 
     protected BlockDirt()
@@ -108,7 +108,7 @@ public class BlockDirt extends Block
         return blockdirt$dirttype.getMetadata();
     }
 
-    public static enum DirtType implements IStringSerializable
+    public enum DirtType implements IStringSerializable
     {
         DIRT(0, "dirt", "default", MapColor.dirtColor),
         COARSE_DIRT(1, "coarse_dirt", "coarse", MapColor.dirtColor),

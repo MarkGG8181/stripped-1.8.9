@@ -22,7 +22,7 @@ public interface ISound
 
     ISound.AttenuationType getAttenuationType();
 
-    public static enum AttenuationType
+    public enum AttenuationType
     {
         NONE(0),
         LINEAR(2);

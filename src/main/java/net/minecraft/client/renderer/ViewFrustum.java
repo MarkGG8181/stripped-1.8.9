@@ -67,11 +67,11 @@ public class ViewFrustum
 
         for (int l = 0; l < this.countChunksX; l++)
         {
-            int i1 = this.func_178157_a(i, k, l);
+            int i1 = this.func178157A(i, k, l);
 
             for (int j1 = 0; j1 < this.countChunksZ; j1++)
             {
-                int k1 = this.func_178157_a(j, k, j1);
+                int k1 = this.func178157A(j, k, j1);
 
                 for (int l1 = 0; l1 < this.countChunksY; l1++)
                 {
@@ -88,7 +88,7 @@ public class ViewFrustum
         }
     }
 
-    private int func_178157_a(int p_178157_1_, int p_178157_2_, int p_178157_3_)
+    private int func178157A(int p_178157_1_, int p_178157_2_, int p_178157_3_)
     {
         int i = p_178157_3_ * 16;
         int j = i - p_178157_1_ + p_178157_2_ / 2;

@@ -237,7 +237,7 @@ public class EntityFirework
         {
             if (this.fireworkAge == 0 && this.fireworkExplosions != null)
             {
-                boolean flag = this.func_92037_i();
+                boolean flag = this.func92037I();
                 boolean flag1 = false;
 
                 if (this.fireworkExplosions.tagCount() >= 3)
@@ -313,7 +313,7 @@ public class EntityFirework
             {
                 if (this.twinkle)
                 {
-                    boolean flag3 = this.func_92037_i();
+                    boolean flag3 = this.func92037I();
                     String s = "fireworks." + (flag3 ? "twinkle_far" : "twinkle");
                     this.worldObj.playSound(this.posX, this.posY, this.posZ, s, 20.0F, 0.9F + this.rand.nextFloat() * 0.15F, true);
                 }
@@ -322,7 +322,7 @@ public class EntityFirework
             }
         }
 
-        private boolean func_92037_i()
+        private boolean func92037I()
         {
             Minecraft minecraft = Minecraft.getMinecraft();
             return minecraft == null || minecraft.getRenderViewEntity() == null || minecraft.getRenderViewEntity().getDistanceSq(this.posX, this.posY, this.posZ) >= 256.0D;

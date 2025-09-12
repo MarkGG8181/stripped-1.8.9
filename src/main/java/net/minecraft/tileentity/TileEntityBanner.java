@@ -209,7 +209,7 @@ public class TileEntityBanner extends TileEntity
         }
     }
 
-    public static enum EnumBannerPattern
+    public enum EnumBannerPattern
     {
         BASE("base", "b"),
         SQUARE_BOTTOM_LEFT("square_bottom_left", "bl", "   ", "   ", "#  "),

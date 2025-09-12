@@ -6,7 +6,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderServer;
 
-public class ChunkHelper {
+public final class ChunkHelper {
 
     public static Chunk getLoadedChunk(IChunkProvider chunkProvider, int x, int z) {
         long chunkKey = ChunkCoordIntPair.chunkXZ2Int(x, z);

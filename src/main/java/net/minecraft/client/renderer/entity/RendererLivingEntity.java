@@ -35,7 +35,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     protected List<LayerRenderer<T>> layerRenderers = Lists.<LayerRenderer<T>>newArrayList();
     protected boolean renderOutlines;
 
-    public RendererLivingEntity(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
+    protected RendererLivingEntity(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
         super(renderManagerIn);
         this.mainModel = modelBaseIn;

@@ -56,7 +56,7 @@ public class ItemArmorStand extends Item
                     double d2 = (double)blockpos.getZ();
                     List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, AxisAlignedBB.fromBounds(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
 
-                    if (list.size() > 0)
+                    if (!list.isEmpty())
                     {
                         return false;
                     }

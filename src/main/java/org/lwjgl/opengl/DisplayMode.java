@@ -27,7 +27,10 @@ package org.lwjgl.opengl;
 public final class DisplayMode {
 
     /** properties of the display mode */
-    private final int width, height, bpp, freq;
+    private final int width;
+    private final int height;
+    private final int bpp;
+    private final int freq;
     /** If true, this instance can be used for fullscreen modes */
     private final boolean fullscreen;
 

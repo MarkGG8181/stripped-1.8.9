@@ -6,7 +6,7 @@ import org.lwjgl.compatibility.glfw.GLFWMouseImplementation;
 import org.lwjgl.compatibility.input.CombinedInputImplementation;
 import org.lwjgl.compatibility.input.InputImplementation;
 
-public class LWJGLImplementationUtils {
+public final class LWJGLImplementationUtils {
     private static InputImplementation _inputImplementation;
 
     public static InputImplementation getOrCreateInputImplementation() {

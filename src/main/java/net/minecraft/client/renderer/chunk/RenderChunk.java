@@ -102,7 +102,6 @@ public class RenderChunk {
 
     public void rebuildChunk(float x, float y, float z, ChunkCompileTaskGenerator generator) {
         CompiledChunk compiledchunk = new CompiledChunk();
-        int i = 1;
         BlockPos blockpos = this.position;
         BlockPos blockpos1 = blockpos.add(15, 15, 15);
         generator.getLock().lock();
@@ -137,7 +136,7 @@ public class RenderChunk {
 
                 if (block.hasTileEntity()) {
                     TileEntity tileentity = iblockaccess.getTileEntity(new BlockPos(blockpos$mutableblockpos));
-                    TileEntitySpecialRenderer<TileEntity> tileentityspecialrenderer = TileEntityRendererDispatcher.instance.<TileEntity>getSpecialRenderer(tileentity);
+                    TileEntitySpecialRenderer<TileEntity> tileentityspecialrenderer = TileEntityRendererDispatcher.instance.getSpecialRenderer(tileentity);
 
                     if (tileentity != null && tileentityspecialrenderer != null) {
                         compiledchunk.addTileEntity(tileentity);
@@ -235,8 +234,7 @@ public class RenderChunk {
 
                 this.compileTask = new ChunkCompileTaskGenerator(this, ChunkCompileTaskGenerator.Type.RESORT_TRANSPARENCY);
                 this.compileTask.setCompiledChunk(this.compiledChunk);
-                chunkcompiletaskgenerator = this.compileTask;
-                return chunkcompiletaskgenerator;
+                return this.compileTask;
             }
 
             chunkcompiletaskgenerator = null;

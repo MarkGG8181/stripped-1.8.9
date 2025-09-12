@@ -76,7 +76,7 @@ public abstract class EntityLiving extends EntityLivingBase
     private Entity leashedToEntity;
     private NBTTagCompound leashNBTTag;
 
-    public EntityLiving(World worldIn)
+    protected EntityLiving(World worldIn)
     {
         super(worldIn);
         this.tasks = new EntityAITasks(worldIn != null && worldIn.theProfiler != null ? worldIn.theProfiler : null);
@@ -540,7 +540,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 }
             }
 
-            if (flag && this.func_175448_a(itemstack))
+            if (flag && this.func175448A(itemstack))
             {
                 if (itemstack1 != null && this.rand.nextFloat() - 0.1F < this.equipmentDropChances[i])
                 {
@@ -566,7 +566,7 @@ public abstract class EntityLiving extends EntityLivingBase
         }
     }
 
-    protected boolean func_175448_a(ItemStack stack)
+    protected boolean func175448A(ItemStack stack)
     {
         return true;
     }
@@ -1300,7 +1300,7 @@ public abstract class EntityLiving extends EntityLivingBase
         return this.dataWatcher.getWatchableObjectByte(15) != 0;
     }
 
-    public static enum SpawnPlacementType
+    public enum SpawnPlacementType
     {
         ON_GROUND,
         IN_AIR,

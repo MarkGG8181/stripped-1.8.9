@@ -37,7 +37,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
         }
     }
 
-    private float func_175265_c()
+    private float func175265C()
     {
         long i = this.lastSelectionTime - Minecraft.getSystemTime() + 5000L;
         return MathHelper.clamp_float((float)i / 2000.0F, 0.0F, 1.0F);
@@ -47,7 +47,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
     {
         if (this.menu != null)
         {
-            float f = this.func_175265_c();
+            float f = this.func175265C();
 
             if (f <= 0.0F)
             {
@@ -60,13 +60,13 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
                 this.zLevel = -90.0F;
                 float f2 = (float)p_175264_1_.getScaledHeight() - 22.0F * f;
                 SpectatorDetails spectatordetails = this.menu.func_178646_f();
-                this.func_175258_a(p_175264_1_, f, i, f2, spectatordetails);
+                this.func175258A(p_175264_1_, f, i, f2, spectatordetails);
                 this.zLevel = f1;
             }
         }
     }
 
-    protected void func_175258_a(ScaledResolution p_175258_1_, float p_175258_2_, int p_175258_3_, float p_175258_4_, SpectatorDetails p_175258_5_)
+    protected void func175258A(ScaledResolution p_175258_1_, float p_175258_2_, int p_175258_3_, float p_175258_4_, SpectatorDetails p_175258_5_)
     {
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableBlend();
@@ -84,7 +84,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
 
         for (int i = 0; i < 9; i++)
         {
-            this.func_175266_a(i, p_175258_1_.getScaledWidth() / 2 - 90 + i * 20 + 2, p_175258_4_ + 3.0F, p_175258_2_, p_175258_5_.func_178680_a(i));
+            this.func175266A(i, p_175258_1_.getScaledWidth() / 2 - 90 + i * 20 + 2, p_175258_4_ + 3.0F, p_175258_2_, p_175258_5_.func_178680_a(i));
         }
 
         RenderHelper.disableStandardItemLighting();
@@ -92,7 +92,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
         GlStateManager.disableBlend();
     }
 
-    private void func_175266_a(int p_175266_1_, int p_175266_2_, float p_175266_3_, float p_175266_4_, ISpectatorMenuObject p_175266_5_)
+    private void func175266A(int p_175266_1_, int p_175266_2_, float p_175266_3_, float p_175266_4_, ISpectatorMenuObject p_175266_5_)
     {
         this.mc.getTextureManager().bindTexture(SPECTATOR_WIDGETS);
 
@@ -116,7 +116,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
 
     public void renderSelectedItem(ScaledResolution p_175263_1_)
     {
-        int i = (int)(this.func_175265_c() * 255.0F);
+        int i = (int)(this.func175265C() * 255.0F);
 
         if (i > 3 && this.menu != null)
         {

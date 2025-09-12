@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 public abstract class WorldGenAbstractTree extends WorldGenerator
 {
-    public WorldGenAbstractTree(boolean notify)
+    protected WorldGenAbstractTree(boolean notify)
     {
         super(notify);
     }
 
-    protected boolean func_150523_a(Block p_150523_1_)
+    protected boolean func150523A(Block p_150523_1_)
     {
         Material material = p_150523_1_.getMaterial();
         return material == Material.air || material == Material.leaves || p_150523_1_ == Blocks.grass || p_150523_1_ == Blocks.dirt || p_150523_1_ == Blocks.log || p_150523_1_ == Blocks.log2 || p_150523_1_ == Blocks.sapling || p_150523_1_ == Blocks.vine;
@@ -24,7 +24,7 @@ public abstract class WorldGenAbstractTree extends WorldGenerator
     {
     }
 
-    protected void func_175921_a(World worldIn, BlockPos pos)
+    protected void func175921A(World worldIn, BlockPos pos)
     {
         if (worldIn.getBlockState(pos).getBlock() != Blocks.dirt)
         {

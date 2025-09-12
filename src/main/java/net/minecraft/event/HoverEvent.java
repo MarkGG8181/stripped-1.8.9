@@ -55,7 +55,7 @@ public record HoverEvent(Action action, IChatComponent value) {
         return "HoverEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
     }
 
-    public static enum Action {
+    public enum Action {
         SHOW_TEXT("show_text", true),
         SHOW_ACHIEVEMENT("show_achievement", true),
         SHOW_ITEM("show_item", true),

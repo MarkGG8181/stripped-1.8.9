@@ -298,7 +298,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
             {
                 random.setSeed((long)(this.mc.getSession().getPlayerID().hashCode() + k1 + i4 + (l1 + l3) * 16));
                 int j4 = random.nextInt(1 + l1 + l3) + (l1 + l3) / 2;
-                TextureAtlasSprite textureatlassprite = this.func_175371_a(Blocks.sand);
+                TextureAtlasSprite textureatlassprite = this.func175371A(Blocks.sand);
 
                 if (j4 <= 37 && l1 + l3 != 35)
                 {
@@ -306,34 +306,34 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
                     {
                         if (random.nextInt(2) == 0)
                         {
-                            textureatlassprite = this.func_175371_a(Blocks.diamond_ore);
+                            textureatlassprite = this.func175371A(Blocks.diamond_ore);
                         }
                         else
                         {
-                            textureatlassprite = this.func_175371_a(Blocks.redstone_ore);
+                            textureatlassprite = this.func175371A(Blocks.redstone_ore);
                         }
                     }
                     else if (j4 == 10)
                     {
-                        textureatlassprite = this.func_175371_a(Blocks.iron_ore);
+                        textureatlassprite = this.func175371A(Blocks.iron_ore);
                     }
                     else if (j4 == 8)
                     {
-                        textureatlassprite = this.func_175371_a(Blocks.coal_ore);
+                        textureatlassprite = this.func175371A(Blocks.coal_ore);
                     }
                     else if (j4 > 4)
                     {
-                        textureatlassprite = this.func_175371_a(Blocks.stone);
+                        textureatlassprite = this.func175371A(Blocks.stone);
                     }
                     else if (j4 > 0)
                     {
-                        textureatlassprite = this.func_175371_a(Blocks.dirt);
+                        textureatlassprite = this.func175371A(Blocks.dirt);
                     }
                 }
                 else
                 {
                     Block block = Blocks.bedrock;
-                    textureatlassprite = this.func_175371_a(block);
+                    textureatlassprite = this.func175371A(block);
                 }
 
                 this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
@@ -553,7 +553,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
         RenderHelper.disableStandardItemLighting();
     }
 
-    private TextureAtlasSprite func_175371_a(Block p_175371_1_)
+    private TextureAtlasSprite func175371A(Block p_175371_1_)
     {
         return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(p_175371_1_.getDefaultState());
     }

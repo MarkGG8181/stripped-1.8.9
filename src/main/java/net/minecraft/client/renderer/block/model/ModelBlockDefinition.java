@@ -148,8 +148,7 @@ public class ModelBlockDefinition {
         public int hashCode() {
             int i = this.modelLocation.hashCode();
             i = 31 * i + (this.modelRotation != null ? this.modelRotation.hashCode() : 0);
-            i = 31 * i + (this.uvLock ? 1 : 0);
-            return i;
+            return 31 * i + (this.uvLock ? 1 : 0);
         }
 
         public static class Deserializer implements JsonDeserializer<ModelBlockDefinition.Variant> {
@@ -164,8 +163,7 @@ public class ModelBlockDefinition {
 
             private ResourceLocation makeModelLocation(String p_178426_1_) {
                 ResourceLocation resourcelocation = new ResourceLocation(p_178426_1_);
-                resourcelocation = new ResourceLocation(resourcelocation.getResourceDomain(), "block/" + resourcelocation.getResourcePath());
-                return resourcelocation;
+                return new ResourceLocation(resourcelocation.getResourceDomain(), "block/" + resourcelocation.getResourcePath());
             }
 
             private boolean parseUvLock(JsonObject p_178429_1_) {
@@ -217,14 +215,13 @@ public class ModelBlockDefinition {
             }
             else {
                 ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants)p_equals_1_;
-                return !this.name.equals(modelblockdefinition$variants.name) ? false : this.listVariants.equals(modelblockdefinition$variants.listVariants);
+                return this.name.equals(modelblockdefinition$variants.name) ? this.listVariants.equals(modelblockdefinition$variants.listVariants) : false;
             }
         }
 
         public int hashCode() {
             int i = this.name.hashCode();
-            i = 31 * i + this.listVariants.hashCode();
-            return i;
+            return 31 * i + this.listVariants.hashCode();
         }
     }
 }

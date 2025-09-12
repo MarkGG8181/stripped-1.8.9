@@ -41,7 +41,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class EntityHorse extends EntityAnimal implements IInvBasic {
-    private static final Predicate<Entity> horseBreedingSelector = new Predicate<Entity>() {
+    private static final Predicate<Entity> horseBreedingSelector = new Predicate<>() {
         public boolean apply(Entity p_apply_1_) {
             return p_apply_1_ instanceof EntityHorse eh && eh.isBreeding();
         }
@@ -231,7 +231,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         return !this.isUndead() && super.allowLeashing();
     }
 
-    protected void func_142017_o(float p_142017_1_) {
+    protected void func142017O(float p_142017_1_) {
         if (p_142017_1_ > 6.0F && this.isEatingHaystack()) {
             this.setEatingHaystack(false);
         }
@@ -351,7 +351,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         }
     }
 
-    private void func_110266_cB() {
+    private void func110266CB() {
         this.openHorseMouth();
 
         if (!this.isSilent()) {
@@ -782,7 +782,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
                     }
 
                     if (flag) {
-                        this.func_110266_cB();
+                        this.func110266CB();
                     }
                 }
 
@@ -887,7 +887,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         return false;
     }
 
-    private void func_110210_cH() {
+    private void func110210CH() {
         this.tailCounter = 1;
     }
 
@@ -908,7 +908,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
      */
     public void onLivingUpdate() {
         if (this.rand.nextInt(200) == 0) {
-            this.func_110210_cH();
+            this.func110210CH();
         }
 
         super.onLivingUpdate();
@@ -1097,7 +1097,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
      * Moves the entity based on the specified heading.  Args: strafe, forward
      */
     public void moveEntityWithHeading(float strafe, float forward) {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase base && this.isHorseSaddled()) {
+        if (this.riddenByEntity instanceof EntityLivingBase base && this.isHorseSaddled()) {
             this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
             this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
             this.setRotation(this.rotationYaw, this.rotationPitch);

@@ -3,7 +3,9 @@ package net.minecraft.util;
 import com.google.common.base.MoreObjects;
 
 public class Vec3i implements Comparable<Vec3i> {
-    private final int x, y, z;
+    private final int x;
+    private final int y;
+    private final int z;
 
     public Vec3i(int xIn, int yIn, int zIn) {
         this.x = xIn;

@@ -50,7 +50,10 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public float x, y, z, w;
+    public float x;
+    public float y;
+    public float z;
+    public float w;
 
     /**
      * Constructor for Vector4f.
@@ -357,11 +360,6 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
             return false;
         }
         Vector4f other = (Vector4f)obj;
-
-        if (x == other.x && y == other.y && z == other.z && w == other.w) {
-            return true;
-        }
-
-        return false;
+        return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 }

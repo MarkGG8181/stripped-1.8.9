@@ -202,7 +202,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private Thread serverThread;
     private long currentTime = getCurrentTimeMillis();
 
-    public MinecraftServer(Proxy proxy, File workDir) {
+    protected MinecraftServer(Proxy proxy, File workDir) {
         this.serverProxy = proxy;
         mcServer = this;
         this.anvilFile = null;
@@ -215,7 +215,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.profileRepo = this.authService.createProfileRepository();
     }
 
-    public MinecraftServer(File workDir, Proxy proxy, File profileCacheDir) {
+    protected MinecraftServer(File workDir, Proxy proxy, File profileCacheDir) {
         this.serverProxy = proxy;
         mcServer = this;
         this.anvilFile = workDir;
@@ -775,14 +775,14 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
      * Adds the server info, including from theWorldServer, to the crash report.
      */
     public CrashReport addServerInfoToCrashReport(CrashReport report) {
-        report.getCategory().addCrashSectionCallable("Profiler Position", new Callable<String>() {
+        report.getCategory().addCrashSectionCallable("Profiler Position", new Callable<>() {
             public String call() throws Exception {
                 return MinecraftServer.this.theProfiler.profilingEnabled ? MinecraftServer.this.theProfiler.getNameOfLastSection() : "N/A (disabled)";
             }
         });
 
         if (this.serverConfigManager != null) {
-            report.getCategory().addCrashSectionCallable("Player Count", new Callable<String>() {
+            report.getCategory().addCrashSectionCallable("Player Count", new Callable<>() {
                 public String call() {
                     return MinecraftServer.this.serverConfigManager.getCurrentPlayerCount() + " / " + MinecraftServer.this.serverConfigManager.getMaxPlayers() + "; " + MinecraftServer.this.serverConfigManager.getPlayerList();
                 }
@@ -1214,7 +1214,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         Validate.notNull(callable);
 
         if (!this.isCallingFromMinecraftThread() && !this.isServerStopped()) {
-            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.<V>create(callable);
+            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.create(callable);
 
             synchronized (this.futureTaskQueue) {
                 this.futureTaskQueue.add(listenablefuturetask);
@@ -1223,7 +1223,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         }
         else {
             try {
-                return Futures.<V>immediateFuture(callable.call());
+                return Futures.immediateFuture(callable.call());
             } catch (Exception exception) {
                 return Futures.immediateFailedFuture(exception);
             }

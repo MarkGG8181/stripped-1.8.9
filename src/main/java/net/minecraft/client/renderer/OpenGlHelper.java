@@ -26,7 +26,7 @@ import org.lwjgl.opengl.GLContext;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 
-public class OpenGlHelper {
+public final class OpenGlHelper {
     public static boolean nvidia;
     public static boolean ati;
     public static int GL_FRAMEBUFFER;

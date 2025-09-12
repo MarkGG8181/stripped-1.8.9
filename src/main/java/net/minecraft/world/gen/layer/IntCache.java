@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntCache
+public final class IntCache
 {
     private static int intCacheSize = 256;
     private static final List<int[]> freeSmallArrays = new ArrayList<>();

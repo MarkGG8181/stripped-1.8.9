@@ -28,7 +28,7 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 
 @SuppressWarnings("incomplete-switch")
-public class StructureVillagePieces
+public final class StructureVillagePieces
 {
     public static void registerVillagePieces()
     {
@@ -72,7 +72,7 @@ public class StructureVillagePieces
         return list;
     }
 
-    private static int func_75079_a(List<StructureVillagePieces.PieceWeight> p_75079_0_)
+    private static int func75079A(List<StructureVillagePieces.PieceWeight> p_75079_0_)
     {
         boolean flag = false;
         int i = 0;
@@ -90,7 +90,7 @@ public class StructureVillagePieces
         return flag ? i : -1;
     }
 
-    private static StructureVillagePieces.Village func_176065_a(StructureVillagePieces.Start start, StructureVillagePieces.PieceWeight weight, List<StructureComponent> p_176065_2_, Random rand, int p_176065_4_, int p_176065_5_, int p_176065_6_, EnumFacing facing, int p_176065_8_)
+    private static StructureVillagePieces.Village func176065A(StructureVillagePieces.Start start, StructureVillagePieces.PieceWeight weight, List<StructureComponent> p_176065_2_, Random rand, int p_176065_4_, int p_176065_5_, int p_176065_6_, EnumFacing facing, int p_176065_8_)
     {
         Class<? extends StructureVillagePieces.Village> oclass = weight.villagePieceClass;
         StructureVillagePieces.Village structurevillagepieces$village = null;
@@ -135,9 +135,9 @@ public class StructureVillagePieces
         return structurevillagepieces$village;
     }
 
-    private static StructureVillagePieces.Village func_176067_c(StructureVillagePieces.Start start, List<StructureComponent> p_176067_1_, Random rand, int p_176067_3_, int p_176067_4_, int p_176067_5_, EnumFacing facing, int p_176067_7_)
+    private static StructureVillagePieces.Village func176067C(StructureVillagePieces.Start start, List<StructureComponent> p_176067_1_, Random rand, int p_176067_3_, int p_176067_4_, int p_176067_5_, EnumFacing facing, int p_176067_7_)
     {
-        int i = func_75079_a(start.structureVillageWeightedPieceList);
+        int i = func75079A(start.structureVillageWeightedPieceList);
 
         if (i <= 0)
         {
@@ -163,7 +163,7 @@ public class StructureVillagePieces
                             break;
                         }
 
-                        StructureVillagePieces.Village structurevillagepieces$village = func_176065_a(start, structurevillagepieces$pieceweight, p_176067_1_, rand, p_176067_3_, p_176067_4_, p_176067_5_, facing, p_176067_7_);
+                        StructureVillagePieces.Village structurevillagepieces$village = func176065A(start, structurevillagepieces$pieceweight, p_176067_1_, rand, p_176067_3_, p_176067_4_, p_176067_5_, facing, p_176067_7_);
 
                         if (structurevillagepieces$village != null)
                         {
@@ -194,7 +194,7 @@ public class StructureVillagePieces
         }
     }
 
-    private static StructureComponent func_176066_d(StructureVillagePieces.Start start, List<StructureComponent> p_176066_1_, Random rand, int p_176066_3_, int p_176066_4_, int p_176066_5_, EnumFacing facing, int p_176066_7_)
+    private static StructureComponent func176066D(StructureVillagePieces.Start start, List<StructureComponent> p_176066_1_, Random rand, int p_176066_3_, int p_176066_4_, int p_176066_5_, EnumFacing facing, int p_176066_7_)
     {
         if (p_176066_7_ > 50)
         {
@@ -202,7 +202,7 @@ public class StructureVillagePieces
         }
         else if (Math.abs(p_176066_3_ - start.getBoundingBox().minX) <= 112 && Math.abs(p_176066_5_ - start.getBoundingBox().minZ) <= 112)
         {
-            StructureComponent structurecomponent = func_176067_c(start, p_176066_1_, rand, p_176066_3_, p_176066_4_, p_176066_5_, facing, p_176066_7_ + 1);
+            StructureComponent structurecomponent = func176067C(start, p_176066_1_, rand, p_176066_3_, p_176066_4_, p_176066_5_, facing, p_176066_7_ + 1);
 
             if (structurecomponent != null)
             {
@@ -228,7 +228,7 @@ public class StructureVillagePieces
         }
     }
 
-    private static StructureComponent func_176069_e(StructureVillagePieces.Start start, List<StructureComponent> p_176069_1_, Random rand, int p_176069_3_, int p_176069_4_, int p_176069_5_, EnumFacing facing, int p_176069_7_)
+    private static StructureComponent func176069E(StructureVillagePieces.Start start, List<StructureComponent> p_176069_1_, Random rand, int p_176069_3_, int p_176069_4_, int p_176069_5_, EnumFacing facing, int p_176069_7_)
     {
         if (p_176069_7_ > 3 + start.terrainType)
         {
@@ -371,7 +371,7 @@ public class StructureVillagePieces
             return true;
         }
 
-        protected int func_180779_c(int p_180779_1_, int p_180779_2_)
+        protected int func180779C(int p_180779_1_, int p_180779_2_)
         {
             return 2;
         }
@@ -393,10 +393,10 @@ public class StructureVillagePieces
             super(start, p_i45570_2_);
             this.coordBaseMode = facing;
             this.boundingBox = p_i45570_4_;
-            this.cropTypeA = this.func_151559_a(rand);
-            this.cropTypeB = this.func_151559_a(rand);
-            this.cropTypeC = this.func_151559_a(rand);
-            this.cropTypeD = this.func_151559_a(rand);
+            this.cropTypeA = this.func151559A(rand);
+            this.cropTypeB = this.func151559A(rand);
+            this.cropTypeC = this.func151559A(rand);
+            this.cropTypeD = this.func151559A(rand);
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
@@ -417,7 +417,7 @@ public class StructureVillagePieces
             this.cropTypeD = Block.getBlockById(tagCompound.getInteger("CD"));
         }
 
-        private Block func_151559_a(Random rand)
+        private Block func151559A(Random rand)
         {
             return switch (rand.nextInt(5))
             {
@@ -501,8 +501,8 @@ public class StructureVillagePieces
             super(start, p_i45569_2_);
             this.coordBaseMode = facing;
             this.boundingBox = p_i45569_4_;
-            this.cropTypeA = this.func_151560_a(rand);
-            this.cropTypeB = this.func_151560_a(rand);
+            this.cropTypeA = this.func151560A(rand);
+            this.cropTypeB = this.func151560A(rand);
         }
 
         protected void writeStructureToNBT(NBTTagCompound tagCompound)
@@ -519,7 +519,7 @@ public class StructureVillagePieces
             this.cropTypeB = Block.getBlockById(tagCompound.getInteger("CB"));
         }
 
-        private Block func_151560_a(Random rand)
+        private Block func151560A(Random rand)
         {
             return switch (rand.nextInt(5))
             {
@@ -695,9 +695,9 @@ public class StructureVillagePieces
             return true;
         }
 
-        protected int func_180779_c(int p_180779_1_, int p_180779_2_)
+        protected int func180779C(int p_180779_1_, int p_180779_2_)
         {
-            return p_180779_1_ == 0 ? 4 : super.func_180779_c(p_180779_1_, p_180779_2_);
+            return p_180779_1_ == 0 ? 4 : super.func180779C(p_180779_1_, p_180779_2_);
         }
     }
 
@@ -818,7 +818,7 @@ public class StructureVillagePieces
             return true;
         }
 
-        protected int func_180779_c(int p_180779_1_, int p_180779_2_)
+        protected int func180779C(int p_180779_1_, int p_180779_2_)
         {
             return 1;
         }
@@ -935,7 +935,7 @@ public class StructureVillagePieces
             return true;
         }
 
-        protected int func_180779_c(int p_180779_1_, int p_180779_2_)
+        protected int func180779C(int p_180779_1_, int p_180779_2_)
         {
             return 3;
         }
@@ -1286,19 +1286,19 @@ public class StructureVillagePieces
                 switch (this.coordBaseMode)
                 {
                     case NORTH:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.WEST, this.getComponentType());
                         break;
 
                     case SOUTH:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.WEST, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.WEST, this.getComponentType());
                         break;
 
                     case WEST:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
                         break;
 
                     case EAST:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
                 }
             }
 
@@ -1307,19 +1307,19 @@ public class StructureVillagePieces
                 switch (this.coordBaseMode)
                 {
                     case NORTH:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.minZ, EnumFacing.EAST, this.getComponentType());
                         break;
 
                     case SOUTH:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.EAST, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.minY, this.boundingBox.maxZ - 2, EnumFacing.EAST, this.getComponentType());
                         break;
 
                     case WEST:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
                         break;
 
                     case EAST:
-                        StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX - 2, this.boundingBox.minY, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
                 }
             }
         }
@@ -1341,8 +1341,8 @@ public class StructureVillagePieces
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
         {
-            IBlockState iblockstate = this.func_175847_a(Blocks.gravel.getDefaultState());
-            IBlockState iblockstate1 = this.func_175847_a(Blocks.cobblestone.getDefaultState());
+            IBlockState iblockstate = this.func175847A(Blocks.gravel.getDefaultState());
+            IBlockState iblockstate1 = this.func175847A(Blocks.cobblestone.getDefaultState());
 
             for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; i++)
             {
@@ -1390,7 +1390,7 @@ public class StructureVillagePieces
 
     public abstract static class Road extends StructureVillagePieces.Village
     {
-        public Road()
+        protected Road()
         {
         }
 
@@ -1422,7 +1422,7 @@ public class StructureVillagePieces
             this.terrainType = p_i2104_7_;
             BiomeGenBase biomegenbase = chunkManagerIn.getBiomeGenerator(new BlockPos(p_i2104_4_, 0, p_i2104_5_), BiomeGenBase.DEFAULT);
             this.inDesert = biomegenbase == BiomeGenBase.desert || biomegenbase == BiomeGenBase.desertHills;
-            this.func_175846_a(this.inDesert);
+            this.func175846A(this.inDesert);
         }
 
         public WorldChunkManager getWorldChunkManager()
@@ -1484,7 +1484,7 @@ public class StructureVillagePieces
         private int villagersSpawned;
         private boolean isDesertVillage;
 
-        public Village()
+        protected Village()
         {
         }
 
@@ -1519,16 +1519,16 @@ public class StructureVillagePieces
                 switch (this.coordBaseMode)
                 {
                     case NORTH:
-                        return StructureVillagePieces.func_176066_d(start, p_74891_2_, rand, this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74891_2_, rand, this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
 
                     case SOUTH:
-                        return StructureVillagePieces.func_176066_d(start, p_74891_2_, rand, this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74891_2_, rand, this.boundingBox.minX - 1, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ + p_74891_5_, EnumFacing.WEST, this.getComponentType());
 
                     case WEST:
-                        return StructureVillagePieces.func_176066_d(start, p_74891_2_, rand, this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74891_2_, rand, this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
 
                     case EAST:
-                        return StructureVillagePieces.func_176066_d(start, p_74891_2_, rand, this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74891_2_, rand, this.boundingBox.minX + p_74891_5_, this.boundingBox.minY + p_74891_4_, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
                 }
             }
 
@@ -1542,16 +1542,16 @@ public class StructureVillagePieces
                 switch (this.coordBaseMode)
                 {
                     case NORTH:
-                        return StructureVillagePieces.func_176066_d(start, p_74894_2_, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_, this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74894_2_, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_, this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
 
                     case SOUTH:
-                        return StructureVillagePieces.func_176066_d(start, p_74894_2_, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_, this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74894_2_, rand, this.boundingBox.maxX + 1, this.boundingBox.minY + p_74894_4_, this.boundingBox.minZ + p_74894_5_, EnumFacing.EAST, this.getComponentType());
 
                     case WEST:
-                        return StructureVillagePieces.func_176066_d(start, p_74894_2_, rand, this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74894_2_, rand, this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
 
                     case EAST:
-                        return StructureVillagePieces.func_176066_d(start, p_74894_2_, rand, this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+                        return StructureVillagePieces.func176066D(start, p_74894_2_, rand, this.boundingBox.minX + p_74894_5_, this.boundingBox.minY + p_74894_4_, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
                 }
             }
 
@@ -1612,18 +1612,18 @@ public class StructureVillagePieces
                     EntityVillager entityvillager = new EntityVillager(worldIn);
                     entityvillager.setLocationAndAngles((double)j + 0.5D, (double)k, (double)l + 0.5D, 0.0F, 0.0F);
                     entityvillager.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null);
-                    entityvillager.setProfession(this.func_180779_c(i, entityvillager.getProfession()));
+                    entityvillager.setProfession(this.func180779C(i, entityvillager.getProfession()));
                     worldIn.spawnEntityInWorld(entityvillager);
                 }
             }
         }
 
-        protected int func_180779_c(int p_180779_1_, int p_180779_2_)
+        protected int func180779C(int p_180779_1_, int p_180779_2_)
         {
             return p_180779_2_;
         }
 
-        protected IBlockState func_175847_a(IBlockState p_175847_1_)
+        protected IBlockState func175847A(IBlockState p_175847_1_)
         {
             if (this.isDesertVillage)
             {
@@ -1663,24 +1663,24 @@ public class StructureVillagePieces
 
         protected void setBlockState(World worldIn, IBlockState blockstateIn, int x, int y, int z, StructureBoundingBox boundingboxIn)
         {
-            IBlockState iblockstate = this.func_175847_a(blockstateIn);
+            IBlockState iblockstate = this.func175847A(blockstateIn);
             super.setBlockState(worldIn, iblockstate, x, y, z, boundingboxIn);
         }
 
         protected void fillWithBlocks(World worldIn, StructureBoundingBox boundingboxIn, int xMin, int yMin, int zMin, int xMax, int yMax, int zMax, IBlockState boundaryBlockState, IBlockState insideBlockState, boolean existingOnly)
         {
-            IBlockState iblockstate = this.func_175847_a(boundaryBlockState);
-            IBlockState iblockstate1 = this.func_175847_a(insideBlockState);
+            IBlockState iblockstate = this.func175847A(boundaryBlockState);
+            IBlockState iblockstate1 = this.func175847A(insideBlockState);
             super.fillWithBlocks(worldIn, boundingboxIn, xMin, yMin, zMin, xMax, yMax, zMax, iblockstate, iblockstate1, existingOnly);
         }
 
         protected void replaceAirAndLiquidDownwards(World worldIn, IBlockState blockstateIn, int x, int y, int z, StructureBoundingBox boundingboxIn)
         {
-            IBlockState iblockstate = this.func_175847_a(blockstateIn);
+            IBlockState iblockstate = this.func175847A(blockstateIn);
             super.replaceAirAndLiquidDownwards(worldIn, iblockstate, x, y, z, boundingboxIn);
         }
 
-        protected void func_175846_a(boolean p_175846_1_)
+        protected void func175846A(boolean p_175846_1_)
         {
             this.isDesertVillage = p_175846_1_;
         }
@@ -1711,10 +1711,10 @@ public class StructureVillagePieces
 
         public void buildComponent(StructureComponent componentIn, List<StructureComponent> listIn, Random rand)
         {
-            StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.WEST, this.getComponentType());
-            StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.EAST, this.getComponentType());
-            StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
-            StructureVillagePieces.func_176069_e((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
+            StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX - 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.WEST, this.getComponentType());
+            StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.maxX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ + 1, EnumFacing.EAST, this.getComponentType());
+            StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.minZ - 1, EnumFacing.NORTH, this.getComponentType());
+            StructureVillagePieces.func176069E((StructureVillagePieces.Start)componentIn, listIn, rand, this.boundingBox.minX + 1, this.boundingBox.maxY - 4, this.boundingBox.maxZ + 1, EnumFacing.SOUTH, this.getComponentType());
         }
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)

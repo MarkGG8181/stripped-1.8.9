@@ -19,7 +19,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
     private boolean isAboveDestination;
     private final int searchLength;
 
-    public EntityAIMoveToBlock(EntityCreature creature, double speedIn, int length)
+    protected EntityAIMoveToBlock(EntityCreature creature, double speedIn, int length)
     {
         this.theEntity = creature;
         this.movementSpeed = speedIn;

@@ -439,7 +439,7 @@ public class WorldServer extends World implements IThreadListener
                 return p_apply_1_ != null && p_apply_1_.isEntityAlive() && WorldServer.this.canSeeSky(p_apply_1_.getPosition());
             }
         });
-        return !list.isEmpty() ? ((EntityLivingBase)list.get(this.rand.nextInt(list.size()))).getPosition() : blockpos;
+        return list.isEmpty() ? blockpos : ((EntityLivingBase)list.get(this.rand.nextInt(list.size()))).getPosition();
     }
 
     public boolean isBlockTickPending(BlockPos pos, Block blockType)
@@ -1168,7 +1168,7 @@ public class WorldServer extends World implements IThreadListener
         return this.mcServer.isCallingFromMinecraftThread();
     }
 
-    static class ServerBlockEventList extends ArrayList<BlockEventData>
+    static final class ServerBlockEventList extends ArrayList<BlockEventData>
     {
         private ServerBlockEventList()
         {

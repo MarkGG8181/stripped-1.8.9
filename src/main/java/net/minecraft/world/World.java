@@ -242,7 +242,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public boolean isBlockLoaded(BlockPos pos, boolean allowEmpty) {
-        return !this.isValid(pos) ? false : this.isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4, allowEmpty);
+        return this.isValid(pos) ? this.isChunkLoaded(pos.getX() >> 4, pos.getZ() >> 4, allowEmpty) : false;
     }
 
     public boolean isAreaLoaded(BlockPos center, int radius) {
@@ -469,7 +469,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             } catch (Throwable throwable) {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Exception while updating neighbours");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Block being updated");
-                crashreportcategory.addCrashSectionCallable("Source block type", new Callable<String>() {
+                crashreportcategory.addCrashSectionCallable("Source block type", new Callable<>() {
                     public String call() throws Exception {
                         try {
                             return "ID #%d (%s // %s)".formatted(new Object[]{Integer.valueOf(Block.getIdFromBlock(blockIn)), blockIn.getUnlocalizedName(), blockIn.getClass().getCanonicalName()});
@@ -2324,8 +2324,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             flag |= this.checkLightFor(EnumSkyBlock.SKY, pos);
         }
 
-        flag = flag | this.checkLightFor(EnumSkyBlock.BLOCK, pos);
-        return flag;
+        return flag | this.checkLightFor(EnumSkyBlock.BLOCK, pos);
     }
 
     /**
@@ -2441,7 +2440,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public <T extends Entity> List<T> getEntitiesWithinAABB(Class<? extends T> classEntity, AxisAlignedBB bb) {
-        return this.<T>getEntitiesWithinAABB(classEntity, bb, EntitySelectors.NOT_SPECTATING);
+        return this.getEntitiesWithinAABB(classEntity, bb, EntitySelectors.NOT_SPECTATING);
     }
 
     public <T extends Entity> List<T> getEntitiesWithinAABB(Class<? extends T> clazz, AxisAlignedBB aabb, Predicate<? super T> filter) {
@@ -2987,12 +2986,12 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     public CrashReportCategory addWorldInfoToCrashReport(CrashReport report) {
         CrashReportCategory crashreportcategory = report.makeCategoryDepth("Affected level", 1);
         crashreportcategory.addCrashSection("Level name", this.worldInfo == null ? "????" : this.worldInfo.getWorldName());
-        crashreportcategory.addCrashSectionCallable("All players", new Callable<String>() {
+        crashreportcategory.addCrashSectionCallable("All players", new Callable<>() {
             public String call() {
                 return World.this.playerEntities.size() + " total; " + World.this.playerEntities.toString();
             }
         });
-        crashreportcategory.addCrashSectionCallable("Chunk stats", new Callable<String>() {
+        crashreportcategory.addCrashSectionCallable("Chunk stats", new Callable<>() {
             public String call() {
                 return World.this.chunkProvider.makeString();
             }

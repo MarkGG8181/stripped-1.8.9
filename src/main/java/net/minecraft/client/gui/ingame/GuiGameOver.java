@@ -42,21 +42,19 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback {
     }
 
     protected void actionPerformed(GuiButton button) throws IOException {
-        switch (button.id) {
-            case 0:
-                this.mc.thePlayer.respawnPlayer();
-                this.mc.displayGuiScreen(null);
-                break;
-
-            case 1:
-                if (this.mc.theWorld.getWorldInfo().isHardcoreModeEnabled()) {
-                    this.mc.displayGuiScreen(new GuiMainMenu());
-                }
-                else {
-                    GuiYesNo guiyesno = new GuiYesNo(this, I18n.format("deathScreen.quit.confirm"), "", I18n.format("deathScreen.titleScreen", new Object[0]), I18n.format("deathScreen.respawn", new Object[0]), 0);
-                    this.mc.displayGuiScreen(guiyesno);
-                    guiyesno.setButtonDelay(20);
-                }
+        if (button.id == 0) {
+            this.mc.thePlayer.respawnPlayer();
+            this.mc.displayGuiScreen(null);
+        }
+        else if (button.id == 1) {
+            if (this.mc.theWorld.getWorldInfo().isHardcoreModeEnabled()) {
+                this.mc.displayGuiScreen(new GuiMainMenu());
+            }
+            else {
+                GuiYesNo guiyesno = new GuiYesNo(this, I18n.format("deathScreen.quit.confirm"), "", I18n.format("deathScreen.titleScreen", new Object[0]), I18n.format("deathScreen.respawn", new Object[0]), 0);
+                this.mc.displayGuiScreen(guiyesno);
+                guiyesno.setButtonDelay(20);
+            }
         }
     }
 

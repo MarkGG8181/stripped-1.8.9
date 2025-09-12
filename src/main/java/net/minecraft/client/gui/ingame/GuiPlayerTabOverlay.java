@@ -71,7 +71,7 @@ public class GuiPlayerTabOverlay extends Gui
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn)
     {
         NetHandlerPlayClient nethandlerplayclient = this.mc.thePlayer.sendQueue;
-        List<NetworkPlayerInfo> list = ENTRY_ORDERING.<NetworkPlayerInfo>sortedCopy(nethandlerplayclient.getPlayerInfoMap());
+        List<NetworkPlayerInfo> list = ENTRY_ORDERING.sortedCopy(nethandlerplayclient.getPlayerInfoMap());
         int i = 0;
         int j = 0;
 
@@ -384,7 +384,7 @@ public class GuiPlayerTabOverlay extends Gui
         this.footer = null;
     }
 
-    static class PlayerComparator implements Comparator<NetworkPlayerInfo>
+    static final class PlayerComparator implements Comparator<NetworkPlayerInfo>
     {
         private PlayerComparator()
         {

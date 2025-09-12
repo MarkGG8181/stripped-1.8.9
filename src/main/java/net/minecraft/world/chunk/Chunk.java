@@ -691,7 +691,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
     private TileEntity createNewTileEntity(BlockPos pos) {
         Block block = this.getBlock(pos);
-        return !block.hasTileEntity() ? null : ((ITileEntityProvider)block).createNewTileEntity(this.worldObj, this.getBlockMetadata(pos));
+        return block.hasTileEntity() ? ((ITileEntityProvider)block).createNewTileEntity(this.worldObj, this.getBlockMetadata(pos)) : null;
     }
 
     public TileEntity getTileEntity(BlockPos pos, Chunk.EnumCreateEntityType p_177424_2_) {
@@ -1152,38 +1152,38 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         LightingHooks.checkChunkLighting(this, this.worldObj);
     }
 
-    private void func_177441_y() {
+    private void func177441Y() {
         Arrays.fill(this.updateSkylightColumns, true);
 
         this.recheckGaps(false);
     }
 
-    private void func_180700_a(EnumFacing facing) {
+    private void func180700A(EnumFacing facing) {
         if (this.isTerrainPopulated) {
             if (facing == EnumFacing.EAST) {
                 for (int i = 0; i < 16; i++) {
-                    this.func_150811_f(15, i);
+                    this.func150811F(15, i);
                 }
             }
             else if (facing == EnumFacing.WEST) {
                 for (int j = 0; j < 16; j++) {
-                    this.func_150811_f(0, j);
+                    this.func150811F(0, j);
                 }
             }
             else if (facing == EnumFacing.SOUTH) {
                 for (int k = 0; k < 16; k++) {
-                    this.func_150811_f(k, 15);
+                    this.func150811F(k, 15);
                 }
             }
             else if (facing == EnumFacing.NORTH) {
                 for (int l = 0; l < 16; l++) {
-                    this.func_150811_f(l, 0);
+                    this.func150811F(l, 0);
                 }
             }
         }
     }
 
-    private boolean func_150811_f(int x, int z) {
+    private boolean func150811F(int x, int z) {
         int i = this.getTopFilledSegment();
         boolean flag = false;
         boolean flag1 = false;
@@ -1331,7 +1331,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
     @Override
     public void setSkylightUpdatedPublic() {
-        this.func_177441_y();
+        this.func177441Y();
     }
 
     @Override

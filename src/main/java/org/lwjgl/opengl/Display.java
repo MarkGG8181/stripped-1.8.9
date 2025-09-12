@@ -20,7 +20,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Arrays;
 
-public class Display {
+public final class Display {
     private static final Logger logger = LogManager.getLogger("LWJGL");
 
     // ------------------------------ Variables here ------------------------------

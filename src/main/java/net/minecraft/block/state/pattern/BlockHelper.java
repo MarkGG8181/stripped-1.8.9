@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 
-public class BlockHelper implements Predicate<IBlockState>
+public final class BlockHelper implements Predicate<IBlockState>
 {
     private final Block block;
 

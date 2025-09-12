@@ -6,14 +6,14 @@ import net.minecraft.entity.passive.IAnimals;
 
 public interface IMob extends IAnimals
 {
-    Predicate<Entity> mobSelector = new Predicate<Entity>()
+    Predicate<Entity> mobSelector = new Predicate<>()
     {
         public boolean apply(Entity p_apply_1_)
         {
             return p_apply_1_ instanceof IMob;
         }
     };
-    Predicate<Entity> VISIBLE_MOB_SELECTOR = new Predicate<Entity>()
+    Predicate<Entity> VISIBLE_MOB_SELECTOR = new Predicate<>()
     {
         public boolean apply(Entity p_apply_1_)
         {

@@ -138,7 +138,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
 
                 if (nbttagcompound != null) {
                     try {
-                        this.func_183013_b(chunkcoordintpair, nbttagcompound);
+                        this.func183013B(chunkcoordintpair, nbttagcompound);
                     } catch (Exception exception) {
                         logger.error("Failed to save chunk", exception);
                     }
@@ -151,7 +151,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         }
     }
 
-    private void func_183013_b(ChunkCoordIntPair p_183013_1_, NBTTagCompound p_183013_2_) throws IOException {
+    private void func183013B(ChunkCoordIntPair p_183013_1_, NBTTagCompound p_183013_2_) throws IOException {
         DataOutputStream dataoutputstream = RegionFileCache.getChunkOutputStream(this.chunkSaveLocation, p_183013_1_.chunkXPos, p_183013_1_.chunkZPos);
         CompressedStreamTools.write(p_183013_2_, dataoutputstream);
         dataoutputstream.close();

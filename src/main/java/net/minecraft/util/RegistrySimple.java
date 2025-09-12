@@ -33,7 +33,7 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
     }
 
     public Set<K> getKeys() {
-        return Collections.<K>unmodifiableSet(this.registryObjects.keySet());
+        return Collections.unmodifiableSet(this.registryObjects.keySet());
     }
 
     /**

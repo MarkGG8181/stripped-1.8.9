@@ -307,7 +307,7 @@ public class EntityIronGolem extends EntityGolem
         public AINearestAttackableTargetNonCreeper(final EntityCreature creature, Class<T> classTarget, int chance, boolean p_i45858_4_, boolean p_i45858_5_, final Predicate<? super T> p_i45858_6_)
         {
             super(creature, classTarget, chance, p_i45858_4_, p_i45858_5_, p_i45858_6_);
-            this.targetEntitySelector = new Predicate<T>()
+            this.targetEntitySelector = new Predicate<>()
             {
                 public boolean apply(T p_apply_1_)
                 {

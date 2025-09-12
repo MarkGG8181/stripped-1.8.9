@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MapGenStructureIO {
+public final class MapGenStructureIO {
     private static final Logger logger = LogManager.getLogger();
     private static final Map<String, Class<? extends StructureStart>> startNameToClassMap = new HashMap<>();
     private static final Map<Class<? extends StructureStart>, String> startClassToNameMap = new HashMap<>();

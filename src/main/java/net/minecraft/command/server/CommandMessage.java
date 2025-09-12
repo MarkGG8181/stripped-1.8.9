@@ -18,7 +18,7 @@ public class CommandMessage extends CommandBase
 {
     public List<String> getCommandAliases()
     {
-        return Arrays.<String>asList(new String[]{"w", "msg"});
+        return Arrays.asList("w", "msg");
     }
 
     /**

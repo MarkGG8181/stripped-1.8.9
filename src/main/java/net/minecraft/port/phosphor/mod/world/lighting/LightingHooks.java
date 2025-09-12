@@ -16,7 +16,7 @@ import net.minecraft.port.phosphor.api.ILightingEngineProvider;
 import net.minecraft.port.phosphor.mod.world.ChunkHelper;
 
 @SuppressWarnings("unused")
-public class LightingHooks {
+public final class LightingHooks {
     private static final EnumSkyBlock[] ENUM_SKY_BLOCK_VALUES = EnumSkyBlock.values();
     private static final EnumFacing.AxisDirection[] ENUM_AXIS_DIRECTION_VALUES = EnumFacing.AxisDirection.values();
 

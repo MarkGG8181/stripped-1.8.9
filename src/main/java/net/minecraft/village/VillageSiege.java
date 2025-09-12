@@ -56,7 +56,7 @@ public class VillageSiege {
 
             if (this.siegeState != -1) {
                 if (!this.hasSetupSiege) {
-                    if (!this.func_75529_b()) {
+                    if (!this.func75529B()) {
                         return;
                     }
 
@@ -81,7 +81,7 @@ public class VillageSiege {
         }
     }
 
-    private boolean func_75529_b() {
+    private boolean func75529B() {
         List<EntityPlayer> list = this.worldObj.playerEntities;
         Iterator<EntityPlayer> iterator = list.iterator();
 
@@ -123,7 +123,7 @@ public class VillageSiege {
                         return false;
                     }
 
-                    Vec3 vec3 = this.func_179867_a(new BlockPos(this.spawnX, this.spawnY, this.spawnZ));
+                    Vec3 vec3 = this.func179867A(new BlockPos(this.spawnX, this.spawnY, this.spawnZ));
 
                     if (vec3 != null) {
                         break;
@@ -138,7 +138,7 @@ public class VillageSiege {
     }
 
     private void spawnZombie() {
-        Vec3 vec3 = this.func_179867_a(new BlockPos(this.spawnX, this.spawnY, this.spawnZ));
+        Vec3 vec3 = this.func179867A(new BlockPos(this.spawnX, this.spawnY, this.spawnZ));
 
         if (vec3 != null) {
             EntityZombie entityzombie;
@@ -159,7 +159,7 @@ public class VillageSiege {
         }
     }
 
-    private Vec3 func_179867_a(BlockPos p_179867_1_) {
+    private Vec3 func179867A(BlockPos p_179867_1_) {
         for (int i = 0; i < 10; i++) {
             BlockPos blockpos = p_179867_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 

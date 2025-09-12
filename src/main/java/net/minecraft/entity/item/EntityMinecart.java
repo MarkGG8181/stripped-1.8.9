@@ -53,7 +53,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     private double velocityY;
     private double velocityZ;
 
-    public EntityMinecart(World worldIn) {
+    protected EntityMinecart(World worldIn) {
         super(worldIn);
         this.preventEntitySpawning = true;
         this.setSize(0.98F, 0.7F);
@@ -116,7 +116,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         return true;
     }
 
-    public EntityMinecart(World worldIn, double x, double y, double z) {
+    protected EntityMinecart(World worldIn, double x, double y, double z) {
         this(worldIn);
         this.setPosition(x, y, z);
         this.motionX = 0.0D;
@@ -299,7 +299,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
 
             if (BlockRailBase.isRailBlock(iblockstate)) {
-                this.func_180460_a(blockpos, iblockstate);
+                this.func180460A(blockpos, iblockstate);
 
                 if (iblockstate.getBlock() == Blocks.activator_rail) {
                     this.onActivatorRailPass(k, l, i1, ((Boolean)iblockstate.getValue(BlockRailPowered.POWERED)).booleanValue());
@@ -386,7 +386,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     @SuppressWarnings("incomplete-switch")
-    protected void func_180460_a(BlockPos p_180460_1_, IBlockState p_180460_2_) {
+    protected void func180460A(BlockPos p_180460_1_, IBlockState p_180460_2_) {
         this.fallDistance = 0.0F;
         Vec3 vec3 = this.func_70489_a(this.posX, this.posY, this.posZ);
         this.posY = (double)p_180460_1_.getY();
@@ -900,7 +900,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     public abstract EntityMinecart.EnumMinecartType getMinecartType();
 
     public IBlockState getDisplayTile() {
-        return !this.hasDisplayTile() ? this.getDefaultDisplayTile() : Block.getStateById(this.getDataWatcher().getWatchableObjectInt(20));
+        return this.hasDisplayTile() ? Block.getStateById(this.getDataWatcher().getWatchableObjectInt(20)) : this.getDefaultDisplayTile();
     }
 
     public IBlockState getDefaultDisplayTile() {
@@ -908,7 +908,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     public int getDisplayTileOffset() {
-        return !this.hasDisplayTile() ? this.getDefaultDisplayTileOffset() : this.getDataWatcher().getWatchableObjectInt(21);
+        return this.hasDisplayTile() ? this.getDataWatcher().getWatchableObjectInt(21) : this.getDefaultDisplayTileOffset();
     }
 
     public int getDefaultDisplayTileOffset() {
@@ -976,7 +976,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         }
     }
 
-    public static enum EnumMinecartType {
+    public enum EnumMinecartType {
         RIDEABLE(0, "MinecartRideable"),
         CHEST(1, "MinecartChest"),
         FURNACE(2, "MinecartFurnace"),

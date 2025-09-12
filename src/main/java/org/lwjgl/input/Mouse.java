@@ -61,7 +61,7 @@ import java.util.Map;
  * @version $Revision$
  * $Id$
  */
-public class Mouse {
+public final class Mouse {
     public static final int EVENT_SIZE = 1 + 1 + 4 + 4 + 4 + 8;
 
     private static boolean created;
@@ -90,7 +90,7 @@ public class Mouse {
 
     private static String[] buttonName;
 
-    private static final Map<String, Integer> buttonMap = new HashMap<String, Integer>(16);
+    private static final Map<String, Integer> buttonMap = new HashMap<>(16);
 
     private static boolean initialized;
 

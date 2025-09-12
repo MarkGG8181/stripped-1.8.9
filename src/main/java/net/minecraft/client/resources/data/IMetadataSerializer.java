@@ -64,7 +64,7 @@ public class IMetadataSerializer {
         return this.gson;
     }
 
-    class Registration<T extends IMetadataSection> {
+    final class Registration<T extends IMetadataSection> {
         final IMetadataSectionSerializer<T> section;
         final Class<T> clazz;
 

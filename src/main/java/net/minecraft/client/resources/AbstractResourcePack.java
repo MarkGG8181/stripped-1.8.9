@@ -25,7 +25,7 @@ public abstract class AbstractResourcePack implements IResourcePack {
     private static final Logger resourceLog = LogManager.getLogger();
     protected final File resourcePackFile;
 
-    public AbstractResourcePack(File resourcePackFileIn) {
+    protected AbstractResourcePack(File resourcePackFileIn) {
         this.resourcePackFile = resourcePackFileIn;
     }
 

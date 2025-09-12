@@ -1,6 +1,6 @@
 package net.minecraft.world;
 
-public class ColorizerFoliage
+public final class ColorizerFoliage
 {
     /** Color buffer for foliage */
     private static int[] foliageBuffer = new int[65536];

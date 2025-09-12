@@ -37,31 +37,27 @@ public class GL13 extends GL12 {
     }
 
     /** Accepted by the {@code internalformat} parameter of TexImage1D, TexImage2D, TexImage3D, CopyTexImage1D, and CopyTexImage2D. */
-    public static final int
-        GL_COMPRESSED_ALPHA = 0x84E9,
-        GL_COMPRESSED_LUMINANCE = 0x84EA,
-        GL_COMPRESSED_LUMINANCE_ALPHA = 0x84EB,
-        GL_COMPRESSED_INTENSITY = 0x84EC,
-        GL_COMPRESSED_RGB = 0x84ED,
-        GL_COMPRESSED_RGBA = 0x84EE;
+    public static final int GL_COMPRESSED_ALPHA = 0x84E9;
+    public static final int GL_COMPRESSED_LUMINANCE = 0x84EA;
+    public static final int GL_COMPRESSED_LUMINANCE_ALPHA = 0x84EB;
+    public static final int GL_COMPRESSED_INTENSITY = 0x84EC;
+    public static final int GL_COMPRESSED_RGB = 0x84ED;
+    public static final int GL_COMPRESSED_RGBA = 0x84EE;
 
     /** Accepted by the {@code target} parameter of Hint and the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
     public static final int GL_TEXTURE_COMPRESSION_HINT = 0x84EF;
 
     /** Accepted by the {@code value} parameter of GetTexLevelParameter. */
-    public static final int
-        GL_TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86A0,
-        GL_TEXTURE_COMPRESSED = 0x86A1;
+    public static final int GL_TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86A0;
+    public static final int GL_TEXTURE_COMPRESSED = 0x86A1;
 
     /** Accepted by the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2,
-        GL_COMPRESSED_TEXTURE_FORMATS = 0x86A3;
+    public static final int GL_NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2;
+    public static final int GL_COMPRESSED_TEXTURE_FORMATS = 0x86A3;
 
     /** Accepted by the {@code param} parameters of TexGend, TexGenf, and TexGeni when {@code pname} parameter is TEXTURE_GEN_MODE. */
-    public static final int
-        GL_NORMAL_MAP = 0x8511,
-        GL_REFLECTION_MAP = 0x8512;
+    public static final int GL_NORMAL_MAP = 0x8511;
+    public static final int GL_REFLECTION_MAP = 0x8512;
 
     /**
      * When the {@code pname} parameter of TexGendv, TexGenfv, and TexGeniv is TEXTURE_GEN_MODE, then the array {@code params} may also contain NORMAL_MAP
@@ -78,13 +74,12 @@ public class GL13 extends GL12 {
      * Accepted by the {@code target} parameter of GetTexImage, GetTexLevelParameteriv, GetTexLevelParameterfv, TexImage2D, CopyTexImage2D, TexSubImage2D, and
      * CopySubTexImage2D.
      */
-    public static final int
-        GL_TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515,
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516,
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517,
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518,
-        GL_TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519,
-        GL_TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A;
+    public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515;
+    public static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516;
+    public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517;
+    public static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518;
+    public static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519;
+    public static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A;
 
     /** Accepted by the {@code target} parameter of GetTexLevelParameteriv, GetTexLevelParameterfv, GetTexParameteriv, and TexImage2D. */
     public static final int GL_PROXY_TEXTURE_CUBE_MAP = 0x851B;
@@ -96,106 +91,98 @@ public class GL13 extends GL12 {
      * Accepted by the {@code cap} parameter of Enable, Disable, and IsEnabled, and by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and
      * GetDoublev.
      */
-    public static final int
-        GL_MULTISAMPLE = 0x809D,
-        GL_SAMPLE_ALPHA_TO_COVERAGE = 0x809E,
-        GL_SAMPLE_ALPHA_TO_ONE = 0x809F,
-        GL_SAMPLE_COVERAGE = 0x80A0;
+    public static final int GL_MULTISAMPLE = 0x809D;
+    public static final int GL_SAMPLE_ALPHA_TO_COVERAGE = 0x809E;
+    public static final int GL_SAMPLE_ALPHA_TO_ONE = 0x809F;
+    public static final int GL_SAMPLE_COVERAGE = 0x80A0;
 
     /** Accepted by the {@code mask} parameter of PushAttrib. */
     public static final int GL_MULTISAMPLE_BIT = 0x20000000;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
-    public static final int
-        GL_SAMPLE_BUFFERS = 0x80A8,
-        GL_SAMPLES = 0x80A9,
-        GL_SAMPLE_COVERAGE_VALUE = 0x80AA,
-        GL_SAMPLE_COVERAGE_INVERT = 0x80AB;
+    public static final int GL_SAMPLE_BUFFERS = 0x80A8;
+    public static final int GL_SAMPLES = 0x80A9;
+    public static final int GL_SAMPLE_COVERAGE_VALUE = 0x80AA;
+    public static final int GL_SAMPLE_COVERAGE_INVERT = 0x80AB;
 
     /** Accepted by the {@code texture} parameter of ActiveTexture and MultiTexCoord. */
-    public static final int
-        GL_TEXTURE0 = 0x84C0,
-        GL_TEXTURE1 = 0x84C1,
-        GL_TEXTURE2 = 0x84C2,
-        GL_TEXTURE3 = 0x84C3,
-        GL_TEXTURE4 = 0x84C4,
-        GL_TEXTURE5 = 0x84C5,
-        GL_TEXTURE6 = 0x84C6,
-        GL_TEXTURE7 = 0x84C7,
-        GL_TEXTURE8 = 0x84C8,
-        GL_TEXTURE9 = 0x84C9,
-        GL_TEXTURE10 = 0x84CA,
-        GL_TEXTURE11 = 0x84CB,
-        GL_TEXTURE12 = 0x84CC,
-        GL_TEXTURE13 = 0x84CD,
-        GL_TEXTURE14 = 0x84CE,
-        GL_TEXTURE15 = 0x84CF,
-        GL_TEXTURE16 = 0x84D0,
-        GL_TEXTURE17 = 0x84D1,
-        GL_TEXTURE18 = 0x84D2,
-        GL_TEXTURE19 = 0x84D3,
-        GL_TEXTURE20 = 0x84D4,
-        GL_TEXTURE21 = 0x84D5,
-        GL_TEXTURE22 = 0x84D6,
-        GL_TEXTURE23 = 0x84D7,
-        GL_TEXTURE24 = 0x84D8,
-        GL_TEXTURE25 = 0x84D9,
-        GL_TEXTURE26 = 0x84DA,
-        GL_TEXTURE27 = 0x84DB,
-        GL_TEXTURE28 = 0x84DC,
-        GL_TEXTURE29 = 0x84DD,
-        GL_TEXTURE30 = 0x84DE,
-        GL_TEXTURE31 = 0x84DF;
+    public static final int GL_TEXTURE0 = 0x84C0;
+    public static final int GL_TEXTURE1 = 0x84C1;
+    public static final int GL_TEXTURE2 = 0x84C2;
+    public static final int GL_TEXTURE3 = 0x84C3;
+    public static final int GL_TEXTURE4 = 0x84C4;
+    public static final int GL_TEXTURE5 = 0x84C5;
+    public static final int GL_TEXTURE6 = 0x84C6;
+    public static final int GL_TEXTURE7 = 0x84C7;
+    public static final int GL_TEXTURE8 = 0x84C8;
+    public static final int GL_TEXTURE9 = 0x84C9;
+    public static final int GL_TEXTURE10 = 0x84CA;
+    public static final int GL_TEXTURE11 = 0x84CB;
+    public static final int GL_TEXTURE12 = 0x84CC;
+    public static final int GL_TEXTURE13 = 0x84CD;
+    public static final int GL_TEXTURE14 = 0x84CE;
+    public static final int GL_TEXTURE15 = 0x84CF;
+    public static final int GL_TEXTURE16 = 0x84D0;
+    public static final int GL_TEXTURE17 = 0x84D1;
+    public static final int GL_TEXTURE18 = 0x84D2;
+    public static final int GL_TEXTURE19 = 0x84D3;
+    public static final int GL_TEXTURE20 = 0x84D4;
+    public static final int GL_TEXTURE21 = 0x84D5;
+    public static final int GL_TEXTURE22 = 0x84D6;
+    public static final int GL_TEXTURE23 = 0x84D7;
+    public static final int GL_TEXTURE24 = 0x84D8;
+    public static final int GL_TEXTURE25 = 0x84D9;
+    public static final int GL_TEXTURE26 = 0x84DA;
+    public static final int GL_TEXTURE27 = 0x84DB;
+    public static final int GL_TEXTURE28 = 0x84DC;
+    public static final int GL_TEXTURE29 = 0x84DD;
+    public static final int GL_TEXTURE30 = 0x84DE;
+    public static final int GL_TEXTURE31 = 0x84DF;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
-    public static final int
-        GL_ACTIVE_TEXTURE = 0x84E0,
-        GL_CLIENT_ACTIVE_TEXTURE = 0x84E1,
-        GL_MAX_TEXTURE_UNITS = 0x84E2;
+    public static final int GL_ACTIVE_TEXTURE = 0x84E0;
+    public static final int GL_CLIENT_ACTIVE_TEXTURE = 0x84E1;
+    public static final int GL_MAX_TEXTURE_UNITS = 0x84E2;
 
     /** Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is TEXTURE_ENV_MODE. */
     public static final int GL_COMBINE = 0x8570;
 
     /** Accepted by the {@code pname} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code target} parameter value is TEXTURE_ENV. */
-    public static final int
-        GL_COMBINE_RGB = 0x8571,
-        GL_COMBINE_ALPHA = 0x8572,
-        GL_SOURCE0_RGB = 0x8580,
-        GL_SOURCE1_RGB = 0x8581,
-        GL_SOURCE2_RGB = 0x8582,
-        GL_SOURCE0_ALPHA = 0x8588,
-        GL_SOURCE1_ALPHA = 0x8589,
-        GL_SOURCE2_ALPHA = 0x858A,
-        GL_OPERAND0_RGB = 0x8590,
-        GL_OPERAND1_RGB = 0x8591,
-        GL_OPERAND2_RGB = 0x8592,
-        GL_OPERAND0_ALPHA = 0x8598,
-        GL_OPERAND1_ALPHA = 0x8599,
-        GL_OPERAND2_ALPHA = 0x859A,
-        GL_RGB_SCALE = 0x8573;
+    public static final int GL_COMBINE_RGB = 0x8571;
+    public static final int GL_COMBINE_ALPHA = 0x8572;
+    public static final int GL_SOURCE0_RGB = 0x8580;
+    public static final int GL_SOURCE1_RGB = 0x8581;
+    public static final int GL_SOURCE2_RGB = 0x8582;
+    public static final int GL_SOURCE0_ALPHA = 0x8588;
+    public static final int GL_SOURCE1_ALPHA = 0x8589;
+    public static final int GL_SOURCE2_ALPHA = 0x858A;
+    public static final int GL_OPERAND0_RGB = 0x8590;
+    public static final int GL_OPERAND1_RGB = 0x8591;
+    public static final int GL_OPERAND2_RGB = 0x8592;
+    public static final int GL_OPERAND0_ALPHA = 0x8598;
+    public static final int GL_OPERAND1_ALPHA = 0x8599;
+    public static final int GL_OPERAND2_ALPHA = 0x859A;
+    public static final int GL_RGB_SCALE = 0x8573;
 
     /**
      * Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is COMBINE_RGB or
      * COMBINE_ALPHA.
      */
-    public static final int
-        GL_ADD_SIGNED = 0x8574,
-        GL_INTERPOLATE = 0x8575,
-        GL_SUBTRACT = 0x84E7;
+    public static final int GL_ADD_SIGNED = 0x8574;
+    public static final int GL_INTERPOLATE = 0x8575;
+    public static final int GL_SUBTRACT = 0x84E7;
 
     /**
      * Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is SOURCE0_RGB,
      * SOURCE1_RGB, SOURCE2_RGB, SOURCE0_ALPHA, SOURCE1_ALPHA, or SOURCE2_ALPHA.
      */
-    public static final int
-        GL_CONSTANT = 0x8576,
-        GL_PRIMARY_COLOR = 0x8577,
-        GL_PREVIOUS = 0x8578;
+    public static final int GL_CONSTANT = 0x8576;
+    public static final int GL_PRIMARY_COLOR = 0x8577;
+    public static final int GL_PREVIOUS = 0x8578;
 
     /** Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is COMBINE_RGB_ARB. */
-    public static final int
-        GL_DOT3_RGB = 0x86AE,
-        GL_DOT3_RGBA = 0x86AF;
+    public static final int GL_DOT3_RGB = 0x86AE;
+    public static final int GL_DOT3_RGBA = 0x86AF;
 
     /**
      * Accepted by the {@code param} parameter of TexParameteri and TexParameterf, and by the {@code params} parameter of TexParameteriv and TexParameterfv,
@@ -204,11 +191,10 @@ public class GL13 extends GL12 {
     public static final int GL_CLAMP_TO_BORDER = 0x812D;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
-    public static final int
-        GL_TRANSPOSE_MODELVIEW_MATRIX = 0x84E3,
-        GL_TRANSPOSE_PROJECTION_MATRIX = 0x84E4,
-        GL_TRANSPOSE_TEXTURE_MATRIX = 0x84E5,
-        GL_TRANSPOSE_COLOR_MATRIX = 0x84E6;
+    public static final int GL_TRANSPOSE_MODELVIEW_MATRIX = 0x84E3;
+    public static final int GL_TRANSPOSE_PROJECTION_MATRIX = 0x84E4;
+    public static final int GL_TRANSPOSE_TEXTURE_MATRIX = 0x84E5;
+    public static final int GL_TRANSPOSE_COLOR_MATRIX = 0x84E6;
 
     protected GL13() {
         throw new UnsupportedOperationException();

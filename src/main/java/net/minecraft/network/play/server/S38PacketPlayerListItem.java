@@ -193,7 +193,7 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
         return MoreObjects.toStringHelper(this).add("action", this.action).add("entries", this.players).toString();
     }
 
-    public static enum Action {
+    public enum Action {
         ADD_PLAYER,
         UPDATE_GAME_MODE,
         UPDATE_LATENCY,

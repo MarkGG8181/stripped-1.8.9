@@ -70,10 +70,10 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
      */
     protected void spawnDispenseParticles(IBlockSource source, EnumFacing facingIn)
     {
-        source.getWorld().playAuxSFX(2000, source.getBlockPos(), this.func_82488_a(facingIn));
+        source.getWorld().playAuxSFX(2000, source.getBlockPos(), this.func82488A(facingIn));
     }
 
-    private int func_82488_a(EnumFacing facingIn)
+    private int func82488A(EnumFacing facingIn)
     {
         return facingIn.getFrontOffsetX() + 1 + (facingIn.getFrontOffsetZ() + 1) * 3;
     }

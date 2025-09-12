@@ -24,7 +24,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
-public class ComponentScatteredFeaturePieces {
+public final class ComponentScatteredFeaturePieces {
     public static void registerScatteredFeaturePieces() {
         MapGenStructureIO.registerStructureComponent(ComponentScatteredFeaturePieces.DesertPyramid.class, "TeDP");
         MapGenStructureIO.registerStructureComponent(ComponentScatteredFeaturePieces.JunglePyramid.class, "TeJP");
@@ -258,7 +258,7 @@ public class ComponentScatteredFeaturePieces {
         protected int scatteredFeatureSizeZ;
         protected int horizontalPos = -1;
 
-        public Feature() {
+        protected Feature() {
         }
 
         protected Feature(Random p_i2065_1_, int p_i2065_2_, int p_i2065_3_, int p_i2065_4_, int p_i2065_5_, int p_i2065_6_, int p_i2065_7_) {
@@ -293,7 +293,7 @@ public class ComponentScatteredFeaturePieces {
             this.horizontalPos = tagCompound.getInteger("HPos");
         }
 
-        protected boolean func_74935_a(World worldIn, StructureBoundingBox p_74935_2_, int p_74935_3_) {
+        protected boolean func74935A(World worldIn, StructureBoundingBox p_74935_2_, int p_74935_3_) {
             if (this.horizontalPos >= 0) {
                 return true;
             }
@@ -358,7 +358,7 @@ public class ComponentScatteredFeaturePieces {
         }
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-            if (!this.func_74935_a(worldIn, structureBoundingBoxIn, 0)) {
+            if (!this.func74935A(worldIn, structureBoundingBoxIn, 0)) {
                 return false;
             }
             else {
@@ -540,7 +540,7 @@ public class ComponentScatteredFeaturePieces {
             }
         }
 
-        static class Stones extends StructureComponent.BlockSelector {
+        static final class Stones extends StructureComponent.BlockSelector {
             private Stones() {
             }
 
@@ -576,7 +576,7 @@ public class ComponentScatteredFeaturePieces {
         }
 
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-            if (!this.func_74935_a(worldIn, structureBoundingBoxIn, 0)) {
+            if (!this.func74935A(worldIn, structureBoundingBoxIn, 0)) {
                 return false;
             }
             else {

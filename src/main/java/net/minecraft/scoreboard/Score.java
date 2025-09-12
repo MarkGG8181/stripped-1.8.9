@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class Score
 {
-    public static final Comparator<Score> scoreComparator = new Comparator<Score>()
+    public static final Comparator<Score> scoreComparator = new Comparator<>()
     {
         public int compare(Score p_compare_1_, Score p_compare_2_)
         {

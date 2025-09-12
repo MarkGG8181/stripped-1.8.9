@@ -1497,28 +1497,26 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             if (d2 > worldborder.maxX() - d0) {
                 float f7 = 0.0F;
 
-                for (double d7 = d5; d7 < d6; f7 += 0.5F) {
+                for (double d7 = d5; d7 < d6; ++d7, f7 += 0.5F) {
                     double d8 = Math.min(1.0D, d6 - d7);
                     float f8 = (float)d8 * 0.5F;
                     worldrenderer.pos(worldborder.maxX(), 256.0D, d7).tex((double)(f3 + f7), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(worldborder.maxX(), 256.0D, d7 + d8).tex((double)(f3 + f8 + f7), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(worldborder.maxX(), 0.0D, d7 + d8).tex((double)(f3 + f8 + f7), (double)(f3 + 128.0F)).endVertex();
                     worldrenderer.pos(worldborder.maxX(), 0.0D, d7).tex((double)(f3 + f7), (double)(f3 + 128.0F)).endVertex();
-                    ++d7;
                 }
             }
 
             if (d2 < worldborder.minX() + d0) {
                 float f9 = 0.0F;
 
-                for (double d9 = d5; d9 < d6; f9 += 0.5F) {
+                for (double d9 = d5; d9 < d6; ++d9, f9 += 0.5F) {
                     double d12 = Math.min(1.0D, d6 - d9);
                     float f12 = (float)d12 * 0.5F;
                     worldrenderer.pos(worldborder.minX(), 256.0D, d9).tex((double)(f3 + f9), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(worldborder.minX(), 256.0D, d9 + d12).tex((double)(f3 + f12 + f9), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(worldborder.minX(), 0.0D, d9 + d12).tex((double)(f3 + f12 + f9), (double)(f3 + 128.0F)).endVertex();
                     worldrenderer.pos(worldborder.minX(), 0.0D, d9).tex((double)(f3 + f9), (double)(f3 + 128.0F)).endVertex();
-                    ++d9;
                 }
             }
 
@@ -1528,28 +1526,26 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
             if (d4 > worldborder.maxZ() - d0) {
                 float f10 = 0.0F;
 
-                for (double d10 = d5; d10 < d6; f10 += 0.5F) {
+                for (double d10 = d5; d10 < d6; ++d10, f10 += 0.5F) {
                     double d13 = Math.min(1.0D, d6 - d10);
                     float f13 = (float)d13 * 0.5F;
                     worldrenderer.pos(d10, 256.0D, worldborder.maxZ()).tex((double)(f3 + f10), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(d10 + d13, 256.0D, worldborder.maxZ()).tex((double)(f3 + f13 + f10), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(d10 + d13, 0.0D, worldborder.maxZ()).tex((double)(f3 + f13 + f10), (double)(f3 + 128.0F)).endVertex();
                     worldrenderer.pos(d10, 0.0D, worldborder.maxZ()).tex((double)(f3 + f10), (double)(f3 + 128.0F)).endVertex();
-                    ++d10;
                 }
             }
 
             if (d4 < worldborder.minZ() + d0) {
                 float f11 = 0.0F;
 
-                for (double d11 = d5; d11 < d6; f11 += 0.5F) {
+                for (double d11 = d5; d11 < d6; ++d11, f11 += 0.5F) {
                     double d14 = Math.min(1.0D, d6 - d11);
                     float f14 = (float)d14 * 0.5F;
                     worldrenderer.pos(d11, 256.0D, worldborder.minZ()).tex((double)(f3 + f11), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(d11 + d14, 256.0D, worldborder.minZ()).tex((double)(f3 + f14 + f11), (double)(f3 + 0.0F)).endVertex();
                     worldrenderer.pos(d11 + d14, 0.0D, worldborder.minZ()).tex((double)(f3 + f14 + f11), (double)(f3 + 128.0F)).endVertex();
                     worldrenderer.pos(d11, 0.0D, worldborder.minZ()).tex((double)(f3 + f11), (double)(f3 + 128.0F)).endVertex();
-                    ++d11;
                 }
             }
 
@@ -1793,7 +1789,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
                 crashreportcategory.addCrashSection("Parameters", parameters);
             }
 
-            crashreportcategory.addCrashSectionCallable("Position", new Callable<String>() {
+            crashreportcategory.addCrashSectionCallable("Position", new Callable<>() {
                 public String call() throws Exception {
                     return CrashReportCategory.getCoordinateInfo(xCoord, yCoord, zCoord);
                 }
@@ -2100,7 +2096,7 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
         }
     }
 
-    class ContainerLocalRenderInformation {
+    final class ContainerLocalRenderInformation {
         final RenderChunk renderChunk;
         final EnumFacing facing;
         final Set<EnumFacing> setFacing;

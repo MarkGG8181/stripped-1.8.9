@@ -51,7 +51,7 @@ public class BiomeGenForest extends BiomeGenBase {
         }
     }
 
-    protected BiomeGenBase func_150557_a(int colorIn, boolean p_150557_2_) {
+    protected BiomeGenBase func150557A(int colorIn, boolean p_150557_2_) {
         if (this.type == 2) {
             this.field_150609_ah = 353825;
             this.color = colorIn;
@@ -63,7 +63,7 @@ public class BiomeGenForest extends BiomeGenBase {
             return this;
         }
         else {
-            return super.func_150557_a(colorIn, p_150557_2_);
+            return super.func150557A(colorIn, p_150557_2_);
         }
     }
 
@@ -149,7 +149,7 @@ public class BiomeGenForest extends BiomeGenBase {
             BiomeGenForest biomegenforest = new BiomeGenForest(p_180277_1_, 1);
             biomegenforest.setHeight(new BiomeGenBase.Height(this.minHeight, this.maxHeight + 0.2F));
             biomegenforest.setBiomeName("Flower Forest");
-            biomegenforest.func_150557_a(6976549, true);
+            biomegenforest.func150557A(6976549, true);
             biomegenforest.setFillerBlockMetadata(8233509);
             return biomegenforest;
         }

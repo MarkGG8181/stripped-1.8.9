@@ -49,7 +49,7 @@ public class VisGraph
             {
                 if (!this.bitSet.get(i))
                 {
-                    setvisibility.setManyVisible(this.func_178604_a(i));
+                    setvisibility.setManyVisible(this.func178604A(i));
                 }
             }
         }
@@ -59,10 +59,10 @@ public class VisGraph
 
     public Set<EnumFacing> func_178609_b(BlockPos pos)
     {
-        return this.func_178604_a(getIndex(pos));
+        return this.func178604A(getIndex(pos));
     }
 
-    private Set<EnumFacing> func_178604_a(int p_178604_1_)
+    private Set<EnumFacing> func178604A(int p_178604_1_)
     {
         Set<EnumFacing> set = EnumSet.<EnumFacing>noneOf(EnumFacing.class);
         Queue<Integer> queue = new LinkedList<>();
@@ -72,11 +72,11 @@ public class VisGraph
         while (!((Queue)queue).isEmpty())
         {
             int i = ((Integer)queue.poll()).intValue();
-            this.func_178610_a(i, set);
+            this.func178610A(i, set);
 
             for (EnumFacing enumfacing : EnumFacing.values())
             {
-                int j = this.func_178603_a(i, enumfacing);
+                int j = this.func178603A(i, enumfacing);
 
                 if (j >= 0 && !this.bitSet.get(j))
                 {
@@ -89,7 +89,7 @@ public class VisGraph
         return set;
     }
 
-    private void func_178610_a(int p_178610_1_, Set<EnumFacing> p_178610_2_)
+    private void func178610A(int p_178610_1_, Set<EnumFacing> p_178610_2_)
     {
         int i = p_178610_1_ >> 0 & 15;
 
@@ -125,7 +125,7 @@ public class VisGraph
         }
     }
 
-    private int func_178603_a(int p_178603_1_, EnumFacing p_178603_2_)
+    private int func178603A(int p_178603_1_, EnumFacing p_178603_2_)
     {
         switch (p_178603_2_)
         {

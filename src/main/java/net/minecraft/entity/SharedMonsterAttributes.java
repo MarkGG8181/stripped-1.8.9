@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class SharedMonsterAttributes
+public final class SharedMonsterAttributes
 {
     private static final Logger logger = LogManager.getLogger();
     public static final IAttribute maxHealth = new RangedAttribute((IAttribute)null, "generic.maxHealth", 20.0D, 0.0D, 1024.0D).setDescription("Max Health").setShouldWatch(true);

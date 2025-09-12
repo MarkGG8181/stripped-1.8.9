@@ -79,7 +79,7 @@ public class Village {
         int i = this.numVillagers / 10;
 
         if (this.numIronGolems < i && this.villageDoorInfoList.size() > 20 && this.worldObj.rand.nextInt(7000) == 0) {
-            Vec3 vec3 = this.func_179862_a(this.center, 2, 4, 2);
+            Vec3 vec3 = this.func179862A(this.center, 2, 4, 2);
 
             if (vec3 != null) {
                 EntityIronGolem entityirongolem = new EntityIronGolem(this.worldObj);
@@ -90,11 +90,11 @@ public class Village {
         }
     }
 
-    private Vec3 func_179862_a(BlockPos p_179862_1_, int p_179862_2_, int p_179862_3_, int p_179862_4_) {
+    private Vec3 func179862A(BlockPos p_179862_1_, int p_179862_2_, int p_179862_3_, int p_179862_4_) {
         for (int i = 0; i < 10; i++) {
             BlockPos blockpos = p_179862_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
-            if (this.func_179866_a(blockpos) && this.func_179861_a(new BlockPos(p_179862_2_, p_179862_3_, p_179862_4_), blockpos)) {
+            if (this.func_179866_a(blockpos) && this.func179861A(new BlockPos(p_179862_2_, p_179862_3_, p_179862_4_), blockpos)) {
                 return new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
             }
         }
@@ -102,7 +102,7 @@ public class Village {
         return null;
     }
 
-    private boolean func_179861_a(BlockPos p_179861_1_, BlockPos p_179861_2_) {
+    private boolean func179861A(BlockPos p_179861_1_, BlockPos p_179861_2_) {
         if (!World.doesBlockHaveSolidTopSurface(this.worldObj, p_179861_2_.down())) {
             return false;
         }
@@ -216,7 +216,7 @@ public class Village {
      * if door not existed in this village, null will be returned
      */
     public VillageDoorInfo getExistedDoor(BlockPos doorBlock) {
-        if (!(this.center.distanceSq(doorBlock) > (double)(this.villageRadius * this.villageRadius))) {
+        if (this.center.distanceSq(doorBlock) <= (double)(this.villageRadius * this.villageRadius)) {
             for (VillageDoorInfo villagedoorinfo : this.villageDoorInfoList) {
                 if (villagedoorinfo.getDoorBlockPos().getX() == doorBlock.getX() && villagedoorinfo.getDoorBlockPos().getZ() == doorBlock.getZ() && Math.abs(villagedoorinfo.getDoorBlockPos().getY() - doorBlock.getY()) <= 1) {
                     return villagedoorinfo;

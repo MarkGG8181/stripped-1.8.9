@@ -165,19 +165,19 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     {
         double d0 = this.getBaseValue();
 
-        for (AttributeModifier attributemodifier : this.func_180375_b(0))
+        for (AttributeModifier attributemodifier : this.func180375B(0))
         {
             d0 += attributemodifier.getAmount();
         }
 
         double d1 = d0;
 
-        for (AttributeModifier attributemodifier1 : this.func_180375_b(1))
+        for (AttributeModifier attributemodifier1 : this.func180375B(1))
         {
             d1 += d0 * attributemodifier1.getAmount();
         }
 
-        for (AttributeModifier attributemodifier2 : this.func_180375_b(2))
+        for (AttributeModifier attributemodifier2 : this.func180375B(2))
         {
             d1 *= 1.0D + attributemodifier2.getAmount();
         }
@@ -185,7 +185,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         return this.genericAttribute.clampValue(d1);
     }
 
-    private Collection<AttributeModifier> func_180375_b(int operation)
+    private Collection<AttributeModifier> func180375B(int operation)
     {
         Set<AttributeModifier> set = Sets.newHashSet(this.getModifiersByOperation(operation));
 

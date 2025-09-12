@@ -237,7 +237,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
         if (entityIn instanceof EntityIronGolem && this.canDamagePlayer())
         {
-            this.func_175451_e((EntityLivingBase)entityIn);
+            this.func175451E((EntityLivingBase)entityIn);
         }
     }
 
@@ -248,11 +248,11 @@ public class EntitySlime extends EntityLiving implements IMob
     {
         if (this.canDamagePlayer())
         {
-            this.func_175451_e(entityIn);
+            this.func175451E(entityIn);
         }
     }
 
-    protected void func_175451_e(EntityLivingBase p_175451_1_)
+    protected void func175451E(EntityLivingBase p_175451_1_)
     {
         int i = this.getSlimeSize();
 
@@ -412,7 +412,7 @@ public class EntitySlime extends EntityLiving implements IMob
         public boolean shouldExecute()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer)entitylivingbase).capabilities.disableDamage);
+            return entitylivingbase == null ? false : (entitylivingbase.isEntityAlive() ? !(entitylivingbase instanceof EntityPlayer) || !((EntityPlayer)entitylivingbase).capabilities.disableDamage : false);
         }
 
         public void startExecuting()
@@ -424,7 +424,7 @@ public class EntitySlime extends EntityLiving implements IMob
         public boolean continueExecuting()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (entitylivingbase instanceof EntityPlayer ep && ep.capabilities.disableDamage ? false : --this.growTieredTimer > 0));
+            return entitylivingbase == null ? false : (entitylivingbase.isEntityAlive() ? (entitylivingbase instanceof EntityPlayer ep && ep.capabilities.disableDamage ? false : --this.growTieredTimer > 0) : false);
         }
 
         public void updateTask()

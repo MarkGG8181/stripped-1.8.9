@@ -85,7 +85,7 @@ public abstract class BlockRedstoneDiode extends BlockDirectional
 
     public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
     {
-        return !this.isPowered(state) ? 0 : (state.getValue(FACING) == side ? this.getActiveSignal(worldIn, pos, state) : 0);
+        return this.isPowered(state) ? (state.getValue(FACING) == side ? this.getActiveSignal(worldIn, pos, state) : 0) : 0;
     }
 
     /**

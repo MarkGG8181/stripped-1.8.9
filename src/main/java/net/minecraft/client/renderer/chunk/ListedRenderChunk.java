@@ -17,7 +17,7 @@ public class ListedRenderChunk extends RenderChunk
 
     public int getDisplayList(EnumWorldBlockLayer layer, CompiledChunk p_178600_2_)
     {
-        return !p_178600_2_.isLayerEmpty(layer) ? this.baseDisplayList + layer.ordinal() : -1;
+        return p_178600_2_.isLayerEmpty(layer) ? -1 : this.baseDisplayList + layer.ordinal();
     }
 
     public void deleteGlResources()

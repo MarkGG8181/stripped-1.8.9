@@ -117,12 +117,12 @@ public class CommandDebug extends CommandBase {
         stringbuilder.append("Tick span: ").append(tickSpan).append(" ticks\n");
         stringbuilder.append("// This is approximately ").append("%.2f".formatted(new Object[]{Float.valueOf((float)tickSpan / ((float)timeSpan / 1000.0F))})).append(" ticks per second. It should be ").append((int)20).append(" ticks per second\n\n");
         stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
-        this.func_147202_a(0, "root", stringbuilder);
+        this.func147202A(0, "root", stringbuilder);
         stringbuilder.append("--- END PROFILE DUMP ---\n\n");
         return stringbuilder.toString();
     }
 
-    private void func_147202_a(int p_147202_1_, String p_147202_2_, StringBuilder stringBuilder) {
+    private void func147202A(int p_147202_1_, String p_147202_2_, StringBuilder stringBuilder) {
         List<Profiler.Result> list = MinecraftServer.getServer().theProfiler.getProfilingData(p_147202_2_);
 
         if (list != null && list.size() >= 3) {
@@ -138,7 +138,7 @@ public class CommandDebug extends CommandBase {
 
                 if (!"unspecified".equals(profiler$result.profilerName)) {
                     try {
-                        this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.profilerName, stringBuilder);
+                        this.func147202A(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.profilerName, stringBuilder);
                     } catch (Exception exception) {
                         stringBuilder.append("[[ EXCEPTION ").append((Object)exception).append(" ]]");
                     }

@@ -26,7 +26,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CryptManager
+public final class CryptManager
 {
     private static final Logger LOGGER = LogManager.getLogger();
 

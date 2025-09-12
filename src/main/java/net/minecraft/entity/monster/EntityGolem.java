@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public abstract class EntityGolem extends EntityCreature implements IAnimals
 {
-    public EntityGolem(World worldIn)
+    protected EntityGolem(World worldIn)
     {
         super(worldIn);
     }

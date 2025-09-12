@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.WeightedRandom;
 
-public class EnchantmentHelper
+public final class EnchantmentHelper
 {
     /** Is the random seed of enchantment effects. */
     private static final Random enchantmentRand = new Random();

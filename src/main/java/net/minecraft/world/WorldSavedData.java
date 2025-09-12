@@ -10,7 +10,7 @@ public abstract class WorldSavedData
     /** Whether this MapDataBase needs saving to disk. */
     private boolean dirty;
 
-    public WorldSavedData(String name)
+    protected WorldSavedData(String name)
     {
         this.mapName = name;
     }

@@ -13,7 +13,7 @@ import net.minecraft.block.state.BlockWorldState;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-public class FactoryBlockPattern
+public final class FactoryBlockPattern
 {
     private static final Joiner COMMA_JOIN = Joiner.on(",");
     private final List<String[]> depth = new ArrayList<>();
