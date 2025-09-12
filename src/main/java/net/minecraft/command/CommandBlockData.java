@@ -74,7 +74,7 @@ public class CommandBlockData extends CommandBase
                     }
                     catch (NBTException nbtexception)
                     {
-                        throw new CommandException("commands.blockdata.tagError", new Object[] {nbtexception.getMessage()});
+                        throw new CommandException("commands.blockdata.tagError", new Object[]{nbtexception.getMessage()});
                     }
 
                     nbttagcompound.merge(nbttagcompound2);
@@ -84,7 +84,7 @@ public class CommandBlockData extends CommandBase
 
                     if (nbttagcompound.equals(nbttagcompound1))
                     {
-                        throw new CommandException("commands.blockdata.failed", new Object[] {nbttagcompound.toString()});
+                        throw new CommandException("commands.blockdata.failed", new Object[]{nbttagcompound.toString()});
                     }
                     else
                     {
@@ -92,7 +92,7 @@ public class CommandBlockData extends CommandBase
                         tileentity.markDirty();
                         world.markBlockForUpdate(blockpos);
                         sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, 1);
-                        notifyOperators(sender, this, "commands.blockdata.success", new Object[] {nbttagcompound.toString()});
+                        notifyOperators(sender, this, "commands.blockdata.success", new Object[]{nbttagcompound.toString()});
                     }
                 }
             }

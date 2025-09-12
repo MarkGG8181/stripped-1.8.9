@@ -44,26 +44,20 @@ public class BlockSilverfish extends Block
 
     protected ItemStack createStackedBlock(IBlockState state)
     {
-        switch ((BlockSilverfish.EnumType)state.getValue(VARIANT))
+        return switch ((BlockSilverfish.EnumType)state.getValue(VARIANT))
         {
-            case COBBLESTONE:
-                return new ItemStack(Blocks.cobblestone);
+            case COBBLESTONE -> new ItemStack(Blocks.cobblestone);
 
-            case STONEBRICK:
-                return new ItemStack(Blocks.stonebrick);
+            case STONEBRICK -> new ItemStack(Blocks.stonebrick);
 
-            case MOSSY_STONEBRICK:
-                return new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.MOSSY.getMetadata());
+            case MOSSY_STONEBRICK -> new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.MOSSY.getMetadata());
 
-            case CRACKED_STONEBRICK:
-                return new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.CRACKED.getMetadata());
+            case CRACKED_STONEBRICK -> new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.CRACKED.getMetadata());
 
-            case CHISELED_STONEBRICK:
-                return new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.CHISELED.getMetadata());
+            case CHISELED_STONEBRICK -> new ItemStack(Blocks.stonebrick, 1, BlockStoneBrick.EnumType.CHISELED.getMetadata());
 
-            default:
-                return new ItemStack(Blocks.stone);
-        }
+            default -> new ItemStack(Blocks.stone);
+        };
     }
 
     /**
@@ -118,7 +112,7 @@ public class BlockSilverfish extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {VARIANT});
+        return new BlockState(this, new IProperty[]{VARIANT});
     }
 
     public static enum EnumType implements IStringSerializable

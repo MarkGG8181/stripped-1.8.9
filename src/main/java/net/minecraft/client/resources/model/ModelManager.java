@@ -20,15 +20,16 @@ public class ModelManager implements IResourceManagerReloadListener {
     public void onResourceManagerReload(IResourceManager resourceManager) {
         ModelBakery modelbakery = new ModelBakery(resourceManager, this.texMap, this.modelProvider);
         this.modelRegistry = modelbakery.setupModelRegistry();
-        this.defaultModel = (IBakedModel) this.modelRegistry.getObject(ModelBakery.MODEL_MISSING);
+        this.defaultModel = (IBakedModel)this.modelRegistry.getObject(ModelBakery.MODEL_MISSING);
         this.modelProvider.reloadModels();
     }
 
     public IBakedModel getModel(ModelResourceLocation modelLocation) {
         if (modelLocation == null) {
             return this.defaultModel;
-        } else {
-            IBakedModel ibakedmodel = (IBakedModel) this.modelRegistry.getObject(modelLocation);
+        }
+        else {
+            IBakedModel ibakedmodel = (IBakedModel)this.modelRegistry.getObject(modelLocation);
             return ibakedmodel == null ? this.defaultModel : ibakedmodel;
         }
     }

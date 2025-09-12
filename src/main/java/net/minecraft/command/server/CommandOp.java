@@ -49,12 +49,12 @@ public class CommandOp extends CommandBase
 
             if (gameprofile == null)
             {
-                throw new CommandException("commands.op.failed", new Object[] {args[0]});
+                throw new CommandException("commands.op.failed", new Object[]{args[0]});
             }
             else
             {
                 minecraftserver.getConfigurationManager().addOp(gameprofile);
-                notifyOperators(sender, this, "commands.op.success", new Object[] {args[0]});
+                notifyOperators(sender, this, "commands.op.success", new Object[]{args[0]});
             }
         }
         else

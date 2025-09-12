@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 
 public class BlockBrewingStand extends BlockContainer
 {
-    public static final PropertyBool[] HAS_BOTTLE = new PropertyBool[] {PropertyBool.create("has_bottle_0"), PropertyBool.create("has_bottle_1"), PropertyBool.create("has_bottle_2")};
+    public static final PropertyBool[] HAS_BOTTLE = new PropertyBool[]{PropertyBool.create("has_bottle_0"), PropertyBool.create("has_bottle_1"), PropertyBool.create("has_bottle_2")};
 
     public BlockBrewingStand()
     {
@@ -102,9 +102,9 @@ public class BlockBrewingStand extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityBrewingStand)
+            if (tileentity instanceof TileEntityBrewingStand stand)
             {
-                playerIn.displayGUIChest((TileEntityBrewingStand)tileentity);
+                playerIn.displayGUIChest(stand);
                 playerIn.triggerAchievement(StatList.brewingStandInteractionStat);
             }
 
@@ -121,9 +121,9 @@ public class BlockBrewingStand extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityBrewingStand)
+            if (tileentity instanceof TileEntityBrewingStand stand)
             {
-                ((TileEntityBrewingStand)tileentity).setName(stack.getDisplayName());
+                stand.setName(stack.getDisplayName());
             }
         }
     }
@@ -140,9 +140,9 @@ public class BlockBrewingStand extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityBrewingStand)
+        if (tileentity instanceof TileEntityBrewingStand stand)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityBrewingStand)tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, stand);
         }
 
         super.breakBlock(worldIn, pos, state);
@@ -211,6 +211,6 @@ public class BlockBrewingStand extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HAS_BOTTLE[0], HAS_BOTTLE[1], HAS_BOTTLE[2]});
+        return new BlockState(this, new IProperty[]{HAS_BOTTLE[0], HAS_BOTTLE[1], HAS_BOTTLE[2]});
     }
 }

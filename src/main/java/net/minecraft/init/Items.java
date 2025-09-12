@@ -208,7 +208,7 @@ public class Items
     }
 
     static
-    {
+        {
         if (!Bootstrap.isRegistered())
         {
             throw new RuntimeException("Accessed Items before Bootstrap!");

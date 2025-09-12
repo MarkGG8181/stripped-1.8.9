@@ -15,10 +15,12 @@ public class CompiledChunk
         {
             throw new UnsupportedOperationException();
         }
+
         public void setLayerStarted(EnumWorldBlockLayer layer)
         {
             throw new UnsupportedOperationException();
         }
+
         public boolean isVisible(EnumFacing facing, EnumFacing facing2)
         {
             return false;

@@ -38,7 +38,9 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GL14 extends GL13 {
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     /** Accepted by the {@code pname} parameter of TexParameteri, TexParameterf, TexParameteriv, TexParameterfv, GetTexParameteriv, and GetTexParameterfv. */
     public static final int GL_GENERATE_MIPMAP = 0x8191;
@@ -48,20 +50,20 @@ public class GL14 extends GL13 {
 
     /** Accepted by the {@code sfactor} and {@code dfactor} parameters of BlendFunc. */
     public static final int
-        GL_CONSTANT_COLOR           = 0x8001,
+        GL_CONSTANT_COLOR = 0x8001,
         GL_ONE_MINUS_CONSTANT_COLOR = 0x8002,
-        GL_CONSTANT_ALPHA           = 0x8003,
+        GL_CONSTANT_ALPHA = 0x8003,
         GL_ONE_MINUS_CONSTANT_ALPHA = 0x8004;
 
     /** Accepted by the {@code mode} parameter of BlendEquation. */
     public static final int
         GL_FUNC_ADD = 0x8006,
-        GL_MIN      = 0x8007,
-        GL_MAX      = 0x8008;
+        GL_MIN = 0x8007,
+        GL_MAX = 0x8008;
 
     /** Accepted by the {@code mode} parameter of BlendEquation. */
     public static final int
-        GL_FUNC_SUBTRACT         = 0x800A,
+        GL_FUNC_SUBTRACT = 0x800A,
         GL_FUNC_REVERSE_SUBTRACT = 0x800B;
 
     /** Accepted by the {@code internalFormat} parameter of TexImage1D, TexImage2D, CopyTexImage1D and CopyTexImage2D. */
@@ -97,8 +99,8 @@ public class GL14 extends GL13 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_CURRENT_FOG_COORDINATE      = 0x8453,
-        GL_FOG_COORDINATE_ARRAY_TYPE   = 0x8454,
+        GL_CURRENT_FOG_COORDINATE = 0x8453,
+        GL_FOG_COORDINATE_ARRAY_TYPE = 0x8454,
         GL_FOG_COORDINATE_ARRAY_STRIDE = 0x8455;
 
     /** Accepted by the {@code pname} parameter of GetPointerv. */
@@ -109,9 +111,9 @@ public class GL14 extends GL13 {
 
     /** Accepted by the {@code pname} parameter of PointParameterfARB, and the {@code pname} of Get. */
     public static final int
-        GL_POINT_SIZE_MIN             = 0x8126,
-        GL_POINT_SIZE_MAX             = 0x8127,
-        GL_POINT_FADE_THRESHOLD_SIZE  = 0x8128,
+        GL_POINT_SIZE_MIN = 0x8126,
+        GL_POINT_SIZE_MAX = 0x8127,
+        GL_POINT_FADE_THRESHOLD_SIZE = 0x8128,
         GL_POINT_DISTANCE_ATTENUATION = 0x8129;
 
     /**
@@ -122,9 +124,9 @@ public class GL14 extends GL13 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_CURRENT_SECONDARY_COLOR      = 0x8459,
-        GL_SECONDARY_COLOR_ARRAY_SIZE   = 0x845A,
-        GL_SECONDARY_COLOR_ARRAY_TYPE   = 0x845B,
+        GL_CURRENT_SECONDARY_COLOR = 0x8459,
+        GL_SECONDARY_COLOR_ARRAY_SIZE = 0x845A,
+        GL_SECONDARY_COLOR_ARRAY_TYPE = 0x845B,
         GL_SECONDARY_COLOR_ARRAY_STRIDE = 0x845C;
 
     /** Accepted by the {@code pname} parameter of GetPointerv. */
@@ -135,8 +137,8 @@ public class GL14 extends GL13 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_BLEND_DST_RGB   = 0x80C8,
-        GL_BLEND_SRC_RGB   = 0x80C9,
+        GL_BLEND_DST_RGB = 0x80C8,
+        GL_BLEND_SRC_RGB = 0x80C9,
         GL_BLEND_DST_ALPHA = 0x80CA,
         GL_BLEND_SRC_ALPHA = 0x80CB;
 

@@ -32,7 +32,8 @@ public class ModelPlayer extends ModelBiped {
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, p_i46304_1_ + 0.25F);
             this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 10.0F);
-        } else {
+        }
+        else {
             this.bipedLeftArm = new ModelRenderer(this, 32, 48);
             this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, p_i46304_1_);
             this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
@@ -69,7 +70,8 @@ public class ModelPlayer extends ModelBiped {
             float f = 2.0F;
             GlStateManager.scale(1.0F / f, 1.0F / f, 1.0F / f);
             GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
-        } else {
+        }
+        else {
             if (entityIn.isSneaking()) {
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }
@@ -103,7 +105,8 @@ public class ModelPlayer extends ModelBiped {
 
         if (entityIn.isSneaking()) {
             this.bipedCape.rotationPointY = 2.0F;
-        } else {
+        }
+        else {
             this.bipedCape.rotationPointY = 0.0F;
         }
     }
@@ -133,7 +136,8 @@ public class ModelPlayer extends ModelBiped {
             this.bipedRightArm.rotationPointX += 0.5F;
             this.bipedRightArm.postRender(scale);
             this.bipedRightArm.rotationPointZ -= 0.5F;
-        } else {
+        }
+        else {
             this.bipedRightArm.postRender(scale);
         }
     }

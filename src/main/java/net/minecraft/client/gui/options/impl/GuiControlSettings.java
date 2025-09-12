@@ -53,7 +53,8 @@ public class GuiControlSettings extends GuiScreen {
         for (GameSettings.Options gamesettings$options : optionsArr) {
             if (gamesettings$options.getEnumFloat()) {
                 this.buttonList.add(new GuiOptionSlider(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options));
-            } else {
+            }
+            else {
                 this.buttonList.add(new GuiOptionButton(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, 18 + 24 * (i >> 1), gamesettings$options, this.options.getKeyBinding(gamesettings$options)));
             }
 
@@ -75,14 +76,16 @@ public class GuiControlSettings extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.id == 200) {
             this.mc.displayGuiScreen(this.parentScreen);
-        } else if (button.id == 201) {
+        }
+        else if (button.id == 201) {
             for (KeyBinding keybinding : this.mc.gameSettings.keyBindings) {
                 keybinding.setKeyCode(keybinding.getKeyCodeDefault());
             }
 
             KeyBinding.resetKeyBindingArrayAndHash();
-        } else if (button.id < 100 && button instanceof GuiOptionButton) {
-            this.options.setOptionValue(((GuiOptionButton) button).returnEnumOptions(), 1);
+        }
+        else if (button.id < 100 && button instanceof GuiOptionButton optionButton) {
+            this.options.setOptionValue(optionButton.returnEnumOptions(), 1);
             button.displayString = this.options.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
         }
     }
@@ -95,7 +98,8 @@ public class GuiControlSettings extends GuiScreen {
             this.options.setOptionKeyBinding(this.buttonId, -100 + mouseButton);
             this.buttonId = null;
             KeyBinding.resetKeyBindingArrayAndHash();
-        } else if (mouseButton != 0 || !this.keyBindingList.mouseClicked(mouseX, mouseY, mouseButton)) {
+        }
+        else if (mouseButton != 0 || !this.keyBindingList.mouseClicked(mouseX, mouseY, mouseButton)) {
             super.mouseClicked(mouseX, mouseY, mouseButton);
         }
     }
@@ -117,16 +121,19 @@ public class GuiControlSettings extends GuiScreen {
         if (this.buttonId != null) {
             if (keyCode == 1) {
                 this.options.setOptionKeyBinding(this.buttonId, 0);
-            } else if (keyCode != 0) {
+            }
+            else if (keyCode != 0) {
                 this.options.setOptionKeyBinding(this.buttonId, keyCode);
-            } else if (typedChar > 0) {
+            }
+            else if (typedChar > 0) {
                 this.options.setOptionKeyBinding(this.buttonId, typedChar + 256);
             }
 
             this.buttonId = null;
             this.time = Minecraft.getSystemTime();
             KeyBinding.resetKeyBindingArrayAndHash();
-        } else {
+        }
+        else {
             super.keyTyped(typedChar, keyCode);
         }
     }

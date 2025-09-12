@@ -31,23 +31,24 @@ public class MinecraftCompressDecoder extends ByteToMessageDecoder {
 
             if (claimedUncompressedSize == 0) {
                 out.add(packetBuf.readBytes(packetBuf.readableBytes()));
-            } else {
+            }
+            else {
                 if (validate) {
                     if (claimedUncompressedSize < this.threshold) {
                         throw new DecoderException("Badly compressed packet - size of " + claimedUncompressedSize
-                                + " is below server threshold of " + this.threshold);
+                            + " is below server threshold of " + this.threshold);
                     }
 
                     if (claimedUncompressedSize > UNCOMPRESSED_CAP) {
                         throw new DecoderException("Badly compressed packet - size of " + claimedUncompressedSize
-                                + " is larger than maximum of " + UNCOMPRESSED_CAP);
+                            + " is larger than maximum of " + UNCOMPRESSED_CAP);
                     }
                 }
 
                 ByteBuf compatibleIn = com.velocitypowered.natives.util.MoreByteBufUtils.ensureCompatible(ctx.alloc(),
-                        compressor, in);
+                    compressor, in);
                 ByteBuf uncompressed = com.velocitypowered.natives.util.MoreByteBufUtils.preferredBuffer(ctx.alloc(),
-                        compressor, claimedUncompressedSize);
+                    compressor, claimedUncompressedSize);
                 try {
                     compressor.inflate(compatibleIn, uncompressed, claimedUncompressedSize);
                     out.add(uncompressed);
@@ -67,5 +68,5 @@ public class MinecraftCompressDecoder extends ByteToMessageDecoder {
     public void handlerRemoved0(ChannelHandlerContext ctx) throws Exception {
         compressor.close();
     }
-    
+
 }

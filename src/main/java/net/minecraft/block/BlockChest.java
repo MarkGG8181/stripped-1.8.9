@@ -166,9 +166,9 @@ public class BlockChest extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityChest)
+            if (tileentity instanceof TileEntityChest chest)
             {
-                ((TileEntityChest)tileentity).setCustomName(stack.getDisplayName());
+                chest.setCustomName(stack.getDisplayName());
             }
         }
     }
@@ -415,9 +415,9 @@ public class BlockChest extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof IInventory)
+        if (tileentity instanceof IInventory inventory)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, inventory);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
 
@@ -484,15 +484,15 @@ public class BlockChest extends BlockContainer
 
                         TileEntity tileentity1 = worldIn.getTileEntity(blockpos);
 
-                        if (tileentity1 instanceof TileEntityChest)
+                        if (tileentity1 instanceof TileEntityChest chest)
                         {
                             if (enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH)
                             {
-                                ilockablecontainer = new InventoryLargeChest("container.chestDouble", ilockablecontainer, (TileEntityChest)tileentity1);
+                                ilockablecontainer = new InventoryLargeChest("container.chestDouble", ilockablecontainer, chest);
                             }
                             else
                             {
-                                ilockablecontainer = new InventoryLargeChest("container.chestDouble", (TileEntityChest)tileentity1, ilockablecontainer);
+                                ilockablecontainer = new InventoryLargeChest("container.chestDouble", chest, ilockablecontainer);
                             }
                         }
                     }
@@ -530,9 +530,9 @@ public class BlockChest extends BlockContainer
             int i = 0;
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityChest)
+            if (tileentity instanceof TileEntityChest chest)
             {
-                i = ((TileEntityChest)tileentity).numPlayersUsing;
+                i = chest.numPlayersUsing;
             }
 
             return MathHelper.clamp_int(i, 0, 15);
@@ -604,6 +604,6 @@ public class BlockChest extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING});
+        return new BlockState(this, new IProperty[]{FACING});
     }
 }

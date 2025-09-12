@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 
 public class ItemDye extends Item
 {
-    public static final int[] dyeColors = new int[] {1973019, 11743532, 3887386, 5320730, 2437522, 8073150, 2651799, 11250603, 4408131, 14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320};
+    public static final int[] dyeColors = new int[]{1973019, 11743532, 3887386, 5320730, 2437522, 8073150, 2651799, 11250603, 4408131, 14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320};
 
     public ItemDye()
     {
@@ -155,9 +155,8 @@ public class ItemDye extends Item
      */
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target)
     {
-        if (target instanceof EntitySheep)
+        if (target instanceof EntitySheep entitysheep)
         {
-            EntitySheep entitysheep = (EntitySheep)target;
             EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(stack.getMetadata());
 
             if (!entitysheep.getSheared() && entitysheep.getFleeceColor() != enumdyecolor)

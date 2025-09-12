@@ -99,10 +99,12 @@ public class Bootstrap
             {
                 return new EntityExpBottle(worldIn, position.getX(), position.getY(), position.getZ());
             }
+
             protected float func_82498_a()
             {
                 return super.func_82498_a() * 0.5F;
             }
+
             protected float func_82500_b()
             {
                 return super.func_82500_b() * 1.25F;
@@ -111,6 +113,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.potionitem, new IBehaviorDispenseItem()
         {
             private final BehaviorDefaultDispenseItem field_150843_b = new BehaviorDefaultDispenseItem();
+
             public ItemStack dispense(IBlockSource source, final ItemStack stack)
             {
                 return ItemPotion.isSplash(stack.getMetadata()) ? (new BehaviorProjectileDispense()
@@ -119,15 +122,17 @@ public class Bootstrap
                     {
                         return new EntityPotion(worldIn, position.getX(), position.getY(), position.getZ(), stack.copy());
                     }
+
                     protected float func_82498_a()
                     {
                         return super.func_82498_a() * 0.5F;
                     }
+
                     protected float func_82500_b()
                     {
                         return super.func_82500_b() * 1.25F;
                     }
-                }).dispense(source, stack): this.field_150843_b.dispense(source, stack);
+                }).dispense(source, stack) : this.field_150843_b.dispense(source, stack);
             }
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.spawn_egg, new BehaviorDefaultDispenseItem()
@@ -162,6 +167,7 @@ public class Bootstrap
                 stack.splitStack(1);
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 source.getWorld().playAuxSFX(1002, source.getBlockPos(), 0);
@@ -185,6 +191,7 @@ public class Bootstrap
                 stack.splitStack(1);
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 source.getWorld().playAuxSFX(1009, source.getBlockPos(), 0);
@@ -193,6 +200,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.boat, new BehaviorDefaultDispenseItem()
         {
             private final BehaviorDefaultDispenseItem field_150842_b = new BehaviorDefaultDispenseItem();
+
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 EnumFacing enumfacing = BlockDispenser.getFacing(source.getBlockMetadata());
@@ -223,6 +231,7 @@ public class Bootstrap
                 stack.splitStack(1);
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);
@@ -231,6 +240,7 @@ public class Bootstrap
         IBehaviorDispenseItem ibehaviordispenseitem = new BehaviorDefaultDispenseItem()
         {
             private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
+
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 ItemBucket itembucket = (ItemBucket)stack.getItem();
@@ -253,6 +263,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.bucket, new BehaviorDefaultDispenseItem()
         {
             private final BehaviorDefaultDispenseItem dispenseBehavior = new BehaviorDefaultDispenseItem();
+
             public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -294,6 +305,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.flint_and_steel, new BehaviorDefaultDispenseItem()
         {
             private boolean succeeded = true;
+
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -320,6 +332,7 @@ public class Bootstrap
 
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 if (this.succeeded)
@@ -335,6 +348,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.dye, new BehaviorDefaultDispenseItem()
         {
             private boolean succeeded = true;
+
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 if (EnumDyeColor.WHITE == EnumDyeColor.byDyeDamage(stack.getMetadata()))
@@ -361,6 +375,7 @@ public class Bootstrap
                     return super.dispenseStack(source, stack);
                 }
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 if (this.succeeded)
@@ -389,6 +404,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.skull, new BehaviorDefaultDispenseItem()
         {
             private boolean succeeded = true;
+
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -403,7 +419,7 @@ public class Bootstrap
                         world.setBlockState(blockpos, blockskull.getDefaultState().withProperty(BlockSkull.FACING, EnumFacing.UP), 3);
                         TileEntity tileentity = world.getTileEntity(blockpos);
 
-                        if (tileentity instanceof TileEntitySkull)
+                        if (tileentity instanceof TileEntitySkull skull)
                         {
                             if (stack.getMetadata() == 3)
                             {
@@ -428,15 +444,15 @@ public class Bootstrap
                                     }
                                 }
 
-                                ((TileEntitySkull)tileentity).setPlayerProfile(gameprofile);
+                                skull.setPlayerProfile(gameprofile);
                             }
                             else
                             {
-                                ((TileEntitySkull)tileentity).setType(stack.getMetadata());
+                                skull.setType(stack.getMetadata());
                             }
 
-                            ((TileEntitySkull)tileentity).setSkullRotation(enumfacing.getOpposite().getHorizontalIndex() * 4);
-                            Blocks.skull.checkWitherSpawn(world, blockpos, (TileEntitySkull)tileentity);
+                            skull.setSkullRotation(enumfacing.getOpposite().getHorizontalIndex() * 4);
+                            Blocks.skull.checkWitherSpawn(world, blockpos, skull);
                         }
 
                         --stack.stackSize;
@@ -449,6 +465,7 @@ public class Bootstrap
 
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 if (this.succeeded)
@@ -464,6 +481,7 @@ public class Bootstrap
         BlockDispenser.dispenseBehaviorRegistry.putObject(Item.getItemFromBlock(Blocks.pumpkin), new BehaviorDefaultDispenseItem()
         {
             private boolean succeeded = true;
+
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
             {
                 World world = source.getWorld();
@@ -486,6 +504,7 @@ public class Bootstrap
 
                 return stack;
             }
+
             protected void playDispenseSound(IBlockSource source)
             {
                 if (this.succeeded)

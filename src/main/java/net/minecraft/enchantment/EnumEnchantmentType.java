@@ -34,7 +34,7 @@ public enum EnumEnchantmentType
         {
             return true;
         }
-        else if (p_77557_1_ instanceof ItemArmor)
+        else if (p_77557_1_ instanceof ItemArmor itemarmor)
         {
             if (this == ARMOR)
             {
@@ -42,7 +42,6 @@ public enum EnumEnchantmentType
             }
             else
             {
-                ItemArmor itemarmor = (ItemArmor)p_77557_1_;
                 return itemarmor.armorType == 0 ? this == ARMOR_HEAD : (itemarmor.armorType == 2 ? this == ARMOR_LEGS : (itemarmor.armorType == 1 ? this == ARMOR_TORSO : (itemarmor.armorType == 3 ? this == ARMOR_FEET : false)));
             }
         }

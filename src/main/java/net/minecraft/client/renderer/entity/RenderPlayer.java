@@ -33,7 +33,7 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
     }
 
     public ModelPlayer getMainModel() {
-        return (ModelPlayer) super.getMainModel();
+        return (ModelPlayer)super.getMainModel();
     }
 
     /**
@@ -59,7 +59,8 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
             modelplayer.setInvisible(false);
             modelplayer.bipedHead.showModel = true;
             modelplayer.bipedHeadwear.showModel = true;
-        } else {
+        }
+        else {
             ItemStack itemstack = clientPlayer.inventory.getCurrentItem();
             modelplayer.setInvisible(true);
             modelplayer.bipedHeadwear.showModel = clientPlayer.isWearing(EnumPlayerModelParts.HAT);
@@ -74,7 +75,8 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
 
             if (itemstack == null) {
                 modelplayer.heldItemRight = 0;
-            } else {
+            }
+            else {
                 modelplayer.heldItemRight = 1;
 
                 if (clientPlayer.getItemInUseCount() > 0) {
@@ -82,7 +84,8 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
 
                     if (enumaction == EnumAction.BLOCK) {
                         modelplayer.heldItemRight = 3;
-                    } else if (enumaction == EnumAction.BOW) {
+                    }
+                    else if (enumaction == EnumAction.BOW) {
                         modelplayer.aimedBow = true;
                     }
                 }
@@ -118,7 +121,7 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
             if (scoreobjective != null) {
                 Score score = scoreboard.getValueFromObjective(entityIn.getName(), scoreobjective);
                 this.renderLivingLabel(entityIn, score.getScorePoints() + " " + scoreobjective.getDisplayName(), x, y, z);
-                y += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_);
+                y += (double)((float)this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_);
             }
         }
 
@@ -152,8 +155,9 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
      */
     protected void renderLivingAt(AbstractClientPlayer entityLivingBaseIn, double x, double y, double z) {
         if (entityLivingBaseIn.isEntityAlive() && entityLivingBaseIn.isPlayerSleeping()) {
-            super.renderLivingAt(entityLivingBaseIn, x + (double) entityLivingBaseIn.renderOffsetX, y + (double) entityLivingBaseIn.renderOffsetY, z + (double) entityLivingBaseIn.renderOffsetZ);
-        } else {
+            super.renderLivingAt(entityLivingBaseIn, x + (double)entityLivingBaseIn.renderOffsetX, y + (double)entityLivingBaseIn.renderOffsetY, z + (double)entityLivingBaseIn.renderOffsetZ);
+        }
+        else {
             super.renderLivingAt(entityLivingBaseIn, x, y, z);
         }
     }
@@ -163,7 +167,8 @@ public class RenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
             GlStateManager.rotate(bat.getBedOrientationInDegrees(), 0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(this.getDeathMaxRotation(bat), 0.0F, 0.0F, 1.0F);
             GlStateManager.rotate(270.0F, 0.0F, 1.0F, 0.0F);
-        } else {
+        }
+        else {
             super.rotateCorpse(bat, p_77043_2_, p_77043_3_, partialTicks);
         }
     }

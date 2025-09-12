@@ -16,11 +16,11 @@ public class Language implements Comparable<Language> {
     }
 
     public String toString() {
-        return String.format("%s (%s)", new Object[]{this.name, this.region});
+        return "%s (%s)".formatted(new Object[]{this.name, this.region});
     }
 
     public boolean equals(Object p_equals_1_) {
-        return this == p_equals_1_ ? true : (!(p_equals_1_ instanceof Language) ? false : this.languageCode.equals(((Language) p_equals_1_).languageCode));
+        return this == p_equals_1_ ? true : (!(p_equals_1_ instanceof Language) ? false : this.languageCode.equals(((Language)p_equals_1_).languageCode));
     }
 
     public int hashCode() {

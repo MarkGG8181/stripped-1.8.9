@@ -437,6 +437,6 @@ public class GlStateManager
         S,
         T,
         R,
-        Q;
+        Q
     }
 }

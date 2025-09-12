@@ -16,14 +16,17 @@ public class TileEntityMobSpawner extends TileEntity implements ITickable
         {
             TileEntityMobSpawner.this.worldObj.addBlockEvent(TileEntityMobSpawner.this.pos, Blocks.mob_spawner, id, 0);
         }
+
         public World getSpawnerWorld()
         {
             return TileEntityMobSpawner.this.worldObj;
         }
+
         public BlockPos getSpawnerPosition()
         {
             return TileEntityMobSpawner.this.pos;
         }
+
         public void setRandomEntity(MobSpawnerBaseLogic.WeightedRandomMinecart p_98277_1_)
         {
             super.setRandomEntity(p_98277_1_);

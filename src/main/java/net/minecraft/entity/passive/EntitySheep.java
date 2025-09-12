@@ -55,13 +55,13 @@ public class EntitySheep extends EntityAnimal {
     private EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
 
     public static float[] getDyeRgb(EnumDyeColor dyeColor) {
-        return (float[]) DYE_TO_RGB.get(dyeColor);
+        return (float[])DYE_TO_RGB.get(dyeColor);
     }
 
     public EntitySheep(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 1.3F);
-        ((PathNavigateGround) this.getNavigator()).setAvoidsWater(true);
+        ((PathNavigateGround)this.getNavigator()).setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -100,7 +100,7 @@ public class EntitySheep extends EntityAnimal {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte) 0));
+        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
     /**
@@ -120,7 +120,8 @@ public class EntitySheep extends EntityAnimal {
         for (int j = 0; j < i; ++j) {
             if (this.isBurning()) {
                 this.dropItem(Items.cooked_mutton, 1);
-            } else {
+            }
+            else {
                 this.dropItem(Items.mutton, 1);
             }
         }
@@ -133,21 +134,23 @@ public class EntitySheep extends EntityAnimal {
     public void handleStatusUpdate(byte id) {
         if (id == 10) {
             this.sheepTimer = 40;
-        } else {
+        }
+        else {
             super.handleStatusUpdate(id);
         }
     }
 
     public float getHeadRotationPointY(float p_70894_1_) {
-        return this.sheepTimer <= 0 ? 0.0F : (this.sheepTimer >= 4 && this.sheepTimer <= 36 ? 1.0F : (this.sheepTimer < 4 ? ((float) this.sheepTimer - p_70894_1_) / 4.0F : -((float) (this.sheepTimer - 40) - p_70894_1_) / 4.0F));
+        return this.sheepTimer <= 0 ? 0.0F : (this.sheepTimer >= 4 && this.sheepTimer <= 36 ? 1.0F : (this.sheepTimer < 4 ? ((float)this.sheepTimer - p_70894_1_) / 4.0F : -((float)(this.sheepTimer - 40) - p_70894_1_) / 4.0F));
     }
 
     public float getHeadRotationAngleX(float p_70890_1_) {
         if (this.sheepTimer > 4 && this.sheepTimer <= 36) {
-            float f = ((float) (this.sheepTimer - 4) - p_70890_1_) / 32.0F;
-            return ((float) Math.PI / 5F) + ((float) Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
-        } else {
-            return this.sheepTimer > 0 ? ((float) Math.PI / 5F) : this.rotationPitch / (180F / (float) Math.PI);
+            float f = ((float)(this.sheepTimer - 4) - p_70890_1_) / 32.0F;
+            return ((float)Math.PI / 5F) + ((float)Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
+        }
+        else {
+            return this.sheepTimer > 0 ? ((float)Math.PI / 5F) : this.rotationPitch / (180F / (float)Math.PI);
         }
     }
 
@@ -164,9 +167,9 @@ public class EntitySheep extends EntityAnimal {
 
                 for (int j = 0; j < i; ++j) {
                     EntityItem entityitem = this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.wool), 1, this.getFleeceColor().getMetadata()), 1.0F);
-                    entityitem.motionY += (double) (this.rand.nextFloat() * 0.05F);
-                    entityitem.motionX += (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
-                    entityitem.motionZ += (double) ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
+                    entityitem.motionY += (double)(this.rand.nextFloat() * 0.05F);
+                    entityitem.motionX += (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
+                    entityitem.motionZ += (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
                 }
             }
 
@@ -183,7 +186,7 @@ public class EntitySheep extends EntityAnimal {
     public void writeEntityToNBT(NBTTagCompound tagCompound) {
         super.writeEntityToNBT(tagCompound);
         tagCompound.setBoolean("Sheared", this.getSheared());
-        tagCompound.setByte("Color", (byte) this.getFleeceColor().getMetadata());
+        tagCompound.setByte("Color", (byte)this.getFleeceColor().getMetadata());
     }
 
     /**
@@ -232,7 +235,7 @@ public class EntitySheep extends EntityAnimal {
      */
     public void setFleeceColor(EnumDyeColor color) {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & 240 | color.getMetadata() & 15)));
+        this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & 240 | color.getMetadata() & 15)));
     }
 
     /**
@@ -249,9 +252,10 @@ public class EntitySheep extends EntityAnimal {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (sheared) {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 | 16)));
-        } else {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte) (b0 & -17)));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 16)));
+        }
+        else {
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -17)));
         }
     }
 
@@ -264,7 +268,7 @@ public class EntitySheep extends EntityAnimal {
     }
 
     public EntitySheep createChild(EntityAgeable ageable) {
-        EntitySheep entitysheep = (EntitySheep) ageable;
+        EntitySheep entitysheep = (EntitySheep)ageable;
         EntitySheep entitysheep1 = new EntitySheep(this.worldObj);
         entitysheep1.setFleeceColor(this.getDyeColorMixFromParents(this, entitysheep));
         return entitysheep1;
@@ -296,16 +300,17 @@ public class EntitySheep extends EntityAnimal {
      * Attempts to mix both parent sheep to come up with a mixed dye color.
      */
     private EnumDyeColor getDyeColorMixFromParents(EntityAnimal father, EntityAnimal mother) {
-        int i = ((EntitySheep) father).getFleeceColor().getDyeDamage();
-        int j = ((EntitySheep) mother).getFleeceColor().getDyeDamage();
+        int i = ((EntitySheep)father).getFleeceColor().getDyeDamage();
+        int j = ((EntitySheep)mother).getFleeceColor().getDyeDamage();
         this.inventoryCrafting.getStackInSlot(0).setItemDamage(i);
         this.inventoryCrafting.getStackInSlot(1).setItemDamage(j);
-        ItemStack itemstack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntitySheep) father).worldObj);
+        ItemStack itemstack = CraftingManager.getInstance().findMatchingRecipe(this.inventoryCrafting, ((EntitySheep)father).worldObj);
         int k;
 
         if (itemstack != null && itemstack.getItem() == Items.dye) {
             k = itemstack.getMetadata();
-        } else {
+        }
+        else {
             k = this.worldObj.rand.nextBoolean() ? i : j;
         }
 

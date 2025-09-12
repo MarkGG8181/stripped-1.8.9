@@ -56,7 +56,7 @@ public class CommandCompare extends CommandBase
 
             if (i > 524288)
             {
-                throw new CommandException("commands.compare.tooManyBlocks", new Object[] {Integer.valueOf(i), Integer.valueOf(524288)});
+                throw new CommandException("commands.compare.tooManyBlocks", new Object[]{Integer.valueOf(i), Integer.valueOf(524288)});
             }
             else if (structureboundingbox.minY >= 0 && structureboundingbox.maxY < 256 && structureboundingbox1.minY >= 0 && structureboundingbox1.maxY < 256)
             {
@@ -134,7 +134,7 @@ public class CommandCompare extends CommandBase
                     }
 
                     sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, i);
-                    notifyOperators(sender, this, "commands.compare.success", new Object[] {Integer.valueOf(i)});
+                    notifyOperators(sender, this, "commands.compare.success", new Object[]{Integer.valueOf(i)});
                 }
                 else
                 {
@@ -150,6 +150,6 @@ public class CommandCompare extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length > 6 && args.length <= 9 ? func_175771_a(args, 6, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[] {"masked", "all"}): null)));
+        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length > 6 && args.length <= 9 ? func_175771_a(args, 6, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[]{"masked", "all"}) : null)));
     }
 }

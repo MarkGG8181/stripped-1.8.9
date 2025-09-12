@@ -51,6 +51,6 @@ public class C16PacketClientStatus implements Packet<INetHandlerPlayServer>
     {
         PERFORM_RESPAWN,
         REQUEST_STATS,
-        OPEN_INVENTORY_ACHIEVEMENT;
+        OPEN_INVENTORY_ACHIEVEMENT
     }
 }

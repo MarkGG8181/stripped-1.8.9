@@ -66,13 +66,14 @@ public class PreYggdrasilConverter
                         minecraftserver.getPlayerProfileCache().addEntry(p_onProfileLookupSucceeded_1_);
                         list.add(p_onProfileLookupSucceeded_1_);
                     }
+
                     public void onProfileLookupFailed(GameProfile p_onProfileLookupFailed_1_, Exception p_onProfileLookupFailed_2_)
                     {
                         PreYggdrasilConverter.LOGGER.warn((String)("Could not lookup user whitelist entry for " + p_onProfileLookupFailed_1_.getName()), (Throwable)p_onProfileLookupFailed_2_);
                     }
                 };
-                lookupNames(minecraftserver, Lists.newArrayList(new String[] {p_152719_0_}), profilelookupcallback);
-                return list.size() > 0 && ((GameProfile)list.get(0)).getId() != null ? ((GameProfile)list.get(0)).getId().toString() : "";
+                lookupNames(minecraftserver, Lists.newArrayList(new String[]{p_152719_0_}), profilelookupcallback);
+                return list.size() > 0 && ((GameProfile)list.getFirst()).getId() != null ? ((GameProfile)list.getFirst()).getId().toString() : "";
             }
             else
             {

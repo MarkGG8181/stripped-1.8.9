@@ -12,7 +12,7 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class MapGenScatteredFeature extends MapGenStructure
 {
-    private static final List<BiomeGenBase> biomelist = Arrays.<BiomeGenBase>asList(new BiomeGenBase[] {BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.swampland});
+    private static final List<BiomeGenBase> biomelist = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.desertHills, BiomeGenBase.jungle, BiomeGenBase.jungleHills, BiomeGenBase.swampland});
     private List<BiomeGenBase.SpawnListEntry> scatteredFeatureSpawnList;
 
     /** the maximum distance between scattered features */

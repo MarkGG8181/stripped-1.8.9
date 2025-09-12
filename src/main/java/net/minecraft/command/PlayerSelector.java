@@ -45,7 +45,7 @@ public class PlayerSelector
      * This matches things like "rm=4,c=2" and is used for handling named token arguments.
      */
     private static final Pattern keyValueListPattern = Pattern.compile("\\G(\\w+)=([-!]?[\\w-]*)(?:$|,)");
-    private static final Set<String> WORLD_BINDING_ARGS = Sets.newHashSet(new String[] {"x", "y", "z", "dx", "dy", "dz", "rm", "r"});
+    private static final Set<String> WORLD_BINDING_ARGS = Sets.newHashSet(new String[]{"x", "y", "z", "dx", "dy", "dz", "rm", "r"});
 
     /**
      * Returns the one player that matches the given at-token.  Returns null if more than one player matches.
@@ -55,10 +55,10 @@ public class PlayerSelector
         return (EntityPlayerMP)matchOneEntity(sender, token, EntityPlayerMP.class);
     }
 
-    public static <T extends Entity> T matchOneEntity(ICommandSender sender, String token, Class <? extends T > targetClass)
+    public static <T extends Entity> T matchOneEntity(ICommandSender sender, String token, Class<? extends T> targetClass)
     {
         List<T> list = matchEntities(sender, token, targetClass);
-        return (T)(list.size() == 1 ? (Entity)list.get(0) : null);
+        return (T)(list.size() == 1 ? (Entity)list.getFirst() : null);
     }
 
     public static IChatComponent matchEntitiesToChatComponent(ICommandSender sender, String token)
@@ -82,7 +82,7 @@ public class PlayerSelector
         }
     }
 
-    public static <T extends Entity> List<T> matchEntities(ICommandSender sender, String token, Class <? extends T > targetClass)
+    public static <T extends Entity> List<T> matchEntities(ICommandSender sender, String token, Class<? extends T> targetClass)
     {
         Matcher matcher = tokenPattern.matcher(token);
 
@@ -150,7 +150,7 @@ public class PlayerSelector
 
         if (s != null && !EntityList.isStringValidEntityName(s))
         {
-            ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("commands.generic.entity.invalidType", new Object[] {s});
+            ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("commands.generic.entity.invalidType", new Object[]{s});
             chatcomponenttranslation.getChatStyle().setColor(EnumChatFormatting.RED);
             commandSender.addChatMessage(chatcomponenttranslation);
             return false;
@@ -438,7 +438,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> List<T> filterResults(Map<String, String> params, Class <? extends T > entityClass, List<Predicate<Entity>> inputList, String type, World worldIn, BlockPos position)
+    private static <T extends Entity> List<T> filterResults(Map<String, String> params, Class<? extends T> entityClass, List<Predicate<Entity>> inputList, String type, World worldIn, BlockPos position)
     {
         List<T> list = new ArrayList<>();
         String s = func_179651_b(params, "type");
@@ -450,7 +450,7 @@ public class PlayerSelector
         int k = parseIntWithDefault(params, "dz", 0);
         int l = parseIntWithDefault(params, "r", -1);
         Predicate<Entity> predicate = Predicates.and(inputList);
-        Predicate<Entity> predicate1 = Predicates.<Entity> and (EntitySelectors.selectAnything, predicate);
+        Predicate<Entity> predicate1 = Predicates.<Entity>and(EntitySelectors.selectAnything, predicate);
 
         if (position != null)
         {
@@ -499,7 +499,7 @@ public class PlayerSelector
                             return p_apply_1_.posX >= axisalignedbb.minX && p_apply_1_.posY >= axisalignedbb.minY && p_apply_1_.posZ >= axisalignedbb.minZ ? p_apply_1_.posX < axisalignedbb.maxX && p_apply_1_.posY < axisalignedbb.maxY && p_apply_1_.posZ < axisalignedbb.maxZ : false;
                         }
                     };
-                    list.addAll(worldIn.<T>getPlayers(entityClass, Predicates.<T> and (predicate1, predicate2)));
+                    list.addAll(worldIn.<T>getPlayers(entityClass, Predicates.<T>and(predicate1, predicate2)));
                 }
                 else
                 {
@@ -523,7 +523,7 @@ public class PlayerSelector
         return list;
     }
 
-    private static <T extends Entity> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class <? extends T > p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
+    private static <T extends Entity> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class<? extends T> p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
     {
         int i = parseIntWithDefault(p_179658_1_, "c", !p_179658_4_.equals("a") && !p_179658_4_.equals("e") ? 1 : 0);
 
@@ -682,25 +682,17 @@ public class PlayerSelector
 
             for (Matcher matcher = intListPattern.matcher(argumentString); matcher.find(); j = matcher.end())
             {
-                String s = null;
-
-                switch (i++)
+                String s = switch (i++)
                 {
-                    case 0:
-                        s = "x";
-                        break;
+                    case 0 -> "x";
 
-                    case 1:
-                        s = "y";
-                        break;
+                    case 1 -> "y";
 
-                    case 2:
-                        s = "z";
-                        break;
+                    case 2 -> "z";
 
-                    case 3:
-                        s = "r";
-                }
+                    case 3 -> "r";
+                    default -> null;
+                };
 
                 if (s != null && matcher.group(1).length() > 0)
                 {

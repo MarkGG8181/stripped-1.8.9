@@ -308,7 +308,7 @@ public class BlockBed extends BlockDirectional
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, PART, OCCUPIED});
+        return new BlockState(this, new IProperty[]{FACING, PART, OCCUPIED});
     }
 
     public static enum EnumPartType implements IStringSerializable

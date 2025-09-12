@@ -28,7 +28,7 @@ import net.minecraft.util.MathHelper;
  * @author jellysquid3  Additional optimizations, port to Java
  */
 public class CompactSineLUT {
-    
+
     private static final int[] SINE_TABLE_INT = new int[16384 + 1];
     private static final float SINE_TABLE_MIDPOINT;
 
@@ -49,20 +49,20 @@ public class CompactSineLUT {
             float value = lookup(i);
 
             if (expected != value) {
-                throw new IllegalArgumentException(String.format("LUT error at index %d (expected: %s, found: %s)", i, expected, value));
+                throw new IllegalArgumentException("LUT error at index %d (expected: %s, found: %s)".formatted(i, expected, value));
             }
         }
-        
+
     }
 
     // [VanillaCopy] MathHelper#sin(float)
     public static float sin(float f) {
-        return lookup((int) (f * 10430.38) & 0xFFFF);
+        return lookup((int)(f * 10430.38) & 0xFFFF);
     }
 
     // [VanillaCopy] MathHelper#cos(float)
     public static float cos(float f) {
-        return lookup((int) (f * 10430.38 + 16384.0) & 0xFFFF);
+        return lookup((int)(f * 10430.38 + 16384.0) & 0xFFFF);
     }
 
     private static float lookup(int index) {

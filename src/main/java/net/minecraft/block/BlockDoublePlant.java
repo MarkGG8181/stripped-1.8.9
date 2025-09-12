@@ -312,7 +312,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HALF, VARIANT, FACING});
+        return new BlockState(this, new IProperty[]{HALF, VARIANT, FACING});
     }
 
     /**

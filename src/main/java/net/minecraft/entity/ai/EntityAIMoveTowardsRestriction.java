@@ -23,13 +23,15 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase {
     public boolean shouldExecute() {
         if (this.theEntity.isWithinHomeDistanceCurrentPosition()) {
             return false;
-        } else {
+        }
+        else {
             BlockPos blockpos = this.theEntity.getHomePosition();
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ()));
+            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ()));
 
             if (vec3 == null) {
                 return false;
-            } else {
+            }
+            else {
                 this.movePosX = vec3.x;
                 this.movePosY = vec3.y;
                 this.movePosZ = vec3.z;

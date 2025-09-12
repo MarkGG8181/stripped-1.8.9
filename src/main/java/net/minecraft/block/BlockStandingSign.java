@@ -48,6 +48,6 @@ public class BlockStandingSign extends BlockSign
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {ROTATION});
+        return new BlockState(this, new IProperty[]{ROTATION});
     }
 }

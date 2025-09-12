@@ -78,13 +78,13 @@ public class ModelVillager extends ModelBase {
      * "far" arms and legs can swing at most.
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-        this.villagerHead.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
-        this.villagerHead.rotateAngleX = headPitch / (180F / (float) Math.PI);
+        this.villagerHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+        this.villagerHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
         this.villagerArms.rotationPointY = 3.0F;
         this.villagerArms.rotationPointZ = -1.0F;
         this.villagerArms.rotateAngleX = -0.75F;
         this.rightVillagerLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-        this.leftVillagerLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount * 0.5F;
+        this.leftVillagerLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
         this.rightVillagerLeg.rotateAngleY = 0.0F;
         this.leftVillagerLeg.rotateAngleY = 0.0F;
     }

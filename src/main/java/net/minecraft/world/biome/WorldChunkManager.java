@@ -80,7 +80,7 @@ public class WorldChunkManager {
 
         for (int i = 0; i < width * length; ++i) {
             try {
-                float f = (float) BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT).getIntRainfall() / 65536.0F;
+                float f = (float)BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT).getIntRainfall() / 65536.0F;
 
                 if (f > 1.0F) {
                     f = 1.0F;
@@ -161,7 +161,8 @@ public class WorldChunkManager {
         if (cacheFlag && width == 16 && length == 16 && (x & 15) == 0 && (z & 15) == 0) {
             BiomeGenBase[] abiomegenbase = this.biomeCache.getCachedBiomes(x, z);
             System.arraycopy(abiomegenbase, 0, listToReuse, 0, width * length);
-        } else {
+        }
+        else {
             int[] aint = this.biomeIndexLayer.getInts(x, z, width, length);
 
             for (int i = 0; i < width * length; ++i) {

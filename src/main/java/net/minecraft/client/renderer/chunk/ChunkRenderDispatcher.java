@@ -52,7 +52,7 @@ public class ChunkRenderDispatcher {
     }
 
     public String getDebugInfo() {
-        return String.format("pC: %03d, pU: %1d, aB: %1d", new Object[]{Integer.valueOf(this.queueChunkUpdates.size()), Integer.valueOf(this.queueChunkUploads.size()), Integer.valueOf(this.queueFreeRenderBuilders.size())});
+        return "pC: %03d, pU: %1d, aB: %1d".formatted(new Object[]{Integer.valueOf(this.queueChunkUpdates.size()), Integer.valueOf(this.queueChunkUploads.size()), Integer.valueOf(this.queueFreeRenderBuilders.size())});
     }
 
     public boolean runChunkUploads(long p_178516_1_) {
@@ -63,7 +63,7 @@ public class ChunkRenderDispatcher {
 
             synchronized (this.queueChunkUploads) {
                 if (!this.queueChunkUploads.isEmpty()) {
-                    ((ListenableFutureTask) this.queueChunkUploads.poll()).run();
+                    ((ListenableFutureTask)this.queueChunkUploads.poll()).run();
                     flag1 = true;
                     flag = true;
                 }
@@ -118,7 +118,6 @@ public class ChunkRenderDispatcher {
             try {
                 this.renderWorker.processTask(chunkcompiletaskgenerator);
             } catch (InterruptedException var7) {
-                ;
             }
 
             flag = true;
@@ -133,16 +132,14 @@ public class ChunkRenderDispatcher {
         this.clearChunkUpdates();
 
         while (this.runChunkUploads(0L)) {
-            ;
         }
 
         List<RegionRenderCacheBuilder> list = new ArrayList<>();
 
-        while (((List) list).size() != 5) {
+        while (((List)list).size() != 5) {
             try {
                 list.add(this.allocateRenderBuilder());
             } catch (InterruptedException var3) {
-                ;
             }
         }
 
@@ -154,11 +151,11 @@ public class ChunkRenderDispatcher {
     }
 
     public RegionRenderCacheBuilder allocateRenderBuilder() throws InterruptedException {
-        return (RegionRenderCacheBuilder) this.queueFreeRenderBuilders.take();
+        return (RegionRenderCacheBuilder)this.queueFreeRenderBuilders.take();
     }
 
     public ChunkCompileTaskGenerator getNextChunkUpdate() throws InterruptedException {
-        return (ChunkCompileTaskGenerator) this.queueChunkUpdates.take();
+        return (ChunkCompileTaskGenerator)this.queueChunkUpdates.take();
     }
 
     public boolean updateTransparencyLater(RenderChunk chunkRenderer) {
@@ -191,13 +188,14 @@ public class ChunkRenderDispatcher {
             this.uploadVertexBuffer(p_178503_2_, chunkRenderer.getVertexBufferByLayer(player.ordinal()));
 
             p_178503_2_.setTranslation(0.0D, 0.0D, 0.0D);
-            return Futures.<Object>immediateFuture((Object) null);
-        } else {
+            return Futures.<Object>immediateFuture((Object)null);
+        }
+        else {
             ListenableFutureTask<Object> listenablefuturetask = ListenableFutureTask.<Object>create(new Runnable() {
                 public void run() {
                     ChunkRenderDispatcher.this.uploadChunk(player, p_178503_2_, chunkRenderer, compiledChunkIn);
                 }
-            }, (Object) null);
+            }, (Object)null);
 
             synchronized (this.queueChunkUploads) {
                 this.queueChunkUploads.add(listenablefuturetask);
@@ -222,7 +220,7 @@ public class ChunkRenderDispatcher {
 
     public void clearChunkUpdates() {
         while (!this.queueChunkUpdates.isEmpty()) {
-            ChunkCompileTaskGenerator chunkcompiletaskgenerator = (ChunkCompileTaskGenerator) this.queueChunkUpdates.poll();
+            ChunkCompileTaskGenerator chunkcompiletaskgenerator = (ChunkCompileTaskGenerator)this.queueChunkUpdates.poll();
 
             if (chunkcompiletaskgenerator != null) {
                 chunkcompiletaskgenerator.finish();

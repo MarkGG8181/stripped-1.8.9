@@ -26,12 +26,14 @@ public class ServerSelectionList extends GuiListExtended {
     public GuiListExtended.IGuiListEntry getListEntry(int index) {
         if (index < this.serverListInternet.size()) {
             return this.serverListInternet.get(index);
-        } else {
+        }
+        else {
             index = index - this.serverListInternet.size();
 
             if (index == 0) {
                 return this.lanScanEntry;
-            } else {
+            }
+            else {
                 --index;
                 return index >= this.serverListLan.size() ? this.lanScanEntry : this.serverListLan.get(index);
             }

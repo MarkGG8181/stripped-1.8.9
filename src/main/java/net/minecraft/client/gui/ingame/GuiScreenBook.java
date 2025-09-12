@@ -90,7 +90,7 @@ public class GuiScreenBook extends GuiScreen {
             this.bookPages = nbttagcompound.getTagList("pages", 8);
 
             if (this.bookPages != null) {
-                this.bookPages = (NBTTagList) this.bookPages.copy();
+                this.bookPages = (NBTTagList)this.bookPages.copy();
                 this.bookTotalPages = this.bookPages.tagCount();
 
                 if (this.bookTotalPages < 1) {
@@ -127,7 +127,8 @@ public class GuiScreenBook extends GuiScreen {
             this.buttonList.add(this.buttonDone = new GuiButton(0, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.done", new Object[0])));
             this.buttonList.add(this.buttonFinalize = new GuiButton(5, this.width / 2 - 100, 4 + this.bookImageHeight, 98, 20, I18n.format("book.finalizeButton", new Object[0])));
             this.buttonList.add(this.buttonCancel = new GuiButton(4, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.cancel", new Object[0])));
-        } else {
+        }
+        else {
             this.buttonList.add(this.buttonDone = new GuiButton(0, this.width / 2 - 100, 4 + this.bookImageHeight, 200, 20, I18n.format("gui.done", new Object[0])));
         }
 
@@ -174,7 +175,8 @@ public class GuiScreenBook extends GuiScreen {
                 if (this.bookObj.hasTagCompound()) {
                     NBTTagCompound nbttagcompound = this.bookObj.getTagCompound();
                     nbttagcompound.setTag("pages", this.bookPages);
-                } else {
+                }
+                else {
                     this.bookObj.setTagInfo("pages", this.bookPages);
                 }
 
@@ -208,28 +210,34 @@ public class GuiScreenBook extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
             if (button.id == 0) {
-                this.mc.displayGuiScreen((GuiScreen) null);
+                this.mc.displayGuiScreen((GuiScreen)null);
                 this.sendBookToServer(false);
-            } else if (button.id == 3 && this.bookIsUnsigned) {
+            }
+            else if (button.id == 3 && this.bookIsUnsigned) {
                 this.bookGettingSigned = true;
-            } else if (button.id == 1) {
+            }
+            else if (button.id == 1) {
                 if (this.currPage < this.bookTotalPages - 1) {
                     ++this.currPage;
-                } else if (this.bookIsUnsigned) {
+                }
+                else if (this.bookIsUnsigned) {
                     this.addNewPage();
 
                     if (this.currPage < this.bookTotalPages - 1) {
                         ++this.currPage;
                     }
                 }
-            } else if (button.id == 2) {
+            }
+            else if (button.id == 2) {
                 if (this.currPage > 0) {
                     --this.currPage;
                 }
-            } else if (button.id == 5 && this.bookGettingSigned) {
+            }
+            else if (button.id == 5 && this.bookGettingSigned) {
                 this.sendBookToServer(true);
-                this.mc.displayGuiScreen((GuiScreen) null);
-            } else if (button.id == 4 && this.bookGettingSigned) {
+                this.mc.displayGuiScreen((GuiScreen)null);
+            }
+            else if (button.id == 4 && this.bookGettingSigned) {
                 this.bookGettingSigned = false;
             }
 
@@ -255,7 +263,8 @@ public class GuiScreenBook extends GuiScreen {
         if (this.bookIsUnsigned) {
             if (this.bookGettingSigned) {
                 this.keyTypedInTitle(typedChar, keyCode);
-            } else {
+            }
+            else {
                 this.keyTypedInBook(typedChar, keyCode);
             }
         }
@@ -267,7 +276,8 @@ public class GuiScreenBook extends GuiScreen {
     private void keyTypedInBook(char typedChar, int keyCode) {
         if (GuiScreen.isKeyComboCtrlV(keyCode)) {
             this.pageInsertIntoCurrent(GuiScreen.getClipboardString());
-        } else {
+        }
+        else {
             switch (keyCode) {
                 case 14:
                     String s = this.pageGetCurrent();
@@ -308,7 +318,7 @@ public class GuiScreenBook extends GuiScreen {
             case 156:
                 if (!this.bookTitle.isEmpty()) {
                     this.sendBookToServer(true);
-                    this.mc.displayGuiScreen((GuiScreen) null);
+                    this.mc.displayGuiScreen((GuiScreen)null);
                 }
 
                 return;
@@ -368,7 +378,8 @@ public class GuiScreenBook extends GuiScreen {
             if (this.bookIsUnsigned) {
                 if (this.updateCount / 6 % 2 == 0) {
                     s = s + "" + EnumChatFormatting.BLACK + "_";
-                } else {
+                }
+                else {
                     s = s + "" + EnumChatFormatting.GRAY + "_";
                 }
             }
@@ -383,7 +394,8 @@ public class GuiScreenBook extends GuiScreen {
             this.fontRendererObj.drawString(EnumChatFormatting.DARK_GRAY + s2, i + 36 + (116 - i1) / 2, j + 48 + 10, 0);
             String s3 = I18n.format("book.finalizeWarning", new Object[0]);
             this.fontRendererObj.drawSplitString(s3, i + 36, j + 80, 116, 0);
-        } else {
+        }
+        else {
             String s4 = I18n.format("book.pageIndicator", new Object[]{Integer.valueOf(this.currPage + 1), Integer.valueOf(this.bookTotalPages)});
             String s5 = "";
 
@@ -394,10 +406,12 @@ public class GuiScreenBook extends GuiScreen {
             if (this.bookIsUnsigned) {
                 if (this.updateCount / 6 % 2 == 0) {
                     s5 = s5 + "" + EnumChatFormatting.BLACK + "_";
-                } else {
+                }
+                else {
                     s5 = s5 + "" + EnumChatFormatting.GRAY + "_";
                 }
-            } else if (this.cachedPage != this.currPage) {
+            }
+            else if (this.cachedPage != this.currPage) {
                 if (ItemEditableBook.validBookTagContents(this.bookObj.getTagCompound())) {
                     try {
                         IChatComponent ichatcomponent = IChatComponent.Serializer.jsonToComponent(s5);
@@ -405,7 +419,8 @@ public class GuiScreenBook extends GuiScreen {
                     } catch (JsonParseException var13) {
                         this.cachedComponents = null;
                     }
-                } else {
+                }
+                else {
                     ChatComponentText chatcomponenttext = new ChatComponentText(EnumChatFormatting.DARK_RED.toString() + "* Invalid book tag *");
                     this.cachedComponents = Lists.newArrayList(chatcomponenttext);
                 }
@@ -418,11 +433,12 @@ public class GuiScreenBook extends GuiScreen {
 
             if (this.cachedComponents == null) {
                 this.fontRendererObj.drawSplitString(s5, i + 36, j + 16 + 16, 116, 0);
-            } else {
+            }
+            else {
                 int k1 = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.cachedComponents.size());
 
                 for (int l1 = 0; l1 < k1; ++l1) {
-                    IChatComponent ichatcomponent2 = (IChatComponent) this.cachedComponents.get(l1);
+                    IChatComponent ichatcomponent2 = (IChatComponent)this.cachedComponents.get(l1);
                     this.fontRendererObj.drawString(ichatcomponent2.getUnformattedText(), i + 36, j + 16 + 16 + l1 * this.fontRendererObj.FONT_HEIGHT, 0);
                 }
 
@@ -462,7 +478,8 @@ public class GuiScreenBook extends GuiScreen {
 
         if (clickevent == null) {
             return false;
-        } else if (clickevent.action() == ClickEvent.Action.CHANGE_PAGE) {
+        }
+        else if (clickevent.action() == ClickEvent.Action.CHANGE_PAGE) {
             String s = clickevent.value();
 
             try {
@@ -474,15 +491,15 @@ public class GuiScreenBook extends GuiScreen {
                     return true;
                 }
             } catch (Throwable var5) {
-                ;
             }
 
             return false;
-        } else {
+        }
+        else {
             boolean flag = super.handleComponentClick(component);
 
             if (flag && clickevent.action() == ClickEvent.Action.RUN_COMMAND) {
-                this.mc.displayGuiScreen((GuiScreen) null);
+                this.mc.displayGuiScreen((GuiScreen)null);
             }
 
             return flag;
@@ -492,7 +509,8 @@ public class GuiScreenBook extends GuiScreen {
     public IChatComponent func_175385_b(int p_175385_1_, int p_175385_2_) {
         if (this.cachedComponents == null) {
             return null;
-        } else {
+        }
+        else {
             int i = p_175385_1_ - (this.width - this.bookImageWidth) / 2 - 36;
             int j = p_175385_2_ - 2 - 16 - 16;
 
@@ -503,12 +521,12 @@ public class GuiScreenBook extends GuiScreen {
                     int l = j / this.mc.fontRendererObj.FONT_HEIGHT;
 
                     if (l >= 0 && l < this.cachedComponents.size()) {
-                        IChatComponent ichatcomponent = (IChatComponent) this.cachedComponents.get(l);
+                        IChatComponent ichatcomponent = (IChatComponent)this.cachedComponents.get(l);
                         int i1 = 0;
 
                         for (IChatComponent ichatcomponent1 : ichatcomponent) {
-                            if (ichatcomponent1 instanceof ChatComponentText) {
-                                i1 += this.mc.fontRendererObj.getStringWidth(((ChatComponentText) ichatcomponent1).getChatComponentText_TextValue());
+                            if (ichatcomponent1 instanceof ChatComponentText text) {
+                                i1 += this.mc.fontRendererObj.getStringWidth(text.getChatComponentText_TextValue());
 
                                 if (i1 > i) {
                                     return ichatcomponent1;
@@ -518,10 +536,12 @@ public class GuiScreenBook extends GuiScreen {
                     }
 
                     return null;
-                } else {
+                }
+                else {
                     return null;
                 }
-            } else {
+            }
+            else {
                 return null;
             }
         }

@@ -64,7 +64,7 @@ public class ItemMap extends ItemMapBase
 
     public void updateMapData(World worldIn, Entity viewer, MapData data)
     {
-        if (worldIn.provider.getDimensionId() == data.dimension && viewer instanceof EntityPlayer)
+        if (worldIn.provider.getDimensionId() == data.dimension && viewer instanceof EntityPlayer player)
         {
             int i = 1 << data.scale;
             int j = data.xCenter;
@@ -78,7 +78,7 @@ public class ItemMap extends ItemMapBase
                 j1 /= 2;
             }
 
-            MapData.MapInfo mapdata$mapinfo = data.getMapInfo((EntityPlayer)viewer);
+            MapData.MapInfo mapdata$mapinfo = data.getMapInfo(player);
             ++mapdata$mapinfo.step;
             boolean flag = false;
 
@@ -238,9 +238,8 @@ public class ItemMap extends ItemMapBase
         {
             MapData mapdata = this.getMapData(stack, worldIn);
 
-            if (entityIn instanceof EntityPlayer)
+            if (entityIn instanceof EntityPlayer entityplayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)entityIn;
                 mapdata.updateVisiblePlayers(entityplayer, stack);
             }
 

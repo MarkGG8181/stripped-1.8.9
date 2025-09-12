@@ -46,9 +46,10 @@ public class NibbleArray {
         int i = this.getNibbleIndex(index);
 
         if (this.isLowerNibble(index)) {
-            this.data[i] = (byte) (this.data[i] & 240 | value & 15);
-        } else {
-            this.data[i] = (byte) (this.data[i] & 15 | (value & 15) << 4);
+            this.data[i] = (byte)(this.data[i] & 240 | value & 15);
+        }
+        else {
+            this.data[i] = (byte)(this.data[i] & 15 | (value & 15) << 4);
         }
     }
 

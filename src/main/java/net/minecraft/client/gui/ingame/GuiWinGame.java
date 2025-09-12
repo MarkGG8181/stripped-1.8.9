@@ -45,9 +45,9 @@ public class GuiWinGame extends GuiScreen {
 
         soundhandler.update();
         ++this.time;
-        float f = (float) (this.totalScrollLength + this.height + this.height + 24) / this.scrollSpeed;
+        float f = (float)(this.totalScrollLength + this.height + this.height + 24) / this.scrollSpeed;
 
-        if ((float) this.time > f) {
+        if ((float)this.time > f) {
             this.sendRespawnPacket();
         }
     }
@@ -64,7 +64,7 @@ public class GuiWinGame extends GuiScreen {
 
     private void sendRespawnPacket() {
         this.mc.thePlayer.sendQueue.addToSendQueue(new C16PacketClientStatus(C16PacketClientStatus.EnumState.PERFORM_RESPAWN));
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen((GuiScreen)null);
     }
 
     /**
@@ -123,7 +123,7 @@ public class GuiWinGame extends GuiScreen {
                 inputstream.close();
                 this.totalScrollLength = this.lines.size() * 12;
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t load credits", (Throwable) exception);
+                logger.error((String)"Couldn\'t load credits", (Throwable)exception);
             }
         }
     }
@@ -134,12 +134,12 @@ public class GuiWinGame extends GuiScreen {
         this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
         int i = this.width;
-        float f = 0.0F - ((float) this.time + p_146575_3_) * 0.5F * this.scrollSpeed;
-        float f1 = (float) this.height - ((float) this.time + p_146575_3_) * 0.5F * this.scrollSpeed;
+        float f = 0.0F - ((float)this.time + p_146575_3_) * 0.5F * this.scrollSpeed;
+        float f1 = (float)this.height - ((float)this.time + p_146575_3_) * 0.5F * this.scrollSpeed;
         float f2 = 0.015625F;
-        float f3 = ((float) this.time + p_146575_3_ - 0.0F) * 0.02F;
-        float f4 = (float) (this.totalScrollLength + this.height + this.height + 24) / this.scrollSpeed;
-        float f5 = (f4 - 20.0F - ((float) this.time + p_146575_3_)) * 0.005F;
+        float f3 = ((float)this.time + p_146575_3_ - 0.0F) * 0.02F;
+        float f4 = (float)(this.totalScrollLength + this.height + this.height + 24) / this.scrollSpeed;
+        float f5 = (f4 - 20.0F - ((float)this.time + p_146575_3_)) * 0.005F;
 
         if (f5 < f3) {
             f3 = f5;
@@ -151,10 +151,10 @@ public class GuiWinGame extends GuiScreen {
 
         f3 = f3 * f3;
         f3 = f3 * 96.0F / 255.0F;
-        worldrenderer.pos(0.0D, (double) this.height, (double) this.zLevel).tex(0.0D, (double) (f * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos((double) i, (double) this.height, (double) this.zLevel).tex((double) ((float) i * f2), (double) (f * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos((double) i, 0.0D, (double) this.zLevel).tex((double) ((float) i * f2), (double) (f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, (double) (f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, (double)this.height, (double)this.zLevel).tex(0.0D, (double)(f * f2)).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos((double)i, (double)this.height, (double)this.zLevel).tex((double)((float)i * f2), (double)(f * f2)).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos((double)i, 0.0D, (double)this.zLevel).tex((double)((float)i * f2), (double)(f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, (double)this.zLevel).tex(0.0D, (double)(f1 * f2)).color(f3, f3, f3, 1.0F).endVertex();
         tessellator.draw();
     }
 
@@ -168,7 +168,7 @@ public class GuiWinGame extends GuiScreen {
         int i = 274;
         int j = this.width / 2 - i / 2;
         int k = this.height + 50;
-        float f = -((float) this.time + partialTicks) * this.scrollSpeed;
+        float f = -((float)this.time + partialTicks) * this.scrollSpeed;
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.0F, f, 0.0F);
         this.mc.getTextureManager().bindTexture(MINECRAFT_LOGO);
@@ -179,21 +179,22 @@ public class GuiWinGame extends GuiScreen {
 
         for (int i1 = 0; i1 < this.lines.size(); ++i1) {
             if (i1 == this.lines.size() - 1) {
-                float f1 = (float) l + f - (float) (this.height / 2 - 6);
+                float f1 = (float)l + f - (float)(this.height / 2 - 6);
 
                 if (f1 < 0.0F) {
                     GlStateManager.translate(0.0F, -f1, 0.0F);
                 }
             }
 
-            if ((float) l + f + 12.0F + 8.0F > 0.0F && (float) l + f < (float) this.height) {
-                String s = (String) this.lines.get(i1);
+            if ((float)l + f + 12.0F + 8.0F > 0.0F && (float)l + f < (float)this.height) {
+                String s = (String)this.lines.get(i1);
 
                 if (s.startsWith("[C]")) {
-                    this.fontRendererObj.drawStringWithShadow(s.substring(3), (float) (j + (i - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float) l, 16777215);
-                } else {
-                    this.fontRendererObj.fontRandom.setSeed((long) i1 * 4238972211L + (long) (this.time / 4));
-                    this.fontRendererObj.drawStringWithShadow(s, (float) j, (float) l, 16777215);
+                    this.fontRendererObj.drawStringWithShadow(s.substring(3), (float)(j + (i - this.fontRendererObj.getStringWidth(s.substring(3))) / 2), (float)l, 16777215);
+                }
+                else {
+                    this.fontRendererObj.fontRandom.setSeed((long)i1 * 4238972211L + (long)(this.time / 4));
+                    this.fontRendererObj.drawStringWithShadow(s, (float)j, (float)l, 16777215);
                 }
             }
 
@@ -207,10 +208,10 @@ public class GuiWinGame extends GuiScreen {
         int j1 = this.width;
         int k1 = this.height;
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(0.0D, (double) k1, (double) this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) j1, (double) k1, (double) this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) j1, 0.0D, (double) this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, (double)k1, (double)this.zLevel).tex(0.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos((double)j1, (double)k1, (double)this.zLevel).tex(1.0D, 1.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos((double)j1, 0.0D, (double)this.zLevel).tex(1.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, (double)this.zLevel).tex(0.0D, 0.0D).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
         tessellator.draw();
         GlStateManager.disableBlend();
         super.drawScreen(mouseX, mouseY, partialTicks);

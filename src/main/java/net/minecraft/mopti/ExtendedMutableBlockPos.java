@@ -12,7 +12,7 @@ public class ExtendedMutableBlockPos extends BlockPos.MutableBlockPos {
     }
 
     public ExtendedMutableBlockPos set(int x, int y, int z) {
-        return (ExtendedMutableBlockPos) super.set(x, y, z);
+        return (ExtendedMutableBlockPos)super.set(x, y, z);
     }
 
     public ExtendedMutableBlockPos set(double x, double y, double z) {

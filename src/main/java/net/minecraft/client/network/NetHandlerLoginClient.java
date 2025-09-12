@@ -54,7 +54,8 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient {
             } catch (AuthenticationException var10) {
                 logger.warn("Couldn't connect to auth servers but will continue to join LAN");
             }
-        } else {
+        }
+        else {
             try {
                 this.getSessionService().joinServer(this.mc.getSession().getProfile(), this.mc.getSession().getToken(), s1);
             } catch (AuthenticationUnavailableException var7) {

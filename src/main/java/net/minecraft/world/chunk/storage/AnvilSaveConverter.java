@@ -65,7 +65,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
             }
 
             return list;
-        } else {
+        }
+        else {
             throw new AnvilConverterException("Unable to read or access folder where game worlds are saved!");
         }
     }
@@ -127,7 +128,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
 
         if (worldinfo.getTerrainType() == WorldType.FLAT) {
             worldchunkmanager = new WorldChunkManagerHell(BiomeGenBase.plains, 0.5F);
-        } else {
+        }
+        else {
             worldchunkmanager = new WorldChunkManager(worldinfo.getSeed(), worldinfo.getTerrainType(), worldinfo.getGeneratorOptions());
         }
 
@@ -154,12 +156,14 @@ public class AnvilSaveConverter extends SaveFormatOld {
 
         if (!file1.exists()) {
             logger.warn("Unable to create level.dat_mcr backup");
-        } else {
+        }
+        else {
             File file2 = new File(file1, "level.dat");
 
             if (!file2.exists()) {
                 logger.warn("Unable to create level.dat_mcr backup");
-            } else {
+            }
+            else {
                 File file3 = new File(file1, "level.dat_mcr");
 
                 if (!file2.renameTo(file3)) {
@@ -173,7 +177,7 @@ public class AnvilSaveConverter extends SaveFormatOld {
         for (File file1 : p_75813_2_) {
             this.convertChunks(p_75813_1_, file1, p_75813_3_, p_75813_4_, p_75813_5_, p_75813_6_);
             ++p_75813_4_;
-            int i = (int) Math.round(100.0D * (double) p_75813_4_ / (double) p_75813_5_);
+            int i = (int)Math.round(100.0D * (double)p_75813_4_ / (double)p_75813_5_);
             p_75813_6_.setLoadingProgress(i);
         }
     }
@@ -194,7 +198,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
 
                         if (datainputstream == null) {
                             logger.warn("Failed to fetch input stream");
-                        } else {
+                        }
+                        else {
                             NBTTagCompound nbttagcompound = CompressedStreamTools.read(datainputstream);
                             datainputstream.close();
                             NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("Level");
@@ -210,8 +215,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
                     }
                 }
 
-                int k = (int) Math.round(100.0D * (double) (p_75811_4_ * 1024) / (double) (p_75811_5_ * 1024));
-                int l = (int) Math.round(100.0D * (double) ((i + 1) * 32 + p_75811_4_ * 1024) / (double) (p_75811_5_ * 1024));
+                int k = (int)Math.round(100.0D * (double)(p_75811_4_ * 1024) / (double)(p_75811_5_ * 1024));
+                int l = (int)Math.round(100.0D * (double)((i + 1) * 32 + p_75811_4_ * 1024) / (double)(p_75811_5_ * 1024));
 
                 if (l > k) {
                     progressCallback.setLoadingProgress(l);

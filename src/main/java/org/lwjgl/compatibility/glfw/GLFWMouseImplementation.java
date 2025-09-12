@@ -39,9 +39,9 @@ public class GLFWMouseImplementation implements MouseImplementation {
         GLFW.glfwSetInputMode(this.windowHandle, GLFW.GLFW_RAW_MOUSE_MOTION, GLFW.GLFW_FALSE);
 
         this.buttonCallback = GLFWMouseButtonCallback.create((window, button, action, mods) -> {
-            byte state = action == GLFW.GLFW_PRESS ? (byte) 1 : (byte) 0;
+            byte state = action == GLFW.GLFW_PRESS ? (byte)1 : (byte)0;
 
-            putMouseEvent((byte) button, state, 0, System.nanoTime());
+            putMouseEvent((byte)button, state, 0, System.nanoTime());
 
             if (button < button_states.length)
                 button_states[button] = state;
@@ -49,22 +49,22 @@ public class GLFWMouseImplementation implements MouseImplementation {
 
         this.posCallback = GLFWCursorPosCallback.create((window, xpos, ypos) -> {
             if (Mouse.isIgnoreFirstMove()) {
-                if (this.lastFuckedX != ((int) xpos)) {
-                    last_x = (int) xpos;
+                if (this.lastFuckedX != ((int)xpos)) {
+                    last_x = (int)xpos;
                 }
 
-                if (this.lastFuckedY != ((int) ypos)) {
-                    last_y = Display.getHeight() - 1 - (int) ypos;
+                if (this.lastFuckedY != ((int)ypos)) {
+                    last_y = Display.getHeight() - 1 - (int)ypos;
                 }
             }
 
             Mouse.setIgnoreFirstMove(false);
 
-            this.lastFuckedX = (int) xpos;
-            this.lastFuckedY = (int) ypos;
+            this.lastFuckedX = (int)xpos;
+            this.lastFuckedY = (int)ypos;
 
-            int x = (int) xpos;
-            int y = Display.getHeight() - 1 - (int) ypos; // I don't know why but this un-inverts the y motion of mouse inputs
+            int x = (int)xpos;
+            int y = Display.getHeight() - 1 - (int)ypos; // I don't know why but this un-inverts the y motion of mouse inputs
 
             int dx = x - last_x;
             int dy = y - last_y;
@@ -77,15 +77,16 @@ public class GLFWMouseImplementation implements MouseImplementation {
 
                 long nanos = System.nanoTime();
                 if (grabbed) {
-                    putMouseEventWithCoords((byte) -1, (byte) 0, dx, dy, 0, nanos);
-                } else {
-                    putMouseEventWithCoords((byte) -1, (byte) 0, x, y, 0, nanos);
+                    putMouseEventWithCoords((byte)-1, (byte)0, dx, dy, 0, nanos);
+                }
+                else {
+                    putMouseEventWithCoords((byte)-1, (byte)0, x, y, 0, nanos);
                 }
             }
         });
         this.scrollCallback = GLFWScrollCallback.create((window, xoffset, yoffset) -> {
             accum_dz += yoffset;
-            putMouseEvent((byte) -1, (byte) 0, (int) yoffset, System.nanoTime());
+            putMouseEvent((byte)-1, (byte)0, (int)yoffset, System.nanoTime());
         });
         this.cursorEnterCallback = GLFWCursorEnterCallback.create((window, entered) -> this.isInsideWindow = entered);
 
@@ -128,7 +129,8 @@ public class GLFWMouseImplementation implements MouseImplementation {
         if (grabbed) {
             coord_buffer.put(0, accum_dx);
             coord_buffer.put(1, accum_dy);
-        } else {
+        }
+        else {
             coord_buffer.put(0, last_x);
             coord_buffer.put(1, last_y);
         }

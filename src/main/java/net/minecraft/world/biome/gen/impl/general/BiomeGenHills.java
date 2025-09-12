@@ -64,7 +64,8 @@ public class BiomeGenHills extends BiomeGenBase {
         if ((noiseVal < -1.0D || noiseVal > 2.0D) && this.type == this.field_150637_aG) {
             this.topBlock = Blocks.gravel.getDefaultState();
             this.fillerBlock = Blocks.gravel.getDefaultState();
-        } else if (noiseVal > 1.0D && this.type != this.field_150636_aF) {
+        }
+        else if (noiseVal > 1.0D && this.type != this.field_150636_aF) {
             this.topBlock = Blocks.stone.getDefaultState();
             this.fillerBlock = Blocks.stone.getDefaultState();
         }

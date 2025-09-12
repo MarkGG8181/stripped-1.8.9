@@ -75,7 +75,7 @@ public class EntityArmorStand extends EntityLivingBase {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(10, Byte.valueOf((byte) 0));
+        this.dataWatcher.addObject(10, Byte.valueOf((byte)0));
         this.dataWatcher.addObject(11, DEFAULT_HEAD_ROTATION);
         this.dataWatcher.addObject(12, DEFAULT_BODY_ROTATION);
         this.dataWatcher.addObject(13, DEFAULT_LEFTARM_ROTATION);
@@ -121,7 +121,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (inventorySlot == 99) {
             i = 0;
-        } else {
+        }
+        else {
             i = inventorySlot - 100 + 1;
 
             if (i < 0 || i >= this.contents.length) {
@@ -131,7 +132,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (itemStackIn != null && EntityLiving.getArmorPosition(itemStackIn) != i && (i != 4 || !(itemStackIn.getItem() instanceof ItemBlock))) {
             return false;
-        } else {
+        }
+        else {
             this.setCurrentItemOrArmor(i, itemStackIn);
             return true;
         }
@@ -209,7 +211,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist.tagCount() > 0) {
             this.setHeadRotation(new Rotations(nbttaglist));
-        } else {
+        }
+        else {
             this.setHeadRotation(DEFAULT_HEAD_ROTATION);
         }
 
@@ -217,7 +220,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist1.tagCount() > 0) {
             this.setBodyRotation(new Rotations(nbttaglist1));
-        } else {
+        }
+        else {
             this.setBodyRotation(DEFAULT_BODY_ROTATION);
         }
 
@@ -225,7 +229,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist2.tagCount() > 0) {
             this.setLeftArmRotation(new Rotations(nbttaglist2));
-        } else {
+        }
+        else {
             this.setLeftArmRotation(DEFAULT_LEFTARM_ROTATION);
         }
 
@@ -233,7 +238,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist3.tagCount() > 0) {
             this.setRightArmRotation(new Rotations(nbttaglist3));
-        } else {
+        }
+        else {
             this.setRightArmRotation(DEFAULT_RIGHTARM_ROTATION);
         }
 
@@ -241,7 +247,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist4.tagCount() > 0) {
             this.setLeftLegRotation(new Rotations(nbttaglist4));
-        } else {
+        }
+        else {
             this.setLeftLegRotation(DEFAULT_LEFTLEG_ROTATION);
         }
 
@@ -249,7 +256,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (nbttaglist5.tagCount() > 0) {
             this.setRightLegRotation(new Rotations(nbttaglist5));
-        } else {
+        }
+        else {
             this.setRightLegRotation(DEFAULT_RIGHTLEG_ROTATION);
         }
     }
@@ -299,9 +307,9 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (list != null && !list.isEmpty()) {
             for (int i = 0; i < list.size(); ++i) {
-                Entity entity = (Entity) list.get(i);
+                Entity entity = (Entity)list.get(i);
 
-                if (entity instanceof EntityMinecart && ((EntityMinecart) entity).getMinecartType() == EntityMinecart.EnumMinecartType.RIDEABLE && this.getDistanceSqToEntity(entity) <= 0.2D) {
+                if (entity instanceof EntityMinecart minecart && minecart.getMinecartType() == EntityMinecart.EnumMinecartType.RIDEABLE && this.getDistanceSqToEntity(entity) <= 0.2D) {
                     entity.applyEntityCollision(this);
                 }
             }
@@ -314,21 +322,25 @@ public class EntityArmorStand extends EntityLivingBase {
     public boolean interactAt(EntityPlayer player, Vec3 targetVec3) {
         if (this.hasMarker()) {
             return false;
-        } else if (!this.worldObj.isRemote && !player.isSpectator()) {
+        }
+        else if (!this.worldObj.isRemote && !player.isSpectator()) {
             int i = 0;
             ItemStack itemstack = player.getCurrentEquippedItem();
             boolean flag = itemstack != null;
 
             if (flag && itemstack.getItem() instanceof ItemArmor) {
-                ItemArmor itemarmor = (ItemArmor) itemstack.getItem();
+                ItemArmor itemarmor = (ItemArmor)itemstack.getItem();
 
                 if (itemarmor.armorType == 3) {
                     i = 1;
-                } else if (itemarmor.armorType == 2) {
+                }
+                else if (itemarmor.armorType == 2) {
                     i = 2;
-                } else if (itemarmor.armorType == 1) {
+                }
+                else if (itemarmor.armorType == 1) {
                     i = 3;
-                } else if (itemarmor.armorType == 0) {
+                }
+                else if (itemarmor.armorType == 0) {
                     i = 4;
                 }
             }
@@ -343,11 +355,14 @@ public class EntityArmorStand extends EntityLivingBase {
 
             if (d3 >= 0.1D && d3 < 0.1D + (flag1 ? 0.8D : 0.45D) && this.contents[1] != null) {
                 j = 1;
-            } else if (d3 >= 0.9D + (flag1 ? 0.3D : 0.0D) && d3 < 0.9D + (flag1 ? 1.0D : 0.7D) && this.contents[3] != null) {
+            }
+            else if (d3 >= 0.9D + (flag1 ? 0.3D : 0.0D) && d3 < 0.9D + (flag1 ? 1.0D : 0.7D) && this.contents[3] != null) {
                 j = 3;
-            } else if (d3 >= 0.4D && d3 < 0.4D + (flag1 ? 1.0D : 0.8D) && this.contents[2] != null) {
+            }
+            else if (d3 >= 0.4D && d3 < 0.4D + (flag1 ? 1.0D : 0.8D) && this.contents[2] != null) {
                 j = 2;
-            } else if (d3 >= 1.6D && this.contents[4] != null) {
+            }
+            else if (d3 >= 1.6D && this.contents[4] != null) {
                 j = 4;
             }
 
@@ -367,16 +382,19 @@ public class EntityArmorStand extends EntityLivingBase {
 
             if (flag && i == 0 && !this.getShowArms()) {
                 return true;
-            } else {
+            }
+            else {
                 if (flag) {
                     this.func_175422_a(player, i);
-                } else if (flag2) {
+                }
+                else if (flag2) {
                     this.func_175422_a(player, j);
                 }
 
                 return true;
             }
-        } else {
+        }
+        else {
             return true;
         }
     }
@@ -393,14 +411,16 @@ public class EntityArmorStand extends EntityLivingBase {
                     ItemStack itemstack3 = itemstack1.copy();
                     itemstack3.stackSize = 1;
                     this.setCurrentItemOrArmor(p_175422_2_, itemstack3);
-                } else if (itemstack1 != null && itemstack1.stackSize > 1) {
+                }
+                else if (itemstack1 != null && itemstack1.stackSize > 1) {
                     if (itemstack == null) {
                         ItemStack itemstack2 = itemstack1.copy();
                         itemstack2.stackSize = 1;
                         this.setCurrentItemOrArmor(p_175422_2_, itemstack2);
                         --itemstack1.stackSize;
                     }
-                } else {
+                }
+                else {
                     this.setCurrentItemOrArmor(p_175422_2_, itemstack1);
                     p_175422_1_.inventory.setInventorySlotContents(i, itemstack);
                 }
@@ -414,48 +434,58 @@ public class EntityArmorStand extends EntityLivingBase {
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.worldObj.isRemote) {
             return false;
-        } else if (DamageSource.outOfWorld.equals(source)) {
+        }
+        else if (DamageSource.outOfWorld.equals(source)) {
             this.setDead();
             return false;
-        } else if (!this.isEntityInvulnerable(source) && !this.canInteract && !this.hasMarker()) {
+        }
+        else if (!this.isEntityInvulnerable(source) && !this.canInteract && !this.hasMarker()) {
             if (source.isExplosion()) {
                 this.dropContents();
                 this.setDead();
                 return false;
-            } else if (DamageSource.inFire.equals(source)) {
+            }
+            else if (DamageSource.inFire.equals(source)) {
                 if (!this.isBurning()) {
                     this.setFire(5);
-                } else {
+                }
+                else {
                     this.damageArmorStand(0.15F);
                 }
 
                 return false;
-            } else if (DamageSource.onFire.equals(source) && this.getHealth() > 0.5F) {
+            }
+            else if (DamageSource.onFire.equals(source) && this.getHealth() > 0.5F) {
                 this.damageArmorStand(4.0F);
                 return false;
-            } else {
+            }
+            else {
                 boolean flag = "arrow".equals(source.getDamageType());
                 boolean flag1 = "player".equals(source.getDamageType());
 
                 if (!flag1 && !flag) {
                     return false;
-                } else {
+                }
+                else {
                     if (source.getSourceOfDamage() instanceof EntityArrow) {
                         source.getSourceOfDamage().setDead();
                     }
 
-                    if (source.getEntity() instanceof EntityPlayer && !((EntityPlayer) source.getEntity()).capabilities.allowEdit) {
+                    if (source.getEntity() instanceof EntityPlayer && !((EntityPlayer)source.getEntity()).capabilities.allowEdit) {
                         return false;
-                    } else if (source.isCreativePlayer()) {
+                    }
+                    else if (source.isCreativePlayer()) {
                         this.playParticles();
                         this.setDead();
                         return false;
-                    } else {
+                    }
+                    else {
                         long i = this.worldObj.getTotalWorldTime();
 
                         if (i - this.punchCooldown > 5L && !flag) {
                             this.punchCooldown = i;
-                        } else {
+                        }
+                        else {
                             this.dropBlock();
                             this.playParticles();
                             this.setDead();
@@ -465,7 +495,8 @@ public class EntityArmorStand extends EntityLivingBase {
                     }
                 }
             }
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -486,8 +517,8 @@ public class EntityArmorStand extends EntityLivingBase {
     }
 
     private void playParticles() {
-        if (this.worldObj instanceof WorldServer) {
-            ((WorldServer) this.worldObj).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + (double) this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, new int[]{Block.getStateId(Blocks.planks.getDefaultState())});
+        if (this.worldObj instanceof WorldServer server) {
+            server.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + (double)this.height / 1.5D, this.posZ, 10, (double)(this.width / 4.0F), (double)(this.height / 4.0F), (double)(this.width / 4.0F), 0.05D, new int[]{Block.getStateId(Blocks.planks.getDefaultState())});
         }
     }
 
@@ -498,7 +529,8 @@ public class EntityArmorStand extends EntityLivingBase {
         if (f <= 0.5F) {
             this.dropContents();
             this.setDead();
-        } else {
+        }
+        else {
             this.setHealth(f);
         }
     }
@@ -584,7 +616,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (!this.wasMarker && flag) {
             this.func_181550_a(false);
-        } else {
+        }
+        else {
             if (!this.wasMarker || flag) {
                 return;
             }
@@ -602,7 +635,8 @@ public class EntityArmorStand extends EntityLivingBase {
 
         if (p_181550_1_) {
             this.setSize(0.5F, 1.975F);
-        } else {
+        }
+        else {
             this.setSize(0.0F, 0.0F);
         }
 
@@ -644,9 +678,10 @@ public class EntityArmorStand extends EntityLivingBase {
         byte b0 = this.dataWatcher.getWatchableObjectByte(10);
 
         if (p_175420_1_) {
-            b0 = (byte) (b0 | 1);
-        } else {
-            b0 = (byte) (b0 & -2);
+            b0 = (byte)(b0 | 1);
+        }
+        else {
+            b0 = (byte)(b0 & -2);
         }
 
         this.dataWatcher.updateObject(10, Byte.valueOf(b0));
@@ -660,9 +695,10 @@ public class EntityArmorStand extends EntityLivingBase {
         byte b0 = this.dataWatcher.getWatchableObjectByte(10);
 
         if (p_175425_1_) {
-            b0 = (byte) (b0 | 2);
-        } else {
-            b0 = (byte) (b0 & -3);
+            b0 = (byte)(b0 | 2);
+        }
+        else {
+            b0 = (byte)(b0 & -3);
         }
 
         this.dataWatcher.updateObject(10, Byte.valueOf(b0));
@@ -676,9 +712,10 @@ public class EntityArmorStand extends EntityLivingBase {
         byte b0 = this.dataWatcher.getWatchableObjectByte(10);
 
         if (p_175413_1_) {
-            b0 = (byte) (b0 | 4);
-        } else {
-            b0 = (byte) (b0 & -5);
+            b0 = (byte)(b0 | 4);
+        }
+        else {
+            b0 = (byte)(b0 & -5);
         }
 
         this.dataWatcher.updateObject(10, Byte.valueOf(b0));
@@ -692,9 +729,10 @@ public class EntityArmorStand extends EntityLivingBase {
         byte b0 = this.dataWatcher.getWatchableObjectByte(10);
 
         if (p_175426_1_) {
-            b0 = (byte) (b0 | 8);
-        } else {
-            b0 = (byte) (b0 & -9);
+            b0 = (byte)(b0 | 8);
+        }
+        else {
+            b0 = (byte)(b0 & -9);
         }
 
         this.dataWatcher.updateObject(10, Byte.valueOf(b0));
@@ -711,9 +749,10 @@ public class EntityArmorStand extends EntityLivingBase {
         byte b0 = this.dataWatcher.getWatchableObjectByte(10);
 
         if (p_181027_1_) {
-            b0 = (byte) (b0 | 16);
-        } else {
-            b0 = (byte) (b0 & -17);
+            b0 = (byte)(b0 | 16);
+        }
+        else {
+            b0 = (byte)(b0 & -17);
         }
 
         this.dataWatcher.updateObject(10, Byte.valueOf(b0));

@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class BlockPortal extends BlockBreakable
 {
-    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, new EnumFacing.Axis[] {EnumFacing.Axis.X, EnumFacing.Axis.Z});
+    public static final PropertyEnum<EnumFacing.Axis> AXIS = PropertyEnum.<EnumFacing.Axis>create("axis", EnumFacing.Axis.class, new EnumFacing.Axis[]{EnumFacing.Axis.X, EnumFacing.Axis.Z});
 
     public BlockPortal()
     {
@@ -43,7 +43,6 @@ public class BlockPortal extends BlockBreakable
 
             for (blockpos = pos; !World.doesBlockHaveSolidTopSurface(worldIn, blockpos) && blockpos.getY() > 0; blockpos = blockpos.down())
             {
-                ;
             }
 
             if (i > 0 && !worldIn.getBlockState(blockpos.up()).getBlock().isNormalCube())
@@ -257,7 +256,7 @@ public class BlockPortal extends BlockBreakable
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {AXIS});
+        return new BlockState(this, new IProperty[]{AXIS});
     }
 
     public BlockPattern.PatternHelper func_181089_f(World p_181089_1_, BlockPos p_181089_2_)
@@ -343,7 +342,6 @@ public class BlockPortal extends BlockBreakable
 
             for (BlockPos blockpos = p_i45694_2_; p_i45694_2_.getY() > blockpos.getY() - 21 && p_i45694_2_.getY() > 0 && this.func_150857_a(worldIn.getBlockState(p_i45694_2_.down()).getBlock()); p_i45694_2_ = p_i45694_2_.down())
             {
-                ;
             }
 
             int i = this.func_180120_a(p_i45694_2_, this.leftDir) - 1;

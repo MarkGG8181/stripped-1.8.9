@@ -146,6 +146,6 @@ public class BlockCarpet extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {COLOR});
+        return new BlockState(this, new IProperty[]{COLOR});
     }
 }

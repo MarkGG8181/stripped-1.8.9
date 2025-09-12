@@ -25,7 +25,8 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
         if (p_77203_3_ > 0 && p_77203_3_ < this.size()) {
             MerchantRecipe merchantrecipe1 = this.get(p_77203_3_);
             return !this.func_181078_a(p_77203_1_, merchantrecipe1.getItemToBuy()) || (p_77203_2_ != null || merchantrecipe1.hasSecondItemToBuy()) && (!merchantrecipe1.hasSecondItemToBuy() || !this.func_181078_a(p_77203_2_, merchantrecipe1.getSecondItemToBuy())) || p_77203_1_.stackSize < merchantrecipe1.getItemToBuy().stackSize || merchantrecipe1.hasSecondItemToBuy() && Objects.requireNonNull(p_77203_2_).stackSize < merchantrecipe1.getSecondItemToBuy().stackSize ? null : merchantrecipe1;
-        } else {
+        }
+        else {
             for (int i = 0; i < this.size(); ++i) {
                 MerchantRecipe merchantrecipe = this.get(i);
 
@@ -43,7 +44,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
     }
 
     public void writeToBuf(PacketBuffer buffer) {
-        buffer.writeByte((byte) (this.size() & 255));
+        buffer.writeByte((byte)(this.size() & 255));
 
         for (MerchantRecipe merchantRecipe : this) {
             buffer.writeItemStackToBuffer(merchantRecipe.getItemToBuy());

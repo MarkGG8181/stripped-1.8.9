@@ -59,7 +59,7 @@ public class BlockState {
     }
 
     public IBlockState getBaseState() {
-        return this.validStates.get(0);
+        return this.validStates.getFirst();
     }
 
     public Block getBlock() {
@@ -144,7 +144,8 @@ public class BlockState {
         public void buildPropertyValueTable(Map<Map<IProperty, Comparable>, BlockState.StateImplementation> map) {
             if (this.propertyValueTable != null) {
                 throw new IllegalStateException();
-            } else {
+            }
+            else {
                 Table<IProperty, Comparable, IBlockState> table = HashBasedTable.create();
 
                 for (IProperty<? extends Comparable> iproperty : this.properties.keySet()) {

@@ -176,7 +176,6 @@ public class InventoryPlayer implements IInventory
 
         for (this.currentItem -= direction; this.currentItem < 0; this.currentItem += 9)
         {
-            ;
         }
 
         while (this.currentItem >= 9)

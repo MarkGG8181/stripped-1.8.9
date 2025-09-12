@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +41,7 @@ public class EntityDropParticleFX extends EntityFX
         this.particleGravity = 0.06F;
         this.materialType = p_i1203_8_;
         this.bobTimer = 40;
-        this.particleMaxAge = (int)(64.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(64.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.motionX = this.motionY = this.motionZ = 0.0D;
     }
 

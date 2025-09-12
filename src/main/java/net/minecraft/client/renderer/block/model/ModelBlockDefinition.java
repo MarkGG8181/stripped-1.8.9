@@ -22,7 +22,7 @@ public class ModelBlockDefinition {
     private final Map<String, ModelBlockDefinition.Variants> mapVariants = new HashMap<>();
 
     public static ModelBlockDefinition parseFromReader(Reader p_178331_0_) {
-        return (ModelBlockDefinition) GSON.fromJson(p_178331_0_, ModelBlockDefinition.class);
+        return (ModelBlockDefinition)GSON.fromJson(p_178331_0_, ModelBlockDefinition.class);
     }
 
     public ModelBlockDefinition(Collection<ModelBlockDefinition.Variants> p_i46221_1_) {
@@ -38,11 +38,12 @@ public class ModelBlockDefinition {
     }
 
     public ModelBlockDefinition.Variants getVariants(String p_178330_1_) {
-        ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants) this.mapVariants.get(p_178330_1_);
+        ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants)this.mapVariants.get(p_178330_1_);
 
         if (modelblockdefinition$variants == null) {
             throw new ModelBlockDefinition.MissingVariantException();
-        } else {
+        }
+        else {
             return modelblockdefinition$variants;
         }
     }
@@ -50,10 +51,11 @@ public class ModelBlockDefinition {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (p_equals_1_ instanceof ModelBlockDefinition) {
-            ModelBlockDefinition modelblockdefinition = (ModelBlockDefinition) p_equals_1_;
+        }
+        else if (p_equals_1_ instanceof ModelBlockDefinition modelblockdefinition) {
             return this.mapVariants.equals(modelblockdefinition.mapVariants);
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -81,16 +83,17 @@ public class ModelBlockDefinition {
         }
 
         protected ModelBlockDefinition.Variants parseVariants(JsonDeserializationContext p_178335_1_, Entry<String, JsonElement> p_178335_2_) {
-            String s = (String) p_178335_2_.getKey();
+            String s = (String)p_178335_2_.getKey();
             List<ModelBlockDefinition.Variant> list = new ArrayList<>();
-            JsonElement jsonelement = (JsonElement) p_178335_2_.getValue();
+            JsonElement jsonelement = (JsonElement)p_178335_2_.getValue();
 
             if (jsonelement.isJsonArray()) {
                 for (JsonElement jsonelement1 : jsonelement.getAsJsonArray()) {
-                    list.add((ModelBlockDefinition.Variant) p_178335_1_.deserialize(jsonelement1, ModelBlockDefinition.Variant.class));
+                    list.add((ModelBlockDefinition.Variant)p_178335_1_.deserialize(jsonelement1, ModelBlockDefinition.Variant.class));
                 }
-            } else {
-                list.add((ModelBlockDefinition.Variant) p_178335_1_.deserialize(jsonelement, ModelBlockDefinition.Variant.class));
+            }
+            else {
+                list.add((ModelBlockDefinition.Variant)p_178335_1_.deserialize(jsonelement, ModelBlockDefinition.Variant.class));
             }
 
             return new ModelBlockDefinition.Variants(s, list);
@@ -132,10 +135,12 @@ public class ModelBlockDefinition {
         public boolean equals(Object p_equals_1_) {
             if (this == p_equals_1_) {
                 return true;
-            } else if (!(p_equals_1_ instanceof ModelBlockDefinition.Variant)) {
+            }
+            else if (!(p_equals_1_ instanceof ModelBlockDefinition.Variant)) {
                 return false;
-            } else {
-                ModelBlockDefinition.Variant modelblockdefinition$variant = (ModelBlockDefinition.Variant) p_equals_1_;
+            }
+            else {
+                ModelBlockDefinition.Variant modelblockdefinition$variant = (ModelBlockDefinition.Variant)p_equals_1_;
                 return this.modelLocation.equals(modelblockdefinition$variant.modelLocation) && this.modelRotation == modelblockdefinition$variant.modelRotation && this.uvLock == modelblockdefinition$variant.uvLock;
             }
         }
@@ -174,7 +179,8 @@ public class ModelBlockDefinition {
 
                 if (modelrotation == null) {
                     throw new JsonParseException("Invalid BlockModelRotation x: " + i + ", y: " + j);
-                } else {
+                }
+                else {
                     return modelrotation;
                 }
             }
@@ -205,10 +211,12 @@ public class ModelBlockDefinition {
         public boolean equals(Object p_equals_1_) {
             if (this == p_equals_1_) {
                 return true;
-            } else if (!(p_equals_1_ instanceof ModelBlockDefinition.Variants)) {
+            }
+            else if (!(p_equals_1_ instanceof ModelBlockDefinition.Variants)) {
                 return false;
-            } else {
-                ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants) p_equals_1_;
+            }
+            else {
+                ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants)p_equals_1_;
                 return !this.name.equals(modelblockdefinition$variants.name) ? false : this.listVariants.equals(modelblockdefinition$variants.listVariants);
             }
         }

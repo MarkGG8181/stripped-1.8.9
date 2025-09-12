@@ -31,26 +31,20 @@ public class RenderVillager extends RenderLiving<EntityVillager>
      */
     protected ResourceLocation getEntityTexture(EntityVillager entity)
     {
-        switch (entity.getProfession())
+        return switch (entity.getProfession())
         {
-            case 0:
-                return farmerVillagerTextures;
+            case 0 -> farmerVillagerTextures;
 
-            case 1:
-                return librarianVillagerTextures;
+            case 1 -> librarianVillagerTextures;
 
-            case 2:
-                return priestVillagerTextures;
+            case 2 -> priestVillagerTextures;
 
-            case 3:
-                return smithVillagerTextures;
+            case 3 -> smithVillagerTextures;
 
-            case 4:
-                return butcherVillagerTextures;
+            case 4 -> butcherVillagerTextures;
 
-            default:
-                return villagerTextures;
-        }
+            default -> villagerTextures;
+        };
     }
 
     /**

@@ -31,7 +31,7 @@ public class PooledMutableBlockPos extends ExtendedMutableBlockPos implements Au
     public static PooledMutableBlockPos get(int x, int y, int z) {
         synchronized (POOL) {
             while (!POOL.isEmpty()) {
-                PooledMutableBlockPos removed = POOL.remove(POOL.size() - 1);
+                PooledMutableBlockPos removed = POOL.removeLast();
 
                 if (removed != null && removed.released) {
                     removed.released = false;
@@ -60,7 +60,7 @@ public class PooledMutableBlockPos extends ExtendedMutableBlockPos implements Au
             this.released = false;
         }
 
-        return (PooledMutableBlockPos) super.set(x, y, z);
+        return (PooledMutableBlockPos)super.set(x, y, z);
     }
 
     @Override

@@ -35,7 +35,8 @@ public class BiomeGenJungle extends BiomeGenBase {
 
         if (p_i45379_2_) {
             this.theBiomeDecorator.treesPerChunk = 2;
-        } else {
+        }
+        else {
             this.theBiomeDecorator.treesPerChunk = 50;
         }
 

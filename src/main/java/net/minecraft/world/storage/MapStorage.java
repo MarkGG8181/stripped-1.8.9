@@ -32,7 +32,7 @@ public class MapStorage
      * Loads an existing MapDataBase corresponding to the given String id from disk, instantiating the given Class, or
      * returns null if none such file exists. args: Class to instantiate, String dataid
      */
-    public WorldSavedData loadData(Class <? extends WorldSavedData > clazz, String dataIdentifier)
+    public WorldSavedData loadData(Class<? extends WorldSavedData> clazz, String dataIdentifier)
     {
         WorldSavedData worldsaveddata = (WorldSavedData)this.loadedDataMap.get(dataIdentifier);
 
@@ -52,7 +52,7 @@ public class MapStorage
                     {
                         try
                         {
-                            worldsaveddata = clazz.getConstructor(new Class[] {String.class}).newInstance(dataIdentifier);
+                            worldsaveddata = clazz.getConstructor(new Class[]{String.class}).newInstance(dataIdentifier);
                         }
                         catch (Exception exception)
                         {
@@ -167,9 +167,8 @@ public class MapStorage
                 {
                     NBTBase nbtbase = nbttagcompound.getTag(s);
 
-                    if (nbtbase instanceof NBTTagShort)
+                    if (nbtbase instanceof NBTTagShort nbttagshort)
                     {
-                        NBTTagShort nbttagshort = (NBTTagShort)nbtbase;
                         short short1 = nbttagshort.getShort();
                         this.idCounts.put(s, Short.valueOf(short1));
                     }

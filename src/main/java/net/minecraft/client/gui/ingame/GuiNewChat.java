@@ -159,7 +159,7 @@ public class GuiNewChat extends Gui
                 this.scroll(1);
             }
 
-            this.drawnChatLines.add(0, new ChatLine(updateCounter, ichatcomponent, chatLineId));
+            this.drawnChatLines.addFirst(new ChatLine(updateCounter, ichatcomponent, chatLineId));
         }
 
         while (this.drawnChatLines.size() > 100)
@@ -169,7 +169,7 @@ public class GuiNewChat extends Gui
 
         if (!displayOnly)
         {
-            this.chatLines.add(0, new ChatLine(updateCounter, chatComponent, chatLineId));
+            this.chatLines.addFirst(new ChatLine(updateCounter, chatComponent, chatLineId));
 
             while (this.chatLines.size() > 100)
             {
@@ -276,9 +276,9 @@ public class GuiNewChat extends Gui
 
                         for (IChatComponent ichatcomponent : chatline.getChatComponent())
                         {
-                            if (ichatcomponent instanceof ChatComponentText)
+                            if (ichatcomponent instanceof ChatComponentText text)
                             {
-                                j1 += this.mc.fontRendererObj.getStringWidth(GuiUtilRenderComponents.func_178909_a(((ChatComponentText)ichatcomponent).getChatComponentText_TextValue(), false));
+                                j1 += this.mc.fontRendererObj.getStringWidth(GuiUtilRenderComponents.func_178909_a(text.getChatComponentText_TextValue(), false));
 
                                 if (j1 > j)
                                 {

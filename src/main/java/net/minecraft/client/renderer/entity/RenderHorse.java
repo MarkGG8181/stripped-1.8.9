@@ -32,7 +32,8 @@ public class RenderHorse extends RenderLiving<EntityHorse> {
 
         if (i == 1) {
             f *= 0.87F;
-        } else if (i == 2) {
+        }
+        else if (i == 2) {
             f *= 0.92F;
         }
 
@@ -62,7 +63,8 @@ public class RenderHorse extends RenderLiving<EntityHorse> {
                 case 4:
                     return skeletonHorseTextures;
             }
-        } else {
+        }
+        else {
             return this.func_110848_b(entity);
         }
     }
@@ -72,8 +74,9 @@ public class RenderHorse extends RenderLiving<EntityHorse> {
 
         if (!horse.func_175507_cI()) {
             return null;
-        } else {
-            ResourceLocation resourcelocation = (ResourceLocation) LAYERED_LOCATION_CACHE.get(s);
+        }
+        else {
+            ResourceLocation resourcelocation = (ResourceLocation)LAYERED_LOCATION_CACHE.get(s);
 
             if (resourcelocation == null) {
                 resourcelocation = new ResourceLocation(s);

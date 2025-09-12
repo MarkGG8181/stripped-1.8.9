@@ -29,7 +29,8 @@ public class SoundListSerializer implements JsonDeserializer<SoundList> {
 
                     if (JsonUtils.isString(jsonelement)) {
                         soundlist$soundentry.setSoundEntryName(JsonUtils.getString(jsonelement, "sound"));
-                    } else {
+                    }
+                    else {
                         JsonObject jsonobject1 = JsonUtils.getJsonObject(jsonelement, "sound");
                         soundlist$soundentry.setSoundEntryName(JsonUtils.getString(jsonobject1, "name"));
 

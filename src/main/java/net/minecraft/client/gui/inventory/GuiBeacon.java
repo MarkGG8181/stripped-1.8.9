@@ -143,9 +143,9 @@ public class GuiBeacon extends GuiContainer
             this.mc.getNetHandler().addToSendQueue(new C17PacketCustomPayload(s, packetbuffer));
             this.mc.displayGuiScreen((GuiScreen)null);
         }
-        else if (button instanceof GuiBeacon.PowerButton)
+        else if (button instanceof GuiBeacon.PowerButton powerButton)
         {
-            if (((GuiBeacon.PowerButton)button).func_146141_c())
+            if (powerButton.func_146141_c())
             {
                 return;
             }

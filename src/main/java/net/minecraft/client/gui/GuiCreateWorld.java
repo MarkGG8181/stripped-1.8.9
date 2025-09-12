@@ -57,7 +57,7 @@ public class GuiCreateWorld extends GuiScreen
     public String chunkProviderSettingsJson = "";
 
     /** These filenames are known to be restricted on one or more OS's. */
-    private static final String[] disallowedFilenames = new String[] {"CON", "COM", "PRN", "AUX", "CLOCK$", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9"};
+    private static final String[] disallowedFilenames = new String[]{"CON", "COM", "PRN", "AUX", "CLOCK$", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5", "LPT6", "LPT7", "LPT8", "LPT9"};
 
     public GuiCreateWorld(GuiScreen p_i46320_1_)
     {
@@ -458,10 +458,10 @@ public class GuiCreateWorld extends GuiScreen
 
         if (keyCode == 28 || keyCode == 156)
         {
-            this.actionPerformed((GuiButton)this.buttonList.get(0));
+            this.actionPerformed((GuiButton)this.buttonList.getFirst());
         }
 
-        ((GuiButton)this.buttonList.get(0)).enabled = this.worldNameField.getText().length() > 0;
+        ((GuiButton)this.buttonList.getFirst()).enabled = this.worldNameField.getText().length() > 0;
         this.calcSaveDirName();
     }
 
@@ -533,7 +533,7 @@ public class GuiCreateWorld extends GuiScreen
      */
     public void recreateFromExistingWorld(WorldInfo original)
     {
-        this.worldName = I18n.format("selectWorld.newWorld.copyOf", new Object[] {original.getWorldName()});
+        this.worldName = I18n.format("selectWorld.newWorld.copyOf", new Object[]{original.getWorldName()});
         this.worldSeed = original.getSeed() + "";
         this.selectedIndex = original.getTerrainType().getWorldTypeID();
         this.chunkProviderSettingsJson = original.getGeneratorOptions();

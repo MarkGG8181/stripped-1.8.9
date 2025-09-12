@@ -53,7 +53,8 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback {
                 this.lockButton.func_175229_b(this.mc.theWorld.getWorldInfo().isDifficultyLocked());
                 this.lockButton.enabled = !this.lockButton.func_175230_c();
                 this.difficultyButton.enabled = !this.lockButton.func_175230_c();
-            } else {
+            }
+            else {
                 this.difficultyButton.enabled = false;
             }
         }
@@ -91,8 +92,8 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback {
      */
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
-            if (button.id < 100 && button instanceof GuiOptionButton) {
-                GameSettings.Options gamesettings$options = ((GuiOptionButton) button).returnEnumOptions();
+            if (button.id < 100 && button instanceof GuiOptionButton optionButton) {
+                GameSettings.Options gamesettings$options = optionButton.returnEnumOptions();
                 this.game_settings_1.setOptionValue(gamesettings$options, 1);
                 button.displayString = this.game_settings_1.getKeyBinding(Objects.requireNonNull(GameSettings.Options.getEnumOptions(button.id)));
             }

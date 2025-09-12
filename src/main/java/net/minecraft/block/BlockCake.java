@@ -167,7 +167,7 @@ public class BlockCake extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {BITES});
+        return new BlockState(this, new IProperty[]{BITES});
     }
 
     public int getComparatorInputOverride(World worldIn, BlockPos pos)

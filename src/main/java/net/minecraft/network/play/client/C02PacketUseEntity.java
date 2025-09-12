@@ -32,10 +32,10 @@ public class C02PacketUseEntity implements Packet<INetHandlerPlayServer> {
      */
     public void readPacketData(PacketBuffer buf) throws IOException {
         this.entityId = buf.readVarIntFromBuffer();
-        this.action = (C02PacketUseEntity.Action) buf.readEnumValue(C02PacketUseEntity.Action.class);
+        this.action = (C02PacketUseEntity.Action)buf.readEnumValue(C02PacketUseEntity.Action.class);
 
         if (this.action == C02PacketUseEntity.Action.INTERACT_AT) {
-            this.hitVec = new Vec3((double) buf.readFloat(), (double) buf.readFloat(), (double) buf.readFloat());
+            this.hitVec = new Vec3((double)buf.readFloat(), (double)buf.readFloat(), (double)buf.readFloat());
         }
     }
 
@@ -47,9 +47,9 @@ public class C02PacketUseEntity implements Packet<INetHandlerPlayServer> {
         buf.writeEnumValue(this.action);
 
         if (this.action == C02PacketUseEntity.Action.INTERACT_AT) {
-            buf.writeFloat((float) this.hitVec.x);
-            buf.writeFloat((float) this.hitVec.y);
-            buf.writeFloat((float) this.hitVec.z);
+            buf.writeFloat((float)this.hitVec.x);
+            buf.writeFloat((float)this.hitVec.y);
+            buf.writeFloat((float)this.hitVec.z);
         }
     }
 
@@ -75,6 +75,6 @@ public class C02PacketUseEntity implements Packet<INetHandlerPlayServer> {
     public static enum Action {
         INTERACT,
         ATTACK,
-        INTERACT_AT;
+        INTERACT_AT
     }
 }

@@ -4,16 +4,16 @@ public class ChatComponentTranslationFormatException extends IllegalArgumentExce
 {
     public ChatComponentTranslationFormatException(ChatComponentTranslation component, String message)
     {
-        super(String.format("Error parsing: %s: %s", new Object[] {component, message}));
+        super("Error parsing: %s: %s".formatted(new Object[]{component, message}));
     }
 
     public ChatComponentTranslationFormatException(ChatComponentTranslation component, int index)
     {
-        super(String.format("Invalid index %d requested for %s", new Object[] {Integer.valueOf(index), component}));
+        super("Invalid index %d requested for %s".formatted(new Object[]{Integer.valueOf(index), component}));
     }
 
     public ChatComponentTranslationFormatException(ChatComponentTranslation component, Throwable cause)
     {
-        super(String.format("Error while parsing: %s", new Object[] {component}), cause);
+        super("Error while parsing: %s".formatted(new Object[]{component}), cause);
     }
 }

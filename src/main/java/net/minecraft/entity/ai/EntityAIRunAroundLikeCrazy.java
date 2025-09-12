@@ -70,14 +70,14 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
     {
         if (this.horseHost.getRNG().nextInt(50) == 0)
         {
-            if (this.horseHost.riddenByEntity instanceof EntityPlayer)
+            if (this.horseHost.riddenByEntity instanceof EntityPlayer player)
             {
                 int i = this.horseHost.getTemper();
                 int j = this.horseHost.getMaxTemper();
 
                 if (j > 0 && this.horseHost.getRNG().nextInt(j) < i)
                 {
-                    this.horseHost.setTamedBy((EntityPlayer)this.horseHost.riddenByEntity);
+                    this.horseHost.setTamedBy(player);
                     this.horseHost.worldObj.setEntityState(this.horseHost, (byte)7);
                     return;
                 }

@@ -13,7 +13,7 @@ public class SaveDataMemoryStorage extends MapStorage
      * Loads an existing MapDataBase corresponding to the given String id from disk, instantiating the given Class, or
      * returns null if none such file exists. args: Class to instantiate, String dataid
      */
-    public WorldSavedData loadData(Class <? extends WorldSavedData > clazz, String dataIdentifier)
+    public WorldSavedData loadData(Class<? extends WorldSavedData> clazz, String dataIdentifier)
     {
         return (WorldSavedData)this.loadedDataMap.get(dataIdentifier);
     }

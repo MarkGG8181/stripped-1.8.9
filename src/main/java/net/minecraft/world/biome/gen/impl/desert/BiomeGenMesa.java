@@ -80,11 +80,11 @@ public class BiomeGenMesa extends BiomeGenBase {
         if (this.brycePillars) {
             int i = (x & -16) + (z & 15);
             int j = (z & -16) + (x & 15);
-            double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.func_151601_a((double) i * 0.25D, (double) j * 0.25D));
+            double d0 = Math.min(Math.abs(noiseVal), this.pillarNoise.func_151601_a((double)i * 0.25D, (double)j * 0.25D));
 
             if (d0 > 0.0D) {
                 double d1 = 0.001953125D;
-                double d2 = Math.abs(this.pillarRoofNoise.func_151601_a((double) i * d1, (double) j * d1));
+                double d2 = Math.abs(this.pillarRoofNoise.func_151601_a((double)i * d1, (double)j * d1));
                 d4 = d0 * d0 * 2.5D;
                 double d3 = Math.ceil(d2 * 50.0D) + 14.0D;
 
@@ -101,31 +101,34 @@ public class BiomeGenMesa extends BiomeGenBase {
         int l1 = worldIn.getSeaLevel();
         IBlockState iblockstate = Blocks.stained_hardened_clay.getDefaultState();
         IBlockState iblockstate3 = this.fillerBlock;
-        int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         boolean flag = Math.cos(noiseVal / 3.0D * Math.PI) > 0.0D;
         int l = -1;
         boolean flag1 = false;
 
         for (int i1 = 255; i1 >= 0; --i1) {
-            if (chunkPrimerIn.getBlockState(k1, i1, j1).getBlock().getMaterial() == Material.air && i1 < (int) d4) {
+            if (chunkPrimerIn.getBlockState(k1, i1, j1).getBlock().getMaterial() == Material.air && i1 < (int)d4) {
                 chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.stone.getDefaultState());
             }
 
             if (i1 <= rand.nextInt(5)) {
                 chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.bedrock.getDefaultState());
-            } else {
+            }
+            else {
                 IBlockState iblockstate1 = chunkPrimerIn.getBlockState(k1, i1, j1);
 
                 if (iblockstate1.getBlock().getMaterial() == Material.air) {
                     l = -1;
-                } else if (iblockstate1.getBlock() == Blocks.stone) {
+                }
+                else if (iblockstate1.getBlock() == Blocks.stone) {
                     if (l == -1) {
                         flag1 = false;
 
                         if (k <= 0) {
                             iblockstate = null;
                             iblockstate3 = Blocks.stone.getDefaultState();
-                        } else if (i1 >= l1 - 4 && i1 <= l1 + 1) {
+                        }
+                        else if (i1 >= l1 - 4 && i1 <= l1 + 1) {
                             iblockstate = Blocks.stained_hardened_clay.getDefaultState();
                             iblockstate3 = this.fillerBlock;
                         }
@@ -142,37 +145,45 @@ public class BiomeGenMesa extends BiomeGenBase {
                             if (iblockstate3.getBlock() == Blocks.stained_hardened_clay) {
                                 chunkPrimerIn.setBlockState(k1, i1, j1, iblockstate3.getBlock().getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE));
                             }
-                        } else if (this.hasForest && i1 > 86 + k * 2) {
+                        }
+                        else if (this.hasForest && i1 > 86 + k * 2) {
                             if (flag) {
                                 chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT));
-                            } else {
+                            }
+                            else {
                                 chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.grass.getDefaultState());
                             }
-                        } else if (i1 <= l1 + 3 + k) {
+                        }
+                        else if (i1 <= l1 + 3 + k) {
                             chunkPrimerIn.setBlockState(k1, i1, j1, this.topBlock);
                             flag1 = true;
-                        } else {
+                        }
+                        else {
                             IBlockState iblockstate4;
 
                             if (i1 >= 64 && i1 <= 127) {
                                 if (flag) {
                                     iblockstate4 = Blocks.hardened_clay.getDefaultState();
-                                } else {
+                                }
+                                else {
                                     iblockstate4 = this.func_180629_a(x, i1);
                                 }
-                            } else {
+                            }
+                            else {
                                 assert Blocks.stained_hardened_clay.getDefaultState() != null;
                                 iblockstate4 = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE);
                             }
 
                             chunkPrimerIn.setBlockState(k1, i1, j1, iblockstate4);
                         }
-                    } else if (l > 0) {
+                    }
+                    else if (l > 0) {
                         --l;
 
                         if (flag1) {
                             chunkPrimerIn.setBlockState(k1, i1, j1, Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.ORANGE));
-                        } else {
+                        }
+                        else {
                             IBlockState iblockstate2 = this.func_180629_a(x, i1);
                             chunkPrimerIn.setBlockState(k1, i1, j1, iblockstate2);
                         }
@@ -251,7 +262,7 @@ public class BiomeGenMesa extends BiomeGenBase {
     }
 
     private IBlockState func_180629_a(int p_180629_1_, int p_180629_2_) {
-        int i = (int) Math.round(this.clayBandsOffsetNoise.func_151601_a((double) p_180629_1_ * 1.0D / 512.0D, (double) p_180629_1_ * 1.0D / 512.0D) * 2.0D);
+        int i = (int)Math.round(this.clayBandsOffsetNoise.func_151601_a((double)p_180629_1_ * 1.0D / 512.0D, (double)p_180629_1_ * 1.0D / 512.0D) * 2.0D);
         return this.clayBands[(p_180629_2_ + i + 64) % 64];
     }
 
@@ -262,7 +273,8 @@ public class BiomeGenMesa extends BiomeGenBase {
         if (!flag) {
             biomegenmesa.setHeight(height_LowHills);
             biomegenmesa.setBiomeName(this.biomeName + " M");
-        } else {
+        }
+        else {
             biomegenmesa.setBiomeName(this.biomeName + " (Bryce)");
         }
 

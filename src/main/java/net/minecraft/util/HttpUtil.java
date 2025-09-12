@@ -177,7 +177,7 @@ public class HttpUtil
 
                         if (p_180192_4_ != null)
                         {
-                            p_180192_4_.displayLoadingString(String.format("Downloading file (%.2f MB)...", new Object[] {Float.valueOf(f1 / 1000.0F / 1000.0F)}));
+                            p_180192_4_.displayLoadingString("Downloading file (%.2f MB)...".formatted(new Object[]{Float.valueOf(f1 / 1000.0F / 1000.0F)}));
                         }
 
                         if (saveFile.exists())
@@ -288,7 +288,7 @@ public class HttpUtil
                 }
             }
         });
-        return (ListenableFuture<Object>) listenablefuture;
+        return (ListenableFuture<Object>)listenablefuture;
     }
 
     public static int getSuitableLanPort() throws IOException
@@ -312,7 +312,6 @@ public class HttpUtil
             }
             catch (IOException var8)
             {
-                ;
             }
         }
 

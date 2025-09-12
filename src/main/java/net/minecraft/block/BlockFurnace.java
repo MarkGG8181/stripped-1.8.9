@@ -124,9 +124,9 @@ public class BlockFurnace extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityFurnace)
+            if (tileentity instanceof TileEntityFurnace furnace)
             {
-                playerIn.displayGUIChest((TileEntityFurnace)tileentity);
+                playerIn.displayGUIChest(furnace);
                 playerIn.triggerAchievement(StatList.furnaceInteractionStat);
             }
 
@@ -188,9 +188,9 @@ public class BlockFurnace extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityFurnace)
+            if (tileentity instanceof TileEntityFurnace furnace)
             {
-                ((TileEntityFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
+                furnace.setCustomInventoryName(stack.getDisplayName());
             }
         }
     }
@@ -201,9 +201,9 @@ public class BlockFurnace extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityFurnace)
+            if (tileentity instanceof TileEntityFurnace furnace)
             {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityFurnace)tileentity);
+                InventoryHelper.dropInventoryItems(worldIn, pos, furnace);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
@@ -267,6 +267,6 @@ public class BlockFurnace extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING});
+        return new BlockState(this, new IProperty[]{FACING});
     }
 }

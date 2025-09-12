@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.world.World;
 
 public class EntityExplodeFX extends EntityFX
@@ -7,9 +9,9 @@ public class EntityExplodeFX extends EntityFX
     protected EntityExplodeFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn)
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, xSpeedIn, ySpeedIn, zSpeedIn);
-        this.motionX = xSpeedIn + (Math.random() * 2.0D - 1.0D) * 0.05000000074505806D;
-        this.motionY = ySpeedIn + (Math.random() * 2.0D - 1.0D) * 0.05000000074505806D;
-        this.motionZ = zSpeedIn + (Math.random() * 2.0D - 1.0D) * 0.05000000074505806D;
+        this.motionX = xSpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.05000000074505806D;
+        this.motionY = ySpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.05000000074505806D;
+        this.motionZ = zSpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.05000000074505806D;
         this.particleRed = this.particleGreen = this.particleBlue = this.rand.nextFloat() * 0.3F + 0.7F;
         this.particleScale = this.rand.nextFloat() * this.rand.nextFloat() * 6.0F + 1.0F;
         this.particleMaxAge = (int)(16.0D / ((double)this.rand.nextFloat() * 0.8D + 0.2D)) + 2;

@@ -217,22 +217,23 @@ public class RenderManager {
     }
 
     public <T extends Entity> Render<T> getEntityClassRenderObject(Class<? extends Entity> entityClass) {
-        Render<? extends Entity> render = (Render) this.entityRenderMap.get(entityClass);
+        Render<? extends Entity> render = (Render)this.entityRenderMap.get(entityClass);
 
         if (render == null && entityClass != Entity.class) {
-            render = this.<Entity>getEntityClassRenderObject((Class<? extends Entity>) entityClass.getSuperclass());
+            render = this.<Entity>getEntityClassRenderObject((Class<? extends Entity>)entityClass.getSuperclass());
             this.entityRenderMap.put(entityClass, render);
         }
 
-        return (Render<T>) render;
+        return (Render<T>)render;
     }
 
     public <T extends Entity> Render<T> getEntityRenderObject(Entity entityIn) {
-        if (entityIn instanceof AbstractClientPlayer) {
-            String s = ((AbstractClientPlayer) entityIn).getSkinType();
-            RenderPlayer renderplayer = (RenderPlayer) this.skinMap.get(s);
-            return (Render<T>) (renderplayer != null ? renderplayer : this.playerRenderer);
-        } else {
+        if (entityIn instanceof AbstractClientPlayer player) {
+            String s = player.getSkinType();
+            RenderPlayer renderplayer = (RenderPlayer)this.skinMap.get(s);
+            return (Render<T>)(renderplayer != null ? renderplayer : this.playerRenderer);
+        }
+        else {
             return this.<T>getEntityClassRenderObject(entityIn.getClass());
         }
     }
@@ -244,16 +245,17 @@ public class RenderManager {
         this.pointedEntity = pointedEntityIn;
         this.textRenderer = textRendererIn;
 
-        if (livingPlayerIn instanceof EntityLivingBase && ((EntityLivingBase) livingPlayerIn).isPlayerSleeping()) {
+        if (livingPlayerIn instanceof EntityLivingBase base && base.isPlayerSleeping()) {
             IBlockState iblockstate = worldIn.getBlockState(new BlockPos(livingPlayerIn));
             Block block = iblockstate.getBlock();
 
             if (block == Blocks.bed) {
-                int i = ((EnumFacing) iblockstate.getValue(BlockBed.FACING)).getHorizontalIndex();
-                this.playerViewY = (float) (i * 90 + 180);
+                int i = ((EnumFacing)iblockstate.getValue(BlockBed.FACING)).getHorizontalIndex();
+                this.playerViewY = (float)(i * 90 + 180);
                 this.playerViewX = 0.0F;
             }
-        } else {
+        }
+        else {
             this.playerViewY = livingPlayerIn.prevRotationYaw + (livingPlayerIn.rotationYaw - livingPlayerIn.prevRotationYaw) * partialTicks;
             this.playerViewX = livingPlayerIn.prevRotationPitch + (livingPlayerIn.rotationPitch - livingPlayerIn.prevRotationPitch) * partialTicks;
         }
@@ -262,9 +264,9 @@ public class RenderManager {
             this.playerViewY += 180.0F;
         }
 
-        this.viewerPosX = livingPlayerIn.lastTickPosX + (livingPlayerIn.posX - livingPlayerIn.lastTickPosX) * (double) partialTicks;
-        this.viewerPosY = livingPlayerIn.lastTickPosY + (livingPlayerIn.posY - livingPlayerIn.lastTickPosY) * (double) partialTicks;
-        this.viewerPosZ = livingPlayerIn.lastTickPosZ + (livingPlayerIn.posZ - livingPlayerIn.lastTickPosZ) * (double) partialTicks;
+        this.viewerPosX = livingPlayerIn.lastTickPosX + (livingPlayerIn.posX - livingPlayerIn.lastTickPosX) * (double)partialTicks;
+        this.viewerPosY = livingPlayerIn.lastTickPosY + (livingPlayerIn.posY - livingPlayerIn.lastTickPosY) * (double)partialTicks;
+        this.viewerPosZ = livingPlayerIn.lastTickPosZ + (livingPlayerIn.posZ - livingPlayerIn.lastTickPosZ) * (double)partialTicks;
     }
 
     public void setPlayerViewY(float playerViewYIn) {
@@ -303,9 +305,9 @@ public class RenderManager {
             entity.lastTickPosZ = entity.posZ;
         }
 
-        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) partialTicks;
-        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) partialTicks;
-        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) partialTicks;
+        double d0 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)partialTicks;
+        double d1 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)partialTicks;
+        double d2 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)partialTicks;
         float f = entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks;
         int i = entity.getBrightnessForRender(partialTicks);
 
@@ -315,22 +317,22 @@ public class RenderManager {
 
         int j = i % 65536;
         int k = i / 65536;
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         return this.doRenderEntity(entity, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ, f, partialTicks, hideDebugBox);
     }
 
     public void renderWitherSkull(Entity entityIn, float partialTicks) {
-        double d0 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double) partialTicks;
-        double d1 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double) partialTicks;
-        double d2 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double) partialTicks;
+        double d0 = entityIn.lastTickPosX + (entityIn.posX - entityIn.lastTickPosX) * (double)partialTicks;
+        double d1 = entityIn.lastTickPosY + (entityIn.posY - entityIn.lastTickPosY) * (double)partialTicks;
+        double d2 = entityIn.lastTickPosZ + (entityIn.posZ - entityIn.lastTickPosZ) * (double)partialTicks;
         Render<Entity> render = this.<Entity>getEntityRenderObject(entityIn);
 
         if (render != null && this.renderEngine != null) {
             int i = entityIn.getBrightnessForRender(partialTicks);
             int j = i % 65536;
             int k = i / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j / 1.0F, (float)k / 1.0F);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             render.renderName(entityIn, d0 - this.renderPosX, d1 - this.renderPosY, d2 - this.renderPosZ);
         }
@@ -348,8 +350,8 @@ public class RenderManager {
 
             if (render != null && this.renderEngine != null) {
                 try {
-                    if (render instanceof RendererLivingEntity) {
-                        ((RendererLivingEntity) render).setRenderOutlines(this.renderOutlines);
+                    if (render instanceof RendererLivingEntity livingEntity) {
+                        livingEntity.setRenderOutlines(this.renderOutlines);
                     }
 
                     render.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -372,7 +374,8 @@ public class RenderManager {
                         throw new ReportedException(CrashReport.makeCrashReport(throwable, "Rendering entity hitbox in world"));
                     }
                 }
-            } else if (this.renderEngine != null) {
+            }
+            else if (this.renderEngine != null) {
                 return false;
             }
 
@@ -412,15 +415,15 @@ public class RenderManager {
 
         if (entityIn instanceof EntityLivingBase) {
             float f1 = 0.01F;
-            RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(x - (double) f, y + (double) entityIn.getEyeHeight() - 0.009999999776482582D, z - (double) f, x + (double) f, y + (double) entityIn.getEyeHeight() + 0.009999999776482582D, z + (double) f), 255, 0, 0, 255);
+            RenderGlobal.drawOutlinedBoundingBox(new AxisAlignedBB(x - (double)f, y + (double)entityIn.getEyeHeight() - 0.009999999776482582D, z - (double)f, x + (double)f, y + (double)entityIn.getEyeHeight() + 0.009999999776482582D, z + (double)f), 255, 0, 0, 255);
         }
 
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         Vec3 vec3 = entityIn.getLook(partialTicks);
         worldrenderer.begin(3, DefaultVertexFormats.POSITION_COLOR);
-        worldrenderer.pos(x, y + (double) entityIn.getEyeHeight(), z).color(0, 0, 255, 255).endVertex();
-        worldrenderer.pos(x + vec3.x * 2.0D, y + (double) entityIn.getEyeHeight() + vec3.y * 2.0D, z + vec3.z * 2.0D).color(0, 0, 255, 255).endVertex();
+        worldrenderer.pos(x, y + (double)entityIn.getEyeHeight(), z).color(0, 0, 255, 255).endVertex();
+        worldrenderer.pos(x + vec3.x * 2.0D, y + (double)entityIn.getEyeHeight() + vec3.y * 2.0D, z + vec3.z * 2.0D).color(0, 0, 255, 255).endVertex();
         tessellator.draw();
         GlStateManager.enableTexture2D();
         GlStateManager.enableLighting();

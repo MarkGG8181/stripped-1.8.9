@@ -35,8 +35,8 @@ public class MapData extends WorldSavedData {
 
     public void calculateMapCenter(double x, double z, int mapScale) {
         int i = 128 * (1 << mapScale);
-        int j = MathHelper.floor_double((x + 64.0D) / (double) i);
-        int k = MathHelper.floor_double((z + 64.0D) / (double) i);
+        int j = MathHelper.floor_double((x + 64.0D) / (double)i);
+        int k = MathHelper.floor_double((z + 64.0D) / (double)i);
         this.xCenter = j * i + i / 2 - 64;
         this.zCenter = k * i + i / 2 - 64;
     }
@@ -49,13 +49,14 @@ public class MapData extends WorldSavedData {
         this.xCenter = nbt.getInteger("xCenter");
         this.zCenter = nbt.getInteger("zCenter");
         this.scale = nbt.getByte("scale");
-        this.scale = (byte) MathHelper.clamp_int(this.scale, 0, 4);
+        this.scale = (byte)MathHelper.clamp_int(this.scale, 0, 4);
         int i = nbt.getShort("width");
         int j = nbt.getShort("height");
 
         if (i == 128 && j == 128) {
             this.colors = nbt.getByteArray("colors");
-        } else {
+        }
+        else {
             byte[] abyte = nbt.getByteArray("colors");
             this.colors = new byte[16384];
             int k = (128 - i) / 2;
@@ -85,8 +86,8 @@ public class MapData extends WorldSavedData {
         nbt.setInteger("xCenter", this.xCenter);
         nbt.setInteger("zCenter", this.zCenter);
         nbt.setByte("scale", this.scale);
-        nbt.setShort("width", (short) 128);
-        nbt.setShort("height", (short) 128);
+        nbt.setShort("width", (short)128);
+        nbt.setShort("height", (short)128);
         nbt.setByteArray("colors", this.colors);
     }
 
@@ -105,13 +106,14 @@ public class MapData extends WorldSavedData {
         }
 
         for (int i = 0; i < this.playersArrayList.size(); ++i) {
-            MapData.MapInfo mapdata$mapinfo1 = (MapData.MapInfo) this.playersArrayList.get(i);
+            MapData.MapInfo mapdata$mapinfo1 = (MapData.MapInfo)this.playersArrayList.get(i);
 
             if (!mapdata$mapinfo1.entityplayerObj.isDead && (mapdata$mapinfo1.entityplayerObj.inventory.hasItemStack(mapStack) || mapStack.isOnItemFrame())) {
                 if (!mapStack.isOnItemFrame() && mapdata$mapinfo1.entityplayerObj.dimension == this.dimension) {
-                    this.updateDecorations(0, mapdata$mapinfo1.entityplayerObj.worldObj, mapdata$mapinfo1.entityplayerObj.getName(), mapdata$mapinfo1.entityplayerObj.posX, mapdata$mapinfo1.entityplayerObj.posZ, (double) mapdata$mapinfo1.entityplayerObj.rotationYaw);
+                    this.updateDecorations(0, mapdata$mapinfo1.entityplayerObj.worldObj, mapdata$mapinfo1.entityplayerObj.getName(), mapdata$mapinfo1.entityplayerObj.posX, mapdata$mapinfo1.entityplayerObj.posZ, (double)mapdata$mapinfo1.entityplayerObj.rotationYaw);
                 }
-            } else {
+            }
+            else {
                 this.playersHashMap.remove(mapdata$mapinfo1.entityplayerObj);
                 this.playersArrayList.remove(mapdata$mapinfo1);
             }
@@ -120,7 +122,7 @@ public class MapData extends WorldSavedData {
         if (mapStack.isOnItemFrame()) {
             EntityItemFrame entityitemframe = mapStack.getItemFrame();
             BlockPos blockpos = entityitemframe.getHangingPosition();
-            this.updateDecorations(1, player.worldObj, "frame-" + entityitemframe.getEntityId(), (double) blockpos.getX(), (double) blockpos.getZ(), (double) (entityitemframe.facingDirection.getHorizontalIndex() * 90));
+            this.updateDecorations(1, player.worldObj, "frame-" + entityitemframe.getEntityId(), (double)blockpos.getX(), (double)blockpos.getZ(), (double)(entityitemframe.facingDirection.getHorizontalIndex() * 90));
         }
 
         if (mapStack.hasTagCompound() && mapStack.getTagCompound().hasKey("Decorations", 9)) {
@@ -138,22 +140,23 @@ public class MapData extends WorldSavedData {
 
     private void updateDecorations(int type, World worldIn, String entityIdentifier, double worldX, double worldZ, double rotation) {
         int i = 1 << this.scale;
-        float f = (float) (worldX - (double) this.xCenter) / (float) i;
-        float f1 = (float) (worldZ - (double) this.zCenter) / (float) i;
-        byte b0 = (byte) ((int) ((double) (f * 2.0F) + 0.5D));
-        byte b1 = (byte) ((int) ((double) (f1 * 2.0F) + 0.5D));
+        float f = (float)(worldX - (double)this.xCenter) / (float)i;
+        float f1 = (float)(worldZ - (double)this.zCenter) / (float)i;
+        byte b0 = (byte)((int)((double)(f * 2.0F) + 0.5D));
+        byte b1 = (byte)((int)((double)(f1 * 2.0F) + 0.5D));
         int j = 63;
         byte b2;
 
-        if (f >= (float) (-j) && f1 >= (float) (-j) && f <= (float) j && f1 <= (float) j) {
+        if (f >= (float)(-j) && f1 >= (float)(-j) && f <= (float)j && f1 <= (float)j) {
             rotation = rotation + (rotation < 0.0D ? -8.0D : 8.0D);
-            b2 = (byte) ((int) (rotation * 16.0D / 360.0D));
+            b2 = (byte)((int)(rotation * 16.0D / 360.0D));
 
             if (this.dimension < 0) {
-                int k = (int) (worldIn.getWorldInfo().getWorldTime() / 10L);
-                b2 = (byte) (k * k * 34187121 + k * 121 >> 15 & 15);
+                int k = (int)(worldIn.getWorldInfo().getWorldTime() / 10L);
+                b2 = (byte)(k * k * 34187121 + k * 121 >> 15 & 15);
             }
-        } else {
+        }
+        else {
             if (Math.abs(f) >= 320.0F || Math.abs(f1) >= 320.0F) {
                 this.mapDecorations.remove(entityIdentifier);
                 return;
@@ -162,28 +165,28 @@ public class MapData extends WorldSavedData {
             type = 6;
             b2 = 0;
 
-            if (f <= (float) (-j)) {
-                b0 = (byte) ((int) ((double) (j * 2) + 2.5D));
+            if (f <= (float)(-j)) {
+                b0 = (byte)((int)((double)(j * 2) + 2.5D));
             }
 
-            if (f1 <= (float) (-j)) {
-                b1 = (byte) ((int) ((double) (j * 2) + 2.5D));
+            if (f1 <= (float)(-j)) {
+                b1 = (byte)((int)((double)(j * 2) + 2.5D));
             }
 
-            if (f >= (float) j) {
-                b0 = (byte) (j * 2 + 1);
+            if (f >= (float)j) {
+                b0 = (byte)(j * 2 + 1);
             }
 
-            if (f1 >= (float) j) {
-                b1 = (byte) (j * 2 + 1);
+            if (f1 >= (float)j) {
+                b1 = (byte)(j * 2 + 1);
             }
         }
 
-        this.mapDecorations.put(entityIdentifier, new Vec4b((byte) type, b0, b1, b2));
+        this.mapDecorations.put(entityIdentifier, new Vec4b((byte)type, b0, b1, b2));
     }
 
     public Packet getMapPacket(ItemStack mapStack, World worldIn, EntityPlayer player) {
-        MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo) this.playersHashMap.get(player);
+        MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo)this.playersHashMap.get(player);
         return mapdata$mapinfo == null ? null : mapdata$mapinfo.getPacket(mapStack);
     }
 
@@ -196,7 +199,7 @@ public class MapData extends WorldSavedData {
     }
 
     public MapData.MapInfo getMapInfo(EntityPlayer player) {
-        MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo) this.playersHashMap.get(player);
+        MapData.MapInfo mapdata$mapinfo = (MapData.MapInfo)this.playersHashMap.get(player);
 
         if (mapdata$mapinfo == null) {
             mapdata$mapinfo = new MapData.MapInfo(player);
@@ -225,7 +228,8 @@ public class MapData extends WorldSavedData {
             if (this.isDirty) {
                 this.isDirty = false;
                 return new S34PacketMaps(stack.getMetadata(), MapData.this.scale, MapData.this.mapDecorations.values(), MapData.this.colors, this.minX, this.minY, this.maxX + 1 - this.minX, this.maxY + 1 - this.minY);
-            } else {
+            }
+            else {
                 return this.tick++ % 5 == 0 ? new S34PacketMaps(stack.getMetadata(), MapData.this.scale, MapData.this.mapDecorations.values(), MapData.this.colors, 0, 0, 0, 0) : null;
             }
         }
@@ -236,7 +240,8 @@ public class MapData extends WorldSavedData {
                 this.minY = Math.min(this.minY, y);
                 this.maxX = Math.max(this.maxX, x);
                 this.maxY = Math.max(this.maxY, y);
-            } else {
+            }
+            else {
                 this.isDirty = true;
                 this.minX = x;
                 this.minY = y;

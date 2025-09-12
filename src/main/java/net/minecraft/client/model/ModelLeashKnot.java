@@ -32,7 +32,7 @@ public class ModelLeashKnot extends ModelBase {
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        this.knotRenderer.rotateAngleY = netHeadYaw / (180F / (float) Math.PI);
-        this.knotRenderer.rotateAngleX = headPitch / (180F / (float) Math.PI);
+        this.knotRenderer.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+        this.knotRenderer.rotateAngleX = headPitch / (180F / (float)Math.PI);
     }
 }

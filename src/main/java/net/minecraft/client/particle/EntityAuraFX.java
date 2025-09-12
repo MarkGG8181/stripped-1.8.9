@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.world.World;
 
 public class EntityAuraFX extends EntityFX
@@ -17,7 +19,7 @@ public class EntityAuraFX extends EntityFX
         this.motionX *= 0.019999999552965164D;
         this.motionY *= 0.019999999552965164D;
         this.motionZ *= 0.019999999552965164D;
-        this.particleMaxAge = (int)(20.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(20.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.noClip = true;
     }
 

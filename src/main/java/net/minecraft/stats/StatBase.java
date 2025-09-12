@@ -20,7 +20,7 @@ public class StatBase
     public boolean isIndependent;
     private final IStatType type;
     private final IScoreObjectiveCriteria objectiveCriteria;
-    private Class <? extends IJsonSerializable > serializableClazz;
+    private Class<? extends IJsonSerializable> serializableClazz;
     private static NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
     public static IStatType simpleStatType = new IStatType()
     {
@@ -167,12 +167,12 @@ public class StatBase
         return this.objectiveCriteria;
     }
 
-    public Class <? extends IJsonSerializable > func_150954_l()
+    public Class<? extends IJsonSerializable> func_150954_l()
     {
         return this.serializableClazz;
     }
 
-    public StatBase func_150953_b(Class <? extends IJsonSerializable > p_150953_1_)
+    public StatBase func_150953_b(Class<? extends IJsonSerializable> p_150953_1_)
     {
         this.serializableClazz = p_150953_1_;
         return this;

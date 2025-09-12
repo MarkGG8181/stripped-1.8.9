@@ -94,9 +94,9 @@ public class GuiOptionsRowList extends GuiListExtended
         {
             if (this.buttonA.mousePressed(this.client, p_148278_2_, p_148278_3_))
             {
-                if (this.buttonA instanceof GuiOptionButton)
+                if (this.buttonA instanceof GuiOptionButton button)
                 {
-                    this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonA).returnEnumOptions(), 1);
+                    this.client.gameSettings.setOptionValue(button.returnEnumOptions(), 1);
                     this.buttonA.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.getEnumOptions(this.buttonA.id));
                 }
 
@@ -104,9 +104,9 @@ public class GuiOptionsRowList extends GuiListExtended
             }
             else if (this.buttonB != null && this.buttonB.mousePressed(this.client, p_148278_2_, p_148278_3_))
             {
-                if (this.buttonB instanceof GuiOptionButton)
+                if (this.buttonB instanceof GuiOptionButton button)
                 {
-                    this.client.gameSettings.setOptionValue(((GuiOptionButton)this.buttonB).returnEnumOptions(), 1);
+                    this.client.gameSettings.setOptionValue(button.returnEnumOptions(), 1);
                     this.buttonB.displayString = this.client.gameSettings.getKeyBinding(GameSettings.Options.getEnumOptions(this.buttonB.id));
                 }
 

@@ -18,7 +18,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 
     /** Instance of EntityAINearestAttackableTargetSorter. */
     protected final EntityAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
-    protected Predicate <? super T > targetEntitySelector;
+    protected Predicate<? super T> targetEntitySelector;
     protected EntityLivingBase targetEntity;
 
     public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, boolean checkSight)
@@ -28,10 +28,10 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 
     public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, boolean checkSight, boolean onlyNearby)
     {
-        this(creature, classTarget, 10, checkSight, onlyNearby, (Predicate <? super T >)null);
+        this(creature, classTarget, 10, checkSight, onlyNearby, (Predicate<? super T>)null);
     }
 
-    public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, int chance, boolean checkSight, boolean onlyNearby, final Predicate <? super T > targetSelector)
+    public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, int chance, boolean checkSight, boolean onlyNearby, final Predicate<? super T> targetSelector)
     {
         super(creature, checkSight, onlyNearby);
         this.targetClass = classTarget;
@@ -48,7 +48,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
                 }
                 else
                 {
-                    if (p_apply_1_ instanceof EntityPlayer)
+                    if (p_apply_1_ instanceof EntityPlayer player)
                     {
                         double d0 = EntityAINearestAttackableTarget.this.getTargetDistance();
 
@@ -59,7 +59,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 
                         if (p_apply_1_.isInvisible())
                         {
-                            float f = ((EntityPlayer)p_apply_1_).getArmorVisibility();
+                            float f = player.getArmorVisibility();
 
                             if (f < 0.1F)
                             {
@@ -93,7 +93,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
         else
         {
             double d0 = this.getTargetDistance();
-            List<T> list = this.taskOwner.worldObj.<T>getEntitiesWithinAABB(this.targetClass, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), Predicates.<T> and (this.targetEntitySelector, EntitySelectors.NOT_SPECTATING));
+            List<T> list = this.taskOwner.worldObj.<T>getEntitiesWithinAABB(this.targetClass, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), Predicates.<T>and(this.targetEntitySelector, EntitySelectors.NOT_SPECTATING));
             Collections.sort(list, this.theNearestAttackableTargetSorter);
 
             if (list.isEmpty())
@@ -102,7 +102,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
             }
             else
             {
-                this.targetEntity = (EntityLivingBase)list.get(0);
+                this.targetEntity = (EntityLivingBase)list.getFirst();
                 return true;
             }
         }

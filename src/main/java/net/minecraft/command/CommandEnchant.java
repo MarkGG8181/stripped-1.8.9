@@ -78,7 +78,7 @@ public class CommandEnchant extends CommandBase
 
                 if (enchantment1 == null)
                 {
-                    throw new NumberInvalidException("commands.enchant.notFound", new Object[] {Integer.valueOf(i)});
+                    throw new NumberInvalidException("commands.enchant.notFound", new Object[]{Integer.valueOf(i)});
                 }
                 else if (!enchantment1.canApply(itemstack))
                 {
@@ -107,7 +107,7 @@ public class CommandEnchant extends CommandBase
 
                                     if (!enchantment2.canApplyTogether(enchantment1))
                                     {
-                                        throw new CommandException("commands.enchant.cantCombine", new Object[] {enchantment1.getTranslatedName(j), enchantment2.getTranslatedName(nbttaglist.getCompoundTagAt(k).getShort("lvl"))});
+                                        throw new CommandException("commands.enchant.cantCombine", new Object[]{enchantment1.getTranslatedName(j), enchantment2.getTranslatedName(nbttaglist.getCompoundTagAt(k).getShort("lvl"))});
                                     }
                                 }
                             }

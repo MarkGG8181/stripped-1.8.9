@@ -135,7 +135,7 @@ public class BlockSkull extends BlockContainer
     public int getDamageValue(World worldIn, BlockPos pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntitySkull ? ((TileEntitySkull)tileentity).getSkullType() : super.getDamageValue(worldIn, pos);
+        return tileentity instanceof TileEntitySkull tes ? tes.getSkullType() : super.getDamageValue(worldIn, pos);
     }
 
     /**
@@ -164,9 +164,8 @@ public class BlockSkull extends BlockContainer
             {
                 TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntitySkull)
+                if (tileentity instanceof TileEntitySkull tileentityskull)
                 {
-                    TileEntitySkull tileentityskull = (TileEntitySkull)tileentity;
                     ItemStack itemstack = new ItemStack(Items.skull, 1, this.getDamageValue(worldIn, pos));
 
                     if (tileentityskull.getSkullType() == 3 && tileentityskull.getPlayerProfile() != null)
@@ -279,14 +278,14 @@ public class BlockSkull extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, NODROP});
+        return new BlockState(this, new IProperty[]{FACING, NODROP});
     }
 
     protected BlockPattern getWitherBasePattern()
     {
         if (this.witherBasePattern == null)
         {
-            this.witherBasePattern = FactoryBlockPattern.start().aisle(new String[] {"   ", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.soul_sand))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+            this.witherBasePattern = FactoryBlockPattern.start().aisle(new String[]{"   ", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.soul_sand))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
         }
 
         return this.witherBasePattern;
@@ -296,7 +295,7 @@ public class BlockSkull extends BlockContainer
     {
         if (this.witherPattern == null)
         {
-            this.witherPattern = FactoryBlockPattern.start().aisle(new String[] {"^^^", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.soul_sand))).where('^', IS_WITHER_SKELETON).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+            this.witherPattern = FactoryBlockPattern.start().aisle(new String[]{"^^^", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.soul_sand))).where('^', IS_WITHER_SKELETON).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
         }
 
         return this.witherPattern;

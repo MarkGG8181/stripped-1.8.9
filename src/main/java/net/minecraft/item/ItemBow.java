@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class ItemBow extends Item
 {
-    public static final String[] bowPullIconNameArray = new String[] {"pulling_0", "pulling_1", "pulling_2"};
+    public static final String[] bowPullIconNameArray = new String[]{"pulling_0", "pulling_1", "pulling_2"};
 
     public ItemBow()
     {

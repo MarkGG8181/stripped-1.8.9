@@ -155,7 +155,7 @@ public abstract class EntityLiving extends EntityLivingBase
     /**
      * Returns true if this entity can attack entities of the specified class.
      */
-    public boolean canAttackClass(Class <? extends EntityLivingBase > cls)
+    public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
     {
         return cls != EntityGhast.class;
     }
@@ -373,9 +373,9 @@ public abstract class EntityLiving extends EntityLivingBase
                 nbttagcompound1.setLong("UUIDMost", this.leashedToEntity.getUniqueID().getMostSignificantBits());
                 nbttagcompound1.setLong("UUIDLeast", this.leashedToEntity.getUniqueID().getLeastSignificantBits());
             }
-            else if (this.leashedToEntity instanceof EntityHanging)
+            else if (this.leashedToEntity instanceof EntityHanging hanging)
             {
-                BlockPos blockpos = ((EntityHanging)this.leashedToEntity).getHangingPosition();
+                BlockPos blockpos = hanging.getHangingPosition();
                 nbttagcompound1.setInteger("X", blockpos.getX());
                 nbttagcompound1.setInteger("Y", blockpos.getY());
                 nbttagcompound1.setInteger("Z", blockpos.getZ());
@@ -670,9 +670,8 @@ public abstract class EntityLiving extends EntityLivingBase
         double d2 = entityIn.posZ - this.posZ;
         double d1;
 
-        if (entityIn instanceof EntityLivingBase)
+        if (entityIn instanceof EntityLivingBase entitylivingbase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)entityIn;
             d1 = entitylivingbase.posY + (double)entitylivingbase.getEyeHeight() - (this.posY + (double)this.getEyeHeight());
         }
         else
@@ -1174,9 +1173,9 @@ public abstract class EntityLiving extends EntityLivingBase
                 this.dropItem(Items.lead, 1);
             }
 
-            if (!this.worldObj.isRemote && sendPacket && this.worldObj instanceof WorldServer)
+            if (!this.worldObj.isRemote && sendPacket && this.worldObj instanceof WorldServer server)
             {
-                ((WorldServer)this.worldObj).getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, (Entity)null));
+                server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, (Entity)null));
             }
         }
     }
@@ -1204,9 +1203,9 @@ public abstract class EntityLiving extends EntityLivingBase
         this.isLeashed = true;
         this.leashedToEntity = entityIn;
 
-        if (!this.worldObj.isRemote && sendAttachNotification && this.worldObj instanceof WorldServer)
+        if (!this.worldObj.isRemote && sendAttachNotification && this.worldObj instanceof WorldServer server)
         {
-            ((WorldServer)this.worldObj).getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, this.leashedToEntity));
+            server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, this.leashedToEntity));
         }
     }
 
@@ -1305,6 +1304,6 @@ public abstract class EntityLiving extends EntityLivingBase
     {
         ON_GROUND,
         IN_AIR,
-        IN_WATER;
+        IN_WATER
     }
 }

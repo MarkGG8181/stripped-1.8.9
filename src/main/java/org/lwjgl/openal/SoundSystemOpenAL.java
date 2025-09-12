@@ -29,12 +29,12 @@ public class SoundSystemOpenAL {
         if (audioDevice == 0L) throw new RuntimeException("Failed to open OpenAL device");
 
         int[] attribs = {
-                ALC_FREQUENCY, 44100,
-                ALC_MONO_SOURCES, 255,
-                ALC_STEREO_SOURCES, 1,
-                ALC_HRTF_SOFT, ALC_TRUE,
-                ALC_REFRESH, 60,
-                0
+            ALC_FREQUENCY, 44100,
+            ALC_MONO_SOURCES, 255,
+            ALC_STEREO_SOURCES, 1,
+            ALC_HRTF_SOFT, ALC_TRUE,
+            ALC_REFRESH, 60,
+            0
         };
         audioContext = alcCreateContext(audioDevice, attribs);
         if (audioContext == 0L) throw new RuntimeException("Failed to create OpenAL context");
@@ -54,14 +54,16 @@ public class SoundSystemOpenAL {
     public void newSource(boolean priority, String name, URL url, String identifier, boolean looping, float x, float y, float z, int attenuation, float volume, boolean applyReverb) {
         Integer sourceId;
         if (!freeSources.isEmpty()) {
-            sourceId = freeSources.remove(freeSources.size() - 1);
-        } else if (soundSources.size() < MAX_SOURCES) {
+            sourceId = freeSources.removeLast();
+        }
+        else if (soundSources.size() < MAX_SOURCES) {
             sourceId = alGenSources();
             if (!alIsSource(sourceId)) {
                 System.err.println("Failed to generate new source");
                 return;
             }
-        } else {
+        }
+        else {
             return;
         }
 
@@ -166,6 +168,7 @@ public class SoundSystemOpenAL {
         alGetListenerf(AL_GAIN, volume);
         return volume[0];
     }
+
     public void setPosition(String name, float x, float y, float z) {
         Integer sourceId = soundSources.get(name);
         if (sourceId != null) {

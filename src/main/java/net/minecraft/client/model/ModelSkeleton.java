@@ -35,7 +35,7 @@ public class ModelSkeleton extends ModelZombie {
      * and third as in the setRotationAngles method.
      */
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float p_78086_2_, float p_78086_3_, float partialTickTime) {
-        this.aimedBow = ((EntitySkeleton) entitylivingbaseIn).getSkeletonType() == 1;
+        this.aimedBow = ((EntitySkeleton)entitylivingbaseIn).getSkeletonType() == 1;
         super.setLivingAnimations(entitylivingbaseIn, p_78086_2_, p_78086_3_, partialTickTime);
     }
 

@@ -136,9 +136,9 @@ public class CompressedStreamTools
     {
         NBTBase nbtbase = func_152455_a(p_152456_0_, 0, p_152456_1_);
 
-        if (nbtbase instanceof NBTTagCompound)
+        if (nbtbase instanceof NBTTagCompound compound)
         {
-            return (NBTTagCompound)nbtbase;
+            return compound;
         }
         else
         {

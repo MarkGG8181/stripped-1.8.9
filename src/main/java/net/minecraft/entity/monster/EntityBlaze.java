@@ -52,7 +52,7 @@ public class EntityBlaze extends EntityMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte) 0));
+        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
     /**
@@ -102,7 +102,7 @@ public class EntityBlaze extends EntityMob {
             }
 
             for (int i = 0; i < 2; ++i) {
-                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double) this.width, this.posY + this.rand.nextDouble() * (double) this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double) this.width, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
 
@@ -118,12 +118,12 @@ public class EntityBlaze extends EntityMob {
 
         if (this.heightOffsetUpdateTime <= 0) {
             this.heightOffsetUpdateTime = 100;
-            this.heightOffset = 0.5F + (float) this.rand.nextGaussian() * 3.0F;
+            this.heightOffset = 0.5F + (float)this.rand.nextGaussian() * 3.0F;
         }
 
         EntityLivingBase entitylivingbase = this.getAttackTarget();
 
-        if (entitylivingbase != null && entitylivingbase.posY + (double) entitylivingbase.getEyeHeight() > this.posY + (double) this.getEyeHeight() + (double) this.heightOffset) {
+        if (entitylivingbase != null && entitylivingbase.posY + (double)entitylivingbase.getEyeHeight() > this.posY + (double)this.getEyeHeight() + (double)this.heightOffset) {
             this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
             this.isAirBorne = true;
         }
@@ -170,9 +170,10 @@ public class EntityBlaze extends EntityMob {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (onFire) {
-            b0 = (byte) (b0 | 1);
-        } else {
-            b0 = (byte) (b0 & -2);
+            b0 = (byte)(b0 | 1);
+        }
+        else {
+            b0 = (byte)(b0 & -2);
         }
 
         this.dataWatcher.updateObject(16, Byte.valueOf(b0));
@@ -220,9 +221,10 @@ public class EntityBlaze extends EntityMob {
                 }
 
                 this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
-            } else if (d0 < 256.0D) {
+            }
+            else if (d0 < 256.0D) {
                 double d1 = entitylivingbase.posX - this.blaze.posX;
-                double d2 = entitylivingbase.getEntityBoundingBox().minY + (double) (entitylivingbase.height / 2.0F) - (this.blaze.posY + (double) (this.blaze.height / 2.0F));
+                double d2 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (this.blaze.posY + (double)(this.blaze.height / 2.0F));
                 double d3 = entitylivingbase.posZ - this.blaze.posZ;
 
                 if (this.attackTime <= 0) {
@@ -231,9 +233,11 @@ public class EntityBlaze extends EntityMob {
                     if (this.attackStep == 1) {
                         this.attackTime = 60;
                         this.blaze.setOnFire(true);
-                    } else if (this.attackStep <= 4) {
+                    }
+                    else if (this.attackStep <= 4) {
                         this.attackTime = 6;
-                    } else {
+                    }
+                    else {
                         this.attackTime = 100;
                         this.attackStep = 0;
                         this.blaze.setOnFire(false);
@@ -241,18 +245,19 @@ public class EntityBlaze extends EntityMob {
 
                     if (this.attackStep > 1) {
                         float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
-                        this.blaze.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1009, new BlockPos((int) this.blaze.posX, (int) this.blaze.posY, (int) this.blaze.posZ), 0);
+                        this.blaze.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, new BlockPos((int)this.blaze.posX, (int)this.blaze.posY, (int)this.blaze.posZ), 0);
 
                         for (int i = 0; i < 1; ++i) {
-                            EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.blaze.worldObj, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * (double) f, d2, d3 + this.blaze.getRNG().nextGaussian() * (double) f);
-                            entitysmallfireball.posY = this.blaze.posY + (double) (this.blaze.height / 2.0F) + 0.5D;
+                            EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.blaze.worldObj, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * (double)f, d2, d3 + this.blaze.getRNG().nextGaussian() * (double)f);
+                            entitysmallfireball.posY = this.blaze.posY + (double)(this.blaze.height / 2.0F) + 0.5D;
                             this.blaze.worldObj.spawnEntityInWorld(entitysmallfireball);
                         }
                     }
                 }
 
                 this.blaze.getLookHelper().setLookPositionWithEntity(entitylivingbase, 10.0F, 10.0F);
-            } else {
+            }
+            else {
                 this.blaze.getNavigator().clearPathEntity();
                 this.blaze.getMoveHelper().setMoveTo(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, 1.0D);
             }

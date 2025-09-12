@@ -28,7 +28,7 @@ public class EntityCaveSpider extends EntitySpider
     {
         if (super.attackEntityAsMob(entityIn))
         {
-            if (entityIn instanceof EntityLivingBase)
+            if (entityIn instanceof EntityLivingBase base)
             {
                 int i = 0;
 
@@ -43,7 +43,7 @@ public class EntityCaveSpider extends EntitySpider
 
                 if (i > 0)
                 {
-                    ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(Potion.poison.id, i * 20, 0));
+                    base.addPotionEffect(new PotionEffect(Potion.poison.id, i * 20, 0));
                 }
             }
 

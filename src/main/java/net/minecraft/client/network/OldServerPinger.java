@@ -68,14 +68,16 @@ public class OldServerPinger {
 
                 if (response.getServerDescription() != null) {
                     server.serverMOTD = response.getServerDescription().getFormattedText();
-                } else {
+                }
+                else {
                     server.serverMOTD = "";
                 }
 
                 if (response.getProtocolVersionInfo() != null) {
                     server.gameVersion = response.getProtocolVersionInfo().getName();
                     server.version = response.getProtocolVersionInfo().getProtocol();
-                } else {
+                }
+                else {
                     server.gameVersion = "Old";
                     server.version = 0;
                 }
@@ -99,7 +101,8 @@ public class OldServerPinger {
                         }
                         server.playerList = playerListBuilder.toString();
                     }
-                } else {
+                }
+                else {
                     server.populationInfo = EnumChatFormatting.DARK_GRAY + "???";
                 }
 
@@ -107,10 +110,12 @@ public class OldServerPinger {
                     String favicon = response.getFavicon();
                     if (favicon.startsWith(ICON_PREFIX)) {
                         server.setBase64EncodedIconData(favicon.substring(ICON_PREFIX.length()));
-                    } else {
+                    }
+                    else {
                         logger.error("Invalid server icon (unknown format)");
                     }
-                } else {
+                }
+                else {
                     server.setBase64EncodedIconData(null);
                 }
 
@@ -148,76 +153,77 @@ public class OldServerPinger {
     private void tryCompatibilityPing(final ServerData server) {
         final ServerAddress serveraddress = ServerAddress.fromString(server.serverIP);
         new Bootstrap()
-                .group(NetworkManager.CLIENT_NIO_EVENTLOOP.getValue())
-                .channel(NioSocketChannel.class)
-                .option(ChannelOption.TCP_NODELAY, true)
-                .handler(new ChannelInitializer<Channel>() {
-                    @Override
-                    protected void initChannel(Channel ch) {
-                        ch.pipeline().addLast(new SimpleChannelInboundHandler<ByteBuf>() {
-                            @Override
-                            public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                super.channelActive(ctx);
-                                ByteBuf bytebuf = Unpooled.buffer();
-                                try {
-                                    bytebuf.writeByte(0xFE);
-                                    bytebuf.writeByte(0x01);
-                                    bytebuf.writeByte(0xFA);
-                                    char[] mcPingHost = "MC|PingHost".toCharArray();
-                                    bytebuf.writeShort(mcPingHost.length);
-                                    for (char c : mcPingHost) {
-                                        bytebuf.writeChar(c);
-                                    }
-                                    bytebuf.writeShort(7 + 2 * serveraddress.getIP().length());
-                                    bytebuf.writeByte(127);
-                                    char[] ipChars = serveraddress.getIP().toCharArray();
-                                    bytebuf.writeShort(ipChars.length);
-                                    for (char c : ipChars) {
-                                        bytebuf.writeChar(c);
-                                    }
-                                    bytebuf.writeInt(serveraddress.getPort());
-                                    ctx.channel().writeAndFlush(bytebuf).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
-                                } catch (Exception e) {
-                                    throw new RuntimeException(e);
+            .group(NetworkManager.CLIENT_NIO_EVENTLOOP.getValue())
+            .channel(NioSocketChannel.class)
+            .option(ChannelOption.TCP_NODELAY, true)
+            .handler(new ChannelInitializer<Channel>() {
+                @Override
+                protected void initChannel(Channel ch) {
+                    ch.pipeline().addLast(new SimpleChannelInboundHandler<ByteBuf>() {
+                        @Override
+                        public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                            super.channelActive(ctx);
+                            ByteBuf bytebuf = Unpooled.buffer();
+                            try {
+                                bytebuf.writeByte(0xFE);
+                                bytebuf.writeByte(0x01);
+                                bytebuf.writeByte(0xFA);
+                                char[] mcPingHost = "MC|PingHost".toCharArray();
+                                bytebuf.writeShort(mcPingHost.length);
+                                for (char c : mcPingHost) {
+                                    bytebuf.writeChar(c);
+                                }
+                                bytebuf.writeShort(7 + 2 * serveraddress.getIP().length());
+                                bytebuf.writeByte(127);
+                                char[] ipChars = serveraddress.getIP().toCharArray();
+                                bytebuf.writeShort(ipChars.length);
+                                for (char c : ipChars) {
+                                    bytebuf.writeChar(c);
+                                }
+                                bytebuf.writeInt(serveraddress.getPort());
+                                ctx.channel().writeAndFlush(bytebuf).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+
+                        @Override
+                        protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
+                            if (msg.readUnsignedByte() == 0xFF) {
+                                int length = msg.readShort() * 2;
+                                byte[] bytes = new byte[length];
+                                msg.readBytes(bytes);
+                                String response = new String(bytes, StandardCharsets.UTF_16BE);
+                                String[] parts = PING_RESPONSE_SPLITTER.splitToList(response).toArray(new String[0]);
+
+                                if ("\u00a71".equals(parts[0])) {
+                                    server.version = -1;
+                                    server.gameVersion = parts[2];
+                                    server.serverMOTD = parts[3];
+                                    int onlinePlayers = MathHelper.parseIntWithDefault(parts[4], -1);
+                                    int maxPlayers = MathHelper.parseIntWithDefault(parts[5], -1);
+                                    server.populationInfo = EnumChatFormatting.GRAY + "" + onlinePlayers + EnumChatFormatting.DARK_GRAY + "/" + EnumChatFormatting.GRAY + maxPlayers;
                                 }
                             }
+                            ctx.close();
+                        }
 
-                            @Override
-                            protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-                                if (msg.readUnsignedByte() == 0xFF) {
-                                    int length = msg.readShort() * 2;
-                                    byte[] bytes = new byte[length];
-                                    msg.readBytes(bytes);
-                                    String response = new String(bytes, StandardCharsets.UTF_16BE);
-                                    String[] parts = PING_RESPONSE_SPLITTER.splitToList(response).toArray(new String[0]);
-
-                                    if ("\u00a71".equals(parts[0])) {
-                                        server.version = -1;
-                                        server.gameVersion = parts[2];
-                                        server.serverMOTD = parts[3];
-                                        int onlinePlayers = MathHelper.parseIntWithDefault(parts[4], -1);
-                                        int maxPlayers = MathHelper.parseIntWithDefault(parts[5], -1);
-                                        server.populationInfo = EnumChatFormatting.GRAY + "" + onlinePlayers + EnumChatFormatting.DARK_GRAY + "/" + EnumChatFormatting.GRAY + maxPlayers;
-                                    }
-                                }
-                                ctx.close();
-                            }
-
-                            @Override
-                            public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-                                ctx.close();
-                            }
-                        });
-                    }
-                })
-                .connect(serveraddress.getIP(), serveraddress.getPort());
+                        @Override
+                        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+                            ctx.close();
+                        }
+                    });
+                }
+            })
+            .connect(serveraddress.getIP(), serveraddress.getPort());
     }
 
     public void pingPendingNetworks() {
         for (NetworkManager networkmanager : this.pingDestinations) {
             if (networkmanager.isChannelOpen()) {
                 networkmanager.processReceivedPackets();
-            } else {
+            }
+            else {
                 this.pingDestinations.remove(networkmanager);
                 networkmanager.checkDisconnected();
             }

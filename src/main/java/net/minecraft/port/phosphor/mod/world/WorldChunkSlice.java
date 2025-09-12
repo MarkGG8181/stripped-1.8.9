@@ -17,7 +17,7 @@ public class WorldChunkSlice {
 
         for (int xDiff = -radius; xDiff <= radius; xDiff++) {
             for (int zDiff = -radius; zDiff <= radius; zDiff++) {
-                this.chunks[((xDiff + radius) * DIAMETER) + (zDiff + radius)] = ChunkHelper.getLoadedChunk(world.getChunkProvider(),x + xDiff, z + zDiff);
+                this.chunks[((xDiff + radius) * DIAMETER) + (zDiff + radius)] = ChunkHelper.getLoadedChunk(world.getChunkProvider(), x + xDiff, z + zDiff);
             }
         }
 

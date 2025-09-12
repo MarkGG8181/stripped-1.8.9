@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -18,7 +20,7 @@ public class EntitySuspendFX extends EntityFX
         this.motionX = xSpeedIn * 0.0D;
         this.motionY = ySpeedIn * 0.0D;
         this.motionZ = zSpeedIn * 0.0D;
-        this.particleMaxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(16.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
     }
 
     /**

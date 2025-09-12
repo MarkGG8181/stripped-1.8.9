@@ -28,34 +28,35 @@ public class ItemBoat extends Item {
         float f = 1.0F;
         float f1 = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * f;
         float f2 = playerIn.prevRotationYaw + (playerIn.rotationYaw - playerIn.prevRotationYaw) * f;
-        double d0 = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double) f;
-        double d1 = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * (double) f + (double) playerIn.getEyeHeight();
-        double d2 = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * (double) f;
+        double d0 = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double)f;
+        double d1 = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * (double)f + (double)playerIn.getEyeHeight();
+        double d2 = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * (double)f;
         Vec3 vec3 = new Vec3(d0, d1, d2);
-        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
-        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
+        float f3 = MathHelper.cos(-f2 * 0.017453292F - (float)Math.PI);
+        float f4 = MathHelper.sin(-f2 * 0.017453292F - (float)Math.PI);
         float f5 = -MathHelper.cos(-f1 * 0.017453292F);
         float f6 = MathHelper.sin(-f1 * 0.017453292F);
         float f7 = f4 * f5;
         float f8 = f3 * f5;
         double d3 = 5.0D;
-        Vec3 vec31 = vec3.addVector((double) f7 * d3, (double) f6 * d3, (double) f8 * d3);
+        Vec3 vec31 = vec3.addVector((double)f7 * d3, (double)f6 * d3, (double)f8 * d3);
         MovingObjectPosition movingobjectposition = worldIn.rayTraceBlocks(vec3, vec31, true);
 
         if (movingobjectposition == null) {
             return itemStackIn;
-        } else {
+        }
+        else {
             Vec3 vec32 = playerIn.getLook(f);
             boolean flag = false;
             float f9 = 1.0F;
-            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec32.x * d3, vec32.y * d3, vec32.z * d3).expand((double) f9, (double) f9, (double) f9));
+            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(vec32.x * d3, vec32.y * d3, vec32.z * d3).expand((double)f9, (double)f9, (double)f9));
 
             for (int i = 0; i < list.size(); ++i) {
-                Entity entity = (Entity) list.get(i);
+                Entity entity = (Entity)list.get(i);
 
                 if (entity.canBeCollidedWith()) {
                     float f10 = entity.getCollisionBorderSize();
-                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand((double) f10, (double) f10, (double) f10);
+                    AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand((double)f10, (double)f10, (double)f10);
 
                     if (axisalignedbb.isVecInside(vec3)) {
                         flag = true;
@@ -65,7 +66,8 @@ public class ItemBoat extends Item {
 
             if (flag) {
                 return itemStackIn;
-            } else {
+            }
+            else {
                 if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
                     BlockPos blockpos = movingobjectposition.getBlockPos();
 
@@ -73,8 +75,8 @@ public class ItemBoat extends Item {
                         blockpos = blockpos.down();
                     }
 
-                    EntityBoat entityboat = new EntityBoat(worldIn, (double) ((float) blockpos.getX() + 0.5F), (double) ((float) blockpos.getY() + 1.0F), (double) ((float) blockpos.getZ() + 0.5F));
-                    entityboat.rotationYaw = (float) (((MathHelper.floor_double((double) (playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+                    EntityBoat entityboat = new EntityBoat(worldIn, (double)((float)blockpos.getX() + 0.5F), (double)((float)blockpos.getY() + 1.0F), (double)((float)blockpos.getZ() + 0.5F));
+                    entityboat.rotationYaw = (float)(((MathHelper.floor_double((double)(playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 
                     if (!worldIn.getCollidingBoundingBoxes(entityboat, entityboat.getEntityBoundingBox().expand(-0.1D, -0.1D, -0.1D)).isEmpty()) {
                         return itemStackIn;

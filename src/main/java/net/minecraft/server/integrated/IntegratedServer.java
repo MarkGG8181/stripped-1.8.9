@@ -70,7 +70,8 @@ public class IntegratedServer extends MinecraftServer {
 
         if (worldinfo == null) {
             worldinfo = new WorldInfo(this.theWorldSettings, worldNameIn);
-        } else {
+        }
+        else {
             worldinfo.setWorldName(worldNameIn);
         }
 
@@ -86,10 +87,11 @@ public class IntegratedServer extends MinecraftServer {
             }
 
             if (i == 0) {
-                this.worldServers[i] = (WorldServer) (new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)(new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
                 this.worldServers[i].initialize(this.theWorldSettings);
-            } else {
-                this.worldServers[i] = (WorldServer) (new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
+            }
+            else {
+                this.worldServers[i] = (WorldServer)(new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
             }
 
             this.worldServers[i].addWorldAccess(new WorldManager(this, this.worldServers[i]));
@@ -140,7 +142,8 @@ public class IntegratedServer extends MinecraftServer {
                     Util.runTask(this.futureTaskQueue.poll(), logger);
                 }
             }
-        } else {
+        }
+        else {
             super.tick();
 
             if (this.mc.gameSettings.renderDistanceChunks != this.getConfigurationManager().getViewDistance()) {
@@ -155,7 +158,8 @@ public class IntegratedServer extends MinecraftServer {
                 if (!worldinfo1.isDifficultyLocked() && worldinfo.getDifficulty() != worldinfo1.getDifficulty()) {
                     logger.info("Changing difficulty to {}, from {}", new Object[]{worldinfo.getDifficulty(), worldinfo1.getDifficulty()});
                     this.setDifficultyForAllWorlds(worldinfo.getDifficulty());
-                } else if (worldinfo.isDifficultyLocked() && !worldinfo1.isDifficultyLocked()) {
+                }
+                else if (worldinfo.isDifficultyLocked() && !worldinfo1.isDifficultyLocked()) {
                     logger.info("Locking difficulty to {}", new Object[]{worldinfo.getDifficulty()});
 
                     for (WorldServer worldserver : this.worldServers) {

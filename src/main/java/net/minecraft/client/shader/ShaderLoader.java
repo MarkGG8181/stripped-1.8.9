@@ -46,7 +46,7 @@ public class ShaderLoader {
     }
 
     public static ShaderLoader loadShader(IResourceManager resourceManager, ShaderLoader.ShaderType type, String filename) throws IOException {
-        ShaderLoader shaderloader = (ShaderLoader) type.getLoadedShaders().get(filename);
+        ShaderLoader shaderloader = (ShaderLoader)type.getLoadedShaders().get(filename);
 
         if (shaderloader == null) {
             ResourceLocation resourcelocation = new ResourceLocation("shaders/program/" + filename + type.getShaderExtension());
@@ -77,7 +77,7 @@ public class ShaderLoader {
         byte[] abyte;
 
         try {
-            abyte = IOUtils.toByteArray((InputStream) p_177064_0_);
+            abyte = IOUtils.toByteArray((InputStream)p_177064_0_);
         } finally {
             p_177064_0_.close();
         }

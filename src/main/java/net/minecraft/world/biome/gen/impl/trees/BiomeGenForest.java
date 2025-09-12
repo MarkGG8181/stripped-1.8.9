@@ -61,7 +61,8 @@ public class BiomeGenForest extends BiomeGenBase {
             }
 
             return this;
-        } else {
+        }
+        else {
             return super.func_150557_a(colorIn, p_150557_2_);
         }
     }
@@ -72,10 +73,11 @@ public class BiomeGenForest extends BiomeGenBase {
 
     public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos) {
         if (this.type == 1) {
-            double d0 = MathHelper.clamp_double((1.0D + GRASS_COLOR_NOISE.func_151601_a((double) pos.getX() / 48.0D, (double) pos.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
-            BlockFlower.EnumFlowerType blockflower$enumflowertype = BlockFlower.EnumFlowerType.values()[(int) (d0 * (double) BlockFlower.EnumFlowerType.values().length)];
+            double d0 = MathHelper.clamp_double((1.0D + GRASS_COLOR_NOISE.func_151601_a((double)pos.getX() / 48.0D, (double)pos.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+            BlockFlower.EnumFlowerType blockflower$enumflowertype = BlockFlower.EnumFlowerType.values()[(int)(d0 * (double)BlockFlower.EnumFlowerType.values().length)];
             return blockflower$enumflowertype == BlockFlower.EnumFlowerType.BLUE_ORCHID ? BlockFlower.EnumFlowerType.POPPY : blockflower$enumflowertype;
-        } else {
+        }
+        else {
             return super.pickRandomFlower(rand, pos);
         }
     }
@@ -91,7 +93,8 @@ public class BiomeGenForest extends BiomeGenBase {
                     if (rand.nextInt(20) == 0) {
                         WorldGenBigMushroom worldgenbigmushroom = new WorldGenBigMushroom();
                         worldgenbigmushroom.generate(worldIn, rand, blockpos);
-                    } else {
+                    }
+                    else {
                         WorldGenAbstractTree worldgenabstracttree = this.genBigTreeChance(rand);
                         worldgenabstracttree.func_175904_e();
 
@@ -114,9 +117,11 @@ public class BiomeGenForest extends BiomeGenBase {
 
             if (l1 == 0) {
                 DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.SYRINGA);
-            } else if (l1 == 1) {
+            }
+            else if (l1 == 1) {
                 DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.ROSE);
-            } else {
+            }
+            else {
                 DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.PAEONIA);
             }
 
@@ -147,7 +152,8 @@ public class BiomeGenForest extends BiomeGenBase {
             biomegenforest.func_150557_a(6976549, true);
             biomegenforest.setFillerBlockMetadata(8233509);
             return biomegenforest;
-        } else {
+        }
+        else {
             return this.biomeID != BiomeGenBase.birchForest.biomeID && this.biomeID != BiomeGenBase.birchForestHills.biomeID ? new BiomeGenMutated(p_180277_1_, this) {
                 public void decorate(World worldIn, Random rand, BlockPos pos) {
                     this.baseBiome.decorate(worldIn, rand, pos);

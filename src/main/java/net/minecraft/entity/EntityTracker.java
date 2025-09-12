@@ -56,10 +56,9 @@ public class EntityTracker
 
     public void trackEntity(Entity entityIn)
     {
-        if (entityIn instanceof EntityPlayerMP)
+        if (entityIn instanceof EntityPlayerMP entityplayermp)
         {
             this.trackEntity(entityIn, 512, 2);
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityIn;
 
             for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
             {
@@ -234,9 +233,8 @@ public class EntityTracker
 
     public void untrackEntity(Entity entityIn)
     {
-        if (entityIn instanceof EntityPlayerMP)
+        if (entityIn instanceof EntityPlayerMP entityplayermp)
         {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)entityIn;
 
             for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
             {
@@ -261,9 +259,9 @@ public class EntityTracker
         {
             entitytrackerentry.updatePlayerList(this.theWorld.playerEntities);
 
-            if (entitytrackerentry.playerEntitiesUpdated && entitytrackerentry.trackedEntity instanceof EntityPlayerMP)
+            if (entitytrackerentry.playerEntitiesUpdated && entitytrackerentry.trackedEntity instanceof EntityPlayerMP mP)
             {
-                list.add((EntityPlayerMP)entitytrackerentry.trackedEntity);
+                list.add(mP);
             }
         }
 

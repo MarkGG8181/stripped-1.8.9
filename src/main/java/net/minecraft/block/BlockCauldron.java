@@ -136,9 +136,9 @@ public class BlockCauldron extends Block
                             {
                                 worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 1.5D, (double)pos.getZ() + 0.5D, itemstack2));
                             }
-                            else if (playerIn instanceof EntityPlayerMP)
+                            else if (playerIn instanceof EntityPlayerMP mP)
                             {
-                                ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                                mP.sendContainerToPlayer(playerIn.inventoryContainer);
                             }
 
                             playerIn.triggerAchievement(StatList.cauldronUsedStat);
@@ -157,9 +157,8 @@ public class BlockCauldron extends Block
                 }
                 else
                 {
-                    if (i > 0 && item instanceof ItemArmor)
+                    if (i > 0 && item instanceof ItemArmor itemarmor)
                     {
-                        ItemArmor itemarmor = (ItemArmor)item;
 
                         if (itemarmor.getArmorMaterial() == ItemArmor.ArmorMaterial.LEATHER && itemarmor.hasColor(itemstack))
                         {
@@ -186,9 +185,9 @@ public class BlockCauldron extends Block
                             {
                                 worldIn.spawnEntityInWorld(new EntityItem(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 1.5D, (double)pos.getZ() + 0.5D, itemstack1));
                             }
-                            else if (playerIn instanceof EntityPlayerMP)
+                            else if (playerIn instanceof EntityPlayerMP mP)
                             {
-                                ((EntityPlayerMP)playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+                                mP.sendContainerToPlayer(playerIn.inventoryContainer);
                             }
 
                             playerIn.triggerAchievement(StatList.bannerCleanedStat);
@@ -278,6 +277,6 @@ public class BlockCauldron extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {LEVEL});
+        return new BlockState(this, new IProperty[]{LEVEL});
     }
 }

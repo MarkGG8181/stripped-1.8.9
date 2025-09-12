@@ -32,7 +32,8 @@ public class TextureMetadataSectionSerializer extends BaseMetadataSectionSeriali
                         } catch (NumberFormatException numberformatexception) {
                             throw new JsonParseException("Invalid texture->mipmap->" + i + ": expected number, was " + jsonelement, numberformatexception);
                         }
-                    } else if (jsonelement.isJsonObject()) {
+                    }
+                    else if (jsonelement.isJsonObject()) {
                         throw new JsonParseException("Invalid texture->mipmap->" + i + ": expected number, was " + jsonelement);
                     }
                 }

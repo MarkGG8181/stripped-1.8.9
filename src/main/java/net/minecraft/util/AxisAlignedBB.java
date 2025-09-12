@@ -18,12 +18,12 @@ public class AxisAlignedBB {
     }
 
     public AxisAlignedBB(BlockPos pos1, BlockPos pos2) {
-        this.minX = (double) pos1.getX();
-        this.minY = (double) pos1.getY();
-        this.minZ = (double) pos1.getZ();
-        this.maxX = (double) pos2.getX();
-        this.maxY = (double) pos2.getY();
-        this.maxZ = (double) pos2.getZ();
+        this.minX = (double)pos1.getX();
+        this.minY = (double)pos1.getY();
+        this.minZ = (double)pos1.getZ();
+        this.maxX = (double)pos2.getX();
+        this.maxY = (double)pos2.getY();
+        this.maxZ = (double)pos2.getZ();
     }
 
     /**
@@ -39,19 +39,22 @@ public class AxisAlignedBB {
 
         if (x < 0.0D) {
             d0 += x;
-        } else if (x > 0.0D) {
+        }
+        else if (x > 0.0D) {
             d3 += x;
         }
 
         if (y < 0.0D) {
             d1 += y;
-        } else if (y > 0.0D) {
+        }
+        else if (y > 0.0D) {
             d4 += y;
         }
 
         if (z < 0.0D) {
             d2 += z;
-        } else if (z > 0.0D) {
+        }
+        else if (z > 0.0D) {
             d5 += z;
         }
 
@@ -115,7 +118,8 @@ public class AxisAlignedBB {
                 if (d1 < offsetX) {
                     offsetX = d1;
                 }
-            } else if (offsetX < 0.0D && other.minX >= this.maxX) {
+            }
+            else if (offsetX < 0.0D && other.minX >= this.maxX) {
                 double d0 = this.maxX - other.minX;
 
                 if (d0 > offsetX) {
@@ -124,7 +128,8 @@ public class AxisAlignedBB {
             }
 
             return offsetX;
-        } else {
+        }
+        else {
             return offsetX;
         }
     }
@@ -142,7 +147,8 @@ public class AxisAlignedBB {
                 if (d1 < offsetY) {
                     offsetY = d1;
                 }
-            } else if (offsetY < 0.0D && other.minY >= this.maxY) {
+            }
+            else if (offsetY < 0.0D && other.minY >= this.maxY) {
                 double d0 = this.maxY - other.minY;
 
                 if (d0 > offsetY) {
@@ -151,7 +157,8 @@ public class AxisAlignedBB {
             }
 
             return offsetY;
-        } else {
+        }
+        else {
             return offsetY;
         }
     }
@@ -169,7 +176,8 @@ public class AxisAlignedBB {
                 if (d1 < offsetZ) {
                     offsetZ = d1;
                 }
-            } else if (offsetZ < 0.0D && other.minZ >= this.maxZ) {
+            }
+            else if (offsetZ < 0.0D && other.minZ >= this.maxZ) {
                 double d0 = this.maxZ - other.minZ;
 
                 if (d0 > offsetZ) {
@@ -178,7 +186,8 @@ public class AxisAlignedBB {
             }
 
             return offsetZ;
-        } else {
+        }
+        else {
             return offsetZ;
         }
     }
@@ -280,20 +289,26 @@ public class AxisAlignedBB {
 
         if (vec36 == null) {
             return null;
-        } else {
+        }
+        else {
             EnumFacing enumfacing = null;
 
             if (vec36 == vec3) {
                 enumfacing = EnumFacing.WEST;
-            } else if (vec36 == vec31) {
+            }
+            else if (vec36 == vec31) {
                 enumfacing = EnumFacing.EAST;
-            } else if (vec36 == vec32) {
+            }
+            else if (vec36 == vec32) {
                 enumfacing = EnumFacing.DOWN;
-            } else if (vec36 == vec33) {
+            }
+            else if (vec36 == vec33) {
                 enumfacing = EnumFacing.UP;
-            } else if (vec36 == vec34) {
+            }
+            else if (vec36 == vec34) {
                 enumfacing = EnumFacing.NORTH;
-            } else {
+            }
+            else {
                 enumfacing = EnumFacing.SOUTH;
             }
 

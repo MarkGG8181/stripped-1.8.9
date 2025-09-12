@@ -93,6 +93,6 @@ public class BlockMycelium extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {SNOWY});
+        return new BlockState(this, new IProperty[]{SNOWY});
     }
 }

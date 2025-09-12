@@ -86,7 +86,7 @@ public class CommandSetBlock extends CommandBase
                     }
                     catch (NBTException nbtexception)
                     {
-                        throw new CommandException("commands.setblock.tagError", new Object[] {nbtexception.getMessage()});
+                        throw new CommandException("commands.setblock.tagError", new Object[]{nbtexception.getMessage()});
                     }
                 }
 
@@ -112,9 +112,9 @@ public class CommandSetBlock extends CommandBase
 
                 if (tileentity1 != null)
                 {
-                    if (tileentity1 instanceof IInventory)
+                    if (tileentity1 instanceof IInventory inventory)
                     {
-                        ((IInventory)tileentity1).clear();
+                        inventory.clear();
                     }
 
                     world.setBlockState(blockpos, Blocks.air.getDefaultState(), block == Blocks.air ? 2 : 4);
@@ -151,6 +151,6 @@ public class CommandSetBlock extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length == 4 ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : (args.length == 6 ? getListOfStringsMatchingLastWord(args, new String[] {"replace", "destroy", "keep"}): null));
+        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length == 4 ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : (args.length == 6 ? getListOfStringsMatchingLastWord(args, new String[]{"replace", "destroy", "keep"}) : null));
     }
 }

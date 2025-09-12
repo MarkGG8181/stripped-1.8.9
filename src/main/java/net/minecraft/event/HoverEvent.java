@@ -26,23 +26,27 @@ public record HoverEvent(Action action, IChatComponent value) {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
-            HoverEvent hoverevent = (HoverEvent) p_equals_1_;
+        }
+        else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
+            HoverEvent hoverevent = (HoverEvent)p_equals_1_;
 
             if (this.action != hoverevent.action) {
                 return false;
-            } else {
+            }
+            else {
                 if (this.value != null) {
                     if (!this.value.equals(hoverevent.value)) {
                         return false;
                     }
-                } else if (hoverevent.value != null) {
+                }
+                else if (hoverevent.value != null) {
                     return false;
                 }
 
                 return true;
             }
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -75,7 +79,7 @@ public record HoverEvent(Action action, IChatComponent value) {
         }
 
         public static Action getValueByCanonicalName(String canonicalNameIn) {
-            return (Action) nameMapping.get(canonicalNameIn);
+            return (Action)nameMapping.get(canonicalNameIn);
         }
 
         static {

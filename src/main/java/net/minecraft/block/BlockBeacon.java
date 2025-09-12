@@ -46,9 +46,9 @@ public class BlockBeacon extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityBeacon)
+            if (tileentity instanceof TileEntityBeacon beacon)
             {
-                playerIn.displayGUIChest((TileEntityBeacon)tileentity);
+                playerIn.displayGUIChest(beacon);
                 playerIn.triggerAchievement(StatList.beaconInteractionStat);
             }
 
@@ -88,9 +88,9 @@ public class BlockBeacon extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityBeacon)
+            if (tileentity instanceof TileEntityBeacon beacon)
             {
-                ((TileEntityBeacon)tileentity).setName(stack.getDisplayName());
+                beacon.setName(stack.getDisplayName());
             }
         }
     }
@@ -102,9 +102,9 @@ public class BlockBeacon extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityBeacon)
+        if (tileentity instanceof TileEntityBeacon beacon)
         {
-            ((TileEntityBeacon)tileentity).updateBeacon();
+            beacon.updateBeacon();
             worldIn.addBlockEvent(pos, this, 1, 0);
         }
     }
@@ -141,9 +141,9 @@ public class BlockBeacon extends BlockContainer
                             {
                                 TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
-                                if (tileentity instanceof TileEntityBeacon)
+                                if (tileentity instanceof TileEntityBeacon beacon)
                                 {
-                                    ((TileEntityBeacon)tileentity).updateBeacon();
+                                    beacon.updateBeacon();
                                     worldIn.addBlockEvent(blockpos, Blocks.beacon, 1, 0);
                                 }
                             }

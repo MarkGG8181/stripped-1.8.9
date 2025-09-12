@@ -41,7 +41,7 @@ public class BlockFluidRenderer
         float f2 = (float)(i & 255) / 255.0F;
         boolean flag = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.up(), EnumFacing.UP);
         boolean flag1 = blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.down(), EnumFacing.DOWN);
-        boolean[] aboolean = new boolean[] {blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.north(), EnumFacing.NORTH), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.south(), EnumFacing.SOUTH), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.west(), EnumFacing.WEST), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.east(), EnumFacing.EAST)};
+        boolean[] aboolean = new boolean[]{blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.north(), EnumFacing.NORTH), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.south(), EnumFacing.SOUTH), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.west(), EnumFacing.WEST), blockliquid.shouldSideBeRendered(blockAccess, blockPosIn.east(), EnumFacing.EAST)};
 
         if (!flag && !flag1 && !aboolean[0] && !aboolean[1] && !aboolean[2] && !aboolean[3])
         {

@@ -23,7 +23,7 @@ public class TextureFix {
 
     public void runFix() {
         Minecraft mc = Minecraft.getMinecraft();
-        IReloadableResourceManager manager = (IReloadableResourceManager) mc.getResourceManager();
+        IReloadableResourceManager manager = (IReloadableResourceManager)mc.getResourceManager();
 
         manager.registerReloadListener(resourceManager -> {
             TextureMap textureMap = mc.getTextureMapBlocks();
@@ -38,7 +38,7 @@ public class TextureFix {
             for (TextureAtlasSprite sprite : spriteMap.values()) {
                 if (!sprite.hasAnimationMetadata()) {
                     fixedCount++;
-                    savedBytes += (long) sprite.getIconWidth() * sprite.getIconHeight() * 4;
+                    savedBytes += (long)sprite.getIconWidth() * sprite.getIconHeight() * 4;
                     sprite.setFramesTextureData(new FixList(sprite));
                 }
             }
@@ -64,7 +64,7 @@ public class TextureFix {
             for (Field field : map.getClass().getDeclaredFields()) {
                 if (field.getType() == Map.class) {
                     field.setAccessible(true);
-                    return (Map<String, TextureAtlasSprite>) field.get(map);
+                    return (Map<String, TextureAtlasSprite>)field.get(map);
                 }
             }
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class TextureFix {
 
     private static ResourceLocation getResourceLocation(TextureAtlasSprite sprite) {
         ResourceLocation base = new ResourceLocation(sprite.getIconName());
-        return new ResourceLocation(base.getResourceDomain(), String.format("texures/%s.png", base.getResourcePath()));
+        return new ResourceLocation(base.getResourceDomain(), "texures/%s.png".formatted(base.getResourcePath()));
     }
 
     public static class UnloadEntry {

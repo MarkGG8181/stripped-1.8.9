@@ -101,9 +101,9 @@ public class BlockDispenser extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityDispenser)
+            if (tileentity instanceof TileEntityDispenser dispenser)
             {
-                playerIn.displayGUIChest((TileEntityDispenser)tileentity);
+                playerIn.displayGUIChest(dispenser);
 
                 if (tileentity instanceof TileEntityDropper)
                 {
@@ -206,9 +206,9 @@ public class BlockDispenser extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityDispenser)
+            if (tileentity instanceof TileEntityDispenser dispenser)
             {
-                ((TileEntityDispenser)tileentity).setCustomName(stack.getDisplayName());
+                dispenser.setCustomName(stack.getDisplayName());
             }
         }
     }
@@ -217,9 +217,9 @@ public class BlockDispenser extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityDispenser)
+        if (tileentity instanceof TileEntityDispenser dispenser)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityDispenser)tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, dispenser);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
 
@@ -298,6 +298,6 @@ public class BlockDispenser extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, TRIGGERED});
+        return new BlockState(this, new IProperty[]{FACING, TRIGGERED});
     }
 }

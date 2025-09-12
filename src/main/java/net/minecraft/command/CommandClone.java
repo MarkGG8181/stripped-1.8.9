@@ -63,7 +63,7 @@ public class CommandClone extends CommandBase
 
             if (i > 32768)
             {
-                throw new CommandException("commands.clone.tooManyBlocks", new Object[] {Integer.valueOf(i), Integer.valueOf(32768)});
+                throw new CommandException("commands.clone.tooManyBlocks", new Object[]{Integer.valueOf(i), Integer.valueOf(32768)});
             }
             else
             {
@@ -160,9 +160,9 @@ public class CommandClone extends CommandBase
                                 {
                                     TileEntity tileentity1 = world.getTileEntity(blockpos6);
 
-                                    if (tileentity1 instanceof IInventory)
+                                    if (tileentity1 instanceof IInventory inventory)
                                     {
-                                        ((IInventory)tileentity1).clear();
+                                        inventory.clear();
                                     }
 
                                     world.setBlockState(blockpos6, Blocks.barrier.getDefaultState(), 2);
@@ -184,9 +184,9 @@ public class CommandClone extends CommandBase
                             {
                                 TileEntity tileentity2 = world.getTileEntity(commandclone$staticclonedata.pos);
 
-                                if (tileentity2 instanceof IInventory)
+                                if (tileentity2 instanceof IInventory inventory)
                                 {
-                                    ((IInventory)tileentity2).clear();
+                                    inventory.clear();
                                 }
 
                                 world.setBlockState(commandclone$staticclonedata.pos, Blocks.barrier.getDefaultState(), 2);
@@ -244,7 +244,7 @@ public class CommandClone extends CommandBase
                             else
                             {
                                 sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, i);
-                                notifyOperators(sender, this, "commands.clone.success", new Object[] {Integer.valueOf(i)});
+                                notifyOperators(sender, this, "commands.clone.success", new Object[]{Integer.valueOf(i)});
                             }
                         }
                         else
@@ -263,7 +263,7 @@ public class CommandClone extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length > 6 && args.length <= 9 ? func_175771_a(args, 6, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[] {"replace", "masked", "filtered"}): (args.length == 11 ? getListOfStringsMatchingLastWord(args, new String[] {"normal", "force", "move"}): (args.length == 12 && "filtered".equals(args[9]) ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : null)))));
+        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length > 6 && args.length <= 9 ? func_175771_a(args, 6, pos) : (args.length == 10 ? getListOfStringsMatchingLastWord(args, new String[]{"replace", "masked", "filtered"}) : (args.length == 11 ? getListOfStringsMatchingLastWord(args, new String[]{"normal", "force", "move"}) : (args.length == 12 && "filtered".equals(args[9]) ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : null)))));
     }
 
     static class StaticCloneData

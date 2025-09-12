@@ -19,7 +19,7 @@ public class StructureOceanMonument extends MapGenStructure
 {
     private int spacing;
     private int separation;
-    public static final List<BiomeGenBase> WATER_BIOMES = Arrays.<BiomeGenBase>asList(new BiomeGenBase[] {BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river, BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver});
+    public static final List<BiomeGenBase> WATER_BIOMES = Arrays.<BiomeGenBase>asList(new BiomeGenBase[]{BiomeGenBase.ocean, BiomeGenBase.deepOcean, BiomeGenBase.river, BiomeGenBase.frozenOcean, BiomeGenBase.frozenRiver});
     private static final List<BiomeGenBase.SpawnListEntry> MONUMENT_ENEMIES = new ArrayList<>();
 
     public StructureOceanMonument()
@@ -102,7 +102,7 @@ public class StructureOceanMonument extends MapGenStructure
     }
 
     static
-    {
+        {
         MONUMENT_ENEMIES.add(new BiomeGenBase.SpawnListEntry(EntityGuardian.class, 1, 2, 4));
     }
 

@@ -32,14 +32,14 @@ public class NBTTagString extends NBTBase {
     void read(DataInput input, int depth, NBTSizeTracker sizeTracker) throws IOException {
         sizeTracker.read(288L);
         this.data = input.readUTF();
-        sizeTracker.read((long) (16 * this.data.length()));
+        sizeTracker.read((long)(16 * this.data.length()));
     }
 
     /**
      * Gets the type byte for the tag.
      */
     public byte getId() {
-        return (byte) 8;
+        return (byte)8;
     }
 
     @Override
@@ -64,8 +64,9 @@ public class NBTTagString extends NBTBase {
     public boolean equals(Object p_equals_1_) {
         if (!super.equals(p_equals_1_)) {
             return false;
-        } else {
-            NBTTagString nbttagstring = (NBTTagString) p_equals_1_;
+        }
+        else {
+            NBTTagString nbttagstring = (NBTTagString)p_equals_1_;
             return this.data == null && nbttagstring.data == null || this.data != null && this.data.equals(nbttagstring.data);
         }
     }

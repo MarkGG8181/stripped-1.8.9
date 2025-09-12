@@ -107,9 +107,9 @@ public class BlockBanner extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityBanner)
+        if (tileentity instanceof TileEntityBanner banner)
         {
-            ItemStack itemstack = new ItemStack(Items.banner, 1, ((TileEntityBanner)tileentity).getBaseColor());
+            ItemStack itemstack = new ItemStack(Items.banner, 1, banner.getBaseColor());
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             tileentity.writeToNBT(nbttagcompound);
             nbttagcompound.removeTag("x");
@@ -132,10 +132,9 @@ public class BlockBanner extends BlockContainer
 
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te)
     {
-        if (te instanceof TileEntityBanner)
+        if (te instanceof TileEntityBanner tileentitybanner)
         {
-            TileEntityBanner tileentitybanner = (TileEntityBanner)te;
-            ItemStack itemstack = new ItemStack(Items.banner, 1, ((TileEntityBanner)te).getBaseColor());
+            ItemStack itemstack = new ItemStack(Items.banner, 1, tileentitybanner.getBaseColor());
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             TileEntityBanner.setBaseColorAndPatterns(nbttagcompound, tileentitybanner.getBaseColor(), tileentitybanner.getPatterns());
             itemstack.setTagInfo("BlockEntityTag", nbttagcompound);
@@ -216,7 +215,7 @@ public class BlockBanner extends BlockContainer
 
         protected BlockState createBlockState()
         {
-            return new BlockState(this, new IProperty[] {FACING});
+            return new BlockState(this, new IProperty[]{FACING});
         }
     }
 
@@ -250,7 +249,7 @@ public class BlockBanner extends BlockContainer
 
         protected BlockState createBlockState()
         {
-            return new BlockState(this, new IProperty[] {ROTATION});
+            return new BlockState(this, new IProperty[]{ROTATION});
         }
     }
 }

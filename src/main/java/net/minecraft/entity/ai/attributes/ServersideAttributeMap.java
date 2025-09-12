@@ -36,9 +36,9 @@ public class ServersideAttributeMap extends BaseAttributeMap
     {
         IAttributeInstance iattributeinstance = super.registerAttribute(attribute);
 
-        if (attribute instanceof RangedAttribute && ((RangedAttribute)attribute).getDescription() != null)
+        if (attribute instanceof RangedAttribute rangedAttribute && rangedAttribute.getDescription() != null)
         {
-            this.descriptionToAttributeInstanceMap.put(((RangedAttribute)attribute).getDescription(), iattributeinstance);
+            this.descriptionToAttributeInstanceMap.put(rangedAttribute.getDescription(), iattributeinstance);
         }
 
         return iattributeinstance;

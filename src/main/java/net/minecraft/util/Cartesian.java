@@ -8,12 +8,12 @@ import java.util.*;
 
 public class Cartesian
 {
-    public static <T> Iterable<T[]> cartesianProduct(Class<T> clazz, Iterable <? extends Iterable <? extends T >> sets)
+    public static <T> Iterable<T[]> cartesianProduct(Class<T> clazz, Iterable<? extends Iterable<? extends T>> sets)
     {
         return new Cartesian.Product(clazz, (Iterable[])toArray(Iterable.class, sets));
     }
 
-    public static <T> Iterable<List<T>> cartesianProduct(Iterable <? extends Iterable <? extends T >> sets)
+    public static <T> Iterable<List<T>> cartesianProduct(Iterable<? extends Iterable<? extends T>> sets)
     {
         return arraysAsLists(cartesianProduct(Object.class, sets));
     }
@@ -23,7 +23,7 @@ public class Cartesian
         return Iterables.transform(arrays, new Cartesian.GetList());
     }
 
-    private static <T> T[] toArray(Class <? super T > clazz, Iterable <? extends T > it)
+    private static <T> T[] toArray(Class<? super T> clazz, Iterable<? extends T> it)
     {
         List<T> list = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class Cartesian
         return (T[])((Object[])list.toArray(createArray(clazz, list.size())));
     }
 
-    private static <T> T[] createArray(Class <? super T > p_179319_0_, int p_179319_1_)
+    private static <T> T[] createArray(Class<? super T> p_179319_0_, int p_179319_1_)
     {
         return (T[])((Object[])((Object[])Array.newInstance(p_179319_0_, p_179319_1_)));
     }
@@ -55,9 +55,9 @@ public class Cartesian
     static class Product<T> implements Iterable<T[]>
     {
         private final Class<T> clazz;
-        private final Iterable <? extends T > [] iterables;
+        private final Iterable<? extends T> [] iterables;
 
-        private Product(Class<T> clazz, Iterable <? extends T > [] iterables)
+        private Product(Class<T> clazz, Iterable<? extends T> [] iterables)
         {
             this.clazz = clazz;
             this.iterables = iterables;
@@ -71,11 +71,11 @@ public class Cartesian
         static class ProductIterator<T> extends UnmodifiableIterator<T[]>
         {
             private int index;
-            private final Iterable <? extends T > [] iterables;
-            private final Iterator <? extends T > [] iterators;
+            private final Iterable<? extends T> [] iterables;
+            private final Iterator<? extends T> [] iterators;
             private final T[] results;
 
-            private ProductIterator(Class<T> clazz, Iterable <? extends T > [] iterables)
+            private ProductIterator(Class<T> clazz, Iterable<? extends T> [] iterables)
             {
                 this.index = -2;
                 this.iterables = iterables;
@@ -102,7 +102,7 @@ public class Cartesian
                 {
                     this.index = 0;
 
-                    for (Iterator <? extends T > iterator1 : this.iterators)
+                    for (Iterator<? extends T> iterator1 : this.iterators)
                     {
                         if (!iterator1.hasNext())
                         {
@@ -119,7 +119,7 @@ public class Cartesian
                     {
                         for (this.index = this.iterators.length - 1; this.index >= 0; --this.index)
                         {
-                            Iterator <? extends T > iterator = this.iterators[this.index];
+                            Iterator<? extends T> iterator = this.iterators[this.index];
 
                             if (iterator.hasNext())
                             {

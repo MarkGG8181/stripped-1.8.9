@@ -121,7 +121,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             flag = false;
         }
 
-        IChatComponent ichatcomponent = new ChatComponentTranslation("chat.type.admin", new Object[] {sender.getName(), new ChatComponentTranslation(msgFormat, msgParams)});
+        IChatComponent ichatcomponent = new ChatComponentTranslation("chat.type.admin", new Object[]{sender.getName(), new ChatComponentTranslation(msgFormat, msgParams)});
         ichatcomponent.getChatStyle().setColor(EnumChatFormatting.GRAY);
         ichatcomponent.getChatStyle().setItalic(Boolean.valueOf(true));
 
@@ -149,9 +149,9 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
 
         boolean flag3 = minecraftserver.worldServers[0].getGameRules().getBoolean("sendCommandFeedback");
 
-        if (sender instanceof CommandBlockLogic)
+        if (sender instanceof CommandBlockLogic logic)
         {
-            flag3 = ((CommandBlockLogic)sender).shouldTrackOutput();
+            flag3 = logic.shouldTrackOutput();
         }
 
         if ((flags & 1) != 1 && flag3 || sender instanceof MinecraftServer)

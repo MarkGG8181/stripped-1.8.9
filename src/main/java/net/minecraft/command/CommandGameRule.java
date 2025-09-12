@@ -52,7 +52,7 @@ public class CommandGameRule extends CommandBase
             case 1:
                 if (!gamerules.hasRule(s))
                 {
-                    throw new CommandException("commands.gamerule.norule", new Object[] {s});
+                    throw new CommandException("commands.gamerule.norule", new Object[]{s});
                 }
 
                 String s2 = gamerules.getString(s);
@@ -63,7 +63,7 @@ public class CommandGameRule extends CommandBase
             default:
                 if (gamerules.areSameType(s, GameRules.ValueType.BOOLEAN_VALUE) && !"true".equals(s1) && !"false".equals(s1))
                 {
-                    throw new CommandException("commands.generic.boolean.invalid", new Object[] {s1});
+                    throw new CommandException("commands.generic.boolean.invalid", new Object[]{s1});
                 }
 
                 gamerules.setOrCreateGameRule(s, s1);
@@ -99,7 +99,7 @@ public class CommandGameRule extends CommandBase
 
                 if (gamerules.areSameType(args[0], GameRules.ValueType.BOOLEAN_VALUE))
                 {
-                    return getListOfStringsMatchingLastWord(args, new String[] {"true", "false"});
+                    return getListOfStringsMatchingLastWord(args, new String[]{"true", "false"});
                 }
             }
 

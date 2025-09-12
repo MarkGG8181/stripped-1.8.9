@@ -25,10 +25,12 @@ public class BlockPattern {
 
             if (this.thumbLength > 0) {
                 this.palmLength = predicatesIn[0][0].length;
-            } else {
+            }
+            else {
                 this.palmLength = 0;
             }
-        } else {
+        }
+        else {
             this.thumbLength = 0;
             this.palmLength = 0;
         }
@@ -98,7 +100,8 @@ public class BlockPattern {
             Vec3i vec3i1 = new Vec3i(thumb.getFrontOffsetX(), thumb.getFrontOffsetY(), thumb.getFrontOffsetZ());
             Vec3i vec3i2 = vec3i.crossProduct(vec3i1);
             return pos.add(vec3i1.getX() * -thumbOffset + vec3i2.getX() * palmOffset + vec3i.getX() * fingerOffset, vec3i1.getY() * -thumbOffset + vec3i2.getY() * palmOffset + vec3i.getY() * fingerOffset, vec3i1.getZ() * -thumbOffset + vec3i2.getZ() * palmOffset + vec3i.getZ() * fingerOffset);
-        } else {
+        }
+        else {
             throw new IllegalArgumentException("Invalid forwards & up combination");
         }
     }
@@ -157,7 +160,7 @@ public class BlockPattern {
         }
 
         public BlockWorldState translateOffset(int palmOffset, int thumbOffset, int fingerOffset) {
-            return (BlockWorldState) this.lcache.getUnchecked(BlockPattern.translateOffset(this.pos, this.getFinger(), this.getThumb(), palmOffset, thumbOffset, fingerOffset));
+            return (BlockWorldState)this.lcache.getUnchecked(BlockPattern.translateOffset(this.pos, this.getFinger(), this.getThumb(), palmOffset, thumbOffset, fingerOffset));
         }
 
         public String toString() {

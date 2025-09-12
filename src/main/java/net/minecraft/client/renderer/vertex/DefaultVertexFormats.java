@@ -22,7 +22,7 @@ public class DefaultVertexFormats
     public static final VertexFormatElement PADDING_1B = new VertexFormatElement(0, VertexFormatElement.EnumType.BYTE, VertexFormatElement.EnumUsage.PADDING, 1);
 
     static
-    {
+        {
         BLOCK.addElement(POSITION_3F);
         BLOCK.addElement(COLOR_4UB);
         BLOCK.addElement(TEX_2F);

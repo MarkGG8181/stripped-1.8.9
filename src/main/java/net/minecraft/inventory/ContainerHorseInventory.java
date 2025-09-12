@@ -30,6 +30,7 @@ public class ContainerHorseInventory extends Container
             {
                 return super.isItemValid(stack) && horse.canWearArmor() && EntityHorse.isArmorItem(stack.getItem());
             }
+
             public boolean canBeHovered()
             {
                 return horse.canWearArmor();

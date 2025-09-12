@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -23,11 +25,11 @@ public class EntityCrit2FX extends EntityFX
         this.motionX += p_i46285_8_ * 0.4D;
         this.motionY += p_i46285_10_ * 0.4D;
         this.motionZ += p_i46285_12_ * 0.4D;
-        this.particleRed = this.particleGreen = this.particleBlue = (float)(Math.random() * 0.30000001192092896D + 0.6000000238418579D);
+        this.particleRed = this.particleGreen = this.particleBlue = (float)(ThreadLocalRandom.current().nextDouble() * 0.30000001192092896D + 0.6000000238418579D);
         this.particleScale *= 0.75F;
         this.particleScale *= p_i46285_14_;
         this.oSize = this.particleScale;
-        this.particleMaxAge = (int)(6.0D / (Math.random() * 0.8D + 0.6D));
+        this.particleMaxAge = (int)(6.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.6D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * p_i46285_14_);
         this.noClip = false;
         this.setParticleTextureIndex(65);

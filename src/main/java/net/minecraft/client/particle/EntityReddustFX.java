@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -26,14 +28,14 @@ public class EntityReddustFX extends EntityFX
             p_i46350_9_ = 1.0F;
         }
 
-        float f = (float)Math.random() * 0.4F + 0.6F;
-        this.particleRed = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_9_ * f;
-        this.particleGreen = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_10_ * f;
-        this.particleBlue = ((float)(Math.random() * 0.20000000298023224D) + 0.8F) * p_i46350_11_ * f;
+        float f = (float)ThreadLocalRandom.current().nextDouble() * 0.4F + 0.6F;
+        this.particleRed = ((float)(ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D) + 0.8F) * p_i46350_9_ * f;
+        this.particleGreen = ((float)(ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D) + 0.8F) * p_i46350_10_ * f;
+        this.particleBlue = ((float)(ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D) + 0.8F) * p_i46350_11_ * f;
         this.particleScale *= 0.75F;
         this.particleScale *= p_i46350_8_;
         this.reddustParticleScale = this.particleScale;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * p_i46350_8_);
         this.noClip = false;
     }

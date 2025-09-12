@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
@@ -53,7 +55,7 @@ public class TextureCompass extends TextureAtlasSprite
 
                 if (!worldIn.provider.isSurfaceWorld())
                 {
-                    d0 = Math.random() * Math.PI * 2.0D;
+                    d0 = ThreadLocalRandom.current().nextDouble() * Math.PI * 2.0D;
                 }
             }
 
@@ -67,7 +69,6 @@ public class TextureCompass extends TextureAtlasSprite
 
                 for (d3 = d0 - this.currentAngle; d3 < -Math.PI; d3 += (Math.PI * 2D))
                 {
-                    ;
                 }
 
                 while (d3 >= Math.PI)
@@ -85,7 +86,6 @@ public class TextureCompass extends TextureAtlasSprite
 
             for (i = (int)((this.currentAngle / (Math.PI * 2D) + 1.0D) * (double)this.framesTextureData.size()) % this.framesTextureData.size(); i < 0; i = (i + this.framesTextureData.size()) % this.framesTextureData.size())
             {
-                ;
             }
 
             if (i != this.frameCounter)

@@ -23,10 +23,10 @@ import net.minecraft.util.ITickable;
 public class TileEntityBrewingStand extends TileEntityLockable implements ITickable, ISidedInventory
 {
     /** an array of the input slot indices */
-    private static final int[] inputSlots = new int[] {3};
+    private static final int[] inputSlots = new int[]{3};
 
     /** an array of the output slot indices */
-    private static final int[] outputSlots = new int[] {0, 1, 2};
+    private static final int[] outputSlots = new int[]{0, 1, 2};
 
     /** The ItemStacks currently placed in the slots of the brewing stand */
     private ItemStack[] brewingItemStacks = new ItemStack[4];
@@ -412,14 +412,12 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
     public int getField(int id)
     {
-        switch (id)
+        return switch (id)
         {
-            case 0:
-                return this.brewTime;
+            case 0 -> this.brewTime;
 
-            default:
-                return 0;
-        }
+            default -> 0;
+        };
     }
 
     public void setField(int id, int value)

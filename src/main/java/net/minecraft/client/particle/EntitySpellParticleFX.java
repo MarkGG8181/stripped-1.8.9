@@ -1,6 +1,8 @@
 package net.minecraft.client.particle;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -25,7 +27,7 @@ public class EntitySpellParticleFX extends EntityFX
         }
 
         this.particleScale *= 0.75F;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.noClip = false;
     }
 

@@ -42,7 +42,8 @@ public class BlockSugarcane extends Block {
                     if (j == 15) {
                         worldIn.setBlockState(pos.up(), this.getDefaultState());
                         worldIn.setBlockState(pos, state.withProperty(AGE, 0), 4);
-                    } else {
+                    }
+                    else {
                         worldIn.setBlockState(pos, state.withProperty(AGE, j + 1), 4);
                     }
                 }
@@ -55,9 +56,11 @@ public class BlockSugarcane extends Block {
 
         if (block == this) {
             return true;
-        } else if (block != Blocks.grass && block != Blocks.dirt && block != Blocks.sand) {
+        }
+        else if (block != Blocks.grass && block != Blocks.dirt && block != Blocks.sand) {
             return false;
-        } else {
+        }
+        else {
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
                 if (worldIn.getBlockState(pos.offset(enumfacing).down()).getBlock().getMaterial() == Material.water) {
                     return true;
@@ -78,7 +81,8 @@ public class BlockSugarcane extends Block {
     protected final boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state) {
         if (this.canBlockStay(worldIn, pos)) {
             return true;
-        } else {
+        }
+        else {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
             return false;

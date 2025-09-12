@@ -296,7 +296,8 @@ public class ComponentScatteredFeaturePieces {
         protected boolean func_74935_a(World worldIn, StructureBoundingBox p_74935_2_, int p_74935_3_) {
             if (this.horizontalPos >= 0) {
                 return true;
-            } else {
+            }
+            else {
                 int i = 0;
                 int j = 0;
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -314,7 +315,8 @@ public class ComponentScatteredFeaturePieces {
 
                 if (j == 0) {
                     return false;
-                } else {
+                }
+                else {
                     this.horizontalPos = i / j;
                     this.boundingBox.offset(0, this.horizontalPos - this.boundingBox.minY + p_74935_3_, 0);
                     return true;
@@ -358,7 +360,8 @@ public class ComponentScatteredFeaturePieces {
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
             if (!this.func_74935_a(worldIn, structureBoundingBoxIn, 0)) {
                 return false;
-            } else {
+            }
+            else {
                 int i = this.getMetadataWithOffset(Blocks.stone_stairs, 3);
                 int j = this.getMetadataWithOffset(Blocks.stone_stairs, 2);
                 int k = this.getMetadataWithOffset(Blocks.stone_stairs, 0);
@@ -544,7 +547,8 @@ public class ComponentScatteredFeaturePieces {
             public void selectBlocks(Random rand, int x, int y, int z, boolean p_75062_5_) {
                 if (rand.nextFloat() < 0.4F) {
                     this.blockstate = Blocks.cobblestone.getDefaultState();
-                } else {
+                }
+                else {
                     this.blockstate = Blocks.mossy_cobblestone.getDefaultState();
                 }
             }
@@ -574,7 +578,8 @@ public class ComponentScatteredFeaturePieces {
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
             if (!this.func_74935_a(worldIn, structureBoundingBoxIn, 0)) {
                 return false;
-            } else {
+            }
+            else {
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 5, 1, 7, Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 2, 5, 4, 7, Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 1, 0, 4, 1, 0, Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), Blocks.planks.getStateFromMeta(BlockPlanks.EnumType.SPRUCE.getMetadata()), false);
@@ -619,8 +624,8 @@ public class ComponentScatteredFeaturePieces {
                     if (structureBoundingBoxIn.isVecInside(new BlockPos(l1, i2, k1))) {
                         this.hasWitch = true;
                         EntityWitch entitywitch = new EntityWitch(worldIn);
-                        entitywitch.setLocationAndAngles((double) l1 + 0.5D, (double) i2, (double) k1 + 0.5D, 0.0F, 0.0F);
-                        entitywitch.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(l1, i2, k1)), (IEntityLivingData) null);
+                        entitywitch.setLocationAndAngles((double)l1 + 0.5D, (double)i2, (double)k1 + 0.5D, 0.0F, 0.0F);
+                        entitywitch.onInitialSpawn(worldIn.getDifficultyForLocation(new BlockPos(l1, i2, k1)), (IEntityLivingData)null);
                         worldIn.spawnEntityInWorld(entitywitch);
                     }
                 }

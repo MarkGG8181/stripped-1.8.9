@@ -244,7 +244,7 @@ public enum EnumFacing implements IStringSerializable {
      * Get the facing specified by the given name
      */
     public static EnumFacing byName(String name) {
-        return name == null ? null : (EnumFacing) NAME_LOOKUP.get(name.toLowerCase());
+        return name == null ? null : (EnumFacing)NAME_LOOKUP.get(name.toLowerCase());
     }
 
     /**
@@ -280,7 +280,7 @@ public enum EnumFacing implements IStringSerializable {
         float f = Float.MIN_VALUE;
 
         for (EnumFacing enumfacing1 : values()) {
-            float f1 = p_176737_0_ * (float) enumfacing1.directionVec.getX() + p_176737_1_ * (float) enumfacing1.directionVec.getY() + p_176737_2_ * (float) enumfacing1.directionVec.getZ();
+            float f1 = p_176737_0_ * (float)enumfacing1.directionVec.getX() + p_176737_1_ * (float)enumfacing1.directionVec.getY() + p_176737_2_ * (float)enumfacing1.directionVec.getZ();
 
             if (f1 > f) {
                 f = f1;
@@ -343,7 +343,7 @@ public enum EnumFacing implements IStringSerializable {
         }
 
         public static EnumFacing.Axis byName(String name) {
-            return name == null ? null : (EnumFacing.Axis) NAME_LOOKUP.get(name.toLowerCase());
+            return name == null ? null : (EnumFacing.Axis)NAME_LOOKUP.get(name.toLowerCase());
         }
 
         public String getName2() {

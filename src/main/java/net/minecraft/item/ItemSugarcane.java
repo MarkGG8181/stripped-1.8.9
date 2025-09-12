@@ -25,15 +25,18 @@ public class ItemSugarcane extends Item {
 
         if (block == Blocks.snow_layer && iblockstate.getValue(BlockSnow.LAYERS) < 1) {
             side = EnumFacing.UP;
-        } else if (!block.isReplaceable(worldIn, pos)) {
+        }
+        else if (!block.isReplaceable(worldIn, pos)) {
             pos = pos.offset(side);
         }
 
         if (!playerIn.canPlayerEdit(pos, side, stack)) {
             return false;
-        } else if (stack.stackSize == 0) {
+        }
+        else if (stack.stackSize == 0) {
             return false;
-        } else {
+        }
+        else {
             if (worldIn.canBlockBePlaced(this.block, pos, false, side, null, stack)) {
                 IBlockState iblockstate1 = this.block.onBlockPlaced(worldIn, pos, side, hitX, hitY, hitZ, 0, playerIn);
 
@@ -45,7 +48,7 @@ public class ItemSugarcane extends Item {
                         iblockstate1.getBlock().onBlockPlacedBy(worldIn, pos, iblockstate1, playerIn, stack);
                     }
 
-                    worldIn.playSoundEffect((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F), this.block.stepSound.getPlaceSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
+                    worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), this.block.stepSound.getPlaceSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
                     --stack.stackSize;
                     return true;
                 }

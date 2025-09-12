@@ -37,11 +37,12 @@ public class VillageSiege {
     public void tick() {
         if (this.worldObj.isDaytime()) {
             this.siegeState = 0;
-        } else if (this.siegeState != 2) {
+        }
+        else if (this.siegeState != 2) {
             if (this.siegeState == 0) {
                 float f = this.worldObj.getCelestialAngle(0.0F);
 
-                if ((double) f < 0.5D || (double) f > 0.501D) {
+                if ((double)f < 0.5D || (double)f > 0.501D) {
                     return;
                 }
 
@@ -64,13 +65,15 @@ public class VillageSiege {
 
                 if (this.nextSpawnTime > 0) {
                     --this.nextSpawnTime;
-                } else {
+                }
+                else {
                     this.nextSpawnTime = 2;
 
                     if (this.siegeCount > 0) {
                         this.spawnZombie();
                         --this.siegeCount;
-                    } else {
+                    }
+                    else {
                         this.siegeState = 2;
                     }
                 }
@@ -94,14 +97,14 @@ public class VillageSiege {
 
                 if (this.theVillage != null && this.theVillage.getNumVillageDoors() >= 10 && this.theVillage.getTicksSinceLastDoorAdding() >= 20 && this.theVillage.getNumVillagers() >= 20) {
                     BlockPos blockpos = this.theVillage.getCenter();
-                    float f = (float) this.theVillage.getVillageRadius();
+                    float f = (float)this.theVillage.getVillageRadius();
                     boolean flag = false;
 
                     for (int i = 0; i < 10; ++i) {
-                        float f1 = this.worldObj.rand.nextFloat() * (float) Math.PI * 2.0F;
-                        this.spawnX = blockpos.getX() + (int) ((double) (MathHelper.cos(f1) * f) * 0.9D);
+                        float f1 = this.worldObj.rand.nextFloat() * (float)Math.PI * 2.0F;
+                        this.spawnX = blockpos.getX() + (int)((double)(MathHelper.cos(f1) * f) * 0.9D);
                         this.spawnY = blockpos.getY();
-                        this.spawnZ = blockpos.getZ() + (int) ((double) (MathHelper.sin(f1) * f) * 0.9D);
+                        this.spawnZ = blockpos.getZ() + (int)((double)(MathHelper.sin(f1) * f) * 0.9D);
                         flag = false;
 
                         for (Village village : this.worldObj.getVillageCollection().getVillageList()) {
@@ -161,7 +164,7 @@ public class VillageSiege {
             BlockPos blockpos = p_179867_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
             if (this.theVillage.func_179866_a(blockpos) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, this.worldObj, blockpos)) {
-                return new Vec3((double) blockpos.getX(), (double) blockpos.getY(), (double) blockpos.getZ());
+                return new Vec3((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
             }
         }
 

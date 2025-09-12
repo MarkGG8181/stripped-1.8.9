@@ -47,38 +47,47 @@ public class CommandResultStats
                 {
                     return sender.getName();
                 }
+
                 public IChatComponent getDisplayName()
                 {
                     return sender.getDisplayName();
                 }
+
                 public void addChatMessage(IChatComponent component)
                 {
                     sender.addChatMessage(component);
                 }
+
                 public boolean canCommandSenderUseCommand(int permLevel, String commandName)
                 {
                     return true;
                 }
+
                 public BlockPos getPosition()
                 {
                     return sender.getPosition();
                 }
+
                 public Vec3 getPositionVector()
                 {
                     return sender.getPositionVector();
                 }
+
                 public World getEntityWorld()
                 {
                     return sender.getEntityWorld();
                 }
+
                 public Entity getCommandSenderEntity()
                 {
                     return sender.getCommandSenderEntity();
                 }
+
                 public boolean sendCommandFeedback()
                 {
                     return sender.sendCommandFeedback();
                 }
+
                 public void setCommandStat(CommandResultStats.Type type, int amount)
                 {
                     sender.setCommandStat(type, amount);

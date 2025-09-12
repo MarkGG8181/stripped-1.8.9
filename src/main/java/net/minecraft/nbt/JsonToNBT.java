@@ -179,7 +179,7 @@ public class JsonToNBT
     {
         String s = func_150313_b(p_179270_0_, p_179270_1_);
         String s1 = func_150311_c(p_179270_0_, p_179270_1_);
-        return func_179272_a(new String[] {s, s1});
+        return func_179272_a(new String[]{s, s1});
     }
 
     private static String func_150314_a(String p_150314_0_, boolean p_150314_1_) throws NBTException

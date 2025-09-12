@@ -19,10 +19,12 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback {
         if (this.mc.theWorld.getWorldInfo().isHardcoreModeEnabled()) {
             if (this.mc.isIntegratedServerRunning()) {
                 this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 96, I18n.format("deathScreen.deleteWorld", new Object[0])));
-            } else {
+            }
+            else {
                 this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 96, I18n.format("deathScreen.leaveServer", new Object[0])));
             }
-        } else {
+        }
+        else {
             this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 72, I18n.format("deathScreen.respawn", new Object[0])));
             this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 96, I18n.format("deathScreen.titleScreen", new Object[0])));
 
@@ -49,7 +51,8 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback {
             case 1:
                 if (this.mc.theWorld.getWorldInfo().isHardcoreModeEnabled()) {
                     this.mc.displayGuiScreen(new GuiMainMenu());
-                } else {
+                }
+                else {
                     GuiYesNo guiyesno = new GuiYesNo(this, I18n.format("deathScreen.quit.confirm"), "", I18n.format("deathScreen.titleScreen", new Object[0]), I18n.format("deathScreen.respawn", new Object[0]), 0);
                     this.mc.displayGuiScreen(guiyesno);
                     guiyesno.setButtonDelay(20);
@@ -62,7 +65,8 @@ public class GuiGameOver extends GuiScreen implements GuiYesNoCallback {
             this.mc.theWorld.sendQuittingDisconnectingPacket();
             this.mc.loadWorld(null);
             this.mc.displayGuiScreen(new GuiMainMenu());
-        } else {
+        }
+        else {
             this.mc.thePlayer.respawnPlayer();
             this.mc.displayGuiScreen(null);
         }

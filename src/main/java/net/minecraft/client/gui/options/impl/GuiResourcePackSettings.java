@@ -120,16 +120,17 @@ public class GuiResourcePackSettings extends GuiScreen {
                         Runtime.getRuntime().exec(new String[]{"/usr/bin/open", s});
                         return;
                     } catch (IOException ioexception1) {
-                        logger.error((String) "Couldn\'t open file", (Throwable) ioexception1);
+                        logger.error((String)"Couldn\'t open file", (Throwable)ioexception1);
                     }
-                } else if (Util.getOSType() == Util.EnumOS.WINDOWS) {
-                    String s1 = String.format("cmd.exe /C start \"Open file\" \"%s\"", new Object[]{s});
+                }
+                else if (Util.getOSType() == Util.EnumOS.WINDOWS) {
+                    String s1 = "cmd.exe /C start \"Open file\" \"%s\"".formatted(new Object[]{s});
 
                     try {
-                        Runtime.getRuntime().exec(s1);
+                        Runtime.getRuntime().exec(s1.split(" "));
                         return;
                     } catch (IOException ioexception) {
-                        logger.error((String) "Couldn\'t open file", (Throwable) ioexception);
+                        logger.error((String)"Couldn\'t open file", (Throwable)ioexception);
                     }
                 }
 
@@ -137,7 +138,7 @@ public class GuiResourcePackSettings extends GuiScreen {
 
                 try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object)null, new Object[0]);
                     oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{file1.toURI()});
                 } catch (Throwable throwable) {
                     logger.error("Couldn\'t open link", throwable);
@@ -148,13 +149,14 @@ public class GuiResourcePackSettings extends GuiScreen {
                     logger.info("Opening via system class!");
                     Sys.openURL("file://" + s);
                 }
-            } else if (button.id == 1) {
+            }
+            else if (button.id == 1) {
                 if (this.changed) {
                     List<ResourcePackRepository.Entry> list = new ArrayList<>();
 
                     for (ResourcePackListEntry resourcepacklistentry : this.selectedResourcePacks) {
-                        if (resourcepacklistentry instanceof ResourcePackListEntryFound) {
-                            list.add(((ResourcePackListEntryFound) resourcepacklistentry).func_148318_i());
+                        if (resourcepacklistentry instanceof ResourcePackListEntryFound found) {
+                            list.add(found.func_148318_i());
                         }
                     }
 

@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockNote extends BlockContainer
 {
-    private static final List<String> INSTRUMENTS = Lists.newArrayList(new String[] {"harp", "bd", "snare", "hat", "bassattack"});
+    private static final List<String> INSTRUMENTS = Lists.newArrayList(new String[]{"harp", "bd", "snare", "hat", "bassattack"});
 
     public BlockNote()
     {
@@ -32,9 +32,8 @@ public class BlockNote extends BlockContainer
         boolean flag = worldIn.isBlockPowered(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityNote)
+        if (tileentity instanceof TileEntityNote tileentitynote)
         {
-            TileEntityNote tileentitynote = (TileEntityNote)tileentity;
 
             if (tileentitynote.previousRedstoneState != flag)
             {
@@ -58,9 +57,8 @@ public class BlockNote extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityNote)
+            if (tileentity instanceof TileEntityNote tileentitynote)
             {
-                TileEntityNote tileentitynote = (TileEntityNote)tileentity;
                 tileentitynote.changePitch();
                 tileentitynote.triggerNote(worldIn, pos);
                 playerIn.triggerAchievement(StatList.noteblockTunedStat);
@@ -76,9 +74,9 @@ public class BlockNote extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityNote)
+            if (tileentity instanceof TileEntityNote note)
             {
-                ((TileEntityNote)tileentity).triggerNote(worldIn, pos);
+                note.triggerNote(worldIn, pos);
                 playerIn.triggerAchievement(StatList.noteblockPlayedStat);
             }
         }

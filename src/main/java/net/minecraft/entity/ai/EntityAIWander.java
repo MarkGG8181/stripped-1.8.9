@@ -41,7 +41,8 @@ public class EntityAIWander extends EntityAIBase {
 
         if (vec3 == null) {
             return false;
-        } else {
+        }
+        else {
             this.xPosition = vec3.x;
             this.yPosition = vec3.y;
             this.zPosition = vec3.z;

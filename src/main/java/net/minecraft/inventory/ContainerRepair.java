@@ -68,10 +68,12 @@ public class ContainerRepair extends Container
             {
                 return false;
             }
+
             public boolean canTakeStack(EntityPlayer playerIn)
             {
                 return (playerIn.capabilities.isCreativeMode || playerIn.experienceLevel >= ContainerRepair.this.maximumCost) && ContainerRepair.this.maximumCost > 0 && this.getHasStack();
             }
+
             public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
             {
                 if (!playerIn.capabilities.isCreativeMode)

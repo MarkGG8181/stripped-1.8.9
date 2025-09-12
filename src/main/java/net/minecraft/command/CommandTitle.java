@@ -101,7 +101,7 @@ public class CommandTitle extends CommandBase
                     catch (JsonParseException jsonparseexception)
                     {
                         Throwable throwable = ExceptionUtils.getRootCause(jsonparseexception);
-                        throw new SyntaxErrorException("commands.tellraw.jsonException", new Object[] {throwable == null ? "" : throwable.getMessage()});
+                        throw new SyntaxErrorException("commands.tellraw.jsonException", new Object[]{throwable == null ? "" : throwable.getMessage()});
                     }
 
                     S45PacketTitle s45packettitle1 = new S45PacketTitle(s45packettitle$type, ChatComponentProcessor.processComponent(sender, ichatcomponent, entityplayermp));

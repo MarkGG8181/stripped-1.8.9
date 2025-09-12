@@ -39,7 +39,7 @@ public class LightingEngine implements ILightingEngine {
     static {
         for (EnumFacing facing : EnumFacing.values()) {
             final Vec3i offset = facing.getDirectionVec();
-            neighborShifts[facing.ordinal()] = ((long) offset.getY() << sY) | ((long) offset.getX() << sX) | ((long) offset.getZ() << sZ);
+            neighborShifts[facing.ordinal()] = ((long)offset.getY() << sY) | ((long)offset.getX() << sX) | ((long)offset.getZ() << sZ);
         }
     }
 
@@ -155,15 +155,16 @@ public class LightingEngine implements ILightingEngine {
             final int newLight = this.calculateNewLightFromCursor(lightType);
 
             if (oldLight < newLight) {
-                this.initialBrightenings.add(((long) newLight << sL) | this.curData);
-            } else if (oldLight > newLight) {
+                this.initialBrightenings.add(((long)newLight << sL) | this.curData);
+            }
+            else if (oldLight > newLight) {
                 this.initialDarkenings.add(this.curData);
             }
         }
 
         this.queueIt = this.initialBrightenings.iterator();
         while (this.nextItem()) {
-            final int newLight = (int) (this.curData >> sL & mL);
+            final int newLight = (int)(this.curData >> sL & mL);
             if (newLight > this.getCursorCachedLight(lightType)) {
                 this.enqueueBrightening(this.curPos, this.curData & mPos, newLight, this.curChunk, lightType);
             }
@@ -195,15 +196,17 @@ public class LightingEngine implements ILightingEngine {
                     this.fetchNeighborDataFromCursor(lightType);
                     for (NeighborInfo info : this.neighborInfos) {
                         if (info.chunk == null || info.light == 0) continue;
-                        
+
                         if (curLight - this.getPosOpacity(info.pos, BlockStateHelper.getBlockState(info.chunk, info.pos)) >= info.light) {
                             this.enqueueDarkening(info.pos, info.key, info.light, info.chunk, lightType);
-                        } else {
+                        }
+                        else {
                             newLight = Math.max(newLight, info.light - opacity);
                         }
                     }
                     this.enqueueBrighteningFromCursor(newLight, lightType);
-                } else {
+                }
+                else {
                     this.enqueueBrighteningFromCursor(curLight, lightType);
                 }
             }
@@ -261,9 +264,11 @@ public class LightingEngine implements ILightingEngine {
 
         if (section == null) {
             return lightType == EnumSkyBlock.SKY && chunk.canSeeSky(pos) ? lightType.defaultLightValue : 0;
-        } else if (lightType == EnumSkyBlock.SKY) {
+        }
+        else if (lightType == EnumSkyBlock.SKY) {
             return chunk.getWorld().provider.getHasNoSky() ? 0 : section.getExtSkylightValue(i, j & 15, k);
-        } else {
+        }
+        else {
             return section.getExtBlocklightValue(i, j & 15, k);
         }
     }
@@ -315,9 +320,9 @@ public class LightingEngine implements ILightingEngine {
     }
 
     private static MutableBlockPos decodeWorldCoord(final MutableBlockPos pos, final long longPos) {
-        final int posX = (int) (longPos >> sX & mX) - (1 << lX - 1);
-        final int posY = (int) (longPos >> sY & mY);
-        final int posZ = (int) (longPos >> sZ & mZ) - (1 << lZ - 1);
+        final int posX = (int)(longPos >> sX & mX) - (1 << lX - 1);
+        final int posY = (int)(longPos >> sY & mY);
+        final int posZ = (int)(longPos >> sZ & mZ) - (1 << lZ - 1);
         return pos.setPos(posX, posY, posZ);
     }
 
@@ -383,13 +388,21 @@ public class LightingEngine implements ILightingEngine {
         public MutableBlockPos() {
             super(0, 0, 0);
         }
-        
+
         @Override
-        public int getX() { return this.x; }
+        public int getX() {
+            return this.x;
+        }
+
         @Override
-        public int getY() { return this.y; }
+        public int getY() {
+            return this.y;
+        }
+
         @Override
-        public int getZ() { return this.z; }
+        public int getZ() {
+            return this.z;
+        }
 
         public LightingEngine.MutableBlockPos setPos(int x, int y, int z) {
             this.x = x;

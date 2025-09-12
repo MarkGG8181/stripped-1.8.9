@@ -21,7 +21,7 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
     }
 
     public S21PacketChunkData(Chunk chunkIn, boolean p_i45196_2_, int p_i45196_3_) {
-        ((ILightingEngineProvider) chunkIn.getWorld()).getLightingEngine().processLightUpdates();
+        ((ILightingEngineProvider)chunkIn.getWorld()).getLightingEngine().processLightUpdates();
 
         this.chunkX = chunkIn.xPosition;
         this.chunkZ = chunkIn.zPosition;
@@ -48,7 +48,7 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
         buf.writeInt(this.chunkX);
         buf.writeInt(this.chunkZ);
         buf.writeBoolean(this.loadChunk);
-        buf.writeShort((short) (this.extractedData.dataSize & 65535));
+        buf.writeShort((short)(this.extractedData.dataSize & 65535));
         buf.writeByteArray(this.extractedData.data);
     }
 
@@ -92,8 +92,8 @@ public class S21PacketChunkData implements Packet<INetHandlerPlayClient> {
             char[] achar = extendedblockstorage1.getData();
 
             for (char c0 : achar) {
-                s21packetchunkdata$extracted.data[j++] = (byte) (c0 & 255);
-                s21packetchunkdata$extracted.data[j++] = (byte) (c0 >> 8 & 255);
+                s21packetchunkdata$extracted.data[j++] = (byte)(c0 & 255);
+                s21packetchunkdata$extracted.data[j++] = (byte)(c0 >> 8 & 255);
             }
         }
 

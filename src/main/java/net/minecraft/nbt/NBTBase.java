@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public abstract class NBTBase
 {
-    public static final String[] NBT_TYPES = new String[] {"END", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING", "LIST", "COMPOUND", "INT[]"};
+    public static final String[] NBT_TYPES = new String[]{"END", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING", "LIST", "COMPOUND", "INT[]"};
 
     /**
      * Write the actual data contents of the tag, implemented in NBT extension classes
@@ -27,47 +27,34 @@ public abstract class NBTBase
      */
     protected static NBTBase createNewByType(byte id)
     {
-        switch (id)
+        return switch (id)
         {
-            case 0:
-                return new NBTTagEnd();
+            case 0 -> new NBTTagEnd();
 
-            case 1:
-                return new NBTTagByte();
+            case 1 -> new NBTTagByte();
 
-            case 2:
-                return new NBTTagShort();
+            case 2 -> new NBTTagShort();
 
-            case 3:
-                return new NBTTagInt();
+            case 3 -> new NBTTagInt();
 
-            case 4:
-                return new NBTTagLong();
+            case 4 -> new NBTTagLong();
 
-            case 5:
-                return new NBTTagFloat();
+            case 5 -> new NBTTagFloat();
 
-            case 6:
-                return new NBTTagDouble();
+            case 6 -> new NBTTagDouble();
 
-            case 7:
-                return new NBTTagByteArray();
+            case 7 -> new NBTTagByteArray();
 
-            case 8:
-                return new NBTTagString();
+            case 8 -> new NBTTagString();
 
-            case 9:
-                return new NBTTagList();
+            case 9 -> new NBTTagList();
 
-            case 10:
-                return new NBTTagCompound();
+            case 10 -> new NBTTagCompound();
 
-            case 11:
-                return new NBTTagIntArray();
+            case 11 -> new NBTTagIntArray();
 
-            default:
-                return null;
-        }
+            default -> null;
+        };
     }
 
     /**

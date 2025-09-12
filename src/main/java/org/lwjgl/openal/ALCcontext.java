@@ -53,8 +53,8 @@ public final class ALCcontext {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object context) {
-        if (context instanceof ALCcontext) {
-            return ((ALCcontext) context).context == this.context;
+        if (context instanceof ALCcontext ccontext) {
+            return ccontext.context == this.context;
         }
         return super.equals(context);
     }

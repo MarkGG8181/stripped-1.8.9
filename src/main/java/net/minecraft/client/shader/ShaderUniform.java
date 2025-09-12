@@ -29,7 +29,8 @@ public class ShaderUniform {
         if (type <= 3) {
             this.uniformIntBuffer = BufferUtils.createIntBuffer(count);
             this.uniformFloatBuffer = null;
-        } else {
+        }
+        else {
             this.uniformIntBuffer = null;
             this.uniformFloatBuffer = BufferUtils.createFloatBuffer(count);
         }
@@ -51,14 +52,18 @@ public class ShaderUniform {
 
         if (p_148085_0_.equals("int")) {
             i = 0;
-        } else if (p_148085_0_.equals("float")) {
+        }
+        else if (p_148085_0_.equals("float")) {
             i = 4;
-        } else if (p_148085_0_.startsWith("matrix")) {
+        }
+        else if (p_148085_0_.startsWith("matrix")) {
             if (p_148085_0_.endsWith("2x2")) {
                 i = 8;
-            } else if (p_148085_0_.endsWith("3x3")) {
+            }
+            else if (p_148085_0_.endsWith("3x3")) {
                 i = 9;
-            } else if (p_148085_0_.endsWith("4x4")) {
+            }
+            else if (p_148085_0_.endsWith("4x4")) {
                 i = 10;
             }
         }
@@ -152,7 +157,8 @@ public class ShaderUniform {
     public void set(float[] p_148097_1_) {
         if (p_148097_1_.length < this.uniformCount) {
             logger.warn("Uniform.set called with a too-small value array (expected " + this.uniformCount + ", got " + p_148097_1_.length + "). Ignoring.");
-        } else {
+        }
+        else {
             this.uniformFloatBuffer.position(0);
             this.uniformFloatBuffer.put(p_148097_1_);
             this.uniformFloatBuffer.position(0);
@@ -187,16 +193,17 @@ public class ShaderUniform {
 
     public void upload() {
         if (!this.dirty) {
-            ;
         }
 
         this.dirty = false;
 
         if (this.uniformType <= 3) {
             this.uploadInt();
-        } else if (this.uniformType <= 7) {
+        }
+        else if (this.uniformType <= 7) {
             this.uploadFloat();
-        } else {
+        }
+        else {
             if (this.uniformType > 10) {
                 logger.warn("Uniform.upload called, but type value (" + this.uniformType + ") is not " + "a valid type. Ignoring.");
                 return;

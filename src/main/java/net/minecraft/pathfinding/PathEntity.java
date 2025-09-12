@@ -72,9 +72,9 @@ public class PathEntity {
      * Gets the vector of the PathPoint associated with the given index.
      */
     public Vec3 getVectorFromIndex(Entity entityIn, int index) {
-        var d0 = (double) this.points[index].xCoord + (double) ((int) (entityIn.width + 1.0F)) * 0.5D;
-        var d1 = (double) this.points[index].yCoord;
-        var d2 = (double) this.points[index].zCoord + (double) ((int) (entityIn.width + 1.0F)) * 0.5D;
+        var d0 = (double)this.points[index].xCoord + (double)((int)(entityIn.width + 1.0F)) * 0.5D;
+        var d1 = (double)this.points[index].yCoord;
+        var d2 = (double)this.points[index].zCoord + (double)((int)(entityIn.width + 1.0F)) * 0.5D;
         return new Vec3(d0, d1, d2);
     }
 
@@ -91,9 +91,11 @@ public class PathEntity {
     public boolean isSamePath(PathEntity pathentityIn) {
         if (pathentityIn == null) {
             return false;
-        } else if (pathentityIn.points.length != this.points.length) {
+        }
+        else if (pathentityIn.points.length != this.points.length) {
             return false;
-        } else {
+        }
+        else {
             for (var i = 0; i < this.points.length; ++i) {
                 if (this.points[i].xCoord != pathentityIn.points[i].xCoord || this.points[i].yCoord != pathentityIn.points[i].yCoord || this.points[i].zCoord != pathentityIn.points[i].zCoord) {
                     return false;
@@ -109,6 +111,6 @@ public class PathEntity {
      */
     public boolean isDestinationSame(Vec3 vec) {
         var pathpoint = this.getFinalPathPoint();
-        return pathpoint != null && pathpoint.xCoord == (int) vec.x && pathpoint.zCoord == (int) vec.z;
+        return pathpoint != null && pathpoint.xCoord == (int)vec.x && pathpoint.zCoord == (int)vec.z;
     }
 }

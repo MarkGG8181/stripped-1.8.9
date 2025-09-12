@@ -49,7 +49,7 @@ public class LightingHooks {
                 final int zOffset = dir.getFrontOffsetZ();
 
                 final boolean neighborColumnExists = (((x + xOffset) | (z + zOffset)) & 16) == 0
-                        || ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + xOffset, chunk.zPosition + zOffset) != null;
+                    || ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + xOffset, chunk.zPosition + zOffset) != null;
 
                 if (neighborColumnExists) {
                     for (int sec = yMax >> 4; sec >= yMin >> 4; --sec) {
@@ -57,7 +57,8 @@ public class LightingHooks {
                             scheduleRelightChecksForColumn(world, EnumSkyBlock.SKY, xBase + xOffset, zBase + zOffset, sec << 4, (sec << 4) + 15);
                         }
                     }
-                } else {
+                }
+                else {
                     flagChunkBoundaryForUpdate(chunk, emptySections, EnumSkyBlock.SKY, dir, getAxisDirection(dir, x, z), EnumBoundaryFacing.OUT);
                 }
             }
@@ -84,7 +85,7 @@ public class LightingHooks {
 
     public static void flagChunkBoundaryForUpdate(final Chunk chunk, final short sectionMask, final EnumSkyBlock lightType, final EnumFacing dir, final EnumFacing.AxisDirection axisDirection, final EnumBoundaryFacing boundaryFacing) {
         initNeighborLightChecks(chunk);
-        short[] checks = ((IChunkLightingData) chunk).getNeighborLightChecks();
+        short[] checks = ((IChunkLightingData)chunk).getNeighborLightChecks();
         if (checks != null) {
             checks[getFlagIndex(lightType, dir, axisDirection, boundaryFacing)] |= sectionMask;
         }
@@ -114,18 +115,18 @@ public class LightingHooks {
     }
 
     private static void mergeFlags(final EnumSkyBlock lightType, final Chunk inChunk, final Chunk outChunk, final EnumFacing dir, final EnumFacing.AxisDirection axisDir) {
-        if (((IChunkLightingData) outChunk).getNeighborLightChecks() == null) return;
+        if (((IChunkLightingData)outChunk).getNeighborLightChecks() == null) return;
 
         initNeighborLightChecks(inChunk);
 
         final int inIndex = getFlagIndex(lightType, dir, axisDir, EnumBoundaryFacing.IN);
         final int outIndex = getFlagIndex(lightType, dir.getOpposite(), axisDir, EnumBoundaryFacing.OUT);
 
-        ((IChunkLightingData) inChunk).getNeighborLightChecks()[inIndex] |= ((IChunkLightingData) outChunk).getNeighborLightChecks()[outIndex];
+        ((IChunkLightingData)inChunk).getNeighborLightChecks()[inIndex] |= ((IChunkLightingData)outChunk).getNeighborLightChecks()[outIndex];
     }
 
     public static void initNeighborLightChecks(final Chunk chunk) {
-        IChunkLightingData lightingData = (IChunkLightingData) chunk;
+        IChunkLightingData lightingData = (IChunkLightingData)chunk;
         if (lightingData.getNeighborLightChecks() == null) {
             lightingData.setNeighborLightChecks(new short[FLAG_COUNT]);
         }
@@ -134,7 +135,7 @@ public class LightingHooks {
     public static final String neighborLightChecksKey = "NeighborLightChecks";
 
     public static void writeNeighborLightChecksToNBT(final Chunk chunk, final NBTTagCompound nbt) {
-        short[] neighborLightChecks = ((IChunkLightingData) chunk).getNeighborLightChecks();
+        short[] neighborLightChecks = ((IChunkLightingData)chunk).getNeighborLightChecks();
         if (neighborLightChecks == null) return;
 
         boolean empty = true;
@@ -154,9 +155,9 @@ public class LightingHooks {
             final NBTTagList list = nbt.getTagList(neighborLightChecksKey, 2);
             if (list.tagCount() == FLAG_COUNT) {
                 initNeighborLightChecks(chunk);
-                short[] neighborLightChecks = ((IChunkLightingData) chunk).getNeighborLightChecks();
+                short[] neighborLightChecks = ((IChunkLightingData)chunk).getNeighborLightChecks();
                 for (int i = 0; i < FLAG_COUNT; ++i) {
-                    neighborLightChecks[i] = ((NBTTagShort) list.get(i)).getShort();
+                    neighborLightChecks[i] = ((NBTTagShort)list.get(i)).getShort();
                 }
             }
         }
@@ -191,15 +192,15 @@ public class LightingHooks {
             }
 
             if (!world.provider.getHasNoSky()) {
-                ((IChunkLightingData) chunk).setSkylightUpdatedPublic();
+                ((IChunkLightingData)chunk).setSkylightUpdatedPublic();
             }
 
-            ((IChunkLightingData) chunk).setLightInitialized(true);
+            ((IChunkLightingData)chunk).setLightInitialized(true);
         }
     }
 
     public static void checkChunkLighting(final Chunk chunk, final World world) {
-        if (!((IChunkLightingData) chunk).isLightInitialized()) {
+        if (!((IChunkLightingData)chunk).isLightInitialized()) {
             initChunkLighting(chunk, world);
         }
 
@@ -207,7 +208,7 @@ public class LightingHooks {
             for (int z = -1; z <= 1; ++z) {
                 if (x == 0 && z == 0) continue;
                 Chunk nChunk = ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + x, chunk.zPosition + z);
-                if (nChunk == null || !((IChunkLightingData) nChunk).isLightInitialized()) {
+                if (nChunk == null || !((IChunkLightingData)nChunk).isLightInitialized()) {
                     return;
                 }
             }
@@ -231,6 +232,6 @@ public class LightingHooks {
     }
 
     public static ILightingEngine getLightingEngine(World world) {
-        return ((ILightingEngineProvider) world).getLightingEngine();
+        return ((ILightingEngineProvider)world).getLightingEngine();
     }
 }

@@ -1,5 +1,7 @@
 package net.minecraft.client.renderer.texture;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.MathHelper;
 
@@ -26,7 +28,7 @@ public class TextureClock extends TextureAtlasSprite
 
                 if (!minecraft.theWorld.provider.isSurfaceWorld())
                 {
-                    d0 = Math.random();
+                    d0 = ThreadLocalRandom.current().nextDouble();
                 }
             }
 
@@ -34,7 +36,6 @@ public class TextureClock extends TextureAtlasSprite
 
             for (d1 = d0 - this.currentAngle; d1 < -0.5D; ++d1)
             {
-                ;
             }
 
             while (d1 >= 0.5D)
@@ -50,7 +51,6 @@ public class TextureClock extends TextureAtlasSprite
 
             for (i = (int)((this.currentAngle + 1.0D) * (double)this.framesTextureData.size()) % this.framesTextureData.size(); i < 0; i = (i + this.framesTextureData.size()) % this.framesTextureData.size())
             {
-                ;
             }
 
             if (i != this.frameCounter)

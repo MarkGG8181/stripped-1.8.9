@@ -104,9 +104,9 @@ public class BlockHopper extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityHopper)
+            if (tileentity instanceof TileEntityHopper hopper)
             {
-                ((TileEntityHopper)tileentity).setCustomName(stack.getDisplayName());
+                hopper.setCustomName(stack.getDisplayName());
             }
         }
     }
@@ -126,9 +126,9 @@ public class BlockHopper extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityHopper)
+            if (tileentity instanceof TileEntityHopper hopper)
             {
-                playerIn.displayGUIChest((TileEntityHopper)tileentity);
+                playerIn.displayGUIChest(hopper);
                 playerIn.triggerAchievement(StatList.hopperInspectedStat);
             }
 
@@ -158,9 +158,9 @@ public class BlockHopper extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityHopper)
+        if (tileentity instanceof TileEntityHopper hopper)
         {
-            InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityHopper)tileentity);
+            InventoryHelper.dropInventoryItems(worldIn, pos, hopper);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
 
@@ -248,6 +248,6 @@ public class BlockHopper extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, ENABLED});
+        return new BlockState(this, new IProperty[]{FACING, ENABLED});
     }
 }

@@ -19,7 +19,8 @@ public class Sys {
         if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
     }
 
-    public static void initialize() {}
+    public static void initialize() {
+    }
 
     /** Returns the LWJGL version. */
     public static String getVersion() {
@@ -45,11 +46,11 @@ public class Sys {
      * @return the current hires time, in ticks (always >= 0)
      */
     public static long getTime() {
-        return (long) (GLFW.glfwGetTime() * 1000);
+        return (long)(GLFW.glfwGetTime() * 1000);
     }
 
     public static long getNanoTime() {
-        return (long) (GLFW.glfwGetTime() * (1000L * 1000L * 1000L));
+        return (long)(GLFW.glfwGetTime() * (1000L * 1000L * 1000L));
     }
 
     public static boolean openURL(String url) {

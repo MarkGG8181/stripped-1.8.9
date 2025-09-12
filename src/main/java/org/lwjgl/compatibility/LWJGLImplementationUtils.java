@@ -18,8 +18,8 @@ public class LWJGLImplementationUtils {
 
     private static InputImplementation createImplementation() {
         return new CombinedInputImplementation(
-                new GLFWKeyboardImplementation(),
-                new GLFWMouseImplementation()
+            new GLFWKeyboardImplementation(),
+            new GLFWMouseImplementation()
         );
     }
 

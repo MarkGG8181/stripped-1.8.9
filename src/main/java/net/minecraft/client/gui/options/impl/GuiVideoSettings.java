@@ -46,7 +46,8 @@ public class GuiVideoSettings extends GuiScreen {
             }
 
             this.optionsRowList = new GuiOptionsRowList(this.mc, this.width, this.height, 32, this.height - 32, 25, agamesettings$options);
-        } else {
+        }
+        else {
             this.optionsRowList = new GuiOptionsRowList(this.mc, this.width, this.height, 32, this.height - 32, 25, videoOptions);
         }
     }

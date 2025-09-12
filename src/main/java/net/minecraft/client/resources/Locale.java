@@ -30,13 +30,12 @@ public class Locale {
         this.properties.clear();
 
         for (String s : languageList) {
-            String s1 = String.format("lang/%s.lang", new Object[]{s});
+            String s1 = "lang/%s.lang".formatted(new Object[]{s});
 
             for (String s2 : resourceManager.getResourceDomains()) {
                 try {
                     this.loadLocaleData(resourceManager.getAllResources(new ResourceLocation(s2, s1)));
                 } catch (IOException var9) {
-                    ;
                 }
             }
         }
@@ -60,7 +59,7 @@ public class Locale {
     private void loadLocaleData(InputStream inputStreamIn) throws IOException {
         for (String s : IOUtils.readLines(inputStreamIn, Charsets.UTF_8)) {
             if (!s.isEmpty() && s.charAt(0) != 35) {
-                String[] astring = (String[]) Iterables.toArray(splitter.split(s), String.class);
+                String[] astring = (String[])Iterables.toArray(splitter.split(s), String.class);
 
                 if (astring != null && astring.length == 2) {
                     String s1 = astring[0];
@@ -75,7 +74,7 @@ public class Locale {
      * Returns the translation, or the key itself if the key could not be translated.
      */
     private String translateKeyPrivate(String translateKey) {
-        String s = (String) this.properties.get(translateKey);
+        String s = (String)this.properties.get(translateKey);
         return s == null ? translateKey : s;
     }
 
@@ -86,7 +85,7 @@ public class Locale {
         String s = this.translateKeyPrivate(translateKey);
 
         try {
-            return String.format(s, parameters);
+            return s.formatted(parameters);
         } catch (IllegalFormatException var5) {
             return "Format error: " + s;
         }

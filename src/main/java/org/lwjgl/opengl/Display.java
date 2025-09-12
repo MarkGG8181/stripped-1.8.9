@@ -142,8 +142,8 @@ public class Display {
     public static void setIcon(ByteBuffer[] icons) {
         if (!Arrays.equals(cachedIcons, icons)) {
             cachedIcons = Arrays.stream(icons)
-                    .map(Display::cloneByteBuffer)
-                    .toArray(ByteBuffer[]::new);
+                .map(Display::cloneByteBuffer)
+                .toArray(ByteBuffer[]::new);
         }
 
         if (isCreated() && !wayland) {
@@ -167,7 +167,7 @@ public class Display {
 
         try (MemoryStack stack = MemoryStack.stackPush()) {
             for (ByteBuffer icon : icons) {
-                int dimension = (int) Math.sqrt(icon.limit() / 4.0f);
+                int dimension = (int)Math.sqrt(icon.limit() / 4.0f);
                 buffer.put(GLFWImage.malloc(stack).set(dimension, dimension, icon));
             }
         }
@@ -211,12 +211,14 @@ public class Display {
                     lastX = x.get(0);
                     lastY = y.get(0);
                 }
-            } else {
+            }
+            else {
                 lastX = 0;
                 lastY = 0;
             }
             GLFW.glfwSetWindowMonitor(windowHandle, monitor, 0, 0, mode.width(), mode.height(), mode.refreshRate());
-        } else {
+        }
+        else {
             GLFW.glfwSetWindowMonitor(windowHandle, MemoryUtil.NULL, lastX, lastY, lastWidth, lastHeight, GLFW.GLFW_DONT_CARE);
             if (Minecraft.getMinecraft() != null) {
                 Minecraft.getMinecraft().resize(lastWidth, lastHeight);
@@ -395,17 +397,17 @@ public class Display {
             try (GLFWImage.Buffer icons = GLFWImage.malloc(2)) {
                 ByteBuffer pixels16 = STBImage.stbi_load_from_memory(icon16, w, h, comp, 4);
                 icons
-                        .position(0)
-                        .width(w.get(0))
-                        .height(h.get(0))
-                        .pixels(pixels16);
+                    .position(0)
+                    .width(w.get(0))
+                    .height(h.get(0))
+                    .pixels(pixels16);
 
                 ByteBuffer pixels32 = STBImage.stbi_load_from_memory(icon32, w, h, comp, 4);
                 icons
-                        .position(1)
-                        .width(w.get(0))
-                        .height(h.get(0))
-                        .pixels(pixels32);
+                    .position(1)
+                    .width(w.get(0))
+                    .height(h.get(0))
+                    .pixels(pixels32);
 
                 icons.position(0);
                 GLFW.glfwSetWindowIcon(windowHandle, icons);

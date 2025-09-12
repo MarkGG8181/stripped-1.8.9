@@ -27,7 +27,7 @@ public class NeighborInfoCache implements IBlockAccess {
         int dx = pos.getX() - this.centerPos.getX();
         int dy = pos.getY() - this.centerPos.getY();
         int dz = pos.getZ() - this.centerPos.getZ();
-        
+
         if (dx * dx + dy * dy + dz * dz == 1) {
             if (dx == 1) return this.neighborStates[EnumFacing.EAST.getIndex()];
             if (dx == -1) return this.neighborStates[EnumFacing.WEST.getIndex()];
@@ -36,22 +36,42 @@ public class NeighborInfoCache implements IBlockAccess {
             if (dz == 1) return this.neighborStates[EnumFacing.SOUTH.getIndex()];
             if (dz == -1) return this.neighborStates[EnumFacing.NORTH.getIndex()];
         }
-        
+
         return this.world.getBlockState(pos);
     }
 
     @Override
-    public TileEntity getTileEntity(BlockPos pos) { return this.world.getTileEntity(pos); }
+    public TileEntity getTileEntity(BlockPos pos) {
+        return this.world.getTileEntity(pos);
+    }
+
     @Override
-    public int getCombinedLight(BlockPos pos, int lightValue) { return this.world.getCombinedLight(pos, lightValue); }
+    public int getCombinedLight(BlockPos pos, int lightValue) {
+        return this.world.getCombinedLight(pos, lightValue);
+    }
+
     @Override
-    public boolean isAirBlock(BlockPos pos) { return this.world.isAirBlock(pos); }
+    public boolean isAirBlock(BlockPos pos) {
+        return this.world.isAirBlock(pos);
+    }
+
     @Override
-    public BiomeGenBase getBiomeGenForCoords(BlockPos pos) { return this.world.getBiomeGenForCoords(pos); }
+    public BiomeGenBase getBiomeGenForCoords(BlockPos pos) {
+        return this.world.getBiomeGenForCoords(pos);
+    }
+
     @Override
-    public boolean extendedLevelsInChunkCache() { return this.world.extendedLevelsInChunkCache(); }
+    public boolean extendedLevelsInChunkCache() {
+        return this.world.extendedLevelsInChunkCache();
+    }
+
     @Override
-    public int getStrongPower(BlockPos pos, EnumFacing direction) { return this.world.getStrongPower(pos, direction); }
+    public int getStrongPower(BlockPos pos, EnumFacing direction) {
+        return this.world.getStrongPower(pos, direction);
+    }
+
     @Override
-    public WorldType getWorldType() { return this.world.getWorldType(); }
+    public WorldType getWorldType() {
+        return this.world.getWorldType();
+    }
 }

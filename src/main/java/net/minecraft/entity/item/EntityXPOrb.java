@@ -1,5 +1,7 @@
 package net.minecraft.entity.item;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,10 +39,10 @@ public class EntityXPOrb extends Entity
         super(worldIn);
         this.setSize(0.5F, 0.5F);
         this.setPosition(x, y, z);
-        this.rotationYaw = (float)(Math.random() * 360.0D);
-        this.motionX = (double)((float)(Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
-        this.motionY = (double)((float)(Math.random() * 0.2D) * 2.0F);
-        this.motionZ = (double)((float)(Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
+        this.rotationYaw = (float)(ThreadLocalRandom.current().nextDouble() * 360.0D);
+        this.motionX = (double)((float)(ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
+        this.motionY = (double)((float)(ThreadLocalRandom.current().nextDouble() * 0.2D) * 2.0F);
+        this.motionZ = (double)((float)(ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
         this.xpValue = expValue;
     }
 

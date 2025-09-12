@@ -114,9 +114,8 @@ public interface IChatComponent extends Iterable<IChatComponent>
                         {
                             aobject[i] = this.deserialize(jsonarray.get(i), p_deserialize_2_, p_deserialize_3_);
 
-                            if (aobject[i] instanceof ChatComponentText)
+                            if (aobject[i] instanceof ChatComponentText chatcomponenttext)
                             {
-                                ChatComponentText chatcomponenttext = (ChatComponentText)aobject[i];
 
                                 if (chatcomponenttext.getChatStyle().isEmpty() && chatcomponenttext.getSiblings().isEmpty())
                                 {
@@ -195,9 +194,9 @@ public interface IChatComponent extends Iterable<IChatComponent>
 
         public JsonElement serialize(IChatComponent p_serialize_1_, Type p_serialize_2_, JsonSerializationContext p_serialize_3_)
         {
-            if (p_serialize_1_ instanceof ChatComponentText && p_serialize_1_.getChatStyle().isEmpty() && p_serialize_1_.getSiblings().isEmpty())
+            if (p_serialize_1_ instanceof ChatComponentText text1 && p_serialize_1_.getChatStyle().isEmpty() && p_serialize_1_.getSiblings().isEmpty())
             {
-                return new JsonPrimitive(((ChatComponentText)p_serialize_1_).getChatComponentText_TextValue());
+                return new JsonPrimitive(text1.getChatComponentText_TextValue());
             }
             else
             {
@@ -220,13 +219,12 @@ public interface IChatComponent extends Iterable<IChatComponent>
                     jsonobject.add("extra", jsonarray);
                 }
 
-                if (p_serialize_1_ instanceof ChatComponentText)
+                if (p_serialize_1_ instanceof ChatComponentText text)
                 {
-                    jsonobject.addProperty("text", ((ChatComponentText)p_serialize_1_).getChatComponentText_TextValue());
+                    jsonobject.addProperty("text", text.getChatComponentText_TextValue());
                 }
-                else if (p_serialize_1_ instanceof ChatComponentTranslation)
+                else if (p_serialize_1_ instanceof ChatComponentTranslation chatcomponenttranslation)
                 {
-                    ChatComponentTranslation chatcomponenttranslation = (ChatComponentTranslation)p_serialize_1_;
                     jsonobject.addProperty("translate", chatcomponenttranslation.getKey());
 
                     if (chatcomponenttranslation.getFormatArgs() != null && chatcomponenttranslation.getFormatArgs().length > 0)
@@ -235,9 +233,9 @@ public interface IChatComponent extends Iterable<IChatComponent>
 
                         for (Object object : chatcomponenttranslation.getFormatArgs())
                         {
-                            if (object instanceof IChatComponent)
+                            if (object instanceof IChatComponent component)
                             {
-                                jsonarray1.add(this.serialize((IChatComponent)((IChatComponent)object), object.getClass(), p_serialize_3_));
+                                jsonarray1.add(this.serialize((IChatComponent)(component), object.getClass(), p_serialize_3_));
                             }
                             else
                             {
@@ -248,9 +246,8 @@ public interface IChatComponent extends Iterable<IChatComponent>
                         jsonobject.add("with", jsonarray1);
                     }
                 }
-                else if (p_serialize_1_ instanceof ChatComponentScore)
+                else if (p_serialize_1_ instanceof ChatComponentScore chatcomponentscore)
                 {
-                    ChatComponentScore chatcomponentscore = (ChatComponentScore)p_serialize_1_;
                     JsonObject jsonobject1 = new JsonObject();
                     jsonobject1.addProperty("name", chatcomponentscore.getName());
                     jsonobject1.addProperty("objective", chatcomponentscore.getObjective());
@@ -283,7 +280,7 @@ public interface IChatComponent extends Iterable<IChatComponent>
         }
 
         static
-        {
+            {
             GsonBuilder gsonbuilder = new GsonBuilder();
             gsonbuilder.registerTypeHierarchyAdapter(IChatComponent.class, new IChatComponent.Serializer());
             gsonbuilder.registerTypeHierarchyAdapter(ChatStyle.class, new ChatStyle.Serializer());

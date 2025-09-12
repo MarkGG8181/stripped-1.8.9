@@ -27,6 +27,7 @@ public final class ARBFragmentShader {
     /** Accepted by the {@code target} parameter of Hint and the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B;
 
-    private ARBFragmentShader() {}
+    private ARBFragmentShader() {
+    }
 
 }

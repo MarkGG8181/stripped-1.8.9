@@ -139,10 +139,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
         ++this.networkTickCount;
         this.serverController.theProfiler.startSection("keepAlive");
 
-        if ((long) this.networkTickCount - this.lastSentPingPacket > 40L) {
-            this.lastSentPingPacket = (long) this.networkTickCount;
+        if ((long)this.networkTickCount - this.lastSentPingPacket > 40L) {
+            this.lastSentPingPacket = (long)this.networkTickCount;
             this.lastPingTime = this.currentTimeMillis();
-            this.keepAliveId = (int) this.lastPingTime;
+            this.keepAliveId = (int)this.lastPingTime;
             this.sendPacket(new S00PacketKeepAlive(this.keepAliveId));
         }
 
@@ -156,7 +156,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             --this.itemDropThreshold;
         }
 
-        if (this.playerEntity.getLastActiveTime() > 0L && this.serverController.getMaxPlayerIdleMinutes() > 0 && MinecraftServer.getCurrentTimeMillis() - this.playerEntity.getLastActiveTime() > (long) (this.serverController.getMaxPlayerIdleMinutes() * 1000 * 60)) {
+        if (this.playerEntity.getLastActiveTime() > 0L && this.serverController.getMaxPlayerIdleMinutes() > 0 && MinecraftServer.getCurrentTimeMillis() - this.playerEntity.getLastActiveTime() > (long)(this.serverController.getMaxPlayerIdleMinutes() * 1000 * 60)) {
             this.kickPlayerFromServer("You have been idle for too long!");
         }
     }
@@ -204,7 +204,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
         if (this.func_183006_b(packetIn)) {
             this.kickPlayerFromServer("Invalid move packet received");
-        } else {
+        }
+        else {
             WorldServer worldserver = this.serverController.worldServerForDimension(this.playerEntity.dimension);
             this.field_147366_g = true;
 
@@ -328,7 +329,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     }
 
                     float f3 = 0.0625F;
-                    boolean flag = worldserver.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.getEntityBoundingBox().contract((double) f3, (double) f3, (double) f3)).isEmpty();
+                    boolean flag = worldserver.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.getEntityBoundingBox().contract((double)f3, (double)f3, (double)f3)).isEmpty();
 
                     if (this.playerEntity.onGround && !packetIn.isOnGround() && d12 > 0.0D) {
                         this.playerEntity.jump();
@@ -356,7 +357,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.playerEntity.addMovementStat(this.playerEntity.posX - d0, this.playerEntity.posY - d1, this.playerEntity.posZ - d2);
 
                     if (!this.playerEntity.noClip) {
-                        boolean flag2 = worldserver.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.getEntityBoundingBox().contract((double) f3, (double) f3, (double) f3)).isEmpty();
+                        boolean flag2 = worldserver.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.getEntityBoundingBox().contract((double)f3, (double)f3, (double)f3)).isEmpty();
 
                         if (flag && (flag1 || !flag2) && !this.playerEntity.isPlayerSleeping()) {
                             this.setPlayerLocation(this.lastPosX, this.lastPosY, this.lastPosZ, f1, f2);
@@ -364,7 +365,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                         }
                     }
 
-                    AxisAlignedBB axisalignedbb = this.playerEntity.getEntityBoundingBox().expand((double) f3, (double) f3, (double) f3).addCoord(0.0D, -0.55D, 0.0D);
+                    AxisAlignedBB axisalignedbb = this.playerEntity.getEntityBoundingBox().expand((double)f3, (double)f3, (double)f3).addCoord(0.0D, -0.55D, 0.0D);
 
                     if (!this.serverController.isFlightAllowed() && !this.playerEntity.capabilities.allowFlying && !worldserver.checkBlockCollision(axisalignedbb)) {
                         if (d12 >= -0.03125D) {
@@ -376,14 +377,16 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                                 return;
                             }
                         }
-                    } else {
+                    }
+                    else {
                         this.floatingTickCount = 0;
                     }
 
                     this.playerEntity.onGround = packetIn.isOnGround();
                     this.serverController.getConfigurationManager().serverUpdateMountedMovingPlayer(this.playerEntity);
                     this.playerEntity.handleFalling(this.playerEntity.posY - d7, packetIn.isOnGround());
-                } else if (this.networkTickCount - this.field_175090_f > 20) {
+                }
+                else if (this.networkTickCount - this.field_175090_f > 20) {
                     this.setPlayerLocation(this.lastPosX, this.lastPosY, this.lastPosZ, this.playerEntity.rotationYaw, this.playerEntity.rotationPitch);
                 }
             }
@@ -460,26 +463,31 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             case START_DESTROY_BLOCK:
             case ABORT_DESTROY_BLOCK:
             case STOP_DESTROY_BLOCK:
-                double d0 = this.playerEntity.posX - ((double) blockpos.getX() + 0.5D);
-                double d1 = this.playerEntity.posY - ((double) blockpos.getY() + 0.5D) + 1.5D;
-                double d2 = this.playerEntity.posZ - ((double) blockpos.getZ() + 0.5D);
+                double d0 = this.playerEntity.posX - ((double)blockpos.getX() + 0.5D);
+                double d1 = this.playerEntity.posY - ((double)blockpos.getY() + 0.5D) + 1.5D;
+                double d2 = this.playerEntity.posZ - ((double)blockpos.getZ() + 0.5D);
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
                 if (d3 > 36.0D) {
                     return;
-                } else if (blockpos.getY() >= this.serverController.getBuildLimit()) {
+                }
+                else if (blockpos.getY() >= this.serverController.getBuildLimit()) {
                     return;
-                } else {
+                }
+                else {
                     if (packetIn.getStatus() == C07PacketPlayerDigging.Action.START_DESTROY_BLOCK) {
                         if (!this.serverController.isBlockProtected(worldserver, blockpos, this.playerEntity) && worldserver.getWorldBorder().contains(blockpos)) {
                             this.playerEntity.theItemInWorldManager.onBlockClicked(blockpos, packetIn.getFacing());
-                        } else {
+                        }
+                        else {
                             this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(worldserver, blockpos));
                         }
-                    } else {
+                    }
+                    else {
                         if (packetIn.getStatus() == C07PacketPlayerDigging.Action.STOP_DESTROY_BLOCK) {
                             this.playerEntity.theItemInWorldManager.blockRemoving(blockpos);
-                        } else if (packetIn.getStatus() == C07PacketPlayerDigging.Action.ABORT_DESTROY_BLOCK) {
+                        }
+                        else if (packetIn.getStatus() == C07PacketPlayerDigging.Action.ABORT_DESTROY_BLOCK) {
                             this.playerEntity.theItemInWorldManager.cancelDestroyingBlock();
                         }
 
@@ -514,13 +522,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             }
 
             this.playerEntity.theItemInWorldManager.tryUseItem(this.playerEntity, worldserver, itemstack);
-        } else if (blockpos.getY() < this.serverController.getBuildLimit() - 1 || enumfacing != EnumFacing.UP && blockpos.getY() < this.serverController.getBuildLimit()) {
-            if (this.hasMoved && this.playerEntity.getDistanceSq((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.5D, (double) blockpos.getZ() + 0.5D) < 64.0D && !this.serverController.isBlockProtected(worldserver, blockpos, this.playerEntity) && worldserver.getWorldBorder().contains(blockpos)) {
+        }
+        else if (blockpos.getY() < this.serverController.getBuildLimit() - 1 || enumfacing != EnumFacing.UP && blockpos.getY() < this.serverController.getBuildLimit()) {
+            if (this.hasMoved && this.playerEntity.getDistanceSq((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D) < 64.0D && !this.serverController.isBlockProtected(worldserver, blockpos, this.playerEntity) && worldserver.getWorldBorder().contains(blockpos)) {
                 this.playerEntity.theItemInWorldManager.activateBlockOrUseItem(this.playerEntity, worldserver, itemstack, blockpos, enumfacing, packetIn.getPlacedBlockOffsetX(), packetIn.getPlacedBlockOffsetY(), packetIn.getPlacedBlockOffsetZ());
             }
 
             flag = true;
-        } else {
+        }
+        else {
             ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("build.tooHigh", new Object[]{Integer.valueOf(this.serverController.getBuildLimit())});
             chatcomponenttranslation.getChatStyle().setColor(EnumChatFormatting.RED);
             this.playerEntity.playerNetServerHandler.sendPacket(new S02PacketChat(chatcomponenttranslation));
@@ -570,11 +580,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
             if (entity != null) {
                 this.playerEntity.setSpectatingEntity(this.playerEntity);
-                this.playerEntity.mountEntity((Entity) null);
+                this.playerEntity.mountEntity((Entity)null);
 
                 if (entity.worldObj != this.playerEntity.worldObj) {
                     WorldServer worldserver1 = this.playerEntity.getServerForPlayer();
-                    WorldServer worldserver2 = (WorldServer) entity.worldObj;
+                    WorldServer worldserver2 = (WorldServer)entity.worldObj;
                     this.playerEntity.dimension = entity.dimension;
                     this.sendPacket(new S07PacketRespawn(this.playerEntity.dimension, worldserver1.getDifficulty(), worldserver1.getWorldInfo().getTerrainType(), this.playerEntity.theItemInWorldManager.getGameType()));
                     worldserver1.removePlayerEntityDangerously(this.playerEntity);
@@ -593,7 +603,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.playerEntity.theItemInWorldManager.setWorld(worldserver2);
                     this.serverController.getConfigurationManager().updateTimeAndWeatherForPlayer(this.playerEntity, worldserver2);
                     this.serverController.getConfigurationManager().syncPlayerInventory(this.playerEntity);
-                } else {
+                }
+                else {
                     this.playerEntity.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
                 }
             }
@@ -622,8 +633,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
     }
 
     public void sendPacket(final Packet packetIn) {
-        if (packetIn instanceof S02PacketChat) {
-            S02PacketChat s02packetchat = (S02PacketChat) packetIn;
+        if (packetIn instanceof S02PacketChat s02packetchat) {
             EntityPlayer.EnumChatVisibility entityplayer$enumchatvisibility = this.playerEntity.getChatVisibility();
 
             if (entityplayer$enumchatvisibility == EntityPlayer.EnumChatVisibility.HIDDEN) {
@@ -658,7 +668,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
         if (packetIn.getSlotId() >= 0 && packetIn.getSlotId() < InventoryPlayer.getHotbarSize()) {
             this.playerEntity.inventory.currentItem = packetIn.getSlotId();
             this.playerEntity.markPlayerActive();
-        } else {
+        }
+        else {
             logger.warn(this.playerEntity.getName() + " tried to set an invalid carried item");
         }
     }
@@ -673,7 +684,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("chat.cannotSend", new Object[0]);
             chatcomponenttranslation.getChatStyle().setColor(EnumChatFormatting.RED);
             this.sendPacket(new S02PacketChat(chatcomponenttranslation));
-        } else {
+        }
+        else {
             this.playerEntity.markPlayerActive();
             String s = packetIn.getMessage();
             s = StringUtils.normalizeSpace(s);
@@ -687,7 +699,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
             if (s.startsWith("/")) {
                 this.handleSlashCommand(s);
-            } else {
+            }
+            else {
                 IChatComponent ichatcomponent = new ChatComponentTranslation("chat.type.text", new Object[]{this.playerEntity.getDisplayName(), s});
                 this.serverController.getConfigurationManager().sendChatMsgImpl(ichatcomponent, false);
             }
@@ -744,15 +757,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                 break;
 
             case RIDING_JUMP:
-                if (this.playerEntity.ridingEntity instanceof EntityHorse) {
-                    ((EntityHorse) this.playerEntity.ridingEntity).setJumpPower(packetIn.getAuxData());
+                if (this.playerEntity.ridingEntity instanceof EntityHorse horse) {
+                    horse.setJumpPower(packetIn.getAuxData());
                 }
 
                 break;
 
             case OPEN_INVENTORY:
-                if (this.playerEntity.ridingEntity instanceof EntityHorse) {
-                    ((EntityHorse) this.playerEntity.ridingEntity).openGUI(this.playerEntity);
+                if (this.playerEntity.ridingEntity instanceof EntityHorse horse) {
+                    horse.openGUI(this.playerEntity);
                 }
 
                 break;
@@ -783,9 +796,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             if (this.playerEntity.getDistanceSqToEntity(entity) < d0) {
                 if (packetIn.getAction() == C02PacketUseEntity.Action.INTERACT) {
                     this.playerEntity.interactWith(entity);
-                } else if (packetIn.getAction() == C02PacketUseEntity.Action.INTERACT_AT) {
+                }
+                else if (packetIn.getAction() == C02PacketUseEntity.Action.INTERACT_AT) {
                     entity.interactAt(this.playerEntity, packetIn.getHitVec());
-                } else if (packetIn.getAction() == C02PacketUseEntity.Action.ATTACK) {
+                }
+                else if (packetIn.getAction() == C02PacketUseEntity.Action.ATTACK) {
                     if (entity instanceof EntityItem || entity instanceof EntityXPOrb || entity instanceof EntityArrow || entity == this.playerEntity) {
                         this.kickPlayerFromServer("Attempting to attack an invalid entity");
                         this.serverController.logWarning("Player " + this.playerEntity.getName() + " tried to attack an invalid entity");
@@ -811,16 +826,19 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             case PERFORM_RESPAWN:
                 if (this.playerEntity.playerConqueredTheEnd) {
                     this.playerEntity = this.serverController.getConfigurationManager().recreatePlayerEntity(this.playerEntity, 0, true);
-                } else if (this.playerEntity.getServerForPlayer().getWorldInfo().isHardcoreModeEnabled()) {
+                }
+                else if (this.playerEntity.getServerForPlayer().getWorldInfo().isHardcoreModeEnabled()) {
                     if (this.serverController.isSinglePlayer() && this.playerEntity.getName().equals(this.serverController.getServerOwner())) {
                         this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
                         this.serverController.deleteWorldAndStopServer();
-                    } else {
-                        UserListBansEntry userlistbansentry = new UserListBansEntry(this.playerEntity.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
+                    }
+                    else {
+                        UserListBansEntry userlistbansentry = new UserListBansEntry(this.playerEntity.getGameProfile(), (Date)null, "(You just lost the game)", (Date)null, "Death in Hardcore");
                         this.serverController.getConfigurationManager().getBannedPlayers().addEntry(userlistbansentry);
                         this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
                     }
-                } else {
+                }
+                else {
                     if (this.playerEntity.getHealth() > 0.0F) {
                         return;
                     }
@@ -861,11 +879,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                 List<ItemStack> list = new ArrayList<>();
 
                 for (int i = 0; i < this.playerEntity.openContainer.inventorySlots.size(); ++i) {
-                    list.add(((Slot) this.playerEntity.openContainer.inventorySlots.get(i)).getStack());
+                    list.add(((Slot)this.playerEntity.openContainer.inventorySlots.get(i)).getStack());
                 }
 
                 this.playerEntity.updateCraftingInventory(this.playerEntity.openContainer, list);
-            } else {
+            }
+            else {
                 ItemStack itemstack = this.playerEntity.openContainer.slotClick(packetIn.getSlotId(), packetIn.getUsedButton(), packetIn.getMode(), this.playerEntity);
 
                 if (ItemStack.areItemStacksEqual(packetIn.getClickedItem(), itemstack)) {
@@ -874,14 +893,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.playerEntity.openContainer.detectAndSendChanges();
                     this.playerEntity.updateHeldItem();
                     this.playerEntity.isChangingQuantityOnly = false;
-                } else {
+                }
+                else {
                     this.pendingTransactions.addKey(this.playerEntity.openContainer.windowId, Short.valueOf(packetIn.getActionNumber()));
                     this.playerEntity.playerNetServerHandler.sendPacket(new S32PacketConfirmTransaction(packetIn.getWindowId(), packetIn.getActionNumber(), false));
                     this.playerEntity.openContainer.setCanCraft(this.playerEntity, false);
                     List<ItemStack> list1 = new ArrayList<>();
 
                     for (int j = 0; j < this.playerEntity.openContainer.inventorySlots.size(); ++j) {
-                        list1.add(((Slot) this.playerEntity.openContainer.inventorySlots.get(j)).getStack());
+                        list1.add(((Slot)this.playerEntity.openContainer.inventorySlots.get(j)).getStack());
                     }
 
                     this.playerEntity.updateCraftingInventory(this.playerEntity.openContainer, list1);
@@ -938,13 +958,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
             if (flag1 && flag2 && flag3) {
                 if (itemstack == null) {
-                    this.playerEntity.inventoryContainer.putStackInSlot(packetIn.getSlotId(), (ItemStack) null);
-                } else {
+                    this.playerEntity.inventoryContainer.putStackInSlot(packetIn.getSlotId(), (ItemStack)null);
+                }
+                else {
                     this.playerEntity.inventoryContainer.putStackInSlot(packetIn.getSlotId(), itemstack);
                 }
 
                 this.playerEntity.inventoryContainer.setCanCraft(this.playerEntity, true);
-            } else if (flag && flag2 && flag3 && this.itemDropThreshold < 200) {
+            }
+            else if (flag && flag2 && flag3 && this.itemDropThreshold < 200) {
                 this.itemDropThreshold += 20;
                 EntityItem entityitem = this.playerEntity.dropPlayerItemWithRandomChoice(itemstack, true);
 
@@ -962,7 +984,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
      */
     public void processConfirmTransaction(C0FPacketConfirmTransaction packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
-        Short oshort = (Short) this.pendingTransactions.lookup(this.playerEntity.openContainer.windowId);
+        Short oshort = (Short)this.pendingTransactions.lookup(this.playerEntity.openContainer.windowId);
 
         if (oshort != null && packetIn.getUid() == oshort.shortValue() && this.playerEntity.openContainer.windowId == packetIn.getWindowId() && !this.playerEntity.openContainer.getCanCraft(this.playerEntity) && !this.playerEntity.isSpectator()) {
             this.playerEntity.openContainer.setCanCraft(this.playerEntity, true);
@@ -982,7 +1004,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                 return;
             }
 
-            TileEntitySign tileentitysign = (TileEntitySign) tileentity;
+            TileEntitySign tileentitysign = (TileEntitySign)tileentity;
 
             if (!tileentitysign.getIsEditable() || tileentitysign.getPlayer() != this.playerEntity) {
                 this.serverController.logWarning("Player " + this.playerEntity.getName() + " just tried to change non-editable sign");
@@ -1005,7 +1027,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
      */
     public void processKeepAlive(C00PacketKeepAlive packetIn) {
         if (packetIn.getKey() == this.keepAliveId) {
-            int i = (int) (this.currentTimeMillis() - this.lastPingTime);
+            int i = (int)(this.currentTimeMillis() - this.lastPingTime);
             this.playerEntity.ping = (this.playerEntity.ping * 3 + i) / 4;
         }
     }
@@ -1033,7 +1055,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             list.add(s);
         }
 
-        this.playerEntity.playerNetServerHandler.sendPacket(new S3APacketTabComplete((String[]) list.toArray(new String[list.size()])));
+        this.playerEntity.playerNetServerHandler.sendPacket(new S3APacketTabComplete((String[])list.toArray(new String[list.size()])));
     }
 
     /**
@@ -1052,7 +1074,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.playerEntity.getServerForPlayer());
 
         if ("MC|BEdit".equals(packetIn.getChannelName())) {
-            PacketBuffer packetbuffer3 = new PacketBuffer(Unpooled.wrappedBuffer((ByteBuf) packetIn.getBufferData()));
+            PacketBuffer packetbuffer3 = new PacketBuffer(Unpooled.wrappedBuffer((ByteBuf)packetIn.getBufferData()));
 
             try {
                 ItemStack itemstack1 = packetbuffer3.readItemStackFromBuffer();
@@ -1075,15 +1097,16 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     return;
                 }
             } catch (Exception exception3) {
-                logger.error((String) "Couldn\'t handle book info", (Throwable) exception3);
+                logger.error((String)"Couldn\'t handle book info", (Throwable)exception3);
                 return;
             } finally {
                 packetbuffer3.release();
             }
 
             return;
-        } else if ("MC|BSign".equals(packetIn.getChannelName())) {
-            PacketBuffer packetbuffer2 = new PacketBuffer(Unpooled.wrappedBuffer((ByteBuf) packetIn.getBufferData()));
+        }
+        else if ("MC|BSign".equals(packetIn.getChannelName())) {
+            PacketBuffer packetbuffer2 = new PacketBuffer(Unpooled.wrappedBuffer((ByteBuf)packetIn.getBufferData()));
 
             try {
                 ItemStack itemstack = packetbuffer2.readItemStackFromBuffer();
@@ -1109,28 +1132,31 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     return;
                 }
             } catch (Exception exception4) {
-                logger.error((String) "Couldn\'t sign book", (Throwable) exception4);
+                logger.error((String)"Couldn\'t sign book", (Throwable)exception4);
                 return;
             } finally {
                 packetbuffer2.release();
             }
 
             return;
-        } else if ("MC|TrSel".equals(packetIn.getChannelName())) {
+        }
+        else if ("MC|TrSel".equals(packetIn.getChannelName())) {
             try {
                 int i = packetIn.getBufferData().readInt();
                 Container container = this.playerEntity.openContainer;
 
-                if (container instanceof ContainerMerchant) {
-                    ((ContainerMerchant) container).setCurrentRecipeIndex(i);
+                if (container instanceof ContainerMerchant merchant) {
+                    merchant.setCurrentRecipeIndex(i);
                 }
             } catch (Exception exception2) {
-                logger.error((String) "Couldn\'t select trade", (Throwable) exception2);
+                logger.error((String)"Couldn\'t select trade", (Throwable)exception2);
             }
-        } else if ("MC|AdvCdm".equals(packetIn.getChannelName())) {
+        }
+        else if ("MC|AdvCdm".equals(packetIn.getChannelName())) {
             if (!this.serverController.isCommandBlockEnabled()) {
                 this.playerEntity.addChatMessage(new ChatComponentTranslation("advMode.notEnabled", new Object[0]));
-            } else if (this.playerEntity.canCommandSenderUseCommand(2, "") && this.playerEntity.capabilities.isCreativeMode) {
+            }
+            else if (this.playerEntity.canCommandSenderUseCommand(2, "") && this.playerEntity.capabilities.isCreativeMode) {
                 PacketBuffer packetbuffer = packetIn.getBufferData();
 
                 try {
@@ -1140,14 +1166,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     if (j == 0) {
                         TileEntity tileentity = this.playerEntity.worldObj.getTileEntity(new BlockPos(packetbuffer.readInt(), packetbuffer.readInt(), packetbuffer.readInt()));
 
-                        if (tileentity instanceof TileEntityCommandBlock) {
-                            commandblocklogic = ((TileEntityCommandBlock) tileentity).getCommandBlockLogic();
+                        if (tileentity instanceof TileEntityCommandBlock block) {
+                            commandblocklogic = block.getCommandBlockLogic();
                         }
-                    } else if (j == 1) {
+                    }
+                    else if (j == 1) {
                         Entity entity = this.playerEntity.worldObj.getEntityByID(packetbuffer.readInt());
 
-                        if (entity instanceof EntityMinecartCommandBlock) {
-                            commandblocklogic = ((EntityMinecartCommandBlock) entity).getCommandBlockLogic();
+                        if (entity instanceof EntityMinecartCommandBlock block) {
+                            commandblocklogic = block.getCommandBlockLogic();
                         }
                     }
 
@@ -1159,27 +1186,28 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                         commandblocklogic.setTrackOutput(flag);
 
                         if (!flag) {
-                            commandblocklogic.setLastOutput((IChatComponent) null);
+                            commandblocklogic.setLastOutput((IChatComponent)null);
                         }
 
                         commandblocklogic.updateCommand();
                         this.playerEntity.addChatMessage(new ChatComponentTranslation("advMode.setCommand.success", new Object[]{s1}));
                     }
                 } catch (Exception exception1) {
-                    logger.error((String) "Couldn\'t set command block", (Throwable) exception1);
+                    logger.error((String)"Couldn\'t set command block", (Throwable)exception1);
                 } finally {
                     packetbuffer.release();
                 }
-            } else {
+            }
+            else {
                 this.playerEntity.addChatMessage(new ChatComponentTranslation("advMode.notAllowed", new Object[0]));
             }
-        } else if ("MC|Beacon".equals(packetIn.getChannelName())) {
-            if (this.playerEntity.openContainer instanceof ContainerBeacon) {
+        }
+        else if ("MC|Beacon".equals(packetIn.getChannelName())) {
+            if (this.playerEntity.openContainer instanceof ContainerBeacon containerbeacon) {
                 try {
                     PacketBuffer packetbuffer1 = packetIn.getBufferData();
                     int k = packetbuffer1.readInt();
                     int l = packetbuffer1.readInt();
-                    ContainerBeacon containerbeacon = (ContainerBeacon) this.playerEntity.openContainer;
                     Slot slot = containerbeacon.getSlot(0);
 
                     if (slot.getHasStack()) {
@@ -1190,11 +1218,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                         iinventory.markDirty();
                     }
                 } catch (Exception exception) {
-                    logger.error((String) "Couldn\'t set beacon", (Throwable) exception);
+                    logger.error((String)"Couldn\'t set beacon", (Throwable)exception);
                 }
             }
-        } else if ("MC|ItemName".equals(packetIn.getChannelName()) && this.playerEntity.openContainer instanceof ContainerRepair) {
-            ContainerRepair containerrepair = (ContainerRepair) this.playerEntity.openContainer;
+        }
+        else if ("MC|ItemName".equals(packetIn.getChannelName()) && this.playerEntity.openContainer instanceof ContainerRepair containerrepair) {
 
             if (packetIn.getBufferData() != null && packetIn.getBufferData().readableBytes() >= 1) {
                 String s = ChatAllowedCharacters.filterAllowedCharacters(packetIn.getBufferData().readStringFromBuffer(32767));
@@ -1202,7 +1230,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                 if (s.length() <= 30) {
                     containerrepair.updateItemName(s);
                 }
-            } else {
+            }
+            else {
                 containerrepair.updateItemName("");
             }
         }

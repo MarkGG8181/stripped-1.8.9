@@ -7,7 +7,7 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 
 public class S2BPacketChangeGameState implements Packet<INetHandlerPlayClient>
 {
-    public static final String[] MESSAGE_NAMES = new String[] {"tile.bed.notValid"};
+    public static final String[] MESSAGE_NAMES = new String[]{"tile.bed.notValid"};
     private int state;
     private float value;
 

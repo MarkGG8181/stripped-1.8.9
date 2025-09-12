@@ -29,19 +29,21 @@ public class DefaultResourcePack implements IResourcePack {
 
         if (inputstream != null) {
             return inputstream;
-        } else {
+        }
+        else {
             InputStream inputstream1 = this.getInputStreamAssets(location);
 
             if (inputstream1 != null) {
                 return inputstream1;
-            } else {
+            }
+            else {
                 throw new FileNotFoundException(location.getResourcePath());
             }
         }
     }
 
     public InputStream getInputStreamAssets(ResourceLocation location) throws IOException, FileNotFoundException {
-        File file1 = (File) this.mapAssets.get(location.toString());
+        File file1 = (File)this.mapAssets.get(location.toString());
         return file1 != null && file1.isFile() ? new FileInputStream(file1) : null;
     }
 

@@ -55,7 +55,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
         this.missingImage.setIconHeight(16);
         int[][] aint1 = new int[this.mipmapLevels + 1][];
         aint1[0] = aint;
-        this.missingImage.setFramesTextureData(Lists.newArrayList(new int[][][] {aint1}));
+        this.missingImage.setFramesTextureData(Lists.newArrayList(new int[][][]{aint1}));
     }
 
     public void loadTexture(IResourceManager resourceManager) throws IOException
@@ -128,7 +128,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
                             }
                             catch (IOException ioexception)
                             {
-                                logger.error("Unable to load miplevel {} from: {}", new Object[] {Integer.valueOf(i2), resourcelocation2, ioexception});
+                                logger.error("Unable to load miplevel {} from: {}", new Object[]{Integer.valueOf(i2), resourcelocation2, ioexception});
                             }
                         }
                     }
@@ -153,7 +153,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
             if (l1 < k)
             {
-                logger.warn("Texture {} with size {}x{} limits mip level from {} to {}", new Object[] {resourcelocation1, Integer.valueOf(textureatlassprite.getIconWidth()), Integer.valueOf(textureatlassprite.getIconHeight()), Integer.valueOf(MathHelper.calculateLogBaseTwo(k)), Integer.valueOf(MathHelper.calculateLogBaseTwo(l1))});
+                logger.warn("Texture {} with size {}x{} limits mip level from {} to {}", new Object[]{resourcelocation1, Integer.valueOf(textureatlassprite.getIconWidth()), Integer.valueOf(textureatlassprite.getIconHeight()), Integer.valueOf(MathHelper.calculateLogBaseTwo(k)), Integer.valueOf(MathHelper.calculateLogBaseTwo(l1))});
                 k = l1;
             }
 
@@ -165,7 +165,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
         if (k1 < this.mipmapLevels)
         {
-            logger.warn("{}: dropping miplevel from {} to {}, because of minimum power of two: {}", new Object[] {this.basePath, Integer.valueOf(this.mipmapLevels), Integer.valueOf(k1), Integer.valueOf(j1)});
+            logger.warn("{}: dropping miplevel from {} to {}, because of minimum power of two: {}", new Object[]{this.basePath, Integer.valueOf(this.mipmapLevels), Integer.valueOf(k1), Integer.valueOf(j1)});
             this.mipmapLevels = k1;
         }
 
@@ -217,7 +217,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
             throw stitcherexception;
         }
 
-        logger.info("Created: {}x{} {}-atlas", new Object[] {Integer.valueOf(stitcher.getCurrentWidth()), Integer.valueOf(stitcher.getCurrentHeight()), this.basePath});
+        logger.info("Created: {}x{} {}-atlas", new Object[]{Integer.valueOf(stitcher.getCurrentWidth()), Integer.valueOf(stitcher.getCurrentHeight()), this.basePath});
         TextureUtil.allocateTextureImpl(this.getGlTextureId(), this.mipmapLevels, stitcher.getCurrentWidth(), stitcher.getCurrentHeight());
         Map<String, TextureAtlasSprite> map = new HashMap<>(this.mapRegisteredSprites);
 
@@ -254,7 +254,7 @@ public class TextureMap extends AbstractTexture implements ITickableTextureObjec
 
     private ResourceLocation completeResourceLocation(ResourceLocation location, int p_147634_2_)
     {
-        return p_147634_2_ == 0 ? new ResourceLocation(location.getResourceDomain(), String.format("%s/%s%s", new Object[] {this.basePath, location.getResourcePath(), ".png"})): new ResourceLocation(location.getResourceDomain(), String.format("%s/mipmaps/%s.%d%s", new Object[] {this.basePath, location.getResourcePath(), Integer.valueOf(p_147634_2_), ".png"}));
+        return p_147634_2_ == 0 ? new ResourceLocation(location.getResourceDomain(), "%s/%s%s".formatted(new Object[]{this.basePath, location.getResourcePath(), ".png"})) : new ResourceLocation(location.getResourceDomain(), "%s/mipmaps/%s.%d%s".formatted(new Object[]{this.basePath, location.getResourcePath(), Integer.valueOf(p_147634_2_), ".png"}));
     }
 
     public TextureAtlasSprite getAtlasSprite(String iconName)

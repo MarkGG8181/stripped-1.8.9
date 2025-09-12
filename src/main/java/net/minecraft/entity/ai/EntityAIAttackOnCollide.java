@@ -27,13 +27,13 @@ public class EntityAIAttackOnCollide extends EntityAIBase
 
     /** The PathEntity of our entity. */
     PathEntity entityPathEntity;
-    Class <? extends Entity > classTarget;
+    Class<? extends Entity> classTarget;
     private int delayCounter;
     private double targetX;
     private double targetY;
     private double targetZ;
 
-    public EntityAIAttackOnCollide(EntityCreature creature, Class <? extends Entity > targetClass, double speedIn, boolean useLongMemory)
+    public EntityAIAttackOnCollide(EntityCreature creature, Class<? extends Entity> targetClass, double speedIn, boolean useLongMemory)
     {
         this(creature, speedIn, useLongMemory);
         this.classTarget = targetClass;

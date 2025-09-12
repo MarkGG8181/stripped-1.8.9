@@ -117,7 +117,7 @@ public class CrashReport
                     }
                 }
 
-                return String.format("%d total; %s", new Object[] {Integer.valueOf(i), stringbuilder.toString()});
+                return "%d total; %s".formatted(new Object[]{Integer.valueOf(i), stringbuilder.toString()});
             }
         });
         this.theReportCategory.addCrashSectionCallable("IntCache", new Callable<String>()
@@ -152,7 +152,7 @@ public class CrashReport
     {
         if ((this.stacktrace == null || this.stacktrace.length <= 0) && this.crashReportSections.size() > 0)
         {
-            this.stacktrace = (StackTraceElement[])ArrayUtils.subarray(((CrashReportCategory)this.crashReportSections.get(0)).getStackTrace(), 0, 1);
+            this.stacktrace = (StackTraceElement[])ArrayUtils.subarray(((CrashReportCategory)this.crashReportSections.getFirst()).getStackTrace(), 0, 1);
         }
 
         if (this.stacktrace != null && this.stacktrace.length > 0)
@@ -362,9 +362,9 @@ public class CrashReport
     {
         CrashReport crashreport;
 
-        if (causeIn instanceof ReportedException)
+        if (causeIn instanceof ReportedException exception)
         {
-            crashreport = ((ReportedException)causeIn).getCrashReport();
+            crashreport = exception.getCrashReport();
         }
         else
         {

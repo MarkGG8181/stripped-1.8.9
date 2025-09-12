@@ -47,21 +47,22 @@ public class SimpleResource implements IResource {
 
     public <T extends IMetadataSection> T getMetadata(String p_110526_1_) {
         if (!this.hasMetadata()) {
-            return (T) null;
-        } else {
+            return (T)null;
+        }
+        else {
             if (this.mcmetaJson == null && !this.mcmetaJsonChecked) {
                 this.mcmetaJsonChecked = true;
                 BufferedReader bufferedreader = null;
 
                 try {
                     bufferedreader = new BufferedReader(new InputStreamReader(this.mcmetaInputStream));
-                    this.mcmetaJson = (new JsonParser()).parse((Reader) bufferedreader).getAsJsonObject();
+                    this.mcmetaJson = (new JsonParser()).parse((Reader)bufferedreader).getAsJsonObject();
                 } finally {
-                    IOUtils.closeQuietly((Reader) bufferedreader);
+                    IOUtils.closeQuietly((Reader)bufferedreader);
                 }
             }
 
-            T t = (T) this.mapMetadataSections.get(p_110526_1_);
+            T t = (T)this.mapMetadataSections.get(p_110526_1_);
 
             if (t == null) {
                 t = this.srMetadataSerializer.parseMetadataSection(p_110526_1_, this.mcmetaJson);
@@ -78,16 +79,19 @@ public class SimpleResource implements IResource {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (!(p_equals_1_ instanceof SimpleResource)) {
+        }
+        else if (!(p_equals_1_ instanceof SimpleResource)) {
             return false;
-        } else {
-            SimpleResource simpleresource = (SimpleResource) p_equals_1_;
+        }
+        else {
+            SimpleResource simpleresource = (SimpleResource)p_equals_1_;
 
             if (this.srResourceLocation != null) {
                 if (!this.srResourceLocation.equals(simpleresource.srResourceLocation)) {
                     return false;
                 }
-            } else if (simpleresource.srResourceLocation != null) {
+            }
+            else if (simpleresource.srResourceLocation != null) {
                 return false;
             }
 
@@ -95,7 +99,8 @@ public class SimpleResource implements IResource {
                 if (!this.resourcePackName.equals(simpleresource.resourcePackName)) {
                     return false;
                 }
-            } else if (simpleresource.resourcePackName != null) {
+            }
+            else if (simpleresource.resourcePackName != null) {
                 return false;
             }
 

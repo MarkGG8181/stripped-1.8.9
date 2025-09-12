@@ -424,7 +424,7 @@ public class EntitySlime extends EntityLiving implements IMob
         public boolean continueExecuting()
         {
             EntityLivingBase entitylivingbase = this.slime.getAttackTarget();
-            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage ? false : --this.growTieredTimer > 0));
+            return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (entitylivingbase instanceof EntityPlayer ep && ep.capabilities.disableDamage ? false : --this.growTieredTimer > 0));
         }
 
         public void updateTask()

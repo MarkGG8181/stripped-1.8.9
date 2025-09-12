@@ -54,7 +54,8 @@ public class JsonBlendingMode {
 
             if (this.separateBlend) {
                 GlStateManager.tryBlendFuncSeparate(this.srcColorFactor, this.destColorFactor, this.srcAlphaFactor, this.destAlphaFactor);
-            } else {
+            }
+            else {
                 GlStateManager.blendFunc(this.srcColorFactor, this.destColorFactor);
             }
         }
@@ -63,10 +64,12 @@ public class JsonBlendingMode {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (!(p_equals_1_ instanceof JsonBlendingMode)) {
+        }
+        else if (!(p_equals_1_ instanceof JsonBlendingMode)) {
             return false;
-        } else {
-            JsonBlendingMode jsonblendingmode = (JsonBlendingMode) p_equals_1_;
+        }
+        else {
+            JsonBlendingMode jsonblendingmode = (JsonBlendingMode)p_equals_1_;
             return this.blendFunction != jsonblendingmode.blendFunction ? false : (this.destAlphaFactor != jsonblendingmode.destAlphaFactor ? false : (this.destColorFactor != jsonblendingmode.destColorFactor ? false : (this.opaque != jsonblendingmode.opaque ? false : (this.separateBlend != jsonblendingmode.separateBlend ? false : (this.srcAlphaFactor != jsonblendingmode.srcAlphaFactor ? false : this.srcColorFactor == jsonblendingmode.srcColorFactor)))));
         }
     }
@@ -89,7 +92,8 @@ public class JsonBlendingMode {
     public static JsonBlendingMode func_148110_a(JsonObject p_148110_0_) {
         if (p_148110_0_ == null) {
             return new JsonBlendingMode();
-        } else {
+        }
+        else {
             int i = 32774;
             int j = 1;
             int k = 0;

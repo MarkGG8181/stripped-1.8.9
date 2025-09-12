@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.world.World;
 
 public class EntityEnchantmentTableParticleFX extends EntityFX
@@ -26,9 +28,9 @@ public class EntityEnchantmentTableParticleFX extends EntityFX
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F * f;
         this.particleGreen *= 0.9F;
         this.particleRed *= 0.9F;
-        this.particleMaxAge = (int)(Math.random() * 10.0D) + 30;
+        this.particleMaxAge = (int)(ThreadLocalRandom.current().nextDouble() * 10.0D) + 30;
         this.noClip = true;
-        this.setParticleTextureIndex((int)(Math.random() * 26.0D + 1.0D + 224.0D));
+        this.setParticleTextureIndex((int)(ThreadLocalRandom.current().nextDouble() * 26.0D + 1.0D + 224.0D));
     }
 
     public int getBrightnessForRender(float partialTicks)

@@ -251,7 +251,7 @@ public class BlockPistonExtension extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, TYPE, SHORT});
+        return new BlockState(this, new IProperty[]{FACING, TYPE, SHORT});
     }
 
     public static enum EnumPistonType implements IStringSerializable

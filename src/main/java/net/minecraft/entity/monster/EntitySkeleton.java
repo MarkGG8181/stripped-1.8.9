@@ -69,7 +69,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(13, new Byte((byte) 0));
+        this.dataWatcher.addObject(13, Byte.valueOf((byte)0));
     }
 
     /**
@@ -99,12 +99,13 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
 
     public boolean attackEntityAsMob(Entity entityIn) {
         if (super.attackEntityAsMob(entityIn)) {
-            if (this.getSkeletonType() == 1 && entityIn instanceof EntityLivingBase) {
-                ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(Potion.wither.id, 200));
+            if (this.getSkeletonType() == 1 && entityIn instanceof EntityLivingBase base) {
+                base.addPotionEffect(new PotionEffect(Potion.wither.id, 200));
             }
 
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -123,7 +124,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
     public void onLivingUpdate() {
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
             float f = this.getBrightness(1.0F);
-            BlockPos blockpos = new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
+            BlockPos blockpos = new BlockPos(this.posX, (double)Math.round(this.posY), this.posZ);
 
             if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canSeeSky(blockpos)) {
                 boolean flag = true;
@@ -135,7 +136,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
 
                         if (itemstack.getItemDamage() >= itemstack.getMaxDamage()) {
                             this.renderBrokenItemStack(itemstack);
-                            this.setCurrentItemOrArmor(4, (ItemStack) null);
+                            this.setCurrentItemOrArmor(4, (ItemStack)null);
                         }
                     }
 
@@ -161,8 +162,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
     public void updateRidden() {
         super.updateRidden();
 
-        if (this.ridingEntity instanceof EntityCreature) {
-            EntityCreature entitycreature = (EntityCreature) this.ridingEntity;
+        if (this.ridingEntity instanceof EntityCreature entitycreature) {
             this.renderYawOffset = entitycreature.renderYawOffset;
         }
     }
@@ -174,15 +174,16 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
         super.onDeath(cause);
 
         if (cause.getSourceOfDamage() instanceof EntityArrow && cause.getEntity() instanceof EntityPlayer) {
-            EntityPlayer entityplayer = (EntityPlayer) cause.getEntity();
+            EntityPlayer entityplayer = (EntityPlayer)cause.getEntity();
             double d0 = entityplayer.posX - this.posX;
             double d1 = entityplayer.posZ - this.posZ;
 
             if (d0 * d0 + d1 * d1 >= 2500.0D) {
                 entityplayer.triggerAchievement(AchievementList.snipeSkeleton);
             }
-        } else if (cause.getEntity() instanceof EntityCreeper && ((EntityCreeper) cause.getEntity()).getPowered() && ((EntityCreeper) cause.getEntity()).isAIEnabled()) {
-            ((EntityCreeper) cause.getEntity()).func_175493_co();
+        }
+        else if (cause.getEntity() instanceof EntityCreeper && ((EntityCreeper)cause.getEntity()).getPowered() && ((EntityCreeper)cause.getEntity()).isAIEnabled()) {
+            ((EntityCreeper)cause.getEntity()).func_175493_co();
             this.entityDropItem(new ItemStack(Items.skull, 1, this.getSkeletonType() == 1 ? 1 : 0), 0.0F);
         }
     }
@@ -205,7 +206,8 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
             for (int j = 0; j < i; ++j) {
                 this.dropItem(Items.coal, 1);
             }
-        } else {
+        }
+        else {
             int k = this.rand.nextInt(3 + lootingModifier);
 
             for (int i1 = 0; i1 < k; ++i1) {
@@ -249,7 +251,8 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
             this.setSkeletonType(1);
             this.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword));
             this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D);
-        } else {
+        }
+        else {
             this.tasks.addTask(4, this.aiArrowAttack);
             this.setEquipmentBasedOnDifficulty(difficulty);
             this.setEnchantmentBasedOnDifficulty(difficulty);
@@ -279,7 +282,8 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
 
         if (itemstack != null && itemstack.getItem() == Items.bow) {
             this.tasks.addTask(4, this.aiArrowAttack);
-        } else {
+        }
+        else {
             this.tasks.addTask(4, this.aiAttackOnCollide);
         }
     }
@@ -288,13 +292,13 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
      * Attack the specified entity using a ranged attack.
      */
     public void attackEntityWithRangedAttack(EntityLivingBase target, float p_82196_2_) {
-        EntityArrow entityarrow = new EntityArrow(this.worldObj, this, target, 1.6F, (float) (14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
+        EntityArrow entityarrow = new EntityArrow(this.worldObj, this, target, 1.6F, (float)(14 - this.worldObj.getDifficulty().getDifficultyId() * 4));
         int i = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, this.getHeldItem());
         int j = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, this.getHeldItem());
-        entityarrow.setDamage((double) (p_82196_2_ * 2.0F) + this.rand.nextGaussian() * 0.25D + (double) ((float) this.worldObj.getDifficulty().getDifficultyId() * 0.11F));
+        entityarrow.setDamage((double)(p_82196_2_ * 2.0F) + this.rand.nextGaussian() * 0.25D + (double)((float)this.worldObj.getDifficulty().getDifficultyId() * 0.11F));
 
         if (i > 0) {
-            entityarrow.setDamage(entityarrow.getDamage() + (double) i * 0.5D + 0.5D);
+            entityarrow.setDamage(entityarrow.getDamage() + (double)i * 0.5D + 0.5D);
         }
 
         if (j > 0) {
@@ -320,12 +324,13 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
      * Set this skeleton's type.
      */
     public void setSkeletonType(int p_82201_1_) {
-        this.dataWatcher.updateObject(13, Byte.valueOf((byte) p_82201_1_));
+        this.dataWatcher.updateObject(13, Byte.valueOf((byte)p_82201_1_));
         this.isImmuneToFire = p_82201_1_ == 1;
 
         if (p_82201_1_ == 1) {
             this.setSize(0.72F, 2.535F);
-        } else {
+        }
+        else {
             this.setSize(0.6F, 1.95F);
         }
     }
@@ -349,7 +354,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
      */
     public void writeEntityToNBT(NBTTagCompound tagCompound) {
         super.writeEntityToNBT(tagCompound);
-        tagCompound.setByte("SkeletonType", (byte) this.getSkeletonType());
+        tagCompound.setByte("SkeletonType", (byte)this.getSkeletonType());
     }
 
     /**

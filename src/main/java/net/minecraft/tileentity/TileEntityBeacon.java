@@ -32,7 +32,7 @@ import net.minecraft.util.ITickable;
 public class TileEntityBeacon extends TileEntityLockable implements ITickable, IInventory
 {
     /** List of effects that Beacon can apply */
-    public static final Potion[][] effectsList = new Potion[][] {{Potion.moveSpeed, Potion.digSpeed}, {Potion.resistance, Potion.jump}, {Potion.damageBoost}, {Potion.regeneration}};
+    public static final Potion[][] effectsList = new Potion[][]{{Potion.moveSpeed, Potion.digSpeed}, {Potion.resistance, Potion.jump}, {Potion.damageBoost}, {Potion.regeneration}};
     private final List<TileEntityBeacon.BeamSegment> beamSegments = new ArrayList<>();
     private long beamRenderCounter;
     private float beamRenderScale;
@@ -144,7 +144,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
             if (!flag)
             {
-                afloat = new float[] {(tileentitybeacon$beamsegment.getColors()[0] + afloat[0]) / 2.0F, (tileentitybeacon$beamsegment.getColors()[1] + afloat[1]) / 2.0F, (tileentitybeacon$beamsegment.getColors()[2] + afloat[2]) / 2.0F};
+                afloat = new float[]{(tileentitybeacon$beamsegment.getColors()[0] + afloat[0]) / 2.0F, (tileentitybeacon$beamsegment.getColors()[1] + afloat[1]) / 2.0F, (tileentitybeacon$beamsegment.getColors()[2] + afloat[2]) / 2.0F};
             }
 
             if (Arrays.equals(afloat, tileentitybeacon$beamsegment.getColors()))
@@ -424,20 +424,16 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 
     public int getField(int id)
     {
-        switch (id)
+        return switch (id)
         {
-            case 0:
-                return this.levels;
+            case 0 -> this.levels;
 
-            case 1:
-                return this.primaryEffect;
+            case 1 -> this.primaryEffect;
 
-            case 2:
-                return this.secondaryEffect;
+            case 2 -> this.secondaryEffect;
 
-            default:
-                return 0;
-        }
+            default -> 0;
+        };
     }
 
     public void setField(int id, int value)

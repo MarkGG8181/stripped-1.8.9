@@ -38,42 +38,42 @@ public class ClippingHelperImpl extends ClippingHelper {
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
                 clippingMatrix[row * 4 + col] =
-                        modelviewMatrix[row * 4 + 0] * projectionMatrix[col + 0] +
-                                modelviewMatrix[row * 4 + 1] * projectionMatrix[col + 4] +
-                                modelviewMatrix[row * 4 + 2] * projectionMatrix[col + 8] +
-                                modelviewMatrix[row * 4 + 3] * projectionMatrix[col + 12];
+                    modelviewMatrix[row * 4 + 0] * projectionMatrix[col + 0] +
+                        modelviewMatrix[row * 4 + 1] * projectionMatrix[col + 4] +
+                        modelviewMatrix[row * 4 + 2] * projectionMatrix[col + 8] +
+                        modelviewMatrix[row * 4 + 3] * projectionMatrix[col + 12];
             }
         }
 
         extractPlane(frustum[0], clippingMatrix[3] - clippingMatrix[0],
-                clippingMatrix[7] - clippingMatrix[4],
-                clippingMatrix[11] - clippingMatrix[8],
-                clippingMatrix[15] - clippingMatrix[12]);
+            clippingMatrix[7] - clippingMatrix[4],
+            clippingMatrix[11] - clippingMatrix[8],
+            clippingMatrix[15] - clippingMatrix[12]);
 
         extractPlane(frustum[1], clippingMatrix[3] + clippingMatrix[0],
-                clippingMatrix[7] + clippingMatrix[4],
-                clippingMatrix[11] + clippingMatrix[8],
-                clippingMatrix[15] + clippingMatrix[12]);
+            clippingMatrix[7] + clippingMatrix[4],
+            clippingMatrix[11] + clippingMatrix[8],
+            clippingMatrix[15] + clippingMatrix[12]);
 
         extractPlane(frustum[2], clippingMatrix[3] + clippingMatrix[1],
-                clippingMatrix[7] + clippingMatrix[5],
-                clippingMatrix[11] + clippingMatrix[9],
-                clippingMatrix[15] + clippingMatrix[13]);
+            clippingMatrix[7] + clippingMatrix[5],
+            clippingMatrix[11] + clippingMatrix[9],
+            clippingMatrix[15] + clippingMatrix[13]);
 
         extractPlane(frustum[3], clippingMatrix[3] - clippingMatrix[1],
-                clippingMatrix[7] - clippingMatrix[5],
-                clippingMatrix[11] - clippingMatrix[9],
-                clippingMatrix[15] - clippingMatrix[13]);
+            clippingMatrix[7] - clippingMatrix[5],
+            clippingMatrix[11] - clippingMatrix[9],
+            clippingMatrix[15] - clippingMatrix[13]);
 
         extractPlane(frustum[4], clippingMatrix[3] - clippingMatrix[2],
-                clippingMatrix[7] - clippingMatrix[6],
-                clippingMatrix[11] - clippingMatrix[10],
-                clippingMatrix[15] - clippingMatrix[14]);
+            clippingMatrix[7] - clippingMatrix[6],
+            clippingMatrix[11] - clippingMatrix[10],
+            clippingMatrix[15] - clippingMatrix[14]);
 
         extractPlane(frustum[5], clippingMatrix[3] + clippingMatrix[2],
-                clippingMatrix[7] + clippingMatrix[6],
-                clippingMatrix[11] + clippingMatrix[10],
-                clippingMatrix[15] + clippingMatrix[13]);
+            clippingMatrix[7] + clippingMatrix[6],
+            clippingMatrix[11] + clippingMatrix[10],
+            clippingMatrix[15] + clippingMatrix[13]);
     }
 
     private void extractPlane(double[] plane, double a, double b, double c, double d) {

@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -61,10 +63,10 @@ public class EntityFX extends Entity
     public EntityFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double xSpeedIn, double ySpeedIn, double zSpeedIn)
     {
         this(worldIn, xCoordIn, yCoordIn, zCoordIn);
-        this.motionX = xSpeedIn + (Math.random() * 2.0D - 1.0D) * 0.4000000059604645D;
-        this.motionY = ySpeedIn + (Math.random() * 2.0D - 1.0D) * 0.4000000059604645D;
-        this.motionZ = zSpeedIn + (Math.random() * 2.0D - 1.0D) * 0.4000000059604645D;
-        float f = (float)(Math.random() + Math.random() + 1.0D) * 0.15F;
+        this.motionX = xSpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.4000000059604645D;
+        this.motionY = ySpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.4000000059604645D;
+        this.motionZ = zSpeedIn + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.4000000059604645D;
+        float f = (float)(ThreadLocalRandom.current().nextDouble() + ThreadLocalRandom.current().nextDouble() + 1.0D) * 0.15F;
         float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
         this.motionX = this.motionX / (double)f1 * (double)f * 0.4000000059604645D;
         this.motionY = this.motionY / (double)f1 * (double)f * 0.4000000059604645D + 0.10000000149011612D;

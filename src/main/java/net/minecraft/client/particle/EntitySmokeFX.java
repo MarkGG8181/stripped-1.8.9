@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -23,11 +25,11 @@ public class EntitySmokeFX extends EntityFX
         this.motionX += p_i46348_8_;
         this.motionY += p_i46348_10_;
         this.motionZ += p_i46348_12_;
-        this.particleRed = this.particleGreen = this.particleBlue = (float)(Math.random() * 0.30000001192092896D);
+        this.particleRed = this.particleGreen = this.particleBlue = (float)(ThreadLocalRandom.current().nextDouble() * 0.30000001192092896D);
         this.particleScale *= 0.75F;
         this.particleScale *= p_i46348_14_;
         this.smokeParticleScale = this.particleScale;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * p_i46348_14_);
         this.noClip = false;
     }

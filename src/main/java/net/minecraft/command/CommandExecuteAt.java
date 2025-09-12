@@ -67,7 +67,7 @@ public class CommandExecuteAt extends CommandBase
 
                 if (iblockstate.getBlock() != block || k >= 0 && iblockstate.getBlock().getMetaFromState(iblockstate) != k)
                 {
-                    throw new CommandException("commands.execute.failed", new Object[] {"detect", entity.getName()});
+                    throw new CommandException("commands.execute.failed", new Object[]{"detect", entity.getName()});
                 }
 
                 i = 10;
@@ -80,39 +80,48 @@ public class CommandExecuteAt extends CommandBase
                 {
                     return entity.getName();
                 }
+
                 public IChatComponent getDisplayName()
                 {
                     return entity.getDisplayName();
                 }
+
                 public void addChatMessage(IChatComponent component)
                 {
                     sender.addChatMessage(component);
                 }
+
                 public boolean canCommandSenderUseCommand(int permLevel, String commandName)
                 {
                     return sender.canCommandSenderUseCommand(permLevel, commandName);
                 }
+
                 public BlockPos getPosition()
                 {
                     return blockpos;
                 }
+
                 public Vec3 getPositionVector()
                 {
                     return new Vec3(d0, d1, d2);
                 }
+
                 public World getEntityWorld()
                 {
                     return entity.worldObj;
                 }
+
                 public Entity getCommandSenderEntity()
                 {
                     return entity;
                 }
+
                 public boolean sendCommandFeedback()
                 {
                     MinecraftServer minecraftserver = MinecraftServer.getServer();
                     return minecraftserver == null || minecraftserver.worldServers[0].getGameRules().getBoolean("commandBlockOutput");
                 }
+
                 public void setCommandStat(CommandResultStats.Type type, int amount)
                 {
                     entity.setCommandStat(type, amount);
@@ -126,12 +135,12 @@ public class CommandExecuteAt extends CommandBase
 
                 if (j < 1)
                 {
-                    throw new CommandException("commands.execute.allInvocationsFailed", new Object[] {s});
+                    throw new CommandException("commands.execute.allInvocationsFailed", new Object[]{s});
                 }
             }
             catch (Throwable var23)
             {
-                throw new CommandException("commands.execute.failed", new Object[] {s, entity.getName()});
+                throw new CommandException("commands.execute.failed", new Object[]{s, entity.getName()});
             }
         }
     }

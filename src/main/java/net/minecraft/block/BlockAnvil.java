@@ -148,7 +148,7 @@ public class BlockAnvil extends BlockFalling
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, DAMAGE});
+        return new BlockState(this, new IProperty[]{FACING, DAMAGE});
     }
 
     public static class Anvil implements IInteractionObject

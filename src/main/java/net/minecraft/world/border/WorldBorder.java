@@ -34,11 +34,11 @@ public class WorldBorder {
     }
 
     public boolean contains(BlockPos pos) {
-        return (double) (pos.getX() + 1) > this.minX() && (double) pos.getX() < this.maxX() && (double) (pos.getZ() + 1) > this.minZ() && (double) pos.getZ() < this.maxZ();
+        return (double)(pos.getX() + 1) > this.minX() && (double)pos.getX() < this.maxX() && (double)(pos.getZ() + 1) > this.minZ() && (double)pos.getZ() < this.maxZ();
     }
 
     public boolean contains(ChunkCoordIntPair range) {
-        return (double) range.getXEnd() > this.minX() && (double) range.getXStart() < this.maxX() && (double) range.getZEnd() > this.minZ() && (double) range.getZStart() < this.maxZ();
+        return (double)range.getXEnd() > this.minX() && (double)range.getXStart() < this.maxX() && (double)range.getZEnd() > this.minZ() && (double)range.getZStart() < this.maxZ();
     }
 
     public boolean contains(AxisAlignedBB bb) {
@@ -66,7 +66,7 @@ public class WorldBorder {
     public double minX() {
         double d0 = this.getCenterX() - this.getDiameter() / 2.0D;
 
-        if (d0 < (double) (-this.worldSize)) {
+        if (d0 < (double)(-this.worldSize)) {
             d0 = -this.worldSize;
         }
 
@@ -76,7 +76,7 @@ public class WorldBorder {
     public double minZ() {
         double d0 = this.getCenterZ() - this.getDiameter() / 2.0D;
 
-        if (d0 < (double) (-this.worldSize)) {
+        if (d0 < (double)(-this.worldSize)) {
             d0 = -this.worldSize;
         }
 
@@ -86,7 +86,7 @@ public class WorldBorder {
     public double maxX() {
         double d0 = this.getCenterX() + this.getDiameter() / 2.0D;
 
-        if (d0 > (double) this.worldSize) {
+        if (d0 > (double)this.worldSize) {
             d0 = this.worldSize;
         }
 
@@ -96,7 +96,7 @@ public class WorldBorder {
     public double maxZ() {
         double d0 = this.getCenterZ() + this.getDiameter() / 2.0D;
 
-        if (d0 > (double) this.worldSize) {
+        if (d0 > (double)this.worldSize) {
             d0 = this.worldSize;
         }
 
@@ -122,7 +122,7 @@ public class WorldBorder {
 
     public double getDiameter() {
         if (this.getStatus() != EnumBorderStatus.STATIONARY) {
-            double d0 = (float) (System.currentTimeMillis() - this.startTime) / (float) (this.endTime - this.startTime);
+            double d0 = (float)(System.currentTimeMillis() - this.startTime) / (float)(this.endTime - this.startTime);
 
             if (d0 < 1.0D) {
                 return this.startDiameter + (this.endDiameter - this.startDiameter) * d0;
@@ -205,7 +205,7 @@ public class WorldBorder {
     }
 
     public double getResizeSpeed() {
-        return this.endTime == this.startTime ? 0.0D : Math.abs(this.startDiameter - this.endDiameter) / (double) (this.endTime - this.startTime);
+        return this.endTime == this.startTime ? 0.0D : Math.abs(this.startDiameter - this.endDiameter) / (double)(this.endTime - this.startTime);
     }
 
     public int getWarningTime() {

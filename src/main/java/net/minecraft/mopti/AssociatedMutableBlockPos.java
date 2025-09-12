@@ -38,7 +38,7 @@ public class AssociatedMutableBlockPos extends ExtendedMutableBlockPos implement
     public static AssociatedMutableBlockPos get(int x, int y, int z) {
         synchronized (POOL) {
             while (!POOL.isEmpty()) {
-                AssociatedMutableBlockPos removed = POOL.remove(POOL.size() - 1);
+                AssociatedMutableBlockPos removed = POOL.removeLast();
 
                 if (removed != null && removed.released) {
                     removed.released = false;
@@ -60,7 +60,7 @@ public class AssociatedMutableBlockPos extends ExtendedMutableBlockPos implement
             this.released = false;
         }
 
-        return (AssociatedMutableBlockPos) super.set(x, y, z);
+        return (AssociatedMutableBlockPos)super.set(x, y, z);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class AssociatedMutableBlockPos extends ExtendedMutableBlockPos implement
 
         @Override
         public Companion set(int x, int y, int z) {
-            return (Companion) super.set(x, y, z);
+            return (Companion)super.set(x, y, z);
         }
 
         @Override

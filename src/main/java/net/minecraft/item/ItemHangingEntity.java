@@ -11,9 +11,9 @@ import net.minecraft.world.World;
 
 public class ItemHangingEntity extends Item
 {
-    private final Class <? extends EntityHanging > hangingEntityClass;
+    private final Class<? extends EntityHanging> hangingEntityClass;
 
-    public ItemHangingEntity(Class <? extends EntityHanging > entityClass)
+    public ItemHangingEntity(Class<? extends EntityHanging> entityClass)
     {
         this.hangingEntityClass = entityClass;
         this.setCreativeTab(CreativeTabs.tabDecorations);

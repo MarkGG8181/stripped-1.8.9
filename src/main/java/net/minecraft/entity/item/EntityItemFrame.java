@@ -101,9 +101,8 @@ public class EntityItemFrame extends EntityHanging
         {
             ItemStack itemstack = this.getDisplayedItem();
 
-            if (p_146065_1_ instanceof EntityPlayer)
+            if (p_146065_1_ instanceof EntityPlayer entityplayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)p_146065_1_;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {

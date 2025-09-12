@@ -40,7 +40,7 @@ public interface IScoreObjectiveCriteria {
         }
 
         public static IScoreObjectiveCriteria.EnumRenderType func_178795_a(String p_178795_0_) {
-            IScoreObjectiveCriteria.EnumRenderType iscoreobjectivecriteria$enumrendertype = (IScoreObjectiveCriteria.EnumRenderType) BY_NAME.get(p_178795_0_);
+            IScoreObjectiveCriteria.EnumRenderType iscoreobjectivecriteria$enumrendertype = (IScoreObjectiveCriteria.EnumRenderType)BY_NAME.get(p_178795_0_);
             return iscoreobjectivecriteria$enumrendertype == null ? INTEGER : iscoreobjectivecriteria$enumrendertype;
         }
 

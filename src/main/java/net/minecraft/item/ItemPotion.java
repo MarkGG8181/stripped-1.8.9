@@ -224,7 +224,7 @@ public class ItemPotion extends Item
 
             if (list != null && !list.isEmpty())
             {
-                String s2 = ((PotionEffect)list.get(0)).getEffectName();
+                String s2 = ((PotionEffect)list.getFirst()).getEffectName();
                 s2 = s2 + ".postfix";
                 return s + StatCollector.translateToLocal(s2).trim();
             }
@@ -312,12 +312,12 @@ public class ItemPotion extends Item
 
                     if (d0 > 0.0D)
                     {
-                        tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[] {ItemStack.DECIMALFORMAT.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
+                        tooltip.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
                     }
                     else if (d0 < 0.0D)
                     {
                         d1 = d1 * -1.0D;
-                        tooltip.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[] {ItemStack.DECIMALFORMAT.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
+                        tooltip.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[]{ItemStack.DECIMALFORMAT.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
                     }
                 }
             }

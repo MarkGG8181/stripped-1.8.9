@@ -19,6 +19,7 @@ public class ItemMinecart extends Item
     private static final IBehaviorDispenseItem dispenserMinecartBehavior = new BehaviorDefaultDispenseItem()
     {
         private final BehaviorDefaultDispenseItem behaviourDefaultDispenseItem = new BehaviorDefaultDispenseItem();
+
         public ItemStack dispenseStack(IBlockSource source, ItemStack stack)
         {
             EnumFacing enumfacing = BlockDispenser.getFacing(source.getBlockMetadata());
@@ -73,6 +74,7 @@ public class ItemMinecart extends Item
             stack.splitStack(1);
             return stack;
         }
+
         protected void playDispenseSound(IBlockSource source)
         {
             source.getWorld().playAuxSFX(1000, source.getBlockPos(), 0);

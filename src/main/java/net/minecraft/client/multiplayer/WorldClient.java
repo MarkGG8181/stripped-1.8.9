@@ -179,9 +179,9 @@ public class WorldClient extends World
         {
             this.entitySpawnQueue.add(entityIn);
         }
-        else if (entityIn instanceof EntityMinecart)
+        else if (entityIn instanceof EntityMinecart minecart)
         {
-            this.mc.getSoundHandler().playSound(new MovingSoundMinecart((EntityMinecart)entityIn));
+            this.mc.getSoundHandler().playSound(new MovingSoundMinecart(minecart));
         }
 
         return flag;

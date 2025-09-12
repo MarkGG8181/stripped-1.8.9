@@ -30,11 +30,12 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
         float f = 0.6666667F;
 
         if (block == Blocks.standing_sign) {
-            GlStateManager.translate((float) x + 0.5F, (float) y + 0.75F * f, (float) z + 0.5F);
-            float f1 = (float) (te.getBlockMetadata() * 360) / 16.0F;
+            GlStateManager.translate((float)x + 0.5F, (float)y + 0.75F * f, (float)z + 0.5F);
+            float f1 = (float)(te.getBlockMetadata() * 360) / 16.0F;
             GlStateManager.rotate(-f1, 0.0F, 1.0F, 0.0F);
             this.model.signStick.showModel = true;
-        } else {
+        }
+        else {
             int k = te.getBlockMetadata();
             float f2 = 0.0F;
 
@@ -50,7 +51,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
                 f2 = -90.0F;
             }
 
-            GlStateManager.translate((float) x + 0.5F, (float) y + 0.75F * f, (float) z + 0.5F);
+            GlStateManager.translate((float)x + 0.5F, (float)y + 0.75F * f, (float)z + 0.5F);
             GlStateManager.rotate(-f2, 0.0F, 1.0F, 0.0F);
             GlStateManager.translate(0.0F, -0.3125F, -0.4375F);
             this.model.signStick.showModel = false;
@@ -63,7 +64,8 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
             GlStateManager.scale(4.0F, 2.0F, 1.0F);
             GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
             GlStateManager.matrixMode(5888);
-        } else {
+        }
+        else {
             this.bindTexture(SIGN_TEXTURE);
         }
 
@@ -95,12 +97,13 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
                 if (te.signText[j] != null) {
                     IChatComponent ichatcomponent = te.signText[j];
                     List<IChatComponent> list = GuiUtilRenderComponents.splitText(ichatcomponent, 90, fontrenderer, false, true);
-                    String s = list != null && list.size() > 0 ? ((IChatComponent) list.get(0)).getFormattedText() : "";
+                    String s = list != null && list.size() > 0 ? ((IChatComponent)list.getFirst()).getFormattedText() : "";
 
                     if (j == te.lineBeingEdited) {
                         s = "> " + s + " <";
                         fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, j * 10 - te.signText.length * 5, i);
-                    } else {
+                    }
+                    else {
                         fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, j * 10 - te.signText.length * 5, i);
                     }
                 }

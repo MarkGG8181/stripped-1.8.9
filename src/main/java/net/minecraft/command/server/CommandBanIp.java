@@ -104,11 +104,11 @@ public class CommandBanIp extends CommandBase
 
         if (list.isEmpty())
         {
-            notifyOperators(sender, this, "commands.banip.success", new Object[] {address});
+            notifyOperators(sender, this, "commands.banip.success", new Object[]{address});
         }
         else
         {
-            notifyOperators(sender, this, "commands.banip.success.players", new Object[] {address, joinNiceString(astring)});
+            notifyOperators(sender, this, "commands.banip.success.players", new Object[]{address, joinNiceString(astring)});
         }
     }
 }

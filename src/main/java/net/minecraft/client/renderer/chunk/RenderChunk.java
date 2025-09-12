@@ -67,7 +67,8 @@ public class RenderChunk {
     public boolean setFrameIndex(int frameIndexIn) {
         if (this.frameIndex == frameIndexIn) {
             return false;
-        } else {
+        }
+        else {
             this.frameIndex = frameIndexIn;
             return true;
         }
@@ -248,7 +249,7 @@ public class RenderChunk {
 
     private void preRenderBlocks(WorldRenderer worldRendererIn, BlockPos pos) {
         worldRendererIn.begin(7, DefaultVertexFormats.BLOCK);
-        worldRendererIn.setTranslation((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()));
+        worldRendererIn.setTranslation((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
     }
 
     private void postRenderBlocks(EnumWorldBlockLayer layer, float x, float y, float z, WorldRenderer worldRendererIn, CompiledChunk compiledChunkIn) {
@@ -318,6 +319,6 @@ public class RenderChunk {
     }
 
     public BlockPos getBlockPosOffset16(EnumFacing p_181701_1_) {
-        return (BlockPos) this.mapEnumFacing.get(p_181701_1_);
+        return (BlockPos)this.mapEnumFacing.get(p_181701_1_);
     }
 }

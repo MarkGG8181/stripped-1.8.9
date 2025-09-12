@@ -45,9 +45,11 @@ public final class ContextGL implements Context {
         GL.setCapabilities(null);
     }
 
-    public synchronized void releaseDrawable() throws LWJGLException {}
+    public synchronized void releaseDrawable() throws LWJGLException {
+    }
 
-    public synchronized void update() {}
+    public synchronized void update() {
+    }
 
     public static void swapBuffers() throws LWJGLException {
         GLFW.glfwSwapBuffers(Display.getWindowHandle());
@@ -77,5 +79,6 @@ public final class ContextGL implements Context {
         }
     }
 
-    public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {}
+    public synchronized void setCLSharingProperties(final PointerBuffer properties) throws LWJGLException {
+    }
 }

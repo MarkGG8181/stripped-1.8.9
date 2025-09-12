@@ -110,9 +110,8 @@ public class EntityPainting extends EntityHanging
     {
         if (this.worldObj.getGameRules().getBoolean("doEntityDrops"))
         {
-            if (brokenEntity instanceof EntityPlayer)
+            if (brokenEntity instanceof EntityPlayer entityplayer)
             {
-                EntityPlayer entityplayer = (EntityPlayer)brokenEntity;
 
                 if (entityplayer.capabilities.isCreativeMode)
                 {

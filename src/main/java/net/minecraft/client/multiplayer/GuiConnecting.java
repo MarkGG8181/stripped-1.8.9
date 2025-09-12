@@ -31,7 +31,7 @@ public class GuiConnecting extends GuiScreen {
         this.mc = mcIn;
         this.previousGuiScreen = p_i1181_1_;
         ServerAddress serveraddress = ServerAddress.fromString(p_i1181_3_.serverIP);
-        mcIn.loadWorld((WorldClient) null);
+        mcIn.loadWorld((WorldClient)null);
         mcIn.setServerData(p_i1181_3_);
         this.connect(serveraddress.getIP(), serveraddress.getPort());
     }
@@ -39,7 +39,7 @@ public class GuiConnecting extends GuiScreen {
     public GuiConnecting(GuiScreen p_i1182_1_, Minecraft mcIn, String hostName, int port) {
         this.mc = mcIn;
         this.previousGuiScreen = p_i1182_1_;
-        mcIn.loadWorld((WorldClient) null);
+        mcIn.loadWorld((WorldClient)null);
         this.connect(hostName, port);
     }
 
@@ -92,7 +92,8 @@ public class GuiConnecting extends GuiScreen {
         if (this.networkManager != null) {
             if (this.networkManager.isChannelOpen()) {
                 this.networkManager.processReceivedPackets();
-            } else {
+            }
+            else {
                 this.networkManager.checkDisconnected();
             }
         }
@@ -137,7 +138,8 @@ public class GuiConnecting extends GuiScreen {
 
         if (this.networkManager == null) {
             this.drawCenteredString(this.fontRendererObj, I18n.format("connect.connecting", new Object[0]), this.width / 2, this.height / 2 - 50, 16777215);
-        } else {
+        }
+        else {
             this.drawCenteredString(this.fontRendererObj, I18n.format("connect.authorizing", new Object[0]), this.width / 2, this.height / 2 - 50, 16777215);
         }
 

@@ -30,10 +30,12 @@ public abstract class PropertyHelper<T extends Comparable<T>> implements IProper
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
-            PropertyHelper propertyhelper = (PropertyHelper) p_equals_1_;
+        }
+        else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
+            PropertyHelper propertyhelper = (PropertyHelper)p_equals_1_;
             return this.valueClass.equals(propertyhelper.valueClass) && this.name.equals(propertyhelper.name);
-        } else {
+        }
+        else {
             return false;
         }
     }

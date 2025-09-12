@@ -17,7 +17,8 @@ public class RegionFileCache {
 
         if (regionfile != null) {
             return regionfile;
-        } else {
+        }
+        else {
             if (!file1.exists()) {
                 file1.mkdirs();
             }

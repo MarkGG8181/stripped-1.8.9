@@ -128,7 +128,8 @@ public class WorldInfo {
 
             if (this.terrainType == null) {
                 this.terrainType = WorldType.DEFAULT;
-            } else if (this.terrainType.isVersioned()) {
+            }
+            else if (this.terrainType.isVersioned()) {
                 int i = 0;
 
                 if (nbt.hasKey("generatorVersion", 99)) {
@@ -147,7 +148,8 @@ public class WorldInfo {
 
         if (nbt.hasKey("MapFeatures", 99)) {
             this.mapFeaturesEnabled = nbt.getBoolean("MapFeatures");
-        } else {
+        }
+        else {
             this.mapFeaturesEnabled = true;
         }
 
@@ -158,7 +160,8 @@ public class WorldInfo {
 
         if (nbt.hasKey("DayTime", 99)) {
             this.worldTime = nbt.getLong("DayTime");
-        } else {
+        }
+        else {
             this.worldTime = this.totalTime;
         }
 
@@ -175,13 +178,15 @@ public class WorldInfo {
 
         if (nbt.hasKey("initialized", 99)) {
             this.initialized = nbt.getBoolean("initialized");
-        } else {
+        }
+        else {
             this.initialized = true;
         }
 
         if (nbt.hasKey("allowCommands", 99)) {
             this.allowCommands = nbt.getBoolean("allowCommands");
-        } else {
+        }
+        else {
             this.allowCommands = this.theGameType == WorldSettings.GameType.CREATIVE;
         }
 
@@ -348,7 +353,7 @@ public class WorldInfo {
         nbt.setDouble("BorderWarningTime", this.borderWarningTime);
 
         if (this.difficulty != null) {
-            nbt.setByte("Difficulty", (byte) this.difficulty.getDifficultyId());
+            nbt.setByte("Difficulty", (byte)this.difficulty.getDifficultyId());
         }
 
         nbt.setBoolean("DifficultyLocked", this.difficultyLocked);
@@ -767,10 +772,10 @@ public class WorldInfo {
      */
     public void addToCrashReport(CrashReportCategory category) {
         category.addCrashSectionCallable("Level seed", () -> String.valueOf(WorldInfo.this.getSeed()));
-        category.addCrashSectionCallable("Level generator", () -> String.format("ID %02d - %s, ver %d. Features enabled: %b", WorldInfo.this.terrainType.getWorldTypeID(), WorldInfo.this.terrainType.getWorldTypeName(), WorldInfo.this.terrainType.getGeneratorVersion(), WorldInfo.this.mapFeaturesEnabled));
+        category.addCrashSectionCallable("Level generator", () -> "ID %02d - %s, ver %d. Features enabled: %b".formatted(WorldInfo.this.terrainType.getWorldTypeID(), WorldInfo.this.terrainType.getWorldTypeName(), WorldInfo.this.terrainType.getGeneratorVersion(), WorldInfo.this.mapFeaturesEnabled));
         category.addCrashSectionCallable("Level generator options", () -> WorldInfo.this.generatorOptions);
         category.addCrashSectionCallable("Level spawn location", () -> CrashReportCategory.getCoordinateInfo(WorldInfo.this.spawnX, WorldInfo.this.spawnY, WorldInfo.this.spawnZ));
-        category.addCrashSectionCallable("Level time", () -> String.format("%d game time, %d day time", WorldInfo.this.totalTime, WorldInfo.this.worldTime));
+        category.addCrashSectionCallable("Level time", () -> "%d game time, %d day time".formatted(WorldInfo.this.totalTime, WorldInfo.this.worldTime));
         category.addCrashSectionCallable("Level dimension", () -> String.valueOf(WorldInfo.this.dimension));
         category.addCrashSectionCallable("Level storage version", () -> {
             String s = "Unknown?";
@@ -784,9 +789,9 @@ public class WorldInfo {
             } catch (Throwable ignored) {
             }
 
-            return String.format("0x%05X - %s", WorldInfo.this.saveVersion, s);
+            return "0x%05X - %s".formatted(WorldInfo.this.saveVersion, s);
         });
-        category.addCrashSectionCallable("Level weather", () -> String.format("Rain time: %d (now: %b), thunder time: %d (now: %b)", WorldInfo.this.rainTime, WorldInfo.this.raining, WorldInfo.this.thunderTime, WorldInfo.this.thundering));
-        category.addCrashSectionCallable("Level game mode", () -> String.format("Game mode: %s (ID %d). Hardcore: %b. Cheats: %b", WorldInfo.this.theGameType.getName(), WorldInfo.this.theGameType.getID(), WorldInfo.this.hardcore, WorldInfo.this.allowCommands));
+        category.addCrashSectionCallable("Level weather", () -> "Rain time: %d (now: %b), thunder time: %d (now: %b)".formatted(WorldInfo.this.rainTime, WorldInfo.this.raining, WorldInfo.this.thunderTime, WorldInfo.this.thundering));
+        category.addCrashSectionCallable("Level game mode", () -> "Game mode: %s (ID %d). Hardcore: %b. Cheats: %b".formatted(WorldInfo.this.theGameType.getName(), WorldInfo.this.theGameType.getID(), WorldInfo.this.hardcore, WorldInfo.this.allowCommands));
     }
 }

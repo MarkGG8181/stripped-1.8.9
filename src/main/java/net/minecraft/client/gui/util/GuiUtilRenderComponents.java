@@ -21,8 +21,8 @@ public class GuiUtilRenderComponents {
         List<IChatComponent> list = new ArrayList<>();
         List<IChatComponent> list1 = Lists.newArrayList(p_178908_0_);
 
-        for (int j = 0; j < ((List) list1).size(); ++j) {
-            IChatComponent ichatcomponent1 = (IChatComponent) list1.get(j);
+        for (int j = 0; j < ((List)list1).size(); ++j) {
+            IChatComponent ichatcomponent1 = (IChatComponent)list1.get(j);
             String s = ichatcomponent1.getUnformattedTextForChat();
             boolean flag = false;
 
@@ -57,7 +57,8 @@ public class GuiUtilRenderComponents {
                         }
 
                         s3 = s4.substring(l);
-                    } else if (i > 0 && !s4.contains(" ")) {
+                    }
+                    else if (i > 0 && !s4.contains(" ")) {
                         s2 = "";
                         s3 = s4;
                     }
@@ -76,7 +77,8 @@ public class GuiUtilRenderComponents {
             if (i + i1 <= p_178908_1_) {
                 i += i1;
                 ichatcomponent.appendSibling(chatcomponenttext1);
-            } else {
+            }
+            else {
                 flag = true;
             }
 

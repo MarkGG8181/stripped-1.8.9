@@ -107,29 +107,22 @@ public class BlockLever extends Block
 
     public static int getMetadataForFacing(EnumFacing facing)
     {
-        switch (facing)
+        return switch (facing)
         {
-            case DOWN:
-                return 0;
+            case DOWN -> 0;
 
-            case UP:
-                return 5;
+            case UP -> 5;
 
-            case NORTH:
-                return 4;
+            case NORTH -> 4;
 
-            case SOUTH:
-                return 3;
+            case SOUTH -> 3;
 
-            case WEST:
-                return 2;
+            case WEST -> 2;
 
-            case EAST:
-                return 1;
+            case EAST -> 1;
 
-            default:
-                return -1;
-        }
+            default -> -1;
+        };
     }
 
     /**
@@ -267,7 +260,7 @@ public class BlockLever extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, POWERED});
+        return new BlockState(this, new IProperty[]{FACING, POWERED});
     }
 
     public static enum EnumOrientation implements IStringSerializable

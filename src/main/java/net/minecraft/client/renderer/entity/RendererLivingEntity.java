@@ -68,7 +68,6 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
 
         for (f = par2 - par1; f < -180.0F; f += 360.0F)
         {
-            ;
         }
 
         while (f >= 180.0F)
@@ -100,9 +99,8 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             float f1 = this.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, partialTicks);
             float f2 = f1 - f;
 
-            if (entity.isRiding() && entity.ridingEntity instanceof EntityLivingBase)
+            if (entity.isRiding() && entity.ridingEntity instanceof EntityLivingBase entitylivingbase)
             {
-                EntityLivingBase entitylivingbase = (EntityLivingBase)entity.ridingEntity;
                 f = this.interpolateRotation(entitylivingbase.prevRenderYawOffset, entitylivingbase.renderYawOffset, partialTicks);
                 f2 = f1 - f;
                 float f3 = MathHelper.wrapAngleTo180_float(f2);
@@ -557,23 +555,18 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             {
                 Team.EnumVisible team$enumvisible = team.getNameTagVisibility();
 
-                switch (team$enumvisible)
+                return switch (team$enumvisible)
                 {
-                    case ALWAYS:
-                        return true;
+                    case ALWAYS -> true;
 
-                    case NEVER:
-                        return false;
+                    case NEVER -> false;
 
-                    case HIDE_FOR_OTHER_TEAMS:
-                        return team1 == null || team.isSameTeam(team1);
+                    case HIDE_FOR_OTHER_TEAMS -> team1 == null || team.isSameTeam(team1);
 
-                    case HIDE_FOR_OWN_TEAM:
-                        return team1 == null || !team.isSameTeam(team1);
+                    case HIDE_FOR_OWN_TEAM -> team1 == null || !team.isSameTeam(team1);
 
-                    default:
-                        return true;
-                }
+                    default -> true;
+                };
             }
         }
 
@@ -586,7 +579,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     }
 
     static
-    {
+        {
         int[] aint = textureBrightness.getTextureData();
 
         for (int i = 0; i < 256; ++i)

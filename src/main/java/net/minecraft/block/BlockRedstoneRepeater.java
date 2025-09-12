@@ -151,6 +151,6 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, DELAY, LOCKED});
+        return new BlockState(this, new IProperty[]{FACING, DELAY, LOCKED});
     }
 }

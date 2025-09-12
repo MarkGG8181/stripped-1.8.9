@@ -25,23 +25,27 @@ public record ClickEvent(Action action, String value) {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
-            ClickEvent clickevent = (ClickEvent) p_equals_1_;
+        }
+        else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
+            ClickEvent clickevent = (ClickEvent)p_equals_1_;
 
             if (this.action != clickevent.action) {
                 return false;
-            } else {
+            }
+            else {
                 if (this.value != null) {
                     if (!this.value.equals(clickevent.value)) {
                         return false;
                     }
-                } else if (clickevent.value != null) {
+                }
+                else if (clickevent.value != null) {
                     return false;
                 }
 
                 return true;
             }
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -75,7 +79,7 @@ public record ClickEvent(Action action, String value) {
         }
 
         public static Action getValueByCanonicalName(String canonicalNameIn) {
-            return (Action) nameMapping.get(canonicalNameIn);
+            return (Action)nameMapping.get(canonicalNameIn);
         }
 
         static {

@@ -61,9 +61,9 @@ public class BlockCommandBlock extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityCommandBlock)
+        if (tileentity instanceof TileEntityCommandBlock block)
         {
-            ((TileEntityCommandBlock)tileentity).getCommandBlockLogic().trigger(worldIn);
+            block.getCommandBlockLogic().trigger(worldIn);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
     }
@@ -79,7 +79,7 @@ public class BlockCommandBlock extends BlockContainer
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)tileentity).getCommandBlockLogic().tryOpenEditCommandBlock(playerIn) : false;
+        return tileentity instanceof TileEntityCommandBlock tecb ? tecb.getCommandBlockLogic().tryOpenEditCommandBlock(playerIn) : false;
     }
 
     public boolean hasComparatorInputOverride()
@@ -90,7 +90,7 @@ public class BlockCommandBlock extends BlockContainer
     public int getComparatorInputOverride(World worldIn, BlockPos pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)tileentity).getCommandBlockLogic().getSuccessCount() : 0;
+        return tileentity instanceof TileEntityCommandBlock tecb ? tecb.getCommandBlockLogic().getSuccessCount() : 0;
     }
 
     /**
@@ -100,9 +100,9 @@ public class BlockCommandBlock extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityCommandBlock)
+        if (tileentity instanceof TileEntityCommandBlock block)
         {
-            CommandBlockLogic commandblocklogic = ((TileEntityCommandBlock)tileentity).getCommandBlockLogic();
+            CommandBlockLogic commandblocklogic = block.getCommandBlockLogic();
 
             if (stack.hasDisplayName())
             {
@@ -157,7 +157,7 @@ public class BlockCommandBlock extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {TRIGGERED});
+        return new BlockState(this, new IProperty[]{TRIGGERED});
     }
 
     /**

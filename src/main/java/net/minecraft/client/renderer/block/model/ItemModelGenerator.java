@@ -14,7 +14,7 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class ItemModelGenerator
 {
-    public static final List<String> LAYERS = Lists.newArrayList(new String[] {"layer0", "layer1", "layer2", "layer3", "layer4"});
+    public static final List<String> LAYERS = Lists.newArrayList(new String[]{"layer0", "layer1", "layer2", "layer3", "layer4"});
 
     public ModelBlock makeItemModel(TextureMap textureMapIn, ModelBlock blockModel)
     {
@@ -50,8 +50,8 @@ public class ItemModelGenerator
     private List<BlockPart> func_178394_a(int p_178394_1_, String p_178394_2_, TextureAtlasSprite p_178394_3_)
     {
         Map<EnumFacing, BlockPartFace> map = new HashMap<>();
-        map.put(EnumFacing.SOUTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[] {0.0F, 0.0F, 16.0F, 16.0F}, 0)));
-        map.put(EnumFacing.NORTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[] {16.0F, 0.0F, 0.0F, 16.0F}, 0)));
+        map.put(EnumFacing.SOUTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[]{0.0F, 0.0F, 16.0F, 16.0F}, 0)));
+        map.put(EnumFacing.NORTH, new BlockPartFace((EnumFacing)null, p_178394_1_, p_178394_2_, new BlockFaceUV(new float[]{16.0F, 0.0F, 0.0F, 16.0F}, 0)));
         List<BlockPart> list = new ArrayList<>();
         list.add(new BlockPart(new Vector3f(0.0F, 0.0F, 7.5F), new Vector3f(16.0F, 16.0F, 8.5F), map, (BlockPartRotation)null, true));
         list.addAll(this.func_178397_a(p_178394_3_, p_178394_2_, p_178394_1_));
@@ -144,7 +144,7 @@ public class ItemModelGenerator
             f8 = f8 * f11;
             f9 = f9 * f11;
             Map<EnumFacing, BlockPartFace> map = new HashMap<>();
-            map.put(itemmodelgenerator$spanfacing.getFacing(), new BlockPartFace((EnumFacing)null, p_178397_3_, p_178397_2_, new BlockFaceUV(new float[] {f6, f8, f7, f9}, 0)));
+            map.put(itemmodelgenerator$spanfacing.getFacing(), new BlockPartFace((EnumFacing)null, p_178397_3_, p_178397_2_, new BlockFaceUV(new float[]{f6, f8, f7, f9}, 0)));
 
             switch (itemmodelgenerator$spanfacing)
             {

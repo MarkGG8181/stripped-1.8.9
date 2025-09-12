@@ -48,7 +48,7 @@ public class EntitySpider extends EntityMob {
      * Returns the Y offset from the entity's position for any entity riding this one.
      */
     public double getMountedYOffset() {
-        return (double) (this.height * 0.5F);
+        return (double)(this.height * 0.5F);
     }
 
     /**
@@ -60,7 +60,7 @@ public class EntitySpider extends EntityMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte) 0));
+        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
     /**
@@ -164,9 +164,10 @@ public class EntitySpider extends EntityMob {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (p_70839_1_) {
-            b0 = (byte) (b0 | 1);
-        } else {
-            b0 = (byte) (b0 & -2);
+            b0 = (byte)(b0 | 1);
+        }
+        else {
+            b0 = (byte)(b0 & -2);
         }
 
         this.dataWatcher.updateObject(16, Byte.valueOf(b0));
@@ -182,7 +183,7 @@ public class EntitySpider extends EntityMob {
         if (this.worldObj.rand.nextInt(100) == 0) {
             EntitySkeleton entityskeleton = new EntitySkeleton(this.worldObj);
             entityskeleton.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-            entityskeleton.onInitialSpawn(difficulty, (IEntityLivingData) null);
+            entityskeleton.onInitialSpawn(difficulty, (IEntityLivingData)null);
             this.worldObj.spawnEntityInWorld(entityskeleton);
             entityskeleton.mountEntity(this);
         }
@@ -191,12 +192,12 @@ public class EntitySpider extends EntityMob {
             livingdata = new EntitySpider.GroupData();
 
             if (this.worldObj.getDifficulty() == EnumDifficulty.HARD && this.worldObj.rand.nextFloat() < 0.1F * difficulty.getClampedAdditionalDifficulty()) {
-                ((EntitySpider.GroupData) livingdata).func_111104_a(this.worldObj.rand);
+                ((EntitySpider.GroupData)livingdata).func_111104_a(this.worldObj.rand);
             }
         }
 
-        if (livingdata instanceof EntitySpider.GroupData) {
-            int i = ((EntitySpider.GroupData) livingdata).potionEffectId;
+        if (livingdata instanceof EntitySpider.GroupData data) {
+            int i = data.potionEffectId;
 
             if (i > 0 && Potion.potionTypes[i] != null) {
                 this.addPotionEffect(new PotionEffect(i, Integer.MAX_VALUE));
@@ -219,15 +220,16 @@ public class EntitySpider extends EntityMob {
             float f = this.attacker.getBrightness(1.0F);
 
             if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
-                this.attacker.setAttackTarget((EntityLivingBase) null);
+                this.attacker.setAttackTarget((EntityLivingBase)null);
                 return false;
-            } else {
+            }
+            else {
                 return super.continueExecuting();
             }
         }
 
         protected double func_179512_a(EntityLivingBase attackTarget) {
-            return (double) (4.0F + attackTarget.width);
+            return (double)(4.0F + attackTarget.width);
         }
     }
 
@@ -250,11 +252,14 @@ public class EntitySpider extends EntityMob {
 
             if (i <= 1) {
                 this.potionEffectId = Potion.moveSpeed.id;
-            } else if (i <= 2) {
+            }
+            else if (i <= 2) {
                 this.potionEffectId = Potion.damageBoost.id;
-            } else if (i <= 3) {
+            }
+            else if (i <= 3) {
                 this.potionEffectId = Potion.regeneration.id;
-            } else if (i <= 4) {
+            }
+            else if (i <= 4) {
                 this.potionEffectId = Potion.invisibility.id;
             }
         }

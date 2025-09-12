@@ -53,7 +53,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     private int blockBreakCounter;
     private static final Predicate<Entity> attackEntitySelector = new Predicate<Entity>() {
         public boolean apply(Entity p_apply_1_) {
-            return p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
+            return p_apply_1_ instanceof EntityLivingBase elb && elb.getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
         }
     };
 
@@ -62,7 +62,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         this.setHealth(this.getMaxHealth());
         this.setSize(0.9F, 3.5F);
         this.isImmuneToFire = true;
-        ((PathNavigateGround) this.getNavigator()).setCanSwim(true);
+        ((PathNavigateGround)this.getNavigator()).setCanSwim(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
@@ -75,10 +75,10 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(0));
-        this.dataWatcher.addObject(19, new Integer(0));
-        this.dataWatcher.addObject(20, new Integer(0));
+        this.dataWatcher.addObject(17, Integer.valueOf(0));
+        this.dataWatcher.addObject(18, Integer.valueOf(0));
+        this.dataWatcher.addObject(19, Integer.valueOf(0));
+        this.dataWatcher.addObject(20, Integer.valueOf(0));
     }
 
     /**
@@ -142,7 +142,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                 double d3 = d0 * d0 + d1 * d1;
 
                 if (d3 > 9.0D) {
-                    double d5 = (double) MathHelper.sqrt_double(d3);
+                    double d5 = (double)MathHelper.sqrt_double(d3);
                     this.motionX += (d0 / d5 * 0.5D - this.motionX) * 0.6000000238418579D;
                     this.motionZ += (d1 / d5 * 0.5D - this.motionZ) * 0.6000000238418579D;
                 }
@@ -150,7 +150,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
 
         if (this.motionX * this.motionX + this.motionZ * this.motionZ > 0.05000000074505806D) {
-            this.rotationYaw = (float) MathHelper.atan2(this.motionZ, this.motionX) * (180F / (float) Math.PI) - 90.0F;
+            this.rotationYaw = (float)MathHelper.atan2(this.motionZ, this.motionX) * (180F / (float)Math.PI) - 90.0F;
         }
 
         super.onLivingUpdate();
@@ -173,14 +173,15 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                 double d12 = this.func_82208_v(j + 1);
                 double d13 = this.func_82213_w(j + 1);
                 double d6 = entity1.posX - d11;
-                double d7 = entity1.posY + (double) entity1.getEyeHeight() - d12;
+                double d7 = entity1.posY + (double)entity1.getEyeHeight() - d12;
                 double d8 = entity1.posZ - d13;
-                double d9 = (double) MathHelper.sqrt_double(d6 * d6 + d8 * d8);
-                float f = (float) (MathHelper.atan2(d8, d6) * 180.0D / Math.PI) - 90.0F;
-                float f1 = (float) (-(MathHelper.atan2(d7, d9) * 180.0D / Math.PI));
+                double d9 = (double)MathHelper.sqrt_double(d6 * d6 + d8 * d8);
+                float f = (float)(MathHelper.atan2(d8, d6) * 180.0D / Math.PI) - 90.0F;
+                float f1 = (float)(-(MathHelper.atan2(d7, d9) * 180.0D / Math.PI));
                 this.xRotationHeads[j] = this.func_82204_b(this.xRotationHeads[j], f1, 40.0F);
                 this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], f, 10.0F);
-            } else {
+            }
+            else {
                 this.yRotationHeads[j] = this.func_82204_b(this.yRotationHeads[j], this.renderYawOffset, 10.0F);
             }
         }
@@ -200,7 +201,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
         if (this.getInvulTime() > 0) {
             for (int i1 = 0; i1 < 3; ++i1) {
-                this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + this.rand.nextGaussian() * 1.0D, this.posY + (double) (this.rand.nextFloat() * 3.3F), this.posZ + this.rand.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
+                this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + this.rand.nextGaussian() * 1.0D, this.posY + (double)(this.rand.nextFloat() * 3.3F), this.posZ + this.rand.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
             }
         }
     }
@@ -210,7 +211,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
             int j1 = this.getInvulTime() - 1;
 
             if (j1 <= 0) {
-                this.worldObj.newExplosion(this, this.posX, this.posY + (double) this.getEyeHeight(), this.posZ, 7.0F, false, this.worldObj.getGameRules().getBoolean("mobGriefing"));
+                this.worldObj.newExplosion(this, this.posX, this.posY + (double)this.getEyeHeight(), this.posZ, 7.0F, false, this.worldObj.getGameRules().getBoolean("mobGriefing"));
                 this.worldObj.playBroadcastSound(1013, new BlockPos(this), 0);
             }
 
@@ -219,7 +220,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
             if (this.ticksExisted % 10 == 0) {
                 this.heal(10.0F);
             }
-        } else {
+        }
+        else {
             super.updateAITasks();
 
             for (int i = 1; i < 3; ++i) {
@@ -234,9 +236,9 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                         if (k3 > 15) {
                             float f = 10.0F;
                             float f1 = 5.0F;
-                            double d0 = MathHelper.getRandomDoubleInRange(this.rand, this.posX - (double) f, this.posX + (double) f);
-                            double d1 = MathHelper.getRandomDoubleInRange(this.rand, this.posY - (double) f1, this.posY + (double) f1);
-                            double d2 = MathHelper.getRandomDoubleInRange(this.rand, this.posZ - (double) f, this.posZ + (double) f);
+                            double d0 = MathHelper.getRandomDoubleInRange(this.rand, this.posX - (double)f, this.posX + (double)f);
+                            double d1 = MathHelper.getRandomDoubleInRange(this.rand, this.posY - (double)f1, this.posY + (double)f1);
+                            double d2 = MathHelper.getRandomDoubleInRange(this.rand, this.posZ - (double)f, this.posZ + (double)f);
                             this.launchWitherSkullToCoords(i + 1, d0, d1, d2, true);
                             this.idleHeadUpdates[i - 1] = 0;
                         }
@@ -248,28 +250,32 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                         Entity entity = this.worldObj.getEntityByID(k1);
 
                         if (entity != null && entity.isEntityAlive() && this.getDistanceSqToEntity(entity) <= 900.0D && this.canEntityBeSeen(entity)) {
-                            if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.disableDamage) {
+                            if (entity instanceof EntityPlayer player && player.capabilities.disableDamage) {
                                 this.updateWatchedTargetId(i, 0);
-                            } else {
-                                this.launchWitherSkullToEntity(i + 1, (EntityLivingBase) entity);
+                            }
+                            else {
+                                this.launchWitherSkullToEntity(i + 1, (EntityLivingBase)entity);
                                 this.nextHeadUpdate[i - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
                                 this.idleHeadUpdates[i - 1] = 0;
                             }
-                        } else {
+                        }
+                        else {
                             this.updateWatchedTargetId(i, 0);
                         }
-                    } else {
+                    }
+                    else {
                         List<EntityLivingBase> list = this.worldObj.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(20.0D, 8.0D, 20.0D), Predicates.<EntityLivingBase>and(attackEntitySelector, EntitySelectors.NOT_SPECTATING));
 
                         for (int j2 = 0; j2 < 10 && !list.isEmpty(); ++j2) {
-                            EntityLivingBase entitylivingbase = (EntityLivingBase) list.get(this.rand.nextInt(list.size()));
+                            EntityLivingBase entitylivingbase = (EntityLivingBase)list.get(this.rand.nextInt(list.size()));
 
                             if (entitylivingbase != this && entitylivingbase.isEntityAlive() && this.canEntityBeSeen(entitylivingbase)) {
-                                if (entitylivingbase instanceof EntityPlayer) {
-                                    if (!((EntityPlayer) entitylivingbase).capabilities.disableDamage) {
+                                if (entitylivingbase instanceof EntityPlayer player) {
+                                    if (!player.capabilities.disableDamage) {
                                         this.updateWatchedTargetId(i, entitylivingbase.getEntityId());
                                     }
-                                } else {
+                                }
+                                else {
                                     this.updateWatchedTargetId(i, entitylivingbase.getEntityId());
                                 }
 
@@ -284,7 +290,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
             if (this.getAttackTarget() != null) {
                 this.updateWatchedTargetId(0, this.getAttackTarget().getEntityId());
-            } else {
+            }
+            else {
                 this.updateWatchedTargetId(0, 0);
             }
 
@@ -314,7 +321,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                     }
 
                     if (flag) {
-                        this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1012, new BlockPos(this), 0);
+                        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1012, new BlockPos(this), 0);
                     }
                 }
             }
@@ -350,10 +357,11 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     private double func_82214_u(int p_82214_1_) {
         if (p_82214_1_ <= 0) {
             return this.posX;
-        } else {
-            float f = (this.renderYawOffset + (float) (180 * (p_82214_1_ - 1))) / 180.0F * (float) Math.PI;
+        }
+        else {
+            float f = (this.renderYawOffset + (float)(180 * (p_82214_1_ - 1))) / 180.0F * (float)Math.PI;
             float f1 = MathHelper.cos(f);
-            return this.posX + (double) f1 * 1.3D;
+            return this.posX + (double)f1 * 1.3D;
         }
     }
 
@@ -364,10 +372,11 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     private double func_82213_w(int p_82213_1_) {
         if (p_82213_1_ <= 0) {
             return this.posZ;
-        } else {
-            float f = (this.renderYawOffset + (float) (180 * (p_82213_1_ - 1))) / 180.0F * (float) Math.PI;
+        }
+        else {
+            float f = (this.renderYawOffset + (float)(180 * (p_82213_1_ - 1))) / 180.0F * (float)Math.PI;
             float f1 = MathHelper.sin(f);
-            return this.posZ + (double) f1 * 1.3D;
+            return this.posZ + (double)f1 * 1.3D;
         }
     }
 
@@ -386,14 +395,14 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     }
 
     private void launchWitherSkullToEntity(int p_82216_1_, EntityLivingBase p_82216_2_) {
-        this.launchWitherSkullToCoords(p_82216_1_, p_82216_2_.posX, p_82216_2_.posY + (double) p_82216_2_.getEyeHeight() * 0.5D, p_82216_2_.posZ, p_82216_1_ == 0 && this.rand.nextFloat() < 0.001F);
+        this.launchWitherSkullToCoords(p_82216_1_, p_82216_2_.posX, p_82216_2_.posY + (double)p_82216_2_.getEyeHeight() * 0.5D, p_82216_2_.posZ, p_82216_1_ == 0 && this.rand.nextFloat() < 0.001F);
     }
 
     /**
      * Launches a Wither skull toward (par2, par4, par6)
      */
     private void launchWitherSkullToCoords(int p_82209_1_, double x, double y, double z, boolean invulnerable) {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1014, new BlockPos(this), 0);
+        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, new BlockPos(this), 0);
         double d0 = this.func_82214_u(p_82209_1_);
         double d1 = this.func_82208_v(p_82209_1_);
         double d2 = this.func_82213_w(p_82209_1_);
@@ -425,10 +434,12 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     public boolean attackEntityFrom(DamageSource source, float amount) {
         if (this.isEntityInvulnerable(source)) {
             return false;
-        } else if (source != DamageSource.drown && !(source.getEntity() instanceof EntityWither)) {
+        }
+        else if (source != DamageSource.drown && !(source.getEntity() instanceof EntityWither)) {
             if (this.getInvulTime() > 0 && source != DamageSource.outOfWorld) {
                 return false;
-            } else {
+            }
+            else {
                 if (this.isArmored()) {
                     Entity entity = source.getSourceOfDamage();
 
@@ -439,9 +450,10 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
                 Entity entity1 = source.getEntity();
 
-                if (entity1 != null && !(entity1 instanceof EntityPlayer) && entity1 instanceof EntityLivingBase && ((EntityLivingBase) entity1).getCreatureAttribute() == this.getCreatureAttribute()) {
+                if (entity1 != null && !(entity1 instanceof EntityPlayer) && entity1 instanceof EntityLivingBase base && base.getCreatureAttribute() == this.getCreatureAttribute()) {
                     return false;
-                } else {
+                }
+                else {
                     if (this.blockBreakCounter <= 0) {
                         this.blockBreakCounter = 20;
                     }
@@ -453,7 +465,8 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                     return super.attackEntityFrom(source, amount);
                 }
             }
-        } else {
+        }
+        else {
             return false;
         }
     }

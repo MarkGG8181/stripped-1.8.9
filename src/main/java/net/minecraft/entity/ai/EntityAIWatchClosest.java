@@ -15,9 +15,9 @@ public class EntityAIWatchClosest extends EntityAIBase
     protected float maxDistanceForPlayer;
     private int lookTime;
     private float chance;
-    protected Class <? extends Entity > watchedClass;
+    protected Class<? extends Entity> watchedClass;
 
-    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class <? extends Entity > watchTargetClass, float maxDistance)
+    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class<? extends Entity> watchTargetClass, float maxDistance)
     {
         this.theWatcher = entitylivingIn;
         this.watchedClass = watchTargetClass;
@@ -26,7 +26,7 @@ public class EntityAIWatchClosest extends EntityAIBase
         this.setMutexBits(2);
     }
 
-    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class <? extends Entity > watchTargetClass, float maxDistance, float chanceIn)
+    public EntityAIWatchClosest(EntityLiving entitylivingIn, Class<? extends Entity> watchTargetClass, float maxDistance, float chanceIn)
     {
         this.theWatcher = entitylivingIn;
         this.watchedClass = watchTargetClass;

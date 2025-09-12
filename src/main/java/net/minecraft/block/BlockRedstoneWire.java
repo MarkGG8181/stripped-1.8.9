@@ -486,7 +486,7 @@ public class BlockRedstoneWire extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {NORTH, EAST, SOUTH, WEST, POWER});
+        return new BlockState(this, new IProperty[]{NORTH, EAST, SOUTH, WEST, POWER});
     }
 
     static enum EnumAttachPosition implements IStringSerializable

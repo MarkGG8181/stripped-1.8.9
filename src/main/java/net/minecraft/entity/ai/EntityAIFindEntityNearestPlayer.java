@@ -93,7 +93,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
         }
         else
         {
-            this.entityTarget = (EntityLivingBase)list.get(0);
+            this.entityTarget = (EntityLivingBase)list.getFirst();
             return true;
         }
     }
@@ -113,7 +113,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
         {
             return false;
         }
-        else if (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).capabilities.disableDamage)
+        else if (entitylivingbase instanceof EntityPlayer player && player.capabilities.disableDamage)
         {
             return false;
         }

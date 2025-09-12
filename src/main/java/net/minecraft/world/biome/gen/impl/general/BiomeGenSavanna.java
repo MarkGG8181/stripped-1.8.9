@@ -65,7 +65,8 @@ public class BiomeGenSavanna extends BiomeGenBase {
             if (noiseVal > 1.75D) {
                 this.topBlock = Blocks.stone.getDefaultState();
                 this.fillerBlock = Blocks.stone.getDefaultState();
-            } else if (noiseVal > -0.5D) {
+            }
+            else if (noiseVal > -0.5D) {
                 this.topBlock = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
             }
 

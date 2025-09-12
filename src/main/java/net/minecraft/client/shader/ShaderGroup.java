@@ -105,7 +105,8 @@ public class ShaderGroup {
     private void initTarget(JsonElement p_148027_1_) throws JsonException {
         if (JsonUtils.isString(p_148027_1_)) {
             this.addFramebuffer(p_148027_1_.getAsString(), this.mainFramebufferWidth, this.mainFramebufferHeight);
-        } else {
+        }
+        else {
             JsonObject jsonobject = JsonUtils.getJsonObject(p_148027_1_, "target");
             String s = JsonUtils.getString(jsonobject, "name");
             int i = JsonUtils.getInt(jsonobject, "width", this.mainFramebufferWidth);
@@ -129,11 +130,13 @@ public class ShaderGroup {
 
         if (framebuffer == null) {
             throw new JsonException("Input target \'" + s1 + "\' does not exist");
-        } else if (framebuffer1 == null) {
+        }
+        else if (framebuffer1 == null) {
             throw new JsonException("Output target \'" + s2 + "\' does not exist");
-        } else {
+        }
+        else {
             Shader shader = this.addShader(s, framebuffer, framebuffer1);
-            JsonArray jsonarray = JsonUtils.getJsonArray(jsonobject, "auxtargets", (JsonArray) null);
+            JsonArray jsonarray = JsonUtils.getJsonArray(jsonobject, "auxtargets", (JsonArray)null);
 
             if (jsonarray != null) {
                 int i = 0;
@@ -163,13 +166,15 @@ public class ShaderGroup {
                             if (flag) {
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-                            } else {
+                            }
+                            else {
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                             }
 
                             shader.addAuxFramebuffer(s4, Integer.valueOf(itextureobject.getGlTextureId()), j, k);
-                        } else {
+                        }
+                        else {
                             shader.addAuxFramebuffer(s4, framebuffer2, framebuffer2.framebufferTextureWidth, framebuffer2.framebufferTextureHeight);
                         }
                     } catch (Exception exception1) {
@@ -182,7 +187,7 @@ public class ShaderGroup {
                 }
             }
 
-            JsonArray jsonarray1 = JsonUtils.getJsonArray(jsonobject, "uniforms", (JsonArray) null);
+            JsonArray jsonarray1 = JsonUtils.getJsonArray(jsonobject, "uniforms", (JsonArray)null);
 
             if (jsonarray1 != null) {
                 int l = 0;
@@ -205,11 +210,12 @@ public class ShaderGroup {
     private void initUniform(JsonElement p_148028_1_) throws JsonException {
         JsonObject jsonobject = JsonUtils.getJsonObject(p_148028_1_, "uniform");
         String s = JsonUtils.getString(jsonobject, "name");
-        ShaderUniform shaderuniform = ((Shader) this.listShaders.get(this.listShaders.size() - 1)).getShaderManager().getShaderUniform(s);
+        ShaderUniform shaderuniform = ((Shader)this.listShaders.get(this.listShaders.size() - 1)).getShaderManager().getShaderUniform(s);
 
         if (shaderuniform == null) {
             throw new JsonException("Uniform \'" + s + "\' does not exist");
-        } else {
+        }
+        else {
             float[] afloat = new float[4];
             int i = 0;
 
@@ -249,7 +255,7 @@ public class ShaderGroup {
     }
 
     public Framebuffer getFramebufferRaw(String p_177066_1_) {
-        return (Framebuffer) this.mapFramebuffers.get(p_177066_1_);
+        return (Framebuffer)this.mapFramebuffers.get(p_177066_1_);
     }
 
     public void addFramebuffer(String p_148020_1_, int p_148020_2_, int p_148020_3_) {
@@ -283,8 +289,8 @@ public class ShaderGroup {
     private void resetProjectionMatrix() {
         this.projectionMatrix = new Matrix4f();
         this.projectionMatrix.setIdentity();
-        this.projectionMatrix.m00 = 2.0F / (float) this.mainFramebuffer.framebufferTextureWidth;
-        this.projectionMatrix.m11 = 2.0F / (float) (-this.mainFramebuffer.framebufferTextureHeight);
+        this.projectionMatrix.m00 = 2.0F / (float)this.mainFramebuffer.framebufferTextureWidth;
+        this.projectionMatrix.m11 = 2.0F / (float)(-this.mainFramebuffer.framebufferTextureHeight);
         this.projectionMatrix.m22 = -0.0020001999F;
         this.projectionMatrix.m33 = 1.0F;
         this.projectionMatrix.m03 = -1.0F;
@@ -310,12 +316,12 @@ public class ShaderGroup {
         if (partialTicks < this.lastStamp) {
             this.time += 1.0F - this.lastStamp;
             this.time += partialTicks;
-        } else {
+        }
+        else {
             this.time += partialTicks - this.lastStamp;
         }
 
         for (this.lastStamp = partialTicks; this.time > 20.0F; this.time -= 20.0F) {
-            ;
         }
 
         for (Shader shader : this.listShaders) {
@@ -328,6 +334,6 @@ public class ShaderGroup {
     }
 
     private Framebuffer getFramebuffer(String p_148017_1_) {
-        return p_148017_1_ == null ? null : (p_148017_1_.equals("minecraft:main") ? this.mainFramebuffer : (Framebuffer) this.mapFramebuffers.get(p_148017_1_));
+        return p_148017_1_ == null ? null : (p_148017_1_.equals("minecraft:main") ? this.mainFramebuffer : (Framebuffer)this.mapFramebuffers.get(p_148017_1_));
     }
 }

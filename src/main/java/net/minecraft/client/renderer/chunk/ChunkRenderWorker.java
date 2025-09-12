@@ -181,6 +181,7 @@ public class ChunkRenderWorker implements Runnable
                     }
                     generator.getRenderChunk().setCompiledChunk(lvt_7_1_);
                 }
+
                 public void onFailure(Throwable p_onFailure_1_)
                 {
                     ChunkRenderWorker.this.freeRenderBuilder(generator);

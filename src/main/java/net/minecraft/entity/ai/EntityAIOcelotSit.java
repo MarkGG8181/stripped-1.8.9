@@ -90,7 +90,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
             {
                 TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntityChest && ((TileEntityChest)tileentity).numPlayersUsing < 1)
+                if (tileentity instanceof TileEntityChest chest && chest.numPlayersUsing < 1)
                 {
                     return true;
                 }

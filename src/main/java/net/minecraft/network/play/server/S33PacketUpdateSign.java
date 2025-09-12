@@ -22,7 +22,7 @@ public class S33PacketUpdateSign implements Packet<INetHandlerPlayClient>
     {
         this.world = worldIn;
         this.blockPos = blockPosIn;
-        this.lines = new IChatComponent[] {linesIn[0], linesIn[1], linesIn[2], linesIn[3]};
+        this.lines = new IChatComponent[]{linesIn[0], linesIn[1], linesIn[2], linesIn[3]};
     }
 
     /**

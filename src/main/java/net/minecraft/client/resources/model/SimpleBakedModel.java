@@ -30,7 +30,7 @@ public class SimpleBakedModel implements IBakedModel {
     }
 
     public List<BakedQuad> getFaceQuads(EnumFacing facing) {
-        return (List) this.faceQuads.get(facing.ordinal());
+        return (List)this.faceQuads.get(facing.ordinal());
     }
 
     public List<BakedQuad> getGeneralQuads() {
@@ -106,7 +106,7 @@ public class SimpleBakedModel implements IBakedModel {
         }
 
         public SimpleBakedModel.Builder addFaceQuad(EnumFacing facing, BakedQuad quad) {
-            ((List) this.builderFaceQuads.get(facing.ordinal())).add(quad);
+            ((List)this.builderFaceQuads.get(facing.ordinal())).add(quad);
             return this;
         }
 
@@ -123,7 +123,8 @@ public class SimpleBakedModel implements IBakedModel {
         public IBakedModel makeBakedModel() {
             if (this.builderTexture == null) {
                 throw new RuntimeException("Missing particle!");
-            } else {
+            }
+            else {
                 return new SimpleBakedModel(this.builderGeneralQuads, this.builderFaceQuads, this.builderAmbientOcclusion, this.builderGui3d, this.builderTexture, this.builderCameraTransforms);
             }
         }

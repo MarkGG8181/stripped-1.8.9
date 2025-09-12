@@ -92,9 +92,9 @@ public class VillageCollection extends WorldSavedData {
             double d1 = village1.getCenter().distanceSq(doorBlock);
 
             if (d1 < d0) {
-                float f = (float) (radius + village1.getVillageRadius());
+                float f = (float)(radius + village1.getVillageRadius());
 
-                if (d1 <= (double) (f * f)) {
+                if (d1 <= (double)(f * f)) {
                     village = village1;
                     d0 = d1;
                 }
@@ -141,7 +141,8 @@ public class VillageCollection extends WorldSavedData {
 
                         if (villagedoorinfo == null) {
                             this.addToNewDoorsList(blockpos);
-                        } else {
+                        }
+                        else {
                             villagedoorinfo.func_179849_a(this.tickCounter);
                         }
                     }

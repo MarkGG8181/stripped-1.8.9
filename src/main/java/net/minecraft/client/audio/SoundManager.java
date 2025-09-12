@@ -83,8 +83,9 @@ public class SoundManager implements IResourceManagerReloadListener {
         if (loaded && category != null) {
             if (category == SoundCategory.MASTER) {
                 sndSystem.setMasterVolume(volume);
-            } else {
-                synchronized(categorySounds) {
+            }
+            else {
+                synchronized (categorySounds) {
                     for (String s : categorySounds.get(category)) {
                         ISound isound = playingSounds.get(s);
                         if (isound != null) {
@@ -114,7 +115,7 @@ public class SoundManager implements IResourceManagerReloadListener {
             playingSoundsBiMap.clear();
             delayedSounds.clear();
             tickableSounds.clear();
-            synchronized(categorySounds) {
+            synchronized (categorySounds) {
                 categorySounds.clear();
             }
             playingSoundPoolEntries.clear();
@@ -136,7 +137,8 @@ public class SoundManager implements IResourceManagerReloadListener {
             sound.update();
             if (sound.isDonePlaying()) {
                 stopSound(sound);
-            } else {
+            }
+            else {
                 String s = invPlayingSounds.get(sound);
                 if (s != null) {
                     SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
@@ -168,7 +170,7 @@ public class SoundManager implements IResourceManagerReloadListener {
 
                 SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
                 if (soundEvent != null) {
-                    synchronized(categorySounds) {
+                    synchronized (categorySounds) {
                         categorySounds.remove(soundEvent.getSoundCategory(), sourceName);
                     }
                 }
@@ -187,8 +189,8 @@ public class SoundManager implements IResourceManagerReloadListener {
             Entry<ISound, Integer> entry = delayedIterator.next();
             if (playTime >= entry.getValue()) {
                 ISound sound = entry.getKey();
-                if (sound instanceof ITickableSound) {
-                    ((ITickableSound) sound).update();
+                if (sound instanceof ITickableSound tickableSound) {
+                    tickableSound.update();
                 }
                 playSound(sound);
                 delayedIterator.remove();
@@ -213,7 +215,7 @@ public class SoundManager implements IResourceManagerReloadListener {
 
                 SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
                 if (soundEvent != null) {
-                    synchronized(categorySounds) {
+                    synchronized (categorySounds) {
                         categorySounds.remove(soundEvent.getSoundCategory(), sourceName);
                     }
                 }
@@ -236,7 +238,7 @@ public class SoundManager implements IResourceManagerReloadListener {
         if (soundEvent == null) {
             return;
         }
-        
+
         SoundPoolEntry soundEntry = soundEvent.cloneEntry();
         if (soundEntry == SoundHandler.missing_sound) {
             logger.warn(LOG_MARKER, "Unable to play empty soundEvent: {}", sound.getSoundLocation());
@@ -272,13 +274,13 @@ public class SoundManager implements IResourceManagerReloadListener {
             playingSoundPoolEntries.put(sound, soundEntry);
 
             if (soundEvent.getSoundCategory() != SoundCategory.MASTER) {
-                synchronized(categorySounds) {
+                synchronized (categorySounds) {
                     categorySounds.put(soundEvent.getSoundCategory(), sourceName);
                 }
             }
 
-            if (sound instanceof ITickableSound) {
-                tickableSounds.add((ITickableSound) sound);
+            if (sound instanceof ITickableSound tickableSound) {
+                tickableSounds.add(tickableSound);
             }
         }
     }
@@ -328,11 +330,11 @@ public class SoundManager implements IResourceManagerReloadListener {
     }
 
     private float getNormalizedPitch(ISound sound, SoundPoolEntry entry) {
-        return (float) MathHelper.clamp_double(sound.getPitch() * entry.getPitch(), 0.5D, 2.0D);
+        return (float)MathHelper.clamp_double(sound.getPitch() * entry.getPitch(), 0.5D, 2.0D);
     }
 
     private float getNormalizedVolume(ISound sound, SoundPoolEntry entry, SoundCategory category) {
-        return (float) MathHelper.clamp_double(sound.getVolume() * entry.getVolume(), 0.0D, 1.0D) * getSoundCategoryVolume(category);
+        return (float)MathHelper.clamp_double(sound.getVolume() * entry.getVolume(), 0.0D, 1.0D) * getSoundCategoryVolume(category);
     }
 
     public void pauseAllSounds() {
@@ -374,7 +376,7 @@ public class SoundManager implements IResourceManagerReloadListener {
             float atZ = f3 * f4;
             float upX = f2 * f6;
             float upZ = f3 * f6;
-            sndSystem.setListenerPosition((float) x, (float) y, (float) z);
+            sndSystem.setListenerPosition((float)x, (float)y, (float)z);
             sndSystem.setListenerOrientation(atX, atY, atZ, upX, upY, upZ);
         }
     }
@@ -411,5 +413,6 @@ public class SoundManager implements IResourceManagerReloadListener {
         }
     }
 
-    static class SoundSystemStarterThread extends SoundSystemOpenAL {}
+    static class SoundSystemStarterThread extends SoundSystemOpenAL {
+    }
 }

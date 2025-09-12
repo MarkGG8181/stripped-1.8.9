@@ -1,5 +1,7 @@
 package net.minecraft.inventory;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -78,7 +80,7 @@ public class SlotFurnaceOutput extends Slot
             {
                 int j = MathHelper.floor_float((float)i * f);
 
-                if (j < MathHelper.ceiling_float_int((float)i * f) && Math.random() < (double)((float)i * f - (float)j))
+                if (j < MathHelper.ceiling_float_int((float)i * f) && ThreadLocalRandom.current().nextDouble() < (double)((float)i * f - (float)j))
                 {
                     ++j;
                 }

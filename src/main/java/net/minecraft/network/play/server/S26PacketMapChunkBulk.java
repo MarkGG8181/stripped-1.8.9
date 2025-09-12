@@ -24,7 +24,7 @@ public class S26PacketMapChunkBulk implements Packet<INetHandlerPlayClient>
         this.xPositions = new int[i];
         this.zPositions = new int[i];
         this.chunksData = new S21PacketChunkData.Extracted[i];
-        this.isOverworld = !((Chunk)chunks.get(0)).getWorld().provider.getHasNoSky();
+        this.isOverworld = !((Chunk)chunks.getFirst()).getWorld().provider.getHasNoSky();
 
         for (int j = 0; j < i; ++j)
         {

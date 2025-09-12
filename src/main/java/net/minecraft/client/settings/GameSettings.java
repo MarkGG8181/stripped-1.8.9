@@ -185,7 +185,8 @@ public class GameSettings {
 
         if (mcIn.isJava64bit() && Runtime.getRuntime().maxMemory() >= 1000000000L) {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(32.0F);
-        } else {
+        }
+        else {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(16.0F);
         }
 
@@ -207,7 +208,7 @@ public class GameSettings {
      * @param key The key to display
      */
     public static String getKeyDisplayString(int key) {
-        return key < 0 ? I18n.format("key.mouseButton", key + 101) : (key < 256 ? Keyboard.getKeyName(key) : String.format("%c", (char) (key - 256)).toUpperCase());
+        return key < 0 ? I18n.format("key.mouseButton", key + 101) : (key < 256 ? Keyboard.getKeyName(key) : "%c".formatted((char)(key - 256)).toUpperCase());
     }
 
     /**
@@ -219,7 +220,8 @@ public class GameSettings {
         int keyCode = key.getKeyCode();
         if (keyCode != 0 && keyCode < 256) {
             return keyCode < 0 ? Mouse.isButtonDown(keyCode + 100) : Keyboard.isKeyDown(keyCode);
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -255,7 +257,7 @@ public class GameSettings {
         }
 
         if (settingsOption == Options.FRAMERATE_LIMIT) {
-            this.limitFramerate = (int) value;
+            this.limitFramerate = (int)value;
         }
 
         if (settingsOption == Options.CHAT_OPACITY) {
@@ -285,9 +287,9 @@ public class GameSettings {
 
         if (settingsOption == Options.MIPMAP_LEVELS) {
             int i = this.mipmapLevels;
-            this.mipmapLevels = (int) value;
+            this.mipmapLevels = (int)value;
 
-            if ((float) i != value) {
+            if ((float)i != value) {
                 this.mc.getTextureMapBlocks().setMipmapLevels(this.mipmapLevels);
                 this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
                 this.mc.getTextureMapBlocks().setBlurMipmapDirect(false, this.mipmapLevels > 0);
@@ -301,7 +303,7 @@ public class GameSettings {
         }
 
         if (settingsOption == Options.RENDER_DISTANCE) {
-            this.renderDistanceChunks = (int) value;
+            this.renderDistanceChunks = (int)value;
             this.mc.renderGlobal.setDisplayListEntitiesDirty();
         }
     }
@@ -397,7 +399,7 @@ public class GameSettings {
     }
 
     public float getOptionFloatValue(Options settingOption) {
-        return settingOption == Options.FOV ? this.fovSetting : (settingOption == Options.GAMMA ? this.gammaSetting : (settingOption == Options.SATURATION ? this.saturation : (settingOption == Options.SENSITIVITY ? this.mouseSensitivity : (settingOption == Options.CHAT_OPACITY ? this.chatOpacity : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? this.chatHeightFocused : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? this.chatHeightUnfocused : (settingOption == Options.CHAT_SCALE ? this.chatScale : (settingOption == Options.CHAT_WIDTH ? this.chatWidth : (settingOption == Options.FRAMERATE_LIMIT ? (float) this.limitFramerate : (settingOption == Options.MIPMAP_LEVELS ? (float) this.mipmapLevels : (settingOption == Options.RENDER_DISTANCE ? (float) this.renderDistanceChunks : 0.0F)))))))))));
+        return settingOption == Options.FOV ? this.fovSetting : (settingOption == Options.GAMMA ? this.gammaSetting : (settingOption == Options.SATURATION ? this.saturation : (settingOption == Options.SENSITIVITY ? this.mouseSensitivity : (settingOption == Options.CHAT_OPACITY ? this.chatOpacity : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? this.chatHeightFocused : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? this.chatHeightUnfocused : (settingOption == Options.CHAT_SCALE ? this.chatScale : (settingOption == Options.CHAT_WIDTH ? this.chatWidth : (settingOption == Options.FRAMERATE_LIMIT ? (float)this.limitFramerate : (settingOption == Options.MIPMAP_LEVELS ? (float)this.mipmapLevels : (settingOption == Options.RENDER_DISTANCE ? (float)this.renderDistanceChunks : 0.0F)))))))))));
     }
 
     public boolean getOptionOrdinalValue(Options settingOption) {
@@ -444,27 +446,36 @@ public class GameSettings {
         if (settingOption.getEnumFloat()) {
             float f1 = this.getOptionFloatValue(settingOption);
             float f = settingOption.normalizeValue(f1);
-            return settingOption == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min") : (f == 1.0F ? s + I18n.format("options.sensitivity.max") : s + (int) (f * 200.0F) + "%")) : (settingOption == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min") : (f1 == 110.0F ? s + I18n.format("options.fov.max") : s + (int) f1)) : (settingOption == Options.FRAMERATE_LIMIT ? (f1 == settingOption.valueMax ? s + I18n.format("options.framerateLimit.max") : s + (int) f1 + " fps") : (settingOption == Options.RENDER_CLOUDS ? (f1 == settingOption.valueMin ? s + I18n.format("options.cloudHeight.min") : s + ((int) f1 + 128)) : (settingOption == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min") : (f == 1.0F ? s + I18n.format("options.gamma.max") : s + "+" + (int) (f * 100.0F) + "%")) : (settingOption == Options.SATURATION ? s + (int) (f * 400.0F) + "%" : (settingOption == Options.CHAT_OPACITY ? s + (int) (f * 90.0F + 10.0F) + "%" : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px" : (settingOption == Options.RENDER_DISTANCE ? s + (int) f1 + " chunks" : (settingOption == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off") : s + (int) f1) : (f == 0.0F ? s + I18n.format("options.off") : s + (int) (f * 100.0F) + "%"))))))))))));
-        } else if (settingOption.getEnumBoolean()) {
+            return settingOption == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min") : (f == 1.0F ? s + I18n.format("options.sensitivity.max") : s + (int)(f * 200.0F) + "%")) : (settingOption == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min") : (f1 == 110.0F ? s + I18n.format("options.fov.max") : s + (int)f1)) : (settingOption == Options.FRAMERATE_LIMIT ? (f1 == settingOption.valueMax ? s + I18n.format("options.framerateLimit.max") : s + (int)f1 + " fps") : (settingOption == Options.RENDER_CLOUDS ? (f1 == settingOption.valueMin ? s + I18n.format("options.cloudHeight.min") : s + ((int)f1 + 128)) : (settingOption == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min") : (f == 1.0F ? s + I18n.format("options.gamma.max") : s + "+" + (int)(f * 100.0F) + "%")) : (settingOption == Options.SATURATION ? s + (int)(f * 400.0F) + "%" : (settingOption == Options.CHAT_OPACITY ? s + (int)(f * 90.0F + 10.0F) + "%" : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px" : (settingOption == Options.RENDER_DISTANCE ? s + (int)f1 + " chunks" : (settingOption == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off") : s + (int)f1) : (f == 0.0F ? s + I18n.format("options.off") : s + (int)(f * 100.0F) + "%"))))))))))));
+        }
+        else if (settingOption.getEnumBoolean()) {
             boolean flag = this.getOptionOrdinalValue(settingOption);
             return flag ? s + I18n.format("options.on") : s + I18n.format("options.off");
-        } else if (settingOption == Options.GUI_SCALE) {
+        }
+        else if (settingOption == Options.GUI_SCALE) {
             return s + getTranslation(GUISCALES, this.guiScale);
-        } else if (settingOption == Options.CHAT_VISIBILITY) {
+        }
+        else if (settingOption == Options.CHAT_VISIBILITY) {
             return s + I18n.format(this.chatVisibility.getResourceKey());
-        } else if (settingOption == Options.PARTICLES) {
+        }
+        else if (settingOption == Options.PARTICLES) {
             return s + getTranslation(PARTICLES, this.particleSetting);
-        } else if (settingOption == Options.AMBIENT_OCCLUSION) {
+        }
+        else if (settingOption == Options.AMBIENT_OCCLUSION) {
             return s + getTranslation(AMBIENT_OCCLUSIONS, this.ambientOcclusion);
-        } else if (settingOption == Options.RENDER_CLOUDS) {
+        }
+        else if (settingOption == Options.RENDER_CLOUDS) {
             return s + getTranslation(CLOUDS_TYPES, this.clouds);
-        } else if (settingOption == Options.GRAPHICS) {
+        }
+        else if (settingOption == Options.GRAPHICS) {
             if (this.fancyGraphics) {
                 return s + I18n.format("options.graphics.fancy");
-            } else {
+            }
+            else {
                 return s + I18n.format("options.graphics.fast");
             }
-        } else {
+        }
+        else {
             return s;
         }
     }
@@ -549,9 +560,11 @@ public class GameSettings {
                     if (astring[0].equals("ao")) {
                         if (astring[1].equals("true")) {
                             this.ambientOcclusion = 2;
-                        } else if (astring[1].equals("false")) {
+                        }
+                        else if (astring[1].equals("false")) {
                             this.ambientOcclusion = 0;
-                        } else {
+                        }
+                        else {
                             this.ambientOcclusion = Integer.parseInt(astring[1]);
                         }
                     }
@@ -828,7 +841,8 @@ public class GameSettings {
     public void setModelPartEnabled(EnumPlayerModelParts modelPart, boolean enable) {
         if (enable) {
             this.setModelParts.add(modelPart);
-        } else {
+        }
+        else {
             this.setModelParts.remove(modelPart);
         }
 
@@ -838,7 +852,8 @@ public class GameSettings {
     public void switchModelPartEnabled(EnumPlayerModelParts modelPart) {
         if (!this.getModelParts().contains(modelPart)) {
             this.setModelParts.add(modelPart);
-        } else {
+        }
+        else {
             this.setModelParts.remove(modelPart);
         }
 
@@ -960,7 +975,7 @@ public class GameSettings {
 
         private float snapToStep(float value) {
             if (this.valueStep > 0.0F) {
-                value = this.valueStep * (float) Math.round(value / this.valueStep);
+                value = this.valueStep * (float)Math.round(value / this.valueStep);
             }
 
             return value;

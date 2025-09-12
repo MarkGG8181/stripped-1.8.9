@@ -95,7 +95,7 @@ public class GuiShareToLan extends GuiScreen
 
             if (s != null)
             {
-                ichatcomponent = new ChatComponentTranslation("commands.publish.started", new Object[] {s});
+                ichatcomponent = new ChatComponentTranslation("commands.publish.started", new Object[]{s});
             }
             else
             {

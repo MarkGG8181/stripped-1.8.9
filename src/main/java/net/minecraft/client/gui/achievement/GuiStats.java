@@ -803,17 +803,17 @@ public class GuiStats extends GuiScreen implements IProgressMeter
             String s = I18n.format("entity." + EntityList.getStringFromID(entitylist$entityegginfo.spawnedID) + ".name", new Object[0]);
             int i = GuiStats.this.stats.readStat(entitylist$entityegginfo.killEntityStat);
             int j = GuiStats.this.stats.readStat(entitylist$entityegginfo.entityKilledByStat);
-            String s1 = I18n.format("stat.entityKills", new Object[] {Integer.valueOf(i), s});
-            String s2 = I18n.format("stat.entityKilledBy", new Object[] {s, Integer.valueOf(j)});
+            String s1 = I18n.format("stat.entityKills", new Object[]{Integer.valueOf(i), s});
+            String s2 = I18n.format("stat.entityKilledBy", new Object[]{s, Integer.valueOf(j)});
 
             if (i == 0)
             {
-                s1 = I18n.format("stat.entityKills.none", new Object[] {s});
+                s1 = I18n.format("stat.entityKills.none", new Object[]{s});
             }
 
             if (j == 0)
             {
-                s2 = I18n.format("stat.entityKilledBy.none", new Object[] {s});
+                s2 = I18n.format("stat.entityKilledBy.none", new Object[]{s});
             }
 
             GuiStats.this.drawString(GuiStats.this.fontRendererObj, s, p_180791_2_ + 2 - 10, p_180791_3_ + 1, 16777215);

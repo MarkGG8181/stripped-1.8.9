@@ -42,6 +42,7 @@ public class ContainerEnchantment extends Container
             {
                 return 64;
             }
+
             public void markDirty()
             {
                 super.markDirty();
@@ -50,7 +51,7 @@ public class ContainerEnchantment extends Container
         };
         this.rand = new Random();
         this.enchantLevels = new int[3];
-        this.enchantmentIds = new int[] { -1, -1, -1};
+        this.enchantmentIds = new int[]{-1, -1, -1};
         this.worldPointer = worldIn;
         this.position = pos;
         this.xpSeed = playerInv.player.getXPSeed();
@@ -60,6 +61,7 @@ public class ContainerEnchantment extends Container
             {
                 return true;
             }
+
             public int getSlotStackLimit()
             {
                 return 1;
@@ -386,19 +388,19 @@ public class ContainerEnchantment extends Container
             }
             else
             {
-                if (((Slot)this.inventorySlots.get(0)).getHasStack() || !((Slot)this.inventorySlots.get(0)).isItemValid(itemstack1))
+                if (((Slot)this.inventorySlots.getFirst()).getHasStack() || !((Slot)this.inventorySlots.getFirst()).isItemValid(itemstack1))
                 {
                     return null;
                 }
 
                 if (itemstack1.hasTagCompound() && itemstack1.stackSize == 1)
                 {
-                    ((Slot)this.inventorySlots.get(0)).putStack(itemstack1.copy());
+                    ((Slot)this.inventorySlots.getFirst()).putStack(itemstack1.copy());
                     itemstack1.stackSize = 0;
                 }
                 else if (itemstack1.stackSize >= 1)
                 {
-                    ((Slot)this.inventorySlots.get(0)).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getMetadata()));
+                    ((Slot)this.inventorySlots.getFirst()).putStack(new ItemStack(itemstack1.getItem(), 1, itemstack1.getMetadata()));
                     --itemstack1.stackSize;
                 }
             }

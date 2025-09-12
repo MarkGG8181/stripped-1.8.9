@@ -50,9 +50,9 @@ public class CommandTrigger extends CommandBase
         {
             EntityPlayerMP entityplayermp;
 
-            if (sender instanceof EntityPlayerMP)
+            if (sender instanceof EntityPlayerMP mP)
             {
-                entityplayermp = (EntityPlayerMP)sender;
+                entityplayermp = mP;
             }
             else
             {
@@ -75,7 +75,7 @@ public class CommandTrigger extends CommandBase
 
                 if (!scoreboard.entityHasObjective(entityplayermp.getName(), scoreobjective))
                 {
-                    throw new CommandException("commands.trigger.invalidObjective", new Object[] {args[0]});
+                    throw new CommandException("commands.trigger.invalidObjective", new Object[]{args[0]});
                 }
                 else
                 {
@@ -83,7 +83,7 @@ public class CommandTrigger extends CommandBase
 
                     if (score.isLocked())
                     {
-                        throw new CommandException("commands.trigger.disabled", new Object[] {args[0]});
+                        throw new CommandException("commands.trigger.disabled", new Object[]{args[0]});
                     }
                     else
                     {
@@ -95,7 +95,7 @@ public class CommandTrigger extends CommandBase
                         {
                             if (!"add".equals(args[1]))
                             {
-                                throw new CommandException("commands.trigger.invalidMode", new Object[] {args[1]});
+                                throw new CommandException("commands.trigger.invalidMode", new Object[]{args[1]});
                             }
 
                             score.increseScore(i);
@@ -105,14 +105,14 @@ public class CommandTrigger extends CommandBase
 
                         if (entityplayermp.theItemInWorldManager.isCreative())
                         {
-                            notifyOperators(sender, this, "commands.trigger.success", new Object[] {args[0], args[1], args[2]});
+                            notifyOperators(sender, this, "commands.trigger.success", new Object[]{args[0], args[1], args[2]});
                         }
                     }
                 }
             }
             else
             {
-                throw new CommandException("commands.trigger.invalidObjective", new Object[] {args[0]});
+                throw new CommandException("commands.trigger.invalidObjective", new Object[]{args[0]});
             }
         }
     }
@@ -136,7 +136,7 @@ public class CommandTrigger extends CommandBase
         }
         else
         {
-            return args.length == 2 ? getListOfStringsMatchingLastWord(args, new String[] {"add", "set"}): null;
+            return args.length == 2 ? getListOfStringsMatchingLastWord(args, new String[]{"add", "set"}) : null;
         }
     }
 }

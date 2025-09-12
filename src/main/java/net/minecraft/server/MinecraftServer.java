@@ -296,7 +296,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             }
 
             worldinfo = new WorldInfo(worldsettings, worldNameIn);
-        } else {
+        }
+        else {
             worldinfo.setWorldName(worldNameIn);
             worldsettings = new WorldSettings(worldinfo);
         }
@@ -313,10 +314,11 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             }
 
             if (i == 0) {
-                this.worldServers[i] = (WorldServer) (new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)(new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
                 this.worldServers[i].initialize(worldsettings);
-            } else {
-                this.worldServers[i] = (WorldServer) (new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
+            }
+            else {
+                this.worldServers[i] = (WorldServer)(new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
             }
 
             this.worldServers[i].addWorldAccess(new WorldManager(this, this.worldServers[i]));
@@ -424,7 +426,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     }
 
                     try {
-                        worldserver.saveAllChunks(true, (IProgressUpdate) null);
+                        worldserver.saveAllChunks(true, (IProgressUpdate)null);
                     } catch (MinecraftException minecraftexception) {
                         logger.warn(minecraftexception.getMessage());
                     }
@@ -507,7 +509,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     if (this.worldServers[0].areAllPlayersAsleep()) {
                         this.tick();
                         i = 0L;
-                    } else {
+                    }
+                    else {
                         while (i > 50L) {
                             i -= 50L;
                             this.tick();
@@ -517,16 +520,18 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                     Thread.sleep(Math.max(1L, 50L - i));
                     this.serverIsRunning = true;
                 }
-            } else {
-                this.finalTick((CrashReport) null);
+            }
+            else {
+                this.finalTick((CrashReport)null);
             }
         } catch (Throwable throwable1) {
             logger.error("Encountered an unexpected exception", throwable1);
             CrashReport crashreport = null;
 
-            if (throwable1 instanceof ReportedException) {
-                crashreport = this.addServerInfoToCrashReport(((ReportedException) throwable1).getCrashReport());
-            } else {
+            if (throwable1 instanceof ReportedException exception) {
+                crashreport = this.addServerInfoToCrashReport(exception.getCrashReport());
+            }
+            else {
                 crashreport = this.addServerInfoToCrashReport(new CrashReport("Exception in server tick loop", throwable1));
             }
 
@@ -534,7 +539,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
             if (crashreport.saveToFile(file1)) {
                 logger.error("This crash report has been saved to: " + file1.getAbsolutePath());
-            } else {
+            }
+            else {
                 logger.error("We were unable to save this crash report to disk.");
             }
 
@@ -561,11 +567,11 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 BufferedImage bufferedimage = ImageIO.read(file1);
                 Validate.validState(bufferedimage.getWidth() == 64, "Must be 64 pixels wide", new Object[0]);
                 Validate.validState(bufferedimage.getHeight() == 64, "Must be 64 pixels high", new Object[0]);
-                ImageIO.write(bufferedimage, "PNG", (OutputStream) (new ByteBufOutputStream(bytebuf)));
+                ImageIO.write(bufferedimage, "PNG", (OutputStream)(new ByteBufOutputStream(bytebuf)));
                 ByteBuf bytebuf1 = Base64.encode(bytebuf);
                 response.setFavicon("data:image/png;base64," + bytebuf1.toString(StandardCharsets.UTF_8));
             } catch (Exception exception) {
-                logger.error((String) "Couldn\'t load server icon", (Throwable) exception);
+                logger.error((String)"Couldn\'t load server icon", (Throwable)exception);
             } finally {
                 bytebuf.release();
             }
@@ -611,7 +617,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             int j = MathHelper.getRandomIntegerInRange(this.random, 0, this.getCurrentPlayerCount() - agameprofile.length);
 
             for (int k = 0; k < agameprofile.length; ++k) {
-                agameprofile[k] = ((EntityPlayerMP) this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
+                agameprofile[k] = ((EntityPlayerMP)this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
             }
 
             Collections.shuffle(Arrays.asList(agameprofile));
@@ -690,7 +696,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.theProfiler.endStartSection("tickables");
 
         for (int k = 0; k < this.playersOnline.size(); ++k) {
-            ((ITickable) this.playersOnline.get(k)).update();
+            ((ITickable)this.playersOnline.get(k)).update();
         }
 
         this.theProfiler.endSection();
@@ -798,14 +804,16 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 for (String s2 : list1) {
                     if (flag) {
                         list.add("/" + s2);
-                    } else {
+                    }
+                    else {
                         list.add(s2);
                     }
                 }
             }
 
             return list;
-        } else {
+        }
+        else {
             String[] astring = input.split(" ", -1);
             String s = astring[astring.length - 1];
 
@@ -908,10 +916,12 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 if (world.getWorldInfo().isHardcoreModeEnabled()) {
                     world.getWorldInfo().setDifficulty(EnumDifficulty.HARD);
                     world.setAllowedSpawnTypes(true, true);
-                } else if (this.isSinglePlayer()) {
+                }
+                else if (this.isSinglePlayer()) {
                     world.getWorldInfo().setDifficulty(difficulty);
                     world.setAllowedSpawnTypes(world.getDifficulty() != EnumDifficulty.PEACEFUL, true);
-                } else {
+                }
+                else {
                     world.getWorldInfo().setDifficulty(difficulty);
                     world.setAllowedSpawnTypes(this.allowSpawnMonsters(), this.canSpawnAnimals);
                 }
@@ -1210,7 +1220,8 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 this.futureTaskQueue.add(listenablefuturetask);
                 return listenablefuturetask;
             }
-        } else {
+        }
+        else {
             try {
                 return Futures.<V>immediateFuture(callable.call());
             } catch (Exception exception) {

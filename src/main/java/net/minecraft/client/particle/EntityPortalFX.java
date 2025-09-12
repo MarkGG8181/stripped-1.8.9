@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
@@ -25,9 +27,9 @@ public class EntityPortalFX extends EntityFX
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F * f;
         this.particleGreen *= 0.3F;
         this.particleRed *= 0.9F;
-        this.particleMaxAge = (int)(Math.random() * 10.0D) + 40;
+        this.particleMaxAge = (int)(ThreadLocalRandom.current().nextDouble() * 10.0D) + 40;
         this.noClip = true;
-        this.setParticleTextureIndex((int)(Math.random() * 8.0D));
+        this.setParticleTextureIndex((int)(ThreadLocalRandom.current().nextDouble() * 8.0D));
     }
 
     /**

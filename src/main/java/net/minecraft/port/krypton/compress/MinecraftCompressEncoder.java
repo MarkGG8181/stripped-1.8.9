@@ -25,7 +25,8 @@ public class MinecraftCompressEncoder extends MessageToByteEncoder<ByteBuf> {
             // Under the threshold, there is nothing to do.
             wrappedBuf.writeVarIntToBuffer(0);
             out.writeBytes(msg);
-        } else {
+        }
+        else {
             wrappedBuf.writeVarIntToBuffer(uncompressed);
             ByteBuf compatibleIn = MoreByteBufUtils.ensureCompatible(ctx.alloc(), compressor, msg);
             try {
@@ -38,7 +39,7 @@ public class MinecraftCompressEncoder extends MessageToByteEncoder<ByteBuf> {
 
     @Override
     protected ByteBuf allocateBuffer(ChannelHandlerContext ctx, ByteBuf msg, boolean preferDirect)
-            throws Exception {
+        throws Exception {
         // We allocate bytes to be compressed plus 1 byte. This covers two cases:
         //
         // - Compression

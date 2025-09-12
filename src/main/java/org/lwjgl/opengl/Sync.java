@@ -81,7 +81,7 @@ class Sync {
         initialised = true;
 
         sleepDurations.init(1000 * 1000);
-        yieldDurations.init((int) (-(getTime() - getTime()) * 1.333));
+        yieldDurations.init((int)(-(getTime() - getTime()) * 1.333));
 
         nextFrame = getTime();
 
@@ -95,7 +95,8 @@ class Sync {
             Thread timerAccuracyThread = new Thread(() -> {
                 try {
                     Thread.sleep(Long.MAX_VALUE);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             });
 
             timerAccuracyThread.setName("LWJGL Timer");

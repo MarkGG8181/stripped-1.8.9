@@ -71,9 +71,9 @@ public class ItemBanner extends ItemBlock
                 --stack.stackSize;
                 TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntityBanner)
+                if (tileentity instanceof TileEntityBanner banner)
                 {
-                    ((TileEntityBanner)tileentity).setItemValues(stack);
+                    banner.setItemValues(stack);
                 }
 
                 return true;

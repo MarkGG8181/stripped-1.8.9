@@ -17,10 +17,12 @@ public class EntityMinecartMobSpawner extends EntityMinecart
         {
             EntityMinecartMobSpawner.this.worldObj.setEntityState(EntityMinecartMobSpawner.this, (byte)id);
         }
+
         public World getSpawnerWorld()
         {
             return EntityMinecartMobSpawner.this.worldObj;
         }
+
         public BlockPos getSpawnerPosition()
         {
             return new BlockPos(EntityMinecartMobSpawner.this);

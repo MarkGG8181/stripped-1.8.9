@@ -44,6 +44,7 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
                         p_write_1_.value(EnumTypeAdapterFactory.this.func_151232_a(p_write_2_));
                     }
                 }
+
                 public T read(JsonReader p_read_1_) throws IOException
                 {
                     if (p_read_1_.peek() == JsonToken.NULL)
@@ -62,6 +63,6 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
 
     private String func_151232_a(Object p_151232_1_)
     {
-        return p_151232_1_ instanceof Enum ? ((Enum)p_151232_1_).name().toLowerCase(Locale.US) : p_151232_1_.toString().toLowerCase(Locale.US);
+        return p_151232_1_ instanceof Enum e ? e.name().toLowerCase(Locale.US) : p_151232_1_.toString().toLowerCase(Locale.US);
     }
 }

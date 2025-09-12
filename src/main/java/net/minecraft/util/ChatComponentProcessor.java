@@ -13,9 +13,8 @@ public class ChatComponentProcessor
     {
         IChatComponent ichatcomponent = null;
 
-        if (component instanceof ChatComponentScore)
+        if (component instanceof ChatComponentScore chatcomponentscore)
         {
-            ChatComponentScore chatcomponentscore = (ChatComponentScore)component;
             String s = chatcomponentscore.getName();
 
             if (PlayerSelector.hasArguments(s))
@@ -27,15 +26,15 @@ public class ChatComponentProcessor
                     throw new EntityNotFoundException();
                 }
 
-                s = ((Entity)list.get(0)).getName();
+                s = ((Entity)list.getFirst()).getName();
             }
 
             ichatcomponent = entityIn != null && s.equals("*") ? new ChatComponentScore(entityIn.getName(), chatcomponentscore.getObjective()) : new ChatComponentScore(s, chatcomponentscore.getObjective());
             ((ChatComponentScore)ichatcomponent).setValue(chatcomponentscore.getUnformattedTextForChat());
         }
-        else if (component instanceof ChatComponentSelector)
+        else if (component instanceof ChatComponentSelector selector)
         {
-            String s1 = ((ChatComponentSelector)component).getSelector();
+            String s1 = selector.getSelector();
             ichatcomponent = PlayerSelector.matchEntitiesToChatComponent(commandSender, s1);
 
             if (ichatcomponent == null)
@@ -43,9 +42,9 @@ public class ChatComponentProcessor
                 ichatcomponent = new ChatComponentText("");
             }
         }
-        else if (component instanceof ChatComponentText)
+        else if (component instanceof ChatComponentText text)
         {
-            ichatcomponent = new ChatComponentText(((ChatComponentText)component).getChatComponentText_TextValue());
+            ichatcomponent = new ChatComponentText(text.getChatComponentText_TextValue());
         }
         else
         {
@@ -60,9 +59,9 @@ public class ChatComponentProcessor
             {
                 Object object = aobject[i];
 
-                if (object instanceof IChatComponent)
+                if (object instanceof IChatComponent chatComponent)
                 {
-                    aobject[i] = processComponent(commandSender, (IChatComponent)object, entityIn);
+                    aobject[i] = processComponent(commandSender, chatComponent, entityIn);
                 }
             }
 

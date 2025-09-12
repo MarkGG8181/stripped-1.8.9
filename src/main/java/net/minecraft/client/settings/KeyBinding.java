@@ -25,7 +25,7 @@ public class KeyBinding implements Comparable<KeyBinding> {
 
     public static void onTick(int keyCode) {
         if (keyCode != 0) {
-            KeyBinding keybinding = (KeyBinding) hash.lookup(keyCode);
+            KeyBinding keybinding = (KeyBinding)hash.lookup(keyCode);
 
             if (keybinding != null) {
                 ++keybinding.pressTime;
@@ -35,7 +35,7 @@ public class KeyBinding implements Comparable<KeyBinding> {
 
     public static void setKeyBindState(int keyCode, boolean pressed) {
         if (keyCode != 0) {
-            KeyBinding keybinding = (KeyBinding) hash.lookup(keyCode);
+            KeyBinding keybinding = (KeyBinding)hash.lookup(keyCode);
 
             if (keybinding != null) {
                 keybinding.pressed = pressed;
@@ -89,7 +89,8 @@ public class KeyBinding implements Comparable<KeyBinding> {
     public boolean isPressed() {
         if (this.pressTime == 0) {
             return false;
-        } else {
+        }
+        else {
             --this.pressTime;
             return true;
         }

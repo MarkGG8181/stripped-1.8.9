@@ -99,7 +99,6 @@ public class Item
             }
             catch (NumberFormatException var3)
             {
-                ;
             }
         }
 
@@ -582,7 +581,7 @@ public class Item
         registerItemBlock(Blocks.detector_rail);
         registerItemBlock(Blocks.sticky_piston, new ItemPiston(Blocks.sticky_piston));
         registerItemBlock(Blocks.web);
-        registerItemBlock(Blocks.tallgrass, (new ItemColored(Blocks.tallgrass, true)).setSubtypeNames(new String[] {"shrub", "grass", "fern"}));
+        registerItemBlock(Blocks.tallgrass, (new ItemColored(Blocks.tallgrass, true)).setSubtypeNames(new String[]{"shrub", "grass", "fern"}));
         registerItemBlock(Blocks.deadbush);
         registerItemBlock(Blocks.piston, new ItemPiston(Blocks.piston));
         registerItemBlock(Blocks.wool, (new ItemCloth(Blocks.wool)).setUnlocalizedName("cloth"));
@@ -712,7 +711,7 @@ public class Item
         registerItemBlock(Blocks.redstone_block);
         registerItemBlock(Blocks.quartz_ore);
         registerItemBlock(Blocks.hopper);
-        registerItemBlock(Blocks.quartz_block, (new ItemMultiTexture(Blocks.quartz_block, Blocks.quartz_block, new String[] {"default", "chiseled", "lines"})).setUnlocalizedName("quartzBlock"));
+        registerItemBlock(Blocks.quartz_block, (new ItemMultiTexture(Blocks.quartz_block, Blocks.quartz_block, new String[]{"default", "chiseled", "lines"})).setUnlocalizedName("quartzBlock"));
         registerItemBlock(Blocks.quartz_stairs);
         registerItemBlock(Blocks.activator_rail);
         registerItemBlock(Blocks.dropper);

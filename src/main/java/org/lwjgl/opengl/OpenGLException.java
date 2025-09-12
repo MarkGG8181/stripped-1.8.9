@@ -15,6 +15,8 @@
  */
 package org.lwjgl.opengl;
 
+import java.io.Serial;
+
 /**
  * <p/>
  * Thrown by the debug build library of the LWJGL if any OpenGL operation causes an error.
@@ -24,6 +26,7 @@ package org.lwjgl.opengl;
  */
 public class OpenGLException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /** Constructor for OpenGLException. */

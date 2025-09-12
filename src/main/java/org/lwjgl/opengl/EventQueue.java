@@ -47,7 +47,7 @@ public class EventQueue {
 
     public EventQueue(int event_size) {
         this.event_size = event_size;
-        this.queue = ByteBuffer.allocate(QUEUE_SIZE*event_size);
+        this.queue = ByteBuffer.allocate(QUEUE_SIZE * event_size);
     }
 
     public synchronized void clearEvents() {

@@ -131,7 +131,7 @@ public class EmptyChunk extends Chunk {
     }
 
     public Random getRandomWithSeed(long seed) {
-        return new Random(this.getWorld().getSeed() + (this.xPosition * this.xPosition * 4987142L) + (this.xPosition * 5947611L) + (long) this.zPosition * this.zPosition * 4392871L + (this.zPosition * 389711L) ^ seed);
+        return new Random(this.getWorld().getSeed() + (this.xPosition * this.xPosition * 4987142L) + (this.xPosition * 5947611L) + (long)this.zPosition * this.zPosition * 4392871L + (this.zPosition * 389711L) ^ seed);
     }
 
     public boolean isEmpty() {

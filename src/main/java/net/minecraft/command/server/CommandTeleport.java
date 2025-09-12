@@ -79,7 +79,7 @@ public class CommandTeleport extends CommandBase
                     CommandBase.CoordinateArg commandbase$coordinatearg3 = parseCoordinate((double)entity.rotationYaw, args.length > lvt_5_2_ ? args[lvt_5_2_++] : "~", false);
                     CommandBase.CoordinateArg commandbase$coordinatearg4 = parseCoordinate((double)entity.rotationPitch, args.length > lvt_5_2_ ? args[lvt_5_2_] : "~", false);
 
-                    if (entity instanceof EntityPlayerMP)
+                    if (entity instanceof EntityPlayerMP mP)
                     {
                         Set<S08PacketPlayerPosLook.EnumFlags> set = EnumSet.<S08PacketPlayerPosLook.EnumFlags>noneOf(S08PacketPlayerPosLook.EnumFlags.class);
 
@@ -129,7 +129,7 @@ public class CommandTeleport extends CommandBase
                         }
 
                         entity.mountEntity((Entity)null);
-                        ((EntityPlayerMP)entity).playerNetServerHandler.setPlayerLocation(commandbase$coordinatearg.func_179629_b(), commandbase$coordinatearg1.func_179629_b(), commandbase$coordinatearg2.func_179629_b(), f, f1, set);
+                        mP.playerNetServerHandler.setPlayerLocation(commandbase$coordinatearg.func_179629_b(), commandbase$coordinatearg1.func_179629_b(), commandbase$coordinatearg2.func_179629_b(), f, f1, set);
                         entity.setRotationYawHead(f);
                     }
                     else
@@ -147,7 +147,7 @@ public class CommandTeleport extends CommandBase
                         entity.setRotationYawHead(f2);
                     }
 
-                    notifyOperators(sender, this, "commands.tp.success.coordinates", new Object[] {entity.getName(), Double.valueOf(commandbase$coordinatearg.func_179628_a()), Double.valueOf(commandbase$coordinatearg1.func_179628_a()), Double.valueOf(commandbase$coordinatearg2.func_179628_a())});
+                    notifyOperators(sender, this, "commands.tp.success.coordinates", new Object[]{entity.getName(), Double.valueOf(commandbase$coordinatearg.func_179628_a()), Double.valueOf(commandbase$coordinatearg1.func_179628_a()), Double.valueOf(commandbase$coordinatearg2.func_179628_a())});
                 }
             }
             else
@@ -162,16 +162,16 @@ public class CommandTeleport extends CommandBase
                 {
                     entity.mountEntity((Entity)null);
 
-                    if (entity instanceof EntityPlayerMP)
+                    if (entity instanceof EntityPlayerMP mP)
                     {
-                        ((EntityPlayerMP)entity).playerNetServerHandler.setPlayerLocation(entity1.posX, entity1.posY, entity1.posZ, entity1.rotationYaw, entity1.rotationPitch);
+                        mP.playerNetServerHandler.setPlayerLocation(entity1.posX, entity1.posY, entity1.posZ, entity1.rotationYaw, entity1.rotationPitch);
                     }
                     else
                     {
                         entity.setLocationAndAngles(entity1.posX, entity1.posY, entity1.posZ, entity1.rotationYaw, entity1.rotationPitch);
                     }
 
-                    notifyOperators(sender, this, "commands.tp.success", new Object[] {entity.getName(), entity1.getName()});
+                    notifyOperators(sender, this, "commands.tp.success", new Object[]{entity.getName(), entity1.getName()});
                 }
             }
         }

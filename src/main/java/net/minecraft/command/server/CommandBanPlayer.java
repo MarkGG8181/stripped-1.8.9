@@ -58,7 +58,7 @@ public class CommandBanPlayer extends CommandBase
 
             if (gameprofile == null)
             {
-                throw new CommandException("commands.ban.failed", new Object[] {args[0]});
+                throw new CommandException("commands.ban.failed", new Object[]{args[0]});
             }
             else
             {
@@ -78,7 +78,7 @@ public class CommandBanPlayer extends CommandBase
                     entityplayermp.playerNetServerHandler.kickPlayerFromServer("You are banned from this server.");
                 }
 
-                notifyOperators(sender, this, "commands.ban.success", new Object[] {args[0]});
+                notifyOperators(sender, this, "commands.ban.success", new Object[]{args[0]});
             }
         }
         else

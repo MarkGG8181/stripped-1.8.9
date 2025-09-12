@@ -100,7 +100,8 @@ public class OpenGlHelper {
 
         if (arbMultitexture) {
             logText = logText + "Using ARB_multitexture.\n";
-        } else {
+        }
+        else {
             logText = logText + "Using GL 1.3 multitexturing.\n";
         }
 
@@ -110,7 +111,8 @@ public class OpenGlHelper {
 
         if (arbTextureEnvCombine) {
             logText = logText + "Using ARB_texture_env_combine.\n";
-        } else {
+        }
+        else {
             logText = logText + "Using GL 1.3 texture combiners.\n";
         }
 
@@ -153,7 +155,8 @@ public class OpenGlHelper {
                 GL_FB_INCOMPLETE_MISS_ATTACH = 36055;
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
-            } else if (contextcapabilities.GL_ARB_framebuffer_object) {
+            }
+            else if (contextcapabilities.GL_ARB_framebuffer_object) {
                 logText = logText + "ARB_framebuffer_object is supported and separate blending is supported.\n";
                 framebufferType = 1;
                 GL_FRAMEBUFFER = 36160;
@@ -165,7 +168,8 @@ public class OpenGlHelper {
                 GL_FB_INCOMPLETE_ATTACHMENT = 36054;
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
-            } else {
+            }
+            else {
                 logText = logText + "EXT_framebuffer_object is supported.\n";
                 framebufferType = 2;
                 GL_FRAMEBUFFER = 36160;
@@ -178,7 +182,8 @@ public class OpenGlHelper {
                 GL_FB_INCOMPLETE_DRAW_BUFFER = 36059;
                 GL_FB_INCOMPLETE_READ_BUFFER = 36060;
             }
-        } else {
+        }
+        else {
             logText = logText + "Not using framebuffer objects because ";
             logText = logText + "OpenGL 1.4 is " + (contextcapabilities.OpenGL14 ? "" : "not ") + "supported, ";
             logText = logText + "EXT_blend_func_separate is " + (contextcapabilities.GL_EXT_blend_func_separate ? "" : "not ") + "supported, ";
@@ -195,7 +200,8 @@ public class OpenGlHelper {
             if (contextcapabilities.OpenGL21) {
                 logText = logText + "OpenGL 2.1 is supported.\n";
                 arbShaders = false;
-            } else {
+            }
+            else {
                 logText = logText + "ARB_shader_objects, ARB_vertex_shader, and ARB_fragment_shader are supported.\n";
                 arbShaders = true;
             }
@@ -204,7 +210,8 @@ public class OpenGlHelper {
             GL_COMPILE_STATUS = 35713;
             GL_VERTEX_SHADER = 35633;
             GL_FRAGMENT_SHADER = 35632;
-        } else {
+        }
+        else {
             logText = logText + "OpenGL 2.1 is " + (contextcapabilities.OpenGL21 ? "" : "not ") + "supported, ";
             logText = logText + "ARB_shader_objects is " + (contextcapabilities.GL_ARB_shader_objects ? "" : "not ") + "supported, ";
             logText = logText + "ARB_vertex_shader is " + (contextcapabilities.GL_ARB_vertex_shader ? "" : "not ") + "supported, and ";
@@ -223,7 +230,8 @@ public class OpenGlHelper {
                 logText = logText + "ARB_vertex_buffer_object is supported.\n";
                 GL_STATIC_DRAW = 35044;
                 GL_ARRAY_BUFFER = 34962;
-            } else {
+            }
+            else {
                 logText = logText + "OpenGL 1.5 is supported.\n";
                 GL_STATIC_DRAW = 35044;
                 GL_ARRAY_BUFFER = 34962;
@@ -235,14 +243,15 @@ public class OpenGlHelper {
         if (ati) {
             if (vboSupported) {
                 vboSupportedAti = true;
-            } else {
+            }
+            else {
                 GameSettings.Options.RENDER_DISTANCE.setValueMax(16.0F);
             }
         }
 
         try {
             List<CentralProcessor.LogicalProcessor> aprocessor = (new SystemInfo()).getHardware().getProcessor().getLogicalProcessors();
-            cpu = String.format("%dx %s", aprocessor.size(), aprocessor.getFirst()).replaceAll("\\s+", " ");
+            cpu = "%dx %s".formatted(aprocessor.size(), aprocessor.getFirst()).replaceAll("\\s+", " ");
         } catch (Throwable ignored) {
         }
     }
@@ -262,7 +271,8 @@ public class OpenGlHelper {
     public static void glAttachShader(int program, int shaderIn) {
         if (arbShaders) {
             ARBShaderObjects.glAttachObjectARB(program, shaderIn);
-        } else {
+        }
+        else {
             GL20.glAttachShader(program, shaderIn);
         }
     }
@@ -270,7 +280,8 @@ public class OpenGlHelper {
     public static void glDeleteShader(int p_153180_0_) {
         if (arbShaders) {
             ARBShaderObjects.glDeleteObjectARB(p_153180_0_);
-        } else {
+        }
+        else {
             GL20.glDeleteShader(p_153180_0_);
         }
     }
@@ -285,7 +296,8 @@ public class OpenGlHelper {
     public static void glShaderSource(int shaderIn, ByteBuffer string) {
         if (arbShaders) {
             ARBShaderObjects.glShaderSourceARB(shaderIn, StandardCharsets.UTF_8.decode(string).toString());
-        } else {
+        }
+        else {
             GL20.glShaderSource(shaderIn, StandardCharsets.UTF_8.decode(string).toString());
         }
     }
@@ -293,7 +305,8 @@ public class OpenGlHelper {
     public static void glCompileShader(int shaderIn) {
         if (arbShaders) {
             ARBShaderObjects.glCompileShaderARB(shaderIn);
-        } else {
+        }
+        else {
             GL20.glCompileShader(shaderIn);
         }
     }
@@ -313,7 +326,8 @@ public class OpenGlHelper {
     public static void glUseProgram(int program) {
         if (arbShaders) {
             ARBShaderObjects.glUseProgramObjectARB(program);
-        } else {
+        }
+        else {
             GL20.glUseProgram(program);
         }
     }
@@ -325,7 +339,8 @@ public class OpenGlHelper {
     public static void glDeleteProgram(int program) {
         if (arbShaders) {
             ARBShaderObjects.glDeleteObjectARB(program);
-        } else {
+        }
+        else {
             GL20.glDeleteProgram(program);
         }
     }
@@ -333,7 +348,8 @@ public class OpenGlHelper {
     public static void glLinkProgram(int program) {
         if (arbShaders) {
             ARBShaderObjects.glLinkProgramARB(program);
-        } else {
+        }
+        else {
             GL20.glLinkProgram(program);
         }
     }
@@ -345,7 +361,8 @@ public class OpenGlHelper {
     public static void glUniform1(int location, IntBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform1ivARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform1(location, values);
         }
     }
@@ -353,7 +370,8 @@ public class OpenGlHelper {
     public static void glUniform1i(int location, int v0) {
         if (arbShaders) {
             ARBShaderObjects.glUniform1iARB(location, v0);
-        } else {
+        }
+        else {
             GL20.glUniform1i(location, v0);
         }
     }
@@ -361,7 +379,8 @@ public class OpenGlHelper {
     public static void glUniform1(int location, FloatBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform1fvARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform1(location, values);
         }
     }
@@ -369,7 +388,8 @@ public class OpenGlHelper {
     public static void glUniform2(int location, IntBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform2ivARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform2(location, values);
         }
     }
@@ -377,7 +397,8 @@ public class OpenGlHelper {
     public static void glUniform2(int location, FloatBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform2fvARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform2(location, values);
         }
     }
@@ -385,7 +406,8 @@ public class OpenGlHelper {
     public static void glUniform3(int location, IntBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform3ivARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform3(location, values);
         }
     }
@@ -393,7 +415,8 @@ public class OpenGlHelper {
     public static void glUniform3(int location, FloatBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform3fvARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform3(location, values);
         }
     }
@@ -401,7 +424,8 @@ public class OpenGlHelper {
     public static void glUniform4(int location, IntBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform4ivARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform4(location, values);
         }
     }
@@ -409,7 +433,8 @@ public class OpenGlHelper {
     public static void glUniform4(int location, FloatBuffer values) {
         if (arbShaders) {
             ARBShaderObjects.glUniform4fvARB(location, values);
-        } else {
+        }
+        else {
             GL20.glUniform4(location, values);
         }
     }
@@ -417,7 +442,8 @@ public class OpenGlHelper {
     public static void glUniformMatrix2(int location, boolean transpose, FloatBuffer matrices) {
         if (arbShaders) {
             ARBShaderObjects.glUniformMatrix2fvARB(location, transpose, matrices);
-        } else {
+        }
+        else {
             GL20.glUniformMatrix2(location, transpose, matrices);
         }
     }
@@ -425,7 +451,8 @@ public class OpenGlHelper {
     public static void glUniformMatrix3(int location, boolean transpose, FloatBuffer matrices) {
         if (arbShaders) {
             ARBShaderObjects.glUniformMatrix3fvARB(location, transpose, matrices);
-        } else {
+        }
+        else {
             GL20.glUniformMatrix3(location, transpose, matrices);
         }
     }
@@ -433,7 +460,8 @@ public class OpenGlHelper {
     public static void glUniformMatrix4(int location, boolean transpose, FloatBuffer matrices) {
         if (arbShaders) {
             ARBShaderObjects.glUniformMatrix4ARB(location, transpose, matrices);
-        } else {
+        }
+        else {
             GL20.glUniformMatrix4(location, transpose, matrices);
         }
     }
@@ -449,7 +477,8 @@ public class OpenGlHelper {
     public static void glBindBuffer(int target, int buffer) {
         if (arbVbo) {
             ARBVertexBufferObject.glBindBufferARB(target, buffer);
-        } else {
+        }
+        else {
             GL15.glBindBuffer(target, buffer);
         }
     }
@@ -457,7 +486,8 @@ public class OpenGlHelper {
     public static void glBufferData(int target, ByteBuffer data, int usage) {
         if (arbVbo) {
             ARBVertexBufferObject.glBufferDataARB(target, data, usage);
-        } else {
+        }
+        else {
             GL15.glBufferData(target, data, usage);
         }
     }
@@ -465,7 +495,8 @@ public class OpenGlHelper {
     public static void glDeleteBuffers(int buffer) {
         if (arbVbo) {
             ARBVertexBufferObject.glDeleteBuffersARB(buffer);
-        } else {
+        }
+        else {
             GL15.glDeleteBuffers(buffer);
         }
     }
@@ -544,7 +575,8 @@ public class OpenGlHelper {
     public static int glGenFramebuffers() {
         if (!framebufferSupported) {
             return -1;
-        } else {
+        }
+        else {
             return switch (framebufferType) {
                 case 0 -> GL30.glGenFramebuffers();
                 case 1 -> ARBFramebufferObject.glGenFramebuffers();
@@ -557,7 +589,8 @@ public class OpenGlHelper {
     public static int glGenRenderbuffers() {
         if (!framebufferSupported) {
             return -1;
-        } else {
+        }
+        else {
             return switch (framebufferType) {
                 case 0 -> GL30.glGenRenderbuffers();
                 case 1 -> ARBFramebufferObject.glGenRenderbuffers();
@@ -604,7 +637,8 @@ public class OpenGlHelper {
     public static int glCheckFramebufferStatus(int target) {
         if (!framebufferSupported) {
             return -1;
-        } else {
+        }
+        else {
             return switch (framebufferType) {
                 case 0 -> GL30.glCheckFramebufferStatus(target);
                 case 1 -> ARBFramebufferObject.glCheckFramebufferStatus(target);
@@ -637,7 +671,8 @@ public class OpenGlHelper {
     public static void setActiveTexture(int texture) {
         if (arbMultitexture) {
             ARBMultitexture.glActiveTextureARB(texture);
-        } else {
+        }
+        else {
             GL13.glActiveTexture(texture);
         }
     }
@@ -648,7 +683,8 @@ public class OpenGlHelper {
     public static void setClientActiveTexture(int texture) {
         if (arbMultitexture) {
             ARBMultitexture.glClientActiveTextureARB(texture);
-        } else {
+        }
+        else {
             GL13.glClientActiveTexture(texture);
         }
     }
@@ -659,7 +695,8 @@ public class OpenGlHelper {
     public static void setLightmapTextureCoords(int target, float p_77475_1_, float p_77475_2_) {
         if (arbMultitexture) {
             ARBMultitexture.glMultiTexCoord2fARB(target, p_77475_1_, p_77475_2_);
-        } else {
+        }
+        else {
             GL13.glMultiTexCoord2f(target, p_77475_1_, p_77475_2_);
         }
     }
@@ -668,10 +705,12 @@ public class OpenGlHelper {
         if (openGL14) {
             if (extBlendFuncSeparate) {
                 EXTBlendFuncSeparate.glBlendFuncSeparateEXT(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
-            } else {
+            }
+            else {
                 GL14.glBlendFuncSeparate(sFactorRGB, dFactorRGB, sfactorAlpha, dfactorAlpha);
             }
-        } else {
+        }
+        else {
             GL11.glBlendFunc(sFactorRGB, dFactorRGB);
         }
     }

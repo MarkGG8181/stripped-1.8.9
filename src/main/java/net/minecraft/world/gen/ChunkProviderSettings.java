@@ -578,7 +578,6 @@ public class ChunkProviderSettings
             }
             catch (Exception var7)
             {
-                ;
             }
 
             return chunkprovidersettings$factory;

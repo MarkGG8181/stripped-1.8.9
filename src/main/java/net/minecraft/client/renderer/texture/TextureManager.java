@@ -29,7 +29,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
     }
 
     public void bindTexture(ResourceLocation resource) {
-        ITextureObject itextureobject = (ITextureObject) this.mapTextureObjects.get(resource);
+        ITextureObject itextureobject = (ITextureObject)this.mapTextureObjects.get(resource);
 
         if (itextureobject == null) {
             itextureobject = new SimpleTexture(resource);
@@ -43,7 +43,8 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         if (this.loadTexture(textureLocation, textureObj)) {
             this.listTickables.add(textureObj);
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -52,11 +53,11 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
         boolean flag = true;
 
         try {
-            ((ITextureObject) textureObj).loadTexture(this.theResourceManager);
+            ((ITextureObject)textureObj).loadTexture(this.theResourceManager);
         } catch (IOException ioexception) {
-            logger.warn((String) ("Failed to load texture: " + textureLocation), (Throwable) ioexception);
+            logger.warn((String)("Failed to load texture: " + textureLocation), (Throwable)ioexception);
             textureObj = TextureUtil.missingTexture;
-            this.mapTextureObjects.put(textureLocation, (ITextureObject) textureObj);
+            this.mapTextureObjects.put(textureLocation, (ITextureObject)textureObj);
             flag = false;
         } catch (Throwable throwable) {
             final ITextureObject textureObjf = textureObj;
@@ -71,25 +72,26 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
             throw new ReportedException(crashreport);
         }
 
-        this.mapTextureObjects.put(textureLocation, (ITextureObject) textureObj);
+        this.mapTextureObjects.put(textureLocation, (ITextureObject)textureObj);
         return flag;
     }
 
     public ITextureObject getTexture(ResourceLocation textureLocation) {
-        return (ITextureObject) this.mapTextureObjects.get(textureLocation);
+        return (ITextureObject)this.mapTextureObjects.get(textureLocation);
     }
 
     public ResourceLocation getDynamicTextureLocation(String name, DynamicTexture texture) {
-        Integer integer = (Integer) this.mapTextureCounters.get(name);
+        Integer integer = (Integer)this.mapTextureCounters.get(name);
 
         if (integer == null) {
             integer = Integer.valueOf(1);
-        } else {
+        }
+        else {
             integer = Integer.valueOf(integer.intValue() + 1);
         }
 
         this.mapTextureCounters.put(name, integer);
-        ResourceLocation resourcelocation = new ResourceLocation(String.format("dynamic/%s_%d", new Object[]{name, integer}));
+        ResourceLocation resourcelocation = new ResourceLocation("dynamic/%s_%d".formatted(new Object[]{name, integer}));
         this.loadTexture(resourcelocation, texture);
         return resourcelocation;
     }
@@ -110,7 +112,7 @@ public class TextureManager implements ITickable, IResourceManagerReloadListener
 
     public void onResourceManagerReload(IResourceManager resourceManager) {
         for (Entry<ResourceLocation, ITextureObject> entry : this.mapTextureObjects.entrySet()) {
-            this.loadTexture((ResourceLocation) entry.getKey(), (ITextureObject) entry.getValue());
+            this.loadTexture((ResourceLocation)entry.getKey(), (ITextureObject)entry.getValue());
         }
     }
 }

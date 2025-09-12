@@ -30,7 +30,9 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GL15C extends GL14C {
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     /** New token names. */
     public static final int GL_SRC1_ALPHA = 0x8589;
@@ -40,12 +42,12 @@ public class GL15C extends GL14C {
      * GetBufferParameteriv, and GetBufferPointerv.
      */
     public static final int
-        GL_ARRAY_BUFFER         = 0x8892,
+        GL_ARRAY_BUFFER = 0x8892,
         GL_ELEMENT_ARRAY_BUFFER = 0x8893;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_ARRAY_BUFFER_BINDING         = 0x8894,
+        GL_ARRAY_BUFFER_BINDING = 0x8894,
         GL_ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
 
     /** Accepted by the {@code pname} parameter of GetVertexAttribiv. */
@@ -53,26 +55,26 @@ public class GL15C extends GL14C {
 
     /** Accepted by the {@code usage} parameter of BufferData. */
     public static final int
-        GL_STREAM_DRAW  = 0x88E0,
-        GL_STREAM_READ  = 0x88E1,
-        GL_STREAM_COPY  = 0x88E2,
-        GL_STATIC_DRAW  = 0x88E4,
-        GL_STATIC_READ  = 0x88E5,
-        GL_STATIC_COPY  = 0x88E6,
+        GL_STREAM_DRAW = 0x88E0,
+        GL_STREAM_READ = 0x88E1,
+        GL_STREAM_COPY = 0x88E2,
+        GL_STATIC_DRAW = 0x88E4,
+        GL_STATIC_READ = 0x88E5,
+        GL_STATIC_COPY = 0x88E6,
         GL_DYNAMIC_DRAW = 0x88E8,
         GL_DYNAMIC_READ = 0x88E9,
         GL_DYNAMIC_COPY = 0x88EA;
 
     /** Accepted by the {@code access} parameter of MapBuffer. */
     public static final int
-        GL_READ_ONLY  = 0x88B8,
+        GL_READ_ONLY = 0x88B8,
         GL_WRITE_ONLY = 0x88B9,
         GL_READ_WRITE = 0x88BA;
 
     /** Accepted by the {@code pname} parameter of GetBufferParameteriv. */
     public static final int
-        GL_BUFFER_SIZE   = 0x8764,
-        GL_BUFFER_USAGE  = 0x8765,
+        GL_BUFFER_SIZE = 0x8764,
+        GL_BUFFER_USAGE = 0x8765,
         GL_BUFFER_ACCESS = 0x88BB,
         GL_BUFFER_MAPPED = 0x88BC;
 
@@ -85,11 +87,11 @@ public class GL15C extends GL14C {
     /** Accepted by the {@code pname} parameter of GetQueryiv. */
     public static final int
         GL_QUERY_COUNTER_BITS = 0x8864,
-        GL_CURRENT_QUERY      = 0x8865;
+        GL_CURRENT_QUERY = 0x8865;
 
     /** Accepted by the {@code pname} parameter of GetQueryObjectiv and GetQueryObjectuiv. */
     public static final int
-        GL_QUERY_RESULT           = 0x8866,
+        GL_QUERY_RESULT = 0x8866,
         GL_QUERY_RESULT_AVAILABLE = 0x8867;
 
     protected GL15C() {
@@ -134,7 +136,8 @@ public class GL15C extends GL14C {
      * @see <a target="_blank" href="http://docs.gl/gl4/glDeleteBuffers">Reference Page</a>
      */
     public static void glDeleteBuffers(@NativeType("GLuint const *") int buffer) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer buffers = stack.ints(buffer);
             nglDeleteBuffers(1, memAddress(buffers));
@@ -170,7 +173,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGenBuffers() {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer buffers = stack.callocInt(1);
             nglGenBuffers(1, memAddress(buffers));
@@ -719,7 +723,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGetBufferParameteri(@NativeType("GLenum") int target, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetBufferParameteriv(target, pname, memAddress(params));
@@ -760,7 +765,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static long glGetBufferPointer(@NativeType("GLenum") int target, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             PointerBuffer params = stack.callocPointer(1);
             nglGetBufferPointerv(target, pname, memAddress(params));
@@ -797,7 +803,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGenQueries() {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer ids = stack.callocInt(1);
             nglGenQueries(1, memAddress(ids));
@@ -833,7 +840,8 @@ public class GL15C extends GL14C {
      * @see <a target="_blank" href="http://docs.gl/gl4/glDeleteQueries">Reference Page</a>
      */
     public static void glDeleteQueries(@NativeType("GLuint const *") int id) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer ids = stack.ints(id);
             nglDeleteQueries(1, memAddress(ids));
@@ -908,7 +916,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGetQueryi(@NativeType("GLenum") int target, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetQueryiv(target, pname, memAddress(params));
@@ -962,7 +971,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGetQueryObjecti(@NativeType("GLuint") int id, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetQueryObjectiv(id, pname, memAddress(params));
@@ -1016,7 +1026,8 @@ public class GL15C extends GL14C {
      */
     @NativeType("void")
     public static int glGetQueryObjectui(@NativeType("GLuint") int id, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetQueryObjectuiv(id, pname, memAddress(params));

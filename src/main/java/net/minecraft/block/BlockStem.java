@@ -232,6 +232,6 @@ public class BlockStem extends BlockBush implements IGrowable
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {AGE, FACING});
+        return new BlockState(this, new IProperty[]{AGE, FACING});
     }
 }

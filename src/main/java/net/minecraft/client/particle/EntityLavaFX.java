@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
@@ -20,7 +22,7 @@ public class EntityLavaFX extends EntityFX
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
         this.particleScale *= this.rand.nextFloat() * 2.0F + 0.2F;
         this.lavaParticleScale = this.particleScale;
-        this.particleMaxAge = (int)(16.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(16.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.noClip = false;
         this.setParticleTextureIndex(49);
     }

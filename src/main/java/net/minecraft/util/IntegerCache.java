@@ -13,7 +13,7 @@ public class IntegerCache
     }
 
     static
-    {
+        {
         int i = 0;
 
         for (int j = CACHE.length; i < j; ++i)

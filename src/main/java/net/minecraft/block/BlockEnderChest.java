@@ -97,7 +97,7 @@ public class BlockEnderChest extends BlockContainer
         InventoryEnderChest inventoryenderchest = playerIn.getInventoryEnderChest();
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (inventoryenderchest != null && tileentity instanceof TileEntityEnderChest)
+        if (inventoryenderchest != null && tileentity instanceof TileEntityEnderChest chest)
         {
             if (worldIn.getBlockState(pos.up()).getBlock().isNormalCube())
             {
@@ -109,7 +109,7 @@ public class BlockEnderChest extends BlockContainer
             }
             else
             {
-                inventoryenderchest.setChestTileEntity((TileEntityEnderChest)tileentity);
+                inventoryenderchest.setChestTileEntity(chest);
                 playerIn.displayGUIChest(inventoryenderchest);
                 playerIn.triggerAchievement(StatList.enderchestOpenedStat);
                 return true;
@@ -170,6 +170,6 @@ public class BlockEnderChest extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING});
+        return new BlockState(this, new IProperty[]{FACING});
     }
 }

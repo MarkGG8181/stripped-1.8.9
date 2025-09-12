@@ -35,7 +35,8 @@ public class BlockModelRenderer {
 
             IBlockAccess fastAccess = new NeighborInfoCache(blockAccessIn, blockPosIn);
 
-            return flag ? this.renderModelAmbientOcclusion(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides) : this.renderModelStandard(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides);        } catch (Throwable throwable) {
+            return flag ? this.renderModelAmbientOcclusion(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides) : this.renderModelStandard(fastAccess, modelIn, block, blockPosIn, worldRendererIn, checkSides);
+        } catch (Throwable throwable) {
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Tesselating block model");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Block model being tesselated");
             CrashReportCategory.addBlockInfo(crashreportcategory, blockPosIn, blockStateIn);
@@ -94,7 +95,7 @@ public class BlockModelRenderer {
         List<BakedQuad> list1 = modelIn.getGeneralQuads();
 
         if (list1.size() > 0) {
-            this.renderModelStandardQuads(blockAccessIn, blockIn, blockPosIn, (EnumFacing) null, -1, true, worldRendererIn, list1, bitset);
+            this.renderModelStandardQuads(blockAccessIn, blockIn, blockPosIn, (EnumFacing)null, -1, true, worldRendererIn, list1, bitset);
             flag = true;
         }
 
@@ -102,18 +103,18 @@ public class BlockModelRenderer {
     }
 
     private void renderModelAmbientOcclusionQuads(IBlockAccess blockAccessIn, Block blockIn, BlockPos blockPosIn, WorldRenderer worldRendererIn, List<BakedQuad> listQuadsIn, float[] quadBounds, BitSet boundsFlags, BlockModelRenderer.AmbientOcclusionFace aoFaceIn) {
-        double d0 = (double) blockPosIn.getX();
-        double d1 = (double) blockPosIn.getY();
-        double d2 = (double) blockPosIn.getZ();
+        double d0 = (double)blockPosIn.getX();
+        double d1 = (double)blockPosIn.getY();
+        double d2 = (double)blockPosIn.getZ();
         Block.EnumOffsetType block$enumoffsettype = blockIn.getOffsetType();
 
         if (block$enumoffsettype != Block.EnumOffsetType.NONE) {
             long i = MathHelper.getPositionRandom(blockPosIn);
-            d0 += ((double) ((float) (i >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
-            d2 += ((double) ((float) (i >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
+            d0 += ((double)((float)(i >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
+            d2 += ((double)((float)(i >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
 
             if (block$enumoffsettype == Block.EnumOffsetType.XYZ) {
-                d1 += ((double) ((float) (i >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D;
+                d1 += ((double)((float)(i >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D;
             }
         }
 
@@ -126,14 +127,15 @@ public class BlockModelRenderer {
             if (bakedquad.hasTintIndex()) {
                 int j = blockIn.colorMultiplier(blockAccessIn, blockPosIn, bakedquad.getTintIndex());
 
-                float f = (float) (j >> 16 & 255) / 255.0F;
-                float f1 = (float) (j >> 8 & 255) / 255.0F;
-                float f2 = (float) (j & 255) / 255.0F;
+                float f = (float)(j >> 16 & 255) / 255.0F;
+                float f1 = (float)(j >> 8 & 255) / 255.0F;
+                float f2 = (float)(j & 255) / 255.0F;
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[0] * f, aoFaceIn.vertexColorMultiplier[0] * f1, aoFaceIn.vertexColorMultiplier[0] * f2, 4);
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[1] * f, aoFaceIn.vertexColorMultiplier[1] * f1, aoFaceIn.vertexColorMultiplier[1] * f2, 3);
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[2] * f, aoFaceIn.vertexColorMultiplier[2] * f1, aoFaceIn.vertexColorMultiplier[2] * f2, 2);
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[3] * f, aoFaceIn.vertexColorMultiplier[3] * f1, aoFaceIn.vertexColorMultiplier[3] * f2, 1);
-            } else {
+            }
+            else {
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[0], aoFaceIn.vertexColorMultiplier[0], aoFaceIn.vertexColorMultiplier[0], 4);
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[1], aoFaceIn.vertexColorMultiplier[1], aoFaceIn.vertexColorMultiplier[1], 3);
                 worldRendererIn.putColorMultiplier(aoFaceIn.vertexColorMultiplier[2], aoFaceIn.vertexColorMultiplier[2], aoFaceIn.vertexColorMultiplier[2], 2);
@@ -215,27 +217,27 @@ public class BlockModelRenderer {
     }
 
     private void renderModelStandardQuads(IBlockAccess blockAccessIn, Block blockIn, BlockPos blockPosIn, EnumFacing faceIn, int brightnessIn, boolean ownBrightness, WorldRenderer worldRendererIn, List<BakedQuad> listQuadsIn, BitSet boundsFlags) {
-        double d0 = (double) blockPosIn.getX();
-        double d1 = (double) blockPosIn.getY();
-        double d2 = (double) blockPosIn.getZ();
+        double d0 = (double)blockPosIn.getX();
+        double d1 = (double)blockPosIn.getY();
+        double d2 = (double)blockPosIn.getZ();
         Block.EnumOffsetType block$enumoffsettype = blockIn.getOffsetType();
 
         if (block$enumoffsettype != Block.EnumOffsetType.NONE) {
             int i = blockPosIn.getX();
             int j = blockPosIn.getZ();
-            long k = (long) (i * 3129871) ^ (long) j * 116129781L;
+            long k = (long)(i * 3129871) ^ (long)j * 116129781L;
             k = k * k * 42317861L + k * 11L;
-            d0 += ((double) ((float) (k >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
-            d2 += ((double) ((float) (k >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
+            d0 += ((double)((float)(k >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
+            d2 += ((double)((float)(k >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
 
             if (block$enumoffsettype == Block.EnumOffsetType.XYZ) {
-                d1 += ((double) ((float) (k >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D;
+                d1 += ((double)((float)(k >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D;
             }
         }
 
         for (BakedQuad bakedquad : listQuadsIn) {
             if (ownBrightness) {
-                this.fillQuadBounds(blockIn, bakedquad.getVertexData(), bakedquad.getFace(), (float[]) null, boundsFlags);
+                this.fillQuadBounds(blockIn, bakedquad.getVertexData(), bakedquad.getFace(), (float[])null, boundsFlags);
                 brightnessIn = boundsFlags.get(0) ? blockIn.getMixedBrightnessForBlock(blockAccessIn, blockPosIn.offset(bakedquad.getFace())) : blockIn.getMixedBrightnessForBlock(blockAccessIn, blockPosIn);
             }
 
@@ -245,9 +247,9 @@ public class BlockModelRenderer {
             if (bakedquad.hasTintIndex()) {
                 int l = blockIn.colorMultiplier(blockAccessIn, blockPosIn, bakedquad.getTintIndex());
 
-                float f = (float) (l >> 16 & 255) / 255.0F;
-                float f1 = (float) (l >> 8 & 255) / 255.0F;
-                float f2 = (float) (l & 255) / 255.0F;
+                float f = (float)(l >> 16 & 255) / 255.0F;
+                float f1 = (float)(l >> 8 & 255) / 255.0F;
+                float f2 = (float)(l & 255) / 255.0F;
                 worldRendererIn.putColorMultiplier(f, f1, f2, 4);
                 worldRendererIn.putColorMultiplier(f, f1, f2, 3);
                 worldRendererIn.putColorMultiplier(f, f1, f2, 2);
@@ -272,9 +274,9 @@ public class BlockModelRenderer {
         GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
         int i = block.getRenderColor(block.getStateForEntityRender(p_178266_2_));
 
-        float f = (float) (i >> 16 & 255) / 255.0F;
-        float f1 = (float) (i >> 8 & 255) / 255.0F;
-        float f2 = (float) (i & 255) / 255.0F;
+        float f = (float)(i >> 16 & 255) / 255.0F;
+        float f1 = (float)(i >> 8 & 255) / 255.0F;
+        float f2 = (float)(i & 255) / 255.0F;
 
         if (!p_178266_4_) {
             GlStateManager.color(brightness, brightness, brightness, 1.0F);
@@ -293,12 +295,13 @@ public class BlockModelRenderer {
 
             if (bakedquad.hasTintIndex()) {
                 worldrenderer.putColorRGB_F4(red * brightness, green * brightness, blue * brightness);
-            } else {
+            }
+            else {
                 worldrenderer.putColorRGB_F4(brightness, brightness, brightness);
             }
 
             Vec3i vec3i = bakedquad.getFace().getDirectionVec();
-            worldrenderer.putNormal((float) vec3i.getX(), (float) vec3i.getY(), (float) vec3i.getZ());
+            worldrenderer.putNormal((float)vec3i.getX(), (float)vec3i.getY(), (float)vec3i.getZ());
             tessellator.draw();
         }
     }
@@ -332,7 +335,8 @@ public class BlockModelRenderer {
             if (!flag2 && !flag) {
                 f4 = f;
                 i1 = i;
-            } else {
+            }
+            else {
                 BlockPos blockpos5 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.corners[2]);
                 f4 = blockAccessIn.getBlockState(blockpos5).getBlock().getAmbientOcclusionLightValue();
                 i1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos5);
@@ -344,7 +348,8 @@ public class BlockModelRenderer {
             if (!flag3 && !flag) {
                 f5 = f;
                 j1 = i;
-            } else {
+            }
+            else {
                 BlockPos blockpos6 = blockpos1.offset(blockmodelrenderer$enumneighborinfo.corners[3]);
                 f5 = blockAccessIn.getBlockState(blockpos6).getBlock().getAmbientOcclusionLightValue();
                 j1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos6);
@@ -356,7 +361,8 @@ public class BlockModelRenderer {
             if (!flag2 && !flag1) {
                 f6 = f1;
                 k1 = j;
-            } else {
+            }
+            else {
                 BlockPos blockpos7 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.corners[2]);
                 f6 = blockAccessIn.getBlockState(blockpos7).getBlock().getAmbientOcclusionLightValue();
                 k1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos7);
@@ -368,7 +374,8 @@ public class BlockModelRenderer {
             if (!flag3 && !flag1) {
                 f7 = f1;
                 l1 = j;
-            } else {
+            }
+            else {
                 BlockPos blockpos8 = blockpos2.offset(blockmodelrenderer$enumneighborinfo.corners[3]);
                 f7 = blockAccessIn.getBlockState(blockpos8).getBlock().getAmbientOcclusionLightValue();
                 l1 = blockIn.getMixedBrightnessForBlock(blockAccessIn, blockpos8);
@@ -416,7 +423,8 @@ public class BlockModelRenderer {
                 this.vertexBrightness[blockmodelrenderer$vertextranslations.vert1] = this.getVertexBrightness(i2, j2, k2, l2, f17, f18, f19, f20);
                 this.vertexBrightness[blockmodelrenderer$vertextranslations.vert2] = this.getVertexBrightness(i2, j2, k2, l2, f21, f22, f23, f24);
                 this.vertexBrightness[blockmodelrenderer$vertextranslations.vert3] = this.getVertexBrightness(i2, j2, k2, l2, f25, f26, f27, f28);
-            } else {
+            }
+            else {
                 float f9 = (f3 + f + f5 + f8) * 0.25F;
                 float f10 = (f2 + f + f4 + f8) * 0.25F;
                 float f11 = (f2 + f1 + f6 + f8) * 0.25F;
@@ -449,8 +457,8 @@ public class BlockModelRenderer {
         }
 
         private int getVertexBrightness(int p_178203_1_, int p_178203_2_, int p_178203_3_, int p_178203_4_, float p_178203_5_, float p_178203_6_, float p_178203_7_, float p_178203_8_) {
-            int i = (int) ((float) (p_178203_1_ >> 16 & 255) * p_178203_5_ + (float) (p_178203_2_ >> 16 & 255) * p_178203_6_ + (float) (p_178203_3_ >> 16 & 255) * p_178203_7_ + (float) (p_178203_4_ >> 16 & 255) * p_178203_8_) & 255;
-            int j = (int) ((float) (p_178203_1_ & 255) * p_178203_5_ + (float) (p_178203_2_ & 255) * p_178203_6_ + (float) (p_178203_3_ & 255) * p_178203_7_ + (float) (p_178203_4_ & 255) * p_178203_8_) & 255;
+            int i = (int)((float)(p_178203_1_ >> 16 & 255) * p_178203_5_ + (float)(p_178203_2_ >> 16 & 255) * p_178203_6_ + (float)(p_178203_3_ >> 16 & 255) * p_178203_7_ + (float)(p_178203_4_ >> 16 & 255) * p_178203_8_) & 255;
+            int j = (int)((float)(p_178203_1_ & 255) * p_178203_5_ + (float)(p_178203_2_ & 255) * p_178203_6_ + (float)(p_178203_3_ & 255) * p_178203_7_ + (float)(p_178203_4_ & 255) * p_178203_8_) & 255;
             return i << 16 | j;
         }
     }

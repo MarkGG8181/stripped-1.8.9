@@ -31,6 +31,7 @@
  */
 package org.lwjgl.util.vector;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
@@ -40,6 +41,7 @@ import java.nio.FloatBuffer;
  * @author foo
  */
 public class Matrix4f extends Matrix implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public float m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33;
@@ -529,27 +531,27 @@ public class Matrix4f extends Matrix implements Serializable {
     public static Matrix4f rotate(float angle, Vector3f axis, Matrix4f src, Matrix4f dest) {
         if (dest == null)
             dest = new Matrix4f();
-        float c = (float) Math.cos(angle);
-        float s = (float) Math.sin(angle);
+        float c = (float)Math.cos(angle);
+        float s = (float)Math.sin(angle);
         float oneminusc = 1.0f - c;
-        float xy = axis.x*axis.y;
-        float yz = axis.y*axis.z;
-        float xz = axis.x*axis.z;
-        float xs = axis.x*s;
-        float ys = axis.y*s;
-        float zs = axis.z*s;
+        float xy = axis.x * axis.y;
+        float yz = axis.y * axis.z;
+        float xz = axis.x * axis.z;
+        float xs = axis.x * s;
+        float ys = axis.y * s;
+        float zs = axis.z * s;
 
-        float f00 = axis.x*axis.x*oneminusc+c;
-        float f01 = xy*oneminusc+zs;
-        float f02 = xz*oneminusc-ys;
+        float f00 = axis.x * axis.x * oneminusc + c;
+        float f01 = xy * oneminusc + zs;
+        float f02 = xz * oneminusc - ys;
         // n[3] not used
-        float f10 = xy*oneminusc-zs;
-        float f11 = axis.y*axis.y*oneminusc+c;
-        float f12 = yz*oneminusc+xs;
+        float f10 = xy * oneminusc - zs;
+        float f11 = axis.y * axis.y * oneminusc + c;
+        float f12 = yz * oneminusc + xs;
         // n[7] not used
-        float f20 = xz*oneminusc+ys;
-        float f21 = yz*oneminusc-xs;
-        float f22 = axis.z*axis.z*oneminusc+c;
+        float f20 = xz * oneminusc + ys;
+        float f21 = yz * oneminusc - xs;
+        float f22 = axis.z * axis.z * oneminusc + c;
 
         float t00 = src.m00 * f00 + src.m10 * f01 + src.m20 * f02;
         float t01 = src.m01 * f00 + src.m11 * f01 + src.m21 * f02;
@@ -692,26 +694,26 @@ public class Matrix4f extends Matrix implements Serializable {
      */
     public float determinant() {
         float f =
-                m00
-                        * ((m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32)
-                        - m13 * m22 * m31
-                        - m11 * m23 * m32
-                        - m12 * m21 * m33);
+            m00
+                * ((m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32)
+                - m13 * m22 * m31
+                - m11 * m23 * m32
+                - m12 * m21 * m33);
         f -= m01
-                * ((m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32)
-                - m13 * m22 * m30
-                - m10 * m23 * m32
-                - m12 * m20 * m33);
+            * ((m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32)
+            - m13 * m22 * m30
+            - m10 * m23 * m32
+            - m12 * m20 * m33);
         f += m02
-                * ((m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31)
-                - m13 * m21 * m30
-                - m10 * m23 * m31
-                - m11 * m20 * m33);
+            * ((m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31)
+            - m13 * m21 * m30
+            - m10 * m23 * m31
+            - m11 * m20 * m33);
         f -= m03
-                * ((m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31)
-                - m12 * m21 * m30
-                - m10 * m22 * m31
-                - m11 * m20 * m32);
+            * ((m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31)
+            - m12 * m21 * m30
+            - m10 * m22 * m31
+            - m11 * m20 * m32);
         return f;
     }
 
@@ -725,8 +727,8 @@ public class Matrix4f extends Matrix implements Serializable {
                                         float t20, float t21, float t22)
     {
         return   t00 * (t11 * t22 - t12 * t21)
-                + t01 * (t12 * t20 - t10 * t22)
-                + t02 * (t10 * t21 - t11 * t20);
+            + t01 * (t12 * t20 - t10 * t22)
+            + t02 * (t10 * t21 - t11 * t20);
     }
 
     /**
@@ -755,46 +757,46 @@ public class Matrix4f extends Matrix implements Serializable {
              */
             if (dest == null)
                 dest = new Matrix4f();
-            float determinant_inv = 1f/determinant;
+            float determinant_inv = 1f / determinant;
 
             // first row
-            float t00 =  determinant3x3(src.m11, src.m12, src.m13, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
+            float t00 = determinant3x3(src.m11, src.m12, src.m13, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
             float t01 = -determinant3x3(src.m10, src.m12, src.m13, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
-            float t02 =  determinant3x3(src.m10, src.m11, src.m13, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
+            float t02 = determinant3x3(src.m10, src.m11, src.m13, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
             float t03 = -determinant3x3(src.m10, src.m11, src.m12, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
             // second row
             float t10 = -determinant3x3(src.m01, src.m02, src.m03, src.m21, src.m22, src.m23, src.m31, src.m32, src.m33);
-            float t11 =  determinant3x3(src.m00, src.m02, src.m03, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
+            float t11 = determinant3x3(src.m00, src.m02, src.m03, src.m20, src.m22, src.m23, src.m30, src.m32, src.m33);
             float t12 = -determinant3x3(src.m00, src.m01, src.m03, src.m20, src.m21, src.m23, src.m30, src.m31, src.m33);
-            float t13 =  determinant3x3(src.m00, src.m01, src.m02, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
+            float t13 = determinant3x3(src.m00, src.m01, src.m02, src.m20, src.m21, src.m22, src.m30, src.m31, src.m32);
             // third row
-            float t20 =  determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m31, src.m32, src.m33);
+            float t20 = determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m31, src.m32, src.m33);
             float t21 = -determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m30, src.m32, src.m33);
-            float t22 =  determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m30, src.m31, src.m33);
+            float t22 = determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m30, src.m31, src.m33);
             float t23 = -determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m30, src.m31, src.m32);
             // fourth row
             float t30 = -determinant3x3(src.m01, src.m02, src.m03, src.m11, src.m12, src.m13, src.m21, src.m22, src.m23);
-            float t31 =  determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m20, src.m22, src.m23);
+            float t31 = determinant3x3(src.m00, src.m02, src.m03, src.m10, src.m12, src.m13, src.m20, src.m22, src.m23);
             float t32 = -determinant3x3(src.m00, src.m01, src.m03, src.m10, src.m11, src.m13, src.m20, src.m21, src.m23);
-            float t33 =  determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m20, src.m21, src.m22);
+            float t33 = determinant3x3(src.m00, src.m01, src.m02, src.m10, src.m11, src.m12, src.m20, src.m21, src.m22);
 
             // transpose and divide by the determinant
-            dest.m00 = t00*determinant_inv;
-            dest.m11 = t11*determinant_inv;
-            dest.m22 = t22*determinant_inv;
-            dest.m33 = t33*determinant_inv;
-            dest.m01 = t10*determinant_inv;
-            dest.m10 = t01*determinant_inv;
-            dest.m20 = t02*determinant_inv;
-            dest.m02 = t20*determinant_inv;
-            dest.m12 = t21*determinant_inv;
-            dest.m21 = t12*determinant_inv;
-            dest.m03 = t30*determinant_inv;
-            dest.m30 = t03*determinant_inv;
-            dest.m13 = t31*determinant_inv;
-            dest.m31 = t13*determinant_inv;
-            dest.m32 = t23*determinant_inv;
-            dest.m23 = t32*determinant_inv;
+            dest.m00 = t00 * determinant_inv;
+            dest.m11 = t11 * determinant_inv;
+            dest.m22 = t22 * determinant_inv;
+            dest.m33 = t33 * determinant_inv;
+            dest.m01 = t10 * determinant_inv;
+            dest.m10 = t01 * determinant_inv;
+            dest.m20 = t02 * determinant_inv;
+            dest.m02 = t20 * determinant_inv;
+            dest.m12 = t21 * determinant_inv;
+            dest.m21 = t12 * determinant_inv;
+            dest.m03 = t30 * determinant_inv;
+            dest.m30 = t03 * determinant_inv;
+            dest.m13 = t31 * determinant_inv;
+            dest.m31 = t13 * determinant_inv;
+            dest.m32 = t23 * determinant_inv;
+            dest.m23 = t32 * determinant_inv;
             return dest;
         } else
             return null;

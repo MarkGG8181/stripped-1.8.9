@@ -81,6 +81,7 @@ public class BlockPos extends Vec3i
     {
         return new BlockPos(this.getX(), this.getY() + 1, this.getZ());
     }
+
     /**
      * Offset this BlockPos n blocks up
      */
@@ -176,6 +177,7 @@ public class BlockPos extends Vec3i
     {
         return new BlockPos(this.getX() + facing.getFrontOffsetX(), this.getY() + facing.getFrontOffsetY(), this.getZ() + facing.getFrontOffsetZ());
     }
+
     /**
      * Offsets this BlockPos n blocks in the given direction
      */
@@ -222,6 +224,7 @@ public class BlockPos extends Vec3i
                 return new AbstractIterator<BlockPos>()
                 {
                     private BlockPos lastReturned = null;
+
                     protected BlockPos computeNext()
                     {
                         if (this.lastReturned == null)
@@ -275,6 +278,7 @@ public class BlockPos extends Vec3i
                 return new AbstractIterator<BlockPos.MutableBlockPos>()
                 {
                     private BlockPos.MutableBlockPos theBlockPos = null;
+
                     protected BlockPos.MutableBlockPos computeNext()
                     {
                         if (this.theBlockPos == null)

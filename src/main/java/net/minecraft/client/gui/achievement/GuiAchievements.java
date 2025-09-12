@@ -524,7 +524,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
             {
                 s = I18n.format("achievement.unknown", new Object[0]);
                 int k8 = Math.max(this.fontRendererObj.getStringWidth(s), 120);
-                String s2 = (new ChatComponentTranslation("achievement.requires", new Object[] {achievement.parentAchievement.getStatName()})).getUnformattedText();
+                String s2 = (new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()})).getUnformattedText();
                 int i5 = this.fontRendererObj.splitStringWidth(s2, k8);
                 this.drawGradientRect(i7 - 3, k7 - 3, i7 + k8 + 3, k7 + i5 + 12 + 3, -1073741824, -1073741824);
                 this.fontRendererObj.drawSplitString(s2, i7, k7 + 12, k8, -9416624);
@@ -532,7 +532,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
             else if (i8 < 3)
             {
                 int l8 = Math.max(this.fontRendererObj.getStringWidth(s), 120);
-                String s3 = (new ChatComponentTranslation("achievement.requires", new Object[] {achievement.parentAchievement.getStatName()})).getUnformattedText();
+                String s3 = (new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()})).getUnformattedText();
                 int j9 = this.fontRendererObj.splitStringWidth(s3, l8);
                 this.drawGradientRect(i7 - 3, k7 - 3, i7 + l8 + 3, k7 + j9 + 12 + 3, -1073741824, -1073741824);
                 this.fontRendererObj.drawSplitString(s3, i7, k7 + 12, l8, -9416624);

@@ -256,7 +256,7 @@ public enum EnumConnectionState {
     }
 
     protected EnumConnectionState registerPacket(EnumPacketDirection direction, Class<? extends Packet> packetClass) {
-        BiMap<Integer, Class<? extends Packet>> bimap = (BiMap) this.directionMaps.get(direction);
+        BiMap<Integer, Class<? extends Packet>> bimap = (BiMap)this.directionMaps.get(direction);
 
         if (bimap == null) {
             bimap = HashBiMap.<Integer, Class<? extends Packet>>create();
@@ -267,19 +267,20 @@ public enum EnumConnectionState {
             String s = direction + " packet " + packetClass + " is already known to ID " + bimap.inverse().get(packetClass);
             LogManager.getLogger().fatal(s);
             throw new IllegalArgumentException(s);
-        } else {
+        }
+        else {
             bimap.put(Integer.valueOf(bimap.size()), packetClass);
             return this;
         }
     }
 
     public Integer getPacketId(EnumPacketDirection direction, Packet packetIn) {
-        return (Integer) ((BiMap) this.directionMaps.get(direction)).inverse().get(packetIn.getClass());
+        return (Integer)((BiMap)this.directionMaps.get(direction)).inverse().get(packetIn.getClass());
     }
 
     public Packet getPacket(EnumPacketDirection direction, int packetId) throws InstantiationException, IllegalAccessException {
-        Class<? extends Packet> oclass = (Class) ((BiMap) this.directionMaps.get(direction)).get(Integer.valueOf(packetId));
-        return oclass == null ? null : (Packet) oclass.newInstance();
+        Class<? extends Packet> oclass = (Class)((BiMap)this.directionMaps.get(direction)).get(Integer.valueOf(packetId));
+        return oclass == null ? null : (Packet)oclass.newInstance();
     }
 
     public int getId() {
@@ -291,7 +292,7 @@ public enum EnumConnectionState {
     }
 
     public static EnumConnectionState getFromPacket(Packet packetIn) {
-        return (EnumConnectionState) STATES_BY_CLASS.get(packetIn.getClass());
+        return (EnumConnectionState)STATES_BY_CLASS.get(packetIn.getClass());
     }
 
     static {
@@ -311,7 +312,7 @@ public enum EnumConnectionState {
                     }
 
                     try {
-                        oclass.newInstance();
+                        oclass.getDeclaredConstructor().newInstance();
                     } catch (Throwable var10) {
                         throw new Error("Packet " + oclass + " fails instantiation checks! " + oclass);
                     }

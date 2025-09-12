@@ -39,7 +39,7 @@ public class StringTranslate {
 
         for (String s : IOUtils.readLines(inputstream, StandardCharsets.UTF_8)) {
             if (!s.isEmpty() && s.charAt(0) != 35) {
-                String[] astring = (String[]) Iterables.toArray(equalSignSplitter.split(s), String.class);
+                String[] astring = (String[])Iterables.toArray(equalSignSplitter.split(s), String.class);
 
                 if (astring != null && astring.length == 2) {
                     String s1 = astring[0];
@@ -82,7 +82,7 @@ public class StringTranslate {
         String s = this.tryTranslateKey(key);
 
         try {
-            return String.format(s, format);
+            return s.formatted(format);
         } catch (IllegalFormatException var5) {
             return "Format error: " + s;
         }
@@ -92,7 +92,7 @@ public class StringTranslate {
      * Tries to look up a translation for the given key; spits back the key if no result was found.
      */
     private String tryTranslateKey(String key) {
-        String s = (String) this.languageList.get(key);
+        String s = (String)this.languageList.get(key);
         return s == null ? key : s;
     }
 

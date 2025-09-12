@@ -22,7 +22,7 @@ public class DataWatcher
 
     /** When isBlank is true the DataWatcher is not watching any objects */
     private boolean isBlank = true;
-    private static final Map < Class<?>, Integer > dataTypes = new HashMap<>();
+    private static final Map<Class<?>, Integer> dataTypes = new HashMap<>();
     private final Map<Integer, DataWatcher.WatchableObject> watchedObjects = new HashMap<>();
 
     /** true if one or more object was changed */
@@ -391,7 +391,7 @@ public class DataWatcher
     }
 
     static
-    {
+        {
         dataTypes.put(Byte.class, Integer.valueOf(0));
         dataTypes.put(Short.class, Integer.valueOf(1));
         dataTypes.put(Integer.class, Integer.valueOf(2));

@@ -133,7 +133,7 @@ public class BlockOldLeaf extends BlockLeaves
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {VARIANT, CHECK_DECAY, DECAYABLE});
+        return new BlockState(this, new IProperty[]{VARIANT, CHECK_DECAY, DECAYABLE});
     }
 
     /**

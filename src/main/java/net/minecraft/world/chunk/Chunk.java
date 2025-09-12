@@ -134,7 +134,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         this.chunkTileEntityMap = new HashMap<>();
         this.queuedLightChecks = 4096;
         this.tileEntityPosQueue = new ConcurrentLinkedQueue<>();
-        this.entityLists = (ClassInheritanceMultiMap[]) (new ClassInheritanceMultiMap[16]);
+        this.entityLists = (ClassInheritanceMultiMap[])(new ClassInheritanceMultiMap[16]);
         this.worldObj = worldIn;
         this.xPosition = x;
         this.zPosition = z;
@@ -145,9 +145,9 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         }
 
         Arrays.fill(this.precipitationHeightMap, -999);
-        Arrays.fill(this.blockBiomeArray, (byte) -1);
+        Arrays.fill(this.blockBiomeArray, (byte)-1);
 
-        this.lightingEngine = ((ILightingEngineProvider) this.worldObj).getLightingEngine();
+        this.lightingEngine = ((ILightingEngineProvider)this.worldObj).getLightingEngine();
     }
 
     public Chunk(World worldIn, ChunkPrimer primer, int x, int z) {
@@ -174,7 +174,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             }
         }
 
-        this.lightingEngine = ((ILightingEngineProvider) this.worldObj).getLightingEngine();
+        this.lightingEngine = ((ILightingEngineProvider)this.worldObj).getLightingEngine();
     }
 
     /**
@@ -363,7 +363,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
         if (i > maxValue) {
             this.updateSkylightNeighborHeight(x, z, maxValue, i + 1);
-        } else if (i < maxValue) {
+        }
+        else if (i < maxValue) {
             this.updateSkylightNeighborHeight(x, z, i, maxValue + 1);
         }
     }
@@ -476,7 +477,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     private int getBlockMetadata(int x, int y, int z) {
         if (y >> 4 >= this.storageArrays.length) {
             return 0;
-        } else {
+        }
+        else {
             ExtendedBlockStorage extendedblockstorage = this.storageArrays[y >> 4];
             return extendedblockstorage != null ? extendedblockstorage.getExtBlockMetadata(x, y & 15, z) : 0;
         }
@@ -501,7 +503,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
         if (iblockstate == state) {
             return null;
-        } else {
+        }
+        else {
             Block block = state.getBlock();
             Block block1 = iblockstate.getBlock();
             ExtendedBlockStorage extendedblockstorage = this.storageArrays[j >> 4];
@@ -521,24 +524,27 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             if (block1 != block) {
                 if (!this.worldObj.isRemote) {
                     block1.breakBlock(this.worldObj, pos, iblockstate);
-                } else if (block1 instanceof ITileEntityProvider) {
+                }
+                else if (block1 instanceof ITileEntityProvider) {
                     this.worldObj.removeTileEntity(pos);
                 }
             }
 
             if (extendedblockstorage.getBlockByExtId(i, j & 15, k) != block) {
                 return null;
-            } else {
-                    int j1 = block.getLightOpacity();
-                    int k1 = block1.getLightOpacity();
+            }
+            else {
+                int j1 = block.getLightOpacity();
+                int k1 = block1.getLightOpacity();
 
-                    if (j1 > 0) {
-                        if (j >= i1) {
-                            this.relightBlock(i, j, k);
-                        }
-                    } else if (j == i1 - 1) {
+                if (j1 > 0) {
+                    if (j >= i1) {
                         this.relightBlock(i, j, k);
                     }
+                }
+                else if (j == i1 - 1) {
+                    this.relightBlock(i, j, k);
+                }
 
                 if (block1 instanceof ITileEntityProvider) {
                     TileEntity tileentity = this.getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
@@ -552,11 +558,11 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
                     block.onBlockAdded(this.worldObj, pos, state);
                 }
 
-                if (block instanceof ITileEntityProvider) {
+                if (block instanceof ITileEntityProvider provider) {
                     TileEntity tileentity1 = this.getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
 
                     if (tileentity1 == null) {
-                        tileentity1 = ((ITileEntityProvider) block).createNewTileEntity(this.worldObj, block.getMetaFromState(state));
+                        tileentity1 = provider.createNewTileEntity(this.worldObj, block.getMetaFromState(state));
                         this.worldObj.setTileEntity(pos, tileentity1);
                     }
 
@@ -593,7 +599,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             if (!this.worldObj.provider.getHasNoSky()) {
                 extendedblockstorage.setExtSkylightValue(i, j & 15, k, value);
             }
-        } else if (p_177431_1_ == EnumSkyBlock.BLOCK) {
+        }
+        else if (p_177431_1_ == EnumSkyBlock.BLOCK) {
             extendedblockstorage.setExtBlocklightValue(i, j & 15, k, value);
         }
     }
@@ -607,7 +614,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
         if (extendedblockstorage == null) {
             return !this.worldObj.provider.getHasNoSky() && amount < EnumSkyBlock.SKY.defaultLightValue ? EnumSkyBlock.SKY.defaultLightValue - amount : 0;
-        } else {
+        }
+        else {
             int l = this.worldObj.provider.getHasNoSky() ? 0 : extendedblockstorage.getExtSkylightValue(i, j & 15, k);
             l = l - amount;
             int i1 = extendedblockstorage.getExtBlocklightValue(i, j & 15, k);
@@ -681,7 +689,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
     private TileEntity createNewTileEntity(BlockPos pos) {
         Block block = this.getBlock(pos);
-        return !block.hasTileEntity() ? null : ((ITileEntityProvider) block).createNewTileEntity(this.worldObj, this.getBlockMetadata(pos));
+        return !block.hasTileEntity() ? null : ((ITileEntityProvider)block).createNewTileEntity(this.worldObj, this.getBlockMetadata(pos));
     }
 
     public TileEntity getTileEntity(BlockPos pos, Chunk.EnumCreateEntityType p_177424_2_) {
@@ -691,10 +699,12 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             if (p_177424_2_ == Chunk.EnumCreateEntityType.IMMEDIATE) {
                 tileentity = this.createNewTileEntity(pos);
                 this.worldObj.setTileEntity(pos, tileentity);
-            } else if (p_177424_2_ == Chunk.EnumCreateEntityType.QUEUED) {
+            }
+            else if (p_177424_2_ == Chunk.EnumCreateEntityType.QUEUED) {
                 this.tileEntityPosQueue.add(pos);
             }
-        } else if (tileentity.isInvalid()) {
+        }
+        else if (tileentity.isInvalid()) {
             this.chunkTileEntityMap.remove(pos);
             return null;
         }
@@ -830,7 +840,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             if (this.hasEntities && this.worldObj.getTotalWorldTime() != this.lastSaveTime || this.isModified) {
                 return true;
             }
-        } else if (this.hasEntities && this.worldObj.getTotalWorldTime() >= this.lastSaveTime + 600L) {
+        }
+        else if (this.hasEntities && this.worldObj.getTotalWorldTime() >= this.lastSaveTime + 600L) {
             return true;
         }
 
@@ -838,7 +849,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     }
 
     public Random getRandomWithSeed(long seed) {
-        return new Random(this.worldObj.getSeed() + (this.xPosition * this.xPosition * 4987142L) + (this.xPosition * 5947611L) + (long) this.zPosition * this.zPosition * 4392871L + (this.zPosition * 389711L) ^ seed);
+        return new Random(this.worldObj.getSeed() + (this.xPosition * this.xPosition * 4987142L) + (this.xPosition * 5947611L) + (long)this.zPosition * this.zPosition * 4392871L + (this.zPosition * 389711L) ^ seed);
     }
 
     public boolean isEmpty() {
@@ -858,7 +869,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         if (flag1 && flag2 && flag5) {
             if (!this.isTerrainPopulated) {
                 p_76624_1_.populate(p_76624_2_, x, z);
-            } else {
+            }
+            else {
                 p_76624_1_.populateChunk(p_76624_2_, this, x, z);
             }
         }
@@ -868,7 +880,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
             if (!chunk.isTerrainPopulated) {
                 p_76624_1_.populate(p_76624_2_, x - 1, z);
-            } else {
+            }
+            else {
                 p_76624_1_.populateChunk(p_76624_2_, chunk, x - 1, z);
             }
         }
@@ -878,7 +891,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
             if (!chunk1.isTerrainPopulated) {
                 p_76624_1_.populate(p_76624_2_, x, z - 1);
-            } else {
+            }
+            else {
                 p_76624_1_.populateChunk(p_76624_2_, chunk1, x, z - 1);
             }
         }
@@ -888,7 +902,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
             if (!chunk2.isTerrainPopulated) {
                 p_76624_1_.populate(p_76624_2_, x - 1, z - 1);
-            } else {
+            }
+            else {
                 p_76624_1_.populateChunk(p_76624_2_, chunk2, x - 1, z - 1);
             }
         }
@@ -911,7 +926,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
                 if (!material.blocksMovement() && !material.isLiquid()) {
                     blockpos = blockpos.down();
-                } else {
+                }
+                else {
                     i1 = blockpos.getY() + 1;
                 }
             }
@@ -982,7 +998,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     public void setStorageArrays(ExtendedBlockStorage[] newStorageArrays) {
         if (this.storageArrays.length != newStorageArrays.length) {
             logger.warn("Could not set level chunk sections, array length is {} instead of {}", newStorageArrays.length, this.storageArrays.length);
-        } else {
+        }
+        else {
             System.arraycopy(newStorageArrays, 0, this.storageArrays, 0, this.storageArrays.length);
         }
     }
@@ -1003,10 +1020,11 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
                 char[] achar = this.storageArrays[j].getData();
 
                 for (int k = 0; k < achar.length; ++k) {
-                    achar[k] = (char) ((p_177439_1_[i + 1] & 255) << 8 | p_177439_1_[i] & 255);
+                    achar[k] = (char)((p_177439_1_[i + 1] & 255) << 8 | p_177439_1_[i] & 255);
                     i += 2;
                 }
-            } else if (p_177439_3_ && this.storageArrays[j] != null) {
+            }
+            else if (p_177439_3_ && this.storageArrays[j] != null) {
                 this.storageArrays[j] = null;
             }
         }
@@ -1056,7 +1074,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         if (k == 255) {
             BiomeGenBase biomegenbase = chunkManager.getBiomeGenerator(pos, BiomeGenBase.plains);
             k = biomegenbase.biomeID;
-            this.blockBiomeArray[j << 4 | i] = (byte) (k & 255);
+            this.blockBiomeArray[j << 4 | i] = (byte)(k & 255);
         }
 
         BiomeGenBase biomegenbase1 = BiomeGenBase.getBiome(k);
@@ -1077,7 +1095,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     public void setBiomeArray(byte[] biomeArray) {
         if (this.blockBiomeArray.length != biomeArray.length) {
             logger.warn("Could not set level chunk biomes, array length is {} instead of {}", biomeArray.length, this.blockBiomeArray.length);
-        } else {
+        }
+        else {
             System.arraycopy(biomeArray, 0, this.blockBiomeArray, 0, this.blockBiomeArray.length);
         }
     }
@@ -1143,15 +1162,18 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
                 for (int i = 0; i < 16; ++i) {
                     this.func_150811_f(15, i);
                 }
-            } else if (facing == EnumFacing.WEST) {
+            }
+            else if (facing == EnumFacing.WEST) {
                 for (int j = 0; j < 16; ++j) {
                     this.func_150811_f(0, j);
                 }
-            } else if (facing == EnumFacing.SOUTH) {
+            }
+            else if (facing == EnumFacing.SOUTH) {
                 for (int k = 0; k < 16; ++k) {
                     this.func_150811_f(k, 15);
                 }
-            } else if (facing == EnumFacing.NORTH) {
+            }
+            else if (facing == EnumFacing.NORTH) {
                 for (int l = 0; l < 16; ++l) {
                     this.func_150811_f(l, 0);
                 }
@@ -1175,7 +1197,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
             if (!flag && k > 0) {
                 flag = true;
-            } else if (flag && k == 0 && !this.worldObj.checkLight(blockpos$mutableblockpos)) {
+            }
+            else if (flag && k == 0 && !this.worldObj.checkLight(blockpos$mutableblockpos)) {
                 return false;
             }
         }
@@ -1210,7 +1233,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     public void setHeightMap(int[] newHeightMap) {
         if (this.heightMap.length != newHeightMap.length) {
             logger.warn("Could not set level chunk heightmap, array length is {} instead of {}", newHeightMap.length, this.heightMap.length);
-        } else {
+        }
+        else {
             System.arraycopy(newHeightMap, 0, this.heightMap, 0, this.heightMap.length);
         }
     }
@@ -1322,9 +1346,11 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
         if (section == null) {
             return this.canSeeSky(pos) ? lightType.defaultLightValue : 0;
-        } else if (lightType == EnumSkyBlock.SKY) {
+        }
+        else if (lightType == EnumSkyBlock.SKY) {
             return this.worldObj.provider.getHasNoSky() ? 0 : section.getExtSkylightValue(i, j & 15, k);
-        } else {
+        }
+        else {
             return section.getExtBlocklightValue(i, j & 15, k);
         }
     }

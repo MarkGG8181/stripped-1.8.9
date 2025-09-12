@@ -44,7 +44,7 @@ public class CommandBroadcast extends CommandBase
         if (args.length > 0 && args[0].length() > 0)
         {
             IChatComponent ichatcomponent = getChatComponentFromNthArg(sender, args, 0, true);
-            MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("chat.type.announcement", new Object[] {sender.getDisplayName(), ichatcomponent}));
+            MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentTranslation("chat.type.announcement", new Object[]{sender.getDisplayName(), ichatcomponent}));
         }
         else
         {

@@ -18,9 +18,11 @@ public class Vec3i implements Comparable<Vec3i> {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (!(p_equals_1_ instanceof Vec3i vec3i)) {
+        }
+        else if (!(p_equals_1_ instanceof Vec3i vec3i)) {
             return false;
-        } else {
+        }
+        else {
             return this.getX() == vec3i.getX() && (this.getY() == vec3i.getY() && this.getZ() == vec3i.getZ());
         }
     }
@@ -56,9 +58,9 @@ public class Vec3i implements Comparable<Vec3i> {
      * Calculate squared distance to the given coordinates
      */
     public double distanceSq(double toX, double toY, double toZ) {
-        double d0 = (double) this.getX() - toX;
-        double d1 = (double) this.getY() - toY;
-        double d2 = (double) this.getZ() - toZ;
+        double d0 = (double)this.getX() - toX;
+        double d1 = (double)this.getY() - toY;
+        double d2 = (double)this.getZ() - toZ;
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
@@ -66,9 +68,9 @@ public class Vec3i implements Comparable<Vec3i> {
      * Compute square of distance from point x, y, z to center of this Block
      */
     public double distanceSqToCenter(double xIn, double yIn, double zIn) {
-        double d0 = (double) this.getX() + 0.5D - xIn;
-        double d1 = (double) this.getY() + 0.5D - yIn;
-        double d2 = (double) this.getZ() + 0.5D - zIn;
+        double d0 = (double)this.getX() + 0.5D - xIn;
+        double d1 = (double)this.getY() + 0.5D - yIn;
+        double d2 = (double)this.getZ() + 0.5D - zIn;
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 

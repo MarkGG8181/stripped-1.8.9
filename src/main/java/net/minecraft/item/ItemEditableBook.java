@@ -77,7 +77,7 @@ public class ItemEditableBook extends Item
 
             if (!StringUtils.isNullOrEmpty(s))
             {
-                tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocalFormatted("book.byAuthor", new Object[] {s}));
+                tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocalFormatted("book.byAuthor", new Object[]{s}));
             }
 
             tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("book.generation." + nbttagcompound.getInteger("generation")));
@@ -133,10 +133,10 @@ public class ItemEditableBook extends Item
 
                     nbttagcompound.setTag("pages", nbttaglist);
 
-                    if (player instanceof EntityPlayerMP && player.getCurrentEquippedItem() == stack)
+                    if (player instanceof EntityPlayerMP mP && player.getCurrentEquippedItem() == stack)
                     {
                         Slot slot = player.openContainer.getSlotFromInventory(player.inventory, player.inventory.currentItem);
-                        ((EntityPlayerMP)player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(0, slot.slotNumber, stack));
+                        mP.playerNetServerHandler.sendPacket(new S2FPacketSetSlot(0, slot.slotNumber, stack));
                     }
                 }
             }

@@ -48,7 +48,7 @@ public class SkinManager {
      * Used in the Skull renderer to fetch a skin. May download the skin if it's not in the cache
      */
     public ResourceLocation loadSkin(MinecraftProfileTexture profileTexture, Type p_152792_2_) {
-        return this.loadSkin(profileTexture, p_152792_2_, (SkinManager.SkinAvailableCallback) null);
+        return this.loadSkin(profileTexture, p_152792_2_, (SkinManager.SkinAvailableCallback)null);
     }
 
     /**
@@ -62,7 +62,8 @@ public class SkinManager {
             if (skinAvailableCallback != null) {
                 skinAvailableCallback.skinAvailable(p_152789_2_, resourcelocation, profileTexture);
             }
-        } else {
+        }
+        else {
             File file1 = new File(this.skinCacheDir, profileTexture.getHash().length() > 2 ? profileTexture.getHash().substring(0, 2) : "xx");
             File file2 = new File(file1, profileTexture.getHash());
             final IImageBuffer iimagebuffer = p_152789_2_ == Type.SKIN ? new ImageBufferDownload() : null;

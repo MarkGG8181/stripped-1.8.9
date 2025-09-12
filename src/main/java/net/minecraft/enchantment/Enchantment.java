@@ -241,7 +241,7 @@ public abstract class Enchantment
     }
 
     static
-    {
+        {
         List<Enchantment> list = new ArrayList<>();
 
         for (Enchantment enchantment : enchantmentsList)

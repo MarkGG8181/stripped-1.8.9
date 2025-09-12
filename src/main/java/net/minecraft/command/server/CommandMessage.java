@@ -18,7 +18,7 @@ public class CommandMessage extends CommandBase
 {
     public List<String> getCommandAliases()
     {
-        return Arrays.<String>asList(new String[] {"w", "msg"});
+        return Arrays.<String>asList(new String[]{"w", "msg"});
     }
 
     /**
@@ -65,8 +65,8 @@ public class CommandMessage extends CommandBase
             else
             {
                 IChatComponent ichatcomponent = getChatComponentFromNthArg(sender, args, 1, !(sender instanceof EntityPlayer));
-                ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("commands.message.display.incoming", new Object[] {sender.getDisplayName(), ichatcomponent.createCopy()});
-                ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("commands.message.display.outgoing", new Object[] {entityplayer.getDisplayName(), ichatcomponent.createCopy()});
+                ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation("commands.message.display.incoming", new Object[]{sender.getDisplayName(), ichatcomponent.createCopy()});
+                ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("commands.message.display.outgoing", new Object[]{entityplayer.getDisplayName(), ichatcomponent.createCopy()});
                 chatcomponenttranslation.getChatStyle().setColor(EnumChatFormatting.GRAY).setItalic(Boolean.valueOf(true));
                 chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.GRAY).setItalic(Boolean.valueOf(true));
                 entityplayer.addChatMessage(chatcomponenttranslation);

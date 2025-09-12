@@ -61,7 +61,8 @@ public class PacketBuffer extends ByteBuf {
 
         if (i > maxLength) {
             throw new DecoderException("ByteArray with size " + i + " is bigger than allowed " + maxLength);
-        } else {
+        }
+        else {
             byte[] abyte = new byte[i];
             this.readBytes(abyte);
             return abyte;
@@ -90,7 +91,8 @@ public class PacketBuffer extends ByteBuf {
 
         if (i > maxLength) {
             throw new DecoderException("VarIntArray with size " + i + " is bigger than allowed " + maxLength);
-        } else {
+        }
+        else {
             int[] aint = new int[i];
 
             for (int j = 0; j < aint.length; ++j) {
@@ -157,7 +159,7 @@ public class PacketBuffer extends ByteBuf {
     }
 
     public <T extends Enum<T>> T readEnumValue(Class<T> enumClass) {
-        return (T) ((Enum[]) enumClass.getEnumConstants())[this.readVarIntFromBuffer()];
+        return (T)((Enum[])enumClass.getEnumConstants())[this.readVarIntFromBuffer()];
     }
 
     public PacketBuffer writeEnumValue(Enum<?> value) {
@@ -194,7 +196,7 @@ public class PacketBuffer extends ByteBuf {
 
         while (true) {
             byte b0 = this.readByte();
-            i |= (long) (b0 & 127) << j++ * 7;
+            i |= (long)(b0 & 127) << j++ * 7;
 
             if (j > 10) {
                 throw new RuntimeException("VarLong too big");
@@ -227,10 +229,12 @@ public class PacketBuffer extends ByteBuf {
     public PacketBuffer writeVarIntToBuffer(int input) {
         if ((input & (0xFFFFFFFF << 7)) == 0) {
             this.buf.writeByte(input);
-        } else if ((input & (0xFFFFFFFF << 14)) == 0) {
+        }
+        else if ((input & (0xFFFFFFFF << 14)) == 0) {
             int w = (input & 0x7F | 0x80) << 8 | (input >>> 7);
             this.buf.writeShort(w);
-        } else {
+        }
+        else {
             writeVarIntFull(this.buf, input);
         }
 
@@ -241,19 +245,23 @@ public class PacketBuffer extends ByteBuf {
         // See https://steinborn.me/posts/performance/how-fast-can-you-write-a-varint/
         if ((value & (0xFFFFFFFF << 7)) == 0) {
             buf.writeByte(value);
-        } else if ((value & (0xFFFFFFFF << 14)) == 0) {
+        }
+        else if ((value & (0xFFFFFFFF << 14)) == 0) {
             int w = (value & 0x7F | 0x80) << 8 | (value >>> 7);
             buf.writeShort(w);
-        } else if ((value & (0xFFFFFFFF << 21)) == 0) {
+        }
+        else if ((value & (0xFFFFFFFF << 21)) == 0) {
             int w = (value & 0x7F | 0x80) << 16 | ((value >>> 7) & 0x7F | 0x80) << 8 | (value >>> 14);
             buf.writeMedium(w);
-        } else if ((value & (0xFFFFFFFF << 28)) == 0) {
+        }
+        else if ((value & (0xFFFFFFFF << 28)) == 0) {
             int w = (value & 0x7F | 0x80) << 24 | (((value >>> 7) & 0x7F | 0x80) << 16)
-                    | ((value >>> 14) & 0x7F | 0x80) << 8 | (value >>> 21);
+                | ((value >>> 14) & 0x7F | 0x80) << 8 | (value >>> 21);
             buf.writeInt(w);
-        } else {
+        }
+        else {
             int w = (value & 0x7F | 0x80) << 24 | ((value >>> 7) & 0x7F | 0x80) << 16
-                    | ((value >>> 14) & 0x7F | 0x80) << 8 | ((value >>> 21) & 0x7F | 0x80);
+                | ((value >>> 14) & 0x7F | 0x80) << 8 | ((value >>> 21) & 0x7F | 0x80);
             buf.writeInt(w);
             buf.writeByte(value >>> 28);
         }
@@ -261,11 +269,11 @@ public class PacketBuffer extends ByteBuf {
 
     public PacketBuffer writeVarLong(long value) {
         while ((value & -128L) != 0L) {
-            this.writeByte((int) (value & 127L) | 128);
+            this.writeByte((int)(value & 127L) | 128);
             value >>>= 7;
         }
 
-        this.writeByte((int) value);
+        this.writeByte((int)value);
         return this;
     }
 
@@ -275,7 +283,8 @@ public class PacketBuffer extends ByteBuf {
     public PacketBuffer writeNBTTagCompoundToBuffer(NBTTagCompound nbt) {
         if (nbt == null) {
             this.writeByte(0);
-        } else {
+        }
+        else {
             try {
                 CompressedStreamTools.write(nbt, new ByteBufOutputStream(this));
             } catch (IOException ioexception) {
@@ -295,7 +304,8 @@ public class PacketBuffer extends ByteBuf {
 
         if (b0 == 0) {
             return null;
-        } else {
+        }
+        else {
             this.readerIndex(i);
 
             try {
@@ -313,7 +323,8 @@ public class PacketBuffer extends ByteBuf {
     public PacketBuffer writeItemStackToBuffer(ItemStack stack) {
         if (stack == null) {
             this.writeShort(-1);
-        } else {
+        }
+        else {
             this.writeShort(Item.getIdFromItem(stack.getItem()));
             this.writeByte(stack.stackSize);
             this.writeShort(stack.getMetadata());
@@ -354,15 +365,18 @@ public class PacketBuffer extends ByteBuf {
 
         if (i > maxLength * 4) {
             throw new DecoderException("The received encoded string buffer length is longer than maximum allowed (" + i + " > " + maxLength * 4 + ")");
-        } else if (i < 0) {
+        }
+        else if (i < 0) {
             throw new DecoderException("The received encoded string buffer length is less than zero! Weird string!");
-        } else {
+        }
+        else {
             String s = this.toString(this.readerIndex(), i, StandardCharsets.UTF_8);
             this.readerIndex(this.readerIndex() + i);
 
             if (s.length() > maxLength) {
                 throw new DecoderException("The received string length is longer than maximum allowed (" + i + " > " + maxLength + ")");
-            } else {
+            }
+            else {
                 return s;
             }
         }
@@ -373,7 +387,8 @@ public class PacketBuffer extends ByteBuf {
 
         if (abyte.length > 32767) {
             throw new EncoderException("String too big (was " + abyte.length + " bytes encoded, max " + 32767 + ")");
-        } else {
+        }
+        else {
             this.writeVarIntToBuffer(abyte.length);
             this.writeBytes(abyte);
             return this;

@@ -158,7 +158,7 @@ public class StatList
 
                 if (s != null)
                 {
-                    objectCraftStats[i] = (new StatCrafting("stat.craftItem.", s, new ChatComponentTranslation("stat.craftItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+                    objectCraftStats[i] = (new StatCrafting("stat.craftItem.", s, new ChatComponentTranslation("stat.craftItem", new Object[]{(new ItemStack(item)).getChatComponent()}), item)).registerStat();
                 }
             }
         }
@@ -179,7 +179,7 @@ public class StatList
 
                 if (s != null && block.getEnableStats())
                 {
-                    mineBlockStatArray[i] = (new StatCrafting("stat.mineBlock.", s, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(block)).getChatComponent()}), item)).registerStat();
+                    mineBlockStatArray[i] = (new StatCrafting("stat.mineBlock.", s, new ChatComponentTranslation("stat.mineBlock", new Object[]{(new ItemStack(block)).getChatComponent()}), item)).registerStat();
                     objectMineStats.add((StatCrafting)mineBlockStatArray[i]);
                 }
             }
@@ -199,7 +199,7 @@ public class StatList
 
                 if (s != null)
                 {
-                    objectUseStats[i] = (new StatCrafting("stat.useItem.", s, new ChatComponentTranslation("stat.useItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+                    objectUseStats[i] = (new StatCrafting("stat.useItem.", s, new ChatComponentTranslation("stat.useItem", new Object[]{(new ItemStack(item)).getChatComponent()}), item)).registerStat();
 
                     if (!(item instanceof ItemBlock))
                     {
@@ -223,7 +223,7 @@ public class StatList
 
                 if (s != null && item.isDamageable())
                 {
-                    objectBreakStats[i] = (new StatCrafting("stat.breakItem.", s, new ChatComponentTranslation("stat.breakItem", new Object[] {(new ItemStack(item)).getChatComponent()}), item)).registerStat();
+                    objectBreakStats[i] = (new StatCrafting("stat.breakItem.", s, new ChatComponentTranslation("stat.breakItem", new Object[]{(new ItemStack(item)).getChatComponent()}), item)).registerStat();
                 }
             }
         }
@@ -282,13 +282,13 @@ public class StatList
     public static StatBase getStatKillEntity(EntityList.EntityEggInfo eggInfo)
     {
         String s = EntityList.getStringFromID(eggInfo.spawnedID);
-        return s == null ? null : (new StatBase("stat.killEntity." + s, new ChatComponentTranslation("stat.entityKill", new Object[] {new ChatComponentTranslation("entity." + s + ".name", new Object[0])}))).registerStat();
+        return s == null ? null : (new StatBase("stat.killEntity." + s, new ChatComponentTranslation("stat.entityKill", new Object[]{new ChatComponentTranslation("entity." + s + ".name", new Object[0])}))).registerStat();
     }
 
     public static StatBase getStatEntityKilledBy(EntityList.EntityEggInfo eggInfo)
     {
         String s = EntityList.getStringFromID(eggInfo.spawnedID);
-        return s == null ? null : (new StatBase("stat.entityKilledBy." + s, new ChatComponentTranslation("stat.entityKilledBy", new Object[] {new ChatComponentTranslation("entity." + s + ".name", new Object[0])}))).registerStat();
+        return s == null ? null : (new StatBase("stat.entityKilledBy." + s, new ChatComponentTranslation("stat.entityKilledBy", new Object[]{new ChatComponentTranslation("entity." + s + ".name", new Object[0])}))).registerStat();
     }
 
     public static StatBase getOneShotStat(String p_151177_0_)

@@ -183,7 +183,7 @@ public class VisGraph
     }
 
     static
-    {
+        {
         int i = 0;
         int j = 15;
         int k = 0;

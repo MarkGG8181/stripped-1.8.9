@@ -58,7 +58,7 @@ public class ResourcePackRepository {
         Iterator<String> iterator = settings.resourcePacks.iterator();
 
         while (iterator.hasNext()) {
-            String s = (String) iterator.next();
+            String s = (String)iterator.next();
 
             for (ResourcePackRepository.Entry resourcepackrepository$entry : this.repositoryEntriesAll) {
                 if (resourcepackrepository$entry.getResourcePackName().equals(s)) {
@@ -79,7 +79,8 @@ public class ResourcePackRepository {
             if (!this.dirResourcepacks.isDirectory() && (!this.dirResourcepacks.delete() || !this.dirResourcepacks.mkdirs())) {
                 logger.warn("Unable to recreate resourcepack folder, it exists but is not a directory: " + this.dirResourcepacks);
             }
-        } else if (!this.dirResourcepacks.mkdirs()) {
+        }
+        else if (!this.dirResourcepacks.mkdirs()) {
             logger.warn("Unable to create resourcepack folder: " + this.dirResourcepacks);
         }
     }
@@ -101,7 +102,8 @@ public class ResourcePackRepository {
                 } catch (Exception var6) {
                     list.remove(resourcepackrepository$entry);
                 }
-            } else {
+            }
+            else {
                 int i = this.repositoryEntriesAll.indexOf(resourcepackrepository$entry);
 
                 if (i > -1 && i < this.repositoryEntriesAll.size()) {
@@ -141,7 +143,8 @@ public class ResourcePackRepository {
 
         if (hash.matches("^[a-f0-9]{40}$")) {
             s = hash;
-        } else {
+        }
+        else {
             s = "legacy";
         }
 
@@ -163,7 +166,7 @@ public class ResourcePackRepository {
                     logger.warn("File " + file1 + " had wrong hash (expected " + hash + ", found " + s1 + "). Deleting it.");
                     FileUtils.deleteQuietly(file1);
                 } catch (IOException ioexception) {
-                    logger.warn((String) ("File " + file1 + " couldn\'t be hashed. Deleting it."), (Throwable) ioexception);
+                    logger.warn((String)("File " + file1 + " couldn\'t be hashed. Deleting it."), (Throwable)ioexception);
                     FileUtils.deleteQuietly(file1);
                 }
             }
@@ -182,7 +185,7 @@ public class ResourcePackRepository {
             Futures.addCallback(this.downloadingPacks, new FutureCallback<Object>() {
                 public void onSuccess(Object p_onSuccess_1_) {
                     ResourcePackRepository.this.setResourcePackInstance(file1);
-                    settablefuture.set((Object) null);
+                    settablefuture.set((Object)null);
                 }
 
                 public void onFailure(Throwable p_onFailure_1_) {
@@ -259,13 +262,12 @@ public class ResourcePackRepository {
         }
 
         public void updateResourcePack() throws IOException {
-            this.reResourcePack = (IResourcePack) (this.resourcePackFile.isDirectory() ? new FolderResourcePack(this.resourcePackFile) : new FileResourcePack(this.resourcePackFile));
-            this.rePackMetadataSection = (PackMetadataSection) this.reResourcePack.getPackMetadata(ResourcePackRepository.this.rprMetadataSerializer, "pack");
+            this.reResourcePack = (IResourcePack)(this.resourcePackFile.isDirectory() ? new FolderResourcePack(this.resourcePackFile) : new FileResourcePack(this.resourcePackFile));
+            this.rePackMetadataSection = (PackMetadataSection)this.reResourcePack.getPackMetadata(ResourcePackRepository.this.rprMetadataSerializer, "pack");
 
             try {
                 this.texturePackIcon = this.reResourcePack.getPackImage();
             } catch (IOException var2) {
-                ;
             }
 
             if (this.texturePackIcon == null) {
@@ -284,8 +286,8 @@ public class ResourcePackRepository {
         }
 
         public void closeResourcePack() {
-            if (this.reResourcePack instanceof Closeable) {
-                IOUtils.closeQuietly((Closeable) this.reResourcePack);
+            if (this.reResourcePack instanceof Closeable closeable) {
+                IOUtils.closeQuietly(closeable);
             }
         }
 
@@ -314,7 +316,7 @@ public class ResourcePackRepository {
         }
 
         public String toString() {
-            return String.format("%s:%s:%d", new Object[]{this.resourcePackFile.getName(), this.resourcePackFile.isDirectory() ? "folder" : "zip", Long.valueOf(this.resourcePackFile.lastModified())});
+            return "%s:%s:%d".formatted(new Object[]{this.resourcePackFile.getName(), this.resourcePackFile.isDirectory() ? "folder" : "zip", Long.valueOf(this.resourcePackFile.lastModified())});
         }
     }
 }

@@ -1,5 +1,7 @@
 package net.minecraft.item;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -146,7 +148,7 @@ public class ItemBucket extends Item
 
                     for (int l = 0; l < 8; ++l)
                     {
-                        worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)i + Math.random(), (double)j + Math.random(), (double)k + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
+                        worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)i + ThreadLocalRandom.current().nextDouble(), (double)j + ThreadLocalRandom.current().nextDouble(), (double)k + ThreadLocalRandom.current().nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
                     }
                 }
                 else

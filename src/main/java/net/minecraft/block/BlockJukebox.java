@@ -50,9 +50,9 @@ public class BlockJukebox extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof BlockJukebox.TileEntityJukebox)
+            if (tileentity instanceof BlockJukebox.TileEntityJukebox jukebox)
             {
-                ((BlockJukebox.TileEntityJukebox)tileentity).setRecord(new ItemStack(recordStack.getItem(), 1, recordStack.getMetadata()));
+                jukebox.setRecord(new ItemStack(recordStack.getItem(), 1, recordStack.getMetadata()));
                 worldIn.setBlockState(pos, state.withProperty(HAS_RECORD, Boolean.valueOf(true)), 2);
             }
         }
@@ -64,9 +64,8 @@ public class BlockJukebox extends BlockContainer
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof BlockJukebox.TileEntityJukebox)
+            if (tileentity instanceof BlockJukebox.TileEntityJukebox blockjukebox$tileentityjukebox)
             {
-                BlockJukebox.TileEntityJukebox blockjukebox$tileentityjukebox = (BlockJukebox.TileEntityJukebox)tileentity;
                 ItemStack itemstack = blockjukebox$tileentityjukebox.getRecord();
 
                 if (itemstack != null)
@@ -121,9 +120,9 @@ public class BlockJukebox extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof BlockJukebox.TileEntityJukebox)
+        if (tileentity instanceof BlockJukebox.TileEntityJukebox jukebox)
         {
-            ItemStack itemstack = ((BlockJukebox.TileEntityJukebox)tileentity).getRecord();
+            ItemStack itemstack = jukebox.getRecord();
 
             if (itemstack != null)
             {
@@ -160,7 +159,7 @@ public class BlockJukebox extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {HAS_RECORD});
+        return new BlockState(this, new IProperty[]{HAS_RECORD});
     }
 
     public static class TileEntityJukebox extends TileEntity

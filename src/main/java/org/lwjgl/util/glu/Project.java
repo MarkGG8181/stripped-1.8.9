@@ -49,11 +49,11 @@ import static org.lwjgl.opengl.GL11.*;
 public class Project extends Util {
 
     private static final float[] IDENTITY_MATRIX =
-            new float[] {
-                    1.0f, 0.0f, 0.0f, 0.0f,
-                    0.0f, 1.0f, 0.0f, 0.0f,
-                    0.0f, 0.0f, 1.0f, 0.0f,
-                    0.0f, 0.0f, 0.0f, 1.0f };
+        new float[]{
+            1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f};
 
     private static final FloatBuffer matrix = BufferUtils.createFloatBuffer(16);
     private static final FloatBuffer finalMatrix = BufferUtils.createFloatBuffer(16);
@@ -85,10 +85,10 @@ public class Project extends Util {
     private static void __gluMultMatrixVecf(FloatBuffer finalMatrix, float[] in, float[] out) {
         for (int i = 0; i < 4; i++) {
             out[i] =
-                    in[0] * finalMatrix.get(finalMatrix.position() + i)
-                            + in[1] * finalMatrix.get(finalMatrix.position() + 4 + i)
-                            + in[2] * finalMatrix.get(finalMatrix.position() + 2*4 + i)
-                            + in[3] * finalMatrix.get(finalMatrix.position() + 3*4 + i);
+                in[0] * finalMatrix.get(finalMatrix.position() + i)
+                    + in[1] * finalMatrix.get(finalMatrix.position() + 4 + i)
+                    + in[2] * finalMatrix.get(finalMatrix.position() + 2 * 4 + i)
+                    + in[3] * finalMatrix.get(finalMatrix.position() + 3 * 4 + i);
 
         }
     }
@@ -119,7 +119,7 @@ public class Project extends Util {
                 /*
                  * if (fabs(temp[j][i]) > fabs(temp[i][i])) { swap = j;
                  */
-                if (Math.abs(temp.get(j*4 + i)) > Math.abs(temp.get(i* 4 + i))) {
+                if (Math.abs(temp.get(j * 4 + i)) > Math.abs(temp.get(i * 4 + i))) {
                     swap = j;
                 }
             }
@@ -129,19 +129,19 @@ public class Project extends Util {
                  * * Swap rows.
                  */
                 for (k = 0; k < 4; k++) {
-                    t = temp.get(i*4 + k);
-                    temp.put(i*4 + k, temp.get(swap*4 + k));
-                    temp.put(swap*4 + k, t);
+                    t = temp.get(i * 4 + k);
+                    temp.put(i * 4 + k, temp.get(swap * 4 + k));
+                    temp.put(swap * 4 + k, t);
 
-                    t = inverse.get(i*4 + k);
-                    inverse.put(i*4 + k, inverse.get(swap*4 + k));
+                    t = inverse.get(i * 4 + k);
+                    inverse.put(i * 4 + k, inverse.get(swap * 4 + k));
                     //inverse.put((i << 2) + k, inverse.get((swap << 2) + k));
-                    inverse.put(swap*4 + k, t);
+                    inverse.put(swap * 4 + k, t);
                     //inverse.put((swap << 2) + k, t);
                 }
             }
 
-            if (temp.get(i*4 + i) == 0) {
+            if (temp.get(i * 4 + i) == 0) {
                 /*
                  * * No non-zero pivot. The matrix is singular, which shouldn't *
                  * happen. This means the user gave us a bad matrix.
@@ -149,20 +149,20 @@ public class Project extends Util {
                 return false;
             }
 
-            t = temp.get(i*4 + i);
+            t = temp.get(i * 4 + i);
             for (k = 0; k < 4; k++) {
-                temp.put(i*4 + k, temp.get(i*4 + k)/t);
-                inverse.put(i*4 + k, inverse.get(i*4 + k)/t);
+                temp.put(i * 4 + k, temp.get(i * 4 + k) / t);
+                inverse.put(i * 4 + k, inverse.get(i * 4 + k) / t);
             }
             for (j = 0; j < 4; j++) {
                 if (j != i) {
-                    t = temp.get(j*4 + i);
+                    t = temp.get(j * 4 + i);
                     for (k = 0; k < 4; k++) {
-                        temp.put(j*4 + k, temp.get(j*4 + k) - temp.get(i*4 + k) * t);
-                        inverse.put(j*4 + k, inverse.get(j*4 + k) - inverse.get(i*4 + k) * t);
-						/*inverse.put(
-							(j << 2) + k,
-							inverse.get((j << 2) + k) - inverse.get((i << 2) + k) * t);*/
+                        temp.put(j * 4 + k, temp.get(j * 4 + k) - temp.get(i * 4 + k) * t);
+                        inverse.put(j * 4 + k, inverse.get(j * 4 + k) - inverse.get(i * 4 + k) * t);
+                        /*inverse.put(
+                            (j << 2) + k,
+                            inverse.get((j << 2) + k) - inverse.get((i << 2) + k) * t);*/
                     }
                 }
             }
@@ -178,8 +178,8 @@ public class Project extends Util {
     private static void __gluMultMatricesf(FloatBuffer a, FloatBuffer b, FloatBuffer r) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                r.put(r.position() + i*4 + j,
-                        a.get(a.position() + i*4 + 0) * b.get(b.position() + 0*4 + j) + a.get(a.position() + i*4 + 1) * b.get(b.position() + 1*4 + j) + a.get(a.position() + i*4 + 2) * b.get(b.position() + 2*4 + j) + a.get(a.position() + i*4 + 3) * b.get(b.position() + 3*4 + j));
+                r.put(r.position() + i * 4 + j,
+                    a.get(a.position() + i * 4 + 0) * b.get(b.position() + 0 * 4 + j) + a.get(a.position() + i * 4 + 1) * b.get(b.position() + 1 * 4 + j) + a.get(a.position() + i * 4 + 2) * b.get(b.position() + 2 * 4 + j) + a.get(a.position() + i * 4 + 3) * b.get(b.position() + 3 * 4 + j));
             }
         }
     }
@@ -194,22 +194,22 @@ public class Project extends Util {
      */
     public static void gluPerspective(float fovy, float aspect, float zNear, float zFar) {
         float sine, cotangent, deltaZ;
-        float radians = (float) (fovy / 2 * Math.PI / 180);
+        float radians = (float)(fovy / 2 * Math.PI / 180);
 
         deltaZ = zFar - zNear;
-        sine = (float) Math.sin(radians);
+        sine = (float)Math.sin(radians);
 
         if ((deltaZ == 0) || (sine == 0) || (aspect == 0)) {
             return;
         }
 
-        cotangent = (float) Math.cos(radians) / sine;
+        cotangent = (float)Math.cos(radians) / sine;
 
         __gluMakeIdentityf(matrix);
 
         matrix.put(0 * 4 + 0, cotangent / aspect);
         matrix.put(1 * 4 + 1, cotangent);
-        matrix.put(2 * 4 + 2, - (zFar + zNear) / deltaZ);
+        matrix.put(2 * 4 + 2, -(zFar + zNear) / deltaZ);
         matrix.put(2 * 4 + 3, -1);
         matrix.put(3 * 4 + 2, -2 * zNear * zFar / deltaZ);
         matrix.put(3 * 4 + 3, 0);
@@ -403,9 +403,9 @@ public class Project extends Util {
 
         /* Translate and scale the picked region to the entire window */
         glTranslatef(
-                (viewport.get(viewport.position() + 2) - 2 * (x - viewport.get(viewport.position() + 0))) / deltaX,
-                (viewport.get(viewport.position() + 3) - 2 * (y - viewport.get(viewport.position() + 1))) / deltaY,
-                0);
+            (viewport.get(viewport.position() + 2) - 2 * (x - viewport.get(viewport.position() + 0))) / deltaX,
+            (viewport.get(viewport.position() + 3) - 2 * (y - viewport.get(viewport.position() + 1))) / deltaY,
+            0);
         glScalef(viewport.get(viewport.position() + 2) / deltaX, viewport.get(viewport.position() + 3) / deltaY, 1.0f);
     }
 }

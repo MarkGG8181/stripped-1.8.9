@@ -297,9 +297,8 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         {
             TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
 
-            if (tileentity instanceof TileEntityChest)
+            if (tileentity instanceof TileEntityChest tileentitychest)
             {
-                TileEntityChest tileentitychest = (TileEntityChest)tileentity;
                 tileentitychest.func_174910_a(this, side.getOpposite());
                 return tileentitychest;
             }
@@ -317,7 +316,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         else
         {
             Block block = this.worldObj.getBlockState(posIn).getBlock();
-            return block instanceof BlockChest && ((BlockChest)block).chestType == this.getChestType();
+            return block instanceof BlockChest bc && bc.chestType == this.getChestType();
         }
     }
 
@@ -339,11 +338,11 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 
             for (EntityPlayer entityplayer : this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB((double)((float)i - f), (double)((float)j - f), (double)((float)k - f), (double)((float)(i + 1) + f), (double)((float)(j + 1) + f), (double)((float)(k + 1) + f))))
             {
-                if (entityplayer.openContainer instanceof ContainerChest)
+                if (entityplayer.openContainer instanceof ContainerChest chest1)
                 {
-                    IInventory iinventory = ((ContainerChest)entityplayer.openContainer).getLowerChestInventory();
+                    IInventory iinventory = chest1.getLowerChestInventory();
 
-                    if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest)iinventory).isPartOfLargeChest(this))
+                    if (iinventory == this || iinventory instanceof InventoryLargeChest chest && chest.isPartOfLargeChest(this))
                     {
                         ++this.numPlayersUsing;
                     }

@@ -175,9 +175,9 @@ public class BlockPistonBase extends Block
         {
             TileEntity tileentity1 = worldIn.getTileEntity(pos.offset(enumfacing));
 
-            if (tileentity1 instanceof TileEntityPiston)
+            if (tileentity1 instanceof TileEntityPiston piston)
             {
-                ((TileEntityPiston)tileentity1).clearPistonTileEntity();
+                piston.clearPistonTileEntity();
             }
 
             worldIn.setBlockState(pos, Blocks.piston_extension.getDefaultState().withProperty(BlockPistonMoving.FACING, enumfacing).withProperty(BlockPistonMoving.TYPE, this.isSticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT), 3);
@@ -193,9 +193,8 @@ public class BlockPistonBase extends Block
                 {
                     TileEntity tileentity = worldIn.getTileEntity(blockpos);
 
-                    if (tileentity instanceof TileEntityPiston)
+                    if (tileentity instanceof TileEntityPiston tileentitypiston)
                     {
-                        TileEntityPiston tileentitypiston = (TileEntityPiston)tileentity;
 
                         if (tileentitypiston.getFacing() == enumfacing && tileentitypiston.isExtending())
                         {
@@ -483,6 +482,6 @@ public class BlockPistonBase extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, EXTENDED});
+        return new BlockState(this, new IProperty[]{FACING, EXTENDED});
     }
 }

@@ -55,7 +55,7 @@ public abstract class Vector implements Serializable, ReadableVector {
      * @return the length of the vector
      */
     public final float length() {
-        return (float) Math.sqrt(lengthSquared());
+        return (float)Math.sqrt(lengthSquared());
     }
 
 
@@ -106,7 +106,6 @@ public abstract class Vector implements Serializable, ReadableVector {
      * @return this
      */
     public abstract Vector scale(float scale);
-
 
 
 }

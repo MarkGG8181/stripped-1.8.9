@@ -124,7 +124,7 @@ public class EntityTrackerEntry
 
     public boolean equals(Object p_equals_1_)
     {
-        return p_equals_1_ instanceof EntityTrackerEntry ? ((EntityTrackerEntry)p_equals_1_).trackedEntity.getEntityId() == this.trackedEntity.getEntityId() : false;
+        return p_equals_1_ instanceof EntityTrackerEntry ete ? ete.trackedEntity.getEntityId() == this.trackedEntity.getEntityId() : false;
     }
 
     public int hashCode()
@@ -152,9 +152,8 @@ public class EntityTrackerEntry
             this.sendPacketToTrackedPlayers(new S1BPacketEntityAttach(0, this.trackedEntity, this.trackedEntity.ridingEntity));
         }
 
-        if (this.trackedEntity instanceof EntityItemFrame && this.updateCounter % 10 == 0)
+        if (this.trackedEntity instanceof EntityItemFrame entityitemframe && this.updateCounter % 10 == 0)
         {
-            EntityItemFrame entityitemframe = (EntityItemFrame)this.trackedEntity;
             ItemStack itemstack = entityitemframe.getDisplayedItem();
 
             if (itemstack != null && itemstack.getItem() instanceof ItemMap)
@@ -314,9 +313,9 @@ public class EntityTrackerEntry
             this.func_151261_b(new S1CPacketEntityMetadata(this.trackedEntity.getEntityId(), datawatcher, false));
         }
 
-        if (this.trackedEntity instanceof EntityLivingBase)
+        if (this.trackedEntity instanceof EntityLivingBase base)
         {
-            ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((EntityLivingBase)this.trackedEntity).getAttributeMap();
+            ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)base.getAttributeMap();
             Set<IAttributeInstance> set = serversideattributemap.getAttributeInstanceSet();
 
             if (!set.isEmpty())
@@ -343,9 +342,9 @@ public class EntityTrackerEntry
     {
         this.sendPacketToTrackedPlayers(packetIn);
 
-        if (this.trackedEntity instanceof EntityPlayerMP)
+        if (this.trackedEntity instanceof EntityPlayerMP mP)
         {
-            ((EntityPlayerMP)this.trackedEntity).playerNetServerHandler.sendPacket(packetIn);
+            mP.playerNetServerHandler.sendPacket(packetIn);
         }
     }
 
@@ -390,9 +389,9 @@ public class EntityTrackerEntry
                         playerMP.playerNetServerHandler.sendPacket(new S49PacketUpdateEntityNBT(this.trackedEntity.getEntityId(), nbttagcompound));
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.trackedEntity instanceof EntityLivingBase base)
                     {
-                        ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)((EntityLivingBase)this.trackedEntity).getAttributeMap();
+                        ServersideAttributeMap serversideattributemap = (ServersideAttributeMap)base.getAttributeMap();
                         Collection<IAttributeInstance> collection = serversideattributemap.getWatchedAttributes();
 
                         if (!collection.isEmpty())
@@ -415,16 +414,16 @@ public class EntityTrackerEntry
                         playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(0, this.trackedEntity, this.trackedEntity.ridingEntity));
                     }
 
-                    if (this.trackedEntity instanceof EntityLiving && ((EntityLiving)this.trackedEntity).getLeashedToEntity() != null)
+                    if (this.trackedEntity instanceof EntityLiving living && living.getLeashedToEntity() != null)
                     {
-                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(1, this.trackedEntity, ((EntityLiving)this.trackedEntity).getLeashedToEntity()));
+                        playerMP.playerNetServerHandler.sendPacket(new S1BPacketEntityAttach(1, this.trackedEntity, living.getLeashedToEntity()));
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.trackedEntity instanceof EntityLivingBase base)
                     {
                         for (int i = 0; i < 5; ++i)
                         {
-                            ItemStack itemstack = ((EntityLivingBase)this.trackedEntity).getEquipmentInSlot(i);
+                            ItemStack itemstack = base.getEquipmentInSlot(i);
 
                             if (itemstack != null)
                             {
@@ -433,9 +432,8 @@ public class EntityTrackerEntry
                         }
                     }
 
-                    if (this.trackedEntity instanceof EntityPlayer)
+                    if (this.trackedEntity instanceof EntityPlayer entityplayer)
                     {
-                        EntityPlayer entityplayer = (EntityPlayer)this.trackedEntity;
 
                         if (entityplayer.isPlayerSleeping())
                         {
@@ -443,9 +441,8 @@ public class EntityTrackerEntry
                         }
                     }
 
-                    if (this.trackedEntity instanceof EntityLivingBase)
+                    if (this.trackedEntity instanceof EntityLivingBase entitylivingbase)
                     {
-                        EntityLivingBase entitylivingbase = (EntityLivingBase)this.trackedEntity;
 
                         for (PotionEffect potioneffect : entitylivingbase.getActivePotionEffects())
                         {
@@ -500,9 +497,8 @@ public class EntityTrackerEntry
         {
             return new S0CPacketSpawnPlayer((EntityPlayer)this.trackedEntity);
         }
-        else if (this.trackedEntity instanceof EntityMinecart)
+        else if (this.trackedEntity instanceof EntityMinecart entityminecart)
         {
-            EntityMinecart entityminecart = (EntityMinecart)this.trackedEntity;
             return new S0EPacketSpawnObject(this.trackedEntity, 10, entityminecart.getMinecartType().getNetworkID());
         }
         else if (this.trackedEntity instanceof EntityBoat)
@@ -514,23 +510,23 @@ public class EntityTrackerEntry
             this.lastHeadMotion = MathHelper.floor_float(this.trackedEntity.getRotationYawHead() * 256.0F / 360.0F);
             return new S0FPacketSpawnMob((EntityLivingBase)this.trackedEntity);
         }
-        else if (this.trackedEntity instanceof EntityFishHook)
+        else if (this.trackedEntity instanceof EntityFishHook hook)
         {
-            Entity entity1 = ((EntityFishHook)this.trackedEntity).angler;
+            Entity entity1 = hook.angler;
             return new S0EPacketSpawnObject(this.trackedEntity, 90, entity1 != null ? entity1.getEntityId() : this.trackedEntity.getEntityId());
         }
-        else if (this.trackedEntity instanceof EntityArrow)
+        else if (this.trackedEntity instanceof EntityArrow arrow)
         {
-            Entity entity = ((EntityArrow)this.trackedEntity).shootingEntity;
+            Entity entity = arrow.shootingEntity;
             return new S0EPacketSpawnObject(this.trackedEntity, 60, entity != null ? entity.getEntityId() : this.trackedEntity.getEntityId());
         }
         else if (this.trackedEntity instanceof EntitySnowball)
         {
             return new S0EPacketSpawnObject(this.trackedEntity, 61);
         }
-        else if (this.trackedEntity instanceof EntityPotion)
+        else if (this.trackedEntity instanceof EntityPotion potion)
         {
-            return new S0EPacketSpawnObject(this.trackedEntity, 73, ((EntityPotion)this.trackedEntity).getPotionDamage());
+            return new S0EPacketSpawnObject(this.trackedEntity, 73, potion.getPotionDamage());
         }
         else if (this.trackedEntity instanceof EntityExpBottle)
         {
@@ -548,9 +544,8 @@ public class EntityTrackerEntry
         {
             return new S0EPacketSpawnObject(this.trackedEntity, 76);
         }
-        else if (this.trackedEntity instanceof EntityFireball)
+        else if (this.trackedEntity instanceof EntityFireball entityfireball)
         {
-            EntityFireball entityfireball = (EntityFireball)this.trackedEntity;
             S0EPacketSpawnObject s0epacketspawnobject2 = null;
             int i = 63;
 
@@ -565,7 +560,7 @@ public class EntityTrackerEntry
 
             if (entityfireball.shootingEntity != null)
             {
-                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.trackedEntity, i, ((EntityFireball)this.trackedEntity).shootingEntity.getEntityId());
+                s0epacketspawnobject2 = new S0EPacketSpawnObject(this.trackedEntity, i, entityfireball.shootingEntity.getEntityId());
             }
             else
             {
@@ -589,22 +584,20 @@ public class EntityTrackerEntry
         {
             return new S0EPacketSpawnObject(this.trackedEntity, 51);
         }
-        else if (this.trackedEntity instanceof EntityFallingBlock)
+        else if (this.trackedEntity instanceof EntityFallingBlock entityfallingblock)
         {
-            EntityFallingBlock entityfallingblock = (EntityFallingBlock)this.trackedEntity;
             return new S0EPacketSpawnObject(this.trackedEntity, 70, Block.getStateId(entityfallingblock.getBlock()));
         }
         else if (this.trackedEntity instanceof EntityArmorStand)
         {
             return new S0EPacketSpawnObject(this.trackedEntity, 78);
         }
-        else if (this.trackedEntity instanceof EntityPainting)
+        else if (this.trackedEntity instanceof EntityPainting painting)
         {
-            return new S10PacketSpawnPainting((EntityPainting)this.trackedEntity);
+            return new S10PacketSpawnPainting(painting);
         }
-        else if (this.trackedEntity instanceof EntityItemFrame)
+        else if (this.trackedEntity instanceof EntityItemFrame entityitemframe)
         {
-            EntityItemFrame entityitemframe = (EntityItemFrame)this.trackedEntity;
             S0EPacketSpawnObject s0epacketspawnobject1 = new S0EPacketSpawnObject(this.trackedEntity, 71, entityitemframe.facingDirection.getHorizontalIndex());
             BlockPos blockpos1 = entityitemframe.getHangingPosition();
             s0epacketspawnobject1.setX(MathHelper.floor_float((float)(blockpos1.getX() * 32)));
@@ -612,9 +605,8 @@ public class EntityTrackerEntry
             s0epacketspawnobject1.setZ(MathHelper.floor_float((float)(blockpos1.getZ() * 32)));
             return s0epacketspawnobject1;
         }
-        else if (this.trackedEntity instanceof EntityLeashKnot)
+        else if (this.trackedEntity instanceof EntityLeashKnot entityleashknot)
         {
-            EntityLeashKnot entityleashknot = (EntityLeashKnot)this.trackedEntity;
             S0EPacketSpawnObject s0epacketspawnobject = new S0EPacketSpawnObject(this.trackedEntity, 77);
             BlockPos blockpos = entityleashknot.getHangingPosition();
             s0epacketspawnobject.setX(MathHelper.floor_float((float)(blockpos.getX() * 32)));
@@ -622,9 +614,9 @@ public class EntityTrackerEntry
             s0epacketspawnobject.setZ(MathHelper.floor_float((float)(blockpos.getZ() * 32)));
             return s0epacketspawnobject;
         }
-        else if (this.trackedEntity instanceof EntityXPOrb)
+        else if (this.trackedEntity instanceof EntityXPOrb orb)
         {
-            return new S11PacketSpawnExperienceOrb((EntityXPOrb)this.trackedEntity);
+            return new S11PacketSpawnExperienceOrb(orb);
         }
         else
         {

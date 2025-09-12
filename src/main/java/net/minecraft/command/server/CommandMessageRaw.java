@@ -62,7 +62,7 @@ public class CommandMessageRaw extends CommandBase
             catch (JsonParseException jsonparseexception)
             {
                 Throwable throwable = ExceptionUtils.getRootCause(jsonparseexception);
-                throw new SyntaxErrorException("commands.tellraw.jsonException", new Object[] {throwable == null ? "" : throwable.getMessage()});
+                throw new SyntaxErrorException("commands.tellraw.jsonException", new Object[]{throwable == null ? "" : throwable.getMessage()});
             }
         }
     }

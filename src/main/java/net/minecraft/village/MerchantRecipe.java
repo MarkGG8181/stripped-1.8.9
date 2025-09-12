@@ -132,13 +132,15 @@ public class MerchantRecipe {
 
         if (tagCompound.hasKey("maxUses", 99)) {
             this.maxTradeUses = tagCompound.getInteger("maxUses");
-        } else {
+        }
+        else {
             this.maxTradeUses = 7;
         }
 
         if (tagCompound.hasKey("rewardExp", 1)) {
             this.rewardsExp = tagCompound.getBoolean("rewardExp");
-        } else {
+        }
+        else {
             this.rewardsExp = true;
         }
     }

@@ -34,7 +34,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
     private static final AttributeModifier MODIFIER = (new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", -0.25D, 0)).setSaved(false);
 
     /** List of items a witch should drop on death. */
-    private static final Item[] witchDrops = new Item[] {Items.glowstone_dust, Items.sugar, Items.redstone, Items.spider_eye, Items.glass_bottle, Items.gunpowder, Items.stick, Items.stick};
+    private static final Item[] witchDrops = new Item[]{Items.glowstone_dust, Items.sugar, Items.redstone, Items.spider_eye, Items.glass_bottle, Items.gunpowder, Items.stick, Items.stick};
 
     /**
      * Timer used as interval for a witch's attack, decremented every tick if aggressive and when reaches zero the witch

@@ -102,7 +102,7 @@ public abstract class EntityCreature extends EntityLiving
             this.setHomePosAndDistance(new BlockPos((int)entity.posX, (int)entity.posY, (int)entity.posZ), 5);
             float f = this.getDistanceToEntity(entity);
 
-            if (this instanceof EntityTameable && ((EntityTameable)this).isSitting())
+            if (this instanceof EntityTameable tameable && tameable.isSitting())
             {
                 if (f > 10.0F)
                 {

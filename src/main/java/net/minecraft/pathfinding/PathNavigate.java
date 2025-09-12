@@ -228,7 +228,7 @@ public abstract class PathNavigate
 
         for (var j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
         {
-            if (this.currentPath.getPathPointFromIndex(j).yCoord != (int) vec3.y)
+            if (this.currentPath.getPathPointFromIndex(j).yCoord != (int)vec3.y)
             {
                 i = j;
                 break;

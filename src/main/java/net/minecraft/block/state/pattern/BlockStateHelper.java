@@ -47,7 +47,7 @@ public class BlockStateHelper implements Predicate<IBlockState>
         }
     }
 
-    public <V extends Comparable<V>> BlockStateHelper where(IProperty<V> property, Predicate <? extends V > is)
+    public <V extends Comparable<V>> BlockStateHelper where(IProperty<V> property, Predicate<? extends V> is)
     {
         if (!this.blockstate.getProperties().contains(property))
         {

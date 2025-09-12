@@ -19,9 +19,9 @@ public class EntityAIFindEntityNearest extends EntityAIBase
     private final Predicate<EntityLivingBase> predicate;
     private final EntityAINearestAttackableTarget.Sorter sorter;
     private EntityLivingBase target;
-    private Class <? extends EntityLivingBase > classToCheck;
+    private Class<? extends EntityLivingBase> classToCheck;
 
-    public EntityAIFindEntityNearest(EntityLiving mobIn, Class <? extends EntityLivingBase > p_i45884_2_)
+    public EntityAIFindEntityNearest(EntityLiving mobIn, Class<? extends EntityLivingBase> p_i45884_2_)
     {
         this.mob = mobIn;
         this.classToCheck = p_i45884_2_;
@@ -63,7 +63,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
         }
         else
         {
-            this.target = (EntityLivingBase)list.get(0);
+            this.target = (EntityLivingBase)list.getFirst();
             return true;
         }
     }

@@ -145,14 +145,14 @@ public class BlockPumpkin extends BlockDirectional
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING});
+        return new BlockState(this, new IProperty[]{FACING});
     }
 
     protected BlockPattern getSnowmanBasePattern()
     {
         if (this.snowmanBasePattern == null)
         {
-            this.snowmanBasePattern = FactoryBlockPattern.start().aisle(new String[] {" ", "#", "#"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.snow))).build();
+            this.snowmanBasePattern = FactoryBlockPattern.start().aisle(new String[]{" ", "#", "#"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.snow))).build();
         }
 
         return this.snowmanBasePattern;
@@ -162,7 +162,7 @@ public class BlockPumpkin extends BlockDirectional
     {
         if (this.snowmanPattern == null)
         {
-            this.snowmanPattern = FactoryBlockPattern.start().aisle(new String[] {"^", "#", "#"}).where('^', BlockWorldState.hasState(IS_PUMPKIN)).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.snow))).build();
+            this.snowmanPattern = FactoryBlockPattern.start().aisle(new String[]{"^", "#", "#"}).where('^', BlockWorldState.hasState(IS_PUMPKIN)).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.snow))).build();
         }
 
         return this.snowmanPattern;
@@ -172,7 +172,7 @@ public class BlockPumpkin extends BlockDirectional
     {
         if (this.golemBasePattern == null)
         {
-            this.golemBasePattern = FactoryBlockPattern.start().aisle(new String[] {"~ ~", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.iron_block))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+            this.golemBasePattern = FactoryBlockPattern.start().aisle(new String[]{"~ ~", "###", "~#~"}).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.iron_block))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
         }
 
         return this.golemBasePattern;
@@ -182,7 +182,7 @@ public class BlockPumpkin extends BlockDirectional
     {
         if (this.golemPattern == null)
         {
-            this.golemPattern = FactoryBlockPattern.start().aisle(new String[] {"~^~", "###", "~#~"}).where('^', BlockWorldState.hasState(IS_PUMPKIN)).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.iron_block))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
+            this.golemPattern = FactoryBlockPattern.start().aisle(new String[]{"~^~", "###", "~#~"}).where('^', BlockWorldState.hasState(IS_PUMPKIN)).where('#', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.iron_block))).where('~', BlockWorldState.hasState(BlockStateHelper.forBlock(Blocks.air))).build();
         }
 
         return this.golemPattern;

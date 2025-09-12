@@ -134,6 +134,6 @@ public class GenLayerEdge extends GenLayer
     {
         COOL_WARM,
         HEAT_ICE,
-        SPECIAL;
+        SPECIAL
     }
 }

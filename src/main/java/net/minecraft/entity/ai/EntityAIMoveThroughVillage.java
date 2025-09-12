@@ -43,18 +43,21 @@ public class EntityAIMoveThroughVillage extends EntityAIBase {
 
         if (this.isNocturnal && this.theEntity.worldObj.isDaytime()) {
             return false;
-        } else {
+        }
+        else {
             Village village = this.theEntity.worldObj.getVillageCollection().getNearestVillage(new BlockPos(this.theEntity), 0);
 
             if (village == null) {
                 return false;
-            } else {
+            }
+            else {
                 this.doorInfo = this.findNearestDoor(village);
 
                 if (this.doorInfo == null) {
                     return false;
-                } else {
-                    PathNavigateGround pathnavigateground = (PathNavigateGround) this.theEntity.getNavigator();
+                }
+                else {
+                    PathNavigateGround pathnavigateground = (PathNavigateGround)this.theEntity.getNavigator();
                     boolean flag = pathnavigateground.getEnterDoors();
                     pathnavigateground.setBreakDoors(false);
                     this.entityPathNavigate = pathnavigateground.getPathToPos(this.doorInfo.getDoorBlockPos());
@@ -62,12 +65,14 @@ public class EntityAIMoveThroughVillage extends EntityAIBase {
 
                     if (this.entityPathNavigate != null) {
                         return true;
-                    } else {
-                        Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 10, 7, new Vec3((double) this.doorInfo.getDoorBlockPos().getX(), (double) this.doorInfo.getDoorBlockPos().getY(), (double) this.doorInfo.getDoorBlockPos().getZ()));
+                    }
+                    else {
+                        Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 10, 7, new Vec3((double)this.doorInfo.getDoorBlockPos().getX(), (double)this.doorInfo.getDoorBlockPos().getY(), (double)this.doorInfo.getDoorBlockPos().getZ()));
 
                         if (vec3 == null) {
                             return false;
-                        } else {
+                        }
+                        else {
                             pathnavigateground.setBreakDoors(false);
                             this.entityPathNavigate = this.theEntity.getNavigator().getPathToXYZ(vec3.x, vec3.y, vec3.z);
                             pathnavigateground.setBreakDoors(flag);
@@ -85,9 +90,10 @@ public class EntityAIMoveThroughVillage extends EntityAIBase {
     public boolean continueExecuting() {
         if (this.theEntity.getNavigator().noPath()) {
             return false;
-        } else {
+        }
+        else {
             float f = this.theEntity.width + 4.0F;
-            return this.theEntity.getDistanceSq(this.doorInfo.getDoorBlockPos()) > (double) (f * f);
+            return this.theEntity.getDistanceSq(this.doorInfo.getDoorBlockPos()) > (double)(f * f);
         }
     }
 
@@ -135,7 +141,7 @@ public class EntityAIMoveThroughVillage extends EntityAIBase {
 
     private void resizeDoorList() {
         if (this.doorList.size() > 15) {
-            this.doorList.remove(0);
+            this.doorList.removeFirst();
         }
     }
 }

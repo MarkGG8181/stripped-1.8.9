@@ -32,7 +32,7 @@ public class GuiRepair extends GuiContainer implements ICrafting {
     public GuiRepair(InventoryPlayer inventoryIn, World worldIn) {
         super(new ContainerRepair(inventoryIn, worldIn, Minecraft.getMinecraft().thePlayer));
         this.playerInventory = inventoryIn;
-        this.anvil = (ContainerRepair) this.inventorySlots;
+        this.anvil = (ContainerRepair)this.inventorySlots;
     }
 
     /**
@@ -78,9 +78,11 @@ public class GuiRepair extends GuiContainer implements ICrafting {
             if (this.anvil.maximumCost >= 40 && !this.mc.thePlayer.capabilities.isCreativeMode) {
                 s = I18n.format("container.repair.expensive", new Object[0]);
                 i = 16736352;
-            } else if (!this.anvil.getSlot(2).getHasStack()) {
+            }
+            else if (!this.anvil.getSlot(2).getHasStack()) {
                 flag = false;
-            } else if (!this.anvil.getSlot(2).canTakeStack(this.playerInventory.player)) {
+            }
+            else if (!this.anvil.getSlot(2).canTakeStack(this.playerInventory.player)) {
                 i = 16736352;
             }
 
@@ -107,7 +109,8 @@ public class GuiRepair extends GuiContainer implements ICrafting {
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
         if (this.nameField.textboxKeyTyped(typedChar, keyCode)) {
             this.renameItem();
-        } else {
+        }
+        else {
             super.keyTyped(typedChar, keyCode);
         }
     }

@@ -23,7 +23,7 @@ public class RegionRenderCache extends ChunkCache
         this.position = posFromIn.subtract(new Vec3i(subIn, subIn, subIn));
         int i = 8000;
         this.combinedLights = new int[8000];
-        Arrays.fill((int[])this.combinedLights, (int) - 1);
+        Arrays.fill((int[])this.combinedLights, (int)- 1);
         this.blockStates = new IBlockState[8000];
     }
 

@@ -221,9 +221,9 @@ public class EntityChicken extends EntityAnimal
         float f3 = 0.0F;
         this.riddenByEntity.setPosition(this.posX + (double)(f2 * f), this.posY + (double)(this.height * 0.5F) + this.riddenByEntity.getYOffset() + (double)f3, this.posZ - (double)(f2 * f1));
 
-        if (this.riddenByEntity instanceof EntityLivingBase)
+        if (this.riddenByEntity instanceof EntityLivingBase base)
         {
-            ((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
+            base.renderYawOffset = this.renderYawOffset;
         }
     }
 

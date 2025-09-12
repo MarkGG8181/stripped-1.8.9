@@ -39,7 +39,7 @@ public class Main {
         OptionSpec<String> proxyPass = parser.accepts("proxyPass").withRequiredArg();
 
         OptionSpec<String> username = parser.accepts("username").withRequiredArg()
-                .defaultsTo("Player" + Minecraft.getSystemTime() % 1000L);
+            .defaultsTo("Player" + Minecraft.getSystemTime() % 1000L);
         OptionSpec<String> uuid = parser.accepts("uuid").withRequiredArg();
         OptionSpec<String> accessToken = parser.accepts("accessToken").withRequiredArg().required();
         OptionSpec<String> version = parser.accepts("version").withRequiredArg().required();
@@ -89,8 +89,8 @@ public class Main {
         String gameVersion = options.valueOf(version);
 
         Gson gson = new GsonBuilder()
-                .registerTypeAdapter(PropertyMap.class, new Serializer())
-                .create();
+            .registerTypeAdapter(PropertyMap.class, new Serializer())
+            .create();
 
         PropertyMap propertyMap = gson.fromJson(options.valueOf(profileProperties), PropertyMap.class);
 
@@ -102,17 +102,17 @@ public class Main {
         String assetIndexVal = options.has(assetIndex) ? options.valueOf(assetIndex) : null;
 
         Session session = new Session(
-                options.valueOf(username),
-                sessionUUID,
-                options.valueOf(accessToken),
-                options.valueOf(userType)
+            options.valueOf(username),
+            sessionUUID,
+            options.valueOf(accessToken),
+            options.valueOf(userType)
         );
 
         GameConfiguration config = new GameConfiguration(
-                new GameConfiguration.UserInformation(session, propertyMap, proxy),
-                new GameConfiguration.DisplayInformation(screenWidth, screenHeight, fullscreen, checkGlErrors),
-                new GameConfiguration.FolderInformation(baseDir, resourcePacks, assets, assetIndexVal),
-                new GameConfiguration.GameInformation(gameVersion, stopTextureFix)
+            new GameConfiguration.UserInformation(session, propertyMap, proxy),
+            new GameConfiguration.DisplayInformation(screenWidth, screenHeight, fullscreen, checkGlErrors),
+            new GameConfiguration.FolderInformation(baseDir, resourcePacks, assets, assetIndexVal),
+            new GameConfiguration.GameInformation(gameVersion, stopTextureFix)
         );
 
         // Shutdown hook

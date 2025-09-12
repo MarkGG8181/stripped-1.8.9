@@ -42,24 +42,24 @@ public class GL32C extends GL31C {
 
     /** Context profile bits. */
     public static final int
-        GL_CONTEXT_CORE_PROFILE_BIT          = 0x1,
+        GL_CONTEXT_CORE_PROFILE_BIT = 0x1,
         GL_CONTEXT_COMPATIBILITY_PROFILE_BIT = 0x2;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_MAX_VERTEX_OUTPUT_COMPONENTS   = 0x9122,
-        GL_MAX_GEOMETRY_INPUT_COMPONENTS  = 0x9123,
+        GL_MAX_VERTEX_OUTPUT_COMPONENTS = 0x9122,
+        GL_MAX_GEOMETRY_INPUT_COMPONENTS = 0x9123,
         GL_MAX_GEOMETRY_OUTPUT_COMPONENTS = 0x9124,
-        GL_MAX_FRAGMENT_INPUT_COMPONENTS  = 0x9125;
+        GL_MAX_FRAGMENT_INPUT_COMPONENTS = 0x9125;
 
     /** Accepted by the {@code mode} parameter of ProvokingVertex. */
     public static final int
         GL_FIRST_VERTEX_CONVENTION = 0x8E4D,
-        GL_LAST_VERTEX_CONVENTION  = 0x8E4E;
+        GL_LAST_VERTEX_CONVENTION = 0x8E4E;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_PROVOKING_VERTEX                         = 0x8E4F,
+        GL_PROVOKING_VERTEX = 0x8E4F,
         GL_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION = 0x8E4C;
 
     /**
@@ -94,25 +94,25 @@ public class GL32C extends GL31C {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
     public static final int
-        GL_MAX_SAMPLE_MASK_WORDS                = 0x8E59,
-        GL_MAX_COLOR_TEXTURE_SAMPLES            = 0x910E,
-        GL_MAX_DEPTH_TEXTURE_SAMPLES            = 0x910F,
-        GL_MAX_INTEGER_SAMPLES                  = 0x9110,
-        GL_TEXTURE_BINDING_2D_MULTISAMPLE       = 0x9104,
+        GL_MAX_SAMPLE_MASK_WORDS = 0x8E59,
+        GL_MAX_COLOR_TEXTURE_SAMPLES = 0x910E,
+        GL_MAX_DEPTH_TEXTURE_SAMPLES = 0x910F,
+        GL_MAX_INTEGER_SAMPLES = 0x9110,
+        GL_TEXTURE_BINDING_2D_MULTISAMPLE = 0x9104,
         GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY = 0x9105;
 
     /** Accepted by the {@code pname} parameter of GetTexLevelParameter. */
     public static final int
-        GL_TEXTURE_SAMPLES                = 0x9106,
+        GL_TEXTURE_SAMPLES = 0x9106,
         GL_TEXTURE_FIXED_SAMPLE_LOCATIONS = 0x9107;
 
     /** Returned by the {@code type} parameter of GetActiveUniform. */
     public static final int
-        GL_SAMPLER_2D_MULTISAMPLE                    = 0x9108,
-        GL_INT_SAMPLER_2D_MULTISAMPLE                = 0x9109,
-        GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE       = 0x910A,
-        GL_SAMPLER_2D_MULTISAMPLE_ARRAY              = 0x910B,
-        GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY          = 0x910C,
+        GL_SAMPLER_2D_MULTISAMPLE = 0x9108,
+        GL_INT_SAMPLER_2D_MULTISAMPLE = 0x9109,
+        GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE = 0x910A,
+        GL_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910B,
+        GL_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910C,
         GL_UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY = 0x910D;
 
     /**
@@ -127,21 +127,21 @@ public class GL32C extends GL31C {
     /** Accepted by the {@code pname} parameter of ProgramParameteri and GetProgramiv. */
     public static final int
         GL_GEOMETRY_VERTICES_OUT = 0x8DDA,
-        GL_GEOMETRY_INPUT_TYPE   = 0x8DDB,
-        GL_GEOMETRY_OUTPUT_TYPE  = 0x8DDC;
+        GL_GEOMETRY_INPUT_TYPE = 0x8DDB,
+        GL_GEOMETRY_OUTPUT_TYPE = 0x8DDC;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS     = 0x8C29,
-        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS      = 0x8DDF,
-        GL_MAX_GEOMETRY_OUTPUT_VERTICES         = 0x8DE0,
+        GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS = 0x8C29,
+        GL_MAX_GEOMETRY_UNIFORM_COMPONENTS = 0x8DDF,
+        GL_MAX_GEOMETRY_OUTPUT_VERTICES = 0x8DE0,
         GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS = 0x8DE1;
 
     /** Accepted by the {@code mode} parameter of Begin, DrawArrays, MultiDrawArrays, DrawElements, MultiDrawElements, and DrawRangeElements. */
     public static final int
-        GL_LINES_ADJACENCY          = 0xA,
-        GL_LINE_STRIP_ADJACENCY     = 0xB,
-        GL_TRIANGLES_ADJACENCY      = 0xC,
+        GL_LINES_ADJACENCY = 0xA,
+        GL_LINE_STRIP_ADJACENCY = 0xB,
+        GL_TRIANGLES_ADJACENCY = 0xC,
         GL_TRIANGLE_STRIP_ADJACENCY = 0xD;
 
     /** Returned by CheckFramebufferStatus. */
@@ -161,10 +161,10 @@ public class GL32C extends GL31C {
 
     /** Accepted as the {@code pname} parameter of GetSynciv. */
     public static final int
-        GL_OBJECT_TYPE    = 0x9112,
+        GL_OBJECT_TYPE = 0x9112,
         GL_SYNC_CONDITION = 0x9113,
-        GL_SYNC_STATUS    = 0x9114,
-        GL_SYNC_FLAGS     = 0x9115;
+        GL_SYNC_STATUS = 0x9114,
+        GL_SYNC_FLAGS = 0x9115;
 
     /** Returned in {@code values} for GetSynciv {@code pname} OBJECT_TYPE. */
     public static final int GL_SYNC_FENCE = 0x9116;
@@ -175,7 +175,7 @@ public class GL32C extends GL31C {
     /** Returned in {@code values} for GetSynciv {@code pname} SYNC_STATUS. */
     public static final int
         GL_UNSIGNALED = 0x9118,
-        GL_SIGNALED   = 0x9119;
+        GL_SIGNALED = 0x9119;
 
     /** Accepted in the {@code flags} parameter of ClientWaitSync. */
     public static final int GL_SYNC_FLUSH_COMMANDS_BIT = 0x1;
@@ -185,12 +185,14 @@ public class GL32C extends GL31C {
 
     /** Returned by ClientWaitSync. */
     public static final int
-        GL_ALREADY_SIGNALED    = 0x911A,
-        GL_TIMEOUT_EXPIRED     = 0x911B,
+        GL_ALREADY_SIGNALED = 0x911A,
+        GL_TIMEOUT_EXPIRED = 0x911B,
         GL_CONDITION_SATISFIED = 0x911C,
-        GL_WAIT_FAILED         = 0x911D;
+        GL_WAIT_FAILED = 0x911D;
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     protected GL32C() {
         throw new UnsupportedOperationException();
@@ -227,7 +229,8 @@ public class GL32C extends GL31C {
      */
     @NativeType("void")
     public static long glGetBufferParameteri64(@NativeType("GLenum") int target, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             LongBuffer params = stack.callocLong(1);
             nglGetBufferParameteri64v(target, pname, memAddress(params));
@@ -509,7 +512,7 @@ public class GL32C extends GL31C {
      * @see <a target="_blank" href="http://docs.gl/gl4/glMultiDrawElementsBaseVertex">Reference Page</a>
      */
     public static void glMultiDrawElementsBaseVertex(@NativeType("GLenum") int mode, @NativeType("GLsizei const *") IntBuffer count, @NativeType("GLenum") int type, @NativeType("void const **") PointerBuffer indices, @NativeType("GLint *") IntBuffer basevertex) {
-        while (basevertex.hasRemaining()){
+        while (basevertex.hasRemaining()) {
             GL32C.glDrawElementsBaseVertex(mode, count.get(), type, indices.get(), basevertex.get());
         }
     }
@@ -593,7 +596,8 @@ public class GL32C extends GL31C {
      */
     @NativeType("void")
     public static float glGetMultisamplef(@NativeType("GLenum") int pname, @NativeType("GLuint") int index) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             FloatBuffer val = stack.callocFloat(1);
             nglGetMultisamplefv(pname, index, memAddress(val));
@@ -770,7 +774,8 @@ public class GL32C extends GL31C {
      */
     @NativeType("void")
     public static long glGetInteger64(@NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             LongBuffer params = stack.callocLong(1);
             nglGetInteger64v(pname, memAddress(params));
@@ -811,7 +816,8 @@ public class GL32C extends GL31C {
      */
     @NativeType("void")
     public static long glGetInteger64i(@NativeType("GLenum") int pname, @NativeType("GLuint") int index) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             LongBuffer params = stack.callocLong(1);
             nglGetInteger64i_v(pname, index, memAddress(params));
@@ -863,7 +869,8 @@ public class GL32C extends GL31C {
             check(sync);
             checkSafe(length, 1);
         }
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer values = stack.callocInt(1);
             nglGetSynciv(sync, pname, 1, memAddressSafe(length), memAddress(values));

@@ -21,26 +21,32 @@ public class EntityMinecartCommandBlock extends EntityMinecart
             EntityMinecartCommandBlock.this.getDataWatcher().updateObject(23, this.getCommand());
             EntityMinecartCommandBlock.this.getDataWatcher().updateObject(24, IChatComponent.Serializer.componentToJson(this.getLastOutput()));
         }
+
         public int func_145751_f()
         {
             return 1;
         }
+
         public void func_145757_a(ByteBuf p_145757_1_)
         {
             p_145757_1_.writeInt(EntityMinecartCommandBlock.this.getEntityId());
         }
+
         public BlockPos getPosition()
         {
             return new BlockPos(EntityMinecartCommandBlock.this.posX, EntityMinecartCommandBlock.this.posY + 0.5D, EntityMinecartCommandBlock.this.posZ);
         }
+
         public Vec3 getPositionVector()
         {
             return new Vec3(EntityMinecartCommandBlock.this.posX, EntityMinecartCommandBlock.this.posY, EntityMinecartCommandBlock.this.posZ);
         }
+
         public World getEntityWorld()
         {
             return EntityMinecartCommandBlock.this.worldObj;
         }
+
         public Entity getCommandSenderEntity()
         {
             return EntityMinecartCommandBlock.this;
@@ -135,7 +141,6 @@ public class EntityMinecartCommandBlock extends EntityMinecart
             }
             catch (Throwable var3)
             {
-                ;
             }
         }
         else if (dataID == 23)

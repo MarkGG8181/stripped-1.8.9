@@ -56,7 +56,7 @@ public class CommandPardonIp extends CommandBase
             if (matcher.matches())
             {
                 MinecraftServer.getServer().getConfigurationManager().getBannedIPs().removeEntry(args[0]);
-                notifyOperators(sender, this, "commands.unbanip.success", new Object[] {args[0]});
+                notifyOperators(sender, this, "commands.unbanip.success", new Object[]{args[0]});
             }
             else
             {

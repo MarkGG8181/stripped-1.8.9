@@ -29,7 +29,7 @@ public class AttributeModifier {
         this.amount = amountIn;
         this.operation = operationIn;
         Validate.notEmpty(nameIn, "Modifier name cannot be empty", new Object[0]);
-        Validate.inclusiveBetween(0L, 2L, (long) operationIn, "Invalid operation");
+        Validate.inclusiveBetween(0L, 2L, (long)operationIn, "Invalid operation");
     }
 
     public UUID getID() {
@@ -66,19 +66,22 @@ public class AttributeModifier {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
-            AttributeModifier attributemodifier = (AttributeModifier) p_equals_1_;
+        }
+        else if (p_equals_1_ != null && this.getClass() == p_equals_1_.getClass()) {
+            AttributeModifier attributemodifier = (AttributeModifier)p_equals_1_;
 
             if (this.id != null) {
                 if (!this.id.equals(attributemodifier.id)) {
                     return false;
                 }
-            } else if (attributemodifier.id != null) {
+            }
+            else if (attributemodifier.id != null) {
                 return false;
             }
 
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }

@@ -68,13 +68,13 @@ public class UserList<K, V extends UserListEntry<K>> {
         try {
             this.writeChanges();
         } catch (IOException ioexception) {
-            logger.warn((String) "Could not save the list after adding a user.", (Throwable) ioexception);
+            logger.warn((String)"Could not save the list after adding a user.", (Throwable)ioexception);
         }
     }
 
     public V getEntry(K obj) {
         this.removeExpired();
-        return (V) ((UserListEntry) this.values.get(this.getObjectKey(obj)));
+        return (V)((UserListEntry)this.values.get(this.getObjectKey(obj)));
     }
 
     public void removeEntry(K entry) {
@@ -83,12 +83,12 @@ public class UserList<K, V extends UserListEntry<K>> {
         try {
             this.writeChanges();
         } catch (IOException ioexception) {
-            logger.warn((String) "Could not save the list after removing a user.", (Throwable) ioexception);
+            logger.warn((String)"Could not save the list after removing a user.", (Throwable)ioexception);
         }
     }
 
     public String[] getKeys() {
-        return (String[]) this.values.keySet().toArray(new String[this.values.size()]);
+        return (String[])this.values.keySet().toArray(new String[this.values.size()]);
     }
 
     /**
@@ -120,7 +120,7 @@ public class UserList<K, V extends UserListEntry<K>> {
     }
 
     protected UserListEntry<K> createEntry(JsonObject entryData) {
-        return new UserListEntry((Object) null, entryData);
+        return new UserListEntry((Object)null, entryData);
     }
 
     protected Map<String, V> getValues() {
@@ -129,14 +129,14 @@ public class UserList<K, V extends UserListEntry<K>> {
 
     public void writeChanges() throws IOException {
         Collection<V> collection = this.values.values();
-        String s = this.gson.toJson((Object) collection);
+        String s = this.gson.toJson((Object)collection);
         BufferedWriter bufferedwriter = null;
 
         try {
             bufferedwriter = Files.newWriter(this.saveFile, StandardCharsets.UTF_8);
             bufferedwriter.write(s);
         } finally {
-            IOUtils.closeQuietly((Writer) bufferedwriter);
+            IOUtils.closeQuietly((Writer)bufferedwriter);
         }
     }
 
@@ -155,7 +155,8 @@ public class UserList<K, V extends UserListEntry<K>> {
                 JsonObject jsonobject = p_deserialize_1_.getAsJsonObject();
                 UserListEntry<K> userlistentry = UserList.this.createEntry(jsonobject);
                 return userlistentry;
-            } else {
+            }
+            else {
                 return null;
             }
         }

@@ -74,13 +74,15 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         if (!p_75822_4_.hasKey("Level", 10)) {
             logger.error("Chunk file at {},{} is missing level data, skipping", x, z);
             return null;
-        } else {
+        }
+        else {
             NBTTagCompound nbttagcompound = p_75822_4_.getCompoundTag("Level");
 
             if (!nbttagcompound.hasKey("Sections", 9)) {
                 logger.error("Chunk file at {},{} is missing block data, skipping", x, z);
                 return null;
-            } else {
+            }
+            else {
                 Chunk chunk = this.readChunkFromNBT(worldIn, nbttagcompound);
 
                 if (!chunk.isAtLocation(x, z)) {
@@ -127,7 +129,8 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
             }
 
             return false;
-        } else {
+        }
+        else {
             ChunkCoordIntPair chunkcoordintpair = this.chunksToRemove.keySet().iterator().next();
             try {
                 this.pendingAnvilChunksCoordinates.add(chunkcoordintpair);
@@ -190,8 +193,8 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
      * the Chunk's last update time.
      */
     private void writeChunkToNBT(Chunk chunkIn, World worldIn, NBTTagCompound p_75820_3_) {
-        ((ILightingEngineProvider) worldIn).getLightingEngine().processLightUpdates();
-        p_75820_3_.setByte("V", (byte) 1);
+        ((ILightingEngineProvider)worldIn).getLightingEngine().processLightUpdates();
+        p_75820_3_.setByte("V", (byte)1);
         p_75820_3_.setInteger("xPos", chunkIn.xPosition);
         p_75820_3_.setInteger("zPos", chunkIn.zPosition);
         p_75820_3_.setLong("LastUpdate", worldIn.getTotalWorldTime());
@@ -206,7 +209,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         for (ExtendedBlockStorage extendedblockstorage : aextendedblockstorage) {
             if (extendedblockstorage != null) {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Y", (byte) (extendedblockstorage.getYLocation() >> 4 & 255));
+                nbttagcompound.setByte("Y", (byte)(extendedblockstorage.getYLocation() >> 4 & 255));
                 byte[] abyte = new byte[extendedblockstorage.getData().length];
                 NibbleArray nibblearray = new NibbleArray();
                 NibbleArray nibblearray1 = null;
@@ -225,7 +228,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
                         nibblearray1.set(j, k, l, c0 >> 12);
                     }
 
-                    abyte[i] = (byte) (c0 >> 4 & 255);
+                    abyte[i] = (byte)(c0 >> 4 & 255);
                     nibblearray.set(j, k, l, c0 & 15);
                 }
 
@@ -240,7 +243,8 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
 
                 if (flag) {
                     nbttagcompound.setByteArray("SkyLight", extendedblockstorage.getSkylightArray().getData());
-                } else {
+                }
+                else {
                     nbttagcompound.setByteArray("SkyLight", new byte[extendedblockstorage.getBlocklightArray().getData().length]);
                 }
 
@@ -287,7 +291,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
                 nbttagcompound3.setInteger("x", nextticklistentry.position.getX());
                 nbttagcompound3.setInteger("y", nextticklistentry.position.getY());
                 nbttagcompound3.setInteger("z", nextticklistentry.position.getZ());
-                nbttagcompound3.setInteger("t", (int) (nextticklistentry.scheduledTime - j1));
+                nbttagcompound3.setInteger("t", (int)(nextticklistentry.scheduledTime - j1));
                 nbttagcompound3.setInteger("p", nextticklistentry.priority);
                 nbttaglist3.appendTag(nbttagcompound3);
             }
@@ -327,7 +331,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
                 int l1 = j1 >> 8 & 15;
                 int i2 = j1 >> 4 & 15;
                 int j2 = nibblearray1 != null ? nibblearray1.get(k1, l1, i2) : 0;
-                achar[j1] = (char) (j2 << 12 | (abyte[j1] & 255) << 4 | nibblearray.get(k1, l1, i2));
+                achar[j1] = (char)(j2 << 12 | (abyte[j1] & 255) << 4 | nibblearray.get(k1, l1, i2));
             }
 
             extendedblockstorage.setData(achar);
@@ -397,7 +401,8 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
 
                     if (nbttagcompound3.hasKey("i", 8)) {
                         block = Block.getBlockFromName(nbttagcompound3.getString("i"));
-                    } else {
+                    }
+                    else {
                         block = Block.getBlockById(nbttagcompound3.getInteger("i"));
                     }
 

@@ -180,6 +180,6 @@ public class S44PacketWorldBorder implements Packet<INetHandlerPlayClient>
         SET_CENTER,
         INITIALIZE,
         SET_WARNING_TIME,
-        SET_WARNING_BLOCKS;
+        SET_WARNING_BLOCKS
     }
 }

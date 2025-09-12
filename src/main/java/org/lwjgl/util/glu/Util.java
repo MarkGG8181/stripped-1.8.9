@@ -79,7 +79,7 @@ public class Util {
         float r;
 
         r = (float)Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-        if ( r == 0.0 )
+        if (r == 0.0)
             return v;
 
         r = 1.0f / r;
@@ -113,7 +113,7 @@ public class Util {
      */
     protected static int compPerPix(int format) {
         /* Determine number of components per pixel */
-        switch ( format ) {
+        switch (format) {
             case GL11.GL_COLOR_INDEX:
             case GL11.GL_STENCIL_INDEX:
             case GL11.GL_DEPTH_COMPONENT:
@@ -151,13 +151,14 @@ public class Util {
         i = 1;
 
         /* Error! */
-        if ( value == 0 )
+        if (value == 0)
             return -1;
 
-        for ( ; ; ) {
-            if ( value == 1 ) {
+        for (; ; ) {
+            if (value == 1) {
                 return i;
-            } else if ( value == 3 ) {
+            }
+            else if (value == 3) {
                 return i << 2;
             }
             value >>= 1;
@@ -176,7 +177,7 @@ public class Util {
     protected static int bytesPerPixel(int format, int type) {
         int n, m;
 
-        switch ( format ) {
+        switch (format) {
             case GL11.GL_COLOR_INDEX:
             case GL11.GL_STENCIL_INDEX:
             case GL11.GL_DEPTH_COMPONENT:
@@ -202,7 +203,7 @@ public class Util {
                 n = 0;
         }
 
-        switch ( type ) {
+        switch (type) {
             case GL11.GL_UNSIGNED_BYTE:
                 m = 1;
                 break;
@@ -233,28 +234,19 @@ public class Util {
 
         return n * m;
     }
+
     public static String translateGLErrorString(int error_code) {
-        switch (error_code) {
-            case GL11.GL_NO_ERROR:
-                return "No error";
-            case GL11.GL_INVALID_ENUM:
-                return "Invalid enum";
-            case GL11.GL_INVALID_VALUE:
-                return "Invalid value";
-            case GL11.GL_INVALID_OPERATION:
-                return "Invalid operation";
-            case GL11.GL_STACK_OVERFLOW:
-                return "Stack overflow";
-            case GL11.GL_STACK_UNDERFLOW:
-                return "Stack underflow";
-            case GL11.GL_OUT_OF_MEMORY:
-                return "Out of memory";
-            case GL_TABLE_TOO_LARGE:
-                return "Table too large";
-            case GL_INVALID_FRAMEBUFFER_OPERATION:
-                return "Invalid framebuffer operation";
-            default:
-                return null;
-        }
+        return switch (error_code) {
+            case GL11.GL_NO_ERROR -> "No error";
+            case GL11.GL_INVALID_ENUM -> "Invalid enum";
+            case GL11.GL_INVALID_VALUE -> "Invalid value";
+            case GL11.GL_INVALID_OPERATION -> "Invalid operation";
+            case GL11.GL_STACK_OVERFLOW -> "Stack overflow";
+            case GL11.GL_STACK_UNDERFLOW -> "Stack underflow";
+            case GL11.GL_OUT_OF_MEMORY -> "Out of memory";
+            case GL_TABLE_TOO_LARGE -> "Table too large";
+            case GL_INVALID_FRAMEBUFFER_OPERATION -> "Invalid framebuffer operation";
+            default -> null;
+        };
     }
 }

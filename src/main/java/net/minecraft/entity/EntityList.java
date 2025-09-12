@@ -74,17 +74,17 @@ import org.apache.logging.log4j.Logger;
 public class EntityList
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final Map < String, Class <? extends Entity >> stringToClassMapping = new HashMap<>();
-    private static final Map < Class <? extends Entity > , String > classToStringMapping = new HashMap<>();
-    private static final Map < Integer, Class <? extends Entity >> idToClassMapping = new HashMap<>();
-    private static final Map < Class <? extends Entity > , Integer > classToIDMapping = new HashMap<>();
+    private static final Map<String, Class<? extends Entity>> stringToClassMapping = new HashMap<>();
+    private static final Map<Class<? extends Entity> , String> classToStringMapping = new HashMap<>();
+    private static final Map<Integer, Class<? extends Entity>> idToClassMapping = new HashMap<>();
+    private static final Map<Class<? extends Entity> , Integer> classToIDMapping = new HashMap<>();
     private static final Map<String, Integer> stringToIDMapping = new HashMap<>();
     public static final Map<Integer, EntityList.EntityEggInfo> entityEggs = new LinkedHashMap<>();
 
     /**
      * adds a mapping between Entity classes and both a string representation and an ID
      */
-    private static void addMapping(Class <? extends Entity > entityClass, String entityName, int id)
+    private static void addMapping(Class<? extends Entity> entityClass, String entityName, int id)
     {
         if (stringToClassMapping.containsKey(entityName))
         {
@@ -115,7 +115,7 @@ public class EntityList
     /**
      * Adds a entity mapping with egg info.
      */
-    private static void addMapping(Class <? extends Entity > entityClass, String entityName, int entityID, int baseColor, int spotColor)
+    private static void addMapping(Class<? extends Entity> entityClass, String entityName, int entityID, int baseColor, int spotColor)
     {
         addMapping(entityClass, entityName, entityID);
         entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, baseColor, spotColor));
@@ -130,11 +130,11 @@ public class EntityList
 
         try
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(entityName);
+            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(entityName);
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
             }
         }
         catch (Exception exception)
@@ -160,11 +160,11 @@ public class EntityList
 
         try
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(nbt.getString("id"));
+            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(nbt.getString("id"));
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
             }
         }
         catch (Exception exception)
@@ -193,11 +193,11 @@ public class EntityList
 
         try
         {
-            Class <? extends Entity > oclass = getClassFromID(entityID);
+            Class<? extends Entity> oclass = getClassFromID(entityID);
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[] {World.class}).newInstance(new Object[] {worldIn});
+                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
             }
         }
         catch (Exception exception)
@@ -222,7 +222,7 @@ public class EntityList
         return integer == null ? 0 : integer.intValue();
     }
 
-    public static Class <? extends Entity > getClassFromID(int entityID)
+    public static Class<? extends Entity> getClassFromID(int entityID)
     {
         return (Class)idToClassMapping.get(Integer.valueOf(entityID));
     }
@@ -263,7 +263,7 @@ public class EntityList
 
         for (String s : set)
         {
-            Class <? extends Entity > oclass = (Class)stringToClassMapping.get(s);
+            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(s);
 
             if ((oclass.getModifiers() & 1024) != 1024)
             {
@@ -297,7 +297,7 @@ public class EntityList
     }
 
     static
-    {
+        {
         addMapping(EntityItem.class, "Item", 1);
         addMapping(EntityXPOrb.class, "XPOrb", 2);
         addMapping(EntityEgg.class, "ThrownEgg", 7);

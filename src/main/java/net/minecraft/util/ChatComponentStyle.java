@@ -79,7 +79,7 @@ public abstract class ChatComponentStyle implements IChatComponent {
         for (IChatComponent ichatcomponent : this) {
             stringbuilder.append(ichatcomponent.getChatStyle().getFormattingCode());
             stringbuilder.append(ichatcomponent.getUnformattedTextForChat());
-            stringbuilder.append((Object) EnumChatFormatting.RESET);
+            stringbuilder.append((Object)EnumChatFormatting.RESET);
         }
 
         return stringbuilder.toString();
@@ -104,10 +104,12 @@ public abstract class ChatComponentStyle implements IChatComponent {
     public boolean equals(Object p_equals_1_) {
         if (this == p_equals_1_) {
             return true;
-        } else if (!(p_equals_1_ instanceof ChatComponentStyle)) {
+        }
+        else if (!(p_equals_1_ instanceof ChatComponentStyle)) {
             return false;
-        } else {
-            ChatComponentStyle chatcomponentstyle = (ChatComponentStyle) p_equals_1_;
+        }
+        else {
+            ChatComponentStyle chatcomponentstyle = (ChatComponentStyle)p_equals_1_;
             return this.siblings.equals(chatcomponentstyle.siblings) && this.getChatStyle().equals(chatcomponentstyle.getChatStyle());
         }
     }

@@ -42,7 +42,7 @@ public class GuiScreenServerList extends GuiScreen
         this.ipEdit.setMaxStringLength(128);
         this.ipEdit.setFocused(true);
         this.ipEdit.setText(this.mc.gameSettings.lastServer);
-        ((GuiButton)this.buttonList.get(0)).enabled = this.ipEdit.getText().length() > 0 && this.ipEdit.getText().split(":").length > 0;
+        ((GuiButton)this.buttonList.getFirst()).enabled = this.ipEdit.getText().length() > 0 && this.ipEdit.getText().split(":").length > 0;
     }
 
     /**
@@ -82,11 +82,11 @@ public class GuiScreenServerList extends GuiScreen
     {
         if (this.ipEdit.textboxKeyTyped(typedChar, keyCode))
         {
-            ((GuiButton)this.buttonList.get(0)).enabled = this.ipEdit.getText().length() > 0 && this.ipEdit.getText().split(":").length > 0;
+            ((GuiButton)this.buttonList.getFirst()).enabled = this.ipEdit.getText().length() > 0 && this.ipEdit.getText().split(":").length > 0;
         }
         else if (keyCode == 28 || keyCode == 156)
         {
-            this.actionPerformed((GuiButton)this.buttonList.get(0));
+            this.actionPerformed((GuiButton)this.buttonList.getFirst());
         }
     }
 

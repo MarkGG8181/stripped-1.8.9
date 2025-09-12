@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -21,7 +23,7 @@ public class EntityFlameFX extends EntityFX
         this.posZ += (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         this.flameScale = this.particleScale;
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D)) + 4;
         this.noClip = true;
         this.setParticleTextureIndex(48);
     }

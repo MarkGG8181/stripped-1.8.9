@@ -33,7 +33,7 @@ public class NBTTagShort extends NBTBase.NBTPrimitive {
      * Gets the type byte for the tag.
      */
     public byte getId() {
-        return (byte) 2;
+        return (byte)2;
     }
 
     @Override
@@ -50,9 +50,10 @@ public class NBTTagShort extends NBTBase.NBTPrimitive {
 
     public boolean equals(Object p_equals_1_) {
         if (super.equals(p_equals_1_)) {
-            NBTTagShort nbttagshort = (NBTTagShort) p_equals_1_;
+            NBTTagShort nbttagshort = (NBTTagShort)p_equals_1_;
             return this.data == nbttagshort.data;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -62,7 +63,7 @@ public class NBTTagShort extends NBTBase.NBTPrimitive {
     }
 
     public long getLong() {
-        return (long) this.data;
+        return (long)this.data;
     }
 
     public int getInt() {
@@ -74,14 +75,14 @@ public class NBTTagShort extends NBTBase.NBTPrimitive {
     }
 
     public byte getByte() {
-        return (byte) (this.data & 255);
+        return (byte)(this.data & 255);
     }
 
     public double getDouble() {
-        return (double) this.data;
+        return (double)this.data;
     }
 
     public float getFloat() {
-        return (float) this.data;
+        return (float)this.data;
     }
 }

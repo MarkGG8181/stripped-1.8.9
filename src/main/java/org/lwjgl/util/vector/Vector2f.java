@@ -31,6 +31,7 @@
  */
 package org.lwjgl.util.vector;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
@@ -45,6 +46,7 @@ import java.nio.FloatBuffer;
 
 public class Vector2f extends Vector implements Serializable, ReadableVector2f, WritableVector2f {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public float x, y;
@@ -158,7 +160,6 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     public static float dot(Vector2f left, Vector2f right) {
         return left.x * right.x + left.y * right.y;
     }
-
 
 
     /**

@@ -32,7 +32,7 @@ public class MessageSerializer extends MessageToByteEncoder<Packet>
 
         if (logger.isDebugEnabled())
         {
-            logger.debug(RECEIVED_PACKET_MARKER, "OUT: [{}:{}] {}", new Object[] {p_encode_1_.channel().attr(NetworkManager.attrKeyConnectionState).get(), integer, p_encode_2_.getClass().getName()});
+            logger.debug(RECEIVED_PACKET_MARKER, "OUT: [{}:{}] {}", new Object[]{p_encode_1_.channel().attr(NetworkManager.attrKeyConnectionState).get(), integer, p_encode_2_.getClass().getName()});
         }
 
         if (integer == null)

@@ -93,7 +93,7 @@ public class BlockTripWireHook extends Block {
      * Called by ItemBlocks after a block is set in the world, to allow post-place logic
      */
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        this.func_176260_a(worldIn, pos, state, false, false, -1, (IBlockState) null);
+        this.func_176260_a(worldIn, pos, state, false, false, -1, (IBlockState)null);
     }
 
     /**
@@ -102,7 +102,7 @@ public class BlockTripWireHook extends Block {
     public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
         if (neighborBlock != this) {
             if (this.checkForDrop(worldIn, pos, state)) {
-                EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+                EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
 
                 if (!worldIn.getBlockState(pos.offset(enumfacing.getOpposite())).getBlock().isNormalCube()) {
                     this.dropBlockAsItem(worldIn, pos, state, 0);
@@ -113,9 +113,9 @@ public class BlockTripWireHook extends Block {
     }
 
     public void func_176260_a(World worldIn, BlockPos pos, IBlockState hookState, boolean p_176260_4_, boolean p_176260_5_, int p_176260_6_, IBlockState p_176260_7_) {
-        EnumFacing enumfacing = (EnumFacing) hookState.getValue(FACING);
-        boolean flag = ((Boolean) hookState.getValue(ATTACHED)).booleanValue();
-        boolean flag1 = ((Boolean) hookState.getValue(POWERED)).booleanValue();
+        EnumFacing enumfacing = (EnumFacing)hookState.getValue(FACING);
+        boolean flag = ((Boolean)hookState.getValue(ATTACHED)).booleanValue();
+        boolean flag1 = ((Boolean)hookState.getValue(POWERED)).booleanValue();
         boolean flag2 = !World.doesBlockHaveSolidTopSurface(worldIn, pos.down());
         boolean flag3 = !p_176260_4_;
         boolean flag4 = false;
@@ -137,14 +137,15 @@ public class BlockTripWireHook extends Block {
             if (iblockstate.getBlock() != Blocks.tripwire && j != p_176260_6_) {
                 aiblockstate[j] = null;
                 flag3 = false;
-            } else {
+            }
+            else {
                 if (j == p_176260_6_) {
                     iblockstate = MoreObjects.firstNonNull(p_176260_7_, iblockstate);
                 }
 
-                boolean flag5 = !((Boolean) iblockstate.getValue(BlockTripWire.DISARMED)).booleanValue();
-                boolean flag6 = ((Boolean) iblockstate.getValue(BlockTripWire.POWERED)).booleanValue();
-                boolean flag7 = ((Boolean) iblockstate.getValue(BlockTripWire.SUSPENDED)).booleanValue();
+                boolean flag5 = !((Boolean)iblockstate.getValue(BlockTripWire.DISARMED)).booleanValue();
+                boolean flag6 = ((Boolean)iblockstate.getValue(BlockTripWire.POWERED)).booleanValue();
+                boolean flag7 = ((Boolean)iblockstate.getValue(BlockTripWire.SUSPENDED)).booleanValue();
                 flag3 &= flag7 == flag2;
                 flag4 |= flag5 && flag6;
                 aiblockstate[j] = iblockstate;
@@ -197,18 +198,21 @@ public class BlockTripWireHook extends Block {
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        this.func_176260_a(worldIn, pos, state, false, true, -1, (IBlockState) null);
+        this.func_176260_a(worldIn, pos, state, false, true, -1, (IBlockState)null);
     }
 
     private void func_180694_a(World worldIn, BlockPos pos, boolean p_180694_3_, boolean p_180694_4_, boolean p_180694_5_, boolean p_180694_6_) {
         if (p_180694_4_ && !p_180694_6_) {
-            worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
-        } else if (!p_180694_4_ && p_180694_6_) {
-            worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D, "random.click", 0.4F, 0.5F);
-        } else if (p_180694_3_ && !p_180694_5_) {
-            worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
-        } else if (!p_180694_3_ && p_180694_5_) {
-            worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (worldIn.rand.nextFloat() * 0.2F + 0.9F));
+            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
+        }
+        else if (!p_180694_4_ && p_180694_6_) {
+            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.click", 0.4F, 0.5F);
+        }
+        else if (p_180694_3_ && !p_180694_5_) {
+            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
+        }
+        else if (!p_180694_3_ && p_180694_5_) {
+            worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.1D, (double)pos.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (worldIn.rand.nextFloat() * 0.2F + 0.9F));
         }
     }
 
@@ -222,7 +226,8 @@ public class BlockTripWireHook extends Block {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
             return false;
-        } else {
+        }
+        else {
             return true;
         }
     }
@@ -231,7 +236,7 @@ public class BlockTripWireHook extends Block {
     public void setBlockBoundsBasedOnState(IBlockAccess worldIn, BlockPos pos) {
         float f = 0.1875F;
 
-        switch ((EnumFacing) worldIn.getBlockState(pos).getValue(FACING)) {
+        switch ((EnumFacing)worldIn.getBlockState(pos).getValue(FACING)) {
             case EAST:
                 this.setBlockBounds(0.0F, 0.2F, 0.5F - f, f * 2.0F, 0.8F, 0.5F + f);
                 break;
@@ -250,27 +255,27 @@ public class BlockTripWireHook extends Block {
     }
 
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        boolean flag = ((Boolean) state.getValue(ATTACHED)).booleanValue();
-        boolean flag1 = ((Boolean) state.getValue(POWERED)).booleanValue();
+        boolean flag = ((Boolean)state.getValue(ATTACHED)).booleanValue();
+        boolean flag1 = ((Boolean)state.getValue(POWERED)).booleanValue();
 
         if (flag || flag1) {
-            this.func_176260_a(worldIn, pos, state, true, false, -1, (IBlockState) null);
+            this.func_176260_a(worldIn, pos, state, true, false, -1, (IBlockState)null);
         }
 
         if (flag1) {
             worldIn.notifyNeighborsOfStateChange(pos, this);
-            worldIn.notifyNeighborsOfStateChange(pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite()), this);
+            worldIn.notifyNeighborsOfStateChange(pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite()), this);
         }
 
         super.breakBlock(worldIn, pos, state);
     }
 
     public int getWeakPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
-        return ((Boolean) state.getValue(POWERED)).booleanValue() ? 15 : 0;
+        return ((Boolean)state.getValue(POWERED)).booleanValue() ? 15 : 0;
     }
 
     public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) {
-        return !((Boolean) state.getValue(POWERED)).booleanValue() ? 0 : (state.getValue(FACING) == side ? 15 : 0);
+        return !((Boolean)state.getValue(POWERED)).booleanValue() ? 0 : (state.getValue(FACING) == side ? 15 : 0);
     }
 
     /**
@@ -296,13 +301,13 @@ public class BlockTripWireHook extends Block {
      */
     public int getMetaFromState(IBlockState state) {
         int i = 0;
-        i = i | ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
+        i = i | ((EnumFacing)state.getValue(FACING)).getHorizontalIndex();
 
-        if (((Boolean) state.getValue(POWERED)).booleanValue()) {
+        if (((Boolean)state.getValue(POWERED)).booleanValue()) {
             i |= 8;
         }
 
-        if (((Boolean) state.getValue(ATTACHED)).booleanValue()) {
+        if (((Boolean)state.getValue(ATTACHED)).booleanValue()) {
             i |= 4;
         }
 

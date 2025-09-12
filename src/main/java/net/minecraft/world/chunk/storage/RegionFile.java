@@ -41,12 +41,12 @@ public class RegionFile {
             }
 
             if ((this.dataFile.length() & 4095L) != 0L) {
-                for (int j1 = 0; (long) j1 < (this.dataFile.length() & 4095L); ++j1) {
+                for (int j1 = 0; (long)j1 < (this.dataFile.length() & 4095L); ++j1) {
                     this.dataFile.write(0);
                 }
             }
 
-            int k1 = (int) this.dataFile.length() / 4096;
+            int k1 = (int)this.dataFile.length() / 4096;
             this.sectorFree = Lists.newArrayListWithCapacity(k1);
 
             for (int j = 0; j < k1; ++j) {
@@ -83,38 +83,45 @@ public class RegionFile {
     public synchronized DataInputStream getChunkDataInputStream(int x, int z) {
         if (this.outOfBounds(x, z)) {
             return null;
-        } else {
+        }
+        else {
             try {
                 int i = this.getOffset(x, z);
 
                 if (i == 0) {
                     return null;
-                } else {
+                }
+                else {
                     int j = i >> 8;
                     int k = i & 255;
 
                     if (j + k > this.sectorFree.size()) {
                         return null;
-                    } else {
+                    }
+                    else {
                         this.dataFile.seek(j * 4096L);
                         int l = this.dataFile.readInt();
 
                         if (l > 4096 * k) {
                             return null;
-                        } else if (l <= 0) {
+                        }
+                        else if (l <= 0) {
                             return null;
-                        } else {
+                        }
+                        else {
                             byte b0 = this.dataFile.readByte();
 
                             if (b0 == 1) {
                                 byte[] abyte1 = new byte[l - 1];
                                 this.dataFile.read(abyte1);
                                 return new DataInputStream(new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(abyte1))));
-                            } else if (b0 == 2) {
+                            }
+                            else if (b0 == 2) {
                                 byte[] abyte = new byte[l - 1];
                                 this.dataFile.read(abyte);
                                 return new DataInputStream(new BufferedInputStream(new InflaterInputStream(new ByteArrayInputStream(abyte))));
-                            } else {
+                            }
+                            else {
                                 return null;
                             }
                         }
@@ -149,7 +156,8 @@ public class RegionFile {
 
             if (j != 0 && k == l) {
                 this.write(j, data, length);
-            } else {
+            }
+            else {
                 for (int i1 = 0; i1 < k; ++i1) {
                     this.sectorFree.set(j + i1, true);
                 }
@@ -162,10 +170,12 @@ public class RegionFile {
                         if (j1 != 0) {
                             if (this.sectorFree.get(k1)) {
                                 ++j1;
-                            } else {
+                            }
+                            else {
                                 j1 = 0;
                             }
-                        } else if (this.sectorFree.get(k1)) {
+                        }
+                        else if (this.sectorFree.get(k1)) {
                             l1 = k1;
                             j1 = 1;
                         }
@@ -185,7 +195,8 @@ public class RegionFile {
                     }
 
                     this.write(j, data, length);
-                } else {
+                }
+                else {
                     this.dataFile.seek(this.dataFile.length());
                     j = this.sectorFree.size();
 
@@ -199,7 +210,7 @@ public class RegionFile {
                 }
             }
 
-            this.setChunkTimestamp(x, z, (int) (MinecraftServer.getCurrentTimeMillis() / 1000L));
+            this.setChunkTimestamp(x, z, (int)(MinecraftServer.getCurrentTimeMillis() / 1000L));
         } catch (IOException ioexception) {
             ioexception.printStackTrace();
         }

@@ -26,7 +26,8 @@ public class GLFWKeyboardImplementation implements KeyboardImplementation {
             int key = translateKeyFromGLFW(glfwKey);
             if (action == GLFW.GLFW_PRESS) {
                 this.key_down_buffer[key] = 1;
-            } else if (action == GLFW.GLFW_RELEASE) {
+            }
+            else if (action == GLFW.GLFW_RELEASE) {
                 this.key_down_buffer[key] = 0;
             }
 
@@ -37,10 +38,10 @@ public class GLFWKeyboardImplementation implements KeyboardImplementation {
         });
 
         this.charCallback = GLFWCharCallback.create((window, codepoint) -> {
-                    // if the keycode is 0 minecraft instead uses the character code as the key pressed, not sure why
-                    // but a keycode of -1 is used instead to fix this issue
-                    putKeyboardEvent(-1, (byte) 1, codepoint, System.nanoTime(), false);
-                }
+                // if the keycode is 0 minecraft instead uses the character code as the key pressed, not sure why
+                // but a keycode of -1 is used instead to fix this issue
+                putKeyboardEvent(-1, (byte)1, codepoint, System.nanoTime(), false);
+            }
         );
 
         this.windowHandle = Display.getWindowHandle();
@@ -50,7 +51,7 @@ public class GLFWKeyboardImplementation implements KeyboardImplementation {
 
     private void putKeyboardEvent(int keycode, byte state, int ch, long nanos, boolean repeat) {
         this.tmp_event.clear();
-        this.tmp_event.putInt(keycode).put(state).putInt(ch).putLong(nanos).put(repeat ? (byte) 1 : (byte) 0);
+        this.tmp_event.putInt(keycode).put(state).putInt(ch).putLong(nanos).put(repeat ? (byte)1 : (byte)0);
         this.tmp_event.flip();
         this.event_queue.putEvent(this.tmp_event);
     }

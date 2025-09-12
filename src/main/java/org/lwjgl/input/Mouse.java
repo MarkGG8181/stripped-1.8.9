@@ -151,7 +151,8 @@ public class Mouse {
                 grabX = new_x;
                 grabY = new_y;
             }
-        } else {
+        }
+        else {
             grabX = new_x;
             grabY = new_y;
         }
@@ -249,7 +250,8 @@ public class Mouse {
 
             absoluteX += pollX;
             absoluteY += pollY;
-        } else {
+        }
+        else {
             dX = pollX - x;
             dY = pollY - y;
 
@@ -323,7 +325,8 @@ public class Mouse {
 
                 lastEventRawX += eventDX;
                 lastEventRawY += eventDY;
-            } else {
+            }
+            else {
                 int newEventX = readBuffer.getInt();
                 int newEventY = readBuffer.getInt();
 
@@ -441,7 +444,8 @@ public class Mouse {
                 lastEventRawX = x;
                 lastEventRawY = y;
                 GLFW.glfwSetInputMode(Display.getWindowHandle(), GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_DISABLED);
-            } else if (!grab && grabbed) {
+            }
+            else if (!grab && grabbed) {
                 GLFW.glfwSetInputMode(Display.getWindowHandle(), GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
                 // Skip glfwSetCursorPos on Wayland to avoid GLFW_FEATURE_UNAVAILABLE
                 x = grabX;
@@ -488,9 +492,9 @@ public class Mouse {
 
     public static void setRawInput(boolean state) {
         if (Display.isCreated() && GLFW.glfwRawMouseMotionSupported() &&
-                !Mouse.getPrivilegedBoolean("org.input.org.lwjgl.Mouse.disableRawInput")) {
+            !Mouse.getPrivilegedBoolean("org.input.org.lwjgl.Mouse.disableRawInput")) {
             GLFW.glfwSetInputMode(Display.getWindowHandle(), GLFW.GLFW_RAW_MOUSE_MOTION,
-                    state ? GLFW.GLFW_TRUE : GLFW.GLFW_FALSE);
+                state ? GLFW.GLFW_TRUE : GLFW.GLFW_FALSE);
         }
     }
 }

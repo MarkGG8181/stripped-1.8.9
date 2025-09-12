@@ -29,7 +29,7 @@ public class LanguageManager implements IResourceManagerReloadListener {
 
         for (IResourcePack iresourcepack : resourcesPacks) {
             try {
-                LanguageMetadataSection languagemetadatasection = (LanguageMetadataSection) iresourcepack.getPackMetadata(this.theMetadataSerializer, "language");
+                LanguageMetadataSection languagemetadatasection = (LanguageMetadataSection)iresourcepack.getPackMetadata(this.theMetadataSerializer, "language");
 
                 if (languagemetadatasection != null) {
                     for (Language language : languagemetadatasection.languages()) {
@@ -39,9 +39,9 @@ public class LanguageManager implements IResourceManagerReloadListener {
                     }
                 }
             } catch (RuntimeException runtimeexception) {
-                logger.warn((String) ("Unable to parse metadata section of resourcepack: " + iresourcepack.getPackName()), (Throwable) runtimeexception);
+                logger.warn((String)("Unable to parse metadata section of resourcepack: " + iresourcepack.getPackName()), (Throwable)runtimeexception);
             } catch (IOException ioexception) {
-                logger.warn((String) ("Unable to parse metadata section of resourcepack: " + iresourcepack.getPackName()), (Throwable) ioexception);
+                logger.warn((String)("Unable to parse metadata section of resourcepack: " + iresourcepack.getPackName()), (Throwable)ioexception);
             }
         }
     }
@@ -58,6 +58,6 @@ public class LanguageManager implements IResourceManagerReloadListener {
     }
 
     public Language getCurrentLanguage() {
-        return this.languageMap.containsKey(this.currentLanguage) ? (Language) this.languageMap.get(this.currentLanguage) : (Language) this.languageMap.get("en_US");
+        return this.languageMap.containsKey(this.currentLanguage) ? (Language)this.languageMap.get(this.currentLanguage) : (Language)this.languageMap.get("en_US");
     }
 }

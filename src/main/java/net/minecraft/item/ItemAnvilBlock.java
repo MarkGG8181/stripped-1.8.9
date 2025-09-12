@@ -6,7 +6,7 @@ public class ItemAnvilBlock extends ItemMultiTexture
 {
     public ItemAnvilBlock(Block block)
     {
-        super(block, block, new String[] {"intact", "slightlyDamaged", "veryDamaged"});
+        super(block, block, new String[]{"intact", "slightlyDamaged", "veryDamaged"});
     }
 
     /**

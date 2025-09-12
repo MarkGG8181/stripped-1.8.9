@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -15,10 +17,10 @@ public class EntityBubbleFX extends EntityFX
         this.setParticleTextureIndex(32);
         this.setSize(0.02F, 0.02F);
         this.particleScale *= this.rand.nextFloat() * 0.6F + 0.2F;
-        this.motionX = xSpeedIn * 0.20000000298023224D + (Math.random() * 2.0D - 1.0D) * 0.019999999552965164D;
-        this.motionY = ySpeedIn * 0.20000000298023224D + (Math.random() * 2.0D - 1.0D) * 0.019999999552965164D;
-        this.motionZ = zSpeedIn * 0.20000000298023224D + (Math.random() * 2.0D - 1.0D) * 0.019999999552965164D;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.motionX = xSpeedIn * 0.20000000298023224D + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.019999999552965164D;
+        this.motionY = ySpeedIn * 0.20000000298023224D + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.019999999552965164D;
+        this.motionZ = zSpeedIn * 0.20000000298023224D + (ThreadLocalRandom.current().nextDouble() * 2.0D - 1.0D) * 0.019999999552965164D;
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
     }
 
     /**

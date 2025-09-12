@@ -67,15 +67,17 @@ public class LoadingScreenRenderer implements IProgressUpdate {
             if (!this.loadingSuccess) {
                 throw new MinecraftError();
             }
-        } else {
+        }
+        else {
             GlStateManager.clear(256);
             GlStateManager.matrixMode(5889);
             GlStateManager.loadIdentity();
 
             if (OpenGlHelper.isFramebufferEnabled()) {
                 int i = this.scaledResolution.getScaleFactor();
-                GlStateManager.ortho(0.0D, (double) (this.scaledResolution.getScaledWidth() * i), (double) (this.scaledResolution.getScaledHeight() * i), 0.0D, 100.0D, 300.0D);
-            } else {
+                GlStateManager.ortho(0.0D, (double)(this.scaledResolution.getScaledWidth() * i), (double)(this.scaledResolution.getScaledHeight() * i), 0.0D, 100.0D, 300.0D);
+            }
+            else {
                 ScaledResolution scaledresolution = new ScaledResolution(this.mc);
                 GlStateManager.ortho(0.0D, scaledresolution.getScaledWidth_double(), scaledresolution.getScaledHeight_double(), 0.0D, 100.0D, 300.0D);
             }
@@ -94,7 +96,8 @@ public class LoadingScreenRenderer implements IProgressUpdate {
             if (!this.loadingSuccess) {
                 throw new MinecraftError();
             }
-        } else {
+        }
+        else {
             this.systemTime = 0L;
             this.message = message;
             this.setLoadingProgress(-1);
@@ -110,7 +113,8 @@ public class LoadingScreenRenderer implements IProgressUpdate {
             if (!this.loadingSuccess) {
                 throw new MinecraftError();
             }
-        } else {
+        }
+        else {
             long i = Minecraft.getSystemTime();
 
             if (i - this.systemTime >= 100L) {
@@ -122,7 +126,8 @@ public class LoadingScreenRenderer implements IProgressUpdate {
 
                 if (OpenGlHelper.isFramebufferEnabled()) {
                     this.framebuffer.framebufferClear();
-                } else {
+                }
+                else {
                     GlStateManager.clear(256);
                 }
 
@@ -143,9 +148,9 @@ public class LoadingScreenRenderer implements IProgressUpdate {
                 this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
                 float f = 32.0F;
                 worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-                worldrenderer.pos(0.0D, (double) l, 0.0D).tex(0.0D, (double) ((float) l / f)).color(64, 64, 64, 255).endVertex();
-                worldrenderer.pos((double) k, (double) l, 0.0D).tex((double) ((float) k / f), (double) ((float) l / f)).color(64, 64, 64, 255).endVertex();
-                worldrenderer.pos((double) k, 0.0D, 0.0D).tex((double) ((float) k / f), 0.0D).color(64, 64, 64, 255).endVertex();
+                worldrenderer.pos(0.0D, (double)l, 0.0D).tex(0.0D, (double)((float)l / f)).color(64, 64, 64, 255).endVertex();
+                worldrenderer.pos((double)k, (double)l, 0.0D).tex((double)((float)k / f), (double)((float)l / f)).color(64, 64, 64, 255).endVertex();
+                worldrenderer.pos((double)k, 0.0D, 0.0D).tex((double)((float)k / f), 0.0D).color(64, 64, 64, 255).endVertex();
                 worldrenderer.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(64, 64, 64, 255).endVertex();
                 tessellator.draw();
 
@@ -156,22 +161,22 @@ public class LoadingScreenRenderer implements IProgressUpdate {
                     int l1 = l / 2 + 16;
                     GlStateManager.disableTexture2D();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    worldrenderer.pos((double) k1, (double) l1, 0.0D).color(128, 128, 128, 255).endVertex();
-                    worldrenderer.pos((double) k1, (double) (l1 + j1), 0.0D).color(128, 128, 128, 255).endVertex();
-                    worldrenderer.pos((double) (k1 + i1), (double) (l1 + j1), 0.0D).color(128, 128, 128, 255).endVertex();
-                    worldrenderer.pos((double) (k1 + i1), (double) l1, 0.0D).color(128, 128, 128, 255).endVertex();
-                    worldrenderer.pos((double) k1, (double) l1, 0.0D).color(128, 255, 128, 255).endVertex();
-                    worldrenderer.pos((double) k1, (double) (l1 + j1), 0.0D).color(128, 255, 128, 255).endVertex();
-                    worldrenderer.pos((double) (k1 + progress), (double) (l1 + j1), 0.0D).color(128, 255, 128, 255).endVertex();
-                    worldrenderer.pos((double) (k1 + progress), (double) l1, 0.0D).color(128, 255, 128, 255).endVertex();
+                    worldrenderer.pos((double)k1, (double)l1, 0.0D).color(128, 128, 128, 255).endVertex();
+                    worldrenderer.pos((double)k1, (double)(l1 + j1), 0.0D).color(128, 128, 128, 255).endVertex();
+                    worldrenderer.pos((double)(k1 + i1), (double)(l1 + j1), 0.0D).color(128, 128, 128, 255).endVertex();
+                    worldrenderer.pos((double)(k1 + i1), (double)l1, 0.0D).color(128, 128, 128, 255).endVertex();
+                    worldrenderer.pos((double)k1, (double)l1, 0.0D).color(128, 255, 128, 255).endVertex();
+                    worldrenderer.pos((double)k1, (double)(l1 + j1), 0.0D).color(128, 255, 128, 255).endVertex();
+                    worldrenderer.pos((double)(k1 + progress), (double)(l1 + j1), 0.0D).color(128, 255, 128, 255).endVertex();
+                    worldrenderer.pos((double)(k1 + progress), (double)l1, 0.0D).color(128, 255, 128, 255).endVertex();
                     tessellator.draw();
                     GlStateManager.enableTexture2D();
                 }
 
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-                this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (float) ((k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2), (float) (l / 2 - 4 - 16), 16777215);
-                this.mc.fontRendererObj.drawStringWithShadow(this.message, (float) ((k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2), (float) (l / 2 - 4 + 8), 16777215);
+                this.mc.fontRendererObj.drawStringWithShadow(this.currentlyDisplayedText, (float)((k - this.mc.fontRendererObj.getStringWidth(this.currentlyDisplayedText)) / 2), (float)(l / 2 - 4 - 16), 16777215);
+                this.mc.fontRendererObj.drawStringWithShadow(this.message, (float)((k - this.mc.fontRendererObj.getStringWidth(this.message)) / 2), (float)(l / 2 - 4 + 8), 16777215);
                 this.framebuffer.unbindFramebuffer();
 
                 if (OpenGlHelper.isFramebufferEnabled()) {
@@ -183,7 +188,6 @@ public class LoadingScreenRenderer implements IProgressUpdate {
                 try {
                     Thread.yield();
                 } catch (Exception var15) {
-                    ;
                 }
             }
         }

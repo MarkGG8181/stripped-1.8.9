@@ -37,15 +37,15 @@ public class VillageDoorInfo {
      * Returns the squared distance between this door and the given coordinate.
      */
     public int getDistanceSquared(int x, int y, int z) {
-        return (int) this.doorBlockPos.distanceSq((double) x, (double) y, (double) z);
+        return (int)this.doorBlockPos.distanceSq((double)x, (double)y, (double)z);
     }
 
     public int getDistanceToDoorBlockSq(BlockPos pos) {
-        return (int) pos.distanceSq(this.getDoorBlockPos());
+        return (int)pos.distanceSq(this.getDoorBlockPos());
     }
 
     public int getDistanceToInsideBlockSq(BlockPos pos) {
-        return (int) this.insideBlock.distanceSq(pos);
+        return (int)this.insideBlock.distanceSq(pos);
     }
 
     public boolean func_179850_c(BlockPos pos) {

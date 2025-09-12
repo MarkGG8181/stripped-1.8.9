@@ -120,7 +120,7 @@ public class BlockNewLog extends BlockLog
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {VARIANT, LOG_AXIS});
+        return new BlockState(this, new IProperty[]{VARIANT, LOG_AXIS});
     }
 
     protected ItemStack createStackedBlock(IBlockState state)

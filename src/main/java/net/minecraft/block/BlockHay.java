@@ -64,7 +64,7 @@ public class BlockHay extends BlockRotatedPillar
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {AXIS});
+        return new BlockState(this, new IProperty[]{AXIS});
     }
 
     protected ItemStack createStackedBlock(IBlockState state)

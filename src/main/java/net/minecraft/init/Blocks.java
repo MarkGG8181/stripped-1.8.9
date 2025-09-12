@@ -246,7 +246,7 @@ public class Blocks
     }
 
     static
-    {
+        {
         if (!Bootstrap.isRegistered())
         {
             throw new RuntimeException("Accessed Blocks before Bootstrap!");

@@ -32,12 +32,14 @@ public class Scoreboard {
     public ScoreObjective addScoreObjective(String name, IScoreObjectiveCriteria criteria) {
         if (name.length() > 16) {
             throw new IllegalArgumentException("The objective name '" + name + "' is too long!");
-        } else {
+        }
+        else {
             ScoreObjective scoreobjective = this.getObjective(name);
 
             if (scoreobjective != null) {
                 throw new IllegalArgumentException("An objective with the name '" + name + "' already exists!");
-            } else {
+            }
+            else {
                 scoreobjective = new ScoreObjective(this, name, criteria);
                 List<ScoreObjective> list = this.scoreObjectiveCriterias.computeIfAbsent(criteria, k -> new ArrayList<>());
 
@@ -62,7 +64,8 @@ public class Scoreboard {
 
         if (map == null) {
             return false;
-        } else {
+        }
+        else {
             Score score = map.get(p_178819_2_);
             return score != null;
         }
@@ -74,7 +77,8 @@ public class Scoreboard {
     public Score getValueFromObjective(String name, ScoreObjective objective) {
         if (name.length() > 40) {
             throw new IllegalArgumentException("The player name '" + name + "' is too long!");
-        } else {
+        }
+        else {
             Map<ScoreObjective, Score> map = this.entitiesScoreObjectives.computeIfAbsent(name, k -> new HashMap<>());
 
             return map.computeIfAbsent(objective, o -> new Score(this, o, name));
@@ -114,7 +118,8 @@ public class Scoreboard {
             if (map != null) {
                 this.func_96516_a(name);
             }
-        } else {
+        }
+        else {
             Map<ScoreObjective, Score> map2 = this.entitiesScoreObjectives.get(name);
 
             if (map2 != null) {
@@ -126,7 +131,8 @@ public class Scoreboard {
                     if (map1 != null) {
                         this.func_96516_a(name);
                     }
-                } else if (score != null) {
+                }
+                else if (score != null) {
                     this.func_178820_a(name, objective);
                 }
             }
@@ -200,12 +206,14 @@ public class Scoreboard {
     public ScorePlayerTeam createTeam(String name) {
         if (name.length() > 16) {
             throw new IllegalArgumentException("The team name '" + name + "' is too long!");
-        } else {
+        }
+        else {
             ScorePlayerTeam scoreplayerteam = this.getTeam(name);
 
             if (scoreplayerteam != null) {
                 throw new IllegalArgumentException("A team with the name '" + name + "' already exists!");
-            } else {
+            }
+            else {
                 scoreplayerteam = new ScorePlayerTeam(this, name);
                 this.teams.put(name, scoreplayerteam);
                 this.broadcastTeamCreated(scoreplayerteam);
@@ -233,9 +241,11 @@ public class Scoreboard {
     public boolean addPlayerToTeam(String player, String newTeam) {
         if (player.length() > 40) {
             throw new IllegalArgumentException("The player name '" + player + "' is too long!");
-        } else if (!this.teams.containsKey(newTeam)) {
+        }
+        else if (!this.teams.containsKey(newTeam)) {
             return false;
-        } else {
+        }
+        else {
             ScorePlayerTeam scoreplayerteam = this.getTeam(newTeam);
 
             if (this.getPlayersTeam(player) != null) {
@@ -254,7 +264,8 @@ public class Scoreboard {
         if (scoreplayerteam != null) {
             this.removePlayerFromTeam(p_96524_1_, scoreplayerteam);
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
@@ -266,7 +277,8 @@ public class Scoreboard {
     public void removePlayerFromTeam(String p_96512_1_, ScorePlayerTeam p_96512_2_) {
         if (this.getPlayersTeam(p_96512_1_) != p_96512_2_) {
             throw new IllegalStateException("Player is either on another team or not on any team. Cannot remove from team '" + p_96512_2_.getRegisteredName() + "'.");
-        } else {
+        }
+        else {
             this.teamMemberships.remove(p_96512_1_);
             p_96512_2_.getMembershipCollection().remove(p_96512_1_);
         }
@@ -351,11 +363,14 @@ public class Scoreboard {
     public static int getObjectiveDisplaySlotNumber(String p_96537_0_) {
         if (p_96537_0_.equalsIgnoreCase("list")) {
             return 0;
-        } else if (p_96537_0_.equalsIgnoreCase("sidebar")) {
+        }
+        else if (p_96537_0_.equalsIgnoreCase("sidebar")) {
             return 1;
-        } else if (p_96537_0_.equalsIgnoreCase("belowName")) {
+        }
+        else if (p_96537_0_.equalsIgnoreCase("belowName")) {
             return 2;
-        } else {
+        }
+        else {
             if (p_96537_0_.startsWith("sidebar.team.")) {
                 String s = p_96537_0_.substring("sidebar.team.".length());
                 EnumChatFormatting enumchatformatting = EnumChatFormatting.getValueByName(s);

@@ -25,11 +25,13 @@ public class AnvilSaveHandler extends SaveHandler {
             File file3 = new File(file1, "DIM-1");
             file3.mkdirs();
             return new AnvilChunkLoader(file3);
-        } else if (provider instanceof WorldProviderEnd) {
+        }
+        else if (provider instanceof WorldProviderEnd) {
             File file2 = new File(file1, "DIM1");
             file2.mkdirs();
             return new AnvilChunkLoader(file2);
-        } else {
+        }
+        else {
             return new AnvilChunkLoader(file1);
         }
     }

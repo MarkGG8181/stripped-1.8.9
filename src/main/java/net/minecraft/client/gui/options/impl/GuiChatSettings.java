@@ -31,7 +31,8 @@ public class GuiChatSettings extends GuiScreen {
         for (GameSettings.Options gamesettings$options : CHAT_OPTIONS) {
             if (gamesettings$options.getEnumFloat()) {
                 this.buttonList.add(new GuiOptionSlider(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 + 24 * (i >> 1), gamesettings$options));
-            } else {
+            }
+            else {
                 this.buttonList.add(new GuiOptionButton(gamesettings$options.returnEnumOrdinal(), this.width / 2 - 155 + i % 2 * 160, this.height / 6 + 24 * (i >> 1), gamesettings$options, this.game_settings.getKeyBinding(gamesettings$options)));
             }
 
@@ -46,8 +47,8 @@ public class GuiChatSettings extends GuiScreen {
      */
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
-            if (button.id < 100 && button instanceof GuiOptionButton) {
-                this.game_settings.setOptionValue(((GuiOptionButton) button).returnEnumOptions(), 1);
+            if (button.id < 100 && button instanceof GuiOptionButton optionButton) {
+                this.game_settings.setOptionValue(optionButton.returnEnumOptions(), 1);
                 button.displayString = this.game_settings.getKeyBinding(GameSettings.Options.getEnumOptions(button.id));
             }
 

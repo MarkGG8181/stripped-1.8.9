@@ -23,9 +23,9 @@ public class ChatComponentTranslation extends ChatComponentStyle
 
         for (Object object : args)
         {
-            if (object instanceof IChatComponent)
+            if (object instanceof IChatComponent component)
             {
-                ((IChatComponent)object).getChatStyle().setParentStyle(this.getChatStyle());
+                component.getChatStyle().setParentStyle(this.getChatStyle());
             }
         }
     }
@@ -88,7 +88,7 @@ public class ChatComponentTranslation extends ChatComponentStyle
 
                 if (k > j)
                 {
-                    ChatComponentText chatcomponenttext = new ChatComponentText(String.format(format.substring(j, k), new Object[0]));
+                    ChatComponentText chatcomponenttext = new ChatComponentText(format.substring(j, k).formatted(new Object[0]));
                     chatcomponenttext.getChatStyle().setParentStyle(this.getChatStyle());
                     this.children.add(chatcomponenttext);
                 }
@@ -121,7 +121,7 @@ public class ChatComponentTranslation extends ChatComponentStyle
 
             if (j < format.length())
             {
-                ChatComponentText chatcomponenttext1 = new ChatComponentText(String.format(format.substring(j), new Object[0]));
+                ChatComponentText chatcomponenttext1 = new ChatComponentText(format.substring(j).formatted(new Object[0]));
                 chatcomponenttext1.getChatStyle().setParentStyle(this.getChatStyle());
                 this.children.add(chatcomponenttext1);
             }
@@ -143,9 +143,9 @@ public class ChatComponentTranslation extends ChatComponentStyle
             Object object = this.formatArgs[index];
             IChatComponent ichatcomponent;
 
-            if (object instanceof IChatComponent)
+            if (object instanceof IChatComponent component)
             {
-                ichatcomponent = (IChatComponent)object;
+                ichatcomponent = component;
             }
             else
             {
@@ -163,9 +163,9 @@ public class ChatComponentTranslation extends ChatComponentStyle
 
         for (Object object : this.formatArgs)
         {
-            if (object instanceof IChatComponent)
+            if (object instanceof IChatComponent component)
             {
-                ((IChatComponent)object).getChatStyle().setParentStyle(this.getChatStyle());
+                component.getChatStyle().setParentStyle(this.getChatStyle());
             }
         }
 
@@ -212,9 +212,9 @@ public class ChatComponentTranslation extends ChatComponentStyle
 
         for (int i = 0; i < this.formatArgs.length; ++i)
         {
-            if (this.formatArgs[i] instanceof IChatComponent)
+            if (this.formatArgs[i] instanceof IChatComponent component)
             {
-                aobject[i] = ((IChatComponent)this.formatArgs[i]).createCopy();
+                aobject[i] = component.createCopy();
             }
             else
             {

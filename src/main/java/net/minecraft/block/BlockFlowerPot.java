@@ -79,9 +79,9 @@ public class BlockFlowerPot extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityFlowerPot)
+        if (tileentity instanceof TileEntityFlowerPot pot)
         {
-            Item item = ((TileEntityFlowerPot)tileentity).getFlowerPotItem();
+            Item item = pot.getFlowerPotItem();
 
             if (item instanceof ItemBlock)
             {
@@ -221,7 +221,7 @@ public class BlockFlowerPot extends BlockContainer
     private TileEntityFlowerPot getTileEntity(World worldIn, BlockPos pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntityFlowerPot ? (TileEntityFlowerPot)tileentity : null;
+        return tileentity instanceof TileEntityFlowerPot tefp ? tefp : null;
     }
 
     /**
@@ -299,7 +299,7 @@ public class BlockFlowerPot extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {CONTENTS, LEGACY_DATA});
+        return new BlockState(this, new IProperty[]{CONTENTS, LEGACY_DATA});
     }
 
     /**
@@ -319,9 +319,8 @@ public class BlockFlowerPot extends BlockContainer
         BlockFlowerPot.EnumFlowerType blockflowerpot$enumflowertype = BlockFlowerPot.EnumFlowerType.EMPTY;
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityFlowerPot)
+        if (tileentity instanceof TileEntityFlowerPot tileentityflowerpot)
         {
-            TileEntityFlowerPot tileentityflowerpot = (TileEntityFlowerPot)tileentity;
             Item item = tileentityflowerpot.getFlowerPotItem();
 
             if (item instanceof ItemBlock)

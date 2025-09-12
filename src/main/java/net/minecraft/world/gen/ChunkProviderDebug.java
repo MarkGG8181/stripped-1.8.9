@@ -169,7 +169,7 @@ public class ChunkProviderDebug implements IChunkProvider
     }
 
     static
-    {
+        {
         for (Block block : Block.blockRegistry)
         {
             ALL_VALID_STATES.addAll(block.getBlockState().getValidStates());

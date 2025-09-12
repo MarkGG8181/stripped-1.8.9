@@ -140,7 +140,7 @@ public class EntityIronGolem extends EntityGolem
 
             if (block.getMaterial() != Material.air)
             {
-                this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, 4.0D * ((double)this.rand.nextFloat() - 0.5D), 0.5D, ((double)this.rand.nextFloat() - 0.5D) * 4.0D, new int[] {Block.getStateId(iblockstate)});
+                this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_CRACK, this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.getEntityBoundingBox().minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, 4.0D * ((double)this.rand.nextFloat() - 0.5D), 0.5D, ((double)this.rand.nextFloat() - 0.5D) * 4.0D, new int[]{Block.getStateId(iblockstate)});
             }
         }
     }
@@ -148,7 +148,7 @@ public class EntityIronGolem extends EntityGolem
     /**
      * Returns true if this entity can attack entities of the specified class.
      */
-    public boolean canAttackClass(Class <? extends EntityLivingBase > cls)
+    public boolean canAttackClass(Class<? extends EntityLivingBase> cls)
     {
         return this.isPlayerCreated() && EntityPlayer.class.isAssignableFrom(cls) ? false : (cls == EntityCreeper.class ? false : super.canAttackClass(cls));
     }
@@ -304,7 +304,7 @@ public class EntityIronGolem extends EntityGolem
 
     static class AINearestAttackableTargetNonCreeper<T extends EntityLivingBase> extends EntityAINearestAttackableTarget<T>
     {
-        public AINearestAttackableTargetNonCreeper(final EntityCreature creature, Class<T> classTarget, int chance, boolean p_i45858_4_, boolean p_i45858_5_, final Predicate <? super T > p_i45858_6_)
+        public AINearestAttackableTargetNonCreeper(final EntityCreature creature, Class<T> classTarget, int chance, boolean p_i45858_4_, boolean p_i45858_5_, final Predicate<? super T> p_i45858_6_)
         {
             super(creature, classTarget, chance, p_i45858_4_, p_i45858_5_, p_i45858_6_);
             this.targetEntitySelector = new Predicate<T>()
@@ -321,7 +321,7 @@ public class EntityIronGolem extends EntityGolem
                     }
                     else
                     {
-                        if (p_apply_1_ instanceof EntityPlayer)
+                        if (p_apply_1_ instanceof EntityPlayer player)
                         {
                             double d0 = AINearestAttackableTargetNonCreeper.this.getTargetDistance();
 
@@ -332,7 +332,7 @@ public class EntityIronGolem extends EntityGolem
 
                             if (p_apply_1_.isInvisible())
                             {
-                                float f = ((EntityPlayer)p_apply_1_).getArmorVisibility();
+                                float f = player.getArmorVisibility();
 
                                 if (f < 0.1F)
                                 {

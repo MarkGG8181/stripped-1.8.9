@@ -8,7 +8,7 @@ public class VarIntUtil {
 
     static {
         for (int i = 0; i <= 32; ++i) {
-            VARINT_EXACT_BYTE_LENGTHS[i] = (int) Math.ceil((31d - (i - 1)) / 7d);
+            VARINT_EXACT_BYTE_LENGTHS[i] = (int)Math.ceil((31d - (i - 1)) / 7d);
         }
         VARINT_EXACT_BYTE_LENGTHS[32] = 1; // Special case for 0.
     }

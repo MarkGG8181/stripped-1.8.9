@@ -68,12 +68,12 @@ public class FastRenderRegion implements IBlockAccess {
     public int getCombinedLight(BlockPos pos, int lightValue) {
         return this.world.getCombinedLight(pos, lightValue);
     }
-    
+
     @Override
     public WorldType getWorldType() {
         return this.world.getWorldType();
     }
-    
+
     @Override
     public boolean isAirBlock(BlockPos pos) {
         return this.getBlockState(pos).getBlock() == Blocks.air;
@@ -83,12 +83,12 @@ public class FastRenderRegion implements IBlockAccess {
     public BiomeGenBase getBiomeGenForCoords(BlockPos pos) {
         return this.world.getBiomeGenForCoords(pos);
     }
-    
+
     @Override
     public int getStrongPower(BlockPos pos, EnumFacing direction) {
         return this.getBlockState(pos).getBlock().getStrongPower(this, pos, this.getBlockState(pos), direction);
     }
-    
+
     @Override
     public boolean extendedLevelsInChunkCache() {
         return false;

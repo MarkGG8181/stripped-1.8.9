@@ -27,11 +27,13 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GL13C extends GL12C {
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     /** Accepted by the {@code internalformat} parameter of TexImage1D, TexImage2D, TexImage3D, CopyTexImage1D, and CopyTexImage2D. */
     public static final int
-        GL_COMPRESSED_RGB  = 0x84ED,
+        GL_COMPRESSED_RGB = 0x84ED,
         GL_COMPRESSED_RGBA = 0x84EE;
 
     /** Accepted by the {@code target} parameter of Hint and the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
@@ -40,12 +42,12 @@ public class GL13C extends GL12C {
     /** Accepted by the {@code value} parameter of GetTexLevelParameter. */
     public static final int
         GL_TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86A0,
-        GL_TEXTURE_COMPRESSED            = 0x86A1;
+        GL_TEXTURE_COMPRESSED = 0x86A1;
 
     /** Accepted by the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
     public static final int
         GL_NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2,
-        GL_COMPRESSED_TEXTURE_FORMATS     = 0x86A3;
+        GL_COMPRESSED_TEXTURE_FORMATS = 0x86A3;
 
     /**
      * When the {@code pname} parameter of TexGendv, TexGenfv, and TexGeniv is TEXTURE_GEN_MODE, then the array {@code params} may also contain NORMAL_MAP
@@ -81,30 +83,30 @@ public class GL13C extends GL12C {
      * GetDoublev.
      */
     public static final int
-        GL_MULTISAMPLE              = 0x809D,
+        GL_MULTISAMPLE = 0x809D,
         GL_SAMPLE_ALPHA_TO_COVERAGE = 0x809E,
-        GL_SAMPLE_ALPHA_TO_ONE      = 0x809F,
-        GL_SAMPLE_COVERAGE          = 0x80A0;
+        GL_SAMPLE_ALPHA_TO_ONE = 0x809F,
+        GL_SAMPLE_COVERAGE = 0x80A0;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
     public static final int
-        GL_SAMPLE_BUFFERS         = 0x80A8,
-        GL_SAMPLES                = 0x80A9,
-        GL_SAMPLE_COVERAGE_VALUE  = 0x80AA,
+        GL_SAMPLE_BUFFERS = 0x80A8,
+        GL_SAMPLES = 0x80A9,
+        GL_SAMPLE_COVERAGE_VALUE = 0x80AA,
         GL_SAMPLE_COVERAGE_INVERT = 0x80AB;
 
     /** Accepted by the {@code texture} parameter of ActiveTexture and MultiTexCoord. */
     public static final int
-        GL_TEXTURE0  = 0x84C0,
-        GL_TEXTURE1  = 0x84C1,
-        GL_TEXTURE2  = 0x84C2,
-        GL_TEXTURE3  = 0x84C3,
-        GL_TEXTURE4  = 0x84C4,
-        GL_TEXTURE5  = 0x84C5,
-        GL_TEXTURE6  = 0x84C6,
-        GL_TEXTURE7  = 0x84C7,
-        GL_TEXTURE8  = 0x84C8,
-        GL_TEXTURE9  = 0x84C9,
+        GL_TEXTURE0 = 0x84C0,
+        GL_TEXTURE1 = 0x84C1,
+        GL_TEXTURE2 = 0x84C2,
+        GL_TEXTURE3 = 0x84C3,
+        GL_TEXTURE4 = 0x84C4,
+        GL_TEXTURE5 = 0x84C5,
+        GL_TEXTURE6 = 0x84C6,
+        GL_TEXTURE7 = 0x84C7,
+        GL_TEXTURE8 = 0x84C8,
+        GL_TEXTURE9 = 0x84C9,
         GL_TEXTURE10 = 0x84CA,
         GL_TEXTURE11 = 0x84CB,
         GL_TEXTURE12 = 0x84CC,

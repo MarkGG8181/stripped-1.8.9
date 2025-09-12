@@ -34,7 +34,8 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable 
 
         if (zipentry == null) {
             throw new ResourcePackFileNotFoundException(this.resourcePackFile, name);
-        } else {
+        }
+        else {
             return zipfile.getInputStream(zipentry);
         }
     }
@@ -60,18 +61,19 @@ public class FileResourcePack extends AbstractResourcePack implements Closeable 
         Set<String> set = new HashSet<>();
 
         while (enumeration.hasMoreElements()) {
-            ZipEntry zipentry = (ZipEntry) enumeration.nextElement();
+            ZipEntry zipentry = (ZipEntry)enumeration.nextElement();
             String s = zipentry.getName();
 
             if (s.startsWith("assets/")) {
                 List<String> list = Lists.newArrayList(entryNameSplitter.split(s));
 
                 if (list.size() > 1) {
-                    String s1 = (String) list.get(1);
+                    String s1 = (String)list.get(1);
 
                     if (!s1.equals(s1.toLowerCase())) {
                         this.logNameNotLowercase(s1);
-                    } else {
+                    }
+                    else {
                         set.add(s1);
                     }
                 }

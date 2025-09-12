@@ -41,50 +41,52 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class ARBShaderObjects {
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     /** Accepted by the {@code pname} argument of GetHandleARB. */
     public static final int GL_PROGRAM_OBJECT_ARB = 0x8B40;
 
     /** Accepted by the {@code pname} parameter of GetObjectParameter{fi}vARB. */
     public static final int
-        GL_OBJECT_TYPE_ARB                      = 0x8B4E,
-        GL_OBJECT_SUBTYPE_ARB                   = 0x8B4F,
-        GL_OBJECT_DELETE_STATUS_ARB             = 0x8B80,
-        GL_OBJECT_COMPILE_STATUS_ARB            = 0x8B81,
-        GL_OBJECT_LINK_STATUS_ARB               = 0x8B82,
-        GL_OBJECT_VALIDATE_STATUS_ARB           = 0x8B83,
-        GL_OBJECT_INFO_LOG_LENGTH_ARB           = 0x8B84,
-        GL_OBJECT_ATTACHED_OBJECTS_ARB          = 0x8B85,
-        GL_OBJECT_ACTIVE_UNIFORMS_ARB           = 0x8B86,
+        GL_OBJECT_TYPE_ARB = 0x8B4E,
+        GL_OBJECT_SUBTYPE_ARB = 0x8B4F,
+        GL_OBJECT_DELETE_STATUS_ARB = 0x8B80,
+        GL_OBJECT_COMPILE_STATUS_ARB = 0x8B81,
+        GL_OBJECT_LINK_STATUS_ARB = 0x8B82,
+        GL_OBJECT_VALIDATE_STATUS_ARB = 0x8B83,
+        GL_OBJECT_INFO_LOG_LENGTH_ARB = 0x8B84,
+        GL_OBJECT_ATTACHED_OBJECTS_ARB = 0x8B85,
+        GL_OBJECT_ACTIVE_UNIFORMS_ARB = 0x8B86,
         GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB = 0x8B87,
-        GL_OBJECT_SHADER_SOURCE_LENGTH_ARB      = 0x8B88;
+        GL_OBJECT_SHADER_SOURCE_LENGTH_ARB = 0x8B88;
 
     /** Returned by the {@code params} parameter of GetObjectParameter{fi}vARB. */
     public static final int GL_SHADER_OBJECT_ARB = 0x8B48;
 
     /** Returned by the {@code type} parameter of GetActiveUniformARB. */
     public static final int
-        GL_FLOAT_VEC2_ARB             = 0x8B50,
-        GL_FLOAT_VEC3_ARB             = 0x8B51,
-        GL_FLOAT_VEC4_ARB             = 0x8B52,
-        GL_INT_VEC2_ARB               = 0x8B53,
-        GL_INT_VEC3_ARB               = 0x8B54,
-        GL_INT_VEC4_ARB               = 0x8B55,
-        GL_BOOL_ARB                   = 0x8B56,
-        GL_BOOL_VEC2_ARB              = 0x8B57,
-        GL_BOOL_VEC3_ARB              = 0x8B58,
-        GL_BOOL_VEC4_ARB              = 0x8B59,
-        GL_FLOAT_MAT2_ARB             = 0x8B5A,
-        GL_FLOAT_MAT3_ARB             = 0x8B5B,
-        GL_FLOAT_MAT4_ARB             = 0x8B5C,
-        GL_SAMPLER_1D_ARB             = 0x8B5D,
-        GL_SAMPLER_2D_ARB             = 0x8B5E,
-        GL_SAMPLER_3D_ARB             = 0x8B5F,
-        GL_SAMPLER_CUBE_ARB           = 0x8B60,
-        GL_SAMPLER_1D_SHADOW_ARB      = 0x8B61,
-        GL_SAMPLER_2D_SHADOW_ARB      = 0x8B62,
-        GL_SAMPLER_2D_RECT_ARB        = 0x8B63,
+        GL_FLOAT_VEC2_ARB = 0x8B50,
+        GL_FLOAT_VEC3_ARB = 0x8B51,
+        GL_FLOAT_VEC4_ARB = 0x8B52,
+        GL_INT_VEC2_ARB = 0x8B53,
+        GL_INT_VEC3_ARB = 0x8B54,
+        GL_INT_VEC4_ARB = 0x8B55,
+        GL_BOOL_ARB = 0x8B56,
+        GL_BOOL_VEC2_ARB = 0x8B57,
+        GL_BOOL_VEC3_ARB = 0x8B58,
+        GL_BOOL_VEC4_ARB = 0x8B59,
+        GL_FLOAT_MAT2_ARB = 0x8B5A,
+        GL_FLOAT_MAT3_ARB = 0x8B5B,
+        GL_FLOAT_MAT4_ARB = 0x8B5C,
+        GL_SAMPLER_1D_ARB = 0x8B5D,
+        GL_SAMPLER_2D_ARB = 0x8B5E,
+        GL_SAMPLER_3D_ARB = 0x8B5F,
+        GL_SAMPLER_CUBE_ARB = 0x8B60,
+        GL_SAMPLER_1D_SHADOW_ARB = 0x8B61,
+        GL_SAMPLER_2D_SHADOW_ARB = 0x8B62,
+        GL_SAMPLER_2D_RECT_ARB = 0x8B63,
         GL_SAMPLER_2D_RECT_SHADOW_ARB = 0x8B64;
 
     protected ARBShaderObjects() {
@@ -180,7 +182,8 @@ public class ARBShaderObjects {
      * @param string    an array of pointers to one or more, optionally null terminated, character strings that make up the source code
      */
     public static void glShaderSourceARB(@NativeType("GLhandleARB") int shaderObj, @NativeType("GLcharARB const **") CharSequence... string) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             long stringAddress = org.lwjgl.system.APIUtil.apiArrayi(stack, MemoryUtil::memUTF8, string);
             nglShaderSourceARB(shaderObj, string.length, stringAddress, stringAddress - (string.length << 2));
@@ -201,7 +204,8 @@ public class ARBShaderObjects {
      * @param string    an array of pointers to one or more, optionally null terminated, character strings that make up the source code
      */
     public static void glShaderSourceARB(@NativeType("GLhandleARB") int shaderObj, @NativeType("GLcharARB const **") CharSequence string) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             long stringAddress = org.lwjgl.system.APIUtil.apiArrayi(stack, MemoryUtil::memUTF8, string);
             nglShaderSourceARB(shaderObj, 1, stringAddress, stringAddress - 4);
@@ -672,7 +676,8 @@ public class ARBShaderObjects {
      */
     @NativeType("void")
     public static int glGetObjectParameteriARB(@NativeType("GLhandleARB") int obj, @NativeType("GLenum") int pname) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetObjectParameterivARB(obj, pname, memAddress(params));
@@ -736,7 +741,8 @@ public class ARBShaderObjects {
      */
     @NativeType("void")
     public static String glGetInfoLogARB(@NativeType("GLhandleARB") int obj, @NativeType("GLsizei") int maxLength) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         ByteBuffer infoLog = memAlloc(maxLength);
         try {
             IntBuffer length = stack.ints(0);
@@ -841,7 +847,8 @@ public class ARBShaderObjects {
      */
     @NativeType("GLint")
     public static int glGetUniformLocationARB(@NativeType("GLhandleARB") int programObj, @NativeType("GLcharARB const *") CharSequence name) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             stack.nUTF8(name, true);
             long nameEncoded = stack.getPointerAddress();
@@ -937,7 +944,8 @@ public class ARBShaderObjects {
             check(size, 1);
             check(type, 1);
         }
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer length = stack.ints(0);
             ByteBuffer name = stack.malloc(maxLength);
@@ -1009,7 +1017,8 @@ public class ARBShaderObjects {
      */
     @NativeType("void")
     public static float glGetUniformfARB(@NativeType("GLhandleARB") int programObj, @NativeType("GLint") int location) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             FloatBuffer params = stack.callocFloat(1);
             nglGetUniformfvARB(programObj, location, memAddress(params));
@@ -1046,7 +1055,8 @@ public class ARBShaderObjects {
      */
     @NativeType("void")
     public static int glGetUniformiARB(@NativeType("GLhandleARB") int programObj, @NativeType("GLint") int location) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer params = stack.callocInt(1);
             nglGetUniformivARB(programObj, location, memAddress(params));
@@ -1096,7 +1106,8 @@ public class ARBShaderObjects {
      */
     @NativeType("void")
     public static String glGetShaderSourceARB(@NativeType("GLhandleARB") int obj, @NativeType("GLsizei") int maxLength) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         ByteBuffer source = memAlloc(maxLength);
         try {
             IntBuffer length = stack.ints(0);

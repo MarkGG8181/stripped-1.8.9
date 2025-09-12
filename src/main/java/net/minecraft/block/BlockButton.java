@@ -268,7 +268,7 @@ public abstract class BlockButton extends Block
     private void checkForArrows(World worldIn, BlockPos pos, IBlockState state)
     {
         this.updateBlockBounds(state);
-        List <? extends Entity > list = worldIn.<Entity>getEntitiesWithinAABB(EntityArrow.class, new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ));
+        List<? extends Entity> list = worldIn.<Entity>getEntitiesWithinAABB(EntityArrow.class, new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ));
         boolean flag = !list.isEmpty();
         boolean flag1 = ((Boolean)state.getValue(POWERED)).booleanValue();
 
@@ -305,34 +305,21 @@ public abstract class BlockButton extends Block
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing;
-
-        switch (meta & 7)
+        EnumFacing enumfacing = switch (meta & 7)
         {
-            case 0:
-                enumfacing = EnumFacing.DOWN;
-                break;
+            case 0: yield EnumFacing.DOWN;
 
-            case 1:
-                enumfacing = EnumFacing.EAST;
-                break;
+            case 1: yield EnumFacing.EAST;
 
-            case 2:
-                enumfacing = EnumFacing.WEST;
-                break;
+            case 2: yield EnumFacing.WEST;
 
-            case 3:
-                enumfacing = EnumFacing.SOUTH;
-                break;
+            case 3: yield EnumFacing.SOUTH;
 
-            case 4:
-                enumfacing = EnumFacing.NORTH;
-                break;
+            case 4: yield EnumFacing.NORTH;
 
             case 5:
-            default:
-                enumfacing = EnumFacing.UP;
-        }
+            default: yield EnumFacing.UP;
+        };
 
         return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(POWERED, Boolean.valueOf((meta & 8) > 0));
     }
@@ -342,34 +329,21 @@ public abstract class BlockButton extends Block
      */
     public int getMetaFromState(IBlockState state)
     {
-        int i;
-
-        switch ((EnumFacing)state.getValue(FACING))
+        int i = switch ((EnumFacing)state.getValue(FACING))
         {
-            case EAST:
-                i = 1;
-                break;
+            case EAST: yield 1;
 
-            case WEST:
-                i = 2;
-                break;
+            case WEST: yield 2;
 
-            case SOUTH:
-                i = 3;
-                break;
+            case SOUTH: yield 3;
 
-            case NORTH:
-                i = 4;
-                break;
+            case NORTH: yield 4;
 
             case UP:
-            default:
-                i = 5;
-                break;
+            default: yield 5;
 
-            case DOWN:
-                i = 0;
-        }
+            case DOWN: yield 0;
+        };
 
         if (((Boolean)state.getValue(POWERED)).booleanValue())
         {
@@ -381,6 +355,6 @@ public abstract class BlockButton extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, POWERED});
+        return new BlockState(this, new IProperty[]{FACING, POWERED});
     }
 }

@@ -177,11 +177,12 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
             isaveformat.flushCache();
             isaveformat.deleteWorldDirectory("Demo_World");
             this.mc.displayGuiScreen(this);
-        } else if (id == 13) {
+        }
+        else if (id == 13) {
             if (result) {
                 try {
                     Class<?> oclass = Class.forName("java.awt.Desktop");
-                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object) null, new Object[0]);
+                    Object object = oclass.getMethod("getDesktop", new Class[0]).invoke((Object)null, new Object[0]);
                     oclass.getMethod("browse", new Class[]{URI.class}).invoke(object, new Object[]{new URI(this.openGLWarningLink)});
                 } catch (Throwable throwable) {
                     logger.error("Couldn\'t open link", throwable);
@@ -217,12 +218,12 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 
         for (int j = 0; j < i * i; ++j) {
             GlStateManager.pushMatrix();
-            float f = ((float) (j % i) / (float) i - 0.5F) / 64.0F;
-            float f1 = ((float) (j / i) / (float) i - 0.5F) / 64.0F;
+            float f = ((float)(j % i) / (float)i - 0.5F) / 64.0F;
+            float f1 = ((float)(j / i) / (float)i - 0.5F) / 64.0F;
             float f2 = 0.0F;
             GlStateManager.translate(f, f1, f2);
-            GlStateManager.rotate(MathHelper.sin(((float) this.panoramaTimer + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
-            GlStateManager.rotate(-((float) this.panoramaTimer + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(MathHelper.sin(((float)this.panoramaTimer + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
+            GlStateManager.rotate(-((float)this.panoramaTimer + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
 
             for (int k = 0; k < 6; ++k) {
                 GlStateManager.pushMatrix();
@@ -292,14 +293,14 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         int i = 3;
 
         for (int j = 0; j < i; ++j) {
-            float f = 1.0F / (float) (j + 1);
+            float f = 1.0F / (float)(j + 1);
             int k = this.width;
             int l = this.height;
-            float f1 = (float) (j - i / 2) / 256.0F;
-            worldrenderer.pos((double) k, (double) l, (double) this.zLevel).tex((double) (0.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
-            worldrenderer.pos((double) k, 0.0D, (double) this.zLevel).tex((double) (1.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
-            worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex((double) (1.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
-            worldrenderer.pos(0.0D, (double) l, (double) this.zLevel).tex((double) (0.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            float f1 = (float)(j - i / 2) / 256.0F;
+            worldrenderer.pos((double)k, (double)l, (double)this.zLevel).tex((double)(0.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            worldrenderer.pos((double)k, 0.0D, (double)this.zLevel).tex((double)(1.0F + f1), 1.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            worldrenderer.pos(0.0D, 0.0D, (double)this.zLevel).tex((double)(1.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
+            worldrenderer.pos(0.0D, (double)l, (double)this.zLevel).tex((double)(0.0F + f1), 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
         }
 
         tessellator.draw();
@@ -323,18 +324,18 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.rotateAndBlurSkybox(p_73971_3_);
         this.mc.getFramebuffer().bindFramebuffer(true);
         GlStateManager.viewport(0, 0, this.mc.displayWidth, this.mc.displayHeight);
-        float f = this.width > this.height ? 120.0F / (float) this.width : 120.0F / (float) this.height;
-        float f1 = (float) this.height * f / 256.0F;
-        float f2 = (float) this.width * f / 256.0F;
+        float f = this.width > this.height ? 120.0F / (float)this.width : 120.0F / (float)this.height;
+        float f1 = (float)this.height * f / 256.0F;
+        float f2 = (float)this.width * f / 256.0F;
         int i = this.width;
         int j = this.height;
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos(0.0D, (double) j, (double) this.zLevel).tex((double) (0.5F - f1), (double) (0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) i, (double) j, (double) this.zLevel).tex((double) (0.5F - f1), (double) (0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos((double) i, 0.0D, (double) this.zLevel).tex((double) (0.5F + f1), (double) (0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
-        worldrenderer.pos(0.0D, 0.0D, (double) this.zLevel).tex((double) (0.5F + f1), (double) (0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, (double)j, (double)this.zLevel).tex((double)(0.5F - f1), (double)(0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos((double)i, (double)j, (double)this.zLevel).tex((double)(0.5F - f1), (double)(0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos((double)i, 0.0D, (double)this.zLevel).tex((double)(0.5F + f1), (double)(0.5F - f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, (double)this.zLevel).tex((double)(0.5F + f1), (double)(0.5F + f2)).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
         tessellator.draw();
     }
 
@@ -353,13 +354,14 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if ((double) this.updateCounter < 1.0E-4D) {
+        if ((double)this.updateCounter < 1.0E-4D) {
             this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 99, 44);
             this.drawTexturedModalRect(j + 99, k + 0, 129, 0, 27, 44);
             this.drawTexturedModalRect(j + 99 + 26, k + 0, 126, 0, 3, 44);
             this.drawTexturedModalRect(j + 99 + 26 + 3, k + 0, 99, 0, 26, 44);
             this.drawTexturedModalRect(j + 155, k + 0, 0, 45, 155, 44);
-        } else {
+        }
+        else {
             this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 155, 44);
             this.drawTexturedModalRect(j + 155, k + 0, 0, 45, 155, 44);
         }
@@ -367,7 +369,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
             drawRect(this.openGLWarningX1 - 2, this.openGLWarningY1 - 2, this.openGLWarningX2 + 2, this.openGLWarningY2 - 1, 1428160512);
             this.drawString(this.fontRendererObj, this.openGLWarning1, this.openGLWarningX1, this.openGLWarningY1, -1);
-            this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.openGLWarning2Width) / 2, ((GuiButton) this.buttonList.get(0)).yPosition - 12, -1);
+            this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.openGLWarning2Width) / 2, ((GuiButton)this.buttonList.getFirst()).yPosition - 12, -1);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);

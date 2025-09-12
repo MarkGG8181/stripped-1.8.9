@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 public class ItemArmor extends Item
 {
     /** Holds the 'base' maxDamage that each armorType have. */
-    private static final int[] maxDamageArray = new int[] {11, 16, 15, 13};
-    public static final String[] EMPTY_SLOT_NAMES = new String[] {"minecraft:items/empty_armor_slot_helmet", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_boots"};
+    private static final int[] maxDamageArray = new int[]{11, 16, 15, 13};
+    public static final String[] EMPTY_SLOT_NAMES = new String[]{"minecraft:items/empty_armor_slot_helmet", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_boots"};
     private static final IBehaviorDispenseItem dispenserBehavior = new BehaviorDefaultDispenseItem()
     {
         protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
@@ -31,20 +31,20 @@ public class ItemArmor extends Item
             int j = blockpos.getY();
             int k = blockpos.getZ();
             AxisAlignedBB axisalignedbb = new AxisAlignedBB((double)i, (double)j, (double)k, (double)(i + 1), (double)(j + 1), (double)(k + 1));
-            List<EntityLivingBase> list = source.getWorld().<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, Predicates.<EntityLivingBase> and (EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
+            List<EntityLivingBase> list = source.getWorld().<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, Predicates.<EntityLivingBase>and(EntitySelectors.NOT_SPECTATING, new EntitySelectors.ArmoredMob(stack)));
 
             if (list.size() > 0)
             {
-                EntityLivingBase entitylivingbase = (EntityLivingBase)list.get(0);
+                EntityLivingBase entitylivingbase = (EntityLivingBase)list.getFirst();
                 int l = entitylivingbase instanceof EntityPlayer ? 1 : 0;
                 int i1 = EntityLiving.getArmorPosition(stack);
                 ItemStack itemstack = stack.copy();
                 itemstack.stackSize = 1;
                 entitylivingbase.setCurrentItemOrArmor(i1 - l, itemstack);
 
-                if (entitylivingbase instanceof EntityLiving)
+                if (entitylivingbase instanceof EntityLiving living)
                 {
-                    ((EntityLiving)entitylivingbase).setEquipmentDropChance(i1, 2.0F);
+                    living.setEquipmentDropChance(i1, 2.0F);
                 }
 
                 --stack.stackSize;

@@ -59,7 +59,7 @@ public class ChunkLoader {
                         for (int i2 = 0; i2 < 16; ++i2) {
                             int j2 = j3 << 11 | i2 << 7 | l1 + (j << 4);
                             int k2 = p_76690_0_.blocks[j2];
-                            abyte1[l1 << 8 | i2 << 4 | j3] = (byte) (k2 & 255);
+                            abyte1[l1 << 8 | i2 << 4 | j3] = (byte)(k2 & 255);
                             nibblearray.set(j3, l1, i2, p_76690_0_.data.get(j3, l1 + (j << 4), i2));
                             nibblearray1.set(j3, l1, i2, p_76690_0_.skyLight.get(j3, l1 + (j << 4), i2));
                             nibblearray2.set(j3, l1, i2, p_76690_0_.blockLight.get(j3, l1 + (j << 4), i2));
@@ -68,7 +68,7 @@ public class ChunkLoader {
                 }
 
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
-                nbttagcompound.setByte("Y", (byte) (j & 255));
+                nbttagcompound.setByte("Y", (byte)(j & 255));
                 nbttagcompound.setByteArray("Blocks", abyte1);
                 nbttagcompound.setByteArray("Data", nibblearray.getData());
                 nbttagcompound.setByteArray("SkyLight", nibblearray1.getData());
@@ -84,7 +84,7 @@ public class ChunkLoader {
         for (int l2 = 0; l2 < 16; ++l2) {
             for (int i3 = 0; i3 < 16; ++i3) {
                 blockpos$mutableblockpos.set(p_76690_0_.x << 4 | l2, 0, p_76690_0_.z << 4 | i3);
-                abyte[i3 << 4 | l2] = (byte) (p_76690_2_.getBiomeGenerator(blockpos$mutableblockpos, BiomeGenBase.DEFAULT).biomeID & 255);
+                abyte[i3 << 4 | l2] = (byte)(p_76690_2_.getBiomeGenerator(blockpos$mutableblockpos, BiomeGenBase.DEFAULT).biomeID & 255);
             }
         }
 

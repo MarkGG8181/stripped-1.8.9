@@ -44,7 +44,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
         this.server = serverIn;
         this.mc = Minecraft.getMinecraft();
         this.serverIcon = new ResourceLocation("servers/" + serverIn.serverIP + "/icon");
-        this.icon = (DynamicTexture) this.mc.getTextureManager().getTexture(this.serverIcon);
+        this.icon = (DynamicTexture)this.mc.getTextureManager().getTexture(this.serverIcon);
     }
 
     public void drawEntry(int slotIndex, int x, int y, int listWidth, int slotHeight, int mouseX, int mouseY, boolean isSelected) {
@@ -73,7 +73,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
         List<String> list = this.mc.fontRendererObj.listFormattedStringToWidth(this.server.serverMOTD, listWidth - 32 - 2);
 
         for (int i = 0; i < Math.min(list.size(), 2); ++i) {
-            this.mc.fontRendererObj.drawString((String) list.get(i), x + 32 + 3, y + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 8421504);
+            this.mc.fontRendererObj.drawString((String)list.get(i), x + 32 + 3, y + 12 + this.mc.fontRendererObj.FONT_HEIGHT * i, 8421504);
         }
 
         String s2 = flag2 ? EnumChatFormatting.DARK_RED + this.server.gameVersion : this.server.populationInfo;
@@ -88,30 +88,38 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             l = 5;
             s1 = flag ? "Client out of date!" : "Server out of date!";
             s = this.server.playerList;
-        } else if (this.server.pinged && this.server.pingToServer != -2L) {
+        }
+        else if (this.server.pinged && this.server.pingToServer != -2L) {
             if (this.server.pingToServer < 0L) {
                 l = 5;
-            } else if (this.server.pingToServer < 150L) {
+            }
+            else if (this.server.pingToServer < 150L) {
                 l = 0;
-            } else if (this.server.pingToServer < 300L) {
+            }
+            else if (this.server.pingToServer < 300L) {
                 l = 1;
-            } else if (this.server.pingToServer < 600L) {
+            }
+            else if (this.server.pingToServer < 600L) {
                 l = 2;
-            } else if (this.server.pingToServer < 1000L) {
+            }
+            else if (this.server.pingToServer < 1000L) {
                 l = 3;
-            } else {
+            }
+            else {
                 l = 4;
             }
 
             if (this.server.pingToServer < 0L) {
                 s1 = "(no connection)";
-            } else {
+            }
+            else {
                 s1 = this.server.pingToServer + "ms";
                 s = this.server.playerList;
             }
-        } else {
+        }
+        else {
             k = 1;
-            l = (int) (Minecraft.getSystemTime() / 100L + (slotIndex * 2L) & 7L);
+            l = (int)(Minecraft.getSystemTime() / 100L + (slotIndex * 2L) & 7L);
 
             if (l > 4) {
                 l = 8 - l;
@@ -122,7 +130,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(Gui.icons);
-        Gui.drawModalRectWithCustomSizedTexture(x + listWidth - 15, y, (float) (k * 10), (float) (176 + l * 8), 10, 8, 256.0F, 256.0F);
+        Gui.drawModalRectWithCustomSizedTexture(x + listWidth - 15, y, (float)(k * 10), (float)(176 + l * 8), 10, 8, 256.0F, 256.0F);
 
         if (this.server.getBase64EncodedIconData() != null && !this.server.getBase64EncodedIconData().equals(this.lastIconB64)) {
             this.lastIconB64 = this.server.getBase64EncodedIconData();
@@ -137,7 +145,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
 
         if (this.icon != null) {
             this.drawTextureAt(x, y, this.serverIcon);
-        } else {
+        }
+        else {
             this.drawTextureAt(x, y, UNKNOWN_SERVER);
         }
 
@@ -146,7 +155,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
 
         if (i1 >= listWidth - 15 && i1 <= listWidth - 5 && j1 >= 0 && j1 <= 8) {
             this.owner.setHoveringText(s1);
-        } else if (i1 >= listWidth - j - 15 - 2 && i1 <= listWidth - 15 - 2 && j1 >= 0 && j1 <= 8) {
+        }
+        else if (i1 >= listWidth - j - 15 - 2 && i1 <= listWidth - 15 - 2 && j1 >= 0 && j1 <= 8) {
             this.owner.setHoveringText(s);
         }
 
@@ -160,7 +170,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             if (this.func_178013_b()) {
                 if (k1 < 32 && k1 > 16) {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 32.0F, 32, 32, 256.0F, 256.0F);
-                } else {
+                }
+                else {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 0.0F, 32, 32, 256.0F, 256.0F);
                 }
             }
@@ -168,7 +179,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             if (this.owner.func_175392_a(this, slotIndex)) {
                 if (k1 < 16 && l1 < 16) {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 32.0F, 32, 32, 256.0F, 256.0F);
-                } else {
+                }
+                else {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 96.0F, 0.0F, 32, 32, 256.0F, 256.0F);
                 }
             }
@@ -176,7 +188,8 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
             if (this.owner.func_175394_b(this, slotIndex)) {
                 if (k1 < 16 && l1 > 16) {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 32.0F, 32, 32, 256.0F, 256.0F);
-                } else {
+                }
+                else {
                     Gui.drawModalRectWithCustomSizedTexture(x, y, 64.0F, 0.0F, 32, 32, 256.0F, 256.0F);
                 }
             }
@@ -198,8 +211,9 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
         if (this.server.getBase64EncodedIconData() == null) {
             this.mc.getTextureManager().deleteTexture(this.serverIcon);
             this.icon = null;
-        } else {
-            ByteBuf bytebuf = Unpooled.copiedBuffer((CharSequence) this.server.getBase64EncodedIconData(), StandardCharsets.UTF_8);
+        }
+        else {
+            ByteBuf bytebuf = Unpooled.copiedBuffer((CharSequence)this.server.getBase64EncodedIconData(), StandardCharsets.UTF_8);
             ByteBuf bytebuf1 = Base64.decode(bytebuf);
             BufferedImage bufferedimage;
             label101:
@@ -211,7 +225,7 @@ public class ServerListEntryNormal implements GuiListExtended.IGuiListEntry {
                     break label101;
                 } catch (Throwable throwable) {
                     logger.error("Invalid icon for server " + this.server.serverName + " (" + this.server.serverIP + ")", throwable);
-                    this.server.setBase64EncodedIconData((String) null);
+                    this.server.setBase64EncodedIconData((String)null);
                 } finally {
                     bytebuf.release();
                     bytebuf1.release();

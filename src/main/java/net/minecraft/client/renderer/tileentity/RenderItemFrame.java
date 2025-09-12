@@ -50,9 +50,9 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
     public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
         BlockPos blockpos = entity.getHangingPosition();
-        double d0 = (double) blockpos.getX() - entity.posX + x;
-        double d1 = (double) blockpos.getY() - entity.posY + y;
-        double d2 = (double) blockpos.getZ() - entity.posZ + z;
+        double d0 = (double)blockpos.getX() - entity.posX + x;
+        double d1 = (double)blockpos.getY() - entity.posY + y;
+        double d2 = (double)blockpos.getZ() - entity.posZ + z;
         GlStateManager.translate(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D);
         GlStateManager.rotate(180.0F - entity.rotationYaw, 0.0F, 1.0F, 0.0F);
         this.renderManager.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
@@ -62,7 +62,8 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
 
         if (entity.getDisplayedItem() != null && entity.getDisplayedItem().getItem() == Items.filled_map) {
             ibakedmodel = modelmanager.getModel(this.mapModel);
-        } else {
+        }
+        else {
             ibakedmodel = modelmanager.getModel(this.itemFrameModel);
         }
 
@@ -73,7 +74,7 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
         GlStateManager.translate(0.0F, 0.0F, 0.4375F);
         this.renderItem(entity);
         GlStateManager.popMatrix();
-        this.renderName(entity, x + (double) ((float) entity.facingDirection.getFrontOffsetX() * 0.3F), y - 0.25D, z + (double) ((float) entity.facingDirection.getFrontOffsetZ() * 0.3F));
+        this.renderName(entity, x + (double)((float)entity.facingDirection.getFrontOffsetX() * 0.3F), y - 0.25D, z + (double)((float)entity.facingDirection.getFrontOffsetZ() * 0.3F));
     }
 
     /**
@@ -108,7 +109,7 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
                 i = i % 4 * 2;
             }
 
-            GlStateManager.rotate((float) i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate((float)i * 360.0F / 8.0F, 0.0F, 0.0F, 1.0F);
 
             if (item == Items.filled_map) {
                 this.renderManager.renderEngine.bindTexture(mapBackgroundTextures);
@@ -122,23 +123,24 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
                 if (mapdata != null) {
                     this.mc.entityRenderer.getMapItemRenderer().renderMap(mapdata, true);
                 }
-            } else {
+            }
+            else {
                 TextureAtlasSprite textureatlassprite = null;
 
                 if (item == Items.compass) {
                     textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite(TextureCompass.locationSprite);
                     this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 
-                    if (textureatlassprite instanceof TextureCompass) {
-                        TextureCompass texturecompass = (TextureCompass) textureatlassprite;
+                    if (textureatlassprite instanceof TextureCompass texturecompass) {
                         double d0 = texturecompass.currentAngle;
                         double d1 = texturecompass.angleDelta;
                         texturecompass.currentAngle = 0.0D;
                         texturecompass.angleDelta = 0.0D;
-                        texturecompass.updateCompass(itemFrame.worldObj, itemFrame.posX, itemFrame.posZ, (double) MathHelper.wrapAngleTo180_float((float) (180 + itemFrame.facingDirection.getHorizontalIndex() * 90)), false, true);
+                        texturecompass.updateCompass(itemFrame.worldObj, itemFrame.posX, itemFrame.posZ, (double)MathHelper.wrapAngleTo180_float((float)(180 + itemFrame.facingDirection.getHorizontalIndex() * 90)), false, true);
                         texturecompass.currentAngle = d0;
                         texturecompass.angleDelta = d1;
-                    } else {
+                    }
+                    else {
                         textureatlassprite = null;
                     }
                 }
@@ -172,13 +174,13 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
             double d0 = entity.getDistanceSqToEntity(this.renderManager.livingPlayer);
             float f2 = entity.isSneaking() ? 32.0F : 64.0F;
 
-            if (d0 < (double) (f2 * f2)) {
+            if (d0 < (double)(f2 * f2)) {
                 String s = entity.getDisplayedItem().getDisplayName();
 
                 if (entity.isSneaking()) {
                     FontRenderer fontrenderer = this.getFontRendererFromRenderManager();
                     GlStateManager.pushMatrix();
-                    GlStateManager.translate((float) x + 0.0F, (float) y + entity.height + 0.5F, (float) z);
+                    GlStateManager.translate((float)x + 0.0F, (float)y + entity.height + 0.5F, (float)z);
                     GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                     GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                     GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
@@ -193,10 +195,10 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
                     int i = fontrenderer.getStringWidth(s) / 2;
                     GlStateManager.disableTexture2D();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-                    worldrenderer.pos((double) (-i - 1), -1.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (-i - 1), 8.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (i + 1), 8.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-                    worldrenderer.pos((double) (i + 1), -1.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos((double)(-i - 1), -1.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos((double)(-i - 1), 8.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos((double)(i + 1), 8.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+                    worldrenderer.pos((double)(i + 1), -1.0D, 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
                     tessellator.draw();
                     GlStateManager.enableTexture2D();
                     GlStateManager.depthMask(true);
@@ -205,7 +207,8 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
                     GlStateManager.disableBlend();
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                     GlStateManager.popMatrix();
-                } else {
+                }
+                else {
                     this.renderLivingLabel(entity, s, x, y, z);
                 }
             }

@@ -36,7 +36,7 @@ public class FallbackResourceManager implements IResourceManager {
         ResourceLocation resourcelocation = getLocationMcmeta(location);
 
         for (int i = this.resourcePacks.size() - 1; i >= 0; --i) {
-            IResourcePack iresourcepack1 = (IResourcePack) this.resourcePacks.get(i);
+            IResourcePack iresourcepack1 = (IResourcePack)this.resourcePacks.get(i);
 
             if (iresourcepack == null && iresourcepack1.resourceExists(resourcelocation)) {
                 iresourcepack = iresourcepack1;
@@ -58,7 +58,7 @@ public class FallbackResourceManager implements IResourceManager {
 
     protected InputStream getInputStream(ResourceLocation location, IResourcePack resourcePack) throws IOException {
         InputStream inputstream = resourcePack.getInputStream(location);
-        return (InputStream) (logger.isDebugEnabled() ? new FallbackResourceManager.InputStreamLeakedResourceLogger(inputstream, location, resourcePack.getPackName()) : inputstream);
+        return (InputStream)(logger.isDebugEnabled() ? new FallbackResourceManager.InputStreamLeakedResourceLogger(inputstream, location, resourcePack.getPackName()) : inputstream);
     }
 
     public List<IResource> getAllResources(ResourceLocation location) throws IOException {
@@ -74,7 +74,8 @@ public class FallbackResourceManager implements IResourceManager {
 
         if (list.isEmpty()) {
             throw new FileNotFoundException(location.toString());
-        } else {
+        }
+        else {
             return list;
         }
     }

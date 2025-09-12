@@ -179,7 +179,8 @@ public class BiomeDecorator {
     public void decorate(World worldIn, Random random, BiomeGenBase biome, BlockPos p_180292_4_) {
         if (this.currentWorld != null) {
             throw new RuntimeException("Already decorating");
-        } else {
+        }
+        else {
             this.currentWorld = worldIn;
             String s = worldIn.getWorldInfo().getGeneratorOptions();
 
@@ -427,10 +428,12 @@ public class BiomeDecorator {
             int i = minHeight;
             minHeight = maxHeight;
             maxHeight = i;
-        } else if (maxHeight == minHeight) {
+        }
+        else if (maxHeight == minHeight) {
             if (minHeight < 255) {
                 ++maxHeight;
-            } else {
+            }
+            else {
                 --minHeight;
             }
         }

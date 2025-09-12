@@ -33,7 +33,7 @@ public class PathNavigateGround extends PathNavigate {
     }
 
     protected Vec3 getEntityPosition() {
-        return new Vec3(this.theEntity.posX, (double) this.getPathablePosY(), this.theEntity.posZ);
+        return new Vec3(this.theEntity.posX, (double)this.getPathablePosY(), this.theEntity.posZ);
     }
 
     /**
@@ -41,7 +41,7 @@ public class PathNavigateGround extends PathNavigate {
      */
     private int getPathablePosY() {
         if (this.theEntity.isInWater() && this.getCanSwim()) {
-            var i = (int) this.theEntity.getEntityBoundingBox().minY;
+            var i = (int)this.theEntity.getEntityBoundingBox().minY;
             var x = MathHelper.floor_double(this.theEntity.posX);
             var z = MathHelper.floor_double(this.theEntity.posZ);
             var mutablePos = new BlockPos.MutableBlockPos(x, i, z);
@@ -53,13 +53,14 @@ public class PathNavigateGround extends PathNavigate {
                 mutablePos.setY(i);
                 block = this.worldObj.getBlockState(mutablePos).getBlock();
                 if (++j > 16) {
-                    return (int) this.theEntity.getEntityBoundingBox().minY;
+                    return (int)this.theEntity.getEntityBoundingBox().minY;
                 }
             }
 
             return i;
-        } else {
-            return (int) (this.theEntity.getEntityBoundingBox().minY + 0.5D);
+        }
+        else {
+            return (int)(this.theEntity.getEntityBoundingBox().minY + 0.5D);
         }
     }
 
@@ -70,7 +71,7 @@ public class PathNavigateGround extends PathNavigate {
         super.removeSunnyPath();
 
         if (this.shouldAvoidSun) {
-            if (this.worldObj.canSeeSky(new BlockPos(MathHelper.floor_double(this.theEntity.posX), (int) (this.theEntity.getEntityBoundingBox().minY + 0.5D), MathHelper.floor_double(this.theEntity.posZ)))) {
+            if (this.worldObj.canSeeSky(new BlockPos(MathHelper.floor_double(this.theEntity.posX), (int)(this.theEntity.getEntityBoundingBox().minY + 0.5D), MathHelper.floor_double(this.theEntity.posZ)))) {
                 return;
             }
 
@@ -107,7 +108,7 @@ public class PathNavigateGround extends PathNavigate {
         sizeX += 2;
         sizeZ += 2;
 
-        if (this.isSafeToStandAt(i, (int) posVec31.y, j, sizeX, sizeY, sizeZ, posVec31, d0, d1)) {
+        if (this.isSafeToStandAt(i, (int)posVec31.y, j, sizeX, sizeY, sizeZ, posVec31, d0, d1)) {
             return false;
         }
 
@@ -115,8 +116,8 @@ public class PathNavigateGround extends PathNavigate {
         sizeZ -= 2;
         var d4 = 1.0D / Math.abs(d0);
         var d5 = 1.0D / Math.abs(d1);
-        var d6 = (double) i - posVec31.x;
-        var d7 = (double) j - posVec31.z;
+        var d6 = (double)i - posVec31.x;
+        var d7 = (double)j - posVec31.z;
 
         if (d0 >= 0.0D) ++d6;
         if (d1 >= 0.0D) ++d7;
@@ -135,13 +136,14 @@ public class PathNavigateGround extends PathNavigate {
                 d6 += d4;
                 i += k;
                 k1 = i1 - i;
-            } else {
+            }
+            else {
                 d7 += d5;
                 j += l;
                 l1 = j1 - j;
             }
 
-            if (this.isSafeToStandAt(i, (int) posVec31.y, j, sizeX, sizeY, sizeZ, posVec31, d0, d1)) {
+            if (this.isSafeToStandAt(i, (int)posVec31.y, j, sizeX, sizeY, sizeZ, posVec31, d0, d1)) {
                 return false;
             }
         }
@@ -163,8 +165,8 @@ public class PathNavigateGround extends PathNavigate {
         var mutablePos = new BlockPos.MutableBlockPos();
         for (var k = i; k < i + sizeX; ++k) {
             for (var l = j; l < j + sizeZ; ++l) {
-                var d0 = (double) k + 0.5D - vec31.x;
-                var d1 = (double) l + 0.5D - vec31.z;
+                var d0 = (double)k + 0.5D - vec31.x;
+                var d1 = (double)l + 0.5D - vec31.z;
 
                 if (d0 * p_179683_8_ + d1 * p_179683_10_ >= 0.0D) {
                     mutablePos.set(k, y - 1, l);
@@ -192,8 +194,8 @@ public class PathNavigateGround extends PathNavigate {
         for (var curX = p_179692_1_; curX <= maxX; ++curX) {
             for (var curY = p_179692_2_; curY <= maxY; ++curY) {
                 for (var curZ = p_179692_3_; curZ <= maxZ; ++curZ) {
-                    var d0 = (double) curX + 0.5D - p_179692_7_.x;
-                    var d1 = (double) curZ + 0.5D - p_179692_7_.z;
+                    var d0 = (double)curX + 0.5D - p_179692_7_.x;
+                    var d1 = (double)curZ + 0.5D - p_179692_7_.z;
                     if (d0 * p_179692_8_ + d1 * p_179692_10_ >= 0.0D) {
                         mutablePos.set(curX, curY, curZ);
                         if (!this.worldObj.getBlockState(mutablePos).getBlock().isPassable(this.worldObj, mutablePos)) {

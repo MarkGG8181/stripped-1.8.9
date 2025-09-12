@@ -47,7 +47,8 @@ public class CommandSummon extends CommandBase {
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         if (args.length < 1) {
             throw new WrongUsageException("commands.summon.usage", new Object[0]);
-        } else {
+        }
+        else {
             String s = args[0];
             BlockPos blockpos = sender.getPosition();
             Vec3 vec3 = sender.getPositionVector();
@@ -66,10 +67,12 @@ public class CommandSummon extends CommandBase {
 
             if (!world.isBlockLoaded(blockpos)) {
                 throw new CommandException("commands.summon.outOfWorld", new Object[0]);
-            } else if ("LightningBolt".equals(s)) {
+            }
+            else if ("LightningBolt".equals(s)) {
                 world.addWeatherEffect(new EntityLightningBolt(world, d0, d1, d2));
                 notifyOperators(sender, this, "commands.summon.success", new Object[0]);
-            } else {
+            }
+            else {
                 NBTTagCompound nbttagcompound = new NBTTagCompound();
                 boolean flag = false;
 
@@ -95,11 +98,12 @@ public class CommandSummon extends CommandBase {
 
                 if (entity2 == null) {
                     throw new CommandException("commands.summon.failed", new Object[0]);
-                } else {
+                }
+                else {
                     entity2.setLocationAndAngles(d0, d1, d2, entity2.rotationYaw, entity2.rotationPitch);
 
-                    if (!flag && entity2 instanceof EntityLiving) {
-                        ((EntityLiving) entity2).onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entity2)), (IEntityLivingData) null);
+                    if (!flag && entity2 instanceof EntityLiving living) {
+                        living.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entity2)), (IEntityLivingData)null);
                     }
 
                     world.spawnEntityInWorld(entity2);

@@ -130,9 +130,9 @@ public class EntityFallingBlock extends Entity
                         {
                             if (this.worldObj.canBlockBePlaced(block, blockpos1, true, EnumFacing.UP, (Entity)null, (ItemStack)null) && !BlockFalling.canFallInto(this.worldObj, blockpos1.down()) && this.worldObj.setBlockState(blockpos1, this.fallTile, 3))
                             {
-                                if (block instanceof BlockFalling)
+                                if (block instanceof BlockFalling falling)
                                 {
-                                    ((BlockFalling)block).onEndFalling(this.worldObj, blockpos1);
+                                    falling.onEndFalling(this.worldObj, blockpos1);
                                 }
 
                                 if (this.tileEntityData != null && block instanceof ITileEntityProvider)

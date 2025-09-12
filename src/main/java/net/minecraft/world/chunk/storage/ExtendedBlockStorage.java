@@ -71,7 +71,7 @@ public class ExtendedBlockStorage {
             }
         }
 
-        this.data[y << 8 | z << 4 | x] = (char) Block.BLOCK_STATE_IDS.get(state);
+        this.data[y << 8 | z << 4 | x] = (char)Block.BLOCK_STATE_IDS.get(state);
     }
 
     /**
@@ -99,15 +99,17 @@ public class ExtendedBlockStorage {
         }
 
         if (this.lightRefCount == -1) {
-            if (this.checkLightArrayEqual(this.skylightArray, (byte) 0xFF) && this.checkLightArrayEqual(this.blocklightArray, (byte) 0x00)) {
+            if (this.checkLightArrayEqual(this.skylightArray, (byte)0xFF) && this.checkLightArrayEqual(this.blocklightArray, (byte)0x00)) {
                 this.lightRefCount = 0;
-            } else {
+            }
+            else {
                 this.lightRefCount = 1;
             }
         }
 
         return this.lightRefCount == 0;
     }
+
     /**
      * Returns whether or not this block storage's Chunk will require random ticking, used to avoid looping through
      * random block ticks when there are no blocks that would randomly tick.
@@ -203,6 +205,7 @@ public class ExtendedBlockStorage {
         this.blocklightArray = newBlocklightArray;
         this.lightRefCount = -1;
     }
+
     /**
      * Sets the NibbleArray instance used for Sky-light values in this particular storage block.
      */

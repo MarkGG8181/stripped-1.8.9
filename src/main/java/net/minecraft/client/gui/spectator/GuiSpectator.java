@@ -154,7 +154,6 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
 
         for (i = this.menu.func_178648_e() + p_175259_1_; i >= 0 && i <= 8 && (this.menu.func_178643_a(i) == SpectatorMenu.EMPTY_SLOT || !this.menu.func_178643_a(i).func_178662_A_()); i += p_175259_1_)
         {
-            ;
         }
 
         if (i >= 0 && i <= 8)

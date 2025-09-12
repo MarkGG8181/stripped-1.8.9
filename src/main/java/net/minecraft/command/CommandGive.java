@@ -63,7 +63,7 @@ public class CommandGive extends CommandBase
                 }
                 catch (NBTException nbtexception)
                 {
-                    throw new CommandException("commands.give.tagError", new Object[] {nbtexception.getMessage()});
+                    throw new CommandException("commands.give.tagError", new Object[]{nbtexception.getMessage()});
                 }
             }
 
@@ -98,7 +98,7 @@ public class CommandGive extends CommandBase
                 }
             }
 
-            notifyOperators(sender, this, "commands.give.success", new Object[] {itemstack.getChatComponent(), Integer.valueOf(i), entityplayer.getName()});
+            notifyOperators(sender, this, "commands.give.success", new Object[]{itemstack.getChatComponent(), Integer.valueOf(i), entityplayer.getName()});
         }
     }
 

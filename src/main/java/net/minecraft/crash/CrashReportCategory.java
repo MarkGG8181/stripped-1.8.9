@@ -22,7 +22,7 @@ public class CrashReportCategory
 
     public static String getCoordinateInfo(double x, double y, double z)
     {
-        return String.format("%.2f,%.2f,%.2f - %s", new Object[] {Double.valueOf(x), Double.valueOf(y), Double.valueOf(z), getCoordinateInfo(new BlockPos(x, y, z))});
+        return "%.2f,%.2f,%.2f - %s".formatted(new Object[]{Double.valueOf(x), Double.valueOf(y), Double.valueOf(z), getCoordinateInfo(new BlockPos(x, y, z))});
     }
 
     public static String getCoordinateInfo(BlockPos pos)
@@ -34,7 +34,7 @@ public class CrashReportCategory
 
         try
         {
-            stringbuilder.append(String.format("World: (%d,%d,%d)", new Object[] {Integer.valueOf(i), Integer.valueOf(j), Integer.valueOf(k)}));
+            stringbuilder.append("World: (%d,%d,%d)".formatted(new Object[]{Integer.valueOf(i), Integer.valueOf(j), Integer.valueOf(k)}));
         }
         catch (Throwable var17)
         {
@@ -54,7 +54,7 @@ public class CrashReportCategory
             int j2 = i1 << 4;
             int k2 = (l + 1 << 4) - 1;
             int l2 = (i1 + 1 << 4) - 1;
-            stringbuilder.append(String.format("Chunk: (at %d,%d,%d in %d,%d; contains blocks %d,0,%d to %d,255,%d)", new Object[] {Integer.valueOf(j1), Integer.valueOf(k1), Integer.valueOf(l1), Integer.valueOf(l), Integer.valueOf(i1), Integer.valueOf(i2), Integer.valueOf(j2), Integer.valueOf(k2), Integer.valueOf(l2)}));
+            stringbuilder.append("Chunk: (at %d,%d,%d in %d,%d; contains blocks %d,0,%d to %d,255,%d)".formatted(new Object[]{Integer.valueOf(j1), Integer.valueOf(k1), Integer.valueOf(l1), Integer.valueOf(l), Integer.valueOf(i1), Integer.valueOf(i2), Integer.valueOf(j2), Integer.valueOf(k2), Integer.valueOf(l2)}));
         }
         catch (Throwable var16)
         {
@@ -75,7 +75,7 @@ public class CrashReportCategory
             int i5 = k3 << 9;
             int j5 = (j3 + 1 << 9) - 1;
             int i3 = (k3 + 1 << 9) - 1;
-            stringbuilder.append(String.format("Region: (%d,%d; contains chunks %d,%d to %d,%d, blocks %d,0,%d to %d,255,%d)", new Object[] {Integer.valueOf(j3), Integer.valueOf(k3), Integer.valueOf(l3), Integer.valueOf(i4), Integer.valueOf(j4), Integer.valueOf(k4), Integer.valueOf(l4), Integer.valueOf(i5), Integer.valueOf(j5), Integer.valueOf(i3)}));
+            stringbuilder.append("Region: (%d,%d; contains chunks %d,%d to %d,%d, blocks %d,0,%d to %d,255,%d)".formatted(new Object[]{Integer.valueOf(j3), Integer.valueOf(k3), Integer.valueOf(l3), Integer.valueOf(i4), Integer.valueOf(j4), Integer.valueOf(k4), Integer.valueOf(l4), Integer.valueOf(i5), Integer.valueOf(j5), Integer.valueOf(i3)}));
         }
         catch (Throwable var15)
         {
@@ -221,7 +221,7 @@ public class CrashReportCategory
             {
                 try
                 {
-                    return String.format("ID #%d (%s // %s)", new Object[] {Integer.valueOf(i), blockIn.getUnlocalizedName(), blockIn.getClass().getCanonicalName()});
+                    return "ID #%d (%s // %s)".formatted(new Object[]{Integer.valueOf(i), blockIn.getUnlocalizedName(), blockIn.getClass().getCanonicalName()});
                 }
                 catch (Throwable var2)
                 {
@@ -239,8 +239,8 @@ public class CrashReportCategory
                 }
                 else
                 {
-                    String s = String.format("%4s", new Object[] {Integer.toBinaryString(blockData)}).replace(" ", "0");
-                    return String.format("%1$d / 0x%1$X / 0b%2$s", new Object[] {Integer.valueOf(blockData), s});
+                    String s = "%4s".formatted(new Object[]{Integer.toBinaryString(blockData)}).replace(" ", "0");
+                    return "%1$d / 0x%1$X / 0b%2$s".formatted(new Object[]{Integer.valueOf(blockData), s});
                 }
             }
         });
@@ -284,9 +284,8 @@ public class CrashReportCategory
             {
                 this.value = "~~NULL~~";
             }
-            else if (value instanceof Throwable)
+            else if (value instanceof Throwable throwable)
             {
-                Throwable throwable = (Throwable)value;
                 this.value = "~~ERROR~~ " + throwable.getClass().getSimpleName() + ": " + throwable.getMessage();
             }
             else

@@ -32,16 +32,18 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GL13 extends GL12 {
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     /** Accepted by the {@code internalformat} parameter of TexImage1D, TexImage2D, TexImage3D, CopyTexImage1D, and CopyTexImage2D. */
     public static final int
-        GL_COMPRESSED_ALPHA           = 0x84E9,
-        GL_COMPRESSED_LUMINANCE       = 0x84EA,
+        GL_COMPRESSED_ALPHA = 0x84E9,
+        GL_COMPRESSED_LUMINANCE = 0x84EA,
         GL_COMPRESSED_LUMINANCE_ALPHA = 0x84EB,
-        GL_COMPRESSED_INTENSITY       = 0x84EC,
-        GL_COMPRESSED_RGB             = 0x84ED,
-        GL_COMPRESSED_RGBA            = 0x84EE;
+        GL_COMPRESSED_INTENSITY = 0x84EC,
+        GL_COMPRESSED_RGB = 0x84ED,
+        GL_COMPRESSED_RGBA = 0x84EE;
 
     /** Accepted by the {@code target} parameter of Hint and the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
     public static final int GL_TEXTURE_COMPRESSION_HINT = 0x84EF;
@@ -49,16 +51,16 @@ public class GL13 extends GL12 {
     /** Accepted by the {@code value} parameter of GetTexLevelParameter. */
     public static final int
         GL_TEXTURE_COMPRESSED_IMAGE_SIZE = 0x86A0,
-        GL_TEXTURE_COMPRESSED            = 0x86A1;
+        GL_TEXTURE_COMPRESSED = 0x86A1;
 
     /** Accepted by the {@code value} parameter of GetIntegerv, GetBooleanv, GetFloatv, and GetDoublev. */
     public static final int
         GL_NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2,
-        GL_COMPRESSED_TEXTURE_FORMATS     = 0x86A3;
+        GL_COMPRESSED_TEXTURE_FORMATS = 0x86A3;
 
     /** Accepted by the {@code param} parameters of TexGend, TexGenf, and TexGeni when {@code pname} parameter is TEXTURE_GEN_MODE. */
     public static final int
-        GL_NORMAL_MAP     = 0x8511,
+        GL_NORMAL_MAP = 0x8511,
         GL_REFLECTION_MAP = 0x8512;
 
     /**
@@ -95,33 +97,33 @@ public class GL13 extends GL12 {
      * GetDoublev.
      */
     public static final int
-        GL_MULTISAMPLE              = 0x809D,
+        GL_MULTISAMPLE = 0x809D,
         GL_SAMPLE_ALPHA_TO_COVERAGE = 0x809E,
-        GL_SAMPLE_ALPHA_TO_ONE      = 0x809F,
-        GL_SAMPLE_COVERAGE          = 0x80A0;
+        GL_SAMPLE_ALPHA_TO_ONE = 0x809F,
+        GL_SAMPLE_COVERAGE = 0x80A0;
 
     /** Accepted by the {@code mask} parameter of PushAttrib. */
     public static final int GL_MULTISAMPLE_BIT = 0x20000000;
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
     public static final int
-        GL_SAMPLE_BUFFERS         = 0x80A8,
-        GL_SAMPLES                = 0x80A9,
-        GL_SAMPLE_COVERAGE_VALUE  = 0x80AA,
+        GL_SAMPLE_BUFFERS = 0x80A8,
+        GL_SAMPLES = 0x80A9,
+        GL_SAMPLE_COVERAGE_VALUE = 0x80AA,
         GL_SAMPLE_COVERAGE_INVERT = 0x80AB;
 
     /** Accepted by the {@code texture} parameter of ActiveTexture and MultiTexCoord. */
     public static final int
-        GL_TEXTURE0  = 0x84C0,
-        GL_TEXTURE1  = 0x84C1,
-        GL_TEXTURE2  = 0x84C2,
-        GL_TEXTURE3  = 0x84C3,
-        GL_TEXTURE4  = 0x84C4,
-        GL_TEXTURE5  = 0x84C5,
-        GL_TEXTURE6  = 0x84C6,
-        GL_TEXTURE7  = 0x84C7,
-        GL_TEXTURE8  = 0x84C8,
-        GL_TEXTURE9  = 0x84C9,
+        GL_TEXTURE0 = 0x84C0,
+        GL_TEXTURE1 = 0x84C1,
+        GL_TEXTURE2 = 0x84C2,
+        GL_TEXTURE3 = 0x84C3,
+        GL_TEXTURE4 = 0x84C4,
+        GL_TEXTURE5 = 0x84C5,
+        GL_TEXTURE6 = 0x84C6,
+        GL_TEXTURE7 = 0x84C7,
+        GL_TEXTURE8 = 0x84C8,
+        GL_TEXTURE9 = 0x84C9,
         GL_TEXTURE10 = 0x84CA,
         GL_TEXTURE11 = 0x84CB,
         GL_TEXTURE12 = 0x84CC,
@@ -147,52 +149,52 @@ public class GL13 extends GL12 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetDoublev, GetIntegerv, and GetFloatv. */
     public static final int
-        GL_ACTIVE_TEXTURE        = 0x84E0,
+        GL_ACTIVE_TEXTURE = 0x84E0,
         GL_CLIENT_ACTIVE_TEXTURE = 0x84E1,
-        GL_MAX_TEXTURE_UNITS     = 0x84E2;
+        GL_MAX_TEXTURE_UNITS = 0x84E2;
 
     /** Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is TEXTURE_ENV_MODE. */
     public static final int GL_COMBINE = 0x8570;
 
     /** Accepted by the {@code pname} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code target} parameter value is TEXTURE_ENV. */
     public static final int
-        GL_COMBINE_RGB    = 0x8571,
-        GL_COMBINE_ALPHA  = 0x8572,
-        GL_SOURCE0_RGB    = 0x8580,
-        GL_SOURCE1_RGB    = 0x8581,
-        GL_SOURCE2_RGB    = 0x8582,
-        GL_SOURCE0_ALPHA  = 0x8588,
-        GL_SOURCE1_ALPHA  = 0x8589,
-        GL_SOURCE2_ALPHA  = 0x858A,
-        GL_OPERAND0_RGB   = 0x8590,
-        GL_OPERAND1_RGB   = 0x8591,
-        GL_OPERAND2_RGB   = 0x8592,
+        GL_COMBINE_RGB = 0x8571,
+        GL_COMBINE_ALPHA = 0x8572,
+        GL_SOURCE0_RGB = 0x8580,
+        GL_SOURCE1_RGB = 0x8581,
+        GL_SOURCE2_RGB = 0x8582,
+        GL_SOURCE0_ALPHA = 0x8588,
+        GL_SOURCE1_ALPHA = 0x8589,
+        GL_SOURCE2_ALPHA = 0x858A,
+        GL_OPERAND0_RGB = 0x8590,
+        GL_OPERAND1_RGB = 0x8591,
+        GL_OPERAND2_RGB = 0x8592,
         GL_OPERAND0_ALPHA = 0x8598,
         GL_OPERAND1_ALPHA = 0x8599,
         GL_OPERAND2_ALPHA = 0x859A,
-        GL_RGB_SCALE      = 0x8573;
+        GL_RGB_SCALE = 0x8573;
 
     /**
      * Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is COMBINE_RGB or
      * COMBINE_ALPHA.
      */
     public static final int
-        GL_ADD_SIGNED  = 0x8574,
+        GL_ADD_SIGNED = 0x8574,
         GL_INTERPOLATE = 0x8575,
-        GL_SUBTRACT    = 0x84E7;
+        GL_SUBTRACT = 0x84E7;
 
     /**
      * Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is SOURCE0_RGB,
      * SOURCE1_RGB, SOURCE2_RGB, SOURCE0_ALPHA, SOURCE1_ALPHA, or SOURCE2_ALPHA.
      */
     public static final int
-        GL_CONSTANT      = 0x8576,
+        GL_CONSTANT = 0x8576,
         GL_PRIMARY_COLOR = 0x8577,
-        GL_PREVIOUS      = 0x8578;
+        GL_PREVIOUS = 0x8578;
 
     /** Accepted by the {@code params} parameter of TexEnvf, TexEnvi, TexEnvfv, and TexEnviv when the {@code pname} parameter value is COMBINE_RGB_ARB. */
     public static final int
-        GL_DOT3_RGB  = 0x86AE,
+        GL_DOT3_RGB = 0x86AE,
         GL_DOT3_RGBA = 0x86AF;
 
     /**
@@ -203,10 +205,10 @@ public class GL13 extends GL12 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_TRANSPOSE_MODELVIEW_MATRIX  = 0x84E3,
+        GL_TRANSPOSE_MODELVIEW_MATRIX = 0x84E3,
         GL_TRANSPOSE_PROJECTION_MATRIX = 0x84E4,
-        GL_TRANSPOSE_TEXTURE_MATRIX    = 0x84E5,
-        GL_TRANSPOSE_COLOR_MATRIX      = 0x84E6;
+        GL_TRANSPOSE_TEXTURE_MATRIX = 0x84E5,
+        GL_TRANSPOSE_COLOR_MATRIX = 0x84E6;
 
     protected GL13() {
         throw new UnsupportedOperationException();

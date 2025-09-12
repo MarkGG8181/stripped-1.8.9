@@ -27,9 +27,9 @@ import net.minecraft.util.MathHelper;
 
 public class TileEntityFurnace extends TileEntityLockable implements ITickable, ISidedInventory
 {
-    private static final int[] slotsTop = new int[] {0};
-    private static final int[] slotsBottom = new int[] {2, 1};
-    private static final int[] slotsSides = new int[] {1};
+    private static final int[] slotsTop = new int[]{0};
+    private static final int[] slotsBottom = new int[]{2, 1};
+    private static final int[] slotsSides = new int[]{1};
 
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -389,7 +389,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
                 }
             }
 
-            return item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemHoe && ((ItemHoe)item).getMaterialName().equals("WOOD") ? 200 : (item == Items.stick ? 100 : (item == Items.coal ? 1600 : (item == Items.lava_bucket ? 20000 : (item == Item.getItemFromBlock(Blocks.sapling) ? 100 : (item == Items.blaze_rod ? 2400 : 0)))))));
+            return item instanceof ItemTool it && it.getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemSword is && is.getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemHoe ih && ih.getMaterialName().equals("WOOD") ? 200 : (item == Items.stick ? 100 : (item == Items.coal ? 1600 : (item == Items.lava_bucket ? 20000 : (item == Item.getItemFromBlock(Blocks.sapling) ? 100 : (item == Items.blaze_rod ? 2400 : 0)))))));
         }
     }
 
@@ -467,23 +467,18 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 
     public int getField(int id)
     {
-        switch (id)
+        return switch (id)
         {
-            case 0:
-                return this.furnaceBurnTime;
+            case 0 -> this.furnaceBurnTime;
 
-            case 1:
-                return this.currentItemBurnTime;
+            case 1 -> this.currentItemBurnTime;
 
-            case 2:
-                return this.cookTime;
+            case 2 -> this.cookTime;
 
-            case 3:
-                return this.totalCookTime;
+            case 3 -> this.totalCookTime;
 
-            default:
-                return 0;
-        }
+            default -> 0;
+        };
     }
 
     public void setField(int id, int value)

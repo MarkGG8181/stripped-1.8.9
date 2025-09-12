@@ -109,7 +109,7 @@ public class LanServerDetector {
                 } catch (SocketTimeoutException var5) {
                     continue;
                 } catch (IOException ioexception) {
-                    LanServerDetector.logger.error((String) "Couldn\'t ping server", (Throwable) ioexception);
+                    LanServerDetector.logger.error((String)"Couldn\'t ping server", (Throwable)ioexception);
                     break;
                 }
 
@@ -121,7 +121,6 @@ public class LanServerDetector {
             try {
                 this.socket.leaveGroup(this.broadcastAddress);
             } catch (IOException var4) {
-                ;
             }
 
             this.socket.close();

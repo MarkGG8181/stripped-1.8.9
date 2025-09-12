@@ -33,7 +33,7 @@ public class CommandPublishLocalServer extends CommandBase
 
         if (s != null)
         {
-            notifyOperators(sender, this, "commands.publish.started", new Object[] {s});
+            notifyOperators(sender, this, "commands.publish.started", new Object[]{s});
         }
         else
         {

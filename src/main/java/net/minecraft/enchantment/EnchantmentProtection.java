@@ -8,23 +8,23 @@ import net.minecraft.util.ResourceLocation;
 public class EnchantmentProtection extends Enchantment
 {
     /** Holds the name to be translated of each protection type. */
-    private static final String[] protectionName = new String[] {"all", "fire", "fall", "explosion", "projectile"};
+    private static final String[] protectionName = new String[]{"all", "fire", "fall", "explosion", "projectile"};
 
     /**
      * Holds the base factor of enchantability needed to be able to use the enchant.
      */
-    private static final int[] baseEnchantability = new int[] {1, 10, 5, 5, 3};
+    private static final int[] baseEnchantability = new int[]{1, 10, 5, 5, 3};
 
     /**
      * Holds how much each level increased the enchantability factor to be able to use this enchant.
      */
-    private static final int[] levelEnchantability = new int[] {11, 8, 6, 8, 6};
+    private static final int[] levelEnchantability = new int[]{11, 8, 6, 8, 6};
 
     /**
      * Used on the formula of base enchantability, this is the 'window' factor of values to be able to use thing
      * enchant.
      */
-    private static final int[] thresholdEnchantability = new int[] {20, 12, 10, 12, 15};
+    private static final int[] thresholdEnchantability = new int[]{20, 12, 10, 12, 15};
 
     /**
      * Defines the type of protection of the enchantment, 0 = all, 1 = fire, 2 = fall (feather fall), 3 = explosion and
@@ -96,9 +96,8 @@ public class EnchantmentProtection extends Enchantment
      */
     public boolean canApplyTogether(Enchantment ench)
     {
-        if (ench instanceof EnchantmentProtection)
+        if (ench instanceof EnchantmentProtection enchantmentprotection)
         {
-            EnchantmentProtection enchantmentprotection = (EnchantmentProtection)ench;
             return enchantmentprotection.protectionType == this.protectionType ? false : this.protectionType == 2 || enchantmentprotection.protectionType == 2;
         }
         else

@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class ItemSkull extends Item
 {
-    private static final String[] skullTypes = new String[] {"skeleton", "wither", "zombie", "char", "creeper"};
+    private static final String[] skullTypes = new String[]{"skeleton", "wither", "zombie", "char", "creeper"};
 
     public ItemSkull()
     {
@@ -77,9 +77,8 @@ public class ItemSkull extends Item
 
                     TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                    if (tileentity instanceof TileEntitySkull)
+                    if (tileentity instanceof TileEntitySkull tileentityskull)
                     {
-                        TileEntitySkull tileentityskull = (TileEntitySkull)tileentity;
 
                         if (stack.getMetadata() == 3)
                         {
@@ -160,7 +159,7 @@ public class ItemSkull extends Item
         {
             if (stack.getTagCompound().hasKey("SkullOwner", 8))
             {
-                return StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[] {stack.getTagCompound().getString("SkullOwner")});
+                return StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[]{stack.getTagCompound().getString("SkullOwner")});
             }
 
             if (stack.getTagCompound().hasKey("SkullOwner", 10))
@@ -169,7 +168,7 @@ public class ItemSkull extends Item
 
                 if (nbttagcompound.hasKey("Name", 8))
                 {
-                    return StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[] {nbttagcompound.getString("Name")});
+                    return StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[]{nbttagcompound.getString("Name")});
                 }
             }
         }

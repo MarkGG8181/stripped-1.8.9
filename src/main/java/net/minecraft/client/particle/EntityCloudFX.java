@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,11 +22,11 @@ public class EntityCloudFX extends EntityFX
         this.motionX += p_i1221_8_;
         this.motionY += p_i1221_10_;
         this.motionZ += p_i1221_12_;
-        this.particleRed = this.particleGreen = this.particleBlue = 1.0F - (float)(Math.random() * 0.30000001192092896D);
+        this.particleRed = this.particleGreen = this.particleBlue = 1.0F - (float)(ThreadLocalRandom.current().nextDouble() * 0.30000001192092896D);
         this.particleScale *= 0.75F;
         this.particleScale *= f;
         this.oSize = this.particleScale;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.3D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.3D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * f);
         this.noClip = false;
     }

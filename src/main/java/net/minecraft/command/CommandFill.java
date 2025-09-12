@@ -69,7 +69,7 @@ public class CommandFill extends CommandBase
 
             if (j > 32768)
             {
-                throw new CommandException("commands.fill.tooManyBlocks", new Object[] {Integer.valueOf(j), Integer.valueOf(32768)});
+                throw new CommandException("commands.fill.tooManyBlocks", new Object[]{Integer.valueOf(j), Integer.valueOf(32768)});
             }
             else if (blockpos2.getY() >= 0 && blockpos3.getY() < 256)
             {
@@ -100,7 +100,7 @@ public class CommandFill extends CommandBase
                     }
                     catch (NBTException nbtexception)
                     {
-                        throw new CommandException("commands.fill.tagError", new Object[] {nbtexception.getMessage()});
+                        throw new CommandException("commands.fill.tagError", new Object[]{nbtexception.getMessage()});
                     }
                 }
 
@@ -170,9 +170,9 @@ public class CommandFill extends CommandBase
 
                             if (tileentity1 != null)
                             {
-                                if (tileentity1 instanceof IInventory)
+                                if (tileentity1 instanceof IInventory inventory)
                                 {
-                                    ((IInventory)tileentity1).clear();
+                                    inventory.clear();
                                 }
 
                                 world.setBlockState(blockpos4, Blocks.barrier.getDefaultState(), block == Blocks.barrier ? 2 : 4);
@@ -215,7 +215,7 @@ public class CommandFill extends CommandBase
                 else
                 {
                     sender.setCommandStat(CommandResultStats.Type.AFFECTED_BLOCKS, j);
-                    notifyOperators(sender, this, "commands.fill.success", new Object[] {Integer.valueOf(j)});
+                    notifyOperators(sender, this, "commands.fill.success", new Object[]{Integer.valueOf(j)});
                 }
             }
             else
@@ -227,6 +227,6 @@ public class CommandFill extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length == 7 ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : (args.length == 9 ? getListOfStringsMatchingLastWord(args, new String[] {"replace", "destroy", "keep", "hollow", "outline"}): (args.length == 10 && "replace".equals(args[8]) ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : null))));
+        return args.length > 0 && args.length <= 3 ? func_175771_a(args, 0, pos) : (args.length > 3 && args.length <= 6 ? func_175771_a(args, 3, pos) : (args.length == 7 ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : (args.length == 9 ? getListOfStringsMatchingLastWord(args, new String[]{"replace", "destroy", "keep", "hollow", "outline"}) : (args.length == 10 && "replace".equals(args[8]) ? getListOfStringsMatchingLastWord(args, Block.blockRegistry.getKeys()) : null))));
     }
 }

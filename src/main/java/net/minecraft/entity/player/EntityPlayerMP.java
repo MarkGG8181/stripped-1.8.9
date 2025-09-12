@@ -334,7 +334,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             {
                 if (list.size() == 1)
                 {
-                    this.playerNetServerHandler.sendPacket(new S21PacketChunkData((Chunk)list.get(0), true, 65535));
+                    this.playerNetServerHandler.sendPacket(new S21PacketChunkData((Chunk)list.getFirst(), true, 65535));
                 }
                 else
                 {
@@ -409,7 +409,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.health))
                 {
-                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(Arrays.<EntityPlayer>asList(new EntityPlayer[] {this}));
+                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(Arrays.<EntityPlayer>asList(new EntityPlayer[]{this}));
                 }
             }
 
@@ -557,16 +557,15 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 {
                     Entity entity = source.getEntity();
 
-                    if (entity instanceof EntityPlayer && !this.canAttackPlayer((EntityPlayer)entity))
+                    if (entity instanceof EntityPlayer player && !this.canAttackPlayer(player))
                     {
                         return false;
                     }
 
-                    if (entity instanceof EntityArrow)
+                    if (entity instanceof EntityArrow entityarrow)
                     {
-                        EntityArrow entityarrow = (EntityArrow)entity;
 
-                        if (entityarrow.shootingEntity instanceof EntityPlayer && !this.canAttackPlayer((EntityPlayer)entityarrow.shootingEntity))
+                        if (entityarrow.shootingEntity instanceof EntityPlayer player && !this.canAttackPlayer(player))
                         {
                             return false;
                         }
@@ -766,13 +765,12 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             this.closeScreen();
         }
 
-        if (chestInventory instanceof ILockableContainer)
+        if (chestInventory instanceof ILockableContainer ilockablecontainer)
         {
-            ILockableContainer ilockablecontainer = (ILockableContainer)chestInventory;
 
             if (ilockablecontainer.isLocked() && !this.canOpen(ilockablecontainer.getLockCode()) && !this.isSpectator())
             {
-                this.playerNetServerHandler.sendPacket(new S02PacketChat(new ChatComponentTranslation("container.isLocked", new Object[] {chestInventory.getDisplayName()}), (byte)2));
+                this.playerNetServerHandler.sendPacket(new S02PacketChat(new ChatComponentTranslation("container.isLocked", new Object[]{chestInventory.getDisplayName()}), (byte)2));
                 this.playerNetServerHandler.sendPacket(new S29PacketSoundEffect("random.door_close", this.posX, this.posY, this.posZ, 1.0F, 1.0F));
                 return;
             }
@@ -780,10 +778,10 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         this.getNextWindowId();
 
-        if (chestInventory instanceof IInteractionObject)
+        if (chestInventory instanceof IInteractionObject object)
         {
-            this.playerNetServerHandler.sendPacket(new S2DPacketOpenWindow(this.currentWindowId, ((IInteractionObject)chestInventory).getGuiID(), chestInventory.getDisplayName(), chestInventory.getSizeInventory()));
-            this.openContainer = ((IInteractionObject)chestInventory).createContainer(this.inventory, this);
+            this.playerNetServerHandler.sendPacket(new S2DPacketOpenWindow(this.currentWindowId, object.getGuiID(), chestInventory.getDisplayName(), chestInventory.getSizeInventory()));
+            this.openContainer = object.createContainer(this.inventory, this);
         }
         else
         {
@@ -1216,7 +1214,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (p_152339_1_ instanceof EntityPlayer)
         {
-            this.playerNetServerHandler.sendPacket(new S13PacketDestroyEntities(new int[] {p_152339_1_.getEntityId()}));
+            this.playerNetServerHandler.sendPacket(new S13PacketDestroyEntities(new int[]{p_152339_1_.getEntityId()}));
         }
         else
         {

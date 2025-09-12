@@ -46,9 +46,9 @@ public class LowerStringMap<V> implements Map<String, V>
         return this.internalMap.remove(p_remove_1_.toString().toLowerCase());
     }
 
-    public void putAll(Map <? extends String, ? extends V > p_putAll_1_)
+    public void putAll(Map<? extends String, ? extends V> p_putAll_1_)
     {
-        for (Entry <? extends String, ? extends V > entry : p_putAll_1_.entrySet())
+        for (Entry<? extends String, ? extends V> entry : p_putAll_1_.entrySet())
         {
             this.put((String)entry.getKey(), entry.getValue());
         }

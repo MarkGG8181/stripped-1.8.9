@@ -39,38 +39,38 @@ public class GL20 extends GL15 {
 
     /** Accepted by the {@code pname} parameter of GetShaderiv. */
     public static final int
-        GL_SHADER_TYPE                 = 0x8B4F,
-        GL_DELETE_STATUS               = 0x8B80,
-        GL_COMPILE_STATUS              = 0x8B81,
-        GL_LINK_STATUS                 = 0x8B82,
-        GL_VALIDATE_STATUS             = 0x8B83,
-        GL_INFO_LOG_LENGTH             = 0x8B84,
-        GL_ATTACHED_SHADERS            = 0x8B85,
-        GL_ACTIVE_UNIFORMS             = 0x8B86,
-        GL_ACTIVE_UNIFORM_MAX_LENGTH   = 0x8B87,
-        GL_ACTIVE_ATTRIBUTES           = 0x8B89,
+        GL_SHADER_TYPE = 0x8B4F,
+        GL_DELETE_STATUS = 0x8B80,
+        GL_COMPILE_STATUS = 0x8B81,
+        GL_LINK_STATUS = 0x8B82,
+        GL_VALIDATE_STATUS = 0x8B83,
+        GL_INFO_LOG_LENGTH = 0x8B84,
+        GL_ATTACHED_SHADERS = 0x8B85,
+        GL_ACTIVE_UNIFORMS = 0x8B86,
+        GL_ACTIVE_UNIFORM_MAX_LENGTH = 0x8B87,
+        GL_ACTIVE_ATTRIBUTES = 0x8B89,
         GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = 0x8B8A,
-        GL_SHADER_SOURCE_LENGTH        = 0x8B88;
+        GL_SHADER_SOURCE_LENGTH = 0x8B88;
 
     /** Returned by the {@code type} parameter of GetActiveUniform. */
     public static final int
-        GL_FLOAT_VEC2        = 0x8B50,
-        GL_FLOAT_VEC3        = 0x8B51,
-        GL_FLOAT_VEC4        = 0x8B52,
-        GL_INT_VEC2          = 0x8B53,
-        GL_INT_VEC3          = 0x8B54,
-        GL_INT_VEC4          = 0x8B55,
-        GL_BOOL              = 0x8B56,
-        GL_BOOL_VEC2         = 0x8B57,
-        GL_BOOL_VEC3         = 0x8B58,
-        GL_BOOL_VEC4         = 0x8B59,
-        GL_FLOAT_MAT2        = 0x8B5A,
-        GL_FLOAT_MAT3        = 0x8B5B,
-        GL_FLOAT_MAT4        = 0x8B5C,
-        GL_SAMPLER_1D        = 0x8B5D,
-        GL_SAMPLER_2D        = 0x8B5E,
-        GL_SAMPLER_3D        = 0x8B5F,
-        GL_SAMPLER_CUBE      = 0x8B60,
+        GL_FLOAT_VEC2 = 0x8B50,
+        GL_FLOAT_VEC3 = 0x8B51,
+        GL_FLOAT_VEC4 = 0x8B52,
+        GL_INT_VEC2 = 0x8B53,
+        GL_INT_VEC3 = 0x8B54,
+        GL_INT_VEC4 = 0x8B55,
+        GL_BOOL = 0x8B56,
+        GL_BOOL_VEC2 = 0x8B57,
+        GL_BOOL_VEC3 = 0x8B58,
+        GL_BOOL_VEC4 = 0x8B59,
+        GL_FLOAT_MAT2 = 0x8B5A,
+        GL_FLOAT_MAT3 = 0x8B5B,
+        GL_FLOAT_MAT4 = 0x8B5C,
+        GL_SAMPLER_1D = 0x8B5D,
+        GL_SAMPLER_2D = 0x8B5E,
+        GL_SAMPLER_3D = 0x8B5F,
+        GL_SAMPLER_CUBE = 0x8B60,
         GL_SAMPLER_1D_SHADOW = 0x8B61,
         GL_SAMPLER_2D_SHADOW = 0x8B62;
 
@@ -79,13 +79,13 @@ public class GL20 extends GL15 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_MAX_VERTEX_UNIFORM_COMPONENTS    = 0x8B4A,
-        GL_MAX_VARYING_FLOATS               = 0x8B4B,
-        GL_MAX_VERTEX_ATTRIBS               = 0x8869,
-        GL_MAX_TEXTURE_IMAGE_UNITS          = 0x8872,
-        GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS   = 0x8B4C,
+        GL_MAX_VERTEX_UNIFORM_COMPONENTS = 0x8B4A,
+        GL_MAX_VARYING_FLOATS = 0x8B4B,
+        GL_MAX_VERTEX_ATTRIBS = 0x8869,
+        GL_MAX_TEXTURE_IMAGE_UNITS = 0x8872,
+        GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C,
         GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D,
-        GL_MAX_TEXTURE_COORDS               = 0x8871;
+        GL_MAX_TEXTURE_COORDS = 0x8871;
 
     /**
      * Accepted by the {@code cap} parameter of Disable, Enable, and IsEnabled, and by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and
@@ -93,16 +93,16 @@ public class GL20 extends GL15 {
      */
     public static final int
         GL_VERTEX_PROGRAM_POINT_SIZE = 0x8642,
-        GL_VERTEX_PROGRAM_TWO_SIDE   = 0x8643;
+        GL_VERTEX_PROGRAM_TWO_SIDE = 0x8643;
 
     /** Accepted by the {@code pname} parameter of GetVertexAttrib{dfi}v. */
     public static final int
-        GL_VERTEX_ATTRIB_ARRAY_ENABLED    = 0x8622,
-        GL_VERTEX_ATTRIB_ARRAY_SIZE       = 0x8623,
-        GL_VERTEX_ATTRIB_ARRAY_STRIDE     = 0x8624,
-        GL_VERTEX_ATTRIB_ARRAY_TYPE       = 0x8625,
+        GL_VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622,
+        GL_VERTEX_ATTRIB_ARRAY_SIZE = 0x8623,
+        GL_VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624,
+        GL_VERTEX_ATTRIB_ARRAY_TYPE = 0x8625,
         GL_VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A,
-        GL_CURRENT_VERTEX_ATTRIB          = 0x8626;
+        GL_CURRENT_VERTEX_ATTRIB = 0x8626;
 
     /** Accepted by the {@code pname} parameter of GetVertexAttribPointerv. */
     public static final int GL_VERTEX_ATTRIB_ARRAY_POINTER = 0x8645;
@@ -119,22 +119,22 @@ public class GL20 extends GL15 {
     /** Accepted by the {@code pname} parameters of GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
         GL_MAX_DRAW_BUFFERS = 0x8824,
-        GL_DRAW_BUFFER0     = 0x8825,
-        GL_DRAW_BUFFER1     = 0x8826,
-        GL_DRAW_BUFFER2     = 0x8827,
-        GL_DRAW_BUFFER3     = 0x8828,
-        GL_DRAW_BUFFER4     = 0x8829,
-        GL_DRAW_BUFFER5     = 0x882A,
-        GL_DRAW_BUFFER6     = 0x882B,
-        GL_DRAW_BUFFER7     = 0x882C,
-        GL_DRAW_BUFFER8     = 0x882D,
-        GL_DRAW_BUFFER9     = 0x882E,
-        GL_DRAW_BUFFER10    = 0x882F,
-        GL_DRAW_BUFFER11    = 0x8830,
-        GL_DRAW_BUFFER12    = 0x8831,
-        GL_DRAW_BUFFER13    = 0x8832,
-        GL_DRAW_BUFFER14    = 0x8833,
-        GL_DRAW_BUFFER15    = 0x8834;
+        GL_DRAW_BUFFER0 = 0x8825,
+        GL_DRAW_BUFFER1 = 0x8826,
+        GL_DRAW_BUFFER2 = 0x8827,
+        GL_DRAW_BUFFER3 = 0x8828,
+        GL_DRAW_BUFFER4 = 0x8829,
+        GL_DRAW_BUFFER5 = 0x882A,
+        GL_DRAW_BUFFER6 = 0x882B,
+        GL_DRAW_BUFFER7 = 0x882C,
+        GL_DRAW_BUFFER8 = 0x882D,
+        GL_DRAW_BUFFER9 = 0x882E,
+        GL_DRAW_BUFFER10 = 0x882F,
+        GL_DRAW_BUFFER11 = 0x8830,
+        GL_DRAW_BUFFER12 = 0x8831,
+        GL_DRAW_BUFFER13 = 0x8832,
+        GL_DRAW_BUFFER14 = 0x8833,
+        GL_DRAW_BUFFER15 = 0x8834;
 
     /**
      * Accepted by the {@code cap} parameter of Enable, Disable, and IsEnabled, by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and
@@ -158,20 +158,22 @@ public class GL20 extends GL15 {
 
     /** Accepted by the {@code pname} parameter of GetBooleanv, GetIntegerv, GetFloatv, and GetDoublev. */
     public static final int
-        GL_BLEND_EQUATION_RGB   = 0x8009,
+        GL_BLEND_EQUATION_RGB = 0x8009,
         GL_BLEND_EQUATION_ALPHA = 0x883D;
 
     /** Accepted by the {@code pname} parameter of GetIntegerv. */
     public static final int
-        GL_STENCIL_BACK_FUNC            = 0x8800,
-        GL_STENCIL_BACK_FAIL            = 0x8801,
+        GL_STENCIL_BACK_FUNC = 0x8800,
+        GL_STENCIL_BACK_FAIL = 0x8801,
         GL_STENCIL_BACK_PASS_DEPTH_FAIL = 0x8802,
         GL_STENCIL_BACK_PASS_DEPTH_PASS = 0x8803,
-        GL_STENCIL_BACK_REF             = 0x8CA3,
-        GL_STENCIL_BACK_VALUE_MASK      = 0x8CA4,
-        GL_STENCIL_BACK_WRITEMASK       = 0x8CA5;
+        GL_STENCIL_BACK_REF = 0x8CA3,
+        GL_STENCIL_BACK_VALUE_MASK = 0x8CA4,
+        GL_STENCIL_BACK_WRITEMASK = 0x8CA5;
 
-    static { GL.initialize(); }
+    static {
+        GL.initialize();
+    }
 
     protected GL20() {
         throw new UnsupportedOperationException();
@@ -179,25 +181,25 @@ public class GL20 extends GL15 {
 
     static boolean isAvailable(GLCapabilities caps) {
         return checkFunctions(
-            caps.glCreateProgram, caps.glDeleteProgram, caps.glIsProgram, caps.glCreateShader, caps.glDeleteShader, caps.glIsShader, caps.glAttachShader, 
-            caps.glDetachShader, caps.glShaderSource, caps.glCompileShader, caps.glLinkProgram, caps.glUseProgram, caps.glValidateProgram, caps.glUniform1f, 
-            caps.glUniform2f, caps.glUniform3f, caps.glUniform4f, caps.glUniform1i, caps.glUniform2i, caps.glUniform3i, caps.glUniform4i, caps.glUniform1fv, 
-            caps.glUniform2fv, caps.glUniform3fv, caps.glUniform4fv, caps.glUniform1iv, caps.glUniform2iv, caps.glUniform3iv, caps.glUniform4iv, 
-            caps.glUniformMatrix2fv, caps.glUniformMatrix3fv, caps.glUniformMatrix4fv, caps.glGetShaderiv, caps.glGetProgramiv, caps.glGetShaderInfoLog, 
-            caps.glGetProgramInfoLog, caps.glGetAttachedShaders, caps.glGetUniformLocation, caps.glGetActiveUniform, caps.glGetUniformfv, caps.glGetUniformiv, 
-            caps.glGetShaderSource, caps.glVertexAttrib1f, caps.glVertexAttrib1s, caps.glVertexAttrib1d, caps.glVertexAttrib2f, caps.glVertexAttrib2s, 
-            caps.glVertexAttrib2d, caps.glVertexAttrib3f, caps.glVertexAttrib3s, caps.glVertexAttrib3d, caps.glVertexAttrib4f, caps.glVertexAttrib4s, 
-            caps.glVertexAttrib4d, caps.glVertexAttrib4Nub, caps.glVertexAttrib1fv, caps.glVertexAttrib1sv, caps.glVertexAttrib1dv, caps.glVertexAttrib2fv, 
-            caps.glVertexAttrib2sv, caps.glVertexAttrib2dv, caps.glVertexAttrib3fv, caps.glVertexAttrib3sv, caps.glVertexAttrib3dv, caps.glVertexAttrib4fv, 
-            caps.glVertexAttrib4sv, caps.glVertexAttrib4dv, caps.glVertexAttrib4iv, caps.glVertexAttrib4bv, caps.glVertexAttrib4ubv, caps.glVertexAttrib4usv, 
-            caps.glVertexAttrib4uiv, caps.glVertexAttrib4Nbv, caps.glVertexAttrib4Nsv, caps.glVertexAttrib4Niv, caps.glVertexAttrib4Nubv, 
-            caps.glVertexAttrib4Nusv, caps.glVertexAttrib4Nuiv, caps.glVertexAttribPointer, caps.glEnableVertexAttribArray, caps.glDisableVertexAttribArray, 
-            caps.glBindAttribLocation, caps.glGetActiveAttrib, caps.glGetAttribLocation, caps.glGetVertexAttribiv, caps.glGetVertexAttribfv, 
-            caps.glGetVertexAttribdv, caps.glGetVertexAttribPointerv, caps.glDrawBuffers, caps.glBlendEquationSeparate, caps.glStencilOpSeparate, 
+            caps.glCreateProgram, caps.glDeleteProgram, caps.glIsProgram, caps.glCreateShader, caps.glDeleteShader, caps.glIsShader, caps.glAttachShader,
+            caps.glDetachShader, caps.glShaderSource, caps.glCompileShader, caps.glLinkProgram, caps.glUseProgram, caps.glValidateProgram, caps.glUniform1f,
+            caps.glUniform2f, caps.glUniform3f, caps.glUniform4f, caps.glUniform1i, caps.glUniform2i, caps.glUniform3i, caps.glUniform4i, caps.glUniform1fv,
+            caps.glUniform2fv, caps.glUniform3fv, caps.glUniform4fv, caps.glUniform1iv, caps.glUniform2iv, caps.glUniform3iv, caps.glUniform4iv,
+            caps.glUniformMatrix2fv, caps.glUniformMatrix3fv, caps.glUniformMatrix4fv, caps.glGetShaderiv, caps.glGetProgramiv, caps.glGetShaderInfoLog,
+            caps.glGetProgramInfoLog, caps.glGetAttachedShaders, caps.glGetUniformLocation, caps.glGetActiveUniform, caps.glGetUniformfv, caps.glGetUniformiv,
+            caps.glGetShaderSource, caps.glVertexAttrib1f, caps.glVertexAttrib1s, caps.glVertexAttrib1d, caps.glVertexAttrib2f, caps.glVertexAttrib2s,
+            caps.glVertexAttrib2d, caps.glVertexAttrib3f, caps.glVertexAttrib3s, caps.glVertexAttrib3d, caps.glVertexAttrib4f, caps.glVertexAttrib4s,
+            caps.glVertexAttrib4d, caps.glVertexAttrib4Nub, caps.glVertexAttrib1fv, caps.glVertexAttrib1sv, caps.glVertexAttrib1dv, caps.glVertexAttrib2fv,
+            caps.glVertexAttrib2sv, caps.glVertexAttrib2dv, caps.glVertexAttrib3fv, caps.glVertexAttrib3sv, caps.glVertexAttrib3dv, caps.glVertexAttrib4fv,
+            caps.glVertexAttrib4sv, caps.glVertexAttrib4dv, caps.glVertexAttrib4iv, caps.glVertexAttrib4bv, caps.glVertexAttrib4ubv, caps.glVertexAttrib4usv,
+            caps.glVertexAttrib4uiv, caps.glVertexAttrib4Nbv, caps.glVertexAttrib4Nsv, caps.glVertexAttrib4Niv, caps.glVertexAttrib4Nubv,
+            caps.glVertexAttrib4Nusv, caps.glVertexAttrib4Nuiv, caps.glVertexAttribPointer, caps.glEnableVertexAttribArray, caps.glDisableVertexAttribArray,
+            caps.glBindAttribLocation, caps.glGetActiveAttrib, caps.glGetAttribLocation, caps.glGetVertexAttribiv, caps.glGetVertexAttribfv,
+            caps.glGetVertexAttribdv, caps.glGetVertexAttribPointerv, caps.glDrawBuffers, caps.glBlendEquationSeparate, caps.glStencilOpSeparate,
             caps.glStencilFuncSeparate, caps.glStencilMaskSeparate
         );
     }
-    
+
 // -- Begin LWJGL2 part --
     public static void glVertexAttribPointer(int index, int size,
                                              boolean unsigned, boolean normalized,
@@ -240,8 +242,8 @@ public class GL20 extends GL15 {
         byte[] b = new byte[string.remaining()];
         string.get(b);
         glShaderSource(shader, new String(b));
-	}
-    
+    }
+
     // TODO port below
 /*
     public static String glGetActiveAttrib(int i, int i2, int i3) {
@@ -325,7 +327,7 @@ public class GL20 extends GL15 {
     public static void glGetProgram(int program, int pname, IntBuffer params) {
         glGetProgramiv(program, pname, params);
     }
-    
+
     @Deprecated
     public static int glGetShader(int i, int i2) {
         return glGetShaderi(i, i2);
@@ -338,7 +340,7 @@ public class GL20 extends GL15 {
     public static void glGetUniform(int program, int location, FloatBuffer params) {
         glGetUniformfv(program, location, params);
     }
-    
+
     public static void glGetUniform(int program, int location, IntBuffer params) {
         glGetUniformiv(program, location, params);
     }
@@ -346,11 +348,11 @@ public class GL20 extends GL15 {
     public static void glGetVertexAttrib(int index, int pname, DoubleBuffer params) {
         glGetVertexAttribdv(index, pname, params);
     }
-    
+
     public static void glGetVertexAttrib(int index, int pname, FloatBuffer params) {
         glGetVertexAttribfv(index, pname, params);
     }
-    
+
     public static void glGetVertexAttrib(int index, int pname, IntBuffer params) {
         glGetVertexAttribiv(index, pname, params);
     }
@@ -372,7 +374,7 @@ public class GL20 extends GL15 {
     public static void glUniform1(int location, IntBuffer buffer) {
         glUniform1iv(location, buffer);
     }
-    
+
     public static void glUniform2(int location, FloatBuffer buffer) {
         glUniform2fv(location, buffer);
     }
@@ -380,7 +382,7 @@ public class GL20 extends GL15 {
     public static void glUniform2(int location, IntBuffer buffer) {
         glUniform2iv(location, buffer);
     }
-    
+
     public static void glUniform3(int location, FloatBuffer buffer) {
         glUniform3fv(location, buffer);
     }
@@ -388,11 +390,11 @@ public class GL20 extends GL15 {
     public static void glUniform3(int location, IntBuffer buffer) {
         glUniform3iv(location, buffer);
     }
-    
+
     public static void glUniform4(int location, FloatBuffer buffer) {
         glUniform4fv(location, buffer);
     }
-    
+
     public static void glUniform4(int location, IntBuffer buffer) {
         glUniform4iv(location, buffer);
     }
@@ -418,6 +420,7 @@ public class GL20 extends GL15 {
     public static void glVertexAttribPointer(int index, int size, boolean normalized, int stride, FloatBuffer buffer) {
         glVertexAttribPointer(index, size, GL11.GL_FLOAT, normalized, stride, buffer);
     }
+
 // -- End LWJGL2 part --
 
     // --- [ glCreateProgram ] ---

@@ -111,6 +111,7 @@ public class WorldProviderHell extends WorldProvider
             {
                 return super.getCenterX() / 8.0D;
             }
+
             public double getCenterZ()
             {
                 return super.getCenterZ() / 8.0D;

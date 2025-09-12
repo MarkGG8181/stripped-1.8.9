@@ -72,9 +72,8 @@ public class EntityMinecartTNT extends EntityMinecart
     {
         Entity entity = source.getSourceOfDamage();
 
-        if (entity instanceof EntityArrow)
+        if (entity instanceof EntityArrow entityarrow)
         {
-            EntityArrow entityarrow = (EntityArrow)entity;
 
             if (entityarrow.isBurning())
             {

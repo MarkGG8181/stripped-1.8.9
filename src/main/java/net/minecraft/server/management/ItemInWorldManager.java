@@ -54,7 +54,7 @@ public class ItemInWorldManager
         this.gameType = type;
         type.configurePlayerCapabilities(this.thisPlayerMP.capabilities);
         this.thisPlayerMP.sendPlayerAbilities();
-        this.thisPlayerMP.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.UPDATE_GAME_MODE, new EntityPlayerMP[] {this.thisPlayerMP}));
+        this.thisPlayerMP.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S38PacketPlayerListItem(S38PacketPlayerListItem.Action.UPDATE_GAME_MODE, new EntityPlayerMP[]{this.thisPlayerMP}));
     }
 
     public WorldSettings.GameType getGameType()
@@ -389,14 +389,13 @@ public class ItemInWorldManager
         {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof ILockableContainer)
+            if (tileentity instanceof ILockableContainer ilockablecontainer)
             {
                 Block block = worldIn.getBlockState(pos).getBlock();
-                ILockableContainer ilockablecontainer = (ILockableContainer)tileentity;
 
-                if (ilockablecontainer instanceof TileEntityChest && block instanceof BlockChest)
+                if (ilockablecontainer instanceof TileEntityChest && block instanceof BlockChest chest)
                 {
-                    ilockablecontainer = ((BlockChest)block).getLockableContainer(worldIn, pos);
+                    ilockablecontainer = chest.getLockableContainer(worldIn, pos);
                 }
 
                 if (ilockablecontainer != null)
@@ -405,9 +404,9 @@ public class ItemInWorldManager
                     return true;
                 }
             }
-            else if (tileentity instanceof IInventory)
+            else if (tileentity instanceof IInventory inventory)
             {
-                player.displayGUIChest((IInventory)tileentity);
+                player.displayGUIChest(inventory);
                 return true;
             }
 

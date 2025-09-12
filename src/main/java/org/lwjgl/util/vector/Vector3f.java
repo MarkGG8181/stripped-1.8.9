@@ -31,6 +31,7 @@
  */
 package org.lwjgl.util.vector;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
@@ -45,6 +46,7 @@ import java.nio.FloatBuffer;
 
 public class Vector3f extends Vector implements Serializable, ReadableVector3f, WritableVector3f {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public float x, y, z;
@@ -171,14 +173,13 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
             dest = new Vector3f();
 
         dest.set(
-                left.y * right.z - left.z * right.y,
-                right.x * left.z - right.z * left.x,
-                left.x * right.y - left.y * right.x
+            left.y * right.z - left.z * right.y,
+            right.x * left.z - right.z * left.x,
+            left.x * right.y - left.y * right.x
         );
 
         return dest;
     }
-
 
 
     /**

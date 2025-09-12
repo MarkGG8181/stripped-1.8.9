@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.world.World;
 
 public class EntityFishWakeFX extends EntityFX
@@ -8,14 +10,14 @@ public class EntityFishWakeFX extends EntityFX
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.30000001192092896D;
-        this.motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;
+        this.motionY = ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D + 0.10000000149011612D;
         this.motionZ *= 0.30000001192092896D;
         this.particleRed = 1.0F;
         this.particleGreen = 1.0F;
         this.particleBlue = 1.0F;
         this.setParticleTextureIndex(19);
         this.setSize(0.01F, 0.01F);
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.particleGravity = 0.0F;
         this.motionX = p_i45073_8_;
         this.motionY = p_i45073_10_;

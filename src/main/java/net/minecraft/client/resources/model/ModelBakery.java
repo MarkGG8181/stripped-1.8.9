@@ -98,7 +98,7 @@ public class ModelBakery {
                     LOGGER.warn("Unable to load variant: " + modelresourcelocation.getVariant() + " from " + modelresourcelocation);
                 }
             } catch (Exception exception) {
-                LOGGER.warn((String) ("Unable to load definition " + modelresourcelocation), (Throwable) exception);
+                LOGGER.warn((String)("Unable to load definition " + modelresourcelocation), (Throwable)exception);
             }
         }
     }
@@ -109,7 +109,7 @@ public class ModelBakery {
 
     private ModelBlockDefinition getModelBlockDefinition(ResourceLocation p_177586_1_) {
         ResourceLocation resourcelocation = this.getBlockStateLocation(p_177586_1_);
-        ModelBlockDefinition modelblockdefinition = (ModelBlockDefinition) this.blockDefinitions.get(resourcelocation);
+        ModelBlockDefinition modelblockdefinition = (ModelBlockDefinition)this.blockDefinitions.get(resourcelocation);
 
         if (modelblockdefinition == null) {
             List<ModelBlockDefinition> list = new ArrayList<>();
@@ -145,7 +145,7 @@ public class ModelBakery {
 
     private void loadVariantModels() {
         for (ModelResourceLocation modelresourcelocation : this.variants.keySet()) {
-            for (ModelBlockDefinition.Variant modelblockdefinition$variant : ((ModelBlockDefinition.Variants) this.variants.get(modelresourcelocation)).getVariants()) {
+            for (ModelBlockDefinition.Variant modelblockdefinition$variant : ((ModelBlockDefinition.Variants)this.variants.get(modelresourcelocation)).getVariants()) {
                 ResourceLocation resourcelocation = modelblockdefinition$variant.getModelLocation();
 
                 if (this.models.get(resourcelocation) == null) {
@@ -153,7 +153,7 @@ public class ModelBakery {
                         ModelBlock modelblock = this.loadModel(resourcelocation);
                         this.models.put(resourcelocation, modelblock);
                     } catch (Exception exception) {
-                        LOGGER.warn((String) ("Unable to load block model: \'" + resourcelocation + "\' for variant: \'" + modelresourcelocation + "\'"), (Throwable) exception);
+                        LOGGER.warn((String)("Unable to load block model: \'" + resourcelocation + "\' for variant: \'" + modelresourcelocation + "\'"), (Throwable)exception);
                     }
                 }
             }
@@ -165,25 +165,30 @@ public class ModelBakery {
 
         if ("builtin/generated".equals(s)) {
             return MODEL_GENERATED;
-        } else if ("builtin/compass".equals(s)) {
+        }
+        else if ("builtin/compass".equals(s)) {
             return MODEL_COMPASS;
-        } else if ("builtin/clock".equals(s)) {
+        }
+        else if ("builtin/clock".equals(s)) {
             return MODEL_CLOCK;
-        } else if ("builtin/entity".equals(s)) {
+        }
+        else if ("builtin/entity".equals(s)) {
             return MODEL_ENTITY;
-        } else {
+        }
+        else {
             Reader reader;
 
             if (s.startsWith("builtin/")) {
                 String s1 = s.substring("builtin/".length());
-                String s2 = (String) BUILT_IN_MODELS.get(s1);
+                String s2 = (String)BUILT_IN_MODELS.get(s1);
 
                 if (s2 == null) {
                     throw new FileNotFoundException(p_177594_1_.toString());
                 }
 
                 reader = new StringReader(s2);
-            } else {
+            }
+            else {
                 IResource iresource = this.resourceManager.getResource(this.getModelLocation(p_177594_1_));
                 reader = new InputStreamReader(iresource.getInputStream(), StandardCharsets.UTF_8);
             }
@@ -219,7 +224,7 @@ public class ModelBakery {
                         ModelBlock modelblock = this.loadModel(resourcelocation);
                         this.models.put(resourcelocation, modelblock);
                     } catch (Exception exception) {
-                        LOGGER.warn((String) ("Unable to load item model: \'" + resourcelocation + "\' for item: \'" + Item.itemRegistry.getNameForObject(item) + "\'"), (Throwable) exception);
+                        LOGGER.warn((String)("Unable to load item model: \'" + resourcelocation + "\' for item: \'" + Item.itemRegistry.getNameForObject(item) + "\'"), (Throwable)exception);
                     }
                 }
             }
@@ -272,10 +277,10 @@ public class ModelBakery {
     }
 
     private List<String> getVariantNames(Item p_177596_1_) {
-        List<String> list = (List) this.variantNames.get(p_177596_1_);
+        List<String> list = (List)this.variantNames.get(p_177596_1_);
 
         if (list == null) {
-            list = Collections.<String>singletonList(((ResourceLocation) Item.itemRegistry.getNameForObject(p_177596_1_)).toString());
+            list = Collections.<String>singletonList(((ResourceLocation)Item.itemRegistry.getNameForObject(p_177596_1_)).toString());
         }
 
         return list;
@@ -291,38 +296,43 @@ public class ModelBakery {
             WeightedBakedModel.Builder weightedbakedmodel$builder = new WeightedBakedModel.Builder();
             int i = 0;
 
-            for (ModelBlockDefinition.Variant modelblockdefinition$variant : ((ModelBlockDefinition.Variants) this.variants.get(modelresourcelocation)).getVariants()) {
-                ModelBlock modelblock = (ModelBlock) this.models.get(modelblockdefinition$variant.getModelLocation());
+            for (ModelBlockDefinition.Variant modelblockdefinition$variant : ((ModelBlockDefinition.Variants)this.variants.get(modelresourcelocation)).getVariants()) {
+                ModelBlock modelblock = (ModelBlock)this.models.get(modelblockdefinition$variant.getModelLocation());
 
                 if (modelblock != null && modelblock.isResolved()) {
                     ++i;
                     weightedbakedmodel$builder.add(this.bakeModel(modelblock, modelblockdefinition$variant.getRotation(), modelblockdefinition$variant.isUvLocked()), modelblockdefinition$variant.getWeight());
-                } else {
+                }
+                else {
                     LOGGER.warn("Missing model for: " + modelresourcelocation);
                 }
             }
 
             if (i == 0) {
                 LOGGER.warn("No weighted models for: " + modelresourcelocation);
-            } else if (i == 1) {
+            }
+            else if (i == 1) {
                 this.bakedRegistry.putObject(modelresourcelocation, weightedbakedmodel$builder.first());
-            } else {
+            }
+            else {
                 this.bakedRegistry.putObject(modelresourcelocation, weightedbakedmodel$builder.build());
             }
         }
 
         for (Entry<String, ResourceLocation> entry : this.itemLocations.entrySet()) {
-            ResourceLocation resourcelocation = (ResourceLocation) entry.getValue();
-            ModelResourceLocation modelresourcelocation1 = new ModelResourceLocation((String) entry.getKey(), "inventory");
-            ModelBlock modelblock1 = (ModelBlock) this.models.get(resourcelocation);
+            ResourceLocation resourcelocation = (ResourceLocation)entry.getValue();
+            ModelResourceLocation modelresourcelocation1 = new ModelResourceLocation((String)entry.getKey(), "inventory");
+            ModelBlock modelblock1 = (ModelBlock)this.models.get(resourcelocation);
 
             if (modelblock1 != null && modelblock1.isResolved()) {
                 if (this.isCustomRenderer(modelblock1)) {
                     this.bakedRegistry.putObject(modelresourcelocation1, new BuiltInModel(modelblock1.getAllTransforms()));
-                } else {
+                }
+                else {
                     this.bakedRegistry.putObject(modelresourcelocation1, this.bakeModel(modelblock1, ModelRotation.X0_Y0, false));
                 }
-            } else {
+            }
+            else {
                 LOGGER.warn("Missing model for: " + resourcelocation);
             }
         }
@@ -338,14 +348,15 @@ public class ModelBakery {
         });
 
         for (ModelResourceLocation modelresourcelocation : list) {
-            ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants) this.variants.get(modelresourcelocation);
+            ModelBlockDefinition.Variants modelblockdefinition$variants = (ModelBlockDefinition.Variants)this.variants.get(modelresourcelocation);
 
             for (ModelBlockDefinition.Variant modelblockdefinition$variant : modelblockdefinition$variants.getVariants()) {
-                ModelBlock modelblock = (ModelBlock) this.models.get(modelblockdefinition$variant.getModelLocation());
+                ModelBlock modelblock = (ModelBlock)this.models.get(modelblockdefinition$variant.getModelLocation());
 
                 if (modelblock == null) {
                     LOGGER.warn("Missing model for: " + modelresourcelocation);
-                } else {
+                }
+                else {
                     set.addAll(this.getTextureLocations(modelblock));
                 }
             }
@@ -356,17 +367,18 @@ public class ModelBakery {
     }
 
     private IBakedModel bakeModel(ModelBlock modelBlockIn, ModelRotation modelRotationIn, boolean uvLocked) {
-        TextureAtlasSprite textureatlassprite = (TextureAtlasSprite) this.sprites.get(new ResourceLocation(modelBlockIn.resolveTextureName("particle")));
+        TextureAtlasSprite textureatlassprite = (TextureAtlasSprite)this.sprites.get(new ResourceLocation(modelBlockIn.resolveTextureName("particle")));
         SimpleBakedModel.Builder simplebakedmodel$builder = (new SimpleBakedModel.Builder(modelBlockIn)).setTexture(textureatlassprite);
 
         for (BlockPart blockpart : modelBlockIn.getElements()) {
             for (EnumFacing enumfacing : blockpart.mapFaces.keySet()) {
-                BlockPartFace blockpartface = (BlockPartFace) blockpart.mapFaces.get(enumfacing);
-                TextureAtlasSprite textureatlassprite1 = (TextureAtlasSprite) this.sprites.get(new ResourceLocation(modelBlockIn.resolveTextureName(blockpartface.texture)));
+                BlockPartFace blockpartface = (BlockPartFace)blockpart.mapFaces.get(enumfacing);
+                TextureAtlasSprite textureatlassprite1 = (TextureAtlasSprite)this.sprites.get(new ResourceLocation(modelBlockIn.resolveTextureName(blockpartface.texture)));
 
                 if (blockpartface.cullFace == null) {
                     simplebakedmodel$builder.addGeneralQuad(this.makeBakedQuad(blockpart, blockpartface, textureatlassprite1, enumfacing, modelRotationIn, uvLocked));
-                } else {
+                }
+                else {
                     simplebakedmodel$builder.addFaceQuad(modelRotationIn.rotateFace(blockpartface.cullFace), this.makeBakedQuad(blockpart, blockpartface, textureatlassprite1, enumfacing, modelRotationIn, uvLocked));
                 }
             }
@@ -395,15 +407,15 @@ public class ModelBakery {
 
         for (ResourceLocation resourcelocation : this.models.keySet()) {
             set.add(resourcelocation);
-            ResourceLocation resourcelocation1 = ((ModelBlock) this.models.get(resourcelocation)).getParentLocation();
+            ResourceLocation resourcelocation1 = ((ModelBlock)this.models.get(resourcelocation)).getParentLocation();
 
             if (resourcelocation1 != null) {
                 deque.add(resourcelocation1);
             }
         }
 
-        while (!((Deque) deque).isEmpty()) {
-            ResourceLocation resourcelocation2 = (ResourceLocation) deque.pop();
+        while (!((Deque)deque).isEmpty()) {
+            ResourceLocation resourcelocation2 = (ResourceLocation)deque.pop();
 
             try {
                 if (this.models.get(resourcelocation2) != null) {
@@ -418,7 +430,7 @@ public class ModelBakery {
                     deque.add(resourcelocation3);
                 }
             } catch (Exception exception) {
-                LOGGER.warn((String) ("In parent chain: " + JOINER.join(this.getParentPath(resourcelocation2)) + "; unable to load model: \'" + resourcelocation2 + "\'"), (Throwable) exception);
+                LOGGER.warn((String)("In parent chain: " + JOINER.join(this.getParentPath(resourcelocation2)) + "; unable to load model: \'" + resourcelocation2 + "\'"), (Throwable)exception);
             }
 
             set.add(resourcelocation2);
@@ -430,7 +442,7 @@ public class ModelBakery {
         ResourceLocation resourcelocation = p_177573_1_;
 
         while ((resourcelocation = this.getParentLocation(resourcelocation)) != null) {
-            list.add(0, resourcelocation);
+            list.addFirst(resourcelocation);
         }
 
         return list;
@@ -438,10 +450,10 @@ public class ModelBakery {
 
     private ResourceLocation getParentLocation(ResourceLocation p_177576_1_) {
         for (Entry<ResourceLocation, ModelBlock> entry : this.models.entrySet()) {
-            ModelBlock modelblock = (ModelBlock) entry.getValue();
+            ModelBlock modelblock = (ModelBlock)entry.getValue();
 
             if (modelblock != null && p_177576_1_.equals(modelblock.getParentLocation())) {
-                return (ResourceLocation) entry.getKey();
+                return (ResourceLocation)entry.getKey();
             }
         }
 
@@ -482,7 +494,7 @@ public class ModelBakery {
         Set<ResourceLocation> set = new HashSet<>();
 
         for (ResourceLocation resourcelocation : this.itemLocations.values()) {
-            ModelBlock modelblock = (ModelBlock) this.models.get(resourcelocation);
+            ModelBlock modelblock = (ModelBlock)this.models.get(resourcelocation);
 
             if (modelblock != null) {
                 set.add(new ResourceLocation(modelblock.resolveTextureName("particle")));
@@ -493,13 +505,15 @@ public class ModelBakery {
 
                         if (modelblock.getRootModel() == MODEL_COMPASS && !TextureMap.LOCATION_MISSING_TEXTURE.equals(resourcelocation2)) {
                             TextureAtlasSprite.setLocationNameCompass(resourcelocation2.toString());
-                        } else if (modelblock.getRootModel() == MODEL_CLOCK && !TextureMap.LOCATION_MISSING_TEXTURE.equals(resourcelocation2)) {
+                        }
+                        else if (modelblock.getRootModel() == MODEL_CLOCK && !TextureMap.LOCATION_MISSING_TEXTURE.equals(resourcelocation2)) {
                             TextureAtlasSprite.setLocationNameClock(resourcelocation2.toString());
                         }
 
                         set.add(resourcelocation2);
                     }
-                } else if (!this.isCustomRenderer(modelblock)) {
+                }
+                else if (!this.isCustomRenderer(modelblock)) {
                     for (BlockPart blockpart : modelblock.getElements()) {
                         for (BlockPartFace blockpartface : blockpart.mapFaces.values()) {
                             ResourceLocation resourcelocation1 = new ResourceLocation(modelblock.resolveTextureName(blockpartface.texture));
@@ -516,7 +530,8 @@ public class ModelBakery {
     private boolean hasItemModel(ModelBlock p_177581_1_) {
         if (p_177581_1_ == null) {
             return false;
-        } else {
+        }
+        else {
             ModelBlock modelblock = p_177581_1_.getRootModel();
             return modelblock == MODEL_GENERATED || modelblock == MODEL_COMPASS || modelblock == MODEL_CLOCK;
         }
@@ -525,7 +540,8 @@ public class ModelBakery {
     private boolean isCustomRenderer(ModelBlock p_177587_1_) {
         if (p_177587_1_ == null) {
             return false;
-        } else {
+        }
+        else {
             ModelBlock modelblock = p_177587_1_.getRootModel();
             return modelblock == MODEL_ENTITY;
         }
@@ -533,7 +549,7 @@ public class ModelBakery {
 
     private void bakeItemModels() {
         for (ResourceLocation resourcelocation : this.itemLocations.values()) {
-            ModelBlock modelblock = (ModelBlock) this.models.get(resourcelocation);
+            ModelBlock modelblock = (ModelBlock)this.models.get(resourcelocation);
 
             if (this.hasItemModel(modelblock)) {
                 ModelBlock modelblock1 = this.makeItemModel(modelblock);
@@ -543,7 +559,8 @@ public class ModelBakery {
                 }
 
                 this.models.put(resourcelocation, modelblock1);
-            } else if (this.isCustomRenderer(modelblock)) {
+            }
+            else if (this.isCustomRenderer(modelblock)) {
                 this.models.put(resourcelocation, modelblock);
             }
         }

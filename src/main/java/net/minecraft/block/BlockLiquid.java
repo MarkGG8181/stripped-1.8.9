@@ -1,6 +1,8 @@
 package net.minecraft.block;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -360,7 +362,7 @@ public abstract class BlockLiquid extends Block
 
         for (int i = 0; i < 8; ++i)
         {
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0 + Math.random(), d1 + 1.2D, d2 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0 + ThreadLocalRandom.current().nextDouble(), d1 + 1.2D, d2 + ThreadLocalRandom.current().nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
         }
     }
 
@@ -382,7 +384,7 @@ public abstract class BlockLiquid extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {LEVEL});
+        return new BlockState(this, new IProperty[]{LEVEL});
     }
 
     public static BlockDynamicLiquid getFlowingBlock(Material materialIn)

@@ -147,7 +147,6 @@ public class GameRules
             }
             catch (NumberFormatException var4)
             {
-                ;
             }
 
             try
@@ -156,7 +155,6 @@ public class GameRules
             }
             catch (NumberFormatException var3)
             {
-                ;
             }
         }
 
@@ -185,6 +183,6 @@ public class GameRules
     {
         ANY_VALUE,
         BOOLEAN_VALUE,
-        NUMERICAL_VALUE;
+        NUMERICAL_VALUE
     }
 }

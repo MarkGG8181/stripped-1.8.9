@@ -43,7 +43,8 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
             }
 
             return clazz;
-        } else {
+        }
+        else {
             throw new IllegalArgumentException("Don\'t know how to search for " + clazz);
         }
     }
@@ -59,22 +60,23 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     }
 
     private void addForClass(T value, Class<?> parentClass) {
-        List<T> list = (List) this.map.get(parentClass);
+        List<T> list = (List)this.map.get(parentClass);
 
         if (list == null) {
             this.map.put(parentClass, Lists.newArrayList(value));
-        } else {
+        }
+        else {
             list.add(value);
         }
     }
 
     public boolean remove(Object p_remove_1_) {
-        T t = (T) p_remove_1_;
+        T t = (T)p_remove_1_;
         boolean flag = false;
 
         for (Class<?> oclass : this.knownKeys) {
             if (oclass.isAssignableFrom(t.getClass())) {
-                List<T> list = (List) this.map.get(oclass);
+                List<T> list = (List)this.map.get(oclass);
 
                 if (list != null && list.remove(t)) {
                     flag = true;
@@ -92,11 +94,12 @@ public class ClassInheritanceMultiMap<T> extends AbstractSet<T> {
     public <S> Iterable<S> getByClass(final Class<S> clazz) {
         return new Iterable<S>() {
             public Iterator<S> iterator() {
-                List<T> list = (List) ClassInheritanceMultiMap.this.map.get(ClassInheritanceMultiMap.this.initializeClassLookup(clazz));
+                List<T> list = (List)ClassInheritanceMultiMap.this.map.get(ClassInheritanceMultiMap.this.initializeClassLookup(clazz));
 
                 if (list == null) {
                     return Collections.emptyIterator();
-                } else {
+                }
+                else {
                     Iterator<T> iterator = list.iterator();
                     return Iterators.filter(iterator, clazz);
                 }

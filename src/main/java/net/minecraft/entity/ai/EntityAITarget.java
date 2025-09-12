@@ -165,19 +165,19 @@ public abstract class EntityAITarget extends EntityAIBase
             }
             else
             {
-                if (attacker instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable)attacker).getOwnerId()))
+                if (attacker instanceof IEntityOwnable ownable1 && StringUtils.isNotEmpty(ownable1.getOwnerId()))
                 {
-                    if (target instanceof IEntityOwnable && ((IEntityOwnable)attacker).getOwnerId().equals(((IEntityOwnable)target).getOwnerId()))
+                    if (target instanceof IEntityOwnable ownable && ((IEntityOwnable)attacker).getOwnerId().equals(ownable.getOwnerId()))
                     {
                         return false;
                     }
 
-                    if (target == ((IEntityOwnable)attacker).getOwner())
+                    if (target == ownable1.getOwner())
                     {
                         return false;
                     }
                 }
-                else if (target instanceof EntityPlayer && !includeInvincibles && ((EntityPlayer)target).capabilities.disableDamage)
+                else if (target instanceof EntityPlayer player && !includeInvincibles && player.capabilities.disableDamage)
                 {
                     return false;
                 }

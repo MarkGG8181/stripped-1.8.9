@@ -59,11 +59,11 @@ public class CommandGameMode extends CommandBase
 
             if (entityplayer != sender)
             {
-                notifyOperators(sender, this, 1, "commands.gamemode.success.other", new Object[] {entityplayer.getName(), ichatcomponent});
+                notifyOperators(sender, this, 1, "commands.gamemode.success.other", new Object[]{entityplayer.getName(), ichatcomponent});
             }
             else
             {
-                notifyOperators(sender, this, 1, "commands.gamemode.success.self", new Object[] {ichatcomponent});
+                notifyOperators(sender, this, 1, "commands.gamemode.success.self", new Object[]{ichatcomponent});
             }
         }
     }
@@ -78,7 +78,7 @@ public class CommandGameMode extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] {"survival", "creative", "adventure", "spectator"}): (args.length == 2 ? getListOfStringsMatchingLastWord(args, this.getListOfPlayerUsernames()) : null);
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"survival", "creative", "adventure", "spectator"}) : (args.length == 2 ? getListOfStringsMatchingLastWord(args, this.getListOfPlayerUsernames()) : null);
     }
 
     /**

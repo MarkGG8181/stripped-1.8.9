@@ -38,7 +38,7 @@ public class PlayerManager
     private long previousTotalWorldTime;
 
     /** x, z direction vectors: east, south, west, north */
-    private final int[][] xzDirectionsConst = new int[][] {{1, 0}, {0, 1}, { -1, 0}, {0, -1}};
+    private final int[][] xzDirectionsConst = new int[][]{{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
     public PlayerManager(WorldServer serverWorld)
     {
@@ -371,7 +371,7 @@ public class PlayerManager
         {
             if (this.playersWatchingChunk.contains(player))
             {
-                PlayerManager.pmLogger.debug("Failed to add player. {} already is in chunk {}, {}", new Object[] {player, Integer.valueOf(this.chunkCoords.chunkXPos), Integer.valueOf(this.chunkCoords.chunkZPos)});
+                PlayerManager.pmLogger.debug("Failed to add player. {} already is in chunk {}, {}", new Object[]{player, Integer.valueOf(this.chunkCoords.chunkXPos), Integer.valueOf(this.chunkCoords.chunkZPos)});
             }
             else
             {

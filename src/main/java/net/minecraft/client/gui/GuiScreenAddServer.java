@@ -82,7 +82,7 @@ public class GuiScreenAddServer extends GuiScreen
         this.serverIPField.setMaxStringLength(128);
         this.serverIPField.setText(this.serverData.serverIP);
         this.serverIPField.setValidator(this.addressFilter);
-        ((GuiButton)this.buttonList.get(0)).enabled = this.serverIPField.getText().length() > 0 && this.serverIPField.getText().split(":").length > 0 && this.serverNameField.getText().length() > 0;
+        ((GuiButton)this.buttonList.getFirst()).enabled = this.serverIPField.getText().length() > 0 && this.serverIPField.getText().split(":").length > 0 && this.serverNameField.getText().length() > 0;
     }
 
     /**
@@ -135,10 +135,10 @@ public class GuiScreenAddServer extends GuiScreen
 
         if (keyCode == 28 || keyCode == 156)
         {
-            this.actionPerformed((GuiButton)this.buttonList.get(0));
+            this.actionPerformed((GuiButton)this.buttonList.getFirst());
         }
 
-        ((GuiButton)this.buttonList.get(0)).enabled = this.serverIPField.getText().length() > 0 && this.serverIPField.getText().split(":").length > 0 && this.serverNameField.getText().length() > 0;
+        ((GuiButton)this.buttonList.getFirst()).enabled = this.serverIPField.getText().length() > 0 && this.serverIPField.getText().split(":").length > 0 && this.serverNameField.getText().length() > 0;
     }
 
     /**

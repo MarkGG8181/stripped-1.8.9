@@ -21,10 +21,10 @@ public class TexturedQuad {
         this(vertices);
         float f = 0.0F / textureWidth;
         float f1 = 0.0F / textureHeight;
-        vertices[0] = vertices[0].setTexturePosition((float) texcoordU2 / textureWidth - f, (float) texcoordV1 / textureHeight + f1);
-        vertices[1] = vertices[1].setTexturePosition((float) texcoordU1 / textureWidth + f, (float) texcoordV1 / textureHeight + f1);
-        vertices[2] = vertices[2].setTexturePosition((float) texcoordU1 / textureWidth + f, (float) texcoordV2 / textureHeight - f1);
-        vertices[3] = vertices[3].setTexturePosition((float) texcoordU2 / textureWidth - f, (float) texcoordV2 / textureHeight - f1);
+        vertices[0] = vertices[0].setTexturePosition((float)texcoordU2 / textureWidth - f, (float)texcoordV1 / textureHeight + f1);
+        vertices[1] = vertices[1].setTexturePosition((float)texcoordU1 / textureWidth + f, (float)texcoordV1 / textureHeight + f1);
+        vertices[2] = vertices[2].setTexturePosition((float)texcoordU1 / textureWidth + f, (float)texcoordV2 / textureHeight - f1);
+        vertices[3] = vertices[3].setTexturePosition((float)texcoordU2 / textureWidth - f, (float)texcoordV2 / textureHeight - f1);
     }
 
     public void flipFace() {
@@ -41,9 +41,9 @@ public class TexturedQuad {
         Vec3 vec3 = this.vertexPositions[1].vector3D.subtractReverse(this.vertexPositions[0].vector3D);
         Vec3 vec31 = this.vertexPositions[1].vector3D.subtractReverse(this.vertexPositions[2].vector3D);
         Vec3 vec32 = vec31.crossProduct(vec3).normalize();
-        float f = (float) vec32.x;
-        float f1 = (float) vec32.y;
-        float f2 = (float) vec32.z;
+        float f = (float)vec32.x;
+        float f1 = (float)vec32.y;
+        float f2 = (float)vec32.z;
 
         if (this.invertNormal) {
             f = -f;
@@ -59,7 +59,7 @@ public class TexturedQuad {
 
         for (int i = 0; i < 4; ++i) {
             PositionTextureVertex positiontexturevertex = this.vertexPositions[i];
-            renderer.pos(positiontexturevertex.vector3D.x * (double) scale, positiontexturevertex.vector3D.y * (double) scale, positiontexturevertex.vector3D.z * (double) scale).tex((double) positiontexturevertex.texturePositionX, (double) positiontexturevertex.texturePositionY).normal(f, f1, f2).endVertex();
+            renderer.pos(positiontexturevertex.vector3D.x * (double)scale, positiontexturevertex.vector3D.y * (double)scale, positiontexturevertex.vector3D.z * (double)scale).tex((double)positiontexturevertex.texturePositionX, (double)positiontexturevertex.texturePositionY).normal(f, f1, f2).endVertex();
         }
 
         if (this.patcherDrawOnSelf) {

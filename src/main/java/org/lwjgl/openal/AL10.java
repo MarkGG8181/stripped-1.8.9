@@ -18,30 +18,30 @@ public class AL10 {
 
     public static final int
         AL_INVALID = 0xFFFFFFFF,
-        AL_NONE    = 0x0,
-        AL_FALSE   = 0x0,
-        AL_TRUE    = 0x1;
+        AL_NONE = 0x0,
+        AL_FALSE = 0x0,
+        AL_TRUE = 0x1;
 
     public static final int
-        AL_NO_ERROR          = 0x0,
-        AL_INVALID_NAME      = 0xA001,
-        AL_INVALID_ENUM      = 0xA002,
-        AL_INVALID_VALUE     = 0xA003,
+        AL_NO_ERROR = 0x0,
+        AL_INVALID_NAME = 0xA001,
+        AL_INVALID_ENUM = 0xA002,
+        AL_INVALID_VALUE = 0xA003,
         AL_INVALID_OPERATION = 0xA004,
-        AL_OUT_OF_MEMORY     = 0xA005;
+        AL_OUT_OF_MEMORY = 0xA005;
 
     public static final int
         AL_DOPPLER_FACTOR = 0xC000,
         AL_DISTANCE_MODEL = 0xD000;
 
     public static final int
-        AL_VENDOR     = 0xB001,
-        AL_VERSION    = 0xB002,
-        AL_RENDERER   = 0xB003,
+        AL_VENDOR = 0xB001,
+        AL_VERSION = 0xB002,
+        AL_RENDERER = 0xB003,
         AL_EXTENSIONS = 0xB004;
 
     public static final int
-        AL_INVERSE_DISTANCE         = 0xD001,
+        AL_INVERSE_DISTANCE = 0xD001,
         AL_INVERSE_DISTANCE_CLAMPED = 0xD002;
 
     public static final int
@@ -51,29 +51,29 @@ public class AL10 {
     public static final int
         AL_POSITION = 0x1004,
         AL_VELOCITY = 0x1006,
-        AL_GAIN     = 0x100A;
+        AL_GAIN = 0x100A;
 
     public static final int
         AL_CONE_INNER_ANGLE = 0x1001,
         AL_CONE_OUTER_ANGLE = 0x1002,
-        AL_PITCH            = 0x1003,
-        AL_DIRECTION        = 0x1005,
-        AL_LOOPING          = 0x1007,
-        AL_BUFFER           = 0x1009,
-        AL_SOURCE_STATE     = 0x1010,
-        AL_CONE_OUTER_GAIN  = 0x1022,
-        AL_SOURCE_TYPE      = 0x1027;
+        AL_PITCH = 0x1003,
+        AL_DIRECTION = 0x1005,
+        AL_LOOPING = 0x1007,
+        AL_BUFFER = 0x1009,
+        AL_SOURCE_STATE = 0x1010,
+        AL_CONE_OUTER_GAIN = 0x1022,
+        AL_SOURCE_TYPE = 0x1027;
 
     public static final int
         AL_INITIAL = 0x1011,
         AL_PLAYING = 0x1012,
-        AL_PAUSED  = 0x1013,
+        AL_PAUSED = 0x1013,
         AL_STOPPED = 0x1014;
 
     public static final int AL_ORIENTATION = 0x100F;
 
     public static final int
-        AL_BUFFERS_QUEUED    = 0x1015,
+        AL_BUFFERS_QUEUED = 0x1015,
         AL_BUFFERS_PROCESSED = 0x1016;
 
     public static final int
@@ -82,24 +82,24 @@ public class AL10 {
 
     public static final int
         AL_REFERENCE_DISTANCE = 0x1020,
-        AL_ROLLOFF_FACTOR     = 0x1021,
-        AL_MAX_DISTANCE       = 0x1023;
+        AL_ROLLOFF_FACTOR = 0x1021,
+        AL_MAX_DISTANCE = 0x1023;
 
     public static final int
         AL_FREQUENCY = 0x2001,
-        AL_BITS      = 0x2002,
-        AL_CHANNELS  = 0x2003,
-        AL_SIZE      = 0x2004;
+        AL_BITS = 0x2002,
+        AL_CHANNELS = 0x2003,
+        AL_SIZE = 0x2004;
 
     public static final int
-        AL_FORMAT_MONO8    = 0x1100,
-        AL_FORMAT_MONO16   = 0x1101,
-        AL_FORMAT_STEREO8  = 0x1102,
+        AL_FORMAT_MONO8 = 0x1100,
+        AL_FORMAT_MONO16 = 0x1101,
+        AL_FORMAT_STEREO8 = 0x1102,
         AL_FORMAT_STEREO16 = 0x1103;
 
     public static final int
-        AL_UNUSED    = 0x2010,
-        AL_PENDING   = 0x2011,
+        AL_UNUSED = 0x2010,
+        AL_PENDING = 0x2011,
         AL_PROCESSED = 0x2012;
 
     protected AL10() {
@@ -286,7 +286,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static float alGetListenerf(@NativeType("ALenum") int paramName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             FloatBuffer value = stack.callocFloat(1);
             nalGetListenerf(paramName, memAddress(value));
@@ -311,7 +312,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alGetListeneri(@NativeType("ALenum") int paramName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer value = stack.callocInt(1);
             nalGetListeneri(paramName, memAddress(value));
@@ -361,7 +363,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alGenSources() {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer srcNames = stack.callocInt(1);
             nalGenSources(1, memAddress(srcNames));
@@ -383,7 +386,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static void alDeleteSources(@NativeType("ALuint *") int source) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer sources = stack.ints(source);
             nalDeleteSources(1, memAddress(sources));
@@ -449,7 +453,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static float alGetSourcef(@NativeType("ALuint") int source, @NativeType("ALenum") int param) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             FloatBuffer value = stack.callocFloat(1);
             nalGetSourcef(source, param, memAddress(value));
@@ -502,7 +507,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alGetSourcei(@NativeType("ALuint") int source, @NativeType("ALenum") int param) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer value = stack.callocInt(1);
             nalGetSourcei(source, param, memAddress(value));
@@ -537,7 +543,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static void alSourceQueueBuffers(@NativeType("ALuint") int sourceName, @NativeType("ALuint *") int bufferName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer bufferNames = stack.ints(bufferName);
             nalSourceQueueBuffers(sourceName, 1, memAddress(bufferNames));
@@ -558,7 +565,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alSourceUnqueueBuffers(@NativeType("ALuint") int sourceName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer bufferNames = stack.callocInt(1);
             nalSourceUnqueueBuffers(sourceName, 1, memAddress(bufferNames));
@@ -649,7 +657,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alGenBuffers() {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer bufferNames = stack.callocInt(1);
             nalGenBuffers(1, memAddress(bufferNames));
@@ -671,7 +680,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static void alDeleteBuffers(@NativeType("ALuint const *") int bufferName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer bufferNames = stack.ints(bufferName);
             nalDeleteBuffers(1, memAddress(bufferNames));
@@ -701,7 +711,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static float alGetBufferf(@NativeType("ALuint") int bufferName, @NativeType("ALenum") int paramName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             FloatBuffer value = stack.callocFloat(1);
             nalGetBufferf(bufferName, paramName, memAddress(value));
@@ -726,7 +737,8 @@ public class AL10 {
 
     @NativeType("ALvoid")
     public static int alGetBufferi(@NativeType("ALuint") int bufferName, @NativeType("ALenum") int paramName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             IntBuffer value = stack.callocInt(1);
             nalGetBufferi(bufferName, paramName, memAddress(value));
@@ -776,7 +788,8 @@ public class AL10 {
 
     @NativeType("ALuint")
     public static int alGetEnumValue(@NativeType("ALchar const *") CharSequence enumName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             stack.nASCII(enumName, true);
             long enumNameEncoded = stack.getPointerAddress();
@@ -801,7 +814,8 @@ public class AL10 {
 
     @NativeType("void *")
     public static long alGetProcAddress(@NativeType("ALchar const *") CharSequence funcName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             stack.nASCII(funcName, true);
             long funcNameEncoded = stack.getPointerAddress();
@@ -826,7 +840,8 @@ public class AL10 {
 
     @NativeType("ALCboolean")
     public static boolean alIsExtensionPresent(@NativeType("ALchar const *") CharSequence extName) {
-        MemoryStack stack = stackGet(); int stackPointer = stack.getPointer();
+        MemoryStack stack = stackGet();
+        int stackPointer = stack.getPointer();
         try {
             stack.nASCII(extName, true);
             long extNameEncoded = stack.getPointerAddress();

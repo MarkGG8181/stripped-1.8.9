@@ -138,18 +138,18 @@ public class CommandStats extends CommandBase
 
                     if (tileentity == null)
                     {
-                        throw new CommandException("commands.stats.noCompatibleBlock", new Object[] {Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
+                        throw new CommandException("commands.stats.noCompatibleBlock", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
                     }
 
-                    if (tileentity instanceof TileEntityCommandBlock)
+                    if (tileentity instanceof TileEntityCommandBlock block)
                     {
-                        commandresultstats = ((TileEntityCommandBlock)tileentity).getCommandResultStats();
+                        commandresultstats = block.getCommandResultStats();
                     }
                     else
                     {
                         if (!(tileentity instanceof TileEntitySign))
                         {
-                            throw new CommandException("commands.stats.noCompatibleBlock", new Object[] {Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
+                            throw new CommandException("commands.stats.noCompatibleBlock", new Object[]{Integer.valueOf(blockpos.getX()), Integer.valueOf(blockpos.getY()), Integer.valueOf(blockpos.getZ())});
                         }
 
                         commandresultstats = ((TileEntitySign)tileentity).getStats();
@@ -172,12 +172,12 @@ public class CommandStats extends CommandBase
                     }
 
                     CommandResultStats.setScoreBoardStat(commandresultstats, commandresultstats$type, s1, s2);
-                    notifyOperators(sender, this, "commands.stats.success", new Object[] {commandresultstats$type.getTypeName(), s2, s1});
+                    notifyOperators(sender, this, "commands.stats.success", new Object[]{commandresultstats$type.getTypeName(), s2, s1});
                 }
                 else if ("clear".equals(s))
                 {
                     CommandResultStats.setScoreBoardStat(commandresultstats, commandresultstats$type, (String)null, (String)null);
-                    notifyOperators(sender, this, "commands.stats.cleared", new Object[] {commandresultstats$type.getTypeName()});
+                    notifyOperators(sender, this, "commands.stats.cleared", new Object[]{commandresultstats$type.getTypeName()});
                 }
 
                 if (flag)
@@ -192,7 +192,7 @@ public class CommandStats extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[] {"entity", "block"}): (args.length == 2 && args[0].equals("entity") ? getListOfStringsMatchingLastWord(args, this.func_175776_d()) : (args.length >= 2 && args.length <= 4 && args[0].equals("block") ? func_175771_a(args, 1, pos) : ((args.length != 3 || !args[0].equals("entity")) && (args.length != 5 || !args[0].equals("block")) ? ((args.length != 4 || !args[0].equals("entity")) && (args.length != 6 || !args[0].equals("block")) ? ((args.length != 6 || !args[0].equals("entity")) && (args.length != 8 || !args[0].equals("block")) ? null : getListOfStringsMatchingLastWord(args, this.func_175777_e())) : getListOfStringsMatchingLastWord(args, CommandResultStats.Type.getTypeNames())) : getListOfStringsMatchingLastWord(args, new String[] {"set", "clear"}))));
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"entity", "block"}) : (args.length == 2 && args[0].equals("entity") ? getListOfStringsMatchingLastWord(args, this.func_175776_d()) : (args.length >= 2 && args.length <= 4 && args[0].equals("block") ? func_175771_a(args, 1, pos) : ((args.length != 3 || !args[0].equals("entity")) && (args.length != 5 || !args[0].equals("block")) ? ((args.length != 4 || !args[0].equals("entity")) && (args.length != 6 || !args[0].equals("block")) ? ((args.length != 6 || !args[0].equals("entity")) && (args.length != 8 || !args[0].equals("block")) ? null : getListOfStringsMatchingLastWord(args, this.func_175777_e())) : getListOfStringsMatchingLastWord(args, CommandResultStats.Type.getTypeNames())) : getListOfStringsMatchingLastWord(args, new String[]{"set", "clear"}))));
     }
 
     protected String[] func_175776_d()

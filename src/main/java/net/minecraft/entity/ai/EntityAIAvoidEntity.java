@@ -27,14 +27,14 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
     /** The PathNavigate of our entity */
     private PathNavigate entityPathNavigate;
     private Class<T> classToAvoid;
-    private Predicate <? super T > avoidTargetSelector;
+    private Predicate<? super T> avoidTargetSelector;
 
     public EntityAIAvoidEntity(EntityCreature theEntityIn, Class<T> classToAvoidIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
     {
         this(theEntityIn, classToAvoidIn, Predicates.<T>alwaysTrue(), avoidDistanceIn, farSpeedIn, nearSpeedIn);
     }
 
-    public EntityAIAvoidEntity(EntityCreature theEntityIn, Class<T> classToAvoidIn, Predicate <? super T > avoidTargetSelectorIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
+    public EntityAIAvoidEntity(EntityCreature theEntityIn, Class<T> classToAvoidIn, Predicate<? super T> avoidTargetSelectorIn, float avoidDistanceIn, double farSpeedIn, double nearSpeedIn)
     {
         this.canBeSeenSelector = new Predicate<Entity>()
         {
@@ -58,7 +58,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        List<T> list = this.theEntity.worldObj.<T>getEntitiesWithinAABB(this.classToAvoid, this.theEntity.getEntityBoundingBox().expand((double)this.avoidDistance, 3.0D, (double)this.avoidDistance), Predicates.and(new Predicate[] {EntitySelectors.NOT_SPECTATING, this.canBeSeenSelector, this.avoidTargetSelector}));
+        List<T> list = this.theEntity.worldObj.<T>getEntitiesWithinAABB(this.classToAvoid, this.theEntity.getEntityBoundingBox().expand((double)this.avoidDistance, 3.0D, (double)this.avoidDistance), Predicates.and(new Predicate[]{EntitySelectors.NOT_SPECTATING, this.canBeSeenSelector, this.avoidTargetSelector}));
 
         if (list.isEmpty())
         {
@@ -66,7 +66,7 @@ public class EntityAIAvoidEntity<T extends Entity> extends EntityAIBase
         }
         else
         {
-            this.closestLivingEntity = list.get(0);
+            this.closestLivingEntity = list.getFirst();
             Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, new Vec3(this.closestLivingEntity.posX, this.closestLivingEntity.posY, this.closestLivingEntity.posZ));
 
             if (vec3 == null)

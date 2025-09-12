@@ -34,7 +34,7 @@ public abstract class EntityAgeable extends EntityCreature
         {
             if (!this.worldObj.isRemote)
             {
-                Class <? extends Entity > oclass = EntityList.getClassFromID(itemstack.getMetadata());
+                Class<? extends Entity> oclass = EntityList.getClassFromID(itemstack.getMetadata());
 
                 if (oclass != null && this.getClass() == oclass)
                 {

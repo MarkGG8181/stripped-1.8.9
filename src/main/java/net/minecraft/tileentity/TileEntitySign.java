@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class TileEntitySign extends TileEntity
 {
-    public final IChatComponent[] signText = new IChatComponent[] {new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText("")};
+    public final IChatComponent[] signText = new IChatComponent[]{new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText(""), new ChatComponentText("")};
 
     /**
      * The index of the line currently being edited. Only used on client side, but defined on both. Note this is only
@@ -55,37 +55,46 @@ public class TileEntitySign extends TileEntity
             {
                 return "Sign";
             }
+
             public IChatComponent getDisplayName()
             {
                 return new ChatComponentText(this.getName());
             }
+
             public void addChatMessage(IChatComponent component)
             {
             }
+
             public boolean canCommandSenderUseCommand(int permLevel, String commandName)
             {
                 return true;
             }
+
             public BlockPos getPosition()
             {
                 return TileEntitySign.this.pos;
             }
+
             public Vec3 getPositionVector()
             {
                 return new Vec3((double)TileEntitySign.this.pos.getX() + 0.5D, (double)TileEntitySign.this.pos.getY() + 0.5D, (double)TileEntitySign.this.pos.getZ() + 0.5D);
             }
+
             public World getEntityWorld()
             {
                 return TileEntitySign.this.worldObj;
             }
+
             public Entity getCommandSenderEntity()
             {
                 return null;
             }
+
             public boolean sendCommandFeedback()
             {
                 return false;
             }
+
             public void setCommandStat(CommandResultStats.Type type, int amount)
             {
             }
@@ -169,37 +178,46 @@ public class TileEntitySign extends TileEntity
             {
                 return playerIn.getName();
             }
+
             public IChatComponent getDisplayName()
             {
                 return playerIn.getDisplayName();
             }
+
             public void addChatMessage(IChatComponent component)
             {
             }
+
             public boolean canCommandSenderUseCommand(int permLevel, String commandName)
             {
                 return permLevel <= 2;
             }
+
             public BlockPos getPosition()
             {
                 return TileEntitySign.this.pos;
             }
+
             public Vec3 getPositionVector()
             {
                 return new Vec3((double)TileEntitySign.this.pos.getX() + 0.5D, (double)TileEntitySign.this.pos.getY() + 0.5D, (double)TileEntitySign.this.pos.getZ() + 0.5D);
             }
+
             public World getEntityWorld()
             {
                 return playerIn.getEntityWorld();
             }
+
             public Entity getCommandSenderEntity()
             {
                 return playerIn;
             }
+
             public boolean sendCommandFeedback()
             {
                 return false;
             }
+
             public void setCommandStat(CommandResultStats.Type type, int amount)
             {
                 TileEntitySign.this.stats.setCommandStatScore(this, type, amount);

@@ -16,7 +16,7 @@ import net.minecraft.world.gen.FlatGeneratorInfo;
 
 public abstract class WorldProvider
 {
-    public static final float[] moonPhaseFactors = new float[] {1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
+    public static final float[] moonPhaseFactors = new float[]{1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
 
     /** world object being used */
     protected World worldObj;

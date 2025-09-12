@@ -44,19 +44,22 @@ public final class ServerAddress {
                 host = addressString.substring(1, closingBracketIndex);
                 String portPart = addressString.substring(closingBracketIndex + 1).trim();
                 if (portPart.startsWith(":")) {
-                    parts = new String[] { host, portPart.substring(1) };
-                } else {
-                    parts = new String[] { host };
+                    parts = new String[]{host, portPart.substring(1)};
                 }
-            } else {
-                parts = new String[] { addressString };
+                else {
+                    parts = new String[]{host};
+                }
             }
-        } else {
+            else {
+                parts = new String[]{addressString};
+            }
+        }
+        else {
             parts = addressString.split(":");
         }
 
         if (parts.length > 2) {
-            parts = new String[] { addressString };
+            parts = new String[]{addressString};
         }
 
         host = parts[0];
@@ -78,15 +81,15 @@ public final class ServerAddress {
             Record[] records = lookup.run();
 
             if (records != null && records.length > 0) {
-                SRVRecord srvRecord = (SRVRecord) records[0];
+                SRVRecord srvRecord = (SRVRecord)records[0];
                 String targetHost = srvRecord.getTarget().toString().replaceAll("\\.$", "");
                 int targetPort = srvRecord.getPort();
-                return new String[] { targetHost, Integer.toString(targetPort) };
+                return new String[]{targetHost, Integer.toString(targetPort)};
             }
         } catch (TextParseException e) {
             LOGGER.debug("Invalid SRV query for {}: {}", hostname, e.getMessage());
         }
-        return new String[] { hostname, Integer.toString(DEFAULT_PORT) };
+        return new String[]{hostname, Integer.toString(DEFAULT_PORT)};
     }
 
     private static int parseIntWithDefault(String portString, int defaultValue) {

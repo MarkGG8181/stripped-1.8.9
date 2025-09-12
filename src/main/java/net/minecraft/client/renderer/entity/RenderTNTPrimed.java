@@ -76,8 +76,8 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         float seconds = remainingTicks / 20.0F;
         String str = decimalFormat.format(seconds);
         float green = MathHelper.clamp_float(remainingTicks / 80.0F, 0.0F, 1.0F);
-        int r = (int) ((1.0F - green) * 255.0F);
-        int g = (int) (green * 255.0F);
+        int r = (int)((1.0F - green) * 255.0F);
+        int g = (int)(green * 255.0F);
         int b = 0;
         int color = 0xFF000000 | (r << 16) | (g << 8) | b;
         int alphaColor = 0x20000000 | (r << 16) | (g << 8) | b;

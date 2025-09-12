@@ -148,9 +148,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         {
             GuiListExtended.IGuiListEntry guilistextended$iguilistentry = this.serverListSelector.func_148193_k() < 0 ? null : this.serverListSelector.getListEntry(this.serverListSelector.func_148193_k());
 
-            if (button.id == 2 && guilistextended$iguilistentry instanceof ServerListEntryNormal)
+            if (button.id == 2 && guilistextended$iguilistentry instanceof ServerListEntryNormal normal1)
             {
-                String s4 = ((ServerListEntryNormal)guilistextended$iguilistentry).getServerData().serverName;
+                String s4 = normal1.getServerData().serverName;
 
                 if (s4 != null)
                 {
@@ -177,10 +177,10 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
                 this.addingServer = true;
                 this.mc.displayGuiScreen(new GuiScreenAddServer(this, this.selectedServer = new ServerData(I18n.format("selectServer.defaultName", new Object[0]), "", false)));
             }
-            else if (button.id == 7 && guilistextended$iguilistentry instanceof ServerListEntryNormal)
+            else if (button.id == 7 && guilistextended$iguilistentry instanceof ServerListEntryNormal normal)
             {
                 this.editingServer = true;
-                ServerData serverdata = ((ServerListEntryNormal)guilistextended$iguilistentry).getServerData();
+                ServerData serverdata = normal.getServerData();
                 this.selectedServer = new ServerData(serverdata.serverName, serverdata.serverIP, false);
                 this.selectedServer.copyFrom(serverdata);
                 this.mc.displayGuiScreen(new GuiScreenAddServer(this, this.selectedServer));
@@ -250,9 +250,9 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
         {
             this.editingServer = false;
 
-            if (result && guilistextended$iguilistentry instanceof ServerListEntryNormal)
+            if (result && guilistextended$iguilistentry instanceof ServerListEntryNormal normal)
             {
-                ServerData serverdata = ((ServerListEntryNormal)guilistextended$iguilistentry).getServerData();
+                ServerData serverdata = normal.getServerData();
                 serverdata.serverName = this.selectedServer.serverName;
                 serverdata.serverIP = this.selectedServer.serverIP;
                 serverdata.copyFrom(this.selectedServer);
@@ -388,13 +388,13 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     {
         GuiListExtended.IGuiListEntry guilistextended$iguilistentry = this.serverListSelector.func_148193_k() < 0 ? null : this.serverListSelector.getListEntry(this.serverListSelector.func_148193_k());
 
-        if (guilistextended$iguilistentry instanceof ServerListEntryNormal)
+        if (guilistextended$iguilistentry instanceof ServerListEntryNormal normal)
         {
-            this.connectToServer(((ServerListEntryNormal)guilistextended$iguilistentry).getServerData());
+            this.connectToServer(normal.getServerData());
         }
-        else if (guilistextended$iguilistentry instanceof ServerListEntryLanDetected)
+        else if (guilistextended$iguilistentry instanceof ServerListEntryLanDetected detected)
         {
-            LanServerDetector.LanServer lanserverdetector$lanserver = ((ServerListEntryLanDetected)guilistextended$iguilistentry).getLanServer();
+            LanServerDetector.LanServer lanserverdetector$lanserver = detected.getLanServer();
             this.connectToServer(new ServerData(lanserverdetector$lanserver.getServerMotd(), lanserverdetector$lanserver.getServerIpPort(), true));
         }
     }

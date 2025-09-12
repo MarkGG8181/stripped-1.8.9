@@ -166,15 +166,15 @@ public class Potion
         {
             entityLivingBaseIn.attackEntityFrom(DamageSource.wither, 1.0F);
         }
-        else if (this.id == hunger.id && entityLivingBaseIn instanceof EntityPlayer)
+        else if (this.id == hunger.id && entityLivingBaseIn instanceof EntityPlayer player1)
         {
-            ((EntityPlayer)entityLivingBaseIn).addExhaustion(0.025F * (float)(p_76394_2_ + 1));
+            player1.addExhaustion(0.025F * (float)(p_76394_2_ + 1));
         }
-        else if (this.id == saturation.id && entityLivingBaseIn instanceof EntityPlayer)
+        else if (this.id == saturation.id && entityLivingBaseIn instanceof EntityPlayer player)
         {
             if (!entityLivingBaseIn.worldObj.isRemote)
             {
-                ((EntityPlayer)entityLivingBaseIn).getFoodStats().addStats(p_76394_2_ + 1, 1.0F);
+                player.getFoodStats().addStats(p_76394_2_ + 1, 1.0F);
             }
         }
         else if ((this.id != heal.id || entityLivingBaseIn.isEntityUndead()) && (this.id != harm.id || !entityLivingBaseIn.isEntityUndead()))

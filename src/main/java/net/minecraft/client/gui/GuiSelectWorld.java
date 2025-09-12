@@ -58,7 +58,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         try {
             this.loadLevelList();
         } catch (AnvilConverterException anvilconverterexception) {
-            logger.error((String) "Couldn\'t load level list", (Throwable) anvilconverterexception);
+            logger.error((String)"Couldn\'t load level list", (Throwable)anvilconverterexception);
             this.mc.displayGuiScreen(new GuiErrorScreen("Unable to load worlds", anvilconverterexception.getMessage()));
             return;
         }
@@ -93,11 +93,11 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
     }
 
     protected String func_146621_a(int p_146621_1_) {
-        return ((SaveFormatComparator) this.field_146639_s.get(p_146621_1_)).getFileName();
+        return ((SaveFormatComparator)this.field_146639_s.get(p_146621_1_)).getFileName();
     }
 
     protected String func_146614_d(int p_146614_1_) {
-        String s = ((SaveFormatComparator) this.field_146639_s.get(p_146614_1_)).getDisplayName();
+        String s = ((SaveFormatComparator)this.field_146639_s.get(p_146614_1_)).getDisplayName();
 
         if (StringUtils.isEmpty(s)) {
             s = I18n.format("selectWorld.world", new Object[0]) + " " + (p_146614_1_ + 1);
@@ -132,29 +132,35 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
                     GuiYesNo guiyesno = makeDeleteWorldYesNo(this, s, this.selectedIndex);
                     this.mc.displayGuiScreen(guiyesno);
                 }
-            } else if (button.id == 1) {
+            }
+            else if (button.id == 1) {
                 this.func_146615_e(this.selectedIndex);
-            } else if (button.id == 3) {
+            }
+            else if (button.id == 3) {
                 this.mc.displayGuiScreen(new GuiCreateWorld(this));
-            } else if (button.id == 6) {
+            }
+            else if (button.id == 6) {
                 this.mc.displayGuiScreen(new GuiRenameWorld(this, this.func_146621_a(this.selectedIndex)));
-            } else if (button.id == 0) {
+            }
+            else if (button.id == 0) {
                 this.mc.displayGuiScreen(this.parentScreen);
-            } else if (button.id == 7) {
+            }
+            else if (button.id == 7) {
                 GuiCreateWorld guicreateworld = new GuiCreateWorld(this);
                 ISaveHandler isavehandler = this.mc.getSaveLoader().getSaveLoader(this.func_146621_a(this.selectedIndex), false);
                 WorldInfo worldinfo = isavehandler.loadWorldInfo();
                 isavehandler.flush();
                 guicreateworld.recreateFromExistingWorld(worldinfo);
                 this.mc.displayGuiScreen(guicreateworld);
-            } else {
+            }
+            else {
                 this.availableWorlds.actionPerformed(button);
             }
         }
     }
 
     public void func_146615_e(int p_146615_1_) {
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen((GuiScreen)null);
 
         String s = this.func_146621_a(p_146615_1_);
 
@@ -169,7 +175,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
         }
 
         if (this.mc.getSaveLoader().canLoadWorld(s)) {
-            this.mc.launchIntegratedServer(s, s1, (WorldSettings) null);
+            this.mc.launchIntegratedServer(s, s1, (WorldSettings)null);
         }
     }
 
@@ -185,7 +191,7 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
                 try {
                     this.loadLevelList();
                 } catch (AnvilConverterException anvilconverterexception) {
-                    logger.error((String) "Couldn\'t load level list", (Throwable) anvilconverterexception);
+                    logger.error((String)"Couldn\'t load level list", (Throwable)anvilconverterexception);
                 }
             }
 
@@ -270,7 +276,8 @@ public class GuiSelectWorld extends GuiScreen implements GuiYesNoCallback {
 
             if (saveformatcomparator.requiresConversion()) {
                 s2 = GuiSelectWorld.this.selectWorldConversion + " " + s2;
-            } else {
+            }
+            else {
                 s2 = GuiSelectWorld.this.gamemodes[saveformatcomparator.getEnumGameType().getID()];
 
                 if (saveformatcomparator.isHardcoreModeEnabled()) {

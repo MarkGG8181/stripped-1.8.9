@@ -142,7 +142,7 @@ public class BlockSponge extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {WET});
+        return new BlockState(this, new IProperty[]{WET});
     }
 
     public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)

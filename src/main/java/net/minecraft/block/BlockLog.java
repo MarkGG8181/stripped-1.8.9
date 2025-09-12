@@ -71,20 +71,16 @@ public abstract class BlockLog extends BlockRotatedPillar
 
         public static BlockLog.EnumAxis fromFacingAxis(EnumFacing.Axis axis)
         {
-            switch (axis)
+            return switch (axis)
             {
-                case X:
-                    return X;
+                case X -> X;
 
-                case Y:
-                    return Y;
+                case Y -> Y;
 
-                case Z:
-                    return Z;
+                case Z -> Z;
 
-                default:
-                    return NONE;
-            }
+                default -> NONE;
+            };
         }
 
         public String getName()

@@ -174,7 +174,7 @@ public class Block {
     }
 
     public static Block getBlockById(int id) {
-        return (Block) blockRegistry.getObjectById(id);
+        return (Block)blockRegistry.getObjectById(id);
     }
 
     /**
@@ -187,17 +187,18 @@ public class Block {
     }
 
     public static Block getBlockFromItem(Item itemIn) {
-        return itemIn instanceof ItemBlock ? ((ItemBlock) itemIn).getBlock() : null;
+        return itemIn instanceof ItemBlock ib ? ib.getBlock() : null;
     }
 
     public static Block getBlockFromName(String name) {
         ResourceLocation resourcelocation = new ResourceLocation(name);
 
         if (blockRegistry.containsKey(resourcelocation)) {
-            return (Block) blockRegistry.getObject(resourcelocation);
-        } else {
+            return (Block)blockRegistry.getObject(resourcelocation);
+        }
+        else {
             try {
-                return (Block) blockRegistry.getObjectById(Integer.parseInt(name));
+                return (Block)blockRegistry.getObjectById(Integer.parseInt(name));
             } catch (NumberFormatException var3) {
                 return null;
             }
@@ -257,7 +258,8 @@ public class Block {
     public int getMetaFromState(IBlockState state) {
         if (state != null && !state.getPropertyNames().isEmpty()) {
             throw new IllegalArgumentException("Don\'t know how to convert " + state + " back into data...");
-        } else {
+        }
+        else {
             return 0;
         }
     }
@@ -310,7 +312,7 @@ public class Block {
      * level
      */
     protected Block setLightLevel(float value) {
-        this.lightValue = (int) (15.0F * value);
+        this.lightValue = (int)(15.0F * value);
         return this;
     }
 
@@ -406,12 +408,12 @@ public class Block {
     }
 
     protected final void setBlockBounds(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
-        this.minX = (double) minX;
-        this.minY = (double) minY;
-        this.minZ = (double) minZ;
-        this.maxX = (double) maxX;
-        this.maxY = (double) maxY;
-        this.maxZ = (double) maxZ;
+        this.minX = (double)minX;
+        this.minY = (double)minY;
+        this.minZ = (double)minZ;
+        this.maxX = (double)maxX;
+        this.maxY = (double)maxY;
+        this.maxZ = (double)maxZ;
     }
 
     public int getMixedBrightnessForBlock(IBlockAccess worldIn, BlockPos pos) {
@@ -422,7 +424,8 @@ public class Block {
             pos = pos.down();
             block = worldIn.getBlockState(pos).getBlock();
             return worldIn.getCombinedLight(pos, block.getLightValue());
-        } else {
+        }
+        else {
             return i;
         }
     }
@@ -439,7 +442,7 @@ public class Block {
     }
 
     public AxisAlignedBB getSelectedBoundingBox(World worldIn, BlockPos pos) {
-        return new AxisAlignedBB((double) pos.getX() + this.minX, (double) pos.getY() + this.minY, (double) pos.getZ() + this.minZ, (double) pos.getX() + this.maxX, (double) pos.getY() + this.maxY, (double) pos.getZ() + this.maxZ);
+        return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
 
     /**
@@ -454,7 +457,7 @@ public class Block {
     }
 
     public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state) {
-        return new AxisAlignedBB((double) pos.getX() + this.minX, (double) pos.getY() + this.minY, (double) pos.getZ() + this.minZ, (double) pos.getX() + this.maxX, (double) pos.getY() + this.maxY, (double) pos.getZ() + this.maxZ);
+        return new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ);
     }
 
     /**
@@ -567,10 +570,10 @@ public class Block {
     public static void spawnAsEntity(World worldIn, BlockPos pos, ItemStack stack) {
         if (!worldIn.isRemote && worldIn.getGameRules().getBoolean("doTileDrops")) {
             float f = 0.5F;
-            double d0 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-            double d1 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-            double d2 = (double) (worldIn.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-            EntityItem entityitem = new EntityItem(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, stack);
+            double d0 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            double d1 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            double d2 = (double)(worldIn.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+            EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
             entityitem.setDefaultPickupDelay();
             worldIn.spawnEntityInWorld(entityitem);
         }
@@ -584,7 +587,7 @@ public class Block {
             while (amount > 0) {
                 int i = EntityXPOrb.getXPSplit(amount);
                 amount -= i;
-                worldIn.spawnEntityInWorld(new EntityXPOrb(worldIn, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, i));
+                worldIn.spawnEntityInWorld(new EntityXPOrb(worldIn, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, i));
             }
         }
     }
@@ -609,8 +612,8 @@ public class Block {
      */
     public MovingObjectPosition collisionRayTrace(World worldIn, BlockPos pos, Vec3 start, Vec3 end) {
         this.setBlockBoundsBasedOnState(worldIn, pos);
-        start = start.addVector((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()));
-        end = end.addVector((double) (-pos.getX()), (double) (-pos.getY()), (double) (-pos.getZ()));
+        start = start.addVector((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
+        end = end.addVector((double)(-pos.getX()), (double)(-pos.getY()), (double)(-pos.getZ()));
         Vec3 vec3 = start.getIntermediateWithXValue(end, this.minX);
         Vec3 vec31 = start.getIntermediateWithXValue(end, this.maxX);
         Vec3 vec32 = start.getIntermediateWithYValue(end, this.minY);
@@ -670,7 +673,8 @@ public class Block {
 
         if (vec36 == null) {
             return null;
-        } else {
+        }
+        else {
             EnumFacing enumfacing = null;
 
             if (vec36 == vec3) {
@@ -697,7 +701,7 @@ public class Block {
                 enumfacing = EnumFacing.SOUTH;
             }
 
-            return new MovingObjectPosition(vec36.addVector((double) pos.getX(), (double) pos.getY(), (double) pos.getZ()), enumfacing, pos);
+            return new MovingObjectPosition(vec36.addVector((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), enumfacing, pos);
         }
     }
 
@@ -870,7 +874,8 @@ public class Block {
             if (itemstack != null) {
                 spawnAsEntity(worldIn, pos, itemstack);
             }
-        } else {
+        }
+        else {
             int i = EnchantmentHelper.getFortuneModifier(player);
             this.dropBlockAsItem(worldIn, pos, state, i);
         }
@@ -1299,7 +1304,8 @@ public class Block {
         for (Block block13 : blockRegistry) {
             if (block13.blockMaterial == Material.air) {
                 block13.useNeighborBrightness = false;
-            } else {
+            }
+            else {
                 boolean flag = false;
                 boolean flag1 = block13 instanceof BlockStairs;
                 boolean flag2 = block13 instanceof BlockSlab;
@@ -1334,7 +1340,7 @@ public class Block {
     public static enum EnumOffsetType {
         NONE,
         XZ,
-        XYZ;
+        XYZ
     }
 
     public static class SoundType {

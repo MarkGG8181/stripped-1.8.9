@@ -81,7 +81,7 @@ public class EntityCreeper extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
+        this.dataWatcher.addObject(16, Byte.valueOf((byte)- 1));
         this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
         this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
     }

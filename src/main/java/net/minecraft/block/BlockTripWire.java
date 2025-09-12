@@ -143,7 +143,7 @@ public class BlockTripWire extends Block
 
     private void notifyHook(World worldIn, BlockPos pos, IBlockState state)
     {
-        for (EnumFacing enumfacing : new EnumFacing[] {EnumFacing.SOUTH, EnumFacing.WEST})
+        for (EnumFacing enumfacing : new EnumFacing[]{EnumFacing.SOUTH, EnumFacing.WEST})
         {
             for (int i = 1; i < 42; ++i)
             {
@@ -205,7 +205,7 @@ public class BlockTripWire extends Block
         IBlockState iblockstate = worldIn.getBlockState(pos);
         boolean flag = ((Boolean)iblockstate.getValue(POWERED)).booleanValue();
         boolean flag1 = false;
-        List <? extends Entity > list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ));
+        List<? extends Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB((double)pos.getX() + this.minX, (double)pos.getY() + this.minY, (double)pos.getZ() + this.minZ, (double)pos.getX() + this.maxX, (double)pos.getY() + this.maxY, (double)pos.getZ() + this.maxZ));
 
         if (!list.isEmpty())
         {
@@ -295,6 +295,6 @@ public class BlockTripWire extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {POWERED, SUSPENDED, ATTACHED, DISARMED, NORTH, EAST, WEST, SOUTH});
+        return new BlockState(this, new IProperty[]{POWERED, SUSPENDED, ATTACHED, DISARMED, NORTH, EAST, WEST, SOUTH});
     }
 }

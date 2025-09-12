@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,7 @@ public class EntityRainFX extends EntityFX
     {
         super(worldIn, xCoordIn, yCoordIn, zCoordIn, 0.0D, 0.0D, 0.0D);
         this.motionX *= 0.30000001192092896D;
-        this.motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;
+        this.motionY = ThreadLocalRandom.current().nextDouble() * 0.20000000298023224D + 0.10000000149011612D;
         this.motionZ *= 0.30000001192092896D;
         this.particleRed = 1.0F;
         this.particleGreen = 1.0F;
@@ -22,7 +24,7 @@ public class EntityRainFX extends EntityFX
         this.setParticleTextureIndex(19 + this.rand.nextInt(4));
         this.setSize(0.01F, 0.01F);
         this.particleGravity = 0.06F;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
     }
 
     /**
@@ -46,7 +48,7 @@ public class EntityRainFX extends EntityFX
 
         if (this.onGround)
         {
-            if (Math.random() < 0.5D)
+            if (ThreadLocalRandom.current().nextDouble() < 0.5D)
             {
                 this.setDead();
             }

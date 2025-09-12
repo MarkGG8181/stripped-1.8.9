@@ -45,7 +45,7 @@ public class Registry extends Util {
 
     private static final String versionString = "1.3";
     private static final String extensionString =
-            "GLU_EXT_nurbs_tessellator " + "GLU_EXT_object_space_tess ";
+        "GLU_EXT_nurbs_tessellator " + "GLU_EXT_object_space_tess ";
 
     /**
      * Method gluGetString
@@ -56,7 +56,8 @@ public class Registry extends Util {
 
         if (name == GLU_VERSION) {
             return versionString;
-        } else if (name == GLU_EXTENSIONS) {
+        }
+        else if (name == GLU_EXTENSIONS) {
             return extensionString;
         }
         return null;
@@ -72,7 +73,7 @@ public class Registry extends Util {
      * GL_EXT_texture and GL_EXT_texture3D.
      * @return boolean true if extName is found otherwise it returns false.
      */
-    public static boolean gluCheckExtension(String extName, String extString){
+    public static boolean gluCheckExtension(String extName, String extString) {
         return extString != null && extName != null && extString.contains(extName);
     }
 }

@@ -36,7 +36,8 @@ public class BiomeGenTaiga extends BiomeGenBase {
         if (p_i45385_2_ != 1 && p_i45385_2_ != 2) {
             this.theBiomeDecorator.grassPerChunk = 1;
             this.theBiomeDecorator.mushroomsPerChunk = 1;
-        } else {
+        }
+        else {
             this.theBiomeDecorator.grassPerChunk = 7;
             this.theBiomeDecorator.deadBushPerChunk = 1;
             this.theBiomeDecorator.mushroomsPerChunk = 3;
@@ -85,7 +86,8 @@ public class BiomeGenTaiga extends BiomeGenBase {
 
             if (noiseVal > 1.75D) {
                 this.topBlock = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.COARSE_DIRT);
-            } else if (noiseVal > -0.95D) {
+            }
+            else if (noiseVal > -0.95D) {
                 this.topBlock = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
             }
         }

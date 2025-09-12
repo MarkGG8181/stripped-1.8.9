@@ -239,7 +239,6 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
         for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f1) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
         {
-            ;
         }
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
@@ -351,15 +350,15 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         {
             this.thrower = this.worldObj.getPlayerEntityByName(this.throwerName);
 
-            if (this.thrower == null && this.worldObj instanceof WorldServer)
+            if (this.thrower == null && this.worldObj instanceof WorldServer server)
             {
                 try
                 {
-                    Entity entity = ((WorldServer)this.worldObj).getEntityFromUuid(FastUUID.parseUUID(this.throwerName));
+                    Entity entity = server.getEntityFromUuid(FastUUID.parseUUID(this.throwerName));
 
-                    if (entity instanceof EntityLivingBase)
+                    if (entity instanceof EntityLivingBase base)
                     {
-                        this.thrower = (EntityLivingBase)entity;
+                        this.thrower = base;
                     }
                 }
                 catch (Throwable var2)

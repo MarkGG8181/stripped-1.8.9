@@ -92,7 +92,7 @@ public class StructureVillagePieces
 
     private static StructureVillagePieces.Village func_176065_a(StructureVillagePieces.Start start, StructureVillagePieces.PieceWeight weight, List<StructureComponent> p_176065_2_, Random rand, int p_176065_4_, int p_176065_5_, int p_176065_6_, EnumFacing facing, int p_176065_8_)
     {
-        Class <? extends StructureVillagePieces.Village > oclass = weight.villagePieceClass;
+        Class<? extends StructureVillagePieces.Village> oclass = weight.villagePieceClass;
         StructureVillagePieces.Village structurevillagepieces$village = null;
 
         if (oclass == StructureVillagePieces.House4Garden.class)
@@ -419,17 +419,14 @@ public class StructureVillagePieces
 
         private Block func_151559_a(Random rand)
         {
-            switch (rand.nextInt(5))
+            return switch (rand.nextInt(5))
             {
-                case 0:
-                    return Blocks.carrots;
+                case 0 -> Blocks.carrots;
 
-                case 1:
-                    return Blocks.potatoes;
+                case 1 -> Blocks.potatoes;
 
-                default:
-                    return Blocks.wheat;
-            }
+                default -> Blocks.wheat;
+            };
         }
 
         public static StructureVillagePieces.Field1 func_175851_a(StructureVillagePieces.Start start, List<StructureComponent> p_175851_1_, Random rand, int p_175851_3_, int p_175851_4_, int p_175851_5_, EnumFacing facing, int p_175851_7_)
@@ -524,17 +521,14 @@ public class StructureVillagePieces
 
         private Block func_151560_a(Random rand)
         {
-            switch (rand.nextInt(5))
+            return switch (rand.nextInt(5))
             {
-                case 0:
-                    return Blocks.carrots;
+                case 0 -> Blocks.carrots;
 
-                case 1:
-                    return Blocks.potatoes;
+                case 1 -> Blocks.potatoes;
 
-                default:
-                    return Blocks.wheat;
-            }
+                default -> Blocks.wheat;
+            };
         }
 
         public static StructureVillagePieces.Field2 func_175852_a(StructureVillagePieces.Start start, List<StructureComponent> p_175852_1_, Random rand, int p_175852_3_, int p_175852_4_, int p_175852_5_, EnumFacing facing, int p_175852_7_)
@@ -832,7 +826,7 @@ public class StructureVillagePieces
 
     public static class House2 extends StructureVillagePieces.Village
     {
-        private static final List<WeightedRandomChestContent> villageBlacksmithChestContents = Lists.newArrayList(new WeightedRandomChestContent[] {new WeightedRandomChestContent(Items.diamond, 0, 1, 3, 3), new WeightedRandomChestContent(Items.iron_ingot, 0, 1, 5, 10), new WeightedRandomChestContent(Items.gold_ingot, 0, 1, 3, 5), new WeightedRandomChestContent(Items.bread, 0, 1, 3, 15), new WeightedRandomChestContent(Items.apple, 0, 1, 3, 15), new WeightedRandomChestContent(Items.iron_pickaxe, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_sword, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_chestplate, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_helmet, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_leggings, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_boots, 0, 1, 1, 5), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.obsidian), 0, 3, 7, 5), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.sapling), 0, 3, 7, 5), new WeightedRandomChestContent(Items.saddle, 0, 1, 1, 3), new WeightedRandomChestContent(Items.iron_horse_armor, 0, 1, 1, 1), new WeightedRandomChestContent(Items.golden_horse_armor, 0, 1, 1, 1), new WeightedRandomChestContent(Items.diamond_horse_armor, 0, 1, 1, 1)});
+        private static final List<WeightedRandomChestContent> villageBlacksmithChestContents = Lists.newArrayList(new WeightedRandomChestContent[]{new WeightedRandomChestContent(Items.diamond, 0, 1, 3, 3), new WeightedRandomChestContent(Items.iron_ingot, 0, 1, 5, 10), new WeightedRandomChestContent(Items.gold_ingot, 0, 1, 3, 5), new WeightedRandomChestContent(Items.bread, 0, 1, 3, 15), new WeightedRandomChestContent(Items.apple, 0, 1, 3, 15), new WeightedRandomChestContent(Items.iron_pickaxe, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_sword, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_chestplate, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_helmet, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_leggings, 0, 1, 1, 5), new WeightedRandomChestContent(Items.iron_boots, 0, 1, 1, 5), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.obsidian), 0, 3, 7, 5), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.sapling), 0, 3, 7, 5), new WeightedRandomChestContent(Items.saddle, 0, 1, 1, 3), new WeightedRandomChestContent(Items.iron_horse_armor, 0, 1, 1, 1), new WeightedRandomChestContent(Items.golden_horse_armor, 0, 1, 1, 1), new WeightedRandomChestContent(Items.diamond_horse_armor, 0, 1, 1, 1)});
         private boolean hasMadeChest;
 
         public House2()
@@ -1371,12 +1365,12 @@ public class StructureVillagePieces
 
     public static class PieceWeight
     {
-        public Class <? extends StructureVillagePieces.Village > villagePieceClass;
+        public Class<? extends StructureVillagePieces.Village> villagePieceClass;
         public final int villagePieceWeight;
         public int villagePiecesSpawned;
         public int villagePiecesLimit;
 
-        public PieceWeight(Class <? extends StructureVillagePieces.Village > p_i2098_1_, int p_i2098_2_, int p_i2098_3_)
+        public PieceWeight(Class<? extends StructureVillagePieces.Village> p_i2098_1_, int p_i2098_2_, int p_i2098_3_)
         {
             this.villagePieceClass = p_i2098_1_;
             this.villagePieceWeight = p_i2098_2_;

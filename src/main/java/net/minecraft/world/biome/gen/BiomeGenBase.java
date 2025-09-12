@@ -274,7 +274,8 @@ public abstract class BiomeGenBase {
     public BiomeGenBase setTemperatureRainfall(float temperatureIn, float rainfallIn) {
         if (temperatureIn > 0.1F && temperatureIn < 0.2F) {
             throw new IllegalArgumentException("Please avoid temperatures in the range 0.1 - 0.2 because of snow");
-        } else {
+        }
+        else {
             this.temperature = temperatureIn;
             this.rainfall = rainfallIn;
             return this;
@@ -343,7 +344,8 @@ public abstract class BiomeGenBase {
 
         if (p_150557_2_) {
             this.field_150609_ah = (colorIn & 16711422) >> 1;
-        } else {
+        }
+        else {
             this.field_150609_ah = colorIn;
         }
 
@@ -400,7 +402,7 @@ public abstract class BiomeGenBase {
      * Gets an integer representation of this biome's rainfall
      */
     public final int getIntRainfall() {
-        return (int) (this.rainfall * 65536.0F);
+        return (int)(this.rainfall * 65536.0F);
     }
 
     /**
@@ -415,9 +417,10 @@ public abstract class BiomeGenBase {
      */
     public final float getFloatTemperature(BlockPos pos) {
         if (pos.getY() > 64) {
-            float f = (float) (temperatureNoise.func_151601_a((double) pos.getX() * 1.0D / 8.0D, (double) pos.getZ() * 1.0D / 8.0D) * 4.0D);
-            return this.temperature - (f + (float) pos.getY() - 64.0F) * 0.05F / 30.0F;
-        } else {
+            float f = (float)(temperatureNoise.func_151601_a((double)pos.getX() * 1.0D / 8.0D, (double)pos.getZ() * 1.0D / 8.0D) * 4.0D);
+            return this.temperature - (f + (float)pos.getY() - 64.0F) * 0.05F / 30.0F;
+        }
+        else {
             return this.temperature;
         }
     }
@@ -427,14 +430,14 @@ public abstract class BiomeGenBase {
     }
 
     public int getGrassColorAtPos(BlockPos pos) {
-        double d0 = (double) MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
-        double d1 = (double) MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
+        double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
+        double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ColorizerGrass.getGrassColor(d0, d1);
     }
 
     public int getFoliageColorAtPos(BlockPos pos) {
-        double d0 = (double) MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
-        double d1 = (double) MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
+        double d0 = (double)MathHelper.clamp_float(this.getFloatTemperature(pos), 0.0F, 1.0F);
+        double d1 = (double)MathHelper.clamp_float(this.getFloatRainfall(), 0.0F, 1.0F);
         return ColorizerFoliage.getFoliageColor(d0, d1);
     }
 
@@ -461,7 +464,7 @@ public abstract class BiomeGenBase {
         IBlockState iblockstate = this.topBlock;
         IBlockState iblockstate1 = this.fillerBlock;
         int j = -1;
-        int k = (int) (noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
+        int k = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);
         int l = x & 15;
         int i1 = z & 15;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -469,17 +472,20 @@ public abstract class BiomeGenBase {
         for (int j1 = 255; j1 >= 0; --j1) {
             if (j1 <= rand.nextInt(5)) {
                 chunkPrimerIn.setBlockState(i1, j1, l, Blocks.bedrock.getDefaultState());
-            } else {
+            }
+            else {
                 IBlockState iblockstate2 = chunkPrimerIn.getBlockState(i1, j1, l);
 
                 if (iblockstate2.getBlock().getMaterial() == Material.air) {
                     j = -1;
-                } else if (iblockstate2.getBlock() == Blocks.stone) {
+                }
+                else if (iblockstate2.getBlock() == Blocks.stone) {
                     if (j == -1) {
                         if (k <= 0) {
                             iblockstate = null;
                             iblockstate1 = Blocks.stone.getDefaultState();
-                        } else if (j1 >= i - 4 && j1 <= i + 1) {
+                        }
+                        else if (j1 >= i - 4 && j1 <= i + 1) {
                             iblockstate = this.topBlock;
                             iblockstate1 = this.fillerBlock;
                         }
@@ -487,7 +493,8 @@ public abstract class BiomeGenBase {
                         if (j1 < i && (iblockstate == null || iblockstate.getBlock().getMaterial() == Material.air)) {
                             if (this.getFloatTemperature(blockpos$mutableblockpos.set(x, j1, z)) < 0.15F) {
                                 iblockstate = Blocks.ice.getDefaultState();
-                            } else {
+                            }
+                            else {
                                 iblockstate = Blocks.water.getDefaultState();
                             }
                         }
@@ -496,14 +503,17 @@ public abstract class BiomeGenBase {
 
                         if (j1 >= i - 1) {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-                        } else if (j1 < i - 7 - k) {
+                        }
+                        else if (j1 < i - 7 - k) {
                             iblockstate = null;
                             iblockstate1 = Blocks.stone.getDefaultState();
                             chunkPrimerIn.setBlockState(i1, j1, l, Blocks.gravel.getDefaultState());
-                        } else {
+                        }
+                        else {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
                         }
-                    } else if (j > 0) {
+                    }
+                    else if (j > 0) {
                         --j;
                         chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 
@@ -541,7 +551,7 @@ public abstract class BiomeGenBase {
     }
 
     public BiomeGenBase.TempCategory getTempCategory() {
-        return (double) this.temperature < 0.2D ? BiomeGenBase.TempCategory.COLD : ((double) this.temperature < 1.0D ? BiomeGenBase.TempCategory.MEDIUM : BiomeGenBase.TempCategory.WARM);
+        return (double)this.temperature < 0.2D ? BiomeGenBase.TempCategory.COLD : ((double)this.temperature < 1.0D ? BiomeGenBase.TempCategory.MEDIUM : BiomeGenBase.TempCategory.WARM);
     }
 
     public static BiomeGenBase[] getBiomeGenArray() {
@@ -559,7 +569,8 @@ public abstract class BiomeGenBase {
         if (biomeId >= 0 && biomeId <= biomeList.length) {
             BiomeGenBase biomegenbase = biomeList[biomeId];
             return biomegenbase == null ? biome : biomegenbase;
-        } else {
+        }
+        else {
             logger.warn("Biome ID is out of bounds: {}, defaulting to 0 (Ocean)", biomeId);
             return ocean;
         }

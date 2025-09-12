@@ -15,9 +15,9 @@ public class StateMap extends StateMapperBase
 {
     private final IProperty<?> name;
     private final String suffix;
-    private final List < IProperty<? >> ignored;
+    private final List<IProperty<?>> ignored;
 
-    private StateMap(IProperty<?> name, String suffix, List < IProperty<? >> ignored)
+    private StateMap(IProperty<?> name, String suffix, List<IProperty<?>> ignored)
     {
         this.name = name;
         this.suffix = suffix;
@@ -55,7 +55,7 @@ public class StateMap extends StateMapperBase
     {
         private IProperty<?> name;
         private String suffix;
-        private final List < IProperty<? >> ignored = Lists. < IProperty<? >> newArrayList();
+        private final List<IProperty<?>> ignored = Lists.< IProperty<?>>newArrayList();
 
         public StateMap.Builder withName(IProperty<?> builderPropertyIn)
         {

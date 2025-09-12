@@ -41,13 +41,13 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
      * Generates a list of leaf nodes for the tree, to be populated by generateLeaves.
      */
     void generateLeafNodeList() {
-        this.height = (int) ((double) this.heightLimit * this.heightAttenuation);
+        this.height = (int)((double)this.heightLimit * this.heightAttenuation);
 
         if (this.height >= this.heightLimit) {
             this.height = this.heightLimit - 1;
         }
 
-        int i = (int) (1.382D + Math.pow(this.leafDensity * (double) this.heightLimit / 13.0D, 2.0D));
+        int i = (int)(1.382D + Math.pow(this.leafDensity * (double)this.heightLimit / 13.0D, 2.0D));
 
         if (i < 1) {
             i = 1;
@@ -63,18 +63,18 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
 
             if (f >= 0.0F) {
                 for (int l = 0; l < i; ++l) {
-                    double d0 = this.scaleWidth * (double) f * ((double) this.rand.nextFloat() + 0.328D);
-                    double d1 = (double) (this.rand.nextFloat() * 2.0F) * Math.PI;
+                    double d0 = this.scaleWidth * (double)f * ((double)this.rand.nextFloat() + 0.328D);
+                    double d1 = (double)(this.rand.nextFloat() * 2.0F) * Math.PI;
                     double d2 = d0 * Math.sin(d1) + 0.5D;
                     double d3 = d0 * Math.cos(d1) + 0.5D;
-                    BlockPos blockpos = this.basePos.add(d2, (double) (k - 1), d3);
+                    BlockPos blockpos = this.basePos.add(d2, (double)(k - 1), d3);
                     BlockPos blockpos1 = blockpos.up(this.leafDistanceLimit);
 
                     if (this.checkBlockLine(blockpos, blockpos1) == -1) {
                         int i1 = this.basePos.getX() - blockpos.getX();
                         int j1 = this.basePos.getZ() - blockpos.getZ();
-                        double d4 = (double) blockpos.getY() - Math.sqrt((double) (i1 * i1 + j1 * j1)) * this.branchSlope;
-                        int k1 = d4 > (double) j ? j : (int) d4;
+                        double d4 = (double)blockpos.getY() - Math.sqrt((double)(i1 * i1 + j1 * j1)) * this.branchSlope;
+                        int k1 = d4 > (double)j ? j : (int)d4;
                         BlockPos blockpos2 = new BlockPos(this.basePos.getX(), k1, this.basePos.getZ());
 
                         if (this.checkBlockLine(blockpos2, blockpos) == -1) {
@@ -87,11 +87,11 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
     }
 
     void func_181631_a(BlockPos p_181631_1_, float p_181631_2_, IBlockState p_181631_3_) {
-        int i = (int) ((double) p_181631_2_ + 0.618D);
+        int i = (int)((double)p_181631_2_ + 0.618D);
 
         for (int j = -i; j <= i; ++j) {
             for (int k = -i; k <= i; ++k) {
-                if (Math.pow((double) Math.abs(j) + 0.5D, 2.0D) + Math.pow((double) Math.abs(k) + 0.5D, 2.0D) <= (double) (p_181631_2_ * p_181631_2_)) {
+                if (Math.pow((double)Math.abs(j) + 0.5D, 2.0D) + Math.pow((double)Math.abs(k) + 0.5D, 2.0D) <= (double)(p_181631_2_ * p_181631_2_)) {
                     BlockPos blockpos = p_181631_1_.add(j, 0, k);
                     Material material = this.world.getBlockState(blockpos).getBlock().getMaterial();
 
@@ -107,16 +107,18 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
      * Gets the rough size of a layer of the tree.
      */
     float layerSize(int p_76490_1_) {
-        if ((float) p_76490_1_ < (float) this.heightLimit * 0.3F) {
+        if ((float)p_76490_1_ < (float)this.heightLimit * 0.3F) {
             return -1.0F;
-        } else {
-            float f = (float) this.heightLimit / 2.0F;
-            float f1 = f - (float) p_76490_1_;
+        }
+        else {
+            float f = (float)this.heightLimit / 2.0F;
+            float f1 = f - (float)p_76490_1_;
             float f2 = MathHelper.sqrt_float(f * f - f1 * f1);
 
             if (f1 == 0.0F) {
                 f2 = f;
-            } else if (Math.abs(f1) >= f) {
+            }
+            else if (Math.abs(f1) >= f) {
                 return 0.0F;
             }
 
@@ -140,12 +142,12 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
     void func_175937_a(BlockPos p_175937_1_, BlockPos p_175937_2_, Block p_175937_3_) {
         BlockPos blockpos = p_175937_2_.add(-p_175937_1_.getX(), -p_175937_1_.getY(), -p_175937_1_.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float)blockpos.getX() / (float)i;
+        float f1 = (float)blockpos.getY() / (float)i;
+        float f2 = (float)blockpos.getZ() / (float)i;
 
         for (int j = 0; j <= i; ++j) {
-            BlockPos blockpos1 = p_175937_1_.add((double) (0.5F + (float) j * f), (double) (0.5F + (float) j * f1), (double) (0.5F + (float) j * f2));
+            BlockPos blockpos1 = p_175937_1_.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
             BlockLog.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
             this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
         }
@@ -170,7 +172,8 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         if (k > 0) {
             if (i == k) {
                 blocklog$enumaxis = BlockLog.EnumAxis.X;
-            } else if (j == k) {
+            }
+            else if (j == k) {
                 blocklog$enumaxis = BlockLog.EnumAxis.Z;
             }
         }
@@ -191,7 +194,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
      * Indicates whether or not a leaf node requires additional wood to be added to preserve integrity.
      */
     boolean leafNodeNeedsBase(int p_76493_1_) {
-        return (double) p_76493_1_ >= (double) this.heightLimit * 0.2D;
+        return (double)p_76493_1_ >= (double)this.heightLimit * 0.2D;
     }
 
     /**
@@ -232,15 +235,16 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
     int checkBlockLine(BlockPos posOne, BlockPos posTwo) {
         BlockPos blockpos = posTwo.add(-posOne.getX(), -posOne.getY(), -posOne.getZ());
         int i = this.getGreatestDistance(blockpos);
-        float f = (float) blockpos.getX() / (float) i;
-        float f1 = (float) blockpos.getY() / (float) i;
-        float f2 = (float) blockpos.getZ() / (float) i;
+        float f = (float)blockpos.getX() / (float)i;
+        float f1 = (float)blockpos.getY() / (float)i;
+        float f2 = (float)blockpos.getZ() / (float)i;
 
         if (i == 0) {
             return -1;
-        } else {
+        }
+        else {
             for (int j = 0; j <= i; ++j) {
-                BlockPos blockpos1 = posOne.add((double) (0.5F + (float) j * f), (double) (0.5F + (float) j * f1), (double) (0.5F + (float) j * f2));
+                BlockPos blockpos1 = posOne.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
 
                 if (!this.func_150523_a(this.world.getBlockState(blockpos1).getBlock())) {
                     return j;
@@ -266,7 +270,8 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
 
         if (!this.validTreeLocation()) {
             return false;
-        } else {
+        }
+        else {
             this.generateLeafNodeList();
             this.generateLeaves();
             this.generateTrunk();
@@ -284,14 +289,17 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
 
         if (block != Blocks.dirt && block != Blocks.grass && block != Blocks.farmland) {
             return false;
-        } else {
+        }
+        else {
             int i = this.checkBlockLine(this.basePos, this.basePos.up(this.heightLimit - 1));
 
             if (i == -1) {
                 return true;
-            } else if (i < 6) {
+            }
+            else if (i < 6) {
                 return false;
-            } else {
+            }
+            else {
                 this.heightLimit = i;
                 return true;
             }

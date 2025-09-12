@@ -52,8 +52,8 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient> {
         buf.writeVarIntToBuffer(this.statisticMap.size());
 
         for (Entry<StatBase, Integer> entry : this.statisticMap.entrySet()) {
-            buf.writeString(((StatBase) entry.getKey()).statId);
-            buf.writeVarIntToBuffer(((Integer) entry.getValue()).intValue());
+            buf.writeString(((StatBase)entry.getKey()).statId);
+            buf.writeVarIntToBuffer(((Integer)entry.getValue()).intValue());
         }
     }
 

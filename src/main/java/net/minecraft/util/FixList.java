@@ -30,7 +30,7 @@ public class FixList extends ArrayList<int[][]> {
         if (this.reload) {
             this.reload();
         }
-        return (int[][]) super.get(n);
+        return (int[][])super.get(n);
     }
 
     @Override

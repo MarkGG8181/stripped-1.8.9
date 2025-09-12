@@ -19,7 +19,7 @@ public class NBTTagEnd extends NBTBase {
      * Gets the type byte for the tag.
      */
     public byte getId() {
-        return (byte) 0;
+        return (byte)0;
     }
 
     @Override

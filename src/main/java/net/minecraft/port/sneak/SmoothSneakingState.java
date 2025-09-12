@@ -10,7 +10,7 @@ public class SmoothSneakingState {
     public float getSneakingHeightOffset(boolean isSneaking) {
         float target = isSneaking ? 1.0f : 0.0f;
 
-        float now = (float) Sys.getTime() / Sys.getTimerResolution();
+        float now = (float)Sys.getTime() / Sys.getTimerResolution();
         float deltaTime = 0.0f;
 
         if (lastFrameTime > 0.0f) {
@@ -23,7 +23,8 @@ public class SmoothSneakingState {
 
         if (Math.abs(difference) < 0.0001f) {
             this.crouchProgress = target;
-        } else {
+        }
+        else {
             this.crouchProgress += difference * deltaTime * 10.0f;
         }
 

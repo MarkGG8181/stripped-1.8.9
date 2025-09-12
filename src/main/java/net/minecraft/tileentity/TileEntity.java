@@ -40,7 +40,8 @@ public abstract class TileEntity {
     private static void addMapping(Class<? extends TileEntity> cl, String id) {
         if (nameToClassMap.containsKey(id)) {
             throw new IllegalArgumentException("Duplicate id: " + id);
-        } else {
+        }
+        else {
             nameToClassMap.put(id, cl);
             classToNameMap.put(cl, id);
         }
@@ -72,11 +73,12 @@ public abstract class TileEntity {
     }
 
     public void writeToNBT(NBTTagCompound compound) {
-        String s = (String) classToNameMap.get(this.getClass());
+        String s = (String)classToNameMap.get(this.getClass());
 
         if (s == null) {
             throw new RuntimeException(this.getClass() + " is missing a mapping! This is a bug!");
-        } else {
+        }
+        else {
             compound.setString("id", s);
             compound.setInteger("x", this.pos.getX());
             compound.setInteger("y", this.pos.getY());
@@ -91,10 +93,10 @@ public abstract class TileEntity {
         TileEntity tileentity = null;
 
         try {
-            Class<? extends TileEntity> oclass = (Class) nameToClassMap.get(nbt.getString("id"));
+            Class<? extends TileEntity> oclass = (Class)nameToClassMap.get(nbt.getString("id"));
 
             if (oclass != null) {
-                tileentity = (TileEntity) oclass.newInstance();
+                tileentity = (TileEntity)oclass.getDeclaredConstructor().newInstance();
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -102,7 +104,8 @@ public abstract class TileEntity {
 
         if (tileentity != null) {
             tileentity.readFromNBT(nbt);
-        } else {
+        }
+        else {
             logger.warn("Skipping BlockEntity with id " + nbt.getString("id"));
         }
 
@@ -138,9 +141,9 @@ public abstract class TileEntity {
      * Returns the square of the distance between this entity and the passed in coordinates.
      */
     public double getDistanceSq(double x, double y, double z) {
-        double d0 = (double) this.pos.getX() + 0.5D - x;
-        double d1 = (double) this.pos.getY() + 0.5D - y;
-        double d2 = (double) this.pos.getZ() + 0.5D - z;
+        double d0 = (double)this.pos.getX() + 0.5D - x;
+        double d1 = (double)this.pos.getY() + 0.5D - y;
+        double d2 = (double)this.pos.getZ() + 0.5D - z;
         return d0 * d0 + d1 * d1 + d2 * d2;
     }
 
@@ -201,7 +204,7 @@ public abstract class TileEntity {
     public void addInfoToCrashReport(CrashReportCategory reportCategory) {
         reportCategory.addCrashSectionCallable("Name", new Callable<String>() {
             public String call() throws Exception {
-                return (String) TileEntity.classToNameMap.get(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
+                return (String)TileEntity.classToNameMap.get(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
             }
         });
 
@@ -212,7 +215,7 @@ public abstract class TileEntity {
                     int i = Block.getIdFromBlock(TileEntity.this.worldObj.getBlockState(TileEntity.this.pos).getBlock());
 
                     try {
-                        return String.format("ID #%d (%s // %s)", new Object[]{Integer.valueOf(i), Block.getBlockById(i).getUnlocalizedName(), Block.getBlockById(i).getClass().getCanonicalName()});
+                        return "ID #%d (%s // %s)".formatted(new Object[]{Integer.valueOf(i), Block.getBlockById(i).getUnlocalizedName(), Block.getBlockById(i).getClass().getCanonicalName()});
                     } catch (Throwable var3) {
                         return "ID #" + i;
                     }
@@ -225,9 +228,10 @@ public abstract class TileEntity {
 
                     if (i < 0) {
                         return "Unknown? (Got " + i + ")";
-                    } else {
-                        String s = String.format("%4s", new Object[]{Integer.toBinaryString(i)}).replace(" ", "0");
-                        return String.format("%1$d / 0x%1$X / 0b%2$s", new Object[]{Integer.valueOf(i), s});
+                    }
+                    else {
+                        String s = "%4s".formatted(new Object[]{Integer.toBinaryString(i)}).replace(" ", "0");
+                        return "%1$d / 0x%1$X / 0b%2$s".formatted(new Object[]{Integer.valueOf(i), s});
                     }
                 }
             });

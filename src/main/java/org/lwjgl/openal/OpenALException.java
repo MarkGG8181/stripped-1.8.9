@@ -15,6 +15,8 @@
  */
 package org.lwjgl.openal;
 
+import java.io.Serial;
+
 /**
  * <br>
  * Thrown by the debug build library of the LWJGL if any OpenAL operation causes an error.
@@ -24,6 +26,7 @@ package org.lwjgl.openal;
  */
 public class OpenALException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**

@@ -1,5 +1,7 @@
 package net.minecraft.client.particle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
@@ -23,11 +25,11 @@ public class EntitySnowShovelFX extends EntityFX
         this.motionX += xSpeedIn;
         this.motionY += ySpeedIn;
         this.motionZ += zSpeedIn;
-        this.particleRed = this.particleGreen = this.particleBlue = 1.0F - (float)(Math.random() * 0.30000001192092896D);
+        this.particleRed = this.particleGreen = this.particleBlue = 1.0F - (float)(ThreadLocalRandom.current().nextDouble() * 0.30000001192092896D);
         this.particleScale *= 0.75F;
         this.particleScale *= p_i1228_14_;
         this.snowDigParticleScale = this.particleScale;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(8.0D / (ThreadLocalRandom.current().nextDouble() * 0.8D + 0.2D));
         this.particleMaxAge = (int)((float)this.particleMaxAge * p_i1228_14_);
         this.noClip = false;
     }

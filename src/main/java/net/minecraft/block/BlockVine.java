@@ -30,7 +30,7 @@ public class BlockVine extends Block
     public static final PropertyBool EAST = PropertyBool.create("east");
     public static final PropertyBool SOUTH = PropertyBool.create("south");
     public static final PropertyBool WEST = PropertyBool.create("west");
-    public static final PropertyBool[] ALL_FACES = new PropertyBool[] {UP, NORTH, SOUTH, WEST, EAST};
+    public static final PropertyBool[] ALL_FACES = new PropertyBool[]{UP, NORTH, SOUTH, WEST, EAST};
 
     public BlockVine()
     {
@@ -469,7 +469,7 @@ public class BlockVine extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {UP, NORTH, EAST, SOUTH, WEST});
+        return new BlockState(this, new IProperty[]{UP, NORTH, EAST, SOUTH, WEST});
     }
 
     public static PropertyBool getPropertyFor(EnumFacing side)

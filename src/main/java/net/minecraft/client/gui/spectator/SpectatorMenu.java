@@ -70,7 +70,8 @@ public class SpectatorMenu {
         if (ispectatormenuobject != EMPTY_SLOT) {
             if (this.selectedSlot == p_178644_1_ && ispectatormenuobject.func_178662_A_()) {
                 ispectatormenuobject.func_178661_a(this);
-            } else {
+            }
+            else {
                 this.selectedSlot = p_178644_1_;
             }
         }
@@ -139,7 +140,8 @@ public class SpectatorMenu {
 
             if (this.direction < 0) {
                 Gui.drawModalRectWithCustomSizedTexture(0, 0, 144.0F, 0.0F, 16, 16, 256.0F, 256.0F);
-            } else {
+            }
+            else {
                 Gui.drawModalRectWithCustomSizedTexture(0, 0, 160.0F, 0.0F, 16, 16, 256.0F, 256.0F);
             }
         }

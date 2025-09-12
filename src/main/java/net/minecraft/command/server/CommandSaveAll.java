@@ -75,7 +75,7 @@ public class CommandSaveAll extends CommandBase
         }
         catch (MinecraftException minecraftexception)
         {
-            notifyOperators(sender, this, "commands.save.failed", new Object[] {minecraftexception.getMessage()});
+            notifyOperators(sender, this, "commands.save.failed", new Object[]{minecraftexception.getMessage()});
             return;
         }
 

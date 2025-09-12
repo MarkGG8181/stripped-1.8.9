@@ -12,23 +12,23 @@ import net.minecraft.util.ResourceLocation;
 public class EnchantmentDamage extends Enchantment
 {
     /** Holds the name to be translated of each protection type. */
-    private static final String[] protectionName = new String[] {"all", "undead", "arthropods"};
+    private static final String[] protectionName = new String[]{"all", "undead", "arthropods"};
 
     /**
      * Holds the base factor of enchantability needed to be able to use the enchant.
      */
-    private static final int[] baseEnchantability = new int[] {1, 5, 5};
+    private static final int[] baseEnchantability = new int[]{1, 5, 5};
 
     /**
      * Holds how much each level increased the enchantability factor to be able to use this enchant.
      */
-    private static final int[] levelEnchantability = new int[] {11, 8, 8};
+    private static final int[] levelEnchantability = new int[]{11, 8, 8};
 
     /**
      * Used on the formula of base enchantability, this is the 'window' factor of values to be able to use thing
      * enchant.
      */
-    private static final int[] thresholdEnchantability = new int[] {20, 20, 20};
+    private static final int[] thresholdEnchantability = new int[]{20, 20, 20};
 
     /**
      * Defines the type of damage of the enchantment, 0 = all, 1 = undead, 3 = arthropods
@@ -103,9 +103,8 @@ public class EnchantmentDamage extends Enchantment
      */
     public void onEntityDamaged(EntityLivingBase user, Entity target, int level)
     {
-        if (target instanceof EntityLivingBase)
+        if (target instanceof EntityLivingBase entitylivingbase)
         {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)target;
 
             if (this.damageType == 2 && entitylivingbase.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD)
             {

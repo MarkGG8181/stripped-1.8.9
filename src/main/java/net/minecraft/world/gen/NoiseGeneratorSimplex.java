@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class NoiseGeneratorSimplex
 {
-    private static int[][] grad3 = new int[][] {{1, 1, 0}, { -1, 1, 0}, {1, -1, 0}, { -1, -1, 0}, {1, 0, 1}, { -1, 0, 1}, {1, 0, -1}, { -1, 0, -1}, {0, 1, 1}, {0, -1, 1}, {0, 1, -1}, {0, -1, -1}};
+    private static int[][] grad3 = new int[][]{{1, 1, 0}, {-1, 1, 0}, {1, -1, 0}, {-1, -1, 0}, {1, 0, 1}, {-1, 0, 1}, {1, 0, -1}, {-1, 0, -1}, {0, 1, 1}, {0, -1, 1}, {0, 1, -1}, {0, -1, -1}};
     public static final double SQRT_3 = Math.sqrt(3.0D);
     private int[] p;
     public double xo;
@@ -27,7 +27,6 @@ public class NoiseGeneratorSimplex
 
         for (int i = 0; i < 256; this.p[i] = i++)
         {
-            ;
         }
 
         for (int l = 0; l < 256; ++l)

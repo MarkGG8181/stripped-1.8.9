@@ -81,7 +81,7 @@ public class EntityZombie extends EntityMob
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityVillager.class, 1.0D, true));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityIronGolem.class, 1.0D, true));
         this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[] {EntityZombiePigman.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityZombiePigman.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
@@ -538,9 +538,8 @@ public class EntityZombie extends EntityMob
             livingdata = new EntityZombie.GroupData(this.worldObj.rand.nextFloat() < 0.05F, this.worldObj.rand.nextFloat() < 0.05F);
         }
 
-        if (livingdata instanceof EntityZombie.GroupData)
+        if (livingdata instanceof EntityZombie.GroupData entityzombie$groupdata)
         {
-            EntityZombie.GroupData entityzombie$groupdata = (EntityZombie.GroupData)livingdata;
 
             if (entityzombie$groupdata.isVillager)
             {
@@ -557,7 +556,7 @@ public class EntityZombie extends EntityMob
 
                     if (!list.isEmpty())
                     {
-                        EntityChicken entitychicken = (EntityChicken)list.get(0);
+                        EntityChicken entitychicken = (EntityChicken)list.getFirst();
                         entitychicken.setChickenJockey(true);
                         this.mountEntity(entitychicken);
                     }

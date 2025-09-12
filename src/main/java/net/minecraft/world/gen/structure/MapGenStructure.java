@@ -51,7 +51,7 @@ public abstract class MapGenStructure extends MapGenBase
                         return MapGenStructure.this.canSpawnStructureAtCoords(chunkX, chunkZ) ? "True" : "False";
                     }
                 });
-                crashreportcategory.addCrashSection("Chunk location", String.format("%d,%d", new Object[] {Integer.valueOf(chunkX), Integer.valueOf(chunkZ)}));
+                crashreportcategory.addCrashSection("Chunk location", "%d,%d".formatted(new Object[]{Integer.valueOf(chunkX), Integer.valueOf(chunkZ)}));
                 crashreportcategory.addCrashSectionCallable("Chunk pos hash", new Callable<String>()
                 {
                     public String call() throws Exception
@@ -163,7 +163,7 @@ public abstract class MapGenStructure extends MapGenBase
         {
             if (structurestart.isSizeableStructure())
             {
-                StructureComponent structurecomponent = (StructureComponent)structurestart.getComponents().get(0);
+                StructureComponent structurecomponent = (StructureComponent)structurestart.getComponents().getFirst();
                 BlockPos blockpos1 = structurecomponent.getBoundingBoxCenter();
                 double d1 = blockpos1.distanceSq(pos);
 

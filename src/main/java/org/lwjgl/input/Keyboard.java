@@ -155,7 +155,7 @@ public class Keyboard {
     private static void reset() {
         readBuffer.limit(0);
         for (int i = 0; i < keyDownBuffer.remaining(); i++)
-            keyDownBuffer.put(i, (byte) 0);
+            keyDownBuffer.put(i, (byte)0);
         current_event.reset();
     }
 
@@ -237,11 +237,11 @@ public class Keyboard {
      * @param key State key to test (KEY_CAPITAL | KEY_NUMLOCK | KEY_SYSRQ)
      * @return STATE_ON if on, STATE_OFF if off and STATE_UNKNOWN if the state is unknown
      */
-/*	public static int isStateKeySet(int key) {
-		if (!created)
-			throw new IllegalStateException("Keyboard must be created before you can query key state");
-		return implementation.isStateKeySet(key);
-	}
+/*    public static int isStateKeySet(int key) {
+        if (!created)
+            throw new IllegalStateException("Keyboard must be created before you can query key state");
+        return implementation.isStateKeySet(key);
+    }
 */
 
     /**
@@ -358,7 +358,7 @@ public class Keyboard {
      */
     public static char getEventCharacter() {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        return (char) current_event.character;
+        return (char)current_event.character;
 //        }
     }
 

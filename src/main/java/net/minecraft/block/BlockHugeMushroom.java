@@ -39,20 +39,16 @@ public class BlockHugeMushroom extends Block
      */
     public MapColor getMapColor(IBlockState state)
     {
-        switch ((BlockHugeMushroom.EnumType)state.getValue(VARIANT))
+        return switch ((BlockHugeMushroom.EnumType)state.getValue(VARIANT))
         {
-            case ALL_STEM:
-                return MapColor.clothColor;
+            case ALL_STEM -> MapColor.clothColor;
 
-            case ALL_INSIDE:
-                return MapColor.sandColor;
+            case ALL_INSIDE -> MapColor.sandColor;
 
-            case STEM:
-                return MapColor.sandColor;
+            case STEM -> MapColor.sandColor;
 
-            default:
-                return super.getMapColor(state);
-        }
+            default -> super.getMapColor(state);
+        };
     }
 
     /**
@@ -95,7 +91,7 @@ public class BlockHugeMushroom extends Block
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {VARIANT});
+        return new BlockState(this, new IProperty[]{VARIANT});
     }
 
     public static enum EnumType implements IStringSerializable

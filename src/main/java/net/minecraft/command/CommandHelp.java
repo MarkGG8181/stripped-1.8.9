@@ -41,7 +41,7 @@ public class CommandHelp extends CommandBase
 
     public List<String> getCommandAliases()
     {
-        return Arrays.<String>asList(new String[] {"?"});
+        return Arrays.<String>asList(new String[]{"?"});
     }
 
     /**
@@ -77,7 +77,7 @@ public class CommandHelp extends CommandBase
         }
 
         int l = Math.min((k + 1) * 7, list.size());
-        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("commands.help.header", new Object[] {Integer.valueOf(k + 1), Integer.valueOf(j + 1)});
+        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("commands.help.header", new Object[]{Integer.valueOf(k + 1), Integer.valueOf(j + 1)});
         chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.DARK_GREEN);
         sender.addChatMessage(chatcomponenttranslation1);
 

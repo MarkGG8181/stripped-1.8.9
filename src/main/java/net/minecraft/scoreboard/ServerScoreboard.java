@@ -51,7 +51,8 @@ public class ServerScoreboard extends Scoreboard {
         if (scoreobjective != p_96530_2_ && scoreobjective != null) {
             if (this.func_96552_h(scoreobjective) > 0) {
                 this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3DPacketDisplayScoreboard(p_96530_1_, p_96530_2_));
-            } else {
+            }
+            else {
                 this.sendDisplaySlotRemovalPackets(scoreobjective);
             }
         }
@@ -59,7 +60,8 @@ public class ServerScoreboard extends Scoreboard {
         if (p_96530_2_ != null) {
             if (this.addedObjectives.contains(p_96530_2_)) {
                 this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3DPacketDisplayScoreboard(p_96530_1_, p_96530_2_));
-            } else {
+            }
+            else {
                 this.func_96549_e(p_96530_2_);
             }
         }
@@ -76,7 +78,8 @@ public class ServerScoreboard extends Scoreboard {
             this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(scoreplayerteam, Arrays.asList(new String[]{player}), 3));
             this.markSaveDataDirty();
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }

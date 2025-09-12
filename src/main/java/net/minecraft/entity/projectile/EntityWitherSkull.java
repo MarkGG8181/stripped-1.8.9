@@ -93,7 +93,7 @@ public class EntityWitherSkull extends EntityFireball
                     movingObject.entityHit.attackEntityFrom(DamageSource.magic, 5.0F);
                 }
 
-                if (movingObject.entityHit instanceof EntityLivingBase)
+                if (movingObject.entityHit instanceof EntityLivingBase base)
                 {
                     int i = 0;
 
@@ -108,7 +108,7 @@ public class EntityWitherSkull extends EntityFireball
 
                     if (i > 0)
                     {
-                        ((EntityLivingBase)movingObject.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 20 * i, 1));
+                        base.addPotionEffect(new PotionEffect(Potion.wither.id, 20 * i, 1));
                     }
                 }
             }

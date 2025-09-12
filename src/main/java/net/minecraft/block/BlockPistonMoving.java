@@ -49,9 +49,9 @@ public class BlockPistonMoving extends BlockContainer
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
-        if (tileentity instanceof TileEntityPiston)
+        if (tileentity instanceof TileEntityPiston piston)
         {
-            ((TileEntityPiston)tileentity).clearPistonTileEntity();
+            piston.clearPistonTileEntity();
         }
         else
         {
@@ -273,7 +273,7 @@ public class BlockPistonMoving extends BlockContainer
     private TileEntityPiston getTileEntity(IBlockAccess worldIn, BlockPos pos)
     {
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity instanceof TileEntityPiston ? (TileEntityPiston)tileentity : null;
+        return tileentity instanceof TileEntityPiston tep ? tep : null;
     }
 
     public Item getItem(World worldIn, BlockPos pos)
@@ -307,6 +307,6 @@ public class BlockPistonMoving extends BlockContainer
 
     protected BlockState createBlockState()
     {
-        return new BlockState(this, new IProperty[] {FACING, TYPE});
+        return new BlockState(this, new IProperty[]{FACING, TYPE});
     }
 }

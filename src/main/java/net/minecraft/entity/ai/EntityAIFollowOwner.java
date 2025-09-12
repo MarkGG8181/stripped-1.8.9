@@ -51,7 +51,7 @@ public class EntityAIFollowOwner extends EntityAIBase
         {
             return false;
         }
-        else if (entitylivingbase instanceof EntityPlayer && ((EntityPlayer)entitylivingbase).isSpectator())
+        else if (entitylivingbase instanceof EntityPlayer player && player.isSpectator())
         {
             return false;
         }

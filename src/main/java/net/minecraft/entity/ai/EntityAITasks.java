@@ -38,7 +38,7 @@ public class EntityAITasks {
         Iterator<EntityAITasks.EntityAITaskEntry> iterator = this.taskEntries.iterator();
 
         while (iterator.hasNext()) {
-            EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry = (EntityAITasks.EntityAITaskEntry) iterator.next();
+            EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry = (EntityAITasks.EntityAITaskEntry)iterator.next();
             EntityAIBase entityaibase = entityaitasks$entityaitaskentry.action;
 
             if (entityaibase == task) {
@@ -67,7 +67,7 @@ public class EntityAITasks {
                         break label38;
                     }
 
-                    entityaitasks$entityaitaskentry = (EntityAITasks.EntityAITaskEntry) iterator.next();
+                    entityaitasks$entityaitaskentry = (EntityAITasks.EntityAITaskEntry)iterator.next();
                     boolean flag = this.executingTaskEntries.contains(entityaitasks$entityaitaskentry);
 
                     if (!flag) {
@@ -86,11 +86,12 @@ public class EntityAITasks {
                     this.executingTaskEntries.add(entityaitasks$entityaitaskentry);
                 }
             }
-        } else {
+        }
+        else {
             Iterator<EntityAITasks.EntityAITaskEntry> iterator1 = this.executingTaskEntries.iterator();
 
             while (iterator1.hasNext()) {
-                EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry1 = (EntityAITasks.EntityAITaskEntry) iterator1.next();
+                EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry1 = (EntityAITasks.EntityAITaskEntry)iterator1.next();
 
                 if (!this.canContinue(entityaitasks$entityaitaskentry1)) {
                     entityaitasks$entityaitaskentry1.action.resetTask();
@@ -128,7 +129,8 @@ public class EntityAITasks {
                     if (!this.areTasksCompatible(taskEntry, entityaitasks$entityaitaskentry) && this.executingTaskEntries.contains(entityaitasks$entityaitaskentry)) {
                         return false;
                     }
-                } else if (!entityaitasks$entityaitaskentry.action.isInterruptible() && this.executingTaskEntries.contains(entityaitasks$entityaitaskentry)) {
+                }
+                else if (!entityaitasks$entityaitaskentry.action.isInterruptible() && this.executingTaskEntries.contains(entityaitasks$entityaitaskentry)) {
                     return false;
                 }
             }

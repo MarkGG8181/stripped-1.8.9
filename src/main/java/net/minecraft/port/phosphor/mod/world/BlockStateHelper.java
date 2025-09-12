@@ -15,7 +15,7 @@ public class BlockStateHelper {
      */
     public static IBlockState getBlockState(final Chunk chunk, final BlockPos pos) {
         int y = pos.getY();
-        
+
         // Return air for requests outside the valid world height for this chunk
         if (y < 0 || y > 255) {
             return DEFAULT_AIR_STATE;

@@ -54,8 +54,8 @@ public final class ALCdevice {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object device) {
-        if (device instanceof ALCdevice) {
-            return ((ALCdevice) device).device == this.device;
+        if (device instanceof ALCdevice cdevice) {
+            return cdevice.device == this.device;
         }
         return super.equals(device);
     }
