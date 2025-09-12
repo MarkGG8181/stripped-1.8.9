@@ -7,8 +7,8 @@ import net.minecraft.util.MathHelper;
 
 public class ModelWither extends ModelBase
 {
-    private ModelRenderer[] upperBodyParts;
-    private ModelRenderer[] heads;
+    private final ModelRenderer[] upperBodyParts;
+    private final ModelRenderer[] heads;
 
     public ModelWither(float p_i46302_1_)
     {
@@ -17,7 +17,7 @@ public class ModelWither extends ModelBase
         this.upperBodyParts = new ModelRenderer[3];
         this.upperBodyParts[0] = new ModelRenderer(this, 0, 16);
         this.upperBodyParts[0].addBox(-10.0F, 3.9F, -0.5F, 20, 3, 3, p_i46302_1_);
-        this.upperBodyParts[1] = (new ModelRenderer(this)).setTextureSize(this.textureWidth, this.textureHeight);
+        this.upperBodyParts[1] = new ModelRenderer(this).setTextureSize(this.textureWidth, this.textureHeight);
         this.upperBodyParts[1].setRotationPoint(-2.0F, 6.9F, -0.5F);
         this.upperBodyParts[1].setTextureOffset(0, 22).addBox(0.0F, 0.0F, 0.0F, 3, 10, 3, p_i46302_1_);
         this.upperBodyParts[1].setTextureOffset(24, 22).addBox(-4.0F, 1.5F, 0.5F, 11, 2, 2, p_i46302_1_);
@@ -79,7 +79,7 @@ public class ModelWither extends ModelBase
     {
         EntityWither entitywither = (EntityWither)entitylivingbaseIn;
 
-        for (int i = 1; i < 3; ++i)
+        for (int i = 1; i < 3; i++)
         {
             this.heads[i].rotateAngleY = (entitywither.func_82207_a(i - 1) - entitylivingbaseIn.renderYawOffset) / (180F / (float)Math.PI);
             this.heads[i].rotateAngleX = entitywither.func_82210_r(i - 1) / (180F / (float)Math.PI);

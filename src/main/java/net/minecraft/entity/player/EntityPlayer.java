@@ -431,7 +431,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
 
         if (itemStackIn.getItemUseAction() == EnumAction.EAT) {
-            for (int i = 0; i < p_71010_2_; ++i) {
+            for (int i = 0; i < p_71010_2_; i++) {
                 Vec3 vec3 = new Vec3(((double)this.rand.nextFloat() - 0.5D) * 0.1D, ThreadLocalRandom.current().nextDouble() * 0.1D + 0.1D, 0.0D);
                 vec3 = vec3.rotatePitch(-this.rotationPitch * (float)Math.PI / 180.0F);
                 vec3 = vec3.rotateYaw(-this.rotationYaw * (float)Math.PI / 180.0F);
@@ -606,7 +606,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
             List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, axisalignedbb);
 
-            for (int i = 0; i < list.size(); ++i) {
+            for (int i = 0; i < list.size(); i++) {
                 Entity entity = (Entity)list.get(i);
 
                 if (!entity.isDead) {

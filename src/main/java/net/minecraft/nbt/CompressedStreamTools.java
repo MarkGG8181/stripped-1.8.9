@@ -190,4 +190,7 @@ public class CompressedStreamTools
             }
         }
     }
+
+    private CompressedStreamTools() {
+    }
 }

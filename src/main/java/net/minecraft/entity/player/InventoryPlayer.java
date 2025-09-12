@@ -62,7 +62,7 @@ public class InventoryPlayer implements IInventory
 
     private int getInventorySlotContainItem(Item itemIn)
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null && this.mainInventory[i].getItem() == itemIn)
             {
@@ -75,7 +75,7 @@ public class InventoryPlayer implements IInventory
 
     private int getInventorySlotContainItemAndDamage(Item itemIn, int metadataIn)
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null && this.mainInventory[i].getItem() == itemIn && this.mainInventory[i].getMetadata() == metadataIn)
             {
@@ -91,7 +91,7 @@ public class InventoryPlayer implements IInventory
      */
     private int storeItemStack(ItemStack itemStackIn)
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null && this.mainInventory[i].getItem() == itemStackIn.getItem() && this.mainInventory[i].isStackable() && this.mainInventory[i].stackSize < this.mainInventory[i].getMaxStackSize() && this.mainInventory[i].stackSize < this.getInventoryStackLimit() && (!this.mainInventory[i].getHasSubtypes() || this.mainInventory[i].getMetadata() == itemStackIn.getMetadata()) && ItemStack.areItemStackTagsEqual(this.mainInventory[i], itemStackIn))
             {
@@ -107,7 +107,7 @@ public class InventoryPlayer implements IInventory
      */
     public int getFirstEmptyStack()
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] == null)
             {
@@ -196,7 +196,7 @@ public class InventoryPlayer implements IInventory
     {
         int i = 0;
 
-        for (int j = 0; j < this.mainInventory.length; ++j)
+        for (int j = 0; j < this.mainInventory.length; j++)
         {
             ItemStack itemstack = this.mainInventory[j];
 
@@ -222,7 +222,7 @@ public class InventoryPlayer implements IInventory
             }
         }
 
-        for (int l = 0; l < this.armorInventory.length; ++l)
+        for (int l = 0; l < this.armorInventory.length; l++)
         {
             ItemStack itemstack1 = this.armorInventory[l];
 
@@ -350,7 +350,7 @@ public class InventoryPlayer implements IInventory
      */
     public void decrementAnimations()
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null)
             {
@@ -568,7 +568,7 @@ public class InventoryPlayer implements IInventory
      */
     public NBTTagList writeToNBT(NBTTagList nbtTagListIn)
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null)
             {
@@ -579,7 +579,7 @@ public class InventoryPlayer implements IInventory
             }
         }
 
-        for (int j = 0; j < this.armorInventory.length; ++j)
+        for (int j = 0; j < this.armorInventory.length; j++)
         {
             if (this.armorInventory[j] != null)
             {
@@ -603,7 +603,7 @@ public class InventoryPlayer implements IInventory
         this.mainInventory = new ItemStack[36];
         this.armorInventory = new ItemStack[4];
 
-        for (int i = 0; i < nbtTagListIn.tagCount(); ++i)
+        for (int i = 0; i < nbtTagListIn.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbtTagListIn.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
@@ -710,7 +710,7 @@ public class InventoryPlayer implements IInventory
     {
         int i = 0;
 
-        for (int j = 0; j < this.armorInventory.length; ++j)
+        for (int j = 0; j < this.armorInventory.length; j++)
         {
             if (this.armorInventory[j] != null && this.armorInventory[j].getItem() instanceof ItemArmor)
             {
@@ -734,7 +734,7 @@ public class InventoryPlayer implements IInventory
             damage = 1.0F;
         }
 
-        for (int i = 0; i < this.armorInventory.length; ++i)
+        for (int i = 0; i < this.armorInventory.length; i++)
         {
             if (this.armorInventory[i] != null && this.armorInventory[i].getItem() instanceof ItemArmor)
             {
@@ -753,7 +753,7 @@ public class InventoryPlayer implements IInventory
      */
     public void dropAllItems()
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null)
             {
@@ -762,7 +762,7 @@ public class InventoryPlayer implements IInventory
             }
         }
 
-        for (int j = 0; j < this.armorInventory.length; ++j)
+        for (int j = 0; j < this.armorInventory.length; j++)
         {
             if (this.armorInventory[j] != null)
             {
@@ -810,7 +810,7 @@ public class InventoryPlayer implements IInventory
      */
     public boolean hasItemStack(ItemStack itemStackIn)
     {
-        for (int i = 0; i < this.armorInventory.length; ++i)
+        for (int i = 0; i < this.armorInventory.length; i++)
         {
             if (this.armorInventory[i] != null && this.armorInventory[i].isItemEqual(itemStackIn))
             {
@@ -818,7 +818,7 @@ public class InventoryPlayer implements IInventory
             }
         }
 
-        for (int j = 0; j < this.mainInventory.length; ++j)
+        for (int j = 0; j < this.mainInventory.length; j++)
         {
             if (this.mainInventory[j] != null && this.mainInventory[j].isItemEqual(itemStackIn))
             {
@@ -850,12 +850,12 @@ public class InventoryPlayer implements IInventory
      */
     public void copyInventory(InventoryPlayer playerInventory)
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             this.mainInventory[i] = ItemStack.copyItemStack(playerInventory.mainInventory[i]);
         }
 
-        for (int j = 0; j < this.armorInventory.length; ++j)
+        for (int j = 0; j < this.armorInventory.length; j++)
         {
             this.armorInventory[j] = ItemStack.copyItemStack(playerInventory.armorInventory[j]);
         }
@@ -879,12 +879,12 @@ public class InventoryPlayer implements IInventory
 
     public void clear()
     {
-        for (int i = 0; i < this.mainInventory.length; ++i)
+        for (int i = 0; i < this.mainInventory.length; i++)
         {
             this.mainInventory[i] = null;
         }
 
-        for (int j = 0; j < this.armorInventory.length; ++j)
+        for (int j = 0; j < this.armorInventory.length; j++)
         {
             this.armorInventory[j] = null;
         }

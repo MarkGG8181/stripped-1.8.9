@@ -30,7 +30,7 @@ import org.apache.logging.log4j.Logger;
 
 public class HttpUtil
 {
-    public static final ListeningExecutorService DOWNLOADER_EXECUTOR = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool((new ThreadFactoryBuilder()).setDaemon(true).setNameFormat("Downloader %d").build()));
+    public static final ListeningExecutorService DOWNLOADER_EXECUTOR = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool(new ThreadFactoryBuilder().setDaemon(true).setNameFormat("Downloader %d").build()));
 
     /** The number of download threads that we have started so far. */
     private static final AtomicInteger downloadThreadsStarted = new AtomicInteger(0);
@@ -337,5 +337,8 @@ public class HttpUtil
 
         bufferedreader.close();
         return stringbuilder.toString();
+    }
+
+    private HttpUtil() {
     }
 }

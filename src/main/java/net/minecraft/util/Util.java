@@ -28,4 +28,7 @@ public class Util {
         OSX,
         UNKNOWN
     }
+
+    private Util() {
+    }
 }

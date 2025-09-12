@@ -37,7 +37,7 @@ import net.minecraft.world.World;
 
 public class EntityEnderman extends EntityMob {
     private static final UUID attackingSpeedBoostModifierUUID = FastUUID.parseUUID("020E0DFB-87AE-4653-9556-831010E291A0");
-    private static final AttributeModifier attackingSpeedBoostModifier = (new AttributeModifier(attackingSpeedBoostModifierUUID, "Attacking speed boost", 0.15000000596046448D, 0)).setSaved(false);
+    private static final AttributeModifier attackingSpeedBoostModifier = new AttributeModifier(attackingSpeedBoostModifierUUID, "Attacking speed boost", 0.15000000596046448D, 0).setSaved(false);
     private static final Set<Block> carriableBlocks = Sets.<Block>newIdentityHashSet();
     private boolean isAggressive;
 
@@ -132,7 +132,7 @@ public class EntityEnderman extends EntityMob {
      */
     public void onLivingUpdate() {
         if (this.worldObj.isRemote) {
-            for (int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 2; i++) {
                 this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
             }
         }
@@ -232,7 +232,7 @@ public class EntityEnderman extends EntityMob {
         else {
             int i = 128;
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 double d6 = (double)j / ((double)i - 1.0D);
                 float f = (this.rand.nextFloat() - 0.5F) * 0.2F;
                 float f1 = (this.rand.nextFloat() - 0.5F) * 0.2F;
@@ -287,7 +287,7 @@ public class EntityEnderman extends EntityMob {
         if (item != null) {
             int i = this.rand.nextInt(2 + lootingModifier);
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 this.dropItem(item, 1);
             }
         }
@@ -332,7 +332,7 @@ public class EntityEnderman extends EntityMob {
                 if (source instanceof EntityDamageSourceIndirect) {
                     this.isAggressive = false;
 
-                    for (int i = 0; i < 64; ++i) {
+                    for (int i = 0; i < 64; i++) {
                         if (this.teleportRandomly()) {
                             return true;
                         }

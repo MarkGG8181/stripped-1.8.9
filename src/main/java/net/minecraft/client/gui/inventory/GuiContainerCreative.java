@@ -38,7 +38,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
      * The location of the creative inventory tabs texture
      */
     private static final ResourceLocation creativeInventoryTabs = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
-    private static InventoryBasic basicInventory = new InventoryBasic("tmp", true, 45);
+    private static final InventoryBasic basicInventory = new InventoryBasic("tmp", true, 45);
 
     /**
      * Currently selected creative inventory tab index.
@@ -114,7 +114,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             }
         }
         else if (slotIn == this.destroyItemSlot && flag) {
-            for (int j = 0; j < this.mc.thePlayer.inventoryContainer.getInventory().size(); ++j) {
+            for (int j = 0; j < this.mc.thePlayer.inventoryContainer.getInventory().size(); j++) {
                 this.mc.playerController.sendSlotPacket((ItemStack)null, j);
             }
         }
@@ -206,7 +206,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
             this.inventorySlots.slotClick(slotIn == null ? slotId : slotIn.slotNumber, clickedButton, clickType, this.mc.thePlayer);
 
             if (Container.getDragEvent(clickedButton) == 2) {
-                for (int i = 0; i < 9; ++i) {
+                for (int i = 0; i < 9; i++) {
                     this.mc.playerController.sendSlotPacket(this.inventorySlots.getSlot(45 + i).getStack(), 36 + i);
                 }
             }
@@ -407,7 +407,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
 
             guicontainercreative$containercreative.inventorySlots = new ArrayList<>();
 
-            for (int j = 0; j < container.inventorySlots.size(); ++j) {
+            for (int j = 0; j < container.inventorySlots.size(); j++) {
                 Slot slot = new GuiContainerCreative.CreativeSlot((Slot)container.inventorySlots.get(j), j);
                 guicontainercreative$containercreative.inventorySlots.add(slot);
 
@@ -556,7 +556,7 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
                 list.add(1, "" + EnumChatFormatting.BOLD + EnumChatFormatting.BLUE + I18n.format(creativetabs.getTranslatedTabLabel(), new Object[0]));
             }
 
-            for (int i = 0; i < list.size(); ++i) {
+            for (int i = 0; i < list.size(); i++) {
                 if (i == 0) {
                     list.set(i, stack.getRarity().rarityColor + (String)list.get(i));
                 }
@@ -730,13 +730,13 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
         public ContainerCreative(EntityPlayer p_i1086_1_) {
             InventoryPlayer inventoryplayer = p_i1086_1_.inventory;
 
-            for (int i = 0; i < 5; ++i) {
-                for (int j = 0; j < 9; ++j) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 9; j++) {
                     this.addSlotToContainer(new Slot(GuiContainerCreative.basicInventory, i * 9 + j, 9 + j * 18, 18 + i * 18));
                 }
             }
 
-            for (int k = 0; k < 9; ++k) {
+            for (int k = 0; k < 9; k++) {
                 this.addSlotToContainer(new Slot(inventoryplayer, k, 9 + k * 18, 112));
             }
 
@@ -755,8 +755,8 @@ public class GuiContainerCreative extends InventoryEffectRenderer {
                 j = 0;
             }
 
-            for (int k = 0; k < 5; ++k) {
-                for (int l = 0; l < 9; ++l) {
+            for (int k = 0; k < 5; k++) {
+                for (int l = 0; l < 9; l++) {
                     int i1 = l + (k + j) * 9;
 
                     if (i1 >= 0 && i1 < this.itemList.size()) {

@@ -23,7 +23,7 @@ public class WorldGenGlowStone1 extends WorldGenerator
         {
             worldIn.setBlockState(position, Blocks.glowstone.getDefaultState(), 2);
 
-            for (int i = 0; i < 1500; ++i)
+            for (int i = 0; i < 1500; i++)
             {
                 BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), -rand.nextInt(12), rand.nextInt(8) - rand.nextInt(8));
 

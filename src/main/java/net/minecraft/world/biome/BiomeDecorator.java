@@ -208,19 +208,19 @@ public class BiomeDecorator {
     protected void genDecorations(BiomeGenBase biomeGenBaseIn) {
         this.generateOres();
 
-        for (int i = 0; i < this.sandPerChunk2; ++i) {
+        for (int i = 0; i < this.sandPerChunk2; i++) {
             int j = this.randomGenerator.nextInt(16) + 8;
             int k = this.randomGenerator.nextInt(16) + 8;
             this.sandGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.chunkPos.add(j, 0, k)));
         }
 
-        for (int i1 = 0; i1 < this.clayPerChunk; ++i1) {
+        for (int i1 = 0; i1 < this.clayPerChunk; i1++) {
             int l1 = this.randomGenerator.nextInt(16) + 8;
             int i6 = this.randomGenerator.nextInt(16) + 8;
             this.clayGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.chunkPos.add(l1, 0, i6)));
         }
 
-        for (int j1 = 0; j1 < this.sandPerChunk; ++j1) {
+        for (int j1 = 0; j1 < this.sandPerChunk; j1++) {
             int i2 = this.randomGenerator.nextInt(16) + 8;
             int j6 = this.randomGenerator.nextInt(16) + 8;
             this.gravelAsSandGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
@@ -232,7 +232,7 @@ public class BiomeDecorator {
             ++k1;
         }
 
-        for (int j2 = 0; j2 < k1; ++j2) {
+        for (int j2 = 0; j2 < k1; j2++) {
             int k6 = this.randomGenerator.nextInt(16) + 8;
             int l = this.randomGenerator.nextInt(16) + 8;
             WorldGenAbstractTree worldgenabstracttree = biomeGenBaseIn.genBigTreeChance(this.randomGenerator);
@@ -244,13 +244,13 @@ public class BiomeDecorator {
             }
         }
 
-        for (int k2 = 0; k2 < this.bigMushroomsPerChunk; ++k2) {
+        for (int k2 = 0; k2 < this.bigMushroomsPerChunk; k2++) {
             int l6 = this.randomGenerator.nextInt(16) + 8;
             int k10 = this.randomGenerator.nextInt(16) + 8;
             this.bigMushroomGen.generate(this.currentWorld, this.randomGenerator, this.currentWorld.getHeight(this.chunkPos.add(l6, 0, k10)));
         }
 
-        for (int l2 = 0; l2 < this.flowersPerChunk; ++l2) {
+        for (int l2 = 0; l2 < this.flowersPerChunk; l2++) {
             int i7 = this.randomGenerator.nextInt(16) + 8;
             int l10 = this.randomGenerator.nextInt(16) + 8;
             int j14 = this.currentWorld.getHeight(this.chunkPos.add(i7, 0, l10)).getY() + 32;
@@ -268,7 +268,7 @@ public class BiomeDecorator {
             }
         }
 
-        for (int i3 = 0; i3 < this.grassPerChunk; ++i3) {
+        for (int i3 = 0; i3 < this.grassPerChunk; i3++) {
             int j7 = this.randomGenerator.nextInt(16) + 8;
             int i11 = this.randomGenerator.nextInt(16) + 8;
             int k14 = this.currentWorld.getHeight(this.chunkPos.add(j7, 0, i11)).getY() * 2;
@@ -279,18 +279,18 @@ public class BiomeDecorator {
             }
         }
 
-        for (int j3 = 0; j3 < this.deadBushPerChunk; ++j3) {
+        for (int j3 = 0; j3 < this.deadBushPerChunk; j3++) {
             int k7 = this.randomGenerator.nextInt(16) + 8;
             int j11 = this.randomGenerator.nextInt(16) + 8;
             int l14 = this.currentWorld.getHeight(this.chunkPos.add(k7, 0, j11)).getY() * 2;
 
             if (l14 > 0) {
                 int i18 = this.randomGenerator.nextInt(l14);
-                (new WorldGenDeadBush()).generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(k7, i18, j11));
+                new WorldGenDeadBush().generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(k7, i18, j11));
             }
         }
 
-        for (int k3 = 0; k3 < this.waterlilyPerChunk; ++k3) {
+        for (int k3 = 0; k3 < this.waterlilyPerChunk; k3++) {
             int l7 = this.randomGenerator.nextInt(16) + 8;
             int k11 = this.randomGenerator.nextInt(16) + 8;
             int i15 = this.currentWorld.getHeight(this.chunkPos.add(l7, 0, k11)).getY() * 2;
@@ -312,7 +312,7 @@ public class BiomeDecorator {
             }
         }
 
-        for (int l3 = 0; l3 < this.mushroomsPerChunk; ++l3) {
+        for (int l3 = 0; l3 < this.mushroomsPerChunk; l3++) {
             if (this.randomGenerator.nextInt(4) == 0) {
                 int i8 = this.randomGenerator.nextInt(16) + 8;
                 int l11 = this.randomGenerator.nextInt(16) + 8;
@@ -355,7 +355,7 @@ public class BiomeDecorator {
             }
         }
 
-        for (int k4 = 0; k4 < this.sugarcanePerChunk; ++k4) {
+        for (int k4 = 0; k4 < this.sugarcanePerChunk; k4++) {
             int i9 = this.randomGenerator.nextInt(16) + 8;
             int l12 = this.randomGenerator.nextInt(16) + 8;
             int i16 = this.currentWorld.getHeight(this.chunkPos.add(i9, 0, l12)).getY() * 2;
@@ -366,7 +366,7 @@ public class BiomeDecorator {
             }
         }
 
-        for (int l4 = 0; l4 < 10; ++l4) {
+        for (int l4 = 0; l4 < 10; l4++) {
             int j9 = this.randomGenerator.nextInt(16) + 8;
             int i13 = this.randomGenerator.nextInt(16) + 8;
             int j16 = this.currentWorld.getHeight(this.chunkPos.add(j9, 0, i13)).getY() * 2;
@@ -384,11 +384,11 @@ public class BiomeDecorator {
 
             if (j13 > 0) {
                 int k16 = this.randomGenerator.nextInt(j13);
-                (new WorldGenPumpkin()).generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(i5, k16, k9));
+                new WorldGenPumpkin().generate(this.currentWorld, this.randomGenerator, this.chunkPos.add(i5, k16, k9));
             }
         }
 
-        for (int j5 = 0; j5 < this.cactiPerChunk; ++j5) {
+        for (int j5 = 0; j5 < this.cactiPerChunk; j5++) {
             int l9 = this.randomGenerator.nextInt(16) + 8;
             int k13 = this.randomGenerator.nextInt(16) + 8;
             int l16 = this.currentWorld.getHeight(this.chunkPos.add(l9, 0, k13)).getY() * 2;
@@ -400,22 +400,22 @@ public class BiomeDecorator {
         }
 
         if (this.generateLakes) {
-            for (int k5 = 0; k5 < 50; ++k5) {
+            for (int k5 = 0; k5 < 50; k5++) {
                 int i10 = this.randomGenerator.nextInt(16) + 8;
                 int l13 = this.randomGenerator.nextInt(16) + 8;
                 int i17 = this.randomGenerator.nextInt(248) + 8;
 
                 int k19 = this.randomGenerator.nextInt(i17);
                 BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
-                (new WorldGenLiquids(Blocks.flowing_water)).generate(this.currentWorld, this.randomGenerator, blockpos6);
+                new WorldGenLiquids(Blocks.flowing_water).generate(this.currentWorld, this.randomGenerator, blockpos6);
             }
 
-            for (int l5 = 0; l5 < 20; ++l5) {
+            for (int l5 = 0; l5 < 20; l5++) {
                 int j10 = this.randomGenerator.nextInt(16) + 8;
                 int i14 = this.randomGenerator.nextInt(16) + 8;
                 int j17 = this.randomGenerator.nextInt(this.randomGenerator.nextInt(this.randomGenerator.nextInt(240) + 8) + 8);
                 BlockPos blockpos3 = this.chunkPos.add(j10, j17, i14);
-                (new WorldGenLiquids(Blocks.flowing_lava)).generate(this.currentWorld, this.randomGenerator, blockpos3);
+                new WorldGenLiquids(Blocks.flowing_lava).generate(this.currentWorld, this.randomGenerator, blockpos3);
             }
         }
     }
@@ -438,7 +438,7 @@ public class BiomeDecorator {
             }
         }
 
-        for (int j = 0; j < blockCount; ++j) {
+        for (int j = 0; j < blockCount; j++) {
             BlockPos blockpos = this.chunkPos.add(this.randomGenerator.nextInt(16), this.randomGenerator.nextInt(maxHeight - minHeight) + minHeight, this.randomGenerator.nextInt(16));
             generator.generate(this.currentWorld, this.randomGenerator, blockpos);
         }
@@ -448,7 +448,7 @@ public class BiomeDecorator {
      * Standard ore generation helper. Generates Lapis Lazuli.
      */
     protected void genStandardOre2(int blockCount, WorldGenerator generator, int centerHeight, int spread) {
-        for (int i = 0; i < blockCount; ++i) {
+        for (int i = 0; i < blockCount; i++) {
             BlockPos blockpos = this.chunkPos.add(this.randomGenerator.nextInt(16), this.randomGenerator.nextInt(spread) + this.randomGenerator.nextInt(spread) + centerHeight - spread, this.randomGenerator.nextInt(16));
             generator.generate(this.currentWorld, this.randomGenerator, blockpos);
         }

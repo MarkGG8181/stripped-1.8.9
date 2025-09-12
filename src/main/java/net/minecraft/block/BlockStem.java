@@ -166,7 +166,7 @@ public class BlockStem extends BlockBush implements IGrowable
             {
                 int i = ((Integer)state.getValue(AGE)).intValue();
 
-                for (int j = 0; j < 3; ++j)
+                for (int j = 0; j < 3; j++)
                 {
                     if (worldIn.rand.nextInt(15) <= i)
                     {

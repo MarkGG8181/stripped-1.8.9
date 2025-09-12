@@ -30,4 +30,7 @@ public class MapPopulator
             return map;
         }
     }
+
+    private MapPopulator() {
+    }
 }

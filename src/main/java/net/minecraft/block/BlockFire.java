@@ -215,11 +215,11 @@ public class BlockFire extends Block
                 this.catchOnFire(worldIn, pos.north(), 300 + j, rand, i);
                 this.catchOnFire(worldIn, pos.south(), 300 + j, rand, i);
 
-                for (int k = -1; k <= 1; ++k)
+                for (int k = -1; k <= 1; k++)
                 {
-                    for (int l = -1; l <= 1; ++l)
+                    for (int l = -1; l <= 1; l++)
                     {
-                        for (int i1 = -1; i1 <= 4; ++i1)
+                        for (int i1 = -1; i1 <= 4; i1++)
                         {
                             if (k != 0 || i1 != 0 || l != 0)
                             {
@@ -405,7 +405,7 @@ public class BlockFire extends Block
         {
             if (Blocks.fire.canCatchFire(worldIn, pos.west()))
             {
-                for (int j = 0; j < 2; ++j)
+                for (int j = 0; j < 2; j++)
                 {
                     double d3 = (double)pos.getX() + rand.nextDouble() * 0.10000000149011612D;
                     double d8 = (double)pos.getY() + rand.nextDouble();
@@ -416,7 +416,7 @@ public class BlockFire extends Block
 
             if (Blocks.fire.canCatchFire(worldIn, pos.east()))
             {
-                for (int k = 0; k < 2; ++k)
+                for (int k = 0; k < 2; k++)
                 {
                     double d4 = (double)(pos.getX() + 1) - rand.nextDouble() * 0.10000000149011612D;
                     double d9 = (double)pos.getY() + rand.nextDouble();
@@ -427,7 +427,7 @@ public class BlockFire extends Block
 
             if (Blocks.fire.canCatchFire(worldIn, pos.north()))
             {
-                for (int l = 0; l < 2; ++l)
+                for (int l = 0; l < 2; l++)
                 {
                     double d5 = (double)pos.getX() + rand.nextDouble();
                     double d10 = (double)pos.getY() + rand.nextDouble();
@@ -438,7 +438,7 @@ public class BlockFire extends Block
 
             if (Blocks.fire.canCatchFire(worldIn, pos.south()))
             {
-                for (int i1 = 0; i1 < 2; ++i1)
+                for (int i1 = 0; i1 < 2; i1++)
                 {
                     double d6 = (double)pos.getX() + rand.nextDouble();
                     double d11 = (double)pos.getY() + rand.nextDouble();
@@ -449,7 +449,7 @@ public class BlockFire extends Block
 
             if (Blocks.fire.canCatchFire(worldIn, pos.up()))
             {
-                for (int j1 = 0; j1 < 2; ++j1)
+                for (int j1 = 0; j1 < 2; j1++)
                 {
                     double d7 = (double)pos.getX() + rand.nextDouble();
                     double d12 = (double)(pos.getY() + 1) - rand.nextDouble() * 0.10000000149011612D;
@@ -460,7 +460,7 @@ public class BlockFire extends Block
         }
         else
         {
-            for (int i = 0; i < 3; ++i)
+            for (int i = 0; i < 3; i++)
             {
                 double d0 = (double)pos.getX() + rand.nextDouble();
                 double d1 = (double)pos.getY() + rand.nextDouble() * 0.5D + 0.5D;

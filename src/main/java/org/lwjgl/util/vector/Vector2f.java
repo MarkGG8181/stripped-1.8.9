@@ -126,8 +126,9 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return the negated vector
      */
     public Vector2f negate(Vector2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector2f();
+        }
         dest.x = -x;
         dest.y = -y;
         return dest;
@@ -142,10 +143,12 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     public Vector2f normalise(Vector2f dest) {
         float l = length();
 
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector2f(x / l, y / l);
-        else
+        }
+        else {
             dest.set(x / l, y / l);
+        }
 
         return dest;
     }
@@ -170,10 +173,12 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      */
     public static float angle(Vector2f a, Vector2f b) {
         float dls = dot(a, b) / (a.length() * b.length());
-        if (dls < -1f)
+        if (dls < -1f) {
             dls = -1f;
-        else if (dls > 1.0f)
+        }
+        else if (dls > 1.0f) {
             dls = 1.0f;
+        }
         return (float)Math.acos(dls);
     }
 
@@ -186,8 +191,9 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return the sum of left and right in dest
      */
     public static Vector2f add(Vector2f left, Vector2f right, Vector2f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector2f(left.x + right.x, left.y + right.y);
+        }
         else {
             dest.set(left.x + right.x, left.y + right.y);
             return dest;
@@ -203,8 +209,9 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return left minus right in dest
      */
     public static Vector2f sub(Vector2f left, Vector2f right, Vector2f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector2f(left.x - right.x, left.y - right.y);
+        }
         else {
             dest.set(left.x - right.x, left.y - right.y);
             return dest;
@@ -289,12 +296,20 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         Vector2f other = (Vector2f)obj;
 
-        if (x == other.x && y == other.y) return true;
+        if (x == other.x && y == other.y) {
+            return true;
+        }
 
         return false;
     }

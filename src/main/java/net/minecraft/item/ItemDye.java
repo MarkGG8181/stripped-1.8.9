@@ -140,7 +140,7 @@ public class ItemDye extends Item
         {
             block.setBlockBoundsBasedOnState(worldIn, pos);
 
-            for (int i = 0; i < amount; ++i)
+            for (int i = 0; i < amount; i++)
             {
                 double d0 = itemRand.nextGaussian() * 0.02D;
                 double d1 = itemRand.nextGaussian() * 0.02D;
@@ -178,7 +178,7 @@ public class ItemDye extends Item
      */
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
     {
-        for (int i = 0; i < 16; ++i)
+        for (int i = 0; i < 16; i++)
         {
             subItems.add(new ItemStack(itemIn, 1, i));
         }

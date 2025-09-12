@@ -27,7 +27,7 @@ public class RecipeFireworks implements IRecipe
         int i1 = 0;
         int j1 = 0;
 
-        for (int k1 = 0; k1 < inv.getSizeInventory(); ++k1)
+        for (int k1 = 0; k1 < inv.getSizeInventory(); k1++)
         {
             ItemStack itemstack = inv.getStackInSlot(k1);
 
@@ -95,7 +95,7 @@ public class RecipeFireworks implements IRecipe
                     NBTTagCompound nbttagcompound3 = new NBTTagCompound();
                     NBTTagList nbttaglist = new NBTTagList();
 
-                    for (int k2 = 0; k2 < inv.getSizeInventory(); ++k2)
+                    for (int k2 = 0; k2 < inv.getSizeInventory(); k2++)
                     {
                         ItemStack itemstack3 = inv.getStackInSlot(k2);
 
@@ -121,7 +121,7 @@ public class RecipeFireworks implements IRecipe
                 byte b0 = 0;
                 List<Integer> list = new ArrayList<>();
 
-                for (int l1 = 0; l1 < inv.getSizeInventory(); ++l1)
+                for (int l1 = 0; l1 < inv.getSizeInventory(); l1++)
                 {
                     ItemStack itemstack2 = inv.getStackInSlot(l1);
 
@@ -160,7 +160,7 @@ public class RecipeFireworks implements IRecipe
 
                 int[] aint1 = new int[list.size()];
 
-                for (int l2 = 0; l2 < aint1.length; ++l2)
+                for (int l2 = 0; l2 < aint1.length; l2++)
                 {
                     aint1[l2] = ((Integer)list.get(l2)).intValue();
                 }
@@ -175,7 +175,7 @@ public class RecipeFireworks implements IRecipe
             {
                 List<Integer> list1 = new ArrayList<>();
 
-                for (int i2 = 0; i2 < inv.getSizeInventory(); ++i2)
+                for (int i2 = 0; i2 < inv.getSizeInventory(); i2++)
                 {
                     ItemStack itemstack1 = inv.getStackInSlot(i2);
 
@@ -195,7 +195,7 @@ public class RecipeFireworks implements IRecipe
 
                 int[] aint = new int[list1.size()];
 
-                for (int j2 = 0; j2 < aint.length; ++j2)
+                for (int j2 = 0; j2 < aint.length; j2++)
                 {
                     aint[j2] = ((Integer)list1.get(j2)).intValue();
                 }
@@ -255,7 +255,7 @@ public class RecipeFireworks implements IRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 

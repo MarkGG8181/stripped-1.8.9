@@ -88,7 +88,7 @@ public class ModelBox
 
         if (p_i46301_11_)
         {
-            for (int i = 0; i < this.quadList.length; ++i)
+            for (int i = 0; i < this.quadList.length; i++)
             {
                 this.quadList[i].flipFace();
             }
@@ -97,7 +97,7 @@ public class ModelBox
 
     public void render(WorldRenderer renderer, float scale)
     {
-        for (int i = 0; i < this.quadList.length; ++i)
+        for (int i = 0; i < this.quadList.length; i++)
         {
             this.quadList[i].draw(renderer, scale);
         }

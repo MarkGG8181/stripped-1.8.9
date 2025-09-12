@@ -65,9 +65,9 @@ public class RenderPainting extends Render<EntityPainting>
         float f13 = 0.0F;
         float f14 = 0.0625F;
 
-        for (int i = 0; i < width / 16; ++i)
+        for (int i = 0; i < width / 16; i++)
         {
-            for (int j = 0; j < height / 16; ++j)
+            for (int j = 0; j < height / 16; j++)
             {
                 float f15 = f + (float)((i + 1) * 16);
                 float f16 = f + (float)(i * 16);

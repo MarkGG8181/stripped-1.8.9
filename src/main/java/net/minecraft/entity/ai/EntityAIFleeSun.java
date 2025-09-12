@@ -8,12 +8,12 @@ import net.minecraft.world.World;
 
 public class EntityAIFleeSun extends EntityAIBase
 {
-    private EntityCreature theCreature;
+    private final EntityCreature theCreature;
     private double shelterX;
     private double shelterY;
     private double shelterZ;
-    private double movementSpeed;
-    private World theWorld;
+    private final double movementSpeed;
+    private final World theWorld;
 
     public EntityAIFleeSun(EntityCreature theCreatureIn, double movementSpeedIn)
     {
@@ -79,7 +79,7 @@ public class EntityAIFleeSun extends EntityAIBase
         Random random = this.theCreature.getRNG();
         BlockPos blockpos = new BlockPos(this.theCreature.posX, this.theCreature.getEntityBoundingBox().minY, this.theCreature.posZ);
 
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
             BlockPos blockpos1 = blockpos.add(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
 

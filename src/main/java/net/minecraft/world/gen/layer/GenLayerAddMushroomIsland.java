@@ -23,9 +23,9 @@ public class GenLayerAddMushroomIsland extends GenLayer
         int[] aint = this.parent.getInts(i, j, k, l);
         int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i1 = 0; i1 < areaHeight; ++i1)
+        for (int i1 = 0; i1 < areaHeight; i1++)
         {
-            for (int j1 = 0; j1 < areaWidth; ++j1)
+            for (int j1 = 0; j1 < areaWidth; j1++)
             {
                 int k1 = aint[j1 + 0 + (i1 + 0) * k];
                 int l1 = aint[j1 + 2 + (i1 + 0) * k];

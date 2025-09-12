@@ -128,15 +128,15 @@ public class ContainerRepair extends Container
             }
         });
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 9; ++j)
+            for (int j = 0; j < 9; j++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        for (int k = 0; k < 9; ++k)
+        for (int k = 0; k < 9; k++)
         {
             this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
@@ -204,7 +204,7 @@ public class ContainerRepair extends Container
 
                     int l4;
 
-                    for (l4 = 0; j4 > 0 && l4 < itemstack2.stackSize; ++l4)
+                    for (l4 = 0; j4 > 0 && l4 < itemstack2.stackSize; l4++)
                     {
                         int j5 = itemstack1.getItemDamage() - j4;
                         itemstack1.setItemDamage(j5);
@@ -304,8 +304,17 @@ public class ContainerRepair extends Container
                                         l5 = 8;
                                         break;
 
+                                    case 5:
+                                        l5 = 2;
+                                        break;
+
+                                    case 10:
+                                        l5 = 1;
+                                        break;
+
                                     case 2:
                                         l5 = 4;
+                                        break;
 
                                     case 3:
                                     case 4:
@@ -314,14 +323,6 @@ public class ContainerRepair extends Container
                                     case 8:
                                     case 9:
                                     default:
-                                        break;
-
-                                    case 5:
-                                        l5 = 2;
-                                        break;
-
-                                    case 10:
-                                        l5 = 1;
                                 }
 
                                 if (flag)
@@ -411,7 +412,7 @@ public class ContainerRepair extends Container
 
         if (!this.theWorld.isRemote)
         {
-            for (int i = 0; i < this.inputSlots.getSizeInventory(); ++i)
+            for (int i = 0; i < this.inputSlots.getSizeInventory(); i++)
             {
                 ItemStack itemstack = this.inputSlots.removeStackFromSlot(i);
 

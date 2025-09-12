@@ -140,7 +140,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     private long playerLastActiveTime = System.currentTimeMillis();
 
     /** The entity the player is currently spectating through. */
-    private Entity spectatingEntity = null;
+    private Entity spectatingEntity;
 
     /**
      * The currently in use window ID. Incremented every time a window is opened.
@@ -380,7 +380,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         {
             super.onUpdate();
 
-            for (int i = 0; i < this.inventory.getSizeInventory(); ++i)
+            for (int i = 0; i < this.inventory.getSizeInventory(); i++)
             {
                 ItemStack itemstack = this.inventory.getStackInSlot(i);
 
@@ -881,7 +881,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public void sendAllWindowProperties(Container p_175173_1_, IInventory p_175173_2_)
     {
-        for (int i = 0; i < p_175173_2_.getFieldCount(); ++i)
+        for (int i = 0; i < p_175173_2_.getFieldCount(); i++)
         {
             this.playerNetServerHandler.sendPacket(new S31PacketWindowProperty(p_175173_1_.windowId, i, p_175173_2_.getField(i)));
         }

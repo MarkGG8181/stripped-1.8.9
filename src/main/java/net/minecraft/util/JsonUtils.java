@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class JsonUtils
 {
     /**
@@ -296,7 +298,7 @@ public class JsonUtils
      */
     public static String toString(JsonElement p_151222_0_)
     {
-        String s = org.apache.commons.lang3.StringUtils.abbreviateMiddle(String.valueOf((Object)p_151222_0_), "...", 10);
+        String s = StringUtils.abbreviateMiddle(String.valueOf((Object)p_151222_0_), "...", 10);
 
         if (p_151222_0_ == null)
         {
@@ -333,5 +335,8 @@ public class JsonUtils
 
             return s;
         }
+    }
+
+    private JsonUtils() {
     }
 }

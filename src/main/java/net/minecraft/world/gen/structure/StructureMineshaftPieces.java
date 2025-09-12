@@ -143,7 +143,7 @@ public class StructureMineshaftPieces
             StructureBoundingBox structureboundingbox = new StructureBoundingBox(x, y, z, x, y + 2, z);
             int i;
 
-            for (i = rand.nextInt(3) + 2; i > 0; --i)
+            for (i = rand.nextInt(3) + 2; i > 0; i--)
             {
                 int j = i * 5;
 
@@ -328,7 +328,7 @@ public class StructureMineshaftPieces
                     this.func_175805_a(worldIn, structureBoundingBoxIn, randomIn, 0.6F, 0, 0, 0, 2, 1, i1, Blocks.web.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
 
-                for (int j1 = 0; j1 < this.sectionCount; ++j1)
+                for (int j1 = 0; j1 < this.sectionCount; j1++)
                 {
                     int k1 = 2 + j1 * 5;
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, k1, 0, 1, k1, Blocks.oak_fence.getDefaultState(), Blocks.air.getDefaultState(), false);
@@ -387,9 +387,9 @@ public class StructureMineshaftPieces
                     }
                 }
 
-                for (int k2 = 0; k2 <= 2; ++k2)
+                for (int k2 = 0; k2 <= 2; k2++)
                 {
-                    for (int i3 = 0; i3 <= i1; ++i3)
+                    for (int i3 = 0; i3 <= i1; i3++)
                     {
                         int j3 = -1;
                         IBlockState iblockstate1 = this.getBlockStateFromPos(worldIn, k2, j3, i3, structureBoundingBoxIn);
@@ -404,7 +404,7 @@ public class StructureMineshaftPieces
 
                 if (this.hasRails)
                 {
-                    for (int l2 = 0; l2 <= i1; ++l2)
+                    for (int l2 = 0; l2 <= i1; l2++)
                     {
                         IBlockState iblockstate = this.getBlockStateFromPos(worldIn, 1, -1, l2, structureBoundingBoxIn);
 
@@ -568,9 +568,9 @@ public class StructureMineshaftPieces
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.minZ + 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.minZ + 1, Blocks.planks.getDefaultState(), Blocks.air.getDefaultState(), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, this.boundingBox.maxX - 1, this.boundingBox.minY, this.boundingBox.maxZ - 1, this.boundingBox.maxX - 1, this.boundingBox.maxY, this.boundingBox.maxZ - 1, Blocks.planks.getDefaultState(), Blocks.air.getDefaultState(), false);
 
-                for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; ++i)
+                for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; i++)
                 {
-                    for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
+                    for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; j++)
                     {
                         if (this.getBlockStateFromPos(worldIn, i, this.boundingBox.minY - 1, j, structureBoundingBoxIn).getBlock().getMaterial() == Material.air)
                         {
@@ -730,7 +730,7 @@ public class StructureMineshaftPieces
         {
             NBTTagList nbttaglist = tagCompound.getTagList("Entrances", 11);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 this.roomsLinkedToTheRoom.add(new StructureBoundingBox(nbttaglist.getIntArrayAt(i)));
             }
@@ -824,7 +824,7 @@ public class StructureMineshaftPieces
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 2, 7, 1, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 2, 2, 8, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
 
-                for (int i = 0; i < 5; ++i)
+                for (int i = 0; i < 5; i++)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5 - i - (i < 4 ? 1 : 0), 2 + i, 2, 7 - i, 2 + i, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
                 }
@@ -832,5 +832,8 @@ public class StructureMineshaftPieces
                 return true;
             }
         }
+    }
+
+    private StructureMineshaftPieces() {
     }
 }

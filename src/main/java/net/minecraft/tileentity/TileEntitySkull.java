@@ -15,7 +15,7 @@ public class TileEntitySkull extends TileEntity
 {
     private int skullType;
     private int skullRotation;
-    private GameProfile playerProfile = null;
+    private GameProfile playerProfile;
 
     public void writeToNBT(NBTTagCompound compound)
     {

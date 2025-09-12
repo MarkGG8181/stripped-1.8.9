@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 public class SoundHandler implements IResourceManagerReloadListener, ITickable {
     private static final Logger logger = LogManager.getLogger();
-    private static final Gson GSON = (new GsonBuilder()).registerTypeAdapter(SoundList.class, new SoundListSerializer()).create();
+    private static final Gson GSON = new GsonBuilder().registerTypeAdapter(SoundList.class, new SoundListSerializer()).create();
     private static final ParameterizedType TYPE = new ParameterizedType() {
         public Type[] getActualTypeArguments() {
             return new Type[]{String.class, SoundList.class};

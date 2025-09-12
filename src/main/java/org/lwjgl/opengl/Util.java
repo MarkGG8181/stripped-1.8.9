@@ -42,15 +42,15 @@ public final class Util {
      * Translate a GL error code to a String describing the error
      */
     public static String translateGLErrorString(int error_code) {
-        return error_code == GL11.GL_NO_ERROR ? "No error" :
-            error_code == GL11.GL_INVALID_ENUM ? "Invalid enum" :
-                error_code == GL11.GL_INVALID_VALUE ? "Invalid value" :
-                    error_code == GL11.GL_INVALID_OPERATION ? "Invalid operation" :
-                        error_code == GL11.GL_STACK_OVERFLOW ? "Stack overflow" :
-                            error_code == GL11.GL_STACK_UNDERFLOW ? "Stack underflow" :
-                                error_code == GL11.GL_OUT_OF_MEMORY ? "Out of memory" :
-                                    error_code == GL_TABLE_TOO_LARGE ? "Table too large" :
-                                        error_code == GL_INVALID_FRAMEBUFFER_OPERATION ? "Invalid framebuffer operation" :
-                                            null;
+        return error_code == GL11.GL_NO_ERROR ? "No error"
+            : error_code == GL11.GL_INVALID_ENUM ? "Invalid enum"
+                : error_code == GL11.GL_INVALID_VALUE ? "Invalid value"
+                    : error_code == GL11.GL_INVALID_OPERATION ? "Invalid operation"
+                        : error_code == GL11.GL_STACK_OVERFLOW ? "Stack overflow"
+                            : error_code == GL11.GL_STACK_UNDERFLOW ? "Stack underflow"
+                                : error_code == GL11.GL_OUT_OF_MEMORY ? "Out of memory"
+                                    : error_code == GL_TABLE_TOO_LARGE ? "Table too large"
+                                        : error_code == GL_INVALID_FRAMEBUFFER_OPERATION ? "Invalid framebuffer operation"
+                                            : null;
     }
 }

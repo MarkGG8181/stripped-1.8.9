@@ -64,7 +64,7 @@ public abstract class GuiListExtended extends GuiSlot
 
     public boolean mouseReleased(int p_148181_1_, int p_148181_2_, int p_148181_3_)
     {
-        for (int i = 0; i < this.getSize(); ++i)
+        for (int i = 0; i < this.getSize(); i++)
         {
             int j = this.left + this.width / 2 - this.getListWidth() / 2 + 2;
             int k = this.top + 4 - this.getAmountScrolled() + i * this.slotHeight + this.headerPadding;

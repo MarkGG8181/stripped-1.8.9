@@ -13,8 +13,8 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockFluidRenderer
 {
-    private TextureAtlasSprite[] atlasSpritesLava = new TextureAtlasSprite[2];
-    private TextureAtlasSprite[] atlasSpritesWater = new TextureAtlasSprite[2];
+    private final TextureAtlasSprite[] atlasSpritesLava = new TextureAtlasSprite[2];
+    private final TextureAtlasSprite[] atlasSpritesWater = new TextureAtlasSprite[2];
 
     public BlockFluidRenderer()
     {
@@ -150,7 +150,7 @@ public class BlockFluidRenderer
                 flag2 = true;
             }
 
-            for (int i1 = 0; i1 < 4; ++i1)
+            for (int i1 = 0; i1 < 4; i1++)
             {
                 int j1 = 0;
                 int k1 = 0;
@@ -257,7 +257,7 @@ public class BlockFluidRenderer
         int i = 0;
         float f = 0.0F;
 
-        for (int j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; j++)
         {
             BlockPos blockpos = blockPosIn.add(-(j & 1), 0, -(j >> 1 & 1));
 

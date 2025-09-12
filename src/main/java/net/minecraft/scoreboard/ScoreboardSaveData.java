@@ -62,7 +62,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
     protected void readTeams(NBTTagList p_96498_1_)
     {
-        for (int i = 0; i < p_96498_1_.tagCount(); ++i)
+        for (int i = 0; i < p_96498_1_.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = p_96498_1_.getCompoundTagAt(i);
             String s = nbttagcompound.getString("Name");
@@ -126,7 +126,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
     protected void func_96502_a(ScorePlayerTeam p_96502_1_, NBTTagList p_96502_2_)
     {
-        for (int i = 0; i < p_96502_2_.tagCount(); ++i)
+        for (int i = 0; i < p_96502_2_.tagCount(); i++)
         {
             this.theScoreboard.addPlayerToTeam(p_96502_2_.getStringTagAt(i), p_96502_1_.getRegisteredName());
         }
@@ -134,7 +134,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
     protected void readDisplayConfig(NBTTagCompound p_96504_1_)
     {
-        for (int i = 0; i < 19; ++i)
+        for (int i = 0; i < 19; i++)
         {
             if (p_96504_1_.hasKey("slot_" + i, 8))
             {
@@ -147,7 +147,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
     protected void readObjectives(NBTTagList nbt)
     {
-        for (int i = 0; i < nbt.tagCount(); ++i)
+        for (int i = 0; i < nbt.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbt.getCompoundTagAt(i);
             IScoreObjectiveCriteria iscoreobjectivecriteria = (IScoreObjectiveCriteria)IScoreObjectiveCriteria.INSTANCES.get(nbttagcompound.getString("CriteriaName"));
@@ -170,7 +170,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
     protected void readScores(NBTTagList nbt)
     {
-        for (int i = 0; i < nbt.tagCount(); ++i)
+        for (int i = 0; i < nbt.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbt.getCompoundTagAt(i);
             ScoreObjective scoreobjective = this.theScoreboard.getObjective(nbttagcompound.getString("Objective"));
@@ -249,7 +249,7 @@ public class ScoreboardSaveData extends WorldSavedData
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         boolean flag = false;
 
-        for (int i = 0; i < 19; ++i)
+        for (int i = 0; i < 19; i++)
         {
             ScoreObjective scoreobjective = this.theScoreboard.getObjectiveInDisplaySlot(i);
 

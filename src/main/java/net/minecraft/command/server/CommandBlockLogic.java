@@ -27,7 +27,7 @@ public abstract class CommandBlockLogic implements ICommandSender
     private boolean trackOutput = true;
 
     /** The previously run command. */
-    private IChatComponent lastOutput = null;
+    private IChatComponent lastOutput;
 
     /** The command stored in the command block. */
     private String commandStored = "";
@@ -194,7 +194,7 @@ public abstract class CommandBlockLogic implements ICommandSender
     {
         if (this.trackOutput && this.getEntityWorld() != null && !this.getEntityWorld().isRemote)
         {
-            this.lastOutput = (new ChatComponentText("[" + timestampFormat.format(new Date()) + "] ")).appendSibling(component);
+            this.lastOutput = new ChatComponentText("[" + timestampFormat.format(new Date()) + "] ").appendSibling(component);
             this.updateCommand();
         }
     }

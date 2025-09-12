@@ -42,11 +42,11 @@ public class EffectRenderer
         this.worldObj = worldIn;
         this.renderer = rendererIn;
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.fxLayers[i] = new List[2];
 
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 2; j++)
             {
                 this.fxLayers[i][j] = new ArrayList<>();
             }
@@ -154,7 +154,7 @@ public class EffectRenderer
 
     public void updateEffects()
     {
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.updateEffectLayer(i);
         }
@@ -176,7 +176,7 @@ public class EffectRenderer
 
     private void updateEffectLayer(int layer)
     {
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
             this.updateEffectAlphaLayer(this.fxLayers[layer][i]);
         }
@@ -186,7 +186,7 @@ public class EffectRenderer
     {
         List<EntityFX> list = new ArrayList<>();
 
-        for (int i = 0; i < entitiesFX.size(); ++i)
+        for (int i = 0; i < entitiesFX.size(); i++)
         {
             EntityFX entityfx = (EntityFX)entitiesFX.get(i);
             this.tickParticle(entityfx);
@@ -246,9 +246,9 @@ public class EffectRenderer
         GlStateManager.blendFunc(770, 771);
         GlStateManager.alphaFunc(516, 0.003921569F);
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 2; j++)
             {
                 final int i_f = i;
 
@@ -266,13 +266,13 @@ public class EffectRenderer
 
                     switch (i)
                     {
-                        case 0:
-                        default:
-                            this.renderer.bindTexture(particleTextures);
-                            break;
 
                         case 1:
                             this.renderer.bindTexture(TextureMap.locationBlocksTexture);
+                            break;
+                        case 0:
+                        default:
+                            this.renderer.bindTexture(particleTextures);
                     }
 
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -280,7 +280,7 @@ public class EffectRenderer
                     WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                     worldrenderer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
 
-                    for (int k = 0; k < this.fxLayers[i][j].size(); ++k)
+                    for (int k = 0; k < this.fxLayers[i][j].size(); k++)
                     {
                         final EntityFX entityfx = (EntityFX)this.fxLayers[i][j].get(k);
 
@@ -329,7 +329,7 @@ public class EffectRenderer
         float f4 = f1 * MathHelper.sin(entityIn.rotationPitch * 0.017453292F);
         float f5 = MathHelper.cos(entityIn.rotationPitch * 0.017453292F);
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
             List<EntityFX> list = this.fxLayers[3][i];
 
@@ -338,7 +338,7 @@ public class EffectRenderer
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
-                for (int j = 0; j < list.size(); ++j)
+                for (int j = 0; j < list.size(); j++)
                 {
                     EntityFX entityfx = (EntityFX)list.get(j);
                     entityfx.renderParticle(worldrenderer, entityIn, partialTick, f1, f5, f2, f3, f4);
@@ -351,9 +351,9 @@ public class EffectRenderer
     {
         this.worldObj = worldIn;
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 2; j++)
             {
                 this.fxLayers[i][j].clear();
             }
@@ -369,16 +369,16 @@ public class EffectRenderer
             state = state.getBlock().getActualState(state, this.worldObj, pos);
             int i = 4;
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
-                for (int k = 0; k < i; ++k)
+                for (int k = 0; k < i; k++)
                 {
-                    for (int l = 0; l < i; ++l)
+                    for (int l = 0; l < i; l++)
                     {
                         double d0 = (double)pos.getX() + ((double)j + 0.5D) / (double)i;
                         double d1 = (double)pos.getY() + ((double)k + 0.5D) / (double)i;
                         double d2 = (double)pos.getZ() + ((double)l + 0.5D) / (double)i;
-                        this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, d0 - (double)pos.getX() - 0.5D, d1 - (double)pos.getY() - 0.5D, d2 - (double)pos.getZ() - 0.5D, state)).setBlockPos(pos));
+                        this.addEffect(new EntityDiggingFX(this.worldObj, d0, d1, d2, d0 - (double)pos.getX() - 0.5D, d1 - (double)pos.getY() - 0.5D, d2 - (double)pos.getZ() - 0.5D, state).setBlockPos(pos));
                     }
                 }
             }
@@ -433,7 +433,7 @@ public class EffectRenderer
                 d0 = (double)i + block.getBlockBoundsMaxX() + (double)f;
             }
 
-            this.addEffect((new EntityDiggingFX(this.worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate)).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+            this.addEffect(new EntityDiggingFX(this.worldObj, d0, d1, d2, 0.0D, 0.0D, 0.0D, iblockstate).setBlockPos(pos).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
     }
 
@@ -449,7 +449,7 @@ public class EffectRenderer
 
     private void moveToLayer(EntityFX effect, int layerFrom, int layerTo)
     {
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             if (this.fxLayers[i][layerFrom].contains(effect))
             {
@@ -463,9 +463,9 @@ public class EffectRenderer
     {
         int i = 0;
 
-        for (int j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; j++)
         {
-            for (int k = 0; k < 2; ++k)
+            for (int k = 0; k < 2; k++)
             {
                 i += this.fxLayers[j][k].size();
             }

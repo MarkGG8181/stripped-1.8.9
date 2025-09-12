@@ -55,7 +55,7 @@ public class S2DPacketOpenWindow implements Packet<INetHandlerPlayClient>
         this.windowTitle = buf.readChatComponent();
         this.slotCount = buf.readUnsignedByte();
 
-        if (this.inventoryType.equals("EntityHorse"))
+        if ("EntityHorse".equals(this.inventoryType))
         {
             this.entityId = buf.readInt();
         }
@@ -71,7 +71,7 @@ public class S2DPacketOpenWindow implements Packet<INetHandlerPlayClient>
         buf.writeChatComponent(this.windowTitle);
         buf.writeByte(this.slotCount);
 
-        if (this.inventoryType.equals("EntityHorse"))
+        if ("EntityHorse".equals(this.inventoryType))
         {
             buf.writeInt(this.entityId);
         }

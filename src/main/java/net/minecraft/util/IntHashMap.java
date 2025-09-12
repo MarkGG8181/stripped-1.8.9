@@ -120,7 +120,7 @@ public class IntHashMap<V>
         IntHashMap.Entry<V>[] entry = this.slots;
         int i = p_76048_1_.length;
 
-        for (int j = 0; j < entry.length; ++j)
+        for (int j = 0; j < entry.length; j++)
         {
             IntHashMap.Entry<V> entry1 = entry[j];
 
@@ -195,7 +195,7 @@ public class IntHashMap<V>
     {
         IntHashMap.Entry<V>[] entry = this.slots;
 
-        for (int i = 0; i < entry.length; ++i)
+        for (int i = 0; i < entry.length; i++)
         {
             entry[i] = null;
         }

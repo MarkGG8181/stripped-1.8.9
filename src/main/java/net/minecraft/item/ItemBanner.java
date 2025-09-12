@@ -100,7 +100,7 @@ public class ItemBanner extends ItemBlock
         {
             NBTTagList nbttaglist = nbttagcompound.getTagList("Patterns", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount() && i < 6; ++i)
+            for (int i = 0; i < nbttaglist.tagCount() && i < 6; i++)
             {
                 NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
                 EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(nbttagcompound1.getInteger("Color"));

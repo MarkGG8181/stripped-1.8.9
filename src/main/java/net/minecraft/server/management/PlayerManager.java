@@ -65,7 +65,7 @@ public class PlayerManager
         {
             this.previousTotalWorldTime = i;
 
-            for (int j = 0; j < this.playerInstanceList.size(); ++j)
+            for (int j = 0; j < this.playerInstanceList.size(); j++)
             {
                 PlayerManager.PlayerInstance playermanager$playerinstance = (PlayerManager.PlayerInstance)this.playerInstanceList.get(j);
                 playermanager$playerinstance.onUpdate();
@@ -74,7 +74,7 @@ public class PlayerManager
         }
         else
         {
-            for (int k = 0; k < this.playerInstancesToUpdate.size(); ++k)
+            for (int k = 0; k < this.playerInstancesToUpdate.size(); k++)
             {
                 PlayerManager.PlayerInstance playermanager$playerinstance1 = (PlayerManager.PlayerInstance)this.playerInstancesToUpdate.get(k);
                 playermanager$playerinstance1.onUpdate();
@@ -140,9 +140,9 @@ public class PlayerManager
         player.managedPosX = player.posX;
         player.managedPosZ = player.posZ;
 
-        for (int k = i - this.playerViewRadius; k <= i + this.playerViewRadius; ++k)
+        for (int k = i - this.playerViewRadius; k <= i + this.playerViewRadius; k++)
         {
-            for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; ++l)
+            for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; l++)
             {
                 this.getPlayerInstance(k, l, true).addPlayer(player);
             }
@@ -172,13 +172,13 @@ public class PlayerManager
             player.loadedChunks.add(chunkcoordintpair);
         }
 
-        for (int k1 = 1; k1 <= j * 2; ++k1)
+        for (int k1 = 1; k1 <= j * 2; k1++)
         {
-            for (int l1 = 0; l1 < 2; ++l1)
+            for (int l1 = 0; l1 < 2; l1++)
             {
                 int[] aint = this.xzDirectionsConst[i++ % 4];
 
-                for (int i2 = 0; i2 < k1; ++i2)
+                for (int i2 = 0; i2 < k1; i2++)
                 {
                     i1 += aint[0];
                     j1 += aint[1];
@@ -194,7 +194,7 @@ public class PlayerManager
 
         i = i % 4;
 
-        for (int j2 = 0; j2 < j * 2; ++j2)
+        for (int j2 = 0; j2 < j * 2; j2++)
         {
             i1 += this.xzDirectionsConst[i][0];
             j1 += this.xzDirectionsConst[i][1];
@@ -215,9 +215,9 @@ public class PlayerManager
         int i = (int)player.managedPosX >> 4;
         int j = (int)player.managedPosZ >> 4;
 
-        for (int k = i - this.playerViewRadius; k <= i + this.playerViewRadius; ++k)
+        for (int k = i - this.playerViewRadius; k <= i + this.playerViewRadius; k++)
         {
-            for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; ++l)
+            for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; l++)
             {
                 PlayerManager.PlayerInstance playermanager$playerinstance = this.getPlayerInstance(k, l, false);
 
@@ -263,9 +263,9 @@ public class PlayerManager
 
             if (j1 != 0 || k1 != 0)
             {
-                for (int l1 = i - i1; l1 <= i + i1; ++l1)
+                for (int l1 = i - i1; l1 <= i + i1; l1++)
                 {
-                    for (int i2 = j - i1; i2 <= j + i1; ++i2)
+                    for (int i2 = j - i1; i2 <= j + i1; i2++)
                     {
                         if (!this.overlaps(l1, i2, k, l, i1))
                         {
@@ -312,9 +312,9 @@ public class PlayerManager
 
                 if (i > 0)
                 {
-                    for (int j1 = j - radius; j1 <= j + radius; ++j1)
+                    for (int j1 = j - radius; j1 <= j + radius; j1++)
                     {
-                        for (int k1 = k - radius; k1 <= k + radius; ++k1)
+                        for (int k1 = k - radius; k1 <= k + radius; k1++)
                         {
                             PlayerManager.PlayerInstance playermanager$playerinstance = this.getPlayerInstance(j1, k1, true);
 
@@ -327,9 +327,9 @@ public class PlayerManager
                 }
                 else
                 {
-                    for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; ++l)
+                    for (int l = j - this.playerViewRadius; l <= j + this.playerViewRadius; l++)
                     {
-                        for (int i1 = k - this.playerViewRadius; i1 <= k + this.playerViewRadius; ++i1)
+                        for (int i1 = k - this.playerViewRadius; i1 <= k + this.playerViewRadius; i1++)
                         {
                             if (!this.overlaps(l, i1, j, k, radius))
                             {
@@ -440,7 +440,7 @@ public class PlayerManager
             {
                 short short1 = (short)(x << 12 | z << 8 | y);
 
-                for (int i = 0; i < this.numBlocksToUpdate; ++i)
+                for (int i = 0; i < this.numBlocksToUpdate; i++)
                 {
                     if (this.locationOfBlockChange[i] == short1)
                     {
@@ -454,7 +454,7 @@ public class PlayerManager
 
         public void sendToAllPlayersWatchingChunk(Packet thePacket)
         {
-            for (int i = 0; i < this.playersWatchingChunk.size(); ++i)
+            for (int i = 0; i < this.playersWatchingChunk.size(); i++)
             {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playersWatchingChunk.get(i);
 
@@ -488,14 +488,14 @@ public class PlayerManager
                     int k1 = this.chunkCoords.chunkZPos * 16;
                     this.sendToAllPlayersWatchingChunk(new S21PacketChunkData(PlayerManager.this.theWorldServer.getChunkFromChunkCoords(this.chunkCoords.chunkXPos, this.chunkCoords.chunkZPos), false, this.flagsYAreasToUpdate));
 
-                    for (int i2 = 0; i2 < 16; ++i2)
+                    for (int i2 = 0; i2 < 16; i2++)
                     {
                         if ((this.flagsYAreasToUpdate & 1 << i2) != 0)
                         {
                             int k2 = i2 << 4;
                             List<TileEntity> list = PlayerManager.this.theWorldServer.getTileEntitiesIn(i1, k2, k1, i1 + 16, k2 + 16, k1 + 16);
 
-                            for (int l = 0; l < list.size(); ++l)
+                            for (int l = 0; l < list.size(); l++)
                             {
                                 this.sendTileToAllPlayersWatchingChunk((TileEntity)list.get(l));
                             }
@@ -506,7 +506,7 @@ public class PlayerManager
                 {
                     this.sendToAllPlayersWatchingChunk(new S22PacketMultiBlockChange(this.numBlocksToUpdate, this.locationOfBlockChange, PlayerManager.this.theWorldServer.getChunkFromChunkCoords(this.chunkCoords.chunkXPos, this.chunkCoords.chunkZPos)));
 
-                    for (int j1 = 0; j1 < this.numBlocksToUpdate; ++j1)
+                    for (int j1 = 0; j1 < this.numBlocksToUpdate; j1++)
                     {
                         int l1 = (this.locationOfBlockChange[j1] >> 12 & 15) + this.chunkCoords.chunkXPos * 16;
                         int j2 = this.locationOfBlockChange[j1] & 255;

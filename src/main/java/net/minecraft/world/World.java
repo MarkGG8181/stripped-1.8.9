@@ -65,9 +65,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     public final List<EntityPlayer> playerEntities = new ArrayList<>();
     public final List<Entity> weatherEffects = new ArrayList<>();
     protected final IntHashMap<Entity> entitiesById = new IntHashMap<>();
-    private long cloudColour = 16777215L;
+    private final long cloudColour = 16777215L;
 
-    private LightingEngine lightingEngine;
+    private final LightingEngine lightingEngine;
 
     /**
      * How much light is subtracted from full daylight
@@ -79,7 +79,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
      * value of 0x3c6ef35f, producing a highly planar series of values ill-suited for choosing random blocks in a
      * 16x128x16 field.
      */
-    protected int updateLCG = (new Random()).nextInt();
+    protected int updateLCG = new Random().nextInt();
 
     protected float prevRainingStrength;
     protected float rainingStrength;
@@ -276,8 +276,8 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             xEnd = xEnd >> 4;
             zEnd = zEnd >> 4;
 
-            for (int i = xStart; i <= xEnd; ++i) {
-                for (int j = zStart; j <= zEnd; ++j) {
+            for (int i = xStart; i <= xEnd; i++) {
+                for (int j = zStart; j <= zEnd; j++) {
                     if (!this.isChunkLoaded(i, j, allowEmpty)) {
                         return false;
                     }
@@ -407,7 +407,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         }
 
         if (!this.provider.getHasNoSky()) {
-            for (int j = x2; j <= z2; ++j) {
+            for (int j = x2; j <= z2; j++) {
                 this.checkLightFor(EnumSkyBlock.SKY, new BlockPos(x1, j, z1));
             }
         }
@@ -420,7 +420,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public void markBlockRangeForRenderUpdate(int x1, int y1, int z1, int x2, int y2, int z2) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).markBlockRangeForRenderUpdate(x1, y1, z1, x2, y2, z2);
         }
     }
@@ -691,7 +691,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public void notifyLightSet(BlockPos pos) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).notifyLightSet(pos);
         }
     }
@@ -896,7 +896,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
      * also relative to 1.0).
      */
     public void playSoundAtEntity(Entity entityIn, String name, float volume, float pitch) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).playSound(name, entityIn.posX, entityIn.posY, entityIn.posZ, volume, pitch);
         }
     }
@@ -905,7 +905,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
      * Plays sound to all near players except the player reference given
      */
     public void playSoundToNearExcept(EntityPlayer player, String name, float volume, float pitch) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).playSoundToNearExcept(player, name, player.posX, player.posY, player.posZ, volume, pitch);
         }
     }
@@ -916,7 +916,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
      * 0.9F with i,j,k position of the block.
      */
     public void playSoundEffect(double x, double y, double z, String soundName, float volume, float pitch) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).playSound(soundName, x, y, z, volume, pitch);
         }
     }
@@ -928,7 +928,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public void playRecord(BlockPos pos, String name) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).playRecord(name, pos);
         }
     }
@@ -942,7 +942,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     private void spawnParticle(int particleID, boolean p_175720_2_, double xCood, double yCoord, double zCoord, double xOffset, double yOffset, double zOffset, int... p_175720_15_) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).spawnParticle(particleID, p_175720_2_, xCood, yCoord, zCoord, xOffset, yOffset, zOffset, p_175720_15_);
         }
     }
@@ -984,13 +984,13 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     protected void onEntityAdded(Entity entityIn) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).onEntityAdded(entityIn);
         }
     }
 
     protected void onEntityRemoved(Entity entityIn) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             ((IWorldAccess)this.worldAccesses.get(i)).onEntityRemoved(entityIn);
         }
     }
@@ -1066,10 +1066,10 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         IBlockState iblockstate = Blocks.stone.getDefaultState();
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 < j; ++k1) {
-            for (int l1 = i1; l1 < j1; ++l1) {
+        for (int k1 = i; k1 < j; k1++) {
+            for (int l1 = i1; l1 < j1; l1++) {
                 if (this.isBlockLoaded(blockpos$mutableblockpos.set(k1, 64, l1))) {
-                    for (int i2 = k - 1; i2 < l; ++i2) {
+                    for (int i2 = k - 1; i2 < l; i2++) {
                         blockpos$mutableblockpos.set(k1, i2, l1);
 
                         if (flag && flag1) {
@@ -1094,7 +1094,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         double d0 = 0.25D;
         List<Entity> list1 = this.getEntitiesWithinAABBExcludingEntity(entityIn, bb.expand(d0, d0, d0));
 
-        for (int j2 = 0; j2 < list1.size(); ++j2) {
+        for (int j2 = 0; j2 < list1.size(); j2++) {
             if (entityIn.riddenByEntity != list1 && entityIn.ridingEntity != list1) {
                 AxisAlignedBB axisalignedbb = ((Entity)list1.get(j2)).getCollisionBoundingBox();
 
@@ -1145,10 +1145,10 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 < j; ++k1) {
-            for (int l1 = i1; l1 < j1; ++l1) {
+        for (int k1 = i; k1 < j; k1++) {
+            for (int l1 = i1; l1 < j1; l1++) {
                 if (this.isBlockLoaded(blockpos$mutableblockpos.set(k1, 64, l1))) {
-                    for (int i2 = k - 1; i2 < l; ++i2) {
+                    for (int i2 = k - 1; i2 < l; i2++) {
                         blockpos$mutableblockpos.set(k1, i2, l1);
                         IBlockState iblockstate;
 
@@ -1368,7 +1368,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         this.theProfiler.startSection("entities");
         this.theProfiler.startSection("global");
 
-        for (int i = 0; i < this.weatherEffects.size(); ++i) {
+        for (int i = 0; i < this.weatherEffects.size(); i++) {
             Entity entity = (Entity)this.weatherEffects.get(i);
 
             try {
@@ -1396,7 +1396,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         this.theProfiler.endStartSection("remove");
         this.loadedEntityList.removeAll(this.unloadedEntityList);
 
-        for (int k = 0; k < this.unloadedEntityList.size(); ++k) {
+        for (int k = 0; k < this.unloadedEntityList.size(); k++) {
             Entity entity1 = (Entity)this.unloadedEntityList.get(k);
             int j = entity1.chunkCoordX;
             int l1 = entity1.chunkCoordZ;
@@ -1406,14 +1406,14 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             }
         }
 
-        for (int l = 0; l < this.unloadedEntityList.size(); ++l) {
+        for (int l = 0; l < this.unloadedEntityList.size(); l++) {
             this.onEntityRemoved((Entity)this.unloadedEntityList.get(l));
         }
 
         this.unloadedEntityList.clear();
         this.theProfiler.endStartSection("regular");
 
-        for (int i1 = 0; i1 < this.loadedEntityList.size(); ++i1) {
+        for (int i1 = 0; i1 < this.loadedEntityList.size(); i1++) {
             Entity entity2 = (Entity)this.loadedEntityList.get(i1);
 
             if (entity2.ridingEntity != null) {
@@ -1499,7 +1499,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         this.theProfiler.endStartSection("pendingBlockEntities");
 
         if (!this.addedTileEntityList.isEmpty()) {
-            for (int j1 = 0; j1 < this.addedTileEntityList.size(); ++j1) {
+            for (int j1 = 0; j1 < this.addedTileEntityList.size(); j1++) {
                 TileEntity tileentity1 = (TileEntity)this.addedTileEntityList.get(j1);
 
                 if (!tileentity1.isInvalid()) {
@@ -1648,7 +1648,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     public boolean checkNoEntityCollision(AxisAlignedBB bb, Entity entityIn) {
         List<Entity> list = this.getEntitiesWithinAABBExcludingEntity((Entity)null, bb);
 
-        for (int i = 0; i < list.size(); ++i) {
+        for (int i = 0; i < list.size(); i++) {
             Entity entity = (Entity)list.get(i);
 
             if (!entity.isDead && entity.preventEntitySpawning && entity != entityIn && (entityIn == null || entityIn.ridingEntity != entity && entityIn.riddenByEntity != entity)) {
@@ -1671,9 +1671,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j1 = MathHelper.floor_double(bb.maxZ);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 <= j; ++k1) {
-            for (int l1 = k; l1 <= l; ++l1) {
-                for (int i2 = i1; i2 <= j1; ++i2) {
+        for (int k1 = i; k1 <= j; k1++) {
+            for (int l1 = k; l1 <= l; l1++) {
+                for (int i2 = i1; i2 <= j1; i2++) {
                     Block block = this.getBlockState(blockpos$mutableblockpos.set(k1, l1, i2)).getBlock();
 
                     if (block.getMaterial() != Material.air) {
@@ -1698,9 +1698,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j1 = MathHelper.floor_double(bb.maxZ);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 <= j; ++k1) {
-            for (int l1 = k; l1 <= l; ++l1) {
-                for (int i2 = i1; i2 <= j1; ++i2) {
+        for (int k1 = i; k1 <= j; k1++) {
+            for (int l1 = k; l1 <= l; l1++) {
+                for (int i2 = i1; i2 <= j1; i2++) {
                     Block block = this.getBlockState(blockpos$mutableblockpos.set(k1, l1, i2)).getBlock();
 
                     if (block.getMaterial().isLiquid()) {
@@ -1724,9 +1724,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         if (this.isAreaLoaded(i, k, i1, j, l, j1, true)) {
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k1 = i; k1 < j; ++k1) {
-                for (int l1 = k; l1 < l; ++l1) {
-                    for (int i2 = i1; i2 < j1; ++i2) {
+            for (int k1 = i; k1 < j; k1++) {
+                for (int l1 = k; l1 < l; l1++) {
+                    for (int i2 = i1; i2 < j1; i2++) {
                         Block block = this.getBlockState(blockpos$mutableblockpos.set(k1, l1, i2)).getBlock();
 
                         if (block == Blocks.fire || block == Blocks.flowing_lava || block == Blocks.lava) {
@@ -1759,9 +1759,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             Vec3 vec3 = new Vec3(0.0D, 0.0D, 0.0D);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k1 = i; k1 < j; ++k1) {
-                for (int l1 = k; l1 < l; ++l1) {
-                    for (int i2 = i1; i2 < j1; ++i2) {
+            for (int k1 = i; k1 < j; k1++) {
+                for (int l1 = k; l1 < l; l1++) {
+                    for (int i2 = i1; i2 < j1; i2++) {
                         blockpos$mutableblockpos.set(k1, l1, i2);
                         IBlockState iblockstate = this.getBlockState(blockpos$mutableblockpos);
                         Block block = iblockstate.getBlock();
@@ -1802,9 +1802,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 < j; ++k1) {
-            for (int l1 = k; l1 < l; ++l1) {
-                for (int i2 = i1; i2 < j1; ++i2) {
+        for (int k1 = i; k1 < j; k1++) {
+            for (int l1 = k; l1 < l; l1++) {
+                for (int i2 = i1; i2 < j1; i2++) {
                     if (this.getBlockState(blockpos$mutableblockpos.set(k1, l1, i2)).getBlock().getMaterial() == materialIn) {
                         return true;
                     }
@@ -1827,9 +1827,9 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j1 = MathHelper.floor_double(bb.maxZ + 1.0D);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 < j; ++k1) {
-            for (int l1 = k; l1 < l; ++l1) {
-                for (int i2 = i1; i2 < j1; ++i2) {
+        for (int k1 = i; k1 < j; k1++) {
+            for (int l1 = k; l1 < l; l1++) {
+                for (int i2 = i1; i2 < j1; i2++) {
                     IBlockState iblockstate = this.getBlockState(blockpos$mutableblockpos.set(k1, l1, i2));
                     Block block = iblockstate.getBlock();
 
@@ -1944,7 +1944,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             TileEntity tileentity = null;
 
             if (this.processingLoadedTiles) {
-                for (int i = 0; i < this.addedTileEntityList.size(); ++i) {
+                for (int i = 0; i < this.addedTileEntityList.size(); i++) {
                     TileEntity tileentity1 = (TileEntity)this.addedTileEntityList.get(i);
 
                     if (!tileentity1.isInvalid() && tileentity1.getPos().equals(pos)) {
@@ -1959,7 +1959,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
             }
 
             if (tileentity == null) {
-                for (int j = 0; j < this.addedTileEntityList.size(); ++j) {
+                for (int j = 0; j < this.addedTileEntityList.size(); j++) {
                     TileEntity tileentity2 = (TileEntity)this.addedTileEntityList.get(j);
 
                     if (!tileentity2.isInvalid() && tileentity2.getPos().equals(pos)) {
@@ -2174,14 +2174,14 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         this.activeChunkSet.clear();
         this.theProfiler.startSection("buildList");
 
-        for (int i = 0; i < this.playerEntities.size(); ++i) {
+        for (int i = 0; i < this.playerEntities.size(); i++) {
             EntityPlayer entityplayer = (EntityPlayer)this.playerEntities.get(i);
             int j = MathHelper.floor_double(entityplayer.posX / 16.0D);
             int k = MathHelper.floor_double(entityplayer.posZ / 16.0D);
             int l = this.getRenderDistanceChunks();
 
-            for (int i1 = -l; i1 <= l; ++i1) {
-                for (int j1 = -l; j1 <= l; ++j1) {
+            for (int i1 = -l; i1 <= l; i1++) {
+                for (int j1 = -l; j1 <= l; j1++) {
                     this.activeChunkSet.add(new ChunkCoordIntPair(i1 + j, j1 + k));
                 }
             }
@@ -2405,8 +2405,8 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int k = MathHelper.floor_double((boundingBox.minZ - 2.0D) / 16.0D);
         int l = MathHelper.floor_double((boundingBox.maxZ + 2.0D) / 16.0D);
 
-        for (int i1 = i; i1 <= j; ++i1) {
-            for (int j1 = k; j1 <= l; ++j1) {
+        for (int i1 = i; i1 <= j; i1++) {
+            for (int j1 = k; j1 <= l; j1++) {
                 if (this.isChunkLoaded(i1, j1, true)) {
                     this.getChunkFromChunkCoords(i1, j1).getEntitiesWithinAABBForEntity(entityIn, boundingBox, list, predicate);
                 }
@@ -2451,8 +2451,8 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int l = MathHelper.floor_double((aabb.maxZ + 2.0D) / 16.0D);
         List<T> list = new ArrayList<>();
 
-        for (int i1 = i; i1 <= j; ++i1) {
-            for (int j1 = k; j1 <= l; ++j1) {
+        for (int i1 = i; i1 <= j; i1++) {
+            for (int j1 = k; j1 <= l; j1++) {
                 if (this.isChunkLoaded(i1, j1, true)) {
                     this.getChunkFromChunkCoords(i1, j1).getEntitiesOfTypeWithinAAAB(clazz, aabb, list, filter);
                 }
@@ -2762,8 +2762,8 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
         int j = MathHelper.floor_double(entityIn.posZ / 16.0D);
         int k = 2;
 
-        for (int l = i - k; l <= i + k; ++l) {
-            for (int i1 = j - k; i1 <= j + k; ++i1) {
+        for (int l = i - k; l <= i + k; l++) {
+            for (int i1 = j - k; i1 <= j + k; i1++) {
                 this.getChunkFromChunkCoords(l, i1);
             }
         }
@@ -3008,7 +3008,7 @@ public abstract class World implements IBlockAccess, ILightingEngineProvider {
     }
 
     public void sendBlockBreakProgress(int breakerId, BlockPos pos, int progress) {
-        for (int i = 0; i < this.worldAccesses.size(); ++i) {
+        for (int i = 0; i < this.worldAccesses.size(); i++) {
             IWorldAccess iworldaccess = (IWorldAccess)this.worldAccesses.get(i);
             iworldaccess.sendBlockBreakProgress(breakerId, pos, progress);
         }

@@ -59,7 +59,7 @@ public class FlatGeneratorInfo
         stringbuilder.append((int)3);
         stringbuilder.append(";");
 
-        for (int i = 0; i < this.flatLayers.size(); ++i)
+        for (int i = 0; i < this.flatLayers.size(); i++)
         {
             if (i > 0)
             {
@@ -282,7 +282,7 @@ public class FlatGeneratorInfo
                                 {
                                     String[] astring3 = astring2[1].substring(0, astring2[1].length() - 1).split(" ");
 
-                                    for (int l = 0; l < astring3.length; ++l)
+                                    for (int l = 0; l < astring3.length; l++)
                                     {
                                         String[] astring4 = astring3[l].split("=", 2);
 

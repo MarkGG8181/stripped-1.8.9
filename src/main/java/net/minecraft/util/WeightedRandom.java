@@ -62,4 +62,7 @@ public class WeightedRandom
             this.itemWeight = itemWeightIn;
         }
     }
+
+    private WeightedRandom() {
+    }
 }

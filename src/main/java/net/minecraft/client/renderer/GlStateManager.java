@@ -439,4 +439,7 @@ public class GlStateManager
         R,
         Q
     }
+
+    private GlStateManager() {
+    }
 }

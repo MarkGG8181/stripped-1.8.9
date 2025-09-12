@@ -36,7 +36,7 @@ public class StatFileWriter
         {
             int i = 0;
 
-            for (Achievement achievement = p_150874_1_.parentAchievement; achievement != null && !this.hasAchievementUnlocked(achievement); ++i)
+            for (Achievement achievement = p_150874_1_.parentAchievement; achievement != null && !this.hasAchievementUnlocked(achievement); i++)
             {
                 achievement = achievement.parentAchievement;
             }

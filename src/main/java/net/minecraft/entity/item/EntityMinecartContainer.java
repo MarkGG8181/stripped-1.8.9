@@ -188,7 +188,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
         super.writeEntityToNBT(tagCompound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.minecartContainerItems.length; ++i)
+        for (int i = 0; i < this.minecartContainerItems.length; i++)
         {
             if (this.minecartContainerItems[i] != null)
             {
@@ -211,7 +211,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
         NBTTagList nbttaglist = tagCompund.getTagList("Items", 10);
         this.minecartContainerItems = new ItemStack[this.getSizeInventory()];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
@@ -275,7 +275,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
 
     public void clear()
     {
-        for (int i = 0; i < this.minecartContainerItems.length; ++i)
+        for (int i = 0; i < this.minecartContainerItems.length; i++)
         {
             this.minecartContainerItems[i] = null;
         }

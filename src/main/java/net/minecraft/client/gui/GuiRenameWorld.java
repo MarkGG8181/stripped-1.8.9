@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiRenameWorld extends GuiScreen
 {
-    private GuiScreen parentScreen;
+    private final GuiScreen parentScreen;
     private GuiTextField field_146583_f;
     private final String saveName;
 

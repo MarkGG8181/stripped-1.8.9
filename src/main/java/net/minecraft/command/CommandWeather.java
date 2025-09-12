@@ -40,7 +40,7 @@ public class CommandWeather extends CommandBase
     {
         if (args.length >= 1 && args.length <= 2)
         {
-            int i = (300 + (new Random()).nextInt(600)) * 20;
+            int i = (300 + new Random().nextInt(600)) * 20;
 
             if (args.length >= 2)
             {

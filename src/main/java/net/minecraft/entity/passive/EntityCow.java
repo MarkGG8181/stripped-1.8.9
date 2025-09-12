@@ -96,14 +96,14 @@ public class EntityCow extends EntityAnimal
     {
         int i = this.rand.nextInt(3) + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItem(Items.leather, 1);
         }
 
         i = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + lootingModifier);
 
-        for (int k = 0; k < i; ++k)
+        for (int k = 0; k < i; k++)
         {
             if (this.isBurning())
             {

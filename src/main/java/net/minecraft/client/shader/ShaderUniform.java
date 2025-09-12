@@ -50,10 +50,10 @@ public class ShaderUniform {
     public static int parseType(String p_148085_0_) {
         int i = -1;
 
-        if (p_148085_0_.equals("int")) {
+        if ("int".equals(p_148085_0_)) {
             i = 0;
         }
-        else if (p_148085_0_.equals("float")) {
+        else if ("float".equals(p_148085_0_)) {
             i = 4;
         }
         else if (p_148085_0_.startsWith("matrix")) {
@@ -192,8 +192,6 @@ public class ShaderUniform {
     }
 
     public void upload() {
-        if (!this.dirty) {
-        }
 
         this.dirty = false;
 

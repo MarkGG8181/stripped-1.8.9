@@ -150,11 +150,6 @@ public enum EnumFacing implements IStringSerializable {
             case NORTH:
                 return DOWN;
 
-            case EAST:
-            case WEST:
-            default:
-                throw new IllegalStateException("Unable to get X-rotated facing of " + this);
-
             case SOUTH:
                 return UP;
 
@@ -163,6 +158,11 @@ public enum EnumFacing implements IStringSerializable {
 
             case DOWN:
                 return SOUTH;
+
+            case EAST:
+            case WEST:
+            default:
+                throw new IllegalStateException("Unable to get X-rotated facing of " + this);
         }
     }
 
@@ -174,10 +174,6 @@ public enum EnumFacing implements IStringSerializable {
             case EAST:
                 return DOWN;
 
-            case SOUTH:
-            default:
-                throw new IllegalStateException("Unable to get Z-rotated facing of " + this);
-
             case WEST:
                 return UP;
 
@@ -186,6 +182,10 @@ public enum EnumFacing implements IStringSerializable {
 
             case DOWN:
                 return WEST;
+
+            case SOUTH:
+            default:
+                throw new IllegalStateException("Unable to get Z-rotated facing of " + this);
         }
     }
 

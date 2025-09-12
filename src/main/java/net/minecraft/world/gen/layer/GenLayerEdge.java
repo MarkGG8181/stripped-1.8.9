@@ -19,15 +19,15 @@ public class GenLayerEdge extends GenLayer
     {
         switch (this.mode)
         {
-            case COOL_WARM:
-            default:
-                return this.getIntsCoolWarm(areaX, areaY, areaWidth, areaHeight);
 
             case HEAT_ICE:
                 return this.getIntsHeatIce(areaX, areaY, areaWidth, areaHeight);
 
             case SPECIAL:
                 return this.getIntsSpecial(areaX, areaY, areaWidth, areaHeight);
+            case COOL_WARM:
+            default:
+                return this.getIntsCoolWarm(areaX, areaY, areaWidth, areaHeight);
         }
     }
 
@@ -40,9 +40,9 @@ public class GenLayerEdge extends GenLayer
         int[] aint = this.parent.getInts(i, j, k, l);
         int[] aint1 = IntCache.getIntCache(p_151626_3_ * p_151626_4_);
 
-        for (int i1 = 0; i1 < p_151626_4_; ++i1)
+        for (int i1 = 0; i1 < p_151626_4_; i1++)
         {
-            for (int j1 = 0; j1 < p_151626_3_; ++j1)
+            for (int j1 = 0; j1 < p_151626_3_; j1++)
             {
                 this.initChunkSeed((long)(j1 + p_151626_1_), (long)(i1 + p_151626_2_));
                 int k1 = aint[j1 + 1 + (i1 + 1) * k];
@@ -78,9 +78,9 @@ public class GenLayerEdge extends GenLayer
         int[] aint = this.parent.getInts(i, j, k, l);
         int[] aint1 = IntCache.getIntCache(p_151624_3_ * p_151624_4_);
 
-        for (int i1 = 0; i1 < p_151624_4_; ++i1)
+        for (int i1 = 0; i1 < p_151624_4_; i1++)
         {
-            for (int j1 = 0; j1 < p_151624_3_; ++j1)
+            for (int j1 = 0; j1 < p_151624_3_; j1++)
             {
                 int k1 = aint[j1 + 1 + (i1 + 1) * k];
 
@@ -111,9 +111,9 @@ public class GenLayerEdge extends GenLayer
         int[] aint = this.parent.getInts(p_151625_1_, p_151625_2_, p_151625_3_, p_151625_4_);
         int[] aint1 = IntCache.getIntCache(p_151625_3_ * p_151625_4_);
 
-        for (int i = 0; i < p_151625_4_; ++i)
+        for (int i = 0; i < p_151625_4_; i++)
         {
-            for (int j = 0; j < p_151625_3_; ++j)
+            for (int j = 0; j < p_151625_3_; j++)
             {
                 this.initChunkSeed((long)(j + p_151625_1_), (long)(i + p_151625_2_));
                 int k = aint[j + i * p_151625_3_];

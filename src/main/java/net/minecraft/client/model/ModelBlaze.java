@@ -6,12 +6,12 @@ import net.minecraft.util.MathHelper;
 public class ModelBlaze extends ModelBase
 {
     /** The sticks that fly around the Blaze. */
-    private ModelRenderer[] blazeSticks = new ModelRenderer[12];
-    private ModelRenderer blazeHead;
+    private final ModelRenderer[] blazeSticks = new ModelRenderer[12];
+    private final ModelRenderer blazeHead;
 
     public ModelBlaze()
     {
-        for (int i = 0; i < this.blazeSticks.length; ++i)
+        for (int i = 0; i < this.blazeSticks.length; i++)
         {
             this.blazeSticks[i] = new ModelRenderer(this, 0, 16);
             this.blazeSticks[i].addBox(0.0F, 0.0F, 0.0F, 2, 8, 2);
@@ -29,7 +29,7 @@ public class ModelBlaze extends ModelBase
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
         this.blazeHead.render(scale);
 
-        for (int i = 0; i < this.blazeSticks.length; ++i)
+        for (int i = 0; i < this.blazeSticks.length; i++)
         {
             this.blazeSticks[i].render(scale);
         }
@@ -44,7 +44,7 @@ public class ModelBlaze extends ModelBase
     {
         float f = ageInTicks * (float)Math.PI * -0.1F;
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.blazeSticks[i].rotationPointY = -2.0F + MathHelper.cos(((float)(i * 2) + ageInTicks) * 0.25F);
             this.blazeSticks[i].rotationPointX = MathHelper.cos(f) * 9.0F;
@@ -54,7 +54,7 @@ public class ModelBlaze extends ModelBase
 
         f = ((float)Math.PI / 4F) + ageInTicks * (float)Math.PI * 0.03F;
 
-        for (int j = 4; j < 8; ++j)
+        for (int j = 4; j < 8; j++)
         {
             this.blazeSticks[j].rotationPointY = 2.0F + MathHelper.cos(((float)(j * 2) + ageInTicks) * 0.25F);
             this.blazeSticks[j].rotationPointX = MathHelper.cos(f) * 7.0F;
@@ -64,7 +64,7 @@ public class ModelBlaze extends ModelBase
 
         f = 0.47123894F + ageInTicks * (float)Math.PI * -0.05F;
 
-        for (int k = 8; k < 12; ++k)
+        for (int k = 8; k < 12; k++)
         {
             this.blazeSticks[k].rotationPointY = 11.0F + MathHelper.cos(((float)k * 1.5F + ageInTicks) * 0.5F);
             this.blazeSticks[k].rotationPointX = MathHelper.cos(f) * 5.0F;

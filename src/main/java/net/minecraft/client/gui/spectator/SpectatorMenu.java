@@ -49,7 +49,7 @@ public class SpectatorMenu {
     public List<ISpectatorMenuObject> func_178642_a() {
         List<ISpectatorMenuObject> list = new ArrayList<>();
 
-        for (int i = 0; i <= 8; ++i) {
+        for (int i = 0; i <= 8; i++) {
             list.add(this.func_178643_a(i));
         }
 

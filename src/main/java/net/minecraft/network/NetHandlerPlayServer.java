@@ -117,7 +117,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
      */
     private int chatSpamThresholdCount;
     private int itemDropThreshold;
-    private IntHashMap<Short> pendingTransactions = new IntHashMap();
+    private final IntHashMap<Short> pendingTransactions = new IntHashMap();
     private double lastPosX;
     private double lastPosY;
     private double lastPosZ;
@@ -690,7 +690,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             String s = packetIn.getMessage();
             s = StringUtils.normalizeSpace(s);
 
-            for (int i = 0; i < s.length(); ++i) {
+            for (int i = 0; i < s.length(); i++) {
                 if (!ChatAllowedCharacters.isAllowedCharacter(s.charAt(i))) {
                     this.kickPlayerFromServer("Illegal characters in chat");
                     return;
@@ -878,7 +878,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             if (this.playerEntity.isSpectator()) {
                 List<ItemStack> list = new ArrayList<>();
 
-                for (int i = 0; i < this.playerEntity.openContainer.inventorySlots.size(); ++i) {
+                for (int i = 0; i < this.playerEntity.openContainer.inventorySlots.size(); i++) {
                     list.add(((Slot)this.playerEntity.openContainer.inventorySlots.get(i)).getStack());
                 }
 
@@ -900,7 +900,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
                     this.playerEntity.openContainer.setCanCraft(this.playerEntity, false);
                     List<ItemStack> list1 = new ArrayList<>();
 
-                    for (int j = 0; j < this.playerEntity.openContainer.inventorySlots.size(); ++j) {
+                    for (int j = 0; j < this.playerEntity.openContainer.inventorySlots.size(); j++) {
                         list1.add(((Slot)this.playerEntity.openContainer.inventorySlots.get(j)).getStack());
                     }
 
@@ -1013,7 +1013,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
 
             IChatComponent[] aichatcomponent = packetIn.getLines();
 
-            for (int i = 0; i < aichatcomponent.length; ++i) {
+            for (int i = 0; i < aichatcomponent.length; i++) {
                 tileentitysign.signText[i] = new ChatComponentText(EnumChatFormatting.getTextWithoutFormattingCodes(aichatcomponent[i].getUnformattedText()));
             }
 

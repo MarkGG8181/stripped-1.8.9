@@ -32,7 +32,7 @@ public class CommandSaveOn extends CommandBase
         MinecraftServer minecraftserver = MinecraftServer.getServer();
         boolean flag = false;
 
-        for (int i = 0; i < minecraftserver.worldServers.length; ++i)
+        for (int i = 0; i < minecraftserver.worldServers.length; i++)
         {
             if (minecraftserver.worldServers[i] != null)
             {

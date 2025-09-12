@@ -35,7 +35,7 @@ public class JsonToNBT
         boolean flag = false;
         Stack<Character> stack = new Stack();
 
-        for (int j = 0; j < p_150310_0_.length(); ++j)
+        for (int j = 0; j < p_150310_0_.length(); j++)
         {
             char c0 = p_150310_0_.charAt(j);
 
@@ -215,7 +215,7 @@ public class JsonToNBT
         boolean flag1 = false;
         boolean flag2 = false;
 
-        for (int j = 0; i < p_179269_0_.length(); ++i)
+        for (int j = 0; i < p_179269_0_.length(); i++)
         {
             char c0 = p_179269_0_.charAt(i);
 
@@ -348,7 +348,7 @@ public class JsonToNBT
     {
         int i = 0;
 
-        for (boolean flag = true; i < p_150312_0_.length(); ++i)
+        for (boolean flag = true; i < p_150312_0_.length(); i++)
         {
             char c0 = p_150312_0_.charAt(i);
 
@@ -489,7 +489,7 @@ public class JsonToNBT
                     return new NBTTagDouble(Double.parseDouble(this.jsonValue));
                 }
 
-                if (this.jsonValue.equalsIgnoreCase("true") || this.jsonValue.equalsIgnoreCase("false"))
+                if ("true".equalsIgnoreCase(this.jsonValue) || "false".equalsIgnoreCase(this.jsonValue))
                 {
                     return new NBTTagByte((byte)(Boolean.parseBoolean(this.jsonValue) ? 1 : 0));
                 }
@@ -509,7 +509,7 @@ public class JsonToNBT
                 {
                     int[] aint = new int[astring.length];
 
-                    for (int j = 0; j < astring.length; ++j)
+                    for (int j = 0; j < astring.length; j++)
                     {
                         aint[j] = Integer.parseInt(astring[j].trim());
                     }
@@ -531,7 +531,7 @@ public class JsonToNBT
                 this.jsonValue = this.jsonValue.replaceAll("\\\\\"", "\"");
                 StringBuilder stringbuilder = new StringBuilder();
 
-                for (int i = 0; i < this.jsonValue.length(); ++i)
+                for (int i = 0; i < this.jsonValue.length(); i++)
                 {
                     if (i < this.jsonValue.length() - 1 && this.jsonValue.charAt(i) == 92 && this.jsonValue.charAt(i + 1) == 92)
                     {
@@ -547,5 +547,8 @@ public class JsonToNBT
                 return new NBTTagString(stringbuilder.toString());
             }
         }
+    }
+
+    private JsonToNBT() {
     }
 }

@@ -208,7 +208,7 @@ public class BlockPortal extends BlockBreakable
             worldIn.playSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "portal.portal", 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
         }
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             double d0 = (double)((float)pos.getX() + rand.nextFloat());
             double d1 = (double)((float)pos.getY() + rand.nextFloat());
@@ -285,9 +285,9 @@ public class BlockPortal extends BlockBreakable
             {
                 BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(enumfacing.getAxisDirection() == enumfacing$axisdirection ? blockpos : blockpos.offset(blockportal$size.rightDir, blockportal$size.func_181101_b() - 1), EnumFacing.getFacingFromAxis(enumfacing$axisdirection, enumfacing$axis), EnumFacing.UP, loadingcache, blockportal$size.func_181101_b(), blockportal$size.func_181100_a(), 1);
 
-                for (int i = 0; i < blockportal$size.func_181101_b(); ++i)
+                for (int i = 0; i < blockportal$size.func_181101_b(); i++)
                 {
-                    for (int j = 0; j < blockportal$size.func_181100_a(); ++j)
+                    for (int j = 0; j < blockportal$size.func_181100_a(); j++)
                     {
                         BlockWorldState blockworldstate = blockpattern$patternhelper.translateOffset(i, j, 1);
 
@@ -319,7 +319,7 @@ public class BlockPortal extends BlockBreakable
         private final EnumFacing.Axis axis;
         private final EnumFacing rightDir;
         private final EnumFacing leftDir;
-        private int portalBlockCount = 0;
+        private int portalBlockCount;
         private BlockPos bottomLeft;
         private int height;
         private int width;
@@ -368,7 +368,7 @@ public class BlockPortal extends BlockBreakable
         {
             int i;
 
-            for (i = 0; i < 22; ++i)
+            for (i = 0; i < 22; i++)
             {
                 BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
 
@@ -396,9 +396,9 @@ public class BlockPortal extends BlockBreakable
         {
             label24:
 
-            for (this.height = 0; this.height < 21; ++this.height)
+            for (this.height = 0; this.height < 21; this.height++)
             {
-                for (int i = 0; i < this.width; ++i)
+                for (int i = 0; i < this.width; i++)
                 {
                     BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
                     Block block = this.world.getBlockState(blockpos).getBlock();
@@ -434,7 +434,7 @@ public class BlockPortal extends BlockBreakable
                 }
             }
 
-            for (int j = 0; j < this.width; ++j)
+            for (int j = 0; j < this.width; j++)
             {
                 if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != Blocks.obsidian)
                 {
@@ -468,11 +468,11 @@ public class BlockPortal extends BlockBreakable
 
         public void func_150859_c()
         {
-            for (int i = 0; i < this.width; ++i)
+            for (int i = 0; i < this.width; i++)
             {
                 BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
-                for (int j = 0; j < this.height; ++j)
+                for (int j = 0; j < this.height; j++)
                 {
                     this.world.setBlockState(blockpos.up(j), Blocks.portal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
                 }

@@ -10,7 +10,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class MapGenRavine extends MapGenBase
 {
-    private float[] rs = new float[1024];
+    private final float[] rs = new float[1024];
 
     protected void func_180707_a(long p_180707_1_, int p_180707_3_, int p_180707_4_, ChunkPrimer p_180707_5_, double p_180707_6_, double p_180707_8_, double p_180707_10_, float p_180707_12_, float p_180707_13_, float p_180707_14_, int p_180707_15_, int p_180707_16_, double p_180707_17_)
     {
@@ -36,7 +36,7 @@ public class MapGenRavine extends MapGenBase
 
         float f2 = 1.0F;
 
-        for (int j = 0; j < 256; ++j)
+        for (int j = 0; j < 256; j++)
         {
             if (j == 0 || random.nextInt(3) == 0)
             {
@@ -46,7 +46,7 @@ public class MapGenRavine extends MapGenBase
             this.rs[j] = f2 * f2;
         }
 
-        for (; p_180707_15_ < p_180707_16_; ++p_180707_15_)
+        for (; p_180707_15_ < p_180707_16_; p_180707_15_++)
         {
             double d9 = 1.5D + (double)(MathHelper.sin((float)p_180707_15_ * (float)Math.PI / (float)p_180707_16_) * p_180707_12_ * 1.0F);
             double d2 = d9 * p_180707_17_;
@@ -118,11 +118,11 @@ public class MapGenRavine extends MapGenBase
 
                     boolean flag2 = false;
 
-                    for (int j1 = k2; !flag2 && j1 < k; ++j1)
+                    for (int j1 = k2; !flag2 && j1 < k; j1++)
                     {
-                        for (int k1 = i3; !flag2 && k1 < i1; ++k1)
+                        for (int k1 = i3; !flag2 && k1 < i1; k1++)
                         {
-                            for (int l1 = l + 1; !flag2 && l1 >= l2 - 1; --l1)
+                            for (int l1 = l + 1; !flag2 && l1 >= l2 - 1; l1--)
                             {
                                 if (l1 >= 0 && l1 < 256)
                                 {
@@ -146,18 +146,18 @@ public class MapGenRavine extends MapGenBase
                     {
                         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                        for (int j3 = k2; j3 < k; ++j3)
+                        for (int j3 = k2; j3 < k; j3++)
                         {
                             double d10 = ((double)(j3 + p_180707_3_ * 16) + 0.5D - p_180707_6_) / d9;
 
-                            for (int i2 = i3; i2 < i1; ++i2)
+                            for (int i2 = i3; i2 < i1; i2++)
                             {
                                 double d7 = ((double)(i2 + p_180707_4_ * 16) + 0.5D - p_180707_10_) / d9;
                                 boolean flag = false;
 
                                 if (d10 * d10 + d7 * d7 < 1.0D)
                                 {
-                                    for (int j2 = l; j2 > l2; --j2)
+                                    for (int j2 = l; j2 > l2; j2--)
                                     {
                                         double d8 = ((double)(j2 - 1) + 0.5D - p_180707_8_) / d2;
 
@@ -215,7 +215,7 @@ public class MapGenRavine extends MapGenBase
             double d2 = (double)(chunkZ * 16 + this.rand.nextInt(16));
             int i = 1;
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 float f = this.rand.nextFloat() * (float)Math.PI * 2.0F;
                 float f1 = (this.rand.nextFloat() - 0.5F) * 2.0F / 8.0F;

@@ -38,7 +38,7 @@ public class BiomeGenHills extends BiomeGenBase {
         super.decorate(worldIn, rand, pos);
         int i = 3 + rand.nextInt(6);
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             int k = rand.nextInt(16);
             int l = rand.nextInt(28) + 4;
             int i1 = rand.nextInt(16);
@@ -49,7 +49,7 @@ public class BiomeGenHills extends BiomeGenBase {
             }
         }
 
-        for (i = 0; i < 7; ++i) {
+        for (i = 0; i < 7; i++) {
             int j1 = rand.nextInt(16);
             int k1 = rand.nextInt(64);
             int l1 = rand.nextInt(16);
@@ -86,6 +86,6 @@ public class BiomeGenHills extends BiomeGenBase {
     }
 
     protected BiomeGenBase createMutatedBiome(int p_180277_1_) {
-        return (new BiomeGenHills(p_180277_1_, false)).mutateHills(this);
+        return new BiomeGenHills(p_180277_1_, false).mutateHills(this);
     }
 }

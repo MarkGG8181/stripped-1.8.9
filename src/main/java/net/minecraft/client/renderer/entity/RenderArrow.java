@@ -68,7 +68,7 @@ public class RenderArrow extends Render<EntityArrow>
         worldrenderer.pos(-7.0D, -2.0D, -2.0D).tex((double)f4, (double)f7).endVertex();
         tessellator.draw();
 
-        for (int j = 0; j < 4; ++j)
+        for (int j = 0; j < 4; j++)
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
             GL11.glNormal3f(0.0F, 0.0F, f8);

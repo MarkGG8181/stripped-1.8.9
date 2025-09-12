@@ -57,7 +57,7 @@ public class Bootstrap
     private static final PrintStream SYSOUT = System.out;
 
     /** Whether the blocks, items, etc have already been registered */
-    private static boolean alreadyRegistered = false;
+    private static boolean alreadyRegistered;
     private static final Logger LOGGER = LogManager.getLogger();
 
     /**
@@ -116,7 +116,7 @@ public class Bootstrap
 
             public ItemStack dispense(IBlockSource source, final ItemStack stack)
             {
-                return ItemPotion.isSplash(stack.getMetadata()) ? (new BehaviorProjectileDispense()
+                return ItemPotion.isSplash(stack.getMetadata()) ? new BehaviorProjectileDispense()
                 {
                     protected IProjectile getProjectileEntity(World worldIn, IPosition position)
                     {
@@ -132,7 +132,7 @@ public class Bootstrap
                     {
                         return super.func_82500_b() * 1.25F;
                     }
-                }).dispense(source, stack) : this.field_150843_b.dispense(source, stack);
+                }.dispense(source, stack) : this.field_150843_b.dispense(source, stack);
             }
         });
         BlockDispenser.dispenseBehaviorRegistry.putObject(Items.spawn_egg, new BehaviorDefaultDispenseItem()
@@ -553,5 +553,8 @@ public class Bootstrap
     public static void printToSYSOUT(String p_179870_0_)
     {
         SYSOUT.println(p_179870_0_);
+    }
+
+    private Bootstrap() {
     }
 }

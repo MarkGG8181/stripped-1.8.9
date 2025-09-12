@@ -27,7 +27,7 @@ public class TileEntityBeaconRenderer extends TileEntitySpecialRenderer<TileEnti
             List<TileEntityBeacon.BeamSegment> list = te.getBeamSegments();
             int i = 0;
 
-            for (int j = 0; j < list.size(); ++j)
+            for (int j = 0; j < list.size(); j++)
             {
                 TileEntityBeacon.BeamSegment tileentitybeacon$beamsegment = (TileEntityBeacon.BeamSegment)list.get(j);
                 int k = i + tileentitybeacon$beamsegment.getHeight();

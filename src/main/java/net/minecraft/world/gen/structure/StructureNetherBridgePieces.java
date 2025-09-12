@@ -161,9 +161,9 @@ public class StructureNetherBridgePieces
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 4; ++j)
+                for (int j = 0; j <= 4; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -232,9 +232,9 @@ public class StructureNetherBridgePieces
 
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 4; ++j)
+                for (int j = 0; j <= 4; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -272,7 +272,7 @@ public class StructureNetherBridgePieces
         {
             int i = this.getMetadataWithOffset(Blocks.nether_brick_stairs, 2);
 
-            for (int j = 0; j <= 9; ++j)
+            for (int j = 0; j <= 9; j++)
             {
                 int k = Math.max(1, 7 - j);
                 int l = Math.min(Math.max(k + 5, 14 - j), 13);
@@ -297,7 +297,7 @@ public class StructureNetherBridgePieces
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, k + 2, j, 4, k + 3, j, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
                 }
 
-                for (int j1 = 0; j1 <= 4; ++j1)
+                for (int j1 = 0; j1 <= 4; j1++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), j1, -1, i1, structureBoundingBoxIn);
                 }
@@ -361,9 +361,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 5, 1, 5, 5, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 4, 5, 7, 5, 5, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
 
-            for (int i = 0; i <= 5; ++i)
+            for (int i = 0; i <= 5; i++)
             {
-                for (int j = 0; j <= 8; ++j)
+                for (int j = 0; j <= 8; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), j, -1, i, structureBoundingBoxIn);
                 }
@@ -409,9 +409,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 3, 3, 4, 4, 3, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 4; ++j)
+                for (int j = 0; j <= 4; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -468,9 +468,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 6, 2, 6, 6, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 5, 2, 6, 5, 4, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
 
-            for (int i = 0; i <= 6; ++i)
+            for (int i = 0; i <= 6; i++)
             {
-                for (int j = 0; j <= 6; ++j)
+                for (int j = 0; j <= 6; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -516,9 +516,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 2, 4, 4, 5, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 6, 0, 4, 6, 4, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 4; ++j)
+                for (int j = 0; j <= 4; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -590,9 +590,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 0, 11, 1, 3, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 0, 15, 11, 1, 18, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 7; i <= 11; ++i)
+            for (int i = 7; i <= 11; i++)
             {
-                for (int j = 0; j <= 2; ++j)
+                for (int j = 0; j <= 2; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
@@ -604,9 +604,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 7, 3, 1, 11, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 15, 0, 7, 18, 1, 11, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int k = 0; k <= 2; ++k)
+            for (int k = 0; k <= 2; k++)
             {
-                for (int l = 7; l <= 11; ++l)
+                for (int l = 7; l <= 11; l++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), k, -1, l, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), 18 - k, -1, l, structureBoundingBoxIn);
@@ -655,9 +655,9 @@ public class StructureNetherBridgePieces
         {
             Random random = new Random((long)this.fillSeed);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 3; j <= 4; ++j)
+                for (int j = 3; j <= 4; j++)
                 {
                     int k = random.nextInt(8);
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, j, 0, i, j, k, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
@@ -669,15 +669,15 @@ public class StructureNetherBridgePieces
             l = random.nextInt(8);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 4, 5, 0, 4, 5, l, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (l = 0; l <= 4; ++l)
+            for (l = 0; l <= 4; l++)
             {
                 int i1 = random.nextInt(5);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, l, 2, 0, l, 2, i1, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             }
 
-            for (l = 0; l <= 4; ++l)
+            for (l = 0; l <= 4; l++)
             {
-                for (int j1 = 0; j1 <= 1; ++j1)
+                for (int j1 = 0; j1 <= 1; j1++)
                 {
                     int k1 = random.nextInt(3);
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, l, j1, 0, l, j1, k1, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
@@ -761,18 +761,18 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int l = 4; l <= 8; ++l)
+            for (int l = 4; l <= 8; l++)
             {
-                for (int j = 0; j <= 2; ++j)
+                for (int j = 0; j <= 2; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), l, -1, j, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), l, -1, 12 - j, structureBoundingBoxIn);
                 }
             }
 
-            for (int i1 = 0; i1 <= 2; ++i1)
+            for (int i1 = 0; i1 <= 2; i1++)
             {
-                for (int j1 = 4; j1 <= 8; ++j1)
+                for (int j1 = 4; j1 <= 8; j1++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i1, -1, j1, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), 12 - i1, -1, j1, structureBoundingBoxIn);
@@ -862,11 +862,11 @@ public class StructureNetherBridgePieces
 
             int k1 = this.getMetadataWithOffset(Blocks.nether_brick_stairs, 3);
 
-            for (int j = 0; j <= 6; ++j)
+            for (int j = 0; j <= 6; j++)
             {
                 int k = j + 4;
 
-                for (int l = 5; l <= 7; ++l)
+                for (int l = 5; l <= 7; l++)
                 {
                     this.setBlockState(worldIn, Blocks.nether_brick_stairs.getStateFromMeta(k1), l, 5 + j, k, structureBoundingBoxIn);
                 }
@@ -886,7 +886,7 @@ public class StructureNetherBridgePieces
                 }
             }
 
-            for (int l1 = 5; l1 <= 7; ++l1)
+            for (int l1 = 5; l1 <= 7; l1++)
             {
                 this.setBlockState(worldIn, Blocks.nether_brick_stairs.getStateFromMeta(k1), l1, 12, 11, structureBoundingBoxIn);
             }
@@ -921,18 +921,18 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 4, 3, 1, 8, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 4, 12, 1, 8, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int k2 = 4; k2 <= 8; ++k2)
+            for (int k2 = 4; k2 <= 8; k2++)
             {
-                for (int i1 = 0; i1 <= 2; ++i1)
+                for (int i1 = 0; i1 <= 2; i1++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), k2, -1, i1, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), k2, -1, 12 - i1, structureBoundingBoxIn);
                 }
             }
 
-            for (int l2 = 0; l2 <= 2; ++l2)
+            for (int l2 = 0; l2 <= 2; l2++)
             {
-                for (int i3 = 4; i3 <= 8; ++i3)
+                for (int i3 = 4; i3 <= 8; i3++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), l2, -1, i3, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), 12 - l2, -1, i3, structureBoundingBoxIn);
@@ -1205,9 +1205,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 6, 0, 4, 8, 0, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 5, 0, 4, 5, 0, Blocks.nether_brick_fence.getDefaultState(), Blocks.nether_brick_fence.getDefaultState(), false);
 
-            for (int i = 0; i <= 6; ++i)
+            for (int i = 0; i <= 6; i++)
             {
-                for (int j = 0; j <= 6; ++j)
+                for (int j = 0; j <= 6; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -1294,9 +1294,9 @@ public class StructureNetherBridgePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 4, 1, 3, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 15, 4, 1, 18, Blocks.nether_brick.getDefaultState(), Blocks.nether_brick.getDefaultState(), false);
 
-            for (int i = 0; i <= 4; ++i)
+            for (int i = 0; i <= 4; i++)
             {
-                for (int j = 0; j <= 2; ++j)
+                for (int j = 0; j <= 2; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, 18 - j, structureBoundingBoxIn);
@@ -1386,9 +1386,9 @@ public class StructureNetherBridgePieces
                 }
             }
 
-            for (int i = 0; i <= 6; ++i)
+            for (int i = 0; i <= 6; i++)
             {
-                for (int j = 0; j <= 6; ++j)
+                for (int j = 0; j <= 6; j++)
                 {
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.nether_brick.getDefaultState(), i, -1, j, structureBoundingBoxIn);
                 }
@@ -1396,5 +1396,8 @@ public class StructureNetherBridgePieces
 
             return true;
         }
+    }
+
+    private StructureNetherBridgePieces() {
     }
 }

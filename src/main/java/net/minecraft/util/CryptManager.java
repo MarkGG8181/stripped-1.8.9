@@ -217,4 +217,7 @@ public class CryptManager
             throw new RuntimeException(generalsecurityexception);
         }
     }
+
+    private CryptManager() {
+    }
 }

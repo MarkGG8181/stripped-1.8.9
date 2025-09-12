@@ -89,7 +89,7 @@ public class RenderFish extends Render<EntityFishHook>
             worldrenderer.begin(3, DefaultVertexFormats.POSITION_COLOR);
             int k = 16;
 
-            for (int l = 0; l <= 16; ++l)
+            for (int l = 0; l <= 16; l++)
             {
                 float f10 = (float)l / 16.0F;
                 worldrenderer.pos(x + d9 * (double)f10, y + d11 * (double)(f10 * f10 + f10) * 0.5D + 0.25D, z + d12 * (double)f10).color(0, 0, 0, 255).endVertex();

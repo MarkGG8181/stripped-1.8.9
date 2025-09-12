@@ -24,7 +24,7 @@ public class InventoryHelper
 
     private static void dropInventoryItems(World worldIn, double x, double y, double z, IInventory inventory)
     {
-        for (int i = 0; i < inventory.getSizeInventory(); ++i)
+        for (int i = 0; i < inventory.getSizeInventory(); i++)
         {
             ItemStack itemstack = inventory.getStackInSlot(i);
 
@@ -64,5 +64,8 @@ public class InventoryHelper
             entityitem.motionZ = RANDOM.nextGaussian() * (double)f3;
             worldIn.spawnEntityInWorld(entityitem);
         }
+    }
+
+    private InventoryHelper() {
     }
 }

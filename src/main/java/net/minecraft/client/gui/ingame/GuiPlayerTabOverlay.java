@@ -159,7 +159,7 @@ public class GuiPlayerTabOverlay extends Gui
 
         drawRect(width / 2 - l1 / 2 - 1, k1 - 1, width / 2 + l1 / 2 + 1, k1 + i4 * 9, Integer.MIN_VALUE);
 
-        for (int k4 = 0; k4 < l3; ++k4)
+        for (int k4 = 0; k4 < l3; k4++)
         {
             int l4 = k4 / i4;
             int i5 = k4 % i4;
@@ -180,7 +180,7 @@ public class GuiPlayerTabOverlay extends Gui
                 if (flag)
                 {
                     EntityPlayer entityplayer = this.mc.theWorld.getPlayerEntityByUUID(gameprofile.getId());
-                    boolean flag1 = entityplayer != null && entityplayer.isWearing(EnumPlayerModelParts.CAPE) && (gameprofile.getName().equals("Dinnerbone") || gameprofile.getName().equals("Grumm"));
+                    boolean flag1 = entityplayer != null && entityplayer.isWearing(EnumPlayerModelParts.CAPE) && ("Dinnerbone".equals(gameprofile.getName()) || "Grumm".equals(gameprofile.getName()));
                     this.mc.getTextureManager().bindTexture(networkplayerinfo1.getLocationSkin());
                     int l2 = 8 + (flag1 ? 8 : 0);
                     int i3 = 8 * (flag1 ? -1 : 1);
@@ -313,12 +313,12 @@ public class GuiPlayerTabOverlay extends Gui
 
                 if (f > 3.0F)
                 {
-                    for (int l = j; l < k; ++l)
+                    for (int l = j; l < k; l++)
                     {
                         this.drawTexturedModalRect((float)p_175247_4_ + (float)l * f, (float)p_175247_2_, flag ? 25 : 16, 0, 9, 9);
                     }
 
-                    for (int j1 = 0; j1 < j; ++j1)
+                    for (int j1 = 0; j1 < j; j1++)
                     {
                         this.drawTexturedModalRect((float)p_175247_4_ + (float)j1 * f, (float)p_175247_2_, flag ? 25 : 16, 0, 9, 9);
 

@@ -56,7 +56,7 @@ public class CommandGameRule extends CommandBase
                 }
 
                 String s2 = gamerules.getString(s);
-                sender.addChatMessage((new ChatComponentText(s)).appendText(" = ").appendText(s2));
+                sender.addChatMessage(new ChatComponentText(s).appendText(" = ").appendText(s2));
                 sender.setCommandStat(CommandResultStats.Type.QUERY_RESULT, gamerules.getInt(s));
                 break;
 

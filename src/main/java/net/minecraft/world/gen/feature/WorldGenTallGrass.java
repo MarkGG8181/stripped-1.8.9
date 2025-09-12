@@ -27,7 +27,7 @@ public class WorldGenTallGrass extends WorldGenerator
             position = position.down();
         }
 
-        for (int i = 0; i < 128; ++i)
+        for (int i = 0; i < 128; i++)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 

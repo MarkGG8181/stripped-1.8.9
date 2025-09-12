@@ -3,7 +3,7 @@ package net.minecraft.client.model;
 public class ModelChest extends ModelBase
 {
     /** The chest lid in the chest's model. */
-    public ModelRenderer chestLid = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
+    public ModelRenderer chestLid = new ModelRenderer(this, 0, 0).setTextureSize(64, 64);
 
     /** The model of the bottom of the chest. */
     public ModelRenderer chestBelow;
@@ -17,12 +17,12 @@ public class ModelChest extends ModelBase
         this.chestLid.rotationPointX = 1.0F;
         this.chestLid.rotationPointY = 7.0F;
         this.chestLid.rotationPointZ = 15.0F;
-        this.chestKnob = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
+        this.chestKnob = new ModelRenderer(this, 0, 0).setTextureSize(64, 64);
         this.chestKnob.addBox(-1.0F, -2.0F, -15.0F, 2, 4, 1, 0.0F);
         this.chestKnob.rotationPointX = 8.0F;
         this.chestKnob.rotationPointY = 7.0F;
         this.chestKnob.rotationPointZ = 15.0F;
-        this.chestBelow = (new ModelRenderer(this, 0, 19)).setTextureSize(64, 64);
+        this.chestBelow = new ModelRenderer(this, 0, 19).setTextureSize(64, 64);
         this.chestBelow.addBox(0.0F, 0.0F, 0.0F, 14, 10, 14, 0.0F);
         this.chestBelow.rotationPointX = 1.0F;
         this.chestBelow.rotationPointY = 6.0F;

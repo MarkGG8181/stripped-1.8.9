@@ -69,9 +69,9 @@ public class ImageBufferDownload implements IImageBuffer
     {
         if (!this.hasTransparency(p_78434_1_, p_78434_2_, p_78434_3_, p_78434_4_))
         {
-            for (int i = p_78434_1_; i < p_78434_3_; ++i)
+            for (int i = p_78434_1_; i < p_78434_3_; i++)
             {
-                for (int j = p_78434_2_; j < p_78434_4_; ++j)
+                for (int j = p_78434_2_; j < p_78434_4_; j++)
                 {
                     this.imageData[i + j * this.imageWidth] &= 16777215;
                 }
@@ -84,9 +84,9 @@ public class ImageBufferDownload implements IImageBuffer
      */
     private void setAreaOpaque(int p_78433_1_, int p_78433_2_, int p_78433_3_, int p_78433_4_)
     {
-        for (int i = p_78433_1_; i < p_78433_3_; ++i)
+        for (int i = p_78433_1_; i < p_78433_3_; i++)
         {
-            for (int j = p_78433_2_; j < p_78433_4_; ++j)
+            for (int j = p_78433_2_; j < p_78433_4_; j++)
             {
                 this.imageData[i + j * this.imageWidth] |= -16777216;
             }
@@ -98,9 +98,9 @@ public class ImageBufferDownload implements IImageBuffer
      */
     private boolean hasTransparency(int p_78435_1_, int p_78435_2_, int p_78435_3_, int p_78435_4_)
     {
-        for (int i = p_78435_1_; i < p_78435_3_; ++i)
+        for (int i = p_78435_1_; i < p_78435_3_; i++)
         {
-            for (int j = p_78435_2_; j < p_78435_4_; ++j)
+            for (int j = p_78435_2_; j < p_78435_4_; j++)
             {
                 int k = this.imageData[i + j * this.imageWidth];
 

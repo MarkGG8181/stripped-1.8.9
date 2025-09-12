@@ -95,7 +95,7 @@ public class PacketBuffer extends ByteBuf {
         else {
             int[] aint = new int[i];
 
-            for (int j = 0; j < aint.length; ++j) {
+            for (int j = 0; j < aint.length; j++) {
                 aint[j] = this.readVarIntFromBuffer();
             }
 
@@ -134,7 +134,7 @@ public class PacketBuffer extends ByteBuf {
             p_189423_1_ = new long[i];
         }
 
-        for (int j = 0; j < p_189423_1_.length; ++j) {
+        for (int j = 0; j < p_189423_1_.length; j++) {
             p_189423_1_[j] = this.readLong();
         }
 

@@ -43,12 +43,12 @@ public abstract class EntityLiving extends EntityLivingBase
 
     /** The experience points the Entity gives. */
     protected int experienceValue;
-    private EntityLookHelper lookHelper;
+    private final EntityLookHelper lookHelper;
     protected EntityMoveHelper moveHelper;
 
     /** Entity jumping helper */
     protected EntityJumpHelper jumpHelper;
-    private EntityBodyHelper bodyHelper;
+    private final EntityBodyHelper bodyHelper;
     protected PathNavigate navigator;
 
     /** Passive tasks (wandering, look, idle, ...) */
@@ -59,10 +59,10 @@ public abstract class EntityLiving extends EntityLivingBase
 
     /** The active target the Task system uses for tracking */
     private EntityLivingBase attackTarget;
-    private EntitySenses senses;
+    private final EntitySenses senses;
 
     /** Equipment (armor and held item) for this entity. */
-    private ItemStack[] equipment = new ItemStack[5];
+    private final ItemStack[] equipment = new ItemStack[5];
 
     /** Chances for each equipment piece from dropping when this entity dies. */
     protected float[] equipmentDropChances = new float[5];
@@ -88,7 +88,7 @@ public abstract class EntityLiving extends EntityLivingBase
         this.navigator = this.getNewNavigator(worldIn);
         this.senses = new EntitySenses(this);
 
-        for (int i = 0; i < this.equipmentDropChances.length; ++i)
+        for (int i = 0; i < this.equipmentDropChances.length; i++)
         {
             this.equipmentDropChances[i] = 0.085F;
         }
@@ -222,7 +222,7 @@ public abstract class EntityLiving extends EntityLivingBase
             int i = this.experienceValue;
             ItemStack[] aitemstack = this.getInventory();
 
-            for (int j = 0; j < aitemstack.length; ++j)
+            for (int j = 0; j < aitemstack.length; j++)
             {
                 if (aitemstack[j] != null && this.equipmentDropChances[j] <= 1.0F)
                 {
@@ -245,7 +245,7 @@ public abstract class EntityLiving extends EntityLivingBase
     {
         if (this.worldObj.isRemote)
         {
-            for (int i = 0; i < 20; ++i)
+            for (int i = 0; i < 20; i++)
             {
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;
@@ -324,7 +324,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 i += this.rand.nextInt(lootingModifier + 1);
             }
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 this.dropItem(item, 1);
             }
@@ -341,7 +341,7 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setBoolean("PersistenceRequired", this.persistenceRequired);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.equipment.length; ++i)
+        for (int i = 0; i < this.equipment.length; i++)
         {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
@@ -356,7 +356,7 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setTag("Equipment", nbttaglist);
         NBTTagList nbttaglist1 = new NBTTagList();
 
-        for (int j = 0; j < this.equipmentDropChances.length; ++j)
+        for (int j = 0; j < this.equipmentDropChances.length; j++)
         {
             nbttaglist1.appendTag(new NBTTagFloat(this.equipmentDropChances[j]));
         }
@@ -408,7 +408,7 @@ public abstract class EntityLiving extends EntityLivingBase
         {
             NBTTagList nbttaglist = tagCompund.getTagList("Equipment", 10);
 
-            for (int i = 0; i < this.equipment.length; ++i)
+            for (int i = 0; i < this.equipment.length; i++)
             {
                 this.equipment[i] = ItemStack.loadItemStackFromNBT(nbttaglist.getCompoundTagAt(i));
             }
@@ -418,7 +418,7 @@ public abstract class EntityLiving extends EntityLivingBase
         {
             NBTTagList nbttaglist1 = tagCompund.getTagList("DropChances", 5);
 
-            for (int j = 0; j < nbttaglist1.tagCount(); ++j)
+            for (int j = 0; j < nbttaglist1.tagCount(); j++)
             {
                 this.equipmentDropChances[j] = nbttaglist1.getFloatAt(j);
             }
@@ -807,7 +807,7 @@ public abstract class EntityLiving extends EntityLivingBase
      */
     protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier)
     {
-        for (int i = 0; i < this.getInventory().length; ++i)
+        for (int i = 0; i < this.getInventory().length; i++)
         {
             ItemStack itemstack = this.getEquipmentInSlot(i);
             boolean flag = this.equipmentDropChances[i] > 1.0F;
@@ -862,7 +862,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 ++i;
             }
 
-            for (int j = 3; j >= 0; --j)
+            for (int j = 3; j >= 0; j--)
             {
                 ItemStack itemstack = this.getCurrentArmor(j);
 
@@ -1026,7 +1026,7 @@ public abstract class EntityLiving extends EntityLivingBase
             EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItem(), (int)(5.0F + f * (float)this.rand.nextInt(18)));
         }
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             ItemStack itemstack = this.getCurrentArmor(i);
 

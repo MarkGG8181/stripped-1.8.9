@@ -89,7 +89,7 @@ public class CommandParticle extends CommandBase {
                     if (enumparticletypes.hasArguments()) {
                         String[] astring = args[0].split("_", 3);
 
-                        for (int j = 1; j < astring.length; ++j) {
+                        for (int j = 1; j < astring.length; j++) {
                             try {
                                 aint[j - 1] = Integer.parseInt(astring[j]);
                             } catch (NumberFormatException var29) {

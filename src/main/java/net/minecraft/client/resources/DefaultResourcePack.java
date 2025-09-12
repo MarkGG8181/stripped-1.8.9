@@ -69,7 +69,7 @@ public class DefaultResourcePack implements IResourcePack {
     }
 
     public BufferedImage getPackImage() throws IOException {
-        return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + (new ResourceLocation("pack.png")).getResourcePath()));
+        return TextureUtil.readBufferedImage(DefaultResourcePack.class.getResourceAsStream("/" + new ResourceLocation("pack.png").getResourcePath()));
     }
 
     public String getPackName() {

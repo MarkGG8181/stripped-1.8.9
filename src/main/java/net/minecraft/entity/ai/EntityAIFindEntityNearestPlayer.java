@@ -20,7 +20,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
     private static final Logger LOGGER = LogManager.getLogger();
 
     /** The entity that use this AI */
-    private EntityLiving entityLiving;
+    private final EntityLiving entityLiving;
     private final Predicate<Entity> predicate;
 
     /** Used to compare two entities */

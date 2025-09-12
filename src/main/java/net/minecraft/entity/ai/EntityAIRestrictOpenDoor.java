@@ -8,7 +8,7 @@ import net.minecraft.village.VillageDoorInfo;
 
 public class EntityAIRestrictOpenDoor extends EntityAIBase
 {
-    private EntityCreature entityObj;
+    private final EntityCreature entityObj;
     private VillageDoorInfo frontDoor;
 
     public EntityAIRestrictOpenDoor(EntityCreature creatureIn)

@@ -157,7 +157,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
      * Maximum build height.
      */
     private int buildLimit;
-    private int maxPlayerIdleMinutes = 0;
+    private int maxPlayerIdleMinutes;
     public final long[] tickTimeArray = new long[100];
 
     /**
@@ -195,7 +195,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     private boolean isGamemodeForced;
     private final YggdrasilAuthenticationService authService;
     private final MinecraftSessionService sessionService;
-    private long nanoTimeSinceStatusRefresh = 0L;
+    private long nanoTimeSinceStatusRefresh;
     private final GameProfileRepository profileRepo;
     private final PlayerProfileCache profileCache;
     protected final Queue<FutureTask<?>> futureTaskQueue = new ArrayDeque<>();
@@ -302,7 +302,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             worldsettings = new WorldSettings(worldinfo);
         }
 
-        for (int i = 0; i < this.worldServers.length; ++i) {
+        for (int i = 0; i < this.worldServers.length; i++) {
             int j = 0;
 
             if (i == 1) {
@@ -314,11 +314,11 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             }
 
             if (i == 0) {
-                this.worldServers[i] = (WorldServer)(new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler).init();
                 this.worldServers[i].initialize(worldsettings);
             }
             else {
-                this.worldServers[i] = (WorldServer)(new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler).init();
             }
 
             this.worldServers[i].addWorldAccess(new WorldManager(this, this.worldServers[i]));
@@ -456,7 +456,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 logger.info("Saving worlds");
                 this.saveAllWorlds(false);
 
-                for (int i = 0; i < this.worldServers.length; ++i) {
+                for (int i = 0; i < this.worldServers.length; i++) {
                     WorldServer worldserver = this.worldServers[i];
                     worldserver.flush();
                 }
@@ -535,7 +535,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
                 crashreport = this.addServerInfoToCrashReport(new CrashReport("Exception in server tick loop", throwable1));
             }
 
-            File file1 = new File(new File(this.getDataDirectory(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
+            File file1 = new File(new File(this.getDataDirectory(), "crash-reports"), "crash-" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date()) + "-server.txt");
 
             if (crashreport.saveToFile(file1)) {
                 logger.error("This crash report has been saved to: " + file1.getAbsolutePath());
@@ -616,7 +616,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
             GameProfile[] agameprofile = new GameProfile[Math.min(this.getCurrentPlayerCount(), 12)];
             int j = MathHelper.getRandomIntegerInRange(this.random, 0, this.getCurrentPlayerCount() - agameprofile.length);
 
-            for (int k = 0; k < agameprofile.length; ++k) {
+            for (int k = 0; k < agameprofile.length; k++) {
                 agameprofile[k] = ((EntityPlayerMP)this.serverConfigManager.getPlayerList().get(j + k)).getGameProfile();
             }
 
@@ -648,7 +648,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
 
         this.theProfiler.endStartSection("levels");
 
-        for (int j = 0; j < this.worldServers.length; ++j) {
+        for (int j = 0; j < this.worldServers.length; j++) {
             long i = System.nanoTime();
 
             if (j == 0 || this.getAllowNether()) {
@@ -695,7 +695,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.serverConfigManager.onTick();
         this.theProfiler.endStartSection("tickables");
 
-        for (int k = 0; k < this.playersOnline.size(); ++k) {
+        for (int k = 0; k < this.playersOnline.size(); k++) {
             ((ITickable)this.playersOnline.get(k)).update();
         }
 
@@ -909,7 +909,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public void setDifficultyForAllWorlds(EnumDifficulty difficulty) {
-        for (int i = 0; i < this.worldServers.length; ++i) {
+        for (int i = 0; i < this.worldServers.length; i++) {
             World world = this.worldServers[i];
 
             if (world != null) {
@@ -949,7 +949,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
         this.worldIsBeingDeleted = true;
         this.getActiveAnvilConverter().flushCache();
 
-        for (int i = 0; i < this.worldServers.length; ++i) {
+        for (int i = 0; i < this.worldServers.length; i++) {
             WorldServer worldserver = this.worldServers[i];
 
             if (worldserver != null) {
@@ -1059,7 +1059,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
      * Sets the game type for all worlds.
      */
     public void setGameType(WorldSettings.GameType gameMode) {
-        for (int i = 0; i < this.worldServers.length; ++i) {
+        for (int i = 0; i < this.worldServers.length; i++) {
             getServer().worldServers[i].getWorldInfo().setGameType(gameMode);
         }
     }

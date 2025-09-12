@@ -113,7 +113,7 @@ public class ItemEditableBook extends Item
                 {
                     NBTTagList nbttaglist = nbttagcompound.getTagList("pages", 8);
 
-                    for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                    for (int i = 0; i < nbttaglist.tagCount(); i++)
                     {
                         String s = nbttaglist.getStringTagAt(i);
                         IChatComponent ichatcomponent;

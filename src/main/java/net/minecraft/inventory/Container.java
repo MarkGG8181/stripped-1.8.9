@@ -27,7 +27,7 @@ public abstract class Container
     private int dragEvent;
     private final Set<Slot> dragSlots = new HashSet<>();
     protected List<ICrafting> crafters = new ArrayList<>();
-    private Set<EntityPlayer> playerList = new HashSet<>();
+    private final Set<EntityPlayer> playerList = new HashSet<>();
 
     /**
      * Adds an item slot to this container
@@ -66,7 +66,7 @@ public abstract class Container
     {
         List<ItemStack> list = new ArrayList<>();
 
-        for (int i = 0; i < this.inventorySlots.size(); ++i)
+        for (int i = 0; i < this.inventorySlots.size(); i++)
         {
             list.add(((Slot)this.inventorySlots.get(i)).getStack());
         }
@@ -79,7 +79,7 @@ public abstract class Container
      */
     public void detectAndSendChanges()
     {
-        for (int i = 0; i < this.inventorySlots.size(); ++i)
+        for (int i = 0; i < this.inventorySlots.size(); i++)
         {
             ItemStack itemstack = ((Slot)this.inventorySlots.get(i)).getStack();
             ItemStack itemstack1 = (ItemStack)this.inventoryItemStacks.get(i);
@@ -89,7 +89,7 @@ public abstract class Container
                 itemstack1 = itemstack == null ? null : itemstack.copy();
                 this.inventoryItemStacks.set(i, itemstack1);
 
-                for (int j = 0; j < this.crafters.size(); ++j)
+                for (int j = 0; j < this.crafters.size(); j++)
                 {
                     ((ICrafting)this.crafters.get(j)).sendSlotContents(this, i, itemstack1);
                 }
@@ -107,7 +107,7 @@ public abstract class Container
 
     public Slot getSlotFromInventory(IInventory inv, int slotIn)
     {
-        for (int i = 0; i < this.inventorySlots.size(); ++i)
+        for (int i = 0; i < this.inventorySlots.size(); i++)
         {
             Slot slot = (Slot)this.inventorySlots.get(i);
 
@@ -464,7 +464,7 @@ public abstract class Container
                 int i1 = clickedButton == 0 ? 0 : this.inventorySlots.size() - 1;
                 int j1 = clickedButton == 0 ? 1 : -1;
 
-                for (int l2 = 0; l2 < 2; ++l2)
+                for (int l2 = 0; l2 < 2; l2++)
                 {
                     for (int i3 = i1; i3 >= 0 && i3 < this.inventorySlots.size() && itemstack4.stackSize < itemstack4.getMaxStackSize(); i3 += j1)
                     {
@@ -545,7 +545,7 @@ public abstract class Container
      */
     public void putStacksInSlots(ItemStack[] p_75131_1_)
     {
-        for (int i = 0; i < p_75131_1_.length; ++i)
+        for (int i = 0; i < p_75131_1_.length; i++)
         {
             this.getSlot(i).putStack(p_75131_1_[i]);
         }
@@ -782,7 +782,7 @@ public abstract class Container
             int i = 0;
             float f = 0.0F;
 
-            for (int j = 0; j < inv.getSizeInventory(); ++j)
+            for (int j = 0; j < inv.getSizeInventory(); j++)
             {
                 ItemStack itemstack = inv.getStackInSlot(j);
 

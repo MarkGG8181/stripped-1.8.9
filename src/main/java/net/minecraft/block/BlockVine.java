@@ -249,11 +249,11 @@ public class BlockVine extends Block
                 boolean flag = false;
                 label62:
 
-                for (int k = -i; k <= i; ++k)
+                for (int k = -i; k <= i; k++)
                 {
-                    for (int l = -i; l <= i; ++l)
+                    for (int l = -i; l <= i; l++)
                     {
-                        for (int i1 = -1; i1 <= 1; ++i1)
+                        for (int i1 = -1; i1 <= 1; i1++)
                         {
                             if (worldIn.getBlockState(pos.add(k, i1, l)).getBlock() == this)
                             {

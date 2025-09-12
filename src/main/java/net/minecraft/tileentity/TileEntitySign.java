@@ -36,7 +36,7 @@ public class TileEntitySign extends TileEntity
     {
         super.writeToNBT(compound);
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             String s = IChatComponent.Serializer.componentToJson(this.signText[i]);
             compound.setString("Text" + (i + 1), s);
@@ -100,7 +100,7 @@ public class TileEntitySign extends TileEntity
             }
         };
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             String s = compound.getString("Text" + (i + 1));
 
@@ -224,7 +224,7 @@ public class TileEntitySign extends TileEntity
             }
         };
 
-        for (int i = 0; i < this.signText.length; ++i)
+        for (int i = 0; i < this.signText.length; i++)
         {
             ChatStyle chatstyle = this.signText[i] == null ? null : this.signText[i].getChatStyle();
 

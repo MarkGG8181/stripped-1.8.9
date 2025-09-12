@@ -94,7 +94,7 @@ public class EntityTrackerEntry
     private double lastTrackedEntityPosY;
     private double lastTrackedEntityPosZ;
     private boolean firstUpdateDone;
-    private boolean sendVelocityUpdates;
+    private final boolean sendVelocityUpdates;
 
     /**
      * every 400 ticks a  full teleport packet is sent, rather than just a "move me +x" command, so that position
@@ -421,7 +421,7 @@ public class EntityTrackerEntry
 
                     if (this.trackedEntity instanceof EntityLivingBase base)
                     {
-                        for (int i = 0; i < 5; ++i)
+                        for (int i = 0; i < 5; i++)
                         {
                             ItemStack itemstack = base.getEquipmentInSlot(i);
 
@@ -473,7 +473,7 @@ public class EntityTrackerEntry
 
     public void updatePlayerEntities(List<EntityPlayer> players)
     {
-        for (int i = 0; i < players.size(); ++i)
+        for (int i = 0; i < players.size(); i++)
         {
             this.updatePlayerEntity((EntityPlayerMP)players.get(i));
         }

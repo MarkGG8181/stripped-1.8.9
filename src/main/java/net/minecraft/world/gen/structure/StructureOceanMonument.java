@@ -34,11 +34,11 @@ public class StructureOceanMonument extends MapGenStructure
 
         for (Entry<String, String> entry : p_i45608_1_.entrySet())
         {
-            if (((String)entry.getKey()).equals("spacing"))
+            if ("spacing".equals((String)entry.getKey()))
             {
                 this.spacing = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.spacing, 1);
             }
-            else if (((String)entry.getKey()).equals("separation"))
+            else if ("separation".equals((String)entry.getKey()))
             {
                 this.separation = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.separation, 1);
             }
@@ -183,7 +183,7 @@ public class StructureOceanMonument extends MapGenStructure
             {
                 NBTTagList nbttaglist = tagCompound.getTagList("Processed", 10);
 
-                for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                for (int i = 0; i < nbttaglist.tagCount(); i++)
                 {
                     NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
                     this.processed.add(new ChunkCoordIntPair(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Z")));

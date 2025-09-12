@@ -148,7 +148,7 @@ public class EntityFallingBlock extends Entity
                                         {
                                             NBTBase nbtbase = this.tileEntityData.getTag(s);
 
-                                            if (!s.equals("x") && !s.equals("y") && !s.equals("z"))
+                                            if (!"x".equals(s) && !"y".equals(s) && !"z".equals(s))
                                             {
                                                 nbttagcompound.setTag(s, nbtbase.copy());
                                             }

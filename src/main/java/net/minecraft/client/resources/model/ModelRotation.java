@@ -57,12 +57,12 @@ public enum ModelRotation {
     public EnumFacing rotateFace(EnumFacing p_177523_1_) {
         EnumFacing enumfacing = p_177523_1_;
 
-        for (int i = 0; i < this.quartersX; ++i) {
+        for (int i = 0; i < this.quartersX; i++) {
             enumfacing = enumfacing.rotateAround(EnumFacing.Axis.X);
         }
 
         if (enumfacing.getAxis() != EnumFacing.Axis.Y) {
-            for (int j = 0; j < this.quartersY; ++j) {
+            for (int j = 0; j < this.quartersY; j++) {
                 enumfacing = enumfacing.rotateAround(EnumFacing.Axis.Y);
             }
         }
@@ -79,7 +79,7 @@ public enum ModelRotation {
 
         EnumFacing enumfacing = facing;
 
-        for (int j = 0; j < this.quartersX; ++j) {
+        for (int j = 0; j < this.quartersX; j++) {
             enumfacing = enumfacing.rotateAround(EnumFacing.Axis.X);
         }
 

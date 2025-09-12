@@ -60,8 +60,9 @@ public class EventQueue {
     public synchronized void copyEvents(ByteBuffer dest) {
         queue.flip();
         int old_limit = queue.limit();
-        if (dest.remaining() < queue.remaining())
+        if (dest.remaining() < queue.remaining()) {
             queue.limit(dest.remaining() + queue.position());
+        }
         dest.put(queue);
         queue.limit(old_limit);
         queue.compact();
@@ -72,12 +73,15 @@ public class EventQueue {
      * @return true if the event fitted into the queue, false otherwise
      */
     public synchronized boolean putEvent(ByteBuffer event) {
-        if (event.remaining() != event_size)
+        if (event.remaining() != event_size) {
             throw new IllegalArgumentException("Internal error: event size " + event_size + " does not equal the given event size " + event.remaining());
+        }
         if (queue.remaining() >= event.remaining()) {
             queue.put(event);
             return true;
-        } else
+        }
+        else {
             return false;
+        }
     }
 }

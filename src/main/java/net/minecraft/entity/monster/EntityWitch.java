@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 public class EntityWitch extends EntityMob implements IRangedAttackMob
 {
     private static final UUID MODIFIER_UUID = FastUUID.parseUUID("5CD17E52-A79A-43D3-A529-90FDE04B181E");
-    private static final AttributeModifier MODIFIER = (new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", -0.25D, 0)).setSaved(false);
+    private static final AttributeModifier MODIFIER = new AttributeModifier(MODIFIER_UUID, "Drinking speed penalty", -0.25D, 0).setSaved(false);
 
     /** List of items a witch should drop on death. */
     private static final Item[] witchDrops = new Item[]{Items.glowstone_dust, Items.sugar, Items.redstone, Items.spider_eye, Items.glass_bottle, Items.gunpowder, Items.stick, Items.stick};
@@ -189,7 +189,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
     {
         if (id == 15)
         {
-            for (int i = 0; i < this.rand.nextInt(35) + 10; ++i)
+            for (int i = 0; i < this.rand.nextInt(35) + 10; i++)
             {
                 this.worldObj.spawnParticle(EnumParticleTypes.SPELL_WITCH, this.posX + this.rand.nextGaussian() * 0.12999999523162842D, this.getEntityBoundingBox().maxY + 0.5D + this.rand.nextGaussian() * 0.12999999523162842D, this.posZ + this.rand.nextGaussian() * 0.12999999523162842D, 0.0D, 0.0D, 0.0D, new int[0]);
             }
@@ -231,7 +231,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
     {
         int i = this.rand.nextInt(3) + 1;
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             int k = this.rand.nextInt(3);
             Item item = witchDrops[this.rand.nextInt(witchDrops.length)];
@@ -241,7 +241,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
                 k += this.rand.nextInt(lootingModifier + 1);
             }
 
-            for (int l = 0; l < k; ++l)
+            for (int l = 0; l < k; l++)
             {
                 this.dropItem(item, 1);
             }

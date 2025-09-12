@@ -128,7 +128,7 @@ public class BlockRedstoneOre extends Block
         Random random = worldIn.rand;
         double d0 = 0.0625D;
 
-        for (int i = 0; i < 6; ++i)
+        for (int i = 0; i < 6; i++)
         {
             double d1 = (double)((float)pos.getX() + random.nextFloat());
             double d2 = (double)((float)pos.getY() + random.nextFloat());

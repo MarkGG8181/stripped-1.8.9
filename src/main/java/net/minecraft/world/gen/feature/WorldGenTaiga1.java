@@ -32,7 +32,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
         {
-            for (int i1 = position.getY(); i1 <= position.getY() + 1 + i && flag; ++i1)
+            for (int i1 = position.getY(); i1 <= position.getY() + 1 + i && flag; i1++)
             {
                 int j1 = 1;
 
@@ -47,9 +47,9 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; ++k1)
+                for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; k1++)
                 {
-                    for (int l1 = position.getZ() - j1; l1 <= position.getZ() + j1 && flag; ++l1)
+                    for (int l1 = position.getZ() - j1; l1 <= position.getZ() + j1 && flag; l1++)
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
@@ -79,13 +79,13 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
                     this.func_175921_a(worldIn, position.down());
                     int k2 = 0;
 
-                    for (int l2 = position.getY() + i; l2 >= position.getY() + j; --l2)
+                    for (int l2 = position.getY() + i; l2 >= position.getY() + j; l2--)
                     {
-                        for (int j3 = position.getX() - k2; j3 <= position.getX() + k2; ++j3)
+                        for (int j3 = position.getX() - k2; j3 <= position.getX() + k2; j3++)
                         {
                             int k3 = j3 - position.getX();
 
-                            for (int i2 = position.getZ() - k2; i2 <= position.getZ() + k2; ++i2)
+                            for (int i2 = position.getZ() - k2; i2 <= position.getZ() + k2; i2++)
                             {
                                 int j2 = i2 - position.getZ();
 
@@ -111,7 +111,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
                         }
                     }
 
-                    for (int i3 = 0; i3 < i - 1; ++i3)
+                    for (int i3 = 0; i3 < i - 1; i3++)
                     {
                         Block block1 = worldIn.getBlockState(position.up(i3)).getBlock();
 

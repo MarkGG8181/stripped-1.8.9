@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 public class ContainerMerchant extends Container
 {
     /** Instance of Merchant. */
-    private IMerchant theMerchant;
-    private InventoryMerchant merchantInventory;
+    private final IMerchant theMerchant;
+    private final InventoryMerchant merchantInventory;
 
     /** Instance of World. */
     private final World theWorld;
@@ -24,15 +24,15 @@ public class ContainerMerchant extends Container
         this.addSlotToContainer(new Slot(this.merchantInventory, 1, 62, 53));
         this.addSlotToContainer(new SlotMerchantResult(playerInventory.player, merchant, this.merchantInventory, 2, 120, 53));
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 9; ++j)
+            for (int j = 0; j < 9; j++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        for (int k = 0; k < 9; ++k)
+        for (int k = 0; k < 9; k++)
         {
             this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }

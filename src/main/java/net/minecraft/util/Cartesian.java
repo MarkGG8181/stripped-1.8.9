@@ -55,9 +55,9 @@ public class Cartesian
     static class Product<T> implements Iterable<T[]>
     {
         private final Class<T> clazz;
-        private final Iterable<? extends T> [] iterables;
+        private final Iterable<? extends T>[] iterables;
 
-        private Product(Class<T> clazz, Iterable<? extends T> [] iterables)
+        private Product(Class<T> clazz, Iterable<? extends T>[] iterables)
         {
             this.clazz = clazz;
             this.iterables = iterables;
@@ -65,23 +65,23 @@ public class Cartesian
 
         public Iterator<T[]> iterator()
         {
-            return (this.iterables.length <= 0 ? Collections.singletonList(Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables));
+            return this.iterables.length <= 0 ? Collections.singletonList(Cartesian.createArray(this.clazz, 0)).iterator() : new Cartesian.Product.ProductIterator(this.clazz, this.iterables);
         }
 
         static class ProductIterator<T> extends UnmodifiableIterator<T[]>
         {
             private int index;
-            private final Iterable<? extends T> [] iterables;
-            private final Iterator<? extends T> [] iterators;
+            private final Iterable<? extends T>[] iterables;
+            private final Iterator<? extends T>[] iterators;
             private final T[] results;
 
-            private ProductIterator(Class<T> clazz, Iterable<? extends T> [] iterables)
+            private ProductIterator(Class<T> clazz, Iterable<? extends T>[] iterables)
             {
                 this.index = -2;
                 this.iterables = iterables;
                 this.iterators = (Iterator[])Cartesian.createArray(Iterator.class, this.iterables.length);
 
-                for (int i = 0; i < this.iterables.length; ++i)
+                for (int i = 0; i < this.iterables.length; i++)
                 {
                     this.iterators[i] = iterables[i].iterator();
                 }
@@ -117,7 +117,7 @@ public class Cartesian
                 {
                     if (this.index >= this.iterators.length)
                     {
-                        for (this.index = this.iterators.length - 1; this.index >= 0; --this.index)
+                        for (this.index = this.iterators.length - 1; this.index >= 0; this.index--)
                         {
                             Iterator<? extends T> iterator = this.iterators[this.index];
 
@@ -165,5 +165,8 @@ public class Cartesian
                 }
             }
         }
+    }
+
+    private Cartesian() {
     }
 }

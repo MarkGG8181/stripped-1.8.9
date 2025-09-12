@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 public class TileEntityRendererDispatcher
 {
-    private Map<Class<? extends TileEntity> , TileEntitySpecialRenderer<? extends TileEntity>> mapSpecialRenderers = new HashMap<>();
+    private final Map<Class<? extends TileEntity> , TileEntitySpecialRenderer<? extends TileEntity>> mapSpecialRenderers = new HashMap<>();
     public static TileEntityRendererDispatcher instance = new TileEntityRendererDispatcher();
     private FontRenderer fontRenderer;
 

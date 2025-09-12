@@ -69,4 +69,7 @@ public class GLAllocation
     {
         return createDirectByteBuffer(capacity << 2).asFloatBuffer();
     }
+
+    private GLAllocation() {
+    }
 }

@@ -17,7 +17,7 @@ public class LoadingScreenRenderer implements IProgressUpdate {
     /**
      * A reference to the Minecraft object.
      */
-    private Minecraft mc;
+    private final Minecraft mc;
 
     /**
      * The text currently displayed (i.e. the argument to the last call to printText or displayString)
@@ -33,8 +33,8 @@ public class LoadingScreenRenderer implements IProgressUpdate {
      * True if the loading ended with a success
      */
     private boolean loadingSuccess;
-    private ScaledResolution scaledResolution;
-    private Framebuffer framebuffer;
+    private final ScaledResolution scaledResolution;
+    private final Framebuffer framebuffer;
 
     public LoadingScreenRenderer(Minecraft mcIn) {
         this.mc = mcIn;

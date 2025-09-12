@@ -16,7 +16,7 @@ public class RecipeRepairItem implements IRecipe
     {
         List<ItemStack> list = new ArrayList<>();
 
-        for (int i = 0; i < inv.getSizeInventory(); ++i)
+        for (int i = 0; i < inv.getSizeInventory(); i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -46,7 +46,7 @@ public class RecipeRepairItem implements IRecipe
     {
         List<ItemStack> list = new ArrayList<>();
 
-        for (int i = 0; i < inv.getSizeInventory(); ++i)
+        for (int i = 0; i < inv.getSizeInventory(); i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -108,7 +108,7 @@ public class RecipeRepairItem implements IRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 

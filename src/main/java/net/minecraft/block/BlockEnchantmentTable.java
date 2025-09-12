@@ -35,9 +35,9 @@ public class BlockEnchantmentTable extends BlockContainer
     {
         super.randomDisplayTick(worldIn, pos, state, rand);
 
-        for (int i = -2; i <= 2; ++i)
+        for (int i = -2; i <= 2; i++)
         {
-            for (int j = -2; j <= 2; ++j)
+            for (int j = -2; j <= 2; j++)
             {
                 if (i > -2 && i < 2 && j == -1)
                 {
@@ -46,7 +46,7 @@ public class BlockEnchantmentTable extends BlockContainer
 
                 if (rand.nextInt(16) == 0)
                 {
-                    for (int k = 0; k <= 1; ++k)
+                    for (int k = 0; k <= 1; k++)
                     {
                         BlockPos blockpos = pos.add(i, k, j);
 

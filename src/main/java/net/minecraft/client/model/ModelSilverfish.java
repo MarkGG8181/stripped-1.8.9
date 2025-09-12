@@ -6,11 +6,11 @@ import net.minecraft.util.MathHelper;
 public class ModelSilverfish extends ModelBase
 {
     /** The body parts of the silverfish's model. */
-    private ModelRenderer[] silverfishBodyParts = new ModelRenderer[7];
+    private final ModelRenderer[] silverfishBodyParts = new ModelRenderer[7];
 
     /** The wings (dust-looking sprites) on the silverfish's model. */
-    private ModelRenderer[] silverfishWings;
-    private float[] zPlacement = new float[7];
+    private final ModelRenderer[] silverfishWings;
+    private final float[] zPlacement = new float[7];
 
     /** The widths, heights, and lengths for the silverfish model boxes. */
     private static final int[][] silverfishBoxLength = new int[][]{{3, 2, 2}, {4, 3, 2}, {6, 4, 3}, {3, 3, 3}, {2, 2, 3}, {2, 1, 2}, {1, 1, 2}};
@@ -22,7 +22,7 @@ public class ModelSilverfish extends ModelBase
     {
         float f = -3.5F;
 
-        for (int i = 0; i < this.silverfishBodyParts.length; ++i)
+        for (int i = 0; i < this.silverfishBodyParts.length; i++)
         {
             this.silverfishBodyParts[i] = new ModelRenderer(this, silverfishTexturePositions[i][0], silverfishTexturePositions[i][1]);
             this.silverfishBodyParts[i].addBox((float)silverfishBoxLength[i][0] * -0.5F, 0.0F, (float)silverfishBoxLength[i][2] * -0.5F, silverfishBoxLength[i][0], silverfishBoxLength[i][1], silverfishBoxLength[i][2]);
@@ -54,12 +54,12 @@ public class ModelSilverfish extends ModelBase
     {
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
 
-        for (int i = 0; i < this.silverfishBodyParts.length; ++i)
+        for (int i = 0; i < this.silverfishBodyParts.length; i++)
         {
             this.silverfishBodyParts[i].render(scale);
         }
 
-        for (int j = 0; j < this.silverfishWings.length; ++j)
+        for (int j = 0; j < this.silverfishWings.length; j++)
         {
             this.silverfishWings[j].render(scale);
         }
@@ -72,7 +72,7 @@ public class ModelSilverfish extends ModelBase
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        for (int i = 0; i < this.silverfishBodyParts.length; ++i)
+        for (int i = 0; i < this.silverfishBodyParts.length; i++)
         {
             this.silverfishBodyParts[i].rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float)i * 0.15F * (float)Math.PI) * (float)Math.PI * 0.05F * (float)(1 + Math.abs(i - 2));
             this.silverfishBodyParts[i].rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float)i * 0.15F * (float)Math.PI) * (float)Math.PI * 0.2F * (float)Math.abs(i - 2);

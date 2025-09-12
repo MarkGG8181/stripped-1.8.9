@@ -8,7 +8,7 @@ public class GuiListButton extends GuiButton
     private boolean value;
 
     /** The localization string used by this control. */
-    private String localizationStr;
+    private final String localizationStr;
 
     /** The GuiResponder Object reference. */
     private final GuiPageButtonList.GuiResponder guiResponder;

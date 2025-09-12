@@ -23,7 +23,7 @@ public class TextureMetadataSectionSerializer extends BaseMetadataSectionSeriali
             try {
                 JsonArray jsonarray = jsonobject.getAsJsonArray("mipmaps");
 
-                for (int i = 0; i < jsonarray.size(); ++i) {
+                for (int i = 0; i < jsonarray.size(); i++) {
                     JsonElement jsonelement = jsonarray.get(i);
 
                     if (jsonelement.isJsonPrimitive()) {

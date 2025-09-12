@@ -51,7 +51,7 @@ public class BlockState {
     private List<Iterable<Comparable>> getAllowedValues() {
         List<Iterable<Comparable>> list = new ArrayList<>();
 
-        for (int i = 0; i < this.properties.size(); ++i) {
+        for (int i = 0; i < this.properties.size(); i++) {
             list.add(this.properties.get(i).getAllowedValues());
         }
 

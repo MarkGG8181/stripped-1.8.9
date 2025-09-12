@@ -40,7 +40,7 @@ public class OpenALException extends RuntimeException {
      * Constructor that takes an AL error number
      */
     public OpenALException(int error_code) {
-        super("OpenAL error: " + org.lwjgl.openal.AL10.alGetString(error_code) + " (" + error_code + ")");
+        super("OpenAL error: " + AL10.alGetString(error_code) + " (" + error_code + ")");
     }
 
     /**

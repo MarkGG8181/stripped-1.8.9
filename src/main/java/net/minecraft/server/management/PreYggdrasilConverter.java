@@ -85,4 +85,7 @@ public class PreYggdrasilConverter
             return p_152719_0_;
         }
     }
+
+    private PreYggdrasilConverter() {
+    }
 }

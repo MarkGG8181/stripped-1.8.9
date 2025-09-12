@@ -146,7 +146,7 @@ public class EntityArmorStand extends EntityLivingBase {
         super.writeEntityToNBT(tagCompound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.contents.length; ++i) {
+        for (int i = 0; i < this.contents.length; i++) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
             if (this.contents[i] != null) {
@@ -185,7 +185,7 @@ public class EntityArmorStand extends EntityLivingBase {
         if (tagCompund.hasKey("Equipment", 9)) {
             NBTTagList nbttaglist = tagCompund.getTagList("Equipment", 10);
 
-            for (int i = 0; i < this.contents.length; ++i) {
+            for (int i = 0; i < this.contents.length; i++) {
                 this.contents[i] = ItemStack.loadItemStackFromNBT(nbttaglist.getCompoundTagAt(i));
             }
         }
@@ -306,7 +306,7 @@ public class EntityArmorStand extends EntityLivingBase {
         List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
 
         if (list != null && !list.isEmpty()) {
-            for (int i = 0; i < list.size(); ++i) {
+            for (int i = 0; i < list.size(); i++) {
                 Entity entity = (Entity)list.get(i);
 
                 if (entity instanceof EntityMinecart minecart && minecart.getMinecartType() == EntityMinecart.EnumMinecartType.RIDEABLE && this.getDistanceSqToEntity(entity) <= 0.2D) {
@@ -541,10 +541,10 @@ public class EntityArmorStand extends EntityLivingBase {
     }
 
     private void dropContents() {
-        for (int i = 0; i < this.contents.length; ++i) {
+        for (int i = 0; i < this.contents.length; i++) {
             if (this.contents[i] != null && this.contents[i].stackSize > 0) {
                 if (this.contents[i] != null) {
-                    Block.spawnAsEntity(this.worldObj, (new BlockPos(this)).up(), this.contents[i]);
+                    Block.spawnAsEntity(this.worldObj, new BlockPos(this).up(), this.contents[i]);
                 }
 
                 this.contents[i] = null;

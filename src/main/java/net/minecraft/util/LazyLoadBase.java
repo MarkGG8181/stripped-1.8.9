@@ -3,7 +3,7 @@ package net.minecraft.util;
 public abstract class LazyLoadBase<T>
 {
     private T value;
-    private boolean isLoaded = false;
+    private boolean isLoaded;
 
     public T getValue()
     {

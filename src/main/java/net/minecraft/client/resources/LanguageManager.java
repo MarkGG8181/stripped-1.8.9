@@ -14,9 +14,9 @@ import org.apache.logging.log4j.Logger;
 public class LanguageManager implements IResourceManagerReloadListener {
     private static final Logger logger = LogManager.getLogger();
     private final IMetadataSerializer theMetadataSerializer;
-    private String currentLanguage;
+    private final String currentLanguage;
     protected static final Locale currentLocale = new Locale();
-    private Map<String, Language> languageMap = new HashMap<>();
+    private final Map<String, Language> languageMap = new HashMap<>();
 
     public LanguageManager(IMetadataSerializer theMetadataSerializerIn, String currentLanguageIn) {
         this.theMetadataSerializer = theMetadataSerializerIn;

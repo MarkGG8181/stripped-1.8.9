@@ -38,14 +38,14 @@ public class S20PacketEntityProperties implements Packet<INetHandlerPlayClient>
         this.entityId = buf.readVarIntFromBuffer();
         int i = buf.readInt();
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             String s = buf.readStringFromBuffer(64);
             double d0 = buf.readDouble();
             List<AttributeModifier> list = new ArrayList<>();
             int k = buf.readVarIntFromBuffer();
 
-            for (int l = 0; l < k; ++l)
+            for (int l = 0; l < k; l++)
             {
                 UUID uuid = buf.readUuid();
                 list.add(new AttributeModifier(uuid, "Unknown synced attribute modifier", buf.readDouble(), buf.readByte()));

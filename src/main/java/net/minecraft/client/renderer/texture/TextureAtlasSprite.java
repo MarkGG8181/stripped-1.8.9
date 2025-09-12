@@ -184,13 +184,13 @@ public class TextureAtlasSprite {
                 this.interpolatedFrameData = new int[aint.length][];
             }
 
-            for (int l = 0; l < aint.length; ++l) {
+            for (int l = 0; l < aint.length; l++) {
                 if (this.interpolatedFrameData[l] == null) {
                     this.interpolatedFrameData[l] = new int[aint[l].length];
                 }
 
                 if (l < aint1.length && aint1[l].length == aint[l].length) {
-                    for (int i1 = 0; i1 < aint[l].length; ++i1) {
+                    for (int i1 = 0; i1 < aint[l].length; i1++) {
                         int j1 = aint[l][i1];
                         int k1 = aint1[l][i1];
                         int l1 = (int)((double)((j1 & 16711680) >> 16) * d0 + (double)((k1 & 16711680) >> 16) * (1.0D - d0));
@@ -229,7 +229,7 @@ public class TextureAtlasSprite {
         this.height = j;
         int[][] aint = new int[images.length][];
 
-        for (int k = 0; k < images.length; ++k) {
+        for (int k = 0; k < images.length; k++) {
             BufferedImage bufferedimage = images[k];
 
             if (bufferedimage != null) {
@@ -274,7 +274,7 @@ public class TextureAtlasSprite {
             else {
                 List<AnimationFrame> list = new ArrayList<>();
 
-                for (int l1 = 0; l1 < j1; ++l1) {
+                for (int l1 = 0; l1 < j1; l1++) {
                     this.framesTextureData.add(getFrameTextureData(aint, k1, l, l1));
                     list.add(new AnimationFrame(l1, -1));
                 }
@@ -287,7 +287,7 @@ public class TextureAtlasSprite {
     public void generateMipmaps(int level) {
         List<int[][]> list = new ArrayList<>();
 
-        for (int i = 0; i < this.framesTextureData.size(); ++i) {
+        for (int i = 0; i < this.framesTextureData.size(); i++) {
             final int[][] aint = (int[][])this.framesTextureData.get(i);
 
             if (aint != null) {
@@ -322,7 +322,7 @@ public class TextureAtlasSprite {
 
     private void allocateFrameTextureData(int index) {
         if (this.framesTextureData.size() <= index) {
-            for (int i = this.framesTextureData.size(); i <= index; ++i) {
+            for (int i = this.framesTextureData.size(); i <= index; i++) {
                 this.framesTextureData.add((int[][])null);
             }
         }
@@ -331,7 +331,7 @@ public class TextureAtlasSprite {
     private static int[][] getFrameTextureData(int[][] data, int rows, int columns, int p_147962_3_) {
         int[][] aint = new int[data.length][];
 
-        for (int i = 0; i < data.length; ++i) {
+        for (int i = 0; i < data.length; i++) {
             int[] aint1 = data[i];
 
             if (aint1 != null) {

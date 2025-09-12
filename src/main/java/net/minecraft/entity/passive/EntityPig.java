@@ -152,7 +152,7 @@ public class EntityPig extends EntityAnimal
     {
         int i = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             if (this.isBurning())
             {

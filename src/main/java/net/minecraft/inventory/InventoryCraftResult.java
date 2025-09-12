@@ -9,7 +9,7 @@ import net.minecraft.util.IChatComponent;
 public class InventoryCraftResult implements IInventory
 {
     /** A list of one item containing the result of the crafting formula */
-    private ItemStack[] stackResult = new ItemStack[1];
+    private final ItemStack[] stackResult = new ItemStack[1];
 
     /**
      * Returns the number of slots in the inventory.
@@ -149,7 +149,7 @@ public class InventoryCraftResult implements IInventory
 
     public void clear()
     {
-        for (int i = 0; i < this.stackResult.length; ++i)
+        for (int i = 0; i < this.stackResult.length; i++)
         {
             this.stackResult[i] = null;
         }

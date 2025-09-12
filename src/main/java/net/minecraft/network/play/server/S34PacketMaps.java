@@ -34,9 +34,9 @@ public class S34PacketMaps implements Packet<INetHandlerPlayClient>
         this.mapMaxY = maxY;
         this.mapDataBytes = new byte[maxX * maxY];
 
-        for (int i = 0; i < maxX; ++i)
+        for (int i = 0; i < maxX; i++)
         {
-            for (int j = 0; j < maxY; ++j)
+            for (int j = 0; j < maxY; j++)
             {
                 this.mapDataBytes[i + j * maxX] = colors[minX + i + (minY + j) * 128];
             }
@@ -52,7 +52,7 @@ public class S34PacketMaps implements Packet<INetHandlerPlayClient>
         this.mapScale = buf.readByte();
         this.mapVisiblePlayersVec4b = new Vec4b[buf.readVarIntFromBuffer()];
 
-        for (int i = 0; i < this.mapVisiblePlayersVec4b.length; ++i)
+        for (int i = 0; i < this.mapVisiblePlayersVec4b.length; i++)
         {
             short short1 = (short)buf.readByte();
             this.mapVisiblePlayersVec4b[i] = new Vec4b((byte)(short1 >> 4 & 15), buf.readByte(), buf.readByte(), (byte)(short1 & 15));
@@ -117,15 +117,15 @@ public class S34PacketMaps implements Packet<INetHandlerPlayClient>
         mapdataIn.scale = this.mapScale;
         mapdataIn.mapDecorations.clear();
 
-        for (int i = 0; i < this.mapVisiblePlayersVec4b.length; ++i)
+        for (int i = 0; i < this.mapVisiblePlayersVec4b.length; i++)
         {
             Vec4b vec4b = this.mapVisiblePlayersVec4b[i];
             mapdataIn.mapDecorations.put("icon-" + i, vec4b);
         }
 
-        for (int j = 0; j < this.mapMaxX; ++j)
+        for (int j = 0; j < this.mapMaxX; j++)
         {
-            for (int k = 0; k < this.mapMaxY; ++k)
+            for (int k = 0; k < this.mapMaxY; k++)
             {
                 mapdataIn.colors[this.mapMinX + j + (this.mapMinY + k) * 128] = this.mapDataBytes[j + k * this.mapMaxX];
             }

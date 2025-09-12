@@ -191,8 +191,8 @@ public class AnvilSaveConverter extends SaveFormatOld {
             RegionFile regionfile = new RegionFile(p_75811_2_);
             RegionFile regionfile1 = new RegionFile(new File(p_75811_1_, s.substring(0, s.length() - ".mcr".length()) + ".mca"));
 
-            for (int i = 0; i < 32; ++i) {
-                for (int j = 0; j < 32; ++j) {
+            for (int i = 0; i < 32; i++) {
+                for (int j = 0; j < 32; j++) {
                     if (regionfile.isChunkSaved(i, j) && !regionfile1.isChunkSaved(i, j)) {
                         DataInputStream datainputstream = regionfile.getChunkDataInputStream(i, j);
 

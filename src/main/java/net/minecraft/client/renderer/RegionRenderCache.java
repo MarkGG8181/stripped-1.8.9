@@ -14,8 +14,8 @@ public class RegionRenderCache extends ChunkCache
 {
     private static final IBlockState DEFAULT_STATE = Blocks.air.getDefaultState();
     private final BlockPos position;
-    private int[] combinedLights;
-    private IBlockState[] blockStates;
+    private final int[] combinedLights;
+    private final IBlockState[] blockStates;
 
     public RegionRenderCache(World worldIn, BlockPos posFromIn, BlockPos posToIn, int subIn)
     {

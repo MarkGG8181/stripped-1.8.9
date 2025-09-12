@@ -88,10 +88,10 @@ public class WorldServer extends World implements IThreadListener
     private final Teleporter worldTeleporter;
     private final SpawnerAnimals mobSpawner = new SpawnerAnimals();
     protected final VillageSiege villageSiege = new VillageSiege(this);
-    private WorldServer.ServerBlockEventList[] blockEventQueue = new WorldServer.ServerBlockEventList[]{new WorldServer.ServerBlockEventList(), new WorldServer.ServerBlockEventList()};
+    private final WorldServer.ServerBlockEventList[] blockEventQueue = new WorldServer.ServerBlockEventList[]{new WorldServer.ServerBlockEventList(), new WorldServer.ServerBlockEventList()};
     private int blockEventCacheIndex;
     private static final List<WeightedRandomChestContent> bonusChestContent = Lists.newArrayList(new WeightedRandomChestContent(Items.stick, 0, 1, 3, 10), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.planks), 0, 1, 3, 10), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.log), 0, 1, 3, 10), new WeightedRandomChestContent(Items.stone_axe, 0, 1, 1, 3), new WeightedRandomChestContent(Items.wooden_axe, 0, 1, 1, 5), new WeightedRandomChestContent(Items.stone_pickaxe, 0, 1, 1, 3), new WeightedRandomChestContent(Items.wooden_pickaxe, 0, 1, 1, 5), new WeightedRandomChestContent(Items.apple, 0, 2, 3, 5), new WeightedRandomChestContent(Items.bread, 0, 2, 3, 3), new WeightedRandomChestContent(Item.getItemFromBlock(Blocks.log2), 0, 1, 3, 10));
-    private List<NextTickListEntry> pendingTickListEntriesThisTick = new ArrayList<>();
+    private final List<NextTickListEntry> pendingTickListEntriesThisTick = new ArrayList<>();
 
     public WorldServer(MinecraftServer server, ISaveHandler saveHandlerIn, WorldInfo info, int dimensionId, Profiler profilerIn)
     {
@@ -402,7 +402,7 @@ public class WorldServer extends World implements IThreadListener
                     {
                         if (extendedblockstorage != null && extendedblockstorage.getNeedsRandomTick())
                         {
-                            for (int j1 = 0; j1 < l2; ++j1)
+                            for (int j1 = 0; j1 < l2; j1++)
                             {
                                 this.updateLCG = this.updateLCG * 3 + 1013904223;
                                 int k1 = this.updateLCG >> 2;
@@ -431,7 +431,7 @@ public class WorldServer extends World implements IThreadListener
     protected BlockPos adjustPosToNearbyEntity(BlockPos pos)
     {
         BlockPos blockpos = this.getPrecipitationHeight(pos);
-        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), this.getHeight(), blockpos.getZ()))).expand(3.0D, 3.0D, 3.0D);
+        AxisAlignedBB axisalignedbb = new AxisAlignedBB(blockpos, new BlockPos(blockpos.getX(), this.getHeight(), blockpos.getZ())).expand(3.0D, 3.0D, 3.0D);
         List<EntityLivingBase> list = this.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb, new Predicate<EntityLivingBase>()
         {
             public boolean apply(EntityLivingBase p_apply_1_)
@@ -567,7 +567,7 @@ public class WorldServer extends World implements IThreadListener
 
                 this.theProfiler.startSection("cleaning");
 
-                for (int j = 0; j < i; ++j)
+                for (int j = 0; j < i; j++)
                 {
                     NextTickListEntry nextticklistentry = (NextTickListEntry)this.pendingTickListEntriesTreeSet.first();
 
@@ -637,7 +637,7 @@ public class WorldServer extends World implements IThreadListener
     {
         List<NextTickListEntry> list = null;
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
             Iterator<NextTickListEntry> iterator;
 
@@ -719,7 +719,7 @@ public class WorldServer extends World implements IThreadListener
     {
         List<TileEntity> list = new ArrayList<>();
 
-        for (int i = 0; i < this.loadedTileEntityList.size(); ++i)
+        for (int i = 0; i < this.loadedTileEntityList.size(); i++)
         {
             TileEntity tileentity = (TileEntity)this.loadedTileEntityList.get(i);
             BlockPos blockpos = tileentity.getPos();
@@ -852,7 +852,7 @@ public class WorldServer extends World implements IThreadListener
     {
         WorldGeneratorBonusChest worldgeneratorbonuschest = new WorldGeneratorBonusChest(bonusChestContent, 10);
 
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
             int j = this.worldInfo.getSpawnX() + this.rand.nextInt(6) - this.rand.nextInt(6);
             int k = this.worldInfo.getSpawnZ() + this.rand.nextInt(6) - this.rand.nextInt(6);
@@ -943,7 +943,7 @@ public class WorldServer extends World implements IThreadListener
 
         if (aentity != null)
         {
-            for (int i = 0; i < aentity.length; ++i)
+            for (int i = 0; i < aentity.length; i++)
             {
                 this.entitiesById.addKey(aentity[i].getEntityId(), aentity[i]);
             }
@@ -959,7 +959,7 @@ public class WorldServer extends World implements IThreadListener
 
         if (aentity != null)
         {
-            for (int i = 0; i < aentity.length; ++i)
+            for (int i = 0; i < aentity.length; i++)
             {
                 this.entitiesById.removeObject(aentity[i].getEntityId());
             }
@@ -1140,7 +1140,7 @@ public class WorldServer extends World implements IThreadListener
     {
         Packet packet = new S2APacketParticles(particleType, longDistance, (float)xCoord, (float)yCoord, (float)zCoord, (float)xOffset, (float)yOffset, (float)zOffset, (float)particleSpeed, numberOfParticles, particleArguments);
 
-        for (int i = 0; i < this.playerEntities.size(); ++i)
+        for (int i = 0; i < this.playerEntities.size(); i++)
         {
             EntityPlayerMP entityplayermp = (EntityPlayerMP)this.playerEntities.get(i);
             BlockPos blockpos = entityplayermp.getPosition();

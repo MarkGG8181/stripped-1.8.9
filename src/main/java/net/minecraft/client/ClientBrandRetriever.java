@@ -4,4 +4,7 @@ public class ClientBrandRetriever {
     public static String getClientModName() {
         return "vanilla";
     }
+
+    private ClientBrandRetriever() {
+    }
 }

@@ -15,7 +15,7 @@ public class MessageDeserializer2 extends ByteToMessageDecoder
         p_decode_2_.markReaderIndex();
         byte[] abyte = new byte[3];
 
-        for (int i = 0; i < abyte.length; ++i)
+        for (int i = 0; i < abyte.length; i++)
         {
             if (!p_decode_2_.isReadable())
             {

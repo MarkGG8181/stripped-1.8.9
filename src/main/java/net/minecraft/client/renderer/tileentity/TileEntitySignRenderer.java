@@ -93,7 +93,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
         int i = 0;
 
         if (destroyStage < 0) {
-            for (int j = 0; j < te.signText.length; ++j) {
+            for (int j = 0; j < te.signText.length; j++) {
                 if (te.signText[j] != null) {
                     IChatComponent ichatcomponent = te.signText[j];
                     List<IChatComponent> list = GuiUtilRenderComponents.splitText(ichatcomponent, 90, fontrenderer, false, true);

@@ -25,15 +25,15 @@ public class ContainerPlayer extends Container
         this.thePlayer = player;
         this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 144, 36));
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 2; j++)
             {
                 this.addSlotToContainer(new Slot(this.craftMatrix, j + i * 2, 88 + j * 18, 26 + i * 18));
             }
         }
 
-        for (int k = 0; k < 4; ++k)
+        for (int k = 0; k < 4; k++)
         {
             final int k_f = k;
             this.addSlotToContainer(new Slot(playerInventory, playerInventory.getSizeInventory() - 1 - k, 8, 8 + k * 18)
@@ -55,15 +55,15 @@ public class ContainerPlayer extends Container
             });
         }
 
-        for (int l = 0; l < 3; ++l)
+        for (int l = 0; l < 3; l++)
         {
-            for (int j1 = 0; j1 < 9; ++j1)
+            for (int j1 = 0; j1 < 9; j1++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, j1 + (l + 1) * 9, 8 + j1 * 18, 84 + l * 18));
             }
         }
 
-        for (int i1 = 0; i1 < 9; ++i1)
+        for (int i1 = 0; i1 < 9; i1++)
         {
             this.addSlotToContainer(new Slot(playerInventory, i1, 8 + i1 * 18, 142));
         }
@@ -86,7 +86,7 @@ public class ContainerPlayer extends Container
     {
         super.onContainerClosed(playerIn);
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
 

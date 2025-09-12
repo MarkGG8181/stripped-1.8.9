@@ -82,7 +82,7 @@ public class GuiSpectator extends Gui implements ISpectatorMenuRecipient
 
         RenderHelper.enableGUIStandardItemLighting();
 
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 9; i++)
         {
             this.func_175266_a(i, p_175258_1_.getScaledWidth() / 2 - 90 + i * 20 + 2, p_175258_4_ + 3.0F, p_175258_2_, p_175258_5_.func_178680_a(i));
         }

@@ -13,8 +13,8 @@ public class RenderEnderman extends RenderLiving<EntityEnderman>
     private static final ResourceLocation endermanTextures = new ResourceLocation("textures/entity/enderman/enderman.png");
 
     /** The model of the enderman */
-    private ModelEnderman endermanModel;
-    private Random rnd = new Random();
+    private final ModelEnderman endermanModel;
+    private final Random rnd = new Random();
 
     public RenderEnderman(RenderManager renderManagerIn)
     {

@@ -66,4 +66,7 @@ public final class EntitySelectors
             }
         }
     }
+
+    private EntitySelectors() {
+    }
 }

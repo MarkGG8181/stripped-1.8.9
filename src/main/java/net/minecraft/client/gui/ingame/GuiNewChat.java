@@ -53,7 +53,7 @@ public class GuiNewChat extends Gui
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
 
-                for (int i1 = 0; i1 + this.scrollPos < this.drawnChatLines.size() && i1 < i; ++i1)
+                for (int i1 = 0; i1 + this.scrollPos < this.drawnChatLines.size() && i1 < i; i1++)
                 {
                     ChatLine chatline = (ChatLine)this.drawnChatLines.get(i1 + this.scrollPos);
 
@@ -183,7 +183,7 @@ public class GuiNewChat extends Gui
         this.drawnChatLines.clear();
         this.resetScroll();
 
-        for (int i = this.chatLines.size() - 1; i >= 0; --i)
+        for (int i = this.chatLines.size() - 1; i >= 0; i--)
         {
             ChatLine chatline = (ChatLine)this.chatLines.get(i);
             this.setChatLine(chatline.getChatComponent(), chatline.getChatLineID(), chatline.getUpdatedCounter(), true);

@@ -99,7 +99,7 @@ public class InventoryBasic implements IInventory
     {
         ItemStack itemstack = stack.copy();
 
-        for (int i = 0; i < this.slotsCount; ++i)
+        for (int i = 0; i < this.slotsCount; i++)
         {
             ItemStack itemstack1 = this.getStackInSlot(i);
 
@@ -226,7 +226,7 @@ public class InventoryBasic implements IInventory
     {
         if (this.changeListeners != null)
         {
-            for (int i = 0; i < this.changeListeners.size(); ++i)
+            for (int i = 0; i < this.changeListeners.size(); i++)
             {
                 ((IInvBasic)this.changeListeners.get(i)).onInventoryChanged(this);
             }
@@ -273,7 +273,7 @@ public class InventoryBasic implements IInventory
 
     public void clear()
     {
-        for (int i = 0; i < this.inventoryContents.length; ++i)
+        for (int i = 0; i < this.inventoryContents.length; i++)
         {
             this.inventoryContents[i] = null;
         }

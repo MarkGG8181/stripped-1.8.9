@@ -40,12 +40,12 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityWither extends EntityMob implements IBossDisplayData, IRangedAttackMob {
-    private float[] xRotationHeads = new float[2];
-    private float[] yRotationHeads = new float[2];
-    private float[] xRotOHeads = new float[2];
-    private float[] yRotOHeads = new float[2];
-    private int[] nextHeadUpdate = new int[2];
-    private int[] idleHeadUpdates = new int[2];
+    private final float[] xRotationHeads = new float[2];
+    private final float[] yRotationHeads = new float[2];
+    private final float[] xRotOHeads = new float[2];
+    private final float[] yRotOHeads = new float[2];
+    private final int[] nextHeadUpdate = new int[2];
+    private final int[] idleHeadUpdates = new int[2];
 
     /**
      * Time before the Wither tries to break blocks
@@ -155,12 +155,12 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
         super.onLivingUpdate();
 
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 2; i++) {
             this.yRotOHeads[i] = this.yRotationHeads[i];
             this.xRotOHeads[i] = this.xRotationHeads[i];
         }
 
-        for (int j = 0; j < 2; ++j) {
+        for (int j = 0; j < 2; j++) {
             int k = this.getWatchedTargetId(j + 1);
             Entity entity1 = null;
 
@@ -188,7 +188,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
 
         boolean flag = this.isArmored();
 
-        for (int l = 0; l < 3; ++l) {
+        for (int l = 0; l < 3; l++) {
             double d10 = this.func_82214_u(l);
             double d2 = this.func_82208_v(l);
             double d4 = this.func_82213_w(l);
@@ -200,7 +200,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
 
         if (this.getInvulTime() > 0) {
-            for (int i1 = 0; i1 < 3; ++i1) {
+            for (int i1 = 0; i1 < 3; i1++) {
                 this.worldObj.spawnParticle(EnumParticleTypes.SPELL_MOB, this.posX + this.rand.nextGaussian() * 1.0D, this.posY + (double)(this.rand.nextFloat() * 3.3F), this.posZ + this.rand.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
             }
         }
@@ -224,7 +224,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         else {
             super.updateAITasks();
 
-            for (int i = 1; i < 3; ++i) {
+            for (int i = 1; i < 3; i++) {
                 if (this.ticksExisted >= this.nextHeadUpdate[i - 1]) {
                     this.nextHeadUpdate[i - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
 
@@ -266,7 +266,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                     else {
                         List<EntityLivingBase> list = this.worldObj.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(20.0D, 8.0D, 20.0D), Predicates.<EntityLivingBase>and(attackEntitySelector, EntitySelectors.NOT_SPECTATING));
 
-                        for (int j2 = 0; j2 < 10 && !list.isEmpty(); ++j2) {
+                        for (int j2 = 0; j2 < 10 && !list.isEmpty(); j2++) {
                             EntityLivingBase entitylivingbase = (EntityLivingBase)list.get(this.rand.nextInt(list.size()));
 
                             if (entitylivingbase != this && entitylivingbase.isEntityAlive() && this.canEntityBeSeen(entitylivingbase)) {
@@ -304,9 +304,9 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                     int i2 = MathHelper.floor_double(this.posZ);
                     boolean flag = false;
 
-                    for (int k2 = -1; k2 <= 1; ++k2) {
-                        for (int l2 = -1; l2 <= 1; ++l2) {
-                            for (int j = 0; j <= 3; ++j) {
+                    for (int k2 = -1; k2 <= 1; k2++) {
+                        for (int l2 = -1; l2 <= 1; l2++) {
+                            for (int j = 0; j <= 3; j++) {
                                 int i3 = l1 + k2;
                                 int k = i1 + j;
                                 int l = i2 + l2;
@@ -458,7 +458,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
                         this.blockBreakCounter = 20;
                     }
 
-                    for (int i = 0; i < this.idleHeadUpdates.length; ++i) {
+                    for (int i = 0; i < this.idleHeadUpdates.length; i++) {
                         this.idleHeadUpdates[i] += 3;
                     }
 

@@ -149,7 +149,7 @@ public class ServerStatusResponse
                     {
                         GameProfile[] agameprofile = new GameProfile[jsonarray.size()];
 
-                        for (int i = 0; i < agameprofile.length; ++i)
+                        for (int i = 0; i < agameprofile.length; i++)
                         {
                             JsonObject jsonobject1 = JsonUtils.getJsonObject(jsonarray.get(i), "player[" + i + "]");
                             String s = JsonUtils.getString(jsonobject1, "id");
@@ -173,7 +173,7 @@ public class ServerStatusResponse
                 {
                     JsonArray jsonarray = new JsonArray();
 
-                    for (int i = 0; i < p_serialize_1_.getPlayers().length; ++i)
+                    for (int i = 0; i < p_serialize_1_.getPlayers().length; i++)
                     {
                         JsonObject jsonobject1 = new JsonObject();
                         UUID uuid = p_serialize_1_.getPlayers()[i].getId();

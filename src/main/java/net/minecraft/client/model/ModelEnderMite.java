@@ -15,7 +15,7 @@ public class ModelEnderMite extends ModelBase
         this.bodyParts = new ModelRenderer[BODY_COUNT];
         float f = -3.5F;
 
-        for (int i = 0; i < this.bodyParts.length; ++i)
+        for (int i = 0; i < this.bodyParts.length; i++)
         {
             this.bodyParts[i] = new ModelRenderer(this, BODY_TEXS[i][0], BODY_TEXS[i][1]);
             this.bodyParts[i].addBox((float)BODY_SIZES[i][0] * -0.5F, 0.0F, (float)BODY_SIZES[i][2] * -0.5F, BODY_SIZES[i][0], BODY_SIZES[i][1], BODY_SIZES[i][2]);
@@ -35,7 +35,7 @@ public class ModelEnderMite extends ModelBase
     {
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
 
-        for (int i = 0; i < this.bodyParts.length; ++i)
+        for (int i = 0; i < this.bodyParts.length; i++)
         {
             this.bodyParts[i].render(scale);
         }
@@ -48,7 +48,7 @@ public class ModelEnderMite extends ModelBase
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        for (int i = 0; i < this.bodyParts.length; ++i)
+        for (int i = 0; i < this.bodyParts.length; i++)
         {
             this.bodyParts[i].rotateAngleY = MathHelper.cos(ageInTicks * 0.9F + (float)i * 0.15F * (float)Math.PI) * (float)Math.PI * 0.01F * (float)(1 + Math.abs(i - 2));
             this.bodyParts[i].rotationPointX = MathHelper.sin(ageInTicks * 0.9F + (float)i * 0.15F * (float)Math.PI) * (float)Math.PI * 0.1F * (float)Math.abs(i - 2);

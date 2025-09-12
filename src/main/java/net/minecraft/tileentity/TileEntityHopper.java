@@ -42,7 +42,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
         this.transferCooldown = compound.getInteger("TransferCooldown");
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot");
@@ -59,7 +59,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         super.writeToNBT(compound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.inventory.length; ++i)
+        for (int i = 0; i < this.inventory.length; i++)
         {
             if (this.inventory[i] != null)
             {
@@ -313,7 +313,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
             }
             else
             {
-                for (int i = 0; i < this.getSizeInventory(); ++i)
+                for (int i = 0; i < this.getSizeInventory(); i++)
                 {
                     if (this.getStackInSlot(i) != null)
                     {
@@ -344,7 +344,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int[] aint = isidedinventory.getSlotsForFace(side);
 
-            for (int k = 0; k < aint.length; ++k)
+            for (int k = 0; k < aint.length; k++)
             {
                 ItemStack itemstack1 = isidedinventory.getStackInSlot(aint[k]);
 
@@ -358,7 +358,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int i = inventoryIn.getSizeInventory();
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 ItemStack itemstack = inventoryIn.getStackInSlot(j);
 
@@ -381,7 +381,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int[] aint = isidedinventory.getSlotsForFace(side);
 
-            for (int i = 0; i < aint.length; ++i)
+            for (int i = 0; i < aint.length; i++)
             {
                 if (isidedinventory.getStackInSlot(aint[i]) != null)
                 {
@@ -393,7 +393,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int j = inventoryIn.getSizeInventory();
 
-            for (int k = 0; k < j; ++k)
+            for (int k = 0; k < j; k++)
             {
                 if (inventoryIn.getStackInSlot(k) != null)
                 {
@@ -422,7 +422,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
             {
                 int[] aint = isidedinventory.getSlotsForFace(enumfacing);
 
-                for (int i = 0; i < aint.length; ++i)
+                for (int i = 0; i < aint.length; i++)
                 {
                     if (pullItemFromSlot(p_145891_0_, iinventory, aint[i], enumfacing))
                     {
@@ -434,7 +434,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
             {
                 int j = iinventory.getSizeInventory();
 
-                for (int k = 0; k < j; ++k)
+                for (int k = 0; k < j; k++)
                 {
                     if (pullItemFromSlot(p_145891_0_, iinventory, k, enumfacing))
                     {
@@ -522,7 +522,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int[] aint = isidedinventory.getSlotsForFace(side);
 
-            for (int k = 0; k < aint.length && stack != null && stack.stackSize > 0; ++k)
+            for (int k = 0; k < aint.length && stack != null && stack.stackSize > 0; k++)
             {
                 stack = insertStack(inventoryIn, stack, aint[k], side);
             }
@@ -531,7 +531,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
         {
             int i = inventoryIn.getSizeInventory();
 
-            for (int j = 0; j < i && stack != null && stack.stackSize > 0; ++j)
+            for (int j = 0; j < i && stack != null && stack.stackSize > 0; j++)
             {
                 stack = insertStack(inventoryIn, stack, j, side);
             }
@@ -739,7 +739,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
     public void clear()
     {
-        for (int i = 0; i < this.inventory.length; ++i)
+        for (int i = 0; i < this.inventory.length; i++)
         {
             this.inventory[i] = null;
         }

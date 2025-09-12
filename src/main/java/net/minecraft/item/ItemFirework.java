@@ -56,7 +56,7 @@ public class ItemFirework extends Item
 
                 if (nbttaglist != null && nbttaglist.tagCount() > 0)
                 {
-                    for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                    for (int i = 0; i < nbttaglist.tagCount(); i++)
                     {
                         NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
                         List<String> list = new ArrayList<>();
@@ -64,7 +64,7 @@ public class ItemFirework extends Item
 
                         if (list.size() > 0)
                         {
-                            for (int j = 1; j < ((List)list).size(); ++j)
+                            for (int j = 1; j < ((List)list).size(); j++)
                             {
                                 list.set(j, "  " + (String)list.get(j));
                             }

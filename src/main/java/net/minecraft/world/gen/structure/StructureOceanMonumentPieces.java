@@ -148,7 +148,7 @@ public class StructureOceanMonumentPieces
                 this.func_175819_a(worldIn, structureBoundingBoxIn, 8, 8, 1, 14, 8, 6, ROUGH_PRISMARINE);
             }
 
-            for (int i = 1; i <= 7; ++i)
+            for (int i = 1; i <= 7; i++)
             {
                 IBlockState iblockstate = BRICKS_PRISMARINE;
 
@@ -389,7 +389,7 @@ public class StructureOceanMonumentPieces
                 this.func_175819_a(worldIn, structureBoundingBoxIn, 1, 8, 8, 6, 8, 14, ROUGH_PRISMARINE);
             }
 
-            for (int i = 1; i <= 7; ++i)
+            for (int i = 1; i <= 7; i++)
             {
                 IBlockState iblockstate = BRICKS_PRISMARINE;
 
@@ -404,7 +404,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, i, 15, 6, i, 15, iblockstate, iblockstate, false);
             }
 
-            for (int j = 1; j <= 7; ++j)
+            for (int j = 1; j <= 7; j++)
             {
                 IBlockState iblockstate1 = DARK_PRISMARINE;
 
@@ -761,9 +761,9 @@ public class StructureOceanMonumentPieces
         {
             StructureOceanMonumentPieces.RoomDefinition[] astructureoceanmonumentpieces$roomdefinition = new StructureOceanMonumentPieces.RoomDefinition[75];
 
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < 4; ++j)
+                for (int j = 0; j < 4; j++)
                 {
                     int k = 0;
                     int l = func_175820_a(i, k, j);
@@ -771,9 +771,9 @@ public class StructureOceanMonumentPieces
                 }
             }
 
-            for (int i2 = 0; i2 < 5; ++i2)
+            for (int i2 = 0; i2 < 5; i2++)
             {
-                for (int l2 = 0; l2 < 4; ++l2)
+                for (int l2 = 0; l2 < 4; l2++)
                 {
                     int k3 = 1;
                     int j4 = func_175820_a(i2, k3, l2);
@@ -781,9 +781,9 @@ public class StructureOceanMonumentPieces
                 }
             }
 
-            for (int j2 = 1; j2 < 4; ++j2)
+            for (int j2 = 1; j2 < 4; j2++)
             {
-                for (int i3 = 0; i3 < 2; ++i3)
+                for (int i3 = 0; i3 < 2; i3++)
                 {
                     int l3 = 2;
                     int k4 = func_175820_a(j2, l3, i3);
@@ -793,11 +793,11 @@ public class StructureOceanMonumentPieces
 
             this.sourceRoom = astructureoceanmonumentpieces$roomdefinition[GRIDROOM_SOURCE_INDEX];
 
-            for (int k2 = 0; k2 < 5; ++k2)
+            for (int k2 = 0; k2 < 5; k2++)
             {
-                for (int j3 = 0; j3 < 5; ++j3)
+                for (int j3 = 0; j3 < 5; j3++)
                 {
-                    for (int i4 = 0; i4 < 3; ++i4)
+                    for (int i4 = 0; i4 < 3; i4++)
                     {
                         int l4 = func_175820_a(k2, i4, j3);
 
@@ -913,7 +913,7 @@ public class StructureOceanMonumentPieces
             this.func_175842_f(worldIn, randomIn, structureBoundingBoxIn);
             this.func_175838_g(worldIn, randomIn, structureBoundingBoxIn);
 
-            for (int j = 0; j < 7; ++j)
+            for (int j = 0; j < 7; j++)
             {
                 int k = 0;
 
@@ -927,9 +927,9 @@ public class StructureOceanMonumentPieces
                     int l = j * 9;
                     int i1 = k * 9;
 
-                    for (int j1 = 0; j1 < 4; ++j1)
+                    for (int j1 = 0; j1 < 4; j1++)
                     {
-                        for (int k1 = 0; k1 < 4; ++k1)
+                        for (int k1 = 0; k1 < 4; k1++)
                         {
                             this.setBlockState(worldIn, BRICKS_PRISMARINE, l + j1, 0, i1 + k1, structureBoundingBoxIn);
                             this.replaceAirAndLiquidDownwards(worldIn, BRICKS_PRISMARINE, l + j1, -1, i1 + k1, structureBoundingBoxIn);
@@ -947,7 +947,7 @@ public class StructureOceanMonumentPieces
                 }
             }
 
-            for (int l1 = 0; l1 < 5; ++l1)
+            for (int l1 = 0; l1 < 5; l1++)
             {
                 this.func_181655_a(worldIn, structureBoundingBoxIn, -1 - l1, 0 + l1 * 2, -1 - l1, -1 - l1, 23, 58 + l1, false);
                 this.func_181655_a(worldIn, structureBoundingBoxIn, 58 + l1, 0 + l1 * 2, -1 - l1, 58 + l1, 23, 58 + l1, false);
@@ -975,7 +975,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, p_175840_5_, p_175840_2_ + 0, 0, 0, p_175840_2_ + 24, 0, 20, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 this.func_181655_a(worldIn, p_175840_5_, p_175840_2_ + 0, 1, 0, p_175840_2_ + 24, 10, 20, false);
 
-                for (int j = 0; j < 4; ++j)
+                for (int j = 0; j < 4; j++)
                 {
                     this.fillWithBlocks(worldIn, p_175840_5_, p_175840_2_ + j, j + 1, j, p_175840_2_ + j, j + 1, 20, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                     this.fillWithBlocks(worldIn, p_175840_5_, p_175840_2_ + j + 7, j + 5, j + 7, p_175840_2_ + j + 7, j + 5, 20, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
@@ -1005,7 +1005,7 @@ public class StructureOceanMonumentPieces
                     this.setBlockState(worldIn, DOT_DECO_DATA, k, 5, k1, p_175840_5_);
                 }
 
-                for (int l1 = 0; l1 < 4; ++l1)
+                for (int l1 = 0; l1 < 4; l1++)
                 {
                     int i1 = p_175840_1_ ? p_175840_2_ + (24 - (17 - l1 * 3)) : p_175840_2_ + 17 - l1 * 3;
                     this.setBlockState(worldIn, DOT_DECO_DATA, i1, 5, 5, p_175840_5_);
@@ -1023,7 +1023,7 @@ public class StructureOceanMonumentPieces
             {
                 this.func_181655_a(worldIn, p_175839_3_, 25, 0, 0, 32, 8, 20, false);
 
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, p_175839_3_, 24, 2, 5 + i * 4, 24, 4, 5 + i * 4, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                     this.fillWithBlocks(worldIn, p_175839_3_, 22, 4, 5 + i * 4, 23, 4, 5 + i * 4, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
@@ -1065,13 +1065,13 @@ public class StructureOceanMonumentPieces
                 this.setBlockState(worldIn, BRICKS_PRISMARINE, 25, 1, 21, p_175837_3_);
                 this.setBlockState(worldIn, BRICKS_PRISMARINE, 32, 1, 21, p_175837_3_);
 
-                for (int i = 0; i < 7; ++i)
+                for (int i = 0; i < 7; i++)
                 {
                     this.setBlockState(worldIn, DARK_PRISMARINE, 28 - i, 6 + i, 21, p_175837_3_);
                     this.setBlockState(worldIn, DARK_PRISMARINE, 29 + i, 6 + i, 21, p_175837_3_);
                 }
 
-                for (int j = 0; j < 4; ++j)
+                for (int j = 0; j < 4; j++)
                 {
                     this.setBlockState(worldIn, DARK_PRISMARINE, 28 - j, 9 + j, 21, p_175837_3_);
                     this.setBlockState(worldIn, DARK_PRISMARINE, 29 + j, 9 + j, 21, p_175837_3_);
@@ -1080,7 +1080,7 @@ public class StructureOceanMonumentPieces
                 this.setBlockState(worldIn, DARK_PRISMARINE, 28, 12, 21, p_175837_3_);
                 this.setBlockState(worldIn, DARK_PRISMARINE, 29, 12, 21, p_175837_3_);
 
-                for (int k = 0; k < 3; ++k)
+                for (int k = 0; k < 3; k++)
                 {
                     this.setBlockState(worldIn, DARK_PRISMARINE, 22 - k * 2, 8, 21, p_175837_3_);
                     this.setBlockState(worldIn, DARK_PRISMARINE, 22 - k * 2, 9, 21, p_175837_3_);
@@ -1111,7 +1111,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, p_175841_3_, 21, 0, 22, 36, 0, 36, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 this.func_181655_a(worldIn, p_175841_3_, 21, 1, 22, 36, 23, 36, false);
 
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, p_175841_3_, 21 + i, 13 + i, 21 + i, 36 - i, 13 + i, 21 + i, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                     this.fillWithBlocks(worldIn, p_175841_3_, 21 + i, 13 + i, 36 - i, 36 - i, 13 + i, 36 - i, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
@@ -1151,7 +1151,7 @@ public class StructureOceanMonumentPieces
                 this.func_181655_a(worldIn, p_175835_3_, 0, 1, 21, 6, 7, 57, false);
                 this.fillWithBlocks(worldIn, p_175835_3_, 4, 4, 21, 6, 4, 53, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
 
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, p_175835_3_, i, i + 1, 21, i, i + 1, 57 - i, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1163,7 +1163,7 @@ public class StructureOceanMonumentPieces
 
                 this.setBlockState(worldIn, DOT_DECO_DATA, 5, 5, 52, p_175835_3_);
 
-                for (int k = 0; k < 4; ++k)
+                for (int k = 0; k < 4; k++)
                 {
                     this.fillWithBlocks(worldIn, p_175835_3_, k, k + 1, 21, k, k + 1, 57 - k, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1178,7 +1178,7 @@ public class StructureOceanMonumentPieces
                 this.func_181655_a(worldIn, p_175835_3_, 51, 1, 21, 57, 7, 57, false);
                 this.fillWithBlocks(worldIn, p_175835_3_, 51, 4, 21, 53, 4, 53, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
 
-                for (int l = 0; l < 4; ++l)
+                for (int l = 0; l < 4; l++)
                 {
                     this.fillWithBlocks(worldIn, p_175835_3_, 57 - l, l + 1, 21, 57 - l, l + 1, 57 - l, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1198,7 +1198,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, p_175835_3_, 7, 0, 51, 50, 0, 57, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 this.func_181655_a(worldIn, p_175835_3_, 7, 1, 51, 50, 10, 57, false);
 
-                for (int j1 = 0; j1 < 4; ++j1)
+                for (int j1 = 0; j1 < 4; j1++)
                 {
                     this.fillWithBlocks(worldIn, p_175835_3_, j1 + 1, j1 + 1, 57 - j1, 56 - j1, j1 + 1, 57 - j1, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1213,7 +1213,7 @@ public class StructureOceanMonumentPieces
                 this.func_181655_a(worldIn, p_175842_3_, 7, 1, 21, 13, 10, 50, false);
                 this.fillWithBlocks(worldIn, p_175842_3_, 11, 8, 21, 13, 8, 53, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
 
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, p_175842_3_, i + 7, i + 5, 21, i + 7, i + 5, 54, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1230,7 +1230,7 @@ public class StructureOceanMonumentPieces
                 this.func_181655_a(worldIn, p_175842_3_, 44, 1, 21, 50, 10, 50, false);
                 this.fillWithBlocks(worldIn, p_175842_3_, 44, 8, 21, 46, 8, 53, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
 
-                for (int k = 0; k < 4; ++k)
+                for (int k = 0; k < 4; k++)
                 {
                     this.fillWithBlocks(worldIn, p_175842_3_, 50 - k, k + 5, 21, 50 - k, k + 5, 54, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1266,7 +1266,7 @@ public class StructureOceanMonumentPieces
                     }
                 }
 
-                for (int j1 = 0; j1 < 3; ++j1)
+                for (int j1 = 0; j1 < 3; j1++)
                 {
                     this.fillWithBlocks(worldIn, p_175842_3_, 8 + j1, 5 + j1, 54, 49 - j1, 5 + j1, 54, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 }
@@ -1285,7 +1285,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, p_175838_3_, 18, 12, 22, 20, 12, 39, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 this.fillWithBlocks(worldIn, p_175838_3_, 18, 12, 21, 20, 12, 21, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
 
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, p_175838_3_, i + 14, i + 9, 21, i + 14, i + 9, 43 - i, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1303,7 +1303,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, p_175838_3_, 37, 12, 22, 39, 12, 39, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
                 this.fillWithBlocks(worldIn, p_175838_3_, 37, 12, 21, 39, 12, 21, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
 
-                for (int k = 0; k < 4; ++k)
+                for (int k = 0; k < 4; k++)
                 {
                     this.fillWithBlocks(worldIn, p_175838_3_, 43 - k, k + 9, 21, 43 - k, k + 9, 43 - k, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1320,7 +1320,7 @@ public class StructureOceanMonumentPieces
                 this.func_181655_a(worldIn, p_175838_3_, 21, 1, 37, 36, 14, 43, false);
                 this.fillWithBlocks(worldIn, p_175838_3_, 21, 12, 37, 36, 12, 39, ROUGH_PRISMARINE, ROUGH_PRISMARINE, false);
 
-                for (int i1 = 0; i1 < 4; ++i1)
+                for (int i1 = 0; i1 < 4; i1++)
                 {
                     this.fillWithBlocks(worldIn, p_175838_3_, 15 + i1, i1 + 9, 43 - i1, 42 - i1, i1 + 9, 43 - i1, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -1354,7 +1354,7 @@ public class StructureOceanMonumentPieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, i, 0, 15, i, 0, iblockstate, iblockstate, false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, i, 15, 14, i, 15, iblockstate, iblockstate, false);
 
-            for (i = 1; i <= 6; ++i)
+            for (i = 1; i <= 6; i++)
             {
                 iblockstate = BRICKS_PRISMARINE;
 
@@ -1469,7 +1469,7 @@ public class StructureOceanMonumentPieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 0, 10, 7, 0, 10, DARK_PRISMARINE, DARK_PRISMARINE, false);
             int l = 3;
 
-            for (int j = 0; j < 2; ++j)
+            for (int j = 0; j < 2; j++)
             {
                 for (int k = 2; k <= 8; k += 3)
                 {
@@ -1572,11 +1572,11 @@ public class StructureOceanMonumentPieces
 
         protected void func_181655_a(World p_181655_1_, StructureBoundingBox p_181655_2_, int p_181655_3_, int p_181655_4_, int p_181655_5_, int p_181655_6_, int p_181655_7_, int p_181655_8_, boolean p_181655_9_)
         {
-            for (int i = p_181655_4_; i <= p_181655_7_; ++i)
+            for (int i = p_181655_4_; i <= p_181655_7_; i++)
             {
-                for (int j = p_181655_3_; j <= p_181655_6_; ++j)
+                for (int j = p_181655_3_; j <= p_181655_6_; j++)
                 {
-                    for (int k = p_181655_5_; k <= p_181655_8_; ++k)
+                    for (int k = p_181655_5_; k <= p_181655_8_; k++)
                     {
                         if (!p_181655_9_ || this.getBlockStateFromPos(p_181655_1_, j, i, k, p_181655_2_).getBlock().getMaterial() != Material.air)
                         {
@@ -1615,11 +1615,11 @@ public class StructureOceanMonumentPieces
 
         protected void func_175819_a(World worldIn, StructureBoundingBox p_175819_2_, int p_175819_3_, int p_175819_4_, int p_175819_5_, int p_175819_6_, int p_175819_7_, int p_175819_8_, IBlockState p_175819_9_)
         {
-            for (int i = p_175819_4_; i <= p_175819_7_; ++i)
+            for (int i = p_175819_4_; i <= p_175819_7_; i++)
             {
-                for (int j = p_175819_3_; j <= p_175819_6_; ++j)
+                for (int j = p_175819_3_; j <= p_175819_6_; j++)
                 {
-                    for (int k = p_175819_5_; k <= p_175819_8_; ++k)
+                    for (int k = p_175819_5_; k <= p_175819_8_; k++)
                     {
                         if (this.getBlockStateFromPos(worldIn, j, i, k, p_175819_2_) == WATER)
                         {
@@ -1684,7 +1684,7 @@ public class StructureOceanMonumentPieces
 
         public void func_175958_a()
         {
-            for (int i = 0; i < 6; ++i)
+            for (int i = 0; i < 6; i++)
             {
                 this.hasOpening[i] = this.connections[i] != null;
             }
@@ -1700,7 +1700,7 @@ public class StructureOceanMonumentPieces
             {
                 this.scanIndex = p_175959_1_;
 
-                for (int i = 0; i < 6; ++i)
+                for (int i = 0; i < 6; i++)
                 {
                     if (this.connections[i] != null && this.hasOpening[i] && this.connections[i].scanIndex != p_175959_1_ && this.connections[i].func_175959_a(p_175959_1_))
                     {
@@ -1721,7 +1721,7 @@ public class StructureOceanMonumentPieces
         {
             int i = 0;
 
-            for (int j = 0; j < 6; ++j)
+            for (int j = 0; j < 6; j++)
             {
                 if (this.hasOpening[j])
                 {
@@ -1957,9 +1957,9 @@ public class StructureOceanMonumentPieces
                 this.func_175819_a(worldIn, structureBoundingBoxIn, 1, 4, 1, 6, 4, 6, ROUGH_PRISMARINE);
             }
 
-            for (int i = 1; i <= 6; ++i)
+            for (int i = 1; i <= 6; i++)
             {
-                for (int j = 1; j <= 6; ++j)
+                for (int j = 1; j <= 6; j++)
                 {
                     if (randomIn.nextInt(3) != 0)
                     {
@@ -2013,7 +2013,7 @@ public class StructureOceanMonumentPieces
         {
             if (this.mainDesign == 0)
             {
-                for (int i = 0; i < 4; ++i)
+                for (int i = 0; i < 4; i++)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, 10 - i, 3 - i, 20 - i, 12 + i, 3 - i, 20, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 }
@@ -2071,7 +2071,7 @@ public class StructureOceanMonumentPieces
                 int j = 20;
                 int k = 5;
 
-                for (int l = 0; l < 2; ++l)
+                for (int l = 0; l < 2; l++)
                 {
                     this.setBlockState(worldIn, BRICKS_PRISMARINE, j1, k + 1, j, structureBoundingBoxIn);
                     this.setBlockState(worldIn, SEA_LANTERN, j1, k, j, structureBoundingBoxIn);
@@ -2082,7 +2082,7 @@ public class StructureOceanMonumentPieces
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, 7, 3, 7, 15, 3, 14, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                 j1 = 10;
 
-                for (int k1 = 0; k1 < 2; ++k1)
+                for (int k1 = 0; k1 < 2; k1++)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, 0, 10, j1, 6, 10, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, 0, 12, j1, 6, 12, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
@@ -2095,7 +2095,7 @@ public class StructureOceanMonumentPieces
 
                 j1 = 8;
 
-                for (int l1 = 0; l1 < 2; ++l1)
+                for (int l1 = 0; l1 < 2; l1++)
                 {
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, 0, 7, j1, 2, 7, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
                     this.fillWithBlocks(worldIn, structureBoundingBoxIn, j1, 0, 14, j1, 2, 14, BRICKS_PRISMARINE, BRICKS_PRISMARINE, false);
@@ -2231,5 +2231,8 @@ public class StructureOceanMonumentPieces
             structureoceanmonumentpieces$roomdefinition.connections[EnumFacing.NORTH.getIndex()].claimed = true;
             return new StructureOceanMonumentPieces.DoubleZRoom(p_175968_1_, structureoceanmonumentpieces$roomdefinition, p_175968_3_);
         }
+    }
+
+    private StructureOceanMonumentPieces() {
     }
 }

@@ -122,7 +122,7 @@ public class BlockBeacon extends BlockContainer
             {
                 Chunk chunk = worldIn.getChunkFromBlockCoords(glassPos);
 
-                for (int i = glassPos.getY() - 1; i >= 0; --i)
+                for (int i = glassPos.getY() - 1; i >= 0; i--)
                 {
                     final BlockPos blockpos = new BlockPos(glassPos.getX(), i, glassPos.getZ());
 

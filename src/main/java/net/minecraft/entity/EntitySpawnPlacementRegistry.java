@@ -78,4 +78,7 @@ public class EntitySpawnPlacementRegistry
         ENTITY_PLACEMENTS.put(EntityWitch.class, EntityLiving.SpawnPlacementType.ON_GROUND);
         ENTITY_PLACEMENTS.put(EntityZombie.class, EntityLiving.SpawnPlacementType.ON_GROUND);
     }
+
+    private EntitySpawnPlacementRegistry() {
+    }
 }

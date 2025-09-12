@@ -27,7 +27,7 @@ public class RecipesMapExtending extends ShapedRecipes
         {
             ItemStack itemstack = null;
 
-            for (int i = 0; i < inv.getSizeInventory() && itemstack == null; ++i)
+            for (int i = 0; i < inv.getSizeInventory() && itemstack == null; i++)
             {
                 ItemStack itemstack1 = inv.getStackInSlot(i);
 
@@ -56,7 +56,7 @@ public class RecipesMapExtending extends ShapedRecipes
     {
         ItemStack itemstack = null;
 
-        for (int i = 0; i < inv.getSizeInventory() && itemstack == null; ++i)
+        for (int i = 0; i < inv.getSizeInventory() && itemstack == null; i++)
         {
             ItemStack itemstack1 = inv.getStackInSlot(i);
 

@@ -287,6 +287,9 @@ public final class AL {
                 }
                 caps = tempCaps;
             }
+
+            private WriteOnce() {
+            }
         }
 
     }

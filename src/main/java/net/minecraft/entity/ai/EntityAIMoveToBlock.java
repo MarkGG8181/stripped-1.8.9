@@ -17,7 +17,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
     /** Block to move to */
     protected BlockPos destinationBlock = BlockPos.ORIGIN;
     private boolean isAboveDestination;
-    private int searchLength;
+    private final int searchLength;
 
     public EntityAIMoveToBlock(EntityCreature creature, double speedIn, int length)
     {
@@ -109,7 +109,7 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
 
         for (int k = 0; k <= 1; k = k > 0 ? -k : 1 - k)
         {
-            for (int l = 0; l < i; ++l)
+            for (int l = 0; l < i; l++)
             {
                 for (int i1 = 0; i1 <= l; i1 = i1 > 0 ? -i1 : 1 - i1)
                 {

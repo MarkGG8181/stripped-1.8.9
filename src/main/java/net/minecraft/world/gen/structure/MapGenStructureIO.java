@@ -10,10 +10,10 @@ import org.apache.logging.log4j.Logger;
 
 public class MapGenStructureIO {
     private static final Logger logger = LogManager.getLogger();
-    private static Map<String, Class<? extends StructureStart>> startNameToClassMap = new HashMap<>();
-    private static Map<Class<? extends StructureStart>, String> startClassToNameMap = new HashMap<>();
-    private static Map<String, Class<? extends StructureComponent>> componentNameToClassMap = new HashMap<>();
-    private static Map<Class<? extends StructureComponent>, String> componentClassToNameMap = new HashMap<>();
+    private static final Map<String, Class<? extends StructureStart>> startNameToClassMap = new HashMap<>();
+    private static final Map<Class<? extends StructureStart>, String> startClassToNameMap = new HashMap<>();
+    private static final Map<String, Class<? extends StructureComponent>> componentNameToClassMap = new HashMap<>();
+    private static final Map<Class<? extends StructureComponent>, String> componentClassToNameMap = new HashMap<>();
 
     private static void registerStructure(Class<? extends StructureStart> startClass, String structureName) {
         startNameToClassMap.put(structureName, startClass);
@@ -94,5 +94,8 @@ public class MapGenStructureIO {
         StructureStrongholdPieces.registerStrongholdPieces();
         ComponentScatteredFeaturePieces.registerScatteredFeaturePieces();
         StructureOceanMonumentPieces.registerOceanMonumentPieces();
+    }
+
+    private MapGenStructureIO() {
     }
 }

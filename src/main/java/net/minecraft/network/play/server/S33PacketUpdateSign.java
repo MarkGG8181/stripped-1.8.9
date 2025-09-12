@@ -33,7 +33,7 @@ public class S33PacketUpdateSign implements Packet<INetHandlerPlayClient>
         this.blockPos = buf.readBlockPos();
         this.lines = new IChatComponent[4];
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.lines[i] = buf.readChatComponent();
         }
@@ -46,7 +46,7 @@ public class S33PacketUpdateSign implements Packet<INetHandlerPlayClient>
     {
         buf.writeBlockPos(this.blockPos);
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             buf.writeChatComponent(this.lines[i]);
         }

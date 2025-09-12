@@ -43,7 +43,7 @@ public class WorldGeneratorBonusChest extends WorldGenerator
         {
             position = position.up();
 
-            for (int i = 0; i < 4; ++i)
+            for (int i = 0; i < 4; i++)
             {
                 BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(4) - rand.nextInt(4));
 

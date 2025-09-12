@@ -39,7 +39,7 @@ public class GuiResourcePackSettings extends GuiScreen {
      * List component that contains the selected resource packs
      */
     private GuiResourcePackSelected selectedResourcePacksList;
-    private boolean changed = false;
+    private boolean changed;
 
     public GuiResourcePackSettings(GuiScreen parentScreenIn) {
         this.parentScreen = parentScreenIn;

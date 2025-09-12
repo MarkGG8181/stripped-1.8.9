@@ -404,4 +404,7 @@ public class Items
             banner = getRegisteredItem("banner");
         }
     }
+
+    private Items() {
+    }
 }

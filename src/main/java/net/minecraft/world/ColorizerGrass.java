@@ -21,4 +21,7 @@ public class ColorizerGrass
         int k = j << 8 | i;
         return k > grassBuffer.length ? -65281 : grassBuffer[k];
     }
+
+    private ColorizerGrass() {
+    }
 }

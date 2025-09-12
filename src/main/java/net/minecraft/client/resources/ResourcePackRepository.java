@@ -35,7 +35,7 @@ public class ResourcePackRepository {
     private static final Logger logger = LogManager.getLogger();
     private static final FileFilter resourcePackFilter = p_accept_1_ -> {
         boolean flag = p_accept_1_.isFile() && p_accept_1_.getName().endsWith(".zip");
-        boolean flag1 = p_accept_1_.isDirectory() && (new File(p_accept_1_, "pack.mcmeta")).isFile();
+        boolean flag1 = p_accept_1_.isDirectory() && new File(p_accept_1_, "pack.mcmeta").isFile();
         return flag || flag1;
     };
     private final File dirResourcepacks;
@@ -46,7 +46,7 @@ public class ResourcePackRepository {
     private final ReentrantLock lock = new ReentrantLock();
     private ListenableFuture<Object> downloadingPacks;
     private List<ResourcePackRepository.Entry> repositoryEntriesAll = new ArrayList<>();
-    private List<ResourcePackRepository.Entry> repositoryEntries = new ArrayList<>();
+    private final List<ResourcePackRepository.Entry> repositoryEntries = new ArrayList<>();
 
     public ResourcePackRepository(File dirResourcepacksIn, File dirServerResourcepacksIn, IResourcePack rprDefaultResourcePackIn, IMetadataSerializer rprMetadataSerializerIn, GameSettings settings) {
         this.dirResourcepacks = dirResourcepacksIn;

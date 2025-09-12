@@ -45,7 +45,7 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
         this.action = (S38PacketPlayerListItem.Action)buf.readEnumValue(S38PacketPlayerListItem.Action.class);
         int i = buf.readVarIntFromBuffer();
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             GameProfile gameprofile = null;
             int k = 0;
             WorldSettings.GameType worldsettings$gametype = null;
@@ -57,7 +57,7 @@ public class S38PacketPlayerListItem implements Packet<INetHandlerPlayClient> {
                     int l = buf.readVarIntFromBuffer();
                     int i1 = 0;
 
-                    for (; i1 < l; ++i1) {
+                    for (; i1 < l; i1++) {
                         String s = buf.readStringFromBuffer(32767);
                         String s1 = buf.readStringFromBuffer(32767);
 

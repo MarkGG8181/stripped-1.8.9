@@ -143,8 +143,9 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
      * @return the sum of left and right in dest
      */
     public static Vector4f add(Vector4f left, Vector4f right, Vector4f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector4f(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
+        }
         else {
             dest.set(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
             return dest;
@@ -160,8 +161,9 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
      * @return left minus right in dest
      */
     public static Vector4f sub(Vector4f left, Vector4f right, Vector4f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector4f(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
+        }
         else {
             dest.set(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
             return dest;
@@ -187,8 +189,9 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
      * @return the negated vector
      */
     public Vector4f negate(Vector4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector4f();
+        }
         dest.x = -x;
         dest.y = -y;
         dest.z = -z;
@@ -205,10 +208,12 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
     public Vector4f normalise(Vector4f dest) {
         float l = length();
 
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector4f(x / l, y / l, z / l, w / l);
-        else
+        }
+        else {
             dest.set(x / l, y / l, z / l, w / l);
+        }
 
         return dest;
     }
@@ -232,10 +237,12 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
      */
     public static float angle(Vector4f a, Vector4f b) {
         float dls = dot(a, b) / (a.length() * b.length());
-        if (dls < -1f)
+        if (dls < -1f) {
             dls = -1f;
-        else if (dls > 1.0f)
+        }
+        else if (dls > 1.0f) {
             dls = 1.0f;
+        }
         return (float)Math.acos(dls);
     }
 
@@ -340,12 +347,20 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         Vector4f other = (Vector4f)obj;
 
-        if (x == other.x && y == other.y && z == other.z && w == other.w) return true;
+        if (x == other.x && y == other.y && z == other.z && w == other.w) {
+            return true;
+        }
 
         return false;
     }

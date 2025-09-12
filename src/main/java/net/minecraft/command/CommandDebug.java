@@ -54,7 +54,7 @@ public class CommandDebug extends CommandBase {
             throw new WrongUsageException("commands.debug.usage", new Object[0]);
         }
         else {
-            if (args[0].equals("start")) {
+            if ("start".equals(args[0])) {
                 if (args.length != 1) {
                     throw new WrongUsageException("commands.debug.usage", new Object[0]);
                 }
@@ -65,7 +65,7 @@ public class CommandDebug extends CommandBase {
                 this.profileStartTick = MinecraftServer.getServer().getTickCounter();
             }
             else {
-                if (!args[0].equals("stop")) {
+                if (!"stop".equals(args[0])) {
                     throw new WrongUsageException("commands.debug.usage", new Object[0]);
                 }
 
@@ -92,7 +92,7 @@ public class CommandDebug extends CommandBase {
      * Save the profiling results from the last profile
      */
     private void saveProfileResults(long timeSpan, int tickSpan) {
-        File file1 = new File(MinecraftServer.getServer().getFile("debug"), "profile-results-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + ".txt");
+        File file1 = new File(MinecraftServer.getServer().getFile("debug"), "profile-results-" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date()) + ".txt");
         file1.getParentFile().mkdirs();
 
         try {
@@ -126,17 +126,17 @@ public class CommandDebug extends CommandBase {
         List<Profiler.Result> list = MinecraftServer.getServer().theProfiler.getProfilingData(p_147202_2_);
 
         if (list != null && list.size() >= 3) {
-            for (int i = 1; i < list.size(); ++i) {
+            for (int i = 1; i < list.size(); i++) {
                 Profiler.Result profiler$result = (Profiler.Result)list.get(i);
                 stringBuilder.append("[%02d] ".formatted(new Object[]{Integer.valueOf(p_147202_1_)}));
 
-                for (int j = 0; j < p_147202_1_; ++j) {
+                for (int j = 0; j < p_147202_1_; j++) {
                     stringBuilder.append(" ");
                 }
 
                 stringBuilder.append(profiler$result.profilerName).append(" - ").append("%.2f".formatted(new Object[]{Double.valueOf(profiler$result.usePercentage)})).append("%/").append("%.2f".formatted(new Object[]{Double.valueOf(profiler$result.totalUsePercentage)})).append("%\n");
 
-                if (!profiler$result.profilerName.equals("unspecified")) {
+                if (!"unspecified".equals(profiler$result.profilerName)) {
                     try {
                         this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + profiler$result.profilerName, stringBuilder);
                     } catch (Exception exception) {

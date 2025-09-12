@@ -160,7 +160,7 @@ public class ServerScoreboard extends Scoreboard {
         List<Packet> list = new ArrayList<>();
         list.add(new S3BPacketScoreboardObjective(p_96550_1_, 0));
 
-        for (int i = 0; i < 19; ++i) {
+        for (int i = 0; i < 19; i++) {
             if (this.getObjectiveInDisplaySlot(i) == p_96550_1_) {
                 list.add(new S3DPacketDisplayScoreboard(i, p_96550_1_));
             }
@@ -189,7 +189,7 @@ public class ServerScoreboard extends Scoreboard {
         List<Packet> list = new ArrayList<>();
         list.add(new S3BPacketScoreboardObjective(p_96548_1_, 1));
 
-        for (int i = 0; i < 19; ++i) {
+        for (int i = 0; i < 19; i++) {
             if (this.getObjectiveInDisplaySlot(i) == p_96548_1_) {
                 list.add(new S3DPacketDisplayScoreboard(i, p_96548_1_));
             }
@@ -213,7 +213,7 @@ public class ServerScoreboard extends Scoreboard {
     public int func_96552_h(ScoreObjective p_96552_1_) {
         int i = 0;
 
-        for (int j = 0; j < 19; ++j) {
+        for (int j = 0; j < 19; j++) {
             if (this.getObjectiveInDisplaySlot(j) == p_96552_1_) {
                 ++i;
             }

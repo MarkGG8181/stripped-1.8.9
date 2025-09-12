@@ -19,8 +19,8 @@ import net.minecraft.world.World;
 
 public class EntityEndermite extends EntityMob
 {
-    private int lifetime = 0;
-    private boolean playerSpawned = false;
+    private int lifetime;
+    private boolean playerSpawned;
 
     public EntityEndermite(World worldIn)
     {
@@ -144,7 +144,7 @@ public class EntityEndermite extends EntityMob
 
         if (this.worldObj.isRemote)
         {
-            for (int i = 0; i < 2; ++i)
+            for (int i = 0; i < 2; i++)
             {
                 this.worldObj.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D, new int[0]);
             }

@@ -17,7 +17,7 @@ public class ModelSquid extends ModelBase
         this.squidBody.addBox(-6.0F, -8.0F, -6.0F, 12, 16, 12);
         this.squidBody.rotationPointY += (float)(24 + i);
 
-        for (int j = 0; j < this.squidTentacles.length; ++j)
+        for (int j = 0; j < this.squidTentacles.length; j++)
         {
             this.squidTentacles[j] = new ModelRenderer(this, 48, 0);
             double d0 = (double)j * Math.PI * 2.0D / (double)this.squidTentacles.length;
@@ -53,7 +53,7 @@ public class ModelSquid extends ModelBase
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
         this.squidBody.render(scale);
 
-        for (int i = 0; i < this.squidTentacles.length; ++i)
+        for (int i = 0; i < this.squidTentacles.length; i++)
         {
             this.squidTentacles[i].render(scale);
         }

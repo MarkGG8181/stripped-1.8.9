@@ -159,9 +159,9 @@ public class ExtendedBlockStorage {
         this.blockRefCount = 0;
         this.tickRefCount = 0;
 
-        for (int i = 0; i < 16; ++i) {
-            for (int j = 0; j < 16; ++j) {
-                for (int k = 0; k < 16; ++k) {
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                for (int k = 0; k < 16; k++) {
                     Block block = this.getBlockByExtId(i, j, k);
 
                     if (block != Blocks.air) {

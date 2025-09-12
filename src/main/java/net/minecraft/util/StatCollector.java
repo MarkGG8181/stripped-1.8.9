@@ -2,13 +2,13 @@ package net.minecraft.util;
 
 public class StatCollector
 {
-    private static StringTranslate localizedName = StringTranslate.getInstance();
+    private static final StringTranslate localizedName = StringTranslate.getInstance();
 
     /**
      * A StringTranslate instance using the hardcoded default locale (en_US).  Used as a fallback in case the shared
      * StringTranslate singleton instance fails to translate a key.
      */
-    private static StringTranslate fallbackTranslator = new StringTranslate();
+    private static final StringTranslate fallbackTranslator = new StringTranslate();
 
     /**
      * Translates a Stat name
@@ -49,5 +49,8 @@ public class StatCollector
     public static long getLastTranslationUpdateTimeInMilliseconds()
     {
         return localizedName.getLastUpdateTimeInMilliseconds();
+    }
+
+    private StatCollector() {
     }
 }

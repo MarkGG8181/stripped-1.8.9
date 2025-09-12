@@ -65,4 +65,7 @@ public class DefaultVertexFormats
         POSITION_TEX_COLOR_NORMAL.addElement(NORMAL_3B);
         POSITION_TEX_COLOR_NORMAL.addElement(PADDING_1B);
     }
+
+    private DefaultVertexFormats() {
+    }
 }

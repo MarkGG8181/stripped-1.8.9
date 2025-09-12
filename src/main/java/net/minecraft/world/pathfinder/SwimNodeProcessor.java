@@ -72,11 +72,11 @@ public class SwimNodeProcessor extends NodeProcessor
     {
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int i = x; i < x + this.entitySizeX; ++i)
+        for (int i = x; i < x + this.entitySizeX; i++)
         {
-            for (int j = y; j < y + this.entitySizeY; ++j)
+            for (int j = y; j < y + this.entitySizeY; j++)
             {
-                for (int k = z; k < z + this.entitySizeZ; ++k)
+                for (int k = z; k < z + this.entitySizeZ; k++)
                 {
                     Block block = this.blockaccess.getBlockState(blockpos$mutableblockpos.set(i, j, k)).getBlock();
 

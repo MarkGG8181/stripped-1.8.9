@@ -9,8 +9,8 @@ import net.minecraft.pathfinding.PathNavigateGround;
 public class EntityAITempt extends EntityAIBase
 {
     /** The entity using this AI that is tempted by the player. */
-    private EntityCreature temptedEntity;
-    private double speed;
+    private final EntityCreature temptedEntity;
+    private final double speed;
 
     /** X position of player tempting this mob */
     private double targetX;
@@ -38,12 +38,12 @@ public class EntityAITempt extends EntityAIBase
 
     /** True if this EntityAITempt task is running */
     private boolean isRunning;
-    private Item temptItem;
+    private final Item temptItem;
 
     /**
      * Whether the entity using this AI will be scared by the tempter's sudden movement.
      */
-    private boolean scaredByPlayerMovement;
+    private final boolean scaredByPlayerMovement;
     private boolean avoidWater;
 
     public EntityAITempt(EntityCreature temptedEntityIn, double speedIn, Item temptItemIn, boolean scaredByPlayerMovementIn)

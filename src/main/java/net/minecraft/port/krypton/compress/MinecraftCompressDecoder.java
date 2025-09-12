@@ -1,6 +1,7 @@
 package net.minecraft.port.krypton.compress;
 
 import com.velocitypowered.natives.compression.VelocityCompressor;
+import com.velocitypowered.natives.util.MoreByteBufUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -45,9 +46,9 @@ public class MinecraftCompressDecoder extends ByteToMessageDecoder {
                     }
                 }
 
-                ByteBuf compatibleIn = com.velocitypowered.natives.util.MoreByteBufUtils.ensureCompatible(ctx.alloc(),
+                ByteBuf compatibleIn = MoreByteBufUtils.ensureCompatible(ctx.alloc(),
                     compressor, in);
-                ByteBuf uncompressed = com.velocitypowered.natives.util.MoreByteBufUtils.preferredBuffer(ctx.alloc(),
+                ByteBuf uncompressed = MoreByteBufUtils.preferredBuffer(ctx.alloc(),
                     compressor, claimedUncompressedSize);
                 try {
                     compressor.inflate(compatibleIn, uncompressed, claimedUncompressedSize);

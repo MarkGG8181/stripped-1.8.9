@@ -263,7 +263,7 @@ public class GuiTextField extends Gui
         boolean flag = p_146197_1_ < 0;
         int j = Math.abs(p_146197_1_);
 
-        for (int k = 0; k < j; ++k)
+        for (int k = 0; k < j; k++)
         {
             if (!flag)
             {

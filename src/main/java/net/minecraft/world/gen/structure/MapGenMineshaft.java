@@ -21,7 +21,7 @@ public class MapGenMineshaft extends MapGenStructure
     {
         for (Entry<String, String> entry : p_i2034_1_.entrySet())
         {
-            if (((String)entry.getKey()).equals("chance"))
+            if ("chance".equals((String)entry.getKey()))
             {
                 this.chance = MathHelper.parseDoubleWithDefault((String)entry.getValue(), this.chance);
             }

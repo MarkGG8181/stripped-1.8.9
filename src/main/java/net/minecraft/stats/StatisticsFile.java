@@ -31,7 +31,7 @@ public class StatisticsFile extends StatFileWriter {
     private final File statsFile;
     private final Set<StatBase> dirty = new HashSet<>();
     private int lastStatRequest = -300;
-    private boolean hasUnsentAchievement = false;
+    private boolean hasUnsentAchievement;
 
     public StatisticsFile(MinecraftServer serverIn, File statsFileIn) {
         this.mcServer = serverIn;
@@ -92,7 +92,7 @@ public class StatisticsFile extends StatFileWriter {
     }
 
     public Map<StatBase, TupleIntJsonSerializable> parseJson(String p_150881_1_) {
-        JsonElement jsonelement = (new JsonParser()).parse(p_150881_1_);
+        JsonElement jsonelement = new JsonParser().parse(p_150881_1_);
 
         if (!jsonelement.isJsonObject()) {
             return new HashMap<>();

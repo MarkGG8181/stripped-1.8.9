@@ -172,10 +172,10 @@ public class PlayerSelector
             s = s.substring(1);
         }
 
-        boolean flag1 = !p_179663_1_.equals("e");
-        boolean flag2 = p_179663_1_.equals("r") && s != null;
+        boolean flag1 = !"e".equals(p_179663_1_);
+        boolean flag2 = "r".equals(p_179663_1_) && s != null;
 
-        if ((s == null || !p_179663_1_.equals("e")) && !flag2)
+        if ((s == null || !"e".equals(p_179663_1_)) && !flag2)
         {
             if (flag1)
             {
@@ -443,8 +443,8 @@ public class PlayerSelector
         List<T> list = new ArrayList<>();
         String s = func_179651_b(params, "type");
         s = s != null && s.startsWith("!") ? s.substring(1) : s;
-        boolean flag = !type.equals("e");
-        boolean flag1 = type.equals("r") && s != null;
+        boolean flag = !"e".equals(type);
+        boolean flag1 = "r".equals(type) && s != null;
         int i = parseIntWithDefault(params, "dx", 0);
         int j = parseIntWithDefault(params, "dy", 0);
         int k = parseIntWithDefault(params, "dz", 0);
@@ -473,11 +473,11 @@ public class PlayerSelector
                         list.addAll(worldIn.<T>getEntitiesWithinAABB(entityClass, axisalignedbb1, predicate1));
                     }
                 }
-                else if (type.equals("a"))
+                else if ("a".equals(type))
                 {
                     list.addAll(worldIn.<T>getPlayers(entityClass, predicate));
                 }
-                else if (!type.equals("p") && (!type.equals("r") || flag1))
+                else if (!"p".equals(type) && (!"r".equals(type) || flag1))
                 {
                     list.addAll(worldIn.<T>getEntities(entityClass, predicate1));
                 }
@@ -507,11 +507,11 @@ public class PlayerSelector
                 }
             }
         }
-        else if (type.equals("a"))
+        else if ("a".equals(type))
         {
             list.addAll(worldIn.<T>getPlayers(entityClass, predicate));
         }
-        else if (!type.equals("p") && (!type.equals("r") || flag1))
+        else if (!"p".equals(type) && (!"r".equals(type) || flag1))
         {
             list.addAll(worldIn.<T>getEntities(entityClass, predicate1));
         }
@@ -525,11 +525,11 @@ public class PlayerSelector
 
     private static <T extends Entity> List<T> func_179658_a(List<T> p_179658_0_, Map<String, String> p_179658_1_, ICommandSender p_179658_2_, Class<? extends T> p_179658_3_, String p_179658_4_, final BlockPos p_179658_5_)
     {
-        int i = parseIntWithDefault(p_179658_1_, "c", !p_179658_4_.equals("a") && !p_179658_4_.equals("e") ? 1 : 0);
+        int i = parseIntWithDefault(p_179658_1_, "c", !"a".equals(p_179658_4_) && !"e".equals(p_179658_4_) ? 1 : 0);
 
-        if (!p_179658_4_.equals("p") && !p_179658_4_.equals("a") && !p_179658_4_.equals("e"))
+        if (!"p".equals(p_179658_4_) && !"a".equals(p_179658_4_) && !"e".equals(p_179658_4_))
         {
-            if (p_179658_4_.equals("r"))
+            if ("r".equals(p_179658_4_))
             {
                 Collections.shuffle((List<?>)p_179658_0_);
             }
@@ -712,5 +712,8 @@ public class PlayerSelector
 
             return map;
         }
+    }
+
+    private PlayerSelector() {
     }
 }

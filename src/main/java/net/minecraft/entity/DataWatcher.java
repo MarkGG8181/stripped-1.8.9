@@ -27,7 +27,7 @@ public class DataWatcher
 
     /** true if one or more object was changed */
     private boolean objectChanged;
-    private ReadWriteLock lock = new ReentrantReadWriteLock();
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
 
     public DataWatcher(Entity owner)
     {

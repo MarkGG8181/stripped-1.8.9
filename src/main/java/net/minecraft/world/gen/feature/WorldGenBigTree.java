@@ -58,11 +58,11 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         this.foliageCoords = new ArrayList<>();
         this.foliageCoords.add(new WorldGenBigTree.FoliageCoordinates(this.basePos.up(k), j));
 
-        for (; k >= 0; --k) {
+        for (; k >= 0; k--) {
             float f = this.layerSize(k);
 
             if (f >= 0.0F) {
-                for (int l = 0; l < i; ++l) {
+                for (int l = 0; l < i; l++) {
                     double d0 = this.scaleWidth * (double)f * ((double)this.rand.nextFloat() + 0.328D);
                     double d1 = (double)(this.rand.nextFloat() * 2.0F) * Math.PI;
                     double d2 = d0 * Math.sin(d1) + 0.5D;
@@ -89,8 +89,8 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
     void func_181631_a(BlockPos p_181631_1_, float p_181631_2_, IBlockState p_181631_3_) {
         int i = (int)((double)p_181631_2_ + 0.618D);
 
-        for (int j = -i; j <= i; ++j) {
-            for (int k = -i; k <= i; ++k) {
+        for (int j = -i; j <= i; j++) {
+            for (int k = -i; k <= i; k++) {
                 if (Math.pow((double)Math.abs(j) + 0.5D, 2.0D) + Math.pow((double)Math.abs(k) + 0.5D, 2.0D) <= (double)(p_181631_2_ * p_181631_2_)) {
                     BlockPos blockpos = p_181631_1_.add(j, 0, k);
                     Material material = this.world.getBlockState(blockpos).getBlock().getMaterial();
@@ -134,7 +134,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
      * Generates the leaves surrounding an individual entry in the leafNodes list.
      */
     void generateLeafNode(BlockPos pos) {
-        for (int i = 0; i < this.leafDistanceLimit; ++i) {
+        for (int i = 0; i < this.leafDistanceLimit; i++) {
             this.func_181631_a(pos.up(i), this.leafSize(i), Blocks.leaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
         }
     }
@@ -146,7 +146,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
         float f1 = (float)blockpos.getY() / (float)i;
         float f2 = (float)blockpos.getZ() / (float)i;
 
-        for (int j = 0; j <= i; ++j) {
+        for (int j = 0; j <= i; j++) {
             BlockPos blockpos1 = p_175937_1_.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
             BlockLog.EnumAxis blocklog$enumaxis = this.func_175938_b(p_175937_1_, blockpos1);
             this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLog.LOG_AXIS, blocklog$enumaxis));
@@ -243,7 +243,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree {
             return -1;
         }
         else {
-            for (int j = 0; j <= i; ++j) {
+            for (int j = 0; j <= i; j++) {
                 BlockPos blockpos1 = posOne.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
 
                 if (!this.func_150523_a(this.world.getBlockState(blockpos1).getBlock())) {

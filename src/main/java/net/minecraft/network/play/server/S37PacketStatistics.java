@@ -35,7 +35,7 @@ public class S37PacketStatistics implements Packet<INetHandlerPlayClient> {
         int i = buf.readVarIntFromBuffer();
         this.statisticMap = new HashMap<>();
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             StatBase statbase = StatList.getOneShotStat(buf.readStringFromBuffer(32767));
             int k = buf.readVarIntFromBuffer();
 

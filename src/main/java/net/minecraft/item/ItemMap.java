@@ -82,14 +82,14 @@ public class ItemMap extends ItemMapBase
             ++mapdata$mapinfo.step;
             boolean flag = false;
 
-            for (int k1 = l - j1 + 1; k1 < l + j1; ++k1)
+            for (int k1 = l - j1 + 1; k1 < l + j1; k1++)
             {
                 if ((k1 & 15) == (mapdata$mapinfo.step & 15) || flag)
                 {
                     flag = false;
                     double d0 = 0.0D;
 
-                    for (int l1 = i1 - j1 - 1; l1 < i1 + j1; ++l1)
+                    for (int l1 = i1 - j1 - 1; l1 < i1 + j1; l1++)
                     {
                         if (k1 >= 0 && l1 >= -1 && k1 < 128 && l1 < 128)
                         {
@@ -128,9 +128,9 @@ public class ItemMap extends ItemMapBase
                                 {
                                     BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                                    for (int i4 = 0; i4 < i; ++i4)
+                                    for (int i4 = 0; i4 < i; i4++)
                                     {
-                                        for (int j4 = 0; j4 < i; ++j4)
+                                        for (int j4 = 0; j4 < i; j4++)
                                         {
                                             int k4 = chunk.getHeightValue(i4 + i3, j4 + j3) + 1;
                                             IBlockState iblockstate = Blocks.air.getDefaultState();

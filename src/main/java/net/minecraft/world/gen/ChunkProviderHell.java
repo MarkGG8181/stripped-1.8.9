@@ -98,11 +98,11 @@ public class ChunkProviderHell implements IChunkProvider
         int i1 = i + 1;
         this.noiseField = this.initializeNoiseField(this.noiseField, p_180515_1_ * i, 0, p_180515_2_ * i, k, l, i1);
 
-        for (int j1 = 0; j1 < i; ++j1)
+        for (int j1 = 0; j1 < i; j1++)
         {
-            for (int k1 = 0; k1 < i; ++k1)
+            for (int k1 = 0; k1 < i; k1++)
             {
-                for (int l1 = 0; l1 < 16; ++l1)
+                for (int l1 = 0; l1 < 16; l1++)
                 {
                     double d0 = 0.125D;
                     double d1 = this.noiseField[((j1 + 0) * i1 + k1 + 0) * l + l1 + 0];
@@ -114,7 +114,7 @@ public class ChunkProviderHell implements IChunkProvider
                     double d7 = (this.noiseField[((j1 + 1) * i1 + k1 + 0) * l + l1 + 1] - d3) * d0;
                     double d8 = (this.noiseField[((j1 + 1) * i1 + k1 + 1) * l + l1 + 1] - d4) * d0;
 
-                    for (int i2 = 0; i2 < 8; ++i2)
+                    for (int i2 = 0; i2 < 8; i2++)
                     {
                         double d9 = 0.25D;
                         double d10 = d1;
@@ -122,13 +122,13 @@ public class ChunkProviderHell implements IChunkProvider
                         double d12 = (d3 - d1) * d9;
                         double d13 = (d4 - d2) * d9;
 
-                        for (int j2 = 0; j2 < 4; ++j2)
+                        for (int j2 = 0; j2 < 4; j2++)
                         {
                             double d14 = 0.25D;
                             double d15 = d10;
                             double d16 = (d11 - d10) * d14;
 
-                            for (int k2 = 0; k2 < 4; ++k2)
+                            for (int k2 = 0; k2 < 4; k2++)
                             {
                                 IBlockState iblockstate = null;
 
@@ -171,9 +171,9 @@ public class ChunkProviderHell implements IChunkProvider
         this.gravelNoise = this.slowsandGravelNoiseGen.generateNoiseOctaves(this.gravelNoise, p_180516_1_ * 16, 109, p_180516_2_ * 16, 16, 1, 16, d0, 1.0D, d0);
         this.netherrackExclusivityNoise = this.netherrackExculsivityNoiseGen.generateNoiseOctaves(this.netherrackExclusivityNoise, p_180516_1_ * 16, p_180516_2_ * 16, 0, 16, 16, 1, d0 * 2.0D, d0 * 2.0D, d0 * 2.0D);
 
-        for (int j = 0; j < 16; ++j)
+        for (int j = 0; j < 16; j++)
         {
-            for (int k = 0; k < 16; ++k)
+            for (int k = 0; k < 16; k++)
             {
                 boolean flag = this.slowsandNoise[j + k * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
                 boolean flag1 = this.gravelNoise[j + k * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
@@ -182,7 +182,7 @@ public class ChunkProviderHell implements IChunkProvider
                 IBlockState iblockstate = Blocks.netherrack.getDefaultState();
                 IBlockState iblockstate1 = Blocks.netherrack.getDefaultState();
 
-                for (int j1 = 127; j1 >= 0; --j1)
+                for (int j1 = 127; j1 >= 0; j1--)
                 {
                     if (j1 < 127 - this.hellRNG.nextInt(5) && j1 > this.hellRNG.nextInt(5))
                     {
@@ -275,7 +275,7 @@ public class ChunkProviderHell implements IChunkProvider
         BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int i = 0; i < abyte.length; ++i)
+        for (int i = 0; i < abyte.length; i++)
         {
             abyte[i] = (byte)abiomegenbase[i].biomeID;
         }
@@ -305,7 +305,7 @@ public class ChunkProviderHell implements IChunkProvider
         int i = 0;
         double[] adouble = new double[p_73164_6_];
 
-        for (int j = 0; j < p_73164_6_; ++j)
+        for (int j = 0; j < p_73164_6_; j++)
         {
             adouble[j] = Math.cos((double)j * Math.PI * 6.0D / (double)p_73164_6_) * 2.0D;
             double d2 = (double)j;
@@ -322,13 +322,13 @@ public class ChunkProviderHell implements IChunkProvider
             }
         }
 
-        for (int l = 0; l < p_73164_5_; ++l)
+        for (int l = 0; l < p_73164_5_; l++)
         {
-            for (int i1 = 0; i1 < p_73164_7_; ++i1)
+            for (int i1 = 0; i1 < p_73164_7_; i1++)
             {
                 double d3 = 0.0D;
 
-                for (int k = 0; k < p_73164_6_; ++k)
+                for (int k = 0; k < p_73164_6_; k++)
                 {
                     double d4 = 0.0D;
                     double d5 = adouble[k];
@@ -391,22 +391,22 @@ public class ChunkProviderHell implements IChunkProvider
         ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(x, z);
         this.genNetherBridge.generateStructure(this.worldObj, this.hellRNG, chunkcoordintpair);
 
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 8; i++)
         {
             this.hellSpringGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
-        for (int j = 0; j < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1; ++j)
+        for (int j = 0; j < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1; j++)
         {
             this.fireFeature.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
-        for (int k = 0; k < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1); ++k)
+        for (int k = 0; k < this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1); k++)
         {
             this.lightGemGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(120) + 4, this.hellRNG.nextInt(16) + 8));
         }
 
-        for (int l = 0; l < 10; ++l)
+        for (int l = 0; l < 10; l++)
         {
             this.hellPortalGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
         }
@@ -421,12 +421,12 @@ public class ChunkProviderHell implements IChunkProvider
             this.redMushroomFeature.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16) + 8, this.hellRNG.nextInt(128), this.hellRNG.nextInt(16) + 8));
         }
 
-        for (int i1 = 0; i1 < 16; ++i1)
+        for (int i1 = 0; i1 < 16; i1++)
         {
             this.quartzGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
         }
 
-        for (int j1 = 0; j1 < 16; ++j1)
+        for (int j1 = 0; j1 < 16; j1++)
         {
             this.lavaTrapGen.generate(this.worldObj, this.hellRNG, blockpos.add(this.hellRNG.nextInt(16), this.hellRNG.nextInt(108) + 10, this.hellRNG.nextInt(16)));
         }

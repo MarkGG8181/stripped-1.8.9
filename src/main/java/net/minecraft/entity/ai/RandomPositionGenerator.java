@@ -36,7 +36,7 @@ public class RandomPositionGenerator
      */
     public static Vec3 findRandomTargetBlockAwayFrom(EntityCreature entitycreatureIn, int xz, int y, Vec3 targetVec3)
     {
-        staticVector = (new Vec3(entitycreatureIn.posX, entitycreatureIn.posY, entitycreatureIn.posZ)).subtract(targetVec3);
+        staticVector = new Vec3(entitycreatureIn.posX, entitycreatureIn.posY, entitycreatureIn.posZ).subtract(targetVec3);
         return findRandomTargetBlock(entitycreatureIn, xz, y, staticVector);
     }
 
@@ -65,7 +65,7 @@ public class RandomPositionGenerator
             flag1 = false;
         }
 
-        for (int j1 = 0; j1 < 10; ++j1)
+        for (int j1 = 0; j1 < 10; j1++)
         {
             int l = random.nextInt(2 * xz + 1) - xz;
             int k1 = random.nextInt(2 * y + 1) - y;
@@ -125,5 +125,8 @@ public class RandomPositionGenerator
         {
             return null;
         }
+    }
+
+    private RandomPositionGenerator() {
     }
 }

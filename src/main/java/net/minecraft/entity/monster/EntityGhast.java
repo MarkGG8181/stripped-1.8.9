@@ -141,14 +141,14 @@ public class EntityGhast extends EntityFlying implements IMob
     {
         int i = this.rand.nextInt(2) + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItem(Items.ghast_tear, 1);
         }
 
         i = this.rand.nextInt(3) + this.rand.nextInt(1 + lootingModifier);
 
-        for (int k = 0; k < i; ++k)
+        for (int k = 0; k < i; k++)
         {
             this.dropItem(Items.gunpowder, 1);
         }
@@ -290,7 +290,7 @@ public class EntityGhast extends EntityFlying implements IMob
         {
             if (this.parentEntity.getAttackTarget() == null)
             {
-                this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw = -((float)MathHelper.atan2(this.parentEntity.motionX, this.parentEntity.motionZ)) * 180.0F / (float)Math.PI;
+                this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw = -(float)MathHelper.atan2(this.parentEntity.motionX, this.parentEntity.motionZ) * 180.0F / (float)Math.PI;
             }
             else
             {
@@ -301,7 +301,7 @@ public class EntityGhast extends EntityFlying implements IMob
                 {
                     double d1 = entitylivingbase.posX - this.parentEntity.posX;
                     double d2 = entitylivingbase.posZ - this.parentEntity.posZ;
-                    this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw = -((float)MathHelper.atan2(d1, d2)) * 180.0F / (float)Math.PI;
+                    this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw = -(float)MathHelper.atan2(d1, d2) * 180.0F / (float)Math.PI;
                 }
             }
         }
@@ -396,7 +396,7 @@ public class EntityGhast extends EntityFlying implements IMob
             double d2 = (z - this.parentEntity.posZ) / p_179926_7_;
             AxisAlignedBB axisalignedbb = this.parentEntity.getEntityBoundingBox();
 
-            for (int i = 1; (double)i < p_179926_7_; ++i)
+            for (int i = 1; (double)i < p_179926_7_; i++)
             {
                 axisalignedbb = axisalignedbb.offset(d0, d1, d2);
 

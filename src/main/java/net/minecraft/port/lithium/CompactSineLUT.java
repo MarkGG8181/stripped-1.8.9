@@ -92,4 +92,7 @@ public class CompactSineLUT {
         return Float.intBitsToFloat(SINE_TABLE_INT[pos] ^ neg);
     }
 
+    private CompactSineLUT() {
+    }
+
 }

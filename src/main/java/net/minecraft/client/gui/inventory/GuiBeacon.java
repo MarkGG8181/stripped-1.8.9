@@ -25,7 +25,7 @@ public class GuiBeacon extends GuiContainer
 {
     private static final Logger logger = LogManager.getLogger();
     private static final ResourceLocation beaconGuiTextures = new ResourceLocation("textures/gui/container/beacon.png");
-    private IInventory tileBeacon;
+    private final IInventory tileBeacon;
     private GuiBeacon.ConfirmButton beaconConfirmButton;
     private boolean buttonsNotDrawn;
 
@@ -64,12 +64,12 @@ public class GuiBeacon extends GuiContainer
         {
             this.buttonsNotDrawn = false;
 
-            for (int l = 0; l <= 2; ++l)
+            for (int l = 0; l <= 2; l++)
             {
                 int i1 = TileEntityBeacon.effectsList[l].length;
                 int j1 = i1 * 22 + (i1 - 1) * 2;
 
-                for (int k1 = 0; k1 < i1; ++k1)
+                for (int k1 = 0; k1 < i1; k1++)
                 {
                     int l1 = TileEntityBeacon.effectsList[l][k1].id;
                     GuiBeacon.PowerButton guibeacon$powerbutton = new GuiBeacon.PowerButton(l << 8 | l1, this.guiLeft + 76 + k1 * 24 - j1 / 2, this.guiTop + 22 + l * 25, l1, l);
@@ -90,7 +90,7 @@ public class GuiBeacon extends GuiContainer
             int j2 = TileEntityBeacon.effectsList[i2].length + 1;
             int k2 = j2 * 22 + (j2 - 1) * 2;
 
-            for (int l2 = 0; l2 < j2 - 1; ++l2)
+            for (int l2 = 0; l2 < j2 - 1; l2++)
             {
                 int i3 = TileEntityBeacon.effectsList[i2][l2].id;
                 GuiBeacon.PowerButton guibeacon$powerbutton2 = new GuiBeacon.PowerButton(i2 << 8 | i3, this.guiLeft + 167 + l2 * 24 - k2 / 2, this.guiTop + 47, i3, i2);

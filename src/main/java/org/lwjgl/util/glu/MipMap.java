@@ -62,21 +62,26 @@ public class MipMap extends Util {
     public static int gluBuild2DMipmaps(final int target,
                                         final int components, final int width, final int height,
                                         final int format, final int type, final ByteBuffer data) {
-        if (width < 1 || height < 1) return GLU_INVALID_VALUE;
+        if (width < 1 || height < 1) {
+            return GLU_INVALID_VALUE;
+        }
 
         final int bpp = bytesPerPixel(format, type);
-        if (bpp == 0)
+        if (bpp == 0) {
             return GLU_INVALID_ENUM;
+        }
 
         final int maxSize = glGetInteger(GL_MAX_TEXTURE_SIZE);
 
         int w = nearestPower(width);
-        if (w > maxSize)
+        if (w > maxSize) {
             w = maxSize;
+        }
 
         int h = nearestPower(height);
-        if (h > maxSize)
+        if (h > maxSize) {
             h = maxSize;
+        }
 
         // Get current glPixelStore state
         PixelStoreState pss = new PixelStoreState();
@@ -125,20 +130,24 @@ public class MipMap extends Util {
 
             glTexImage2D(target, level, components, w, h, 0, format, type, image);
 
-            if (w == 1 && h == 1)
+            if (w == 1 && h == 1) {
                 break;
+            }
 
-            final int newW = (w < 2) ? 1 : w >> 1;
-            final int newH = (h < 2) ? 1 : h >> 1;
+            final int newW = w < 2 ? 1 : w >> 1;
+            final int newH = h < 2 ? 1 : h >> 1;
 
             final ByteBuffer newImage;
 
-            if (bufferA == null)
-                newImage = (bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
-            else if (bufferB == null)
-                newImage = (bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp));
-            else
+            if (bufferA == null) {
+                newImage = bufferA = BufferUtils.createByteBuffer((newW + 4) * newH * bpp);
+            }
+            else if (bufferB == null) {
+                newImage = bufferB = BufferUtils.createByteBuffer((newW + 4) * newH * bpp);
+            }
+            else {
                 newImage = bufferB;
+            }
 
             int error = gluScaleImage(format, w, h, type, image, newW, newH, type, newImage);
             if (error != 0) {
@@ -147,8 +156,9 @@ public class MipMap extends Util {
             }
 
             image = newImage;
-            if (bufferB != null)
+            if (bufferB != null) {
                 bufferB = bufferA;
+            }
 
             w = newW;
             h = newH;
@@ -179,8 +189,9 @@ public class MipMap extends Util {
                                     int widthOut, int heightOut, int typeOut, ByteBuffer dataOut) {
 
         final int components = compPerPix(format);
-        if (components == -1)
+        if (components == -1) {
             return GLU_INVALID_ENUM;
+        }
 
         int i, j, k;
         float[] tempIn, tempOut;
@@ -220,15 +231,19 @@ public class MipMap extends Util {
         PixelStoreState pss = new PixelStoreState();
 
         //Unpack the pixel data and convert to floating point
-        if (pss.unpackRowLength > 0)
+        if (pss.unpackRowLength > 0) {
             rowlen = pss.unpackRowLength;
-        else
+        }
+        else {
             rowlen = widthIn;
+        }
 
-        if (sizein >= pss.unpackAlignment)
+        if (sizein >= pss.unpackAlignment) {
             rowstride = components * rowlen;
-        else
+        }
+        else {
             rowstride = pss.unpackAlignment / sizein * ceil(components * rowlen * sizein, pss.unpackAlignment);
+        }
 
         switch (typein) {
             case GL_UNSIGNED_BYTE:
@@ -314,15 +329,19 @@ public class MipMap extends Util {
 
 
         // Convert temp output
-        if (pss.packRowLength > 0)
+        if (pss.packRowLength > 0) {
             rowlen = pss.packRowLength;
-        else
+        }
+        else {
             rowlen = widthOut;
+        }
 
-        if (sizeout >= pss.packAlignment)
+        if (sizeout >= pss.packAlignment) {
             rowstride = components * rowlen;
-        else
+        }
+        else {
             rowstride = pss.packAlignment / sizeout * ceil(components * rowlen * sizeout, pss.packAlignment);
+        }
 
         switch (typeOut) {
             case GL_UNSIGNED_BYTE:

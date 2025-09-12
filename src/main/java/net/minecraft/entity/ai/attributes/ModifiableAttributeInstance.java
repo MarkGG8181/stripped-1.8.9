@@ -26,7 +26,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         this.genericAttribute = genericAttributeIn;
         this.baseValue = genericAttributeIn.getDefaultValue();
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             this.mapByOperation.put(Integer.valueOf(i), new HashSet<>());
         }
@@ -63,7 +63,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     {
         Set<AttributeModifier> set = new HashSet<>();
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             set.addAll(this.getModifiersByOperation(i));
         }
@@ -115,7 +115,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
     public void removeModifier(AttributeModifier modifier)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             Set<AttributeModifier> set = (Set)this.mapByOperation.get(Integer.valueOf(i));
             set.remove(modifier);

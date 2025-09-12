@@ -43,7 +43,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
     protected double xScrollTarget;
     protected double yScrollTarget;
     private int scrolling;
-    private StatFileWriter statFileWriter;
+    private final StatFileWriter statFileWriter;
     private boolean loadingAchievements = true;
 
     public GuiAchievements(GuiScreen parentScreenIn, StatFileWriter statFileWriterIn)
@@ -289,12 +289,12 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
         float f = 16.0F / this.zoom;
         float f1 = 16.0F / this.zoom;
 
-        for (int l3 = 0; (float)l3 * f - (float)j2 < 155.0F; ++l3)
+        for (int l3 = 0; (float)l3 * f - (float)j2 < 155.0F; l3++)
         {
             float f2 = 0.6F - (float)(l1 + l3) / 25.0F * 0.3F;
             GlStateManager.color(f2, f2, f2, 1.0F);
 
-            for (int i4 = 0; (float)i4 * f1 - (float)i2 < 224.0F; ++i4)
+            for (int i4 = 0; (float)i4 * f1 - (float)i2 < 224.0F; i4++)
             {
                 random.setSeed((long)(this.mc.getSession().getPlayerID().hashCode() + k1 + i4 + (l1 + l3) * 16));
                 int j4 = random.nextInt(1 + l1 + l3) + (l1 + l3) / 2;
@@ -345,7 +345,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
         GlStateManager.depthFunc(515);
         this.mc.getTextureManager().bindTexture(ACHIEVEMENT_BACKGROUND);
 
-        for (int j5 = 0; j5 < AchievementList.achievementList.size(); ++j5)
+        for (int j5 = 0; j5 < AchievementList.achievementList.size(); j5++)
         {
             Achievement achievement1 = (Achievement)AchievementList.achievementList.get(j5);
 
@@ -403,7 +403,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableColorMaterial();
 
-        for (int i6 = 0; i6 < AchievementList.achievementList.size(); ++i6)
+        for (int i6 = 0; i6 < AchievementList.achievementList.size(); i6++)
         {
             Achievement achievement2 = (Achievement)AchievementList.achievementList.get(i6);
             int l6 = achievement2.displayColumn * 24 - i;
@@ -524,7 +524,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
             {
                 s = I18n.format("achievement.unknown", new Object[0]);
                 int k8 = Math.max(this.fontRendererObj.getStringWidth(s), 120);
-                String s2 = (new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()})).getUnformattedText();
+                String s2 = new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()}).getUnformattedText();
                 int i5 = this.fontRendererObj.splitStringWidth(s2, k8);
                 this.drawGradientRect(i7 - 3, k7 - 3, i7 + k8 + 3, k7 + i5 + 12 + 3, -1073741824, -1073741824);
                 this.fontRendererObj.drawSplitString(s2, i7, k7 + 12, k8, -9416624);
@@ -532,7 +532,7 @@ public class GuiAchievements extends GuiScreen implements IProgressMeter
             else if (i8 < 3)
             {
                 int l8 = Math.max(this.fontRendererObj.getStringWidth(s), 120);
-                String s3 = (new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()})).getUnformattedText();
+                String s3 = new ChatComponentTranslation("achievement.requires", new Object[]{achievement.parentAchievement.getStatName()}).getUnformattedText();
                 int j9 = this.fontRendererObj.splitStringWidth(s3, l8);
                 this.drawGradientRect(i7 - 3, k7 - 3, i7 + l8 + 3, k7 + j9 + 12 + 3, -1073741824, -1073741824);
                 this.fontRendererObj.drawSplitString(s3, i7, k7 + 12, l8, -9416624);

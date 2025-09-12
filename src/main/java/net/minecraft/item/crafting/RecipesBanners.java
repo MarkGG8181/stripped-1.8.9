@@ -36,7 +36,7 @@ public class RecipesBanners
         {
             boolean flag = false;
 
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
+            for (int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -70,7 +70,7 @@ public class RecipesBanners
         {
             ItemStack itemstack = null;
 
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
+            for (int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack itemstack1 = inv.getStackInSlot(i);
 
@@ -88,7 +88,7 @@ public class RecipesBanners
             {
                 int k = 0;
 
-                for (int j = 0; j < inv.getSizeInventory(); ++j)
+                for (int j = 0; j < inv.getSizeInventory(); j++)
                 {
                     ItemStack itemstack2 = inv.getStackInSlot(j);
 
@@ -135,7 +135,7 @@ public class RecipesBanners
         {
             ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-            for (int i = 0; i < aitemstack.length; ++i)
+            for (int i = 0; i < aitemstack.length; i++)
             {
                 ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -161,7 +161,7 @@ public class RecipesBanners
                         boolean flag1 = false;
                         boolean flag2 = false;
 
-                        for (int i = 0; i < p_179533_1_.getSizeInventory() && flag; ++i)
+                        for (int i = 0; i < p_179533_1_.getSizeInventory() && flag; i++)
                         {
                             ItemStack itemstack = p_179533_1_.getStackInSlot(i);
 
@@ -199,7 +199,7 @@ public class RecipesBanners
                     {
                         int j = -1;
 
-                        for (int k = 0; k < p_179533_1_.getSizeInventory() && flag; ++k)
+                        for (int k = 0; k < p_179533_1_.getSizeInventory() && flag; k++)
                         {
                             int l = k / 3;
                             int i1 = k % 3;
@@ -261,7 +261,7 @@ public class RecipesBanners
             ItemStack itemstack = null;
             ItemStack itemstack1 = null;
 
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
+            for (int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack itemstack2 = inv.getStackInSlot(i);
 
@@ -324,7 +324,7 @@ public class RecipesBanners
 
         public ItemStack getCraftingResult(InventoryCrafting inv)
         {
-            for (int i = 0; i < inv.getSizeInventory(); ++i)
+            for (int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -353,7 +353,7 @@ public class RecipesBanners
         {
             ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-            for (int i = 0; i < aitemstack.length; ++i)
+            for (int i = 0; i < aitemstack.length; i++)
             {
                 ItemStack itemstack = inv.getStackInSlot(i);
 

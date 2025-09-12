@@ -18,7 +18,7 @@ public class ModelGhast extends ModelBase
         this.body.rotationPointY += (float)(24 + i);
         Random random = new Random(1660L);
 
-        for (int j = 0; j < this.tentacles.length; ++j)
+        for (int j = 0; j < this.tentacles.length; j++)
         {
             this.tentacles[j] = new ModelRenderer(this, 0, 0);
             float f = (((float)(j % 3) - (float)(j / 3 % 2) * 0.5F + 0.25F) / 2.0F * 2.0F - 1.0F) * 5.0F;
@@ -38,7 +38,7 @@ public class ModelGhast extends ModelBase
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        for (int i = 0; i < this.tentacles.length; ++i)
+        for (int i = 0; i < this.tentacles.length; i++)
         {
             this.tentacles[i].rotateAngleX = 0.2F * MathHelper.sin(ageInTicks * 0.3F + (float)i) + 0.4F;
         }

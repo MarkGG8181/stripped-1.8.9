@@ -161,9 +161,9 @@ public abstract class CommandBase implements ICommand
 
     public static boolean parseBoolean(String input) throws CommandException
     {
-        if (!input.equals("true") && !input.equals("1"))
+        if (!"true".equals(input) && !"1".equals(input))
         {
-            if (!input.equals("false") && !input.equals("0"))
+            if (!"false".equals(input) && !"0".equals(input))
             {
                 throw new CommandException("commands.generic.boolean.invalid", new Object[]{input});
             }
@@ -329,7 +329,7 @@ public abstract class CommandBase implements ICommand
     {
         IChatComponent ichatcomponent = new ChatComponentText("");
 
-        for (int i = index; i < args.length; ++i)
+        for (int i = index; i < args.length; i++)
         {
             if (i > index)
             {
@@ -368,7 +368,7 @@ public abstract class CommandBase implements ICommand
     {
         StringBuilder stringbuilder = new StringBuilder();
 
-        for (int i = startPos; i < args.length; ++i)
+        for (int i = startPos; i < args.length; i++)
         {
             if (i > startPos)
             {
@@ -540,7 +540,7 @@ public abstract class CommandBase implements ICommand
     {
         StringBuilder stringbuilder = new StringBuilder();
 
-        for (int i = 0; i < elements.length; ++i)
+        for (int i = 0; i < elements.length; i++)
         {
             String s = elements[i].toString();
 
@@ -566,7 +566,7 @@ public abstract class CommandBase implements ICommand
     {
         IChatComponent ichatcomponent = new ChatComponentText("");
 
-        for (int i = 0; i < components.size(); ++i)
+        for (int i = 0; i < components.size(); i++)
         {
             if (i > 0)
             {

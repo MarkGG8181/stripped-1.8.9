@@ -54,7 +54,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
+            for (int j = position.getY(); j <= position.getY() + 1 + i; j++)
             {
                 int k = 1;
 
@@ -70,9 +70,9 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                for (int l = position.getX() - k; l <= position.getX() + k && flag; l++)
                 {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; i1++)
                     {
                         if (j >= 0 && j < 256)
                         {
@@ -103,16 +103,16 @@ public class WorldGenTrees extends WorldGenAbstractTree
                     int k2 = 3;
                     int l2 = 0;
 
-                    for (int i3 = position.getY() - k2 + i; i3 <= position.getY() + i; ++i3)
+                    for (int i3 = position.getY() - k2 + i; i3 <= position.getY() + i; i3++)
                     {
                         int i4 = i3 - (position.getY() + i);
                         int j1 = l2 + 1 - i4 / 2;
 
-                        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1)
+                        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; k1++)
                         {
                             int l1 = k1 - position.getX();
 
-                            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2)
+                            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; i2++)
                             {
                                 int j2 = i2 - position.getZ();
 
@@ -130,7 +130,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                         }
                     }
 
-                    for (int j3 = 0; j3 < i; ++j3)
+                    for (int j3 = 0; j3 < i; j3++)
                     {
                         Block block2 = worldIn.getBlockState(position.up(j3)).getBlock();
 
@@ -165,15 +165,15 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                     if (this.vinesGrow)
                     {
-                        for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; ++k3)
+                        for (int k3 = position.getY() - 3 + i; k3 <= position.getY() + i; k3++)
                         {
                             int j4 = k3 - (position.getY() + i);
                             int k4 = 2 - j4 / 2;
                             BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
-                            for (int l4 = position.getX() - k4; l4 <= position.getX() + k4; ++l4)
+                            for (int l4 = position.getX() - k4; l4 <= position.getX() + k4; l4++)
                             {
-                                for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; ++i5)
+                                for (int i5 = position.getZ() - k4; i5 <= position.getZ() + k4; i5++)
                                 {
                                     blockpos$mutableblockpos1.set(l4, k3, i5);
 
@@ -210,7 +210,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                         if (rand.nextInt(5) == 0 && i > 5)
                         {
-                            for (int l3 = 0; l3 < 2; ++l3)
+                            for (int l3 = 0; l3 < 2; l3++)
                             {
                                 for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
                                 {
@@ -253,7 +253,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
         this.func_181651_a(p_181650_1_, p_181650_2_, p_181650_3_);
         int i = 4;
 
-        for (p_181650_2_ = p_181650_2_.down(); p_181650_1_.getBlockState(p_181650_2_).getBlock().getMaterial() == Material.air && i > 0; --i)
+        for (p_181650_2_ = p_181650_2_.down(); p_181650_1_.getBlockState(p_181650_2_).getBlock().getMaterial() == Material.air && i > 0; i--)
         {
             this.func_181651_a(p_181650_1_, p_181650_2_, p_181650_3_);
             p_181650_2_ = p_181650_2_.down();

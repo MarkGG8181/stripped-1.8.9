@@ -100,7 +100,7 @@ public class VillageSiege {
                     float f = (float)this.theVillage.getVillageRadius();
                     boolean flag = false;
 
-                    for (int i = 0; i < 10; ++i) {
+                    for (int i = 0; i < 10; i++) {
                         float f1 = this.worldObj.rand.nextFloat() * (float)Math.PI * 2.0F;
                         this.spawnX = blockpos.getX() + (int)((double)(MathHelper.cos(f1) * f) * 0.9D);
                         this.spawnY = blockpos.getY();
@@ -160,7 +160,7 @@ public class VillageSiege {
     }
 
     private Vec3 func_179867_a(BlockPos p_179867_1_) {
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; i++) {
             BlockPos blockpos = p_179867_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
             if (this.theVillage.func_179866_a(blockpos) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, this.worldObj, blockpos)) {

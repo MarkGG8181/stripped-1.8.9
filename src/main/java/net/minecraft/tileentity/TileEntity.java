@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class TileEntity {
     private static final Logger logger = LogManager.getLogger();
-    private static Map<String, Class<? extends TileEntity>> nameToClassMap = new HashMap<>();
-    private static Map<Class<? extends TileEntity>, String> classToNameMap = new HashMap<>();
+    private static final Map<String, Class<? extends TileEntity>> nameToClassMap = new HashMap<>();
+    private static final Map<Class<? extends TileEntity>, String> classToNameMap = new HashMap<>();
 
     /**
      * the instance of the world the tile entity is in.

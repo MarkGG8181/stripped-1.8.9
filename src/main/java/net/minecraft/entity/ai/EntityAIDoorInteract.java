@@ -50,7 +50,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
 
             if (pathentity != null && !pathentity.isFinished() && pathnavigateground.getEnterDoors())
             {
-                for (int i = 0; i < Math.min(pathentity.getCurrentPathIndex() + 2, pathentity.getCurrentPathLength()); ++i)
+                for (int i = 0; i < Math.min(pathentity.getCurrentPathIndex() + 2, pathentity.getCurrentPathLength()); i++)
                 {
                     PathPoint pathpoint = pathentity.getPathPointFromIndex(i);
                     this.doorPosition = new BlockPos(pathpoint.xCoord, pathpoint.yCoord + 1, pathpoint.zCoord);
@@ -66,7 +66,7 @@ public abstract class EntityAIDoorInteract extends EntityAIBase
                     }
                 }
 
-                this.doorPosition = (new BlockPos(this.theEntity)).up();
+                this.doorPosition = new BlockPos(this.theEntity).up();
                 this.doorBlock = this.getBlockDoor(this.doorPosition);
                 return this.doorBlock != null;
             }

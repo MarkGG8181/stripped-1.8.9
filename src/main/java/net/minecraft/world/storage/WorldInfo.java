@@ -108,7 +108,7 @@ public class WorldInfo {
     private double borderCenterX = 0.0D;
     private double borderCenterZ = 0.0D;
     private double borderSize = 6.0E7D;
-    private long borderSizeLerpTime = 0L;
+    private long borderSizeLerpTime;
     private double borderSizeLerpTarget = 0.0D;
     private double borderSafeZone = 5.0D;
     private double borderDamagePerBlock = 0.2D;

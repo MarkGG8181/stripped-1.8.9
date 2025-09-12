@@ -6,7 +6,7 @@ public class WorldType
     public static final WorldType[] worldTypes = new WorldType[16];
 
     /** Default world type. */
-    public static final WorldType DEFAULT = (new WorldType(0, "default", 1)).setVersioned();
+    public static final WorldType DEFAULT = new WorldType(0, "default", 1).setVersioned();
 
     /** Flat world type. */
     public static final WorldType FLAT = new WorldType(1, "flat");
@@ -15,12 +15,12 @@ public class WorldType
     public static final WorldType LARGE_BIOMES = new WorldType(2, "largeBiomes");
 
     /** amplified world type */
-    public static final WorldType AMPLIFIED = (new WorldType(3, "amplified")).setNotificationData();
+    public static final WorldType AMPLIFIED = new WorldType(3, "amplified").setNotificationData();
     public static final WorldType CUSTOMIZED = new WorldType(4, "customized");
     public static final WorldType DEBUG_WORLD = new WorldType(5, "debug_all_block_states");
 
     /** Default (1.1) world type. */
-    public static final WorldType DEFAULT_1_1 = (new WorldType(8, "default_1_1", 0)).setCanBeCreated(false);
+    public static final WorldType DEFAULT_1_1 = new WorldType(8, "default_1_1", 0).setCanBeCreated(false);
 
     /** ID for this world type. */
     private final int worldTypeId;
@@ -122,7 +122,7 @@ public class WorldType
 
     public static WorldType parseWorldType(String type)
     {
-        for (int i = 0; i < worldTypes.length; ++i)
+        for (int i = 0; i < worldTypes.length; i++)
         {
             if (worldTypes[i] != null && worldTypes[i].worldType.equalsIgnoreCase(type))
             {

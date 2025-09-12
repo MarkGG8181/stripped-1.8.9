@@ -33,7 +33,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
     /**
      * Counts the number of screen updates.
      */
-    private float updateCounter;
+    private final float updateCounter;
 
     /**
      * Timer used to rotate the panorama, increases every tick.
@@ -44,7 +44,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
      * Texture allocated for the current viewport of the main menu's panorama background.
      */
     private DynamicTexture viewportTexture;
-    private boolean mcoEnabled = true;
+    private final boolean mcoEnabled = true;
 
     /**
      * The Object object utilized as a thread lock when performing non thread-safe operations
@@ -216,7 +216,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         int i = 8;
 
-        for (int j = 0; j < i * i; ++j) {
+        for (int j = 0; j < i * i; j++) {
             GlStateManager.pushMatrix();
             float f = ((float)(j % i) / (float)i - 0.5F) / 64.0F;
             float f1 = ((float)(j / i) / (float)i - 0.5F) / 64.0F;
@@ -225,7 +225,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
             GlStateManager.rotate(MathHelper.sin(((float)this.panoramaTimer + p_73970_3_) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(-((float)this.panoramaTimer + p_73970_3_) * 0.1F, 0.0F, 1.0F, 0.0F);
 
-            for (int k = 0; k < 6; ++k) {
+            for (int k = 0; k < 6; k++) {
                 GlStateManager.pushMatrix();
 
                 if (k == 1) {
@@ -292,7 +292,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         GlStateManager.disableAlpha();
         int i = 3;
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             float f = 1.0F / (float)(j + 1);
             int k = this.width;
             int l = this.height;

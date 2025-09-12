@@ -67,13 +67,13 @@ public class WorldRenderer {
         int i = this.vertexCount / 4;
         final float[] afloat = new float[i];
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             afloat[j] = getDistanceSq(this.rawFloatBuffer, (float)((double)p_181674_1_ + this.xOffset), (float)((double)p_181674_2_ + this.yOffset), (float)((double)p_181674_3_ + this.zOffset), this.vertexFormat.getIntegerSize(), j * this.vertexFormat.getNextOffset());
         }
 
         Integer[] ainteger = new Integer[i];
 
-        for (int k = 0; k < ainteger.length; ++k) {
+        for (int k = 0; k < ainteger.length; k++) {
             ainteger[k] = Integer.valueOf(k);
         }
 
@@ -86,7 +86,7 @@ public class WorldRenderer {
         int l = this.vertexFormat.getNextOffset();
         int[] aint = new int[l];
 
-        for (int l1 = 0; (l1 = bitset.nextClearBit(l1)) < ainteger.length; ++l1) {
+        for (int l1 = 0; (l1 = bitset.nextClearBit(l1)) < ainteger.length; l1++) {
             int i1 = ainteger[l1].intValue();
 
             if (i1 != l1) {
@@ -253,7 +253,7 @@ public class WorldRenderer {
         int i = this.vertexFormat.getIntegerSize();
         int j = (this.vertexCount - 4) * i;
 
-        for (int k = 0; k < 4; ++k) {
+        for (int k = 0; k < 4; k++) {
             int l = j + k * i;
             int i1 = l + 1;
             int j1 = i1 + 1;
@@ -526,13 +526,13 @@ public class WorldRenderer {
     }
 
     public void putColor4(int argb) {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; i++) {
             this.putColor(argb, i + 1);
         }
     }
 
     public void putColorRGB_F4(float red, float green, float blue) {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; i++) {
             this.putColorRGB_F(red, green, blue, i + 1);
         }
     }

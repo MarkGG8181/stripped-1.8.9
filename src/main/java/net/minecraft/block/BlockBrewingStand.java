@@ -183,7 +183,7 @@ public class BlockBrewingStand extends BlockContainer
     {
         IBlockState iblockstate = this.getDefaultState();
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             iblockstate = iblockstate.withProperty(HAS_BOTTLE[i], Boolean.valueOf((meta & 1 << i) > 0));
         }
@@ -198,7 +198,7 @@ public class BlockBrewingStand extends BlockContainer
     {
         int i = 0;
 
-        for (int j = 0; j < 3; ++j)
+        for (int j = 0; j < 3; j++)
         {
             if (((Boolean)state.getValue(HAS_BOTTLE[j])).booleanValue())
             {

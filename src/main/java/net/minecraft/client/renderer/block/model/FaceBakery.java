@@ -13,7 +13,7 @@ import org.lwjgl.util.vector.Vector4f;
 public class FaceBakery
 {
     private static final float SCALE_ROTATION_22_5 = 1.0F / (float)Math.cos(0.39269909262657166D) - 1.0F;
-    private static final float SCALE_ROTATION_GENERAL = 1.0F / (float)Math.cos((Math.PI / 4D)) - 1.0F;
+    private static final float SCALE_ROTATION_GENERAL = 1.0F / (float)Math.cos(Math.PI / 4D) - 1.0F;
 
     public BakedQuad makeBakedQuad(Vector3f posFrom, Vector3f posTo, BlockPartFace face, TextureAtlasSprite sprite, EnumFacing facing, ModelRotation modelRotationIn, BlockPartRotation partRotation, boolean uvLocked, boolean shade)
     {
@@ -37,7 +37,7 @@ public class FaceBakery
     {
         int[] aint = new int[28];
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.fillVertexData(aint, i, facing, partFace, p_178405_4_, sprite, modelRotationIn, partRotation, uvLocked, shade);
         }
@@ -228,7 +228,7 @@ public class FaceBakery
 
     public void lockUv(int[] p_178409_1_, EnumFacing facing, BlockFaceUV p_178409_3_, TextureAtlasSprite p_178409_4_)
     {
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.lockVertexUv(i, p_178409_1_, facing, p_178409_3_, p_178409_4_);
         }
@@ -246,7 +246,7 @@ public class FaceBakery
         afloat[EnumFaceDirection.Constants.UP_INDEX] = -999.0F;
         afloat[EnumFaceDirection.Constants.SOUTH_INDEX] = -999.0F;
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             int j = 7 * i;
             float f = Float.intBitsToFloat(aint[j]);
@@ -286,7 +286,7 @@ public class FaceBakery
 
         EnumFaceDirection enumfacedirection = EnumFaceDirection.getFacing(p_178408_2_);
 
-        for (int i1 = 0; i1 < 4; ++i1)
+        for (int i1 = 0; i1 < 4; i1++)
         {
             int j1 = 7 * i1;
             EnumFaceDirection.VertexInformation enumfacedirection$vertexinformation = enumfacedirection.getVertexInformation(i1);
@@ -297,7 +297,7 @@ public class FaceBakery
             p_178408_1_[j1 + 1] = Float.floatToRawIntBits(f3);
             p_178408_1_[j1 + 2] = Float.floatToRawIntBits(f4);
 
-            for (int k = 0; k < 4; ++k)
+            for (int k = 0; k < 4; k++)
             {
                 int l = 7 * k;
                 float f5 = Float.intBitsToFloat(aint[l]);

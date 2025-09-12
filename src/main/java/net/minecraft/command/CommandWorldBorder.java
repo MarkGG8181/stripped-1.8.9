@@ -46,7 +46,7 @@ public class CommandWorldBorder extends CommandBase
         {
             WorldBorder worldborder = this.getWorldBorder();
 
-            if (args[0].equals("set"))
+            if ("set".equals(args[0]))
             {
                 if (args.length != 2 && args.length != 3)
                 {
@@ -76,7 +76,7 @@ public class CommandWorldBorder extends CommandBase
                     notifyOperators(sender, this, "commands.worldborder.set.success", new Object[]{"%.1f".formatted(new Object[]{Double.valueOf(d2)}), "%.1f".formatted(new Object[]{Double.valueOf(d0)})});
                 }
             }
-            else if (args[0].equals("add"))
+            else if ("add".equals(args[0]))
             {
                 if (args.length != 2 && args.length != 3)
                 {
@@ -106,7 +106,7 @@ public class CommandWorldBorder extends CommandBase
                     notifyOperators(sender, this, "commands.worldborder.set.success", new Object[]{"%.1f".formatted(new Object[]{Double.valueOf(d8)}), "%.1f".formatted(new Object[]{Double.valueOf(d4)})});
                 }
             }
-            else if (args[0].equals("center"))
+            else if ("center".equals(args[0]))
             {
                 if (args.length != 3)
                 {
@@ -119,14 +119,14 @@ public class CommandWorldBorder extends CommandBase
                 worldborder.setCenter(d1, d3);
                 notifyOperators(sender, this, "commands.worldborder.center.success", new Object[]{Double.valueOf(d1), Double.valueOf(d3)});
             }
-            else if (args[0].equals("damage"))
+            else if ("damage".equals(args[0]))
             {
                 if (args.length < 2)
                 {
                     throw new WrongUsageException("commands.worldborder.damage.usage", new Object[0]);
                 }
 
-                if (args[1].equals("buffer"))
+                if ("buffer".equals(args[1]))
                 {
                     if (args.length != 3)
                     {
@@ -138,7 +138,7 @@ public class CommandWorldBorder extends CommandBase
                     worldborder.setDamageBuffer(d5);
                     notifyOperators(sender, this, "commands.worldborder.damage.buffer.success", new Object[]{"%.1f".formatted(new Object[]{Double.valueOf(d5)}), "%.1f".formatted(new Object[]{Double.valueOf(d9)})});
                 }
-                else if (args[1].equals("amount"))
+                else if ("amount".equals(args[1]))
                 {
                     if (args.length != 3)
                     {
@@ -151,7 +151,7 @@ public class CommandWorldBorder extends CommandBase
                     notifyOperators(sender, this, "commands.worldborder.damage.amount.success", new Object[]{"%.2f".formatted(new Object[]{Double.valueOf(d6)}), "%.2f".formatted(new Object[]{Double.valueOf(d10)})});
                 }
             }
-            else if (args[0].equals("warning"))
+            else if ("warning".equals(args[0]))
             {
                 if (args.length < 2)
                 {
@@ -160,7 +160,7 @@ public class CommandWorldBorder extends CommandBase
 
                 int j = parseInt(args[2], 0);
 
-                if (args[1].equals("time"))
+                if ("time".equals(args[1]))
                 {
                     if (args.length != 3)
                     {
@@ -171,7 +171,7 @@ public class CommandWorldBorder extends CommandBase
                     worldborder.setWarningTime(j);
                     notifyOperators(sender, this, "commands.worldborder.warning.time.success", new Object[]{Integer.valueOf(j), Integer.valueOf(k)});
                 }
-                else if (args[1].equals("distance"))
+                else if ("distance".equals(args[1]))
                 {
                     if (args.length != 3)
                     {
@@ -185,7 +185,7 @@ public class CommandWorldBorder extends CommandBase
             }
             else
             {
-                if (!args[0].equals("get"))
+                if (!"get".equals(args[0]))
                 {
                     throw new WrongUsageException("commands.worldborder.usage", new Object[0]);
                 }
@@ -204,6 +204,6 @@ public class CommandWorldBorder extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"set", "center", "damage", "warning", "add", "get"}) : (args.length == 2 && args[0].equals("damage") ? getListOfStringsMatchingLastWord(args, new String[]{"buffer", "amount"}) : (args.length >= 2 && args.length <= 3 && args[0].equals("center") ? func_181043_b(args, 1, pos) : (args.length == 2 && args[0].equals("warning") ? getListOfStringsMatchingLastWord(args, new String[]{"time", "distance"}) : null)));
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"set", "center", "damage", "warning", "add", "get"}) : (args.length == 2 && "damage".equals(args[0]) ? getListOfStringsMatchingLastWord(args, new String[]{"buffer", "amount"}) : (args.length >= 2 && args.length <= 3 && "center".equals(args[0]) ? func_181043_b(args, 1, pos) : (args.length == 2 && "warning".equals(args[0]) ? getListOfStringsMatchingLastWord(args, new String[]{"time", "distance"}) : null)));
     }
 }

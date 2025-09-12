@@ -316,7 +316,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
             astring = new String[0];
         }
 
-        for (int i = 0; i < astring.length; ++i)
+        for (int i = 0; i < astring.length; i++)
         {
             if (astring[i].endsWith(".dat"))
             {

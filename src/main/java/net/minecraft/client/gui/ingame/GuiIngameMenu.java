@@ -46,24 +46,6 @@ public class GuiIngameMenu extends GuiScreen {
                 this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
                 break;
 
-            case 1:
-                boolean flag = this.mc.isIntegratedServerRunning();
-                button.enabled = false;
-                this.mc.theWorld.sendQuittingDisconnectingPacket();
-                this.mc.loadWorld((WorldClient)null);
-
-                if (flag) {
-                    this.mc.displayGuiScreen(new GuiMainMenu());
-                }
-                else {
-                    this.mc.displayGuiScreen(new GuiMultiplayer(new GuiMainMenu()));
-                }
-
-            case 2:
-            case 3:
-            default:
-                break;
-
             case 4:
                 this.mc.displayGuiScreen((GuiScreen)null);
                 this.mc.setIngameFocus();
@@ -79,6 +61,25 @@ public class GuiIngameMenu extends GuiScreen {
 
             case 7:
                 this.mc.displayGuiScreen(new GuiShareToLan(this));
+                break;
+
+            case 1:
+                boolean flag = this.mc.isIntegratedServerRunning();
+                button.enabled = false;
+                this.mc.theWorld.sendQuittingDisconnectingPacket();
+                this.mc.loadWorld((WorldClient)null);
+
+                if (flag) {
+                    this.mc.displayGuiScreen(new GuiMainMenu());
+                }
+                else {
+                    this.mc.displayGuiScreen(new GuiMultiplayer(new GuiMainMenu()));
+                }
+                break;
+
+            case 2:
+            case 3:
+            default:
         }
     }
 

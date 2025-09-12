@@ -4,8 +4,8 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class GenLayerRiverMix extends GenLayer
 {
-    private GenLayer biomePatternGeneratorChain;
-    private GenLayer riverPatternGeneratorChain;
+    private final GenLayer biomePatternGeneratorChain;
+    private final GenLayer riverPatternGeneratorChain;
 
     public GenLayerRiverMix(long p_i2129_1_, GenLayer p_i2129_3_, GenLayer p_i2129_4_)
     {
@@ -35,7 +35,7 @@ public class GenLayerRiverMix extends GenLayer
         int[] aint1 = this.riverPatternGeneratorChain.getInts(areaX, areaY, areaWidth, areaHeight);
         int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i = 0; i < areaWidth * areaHeight; ++i)
+        for (int i = 0; i < areaWidth * areaHeight; i++)
         {
             if (aint[i] != BiomeGenBase.ocean.biomeID && aint[i] != BiomeGenBase.deepOcean.biomeID)
             {

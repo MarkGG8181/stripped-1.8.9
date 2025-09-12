@@ -11,7 +11,7 @@ public abstract class ModelBase
     public boolean isRiding;
     public boolean isChild = true;
     public List<ModelRenderer> boxList = new ArrayList<>();
-    private Map<String, TextureOffset> modelTextureMap = new HashMap<>();
+    private final Map<String, TextureOffset> modelTextureMap = new HashMap<>();
     public int textureWidth = 64;
     public int textureHeight = 32;
 

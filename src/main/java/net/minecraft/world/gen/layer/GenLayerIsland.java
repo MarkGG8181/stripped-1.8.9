@@ -15,9 +15,9 @@ public class GenLayerIsland extends GenLayer
     {
         int[] aint = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int i = 0; i < areaHeight; i++)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int j = 0; j < areaWidth; j++)
             {
                 this.initChunkSeed((long)(areaX + j), (long)(areaY + i));
                 aint[j + i * areaWidth] = this.nextInt(10) == 0 ? 1 : 0;

@@ -43,7 +43,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
                 worldIn.setBlockState(blockpos, Blocks.fire.getDefaultState());
             }
 
-            for (int i = 0; i < 4; ++i)
+            for (int i = 0; i < 4; i++)
             {
                 BlockPos blockpos1 = blockpos.add(this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1, this.rand.nextInt(3) - 1);
 
@@ -101,7 +101,7 @@ public class EntityLightningBolt extends EntityWeatherEffect
                 double d0 = 3.0D;
                 List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0D + d0, this.posZ + d0));
 
-                for (int i = 0; i < list.size(); ++i)
+                for (int i = 0; i < list.size(); i++)
                 {
                     Entity entity = (Entity)list.get(i);
                     entity.onStruckByLightning(this);

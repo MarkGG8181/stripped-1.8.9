@@ -46,7 +46,7 @@ public class WorldGenBlockBlob extends WorldGenerator
 
                 int i1 = this.startRadius;
 
-                for (int i = 0; i1 >= 0 && i < 3; ++i)
+                for (int i = 0; i1 >= 0 && i < 3; i++)
                 {
                     int j = i1 + rand.nextInt(2);
                     int k = i1 + rand.nextInt(2);

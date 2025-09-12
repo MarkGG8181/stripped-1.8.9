@@ -75,7 +75,7 @@ public class IntegratedServer extends MinecraftServer {
             worldinfo.setWorldName(worldNameIn);
         }
 
-        for (int i = 0; i < this.worldServers.length; ++i) {
+        for (int i = 0; i < this.worldServers.length; i++) {
             int j = 0;
 
             if (i == 1) {
@@ -87,11 +87,11 @@ public class IntegratedServer extends MinecraftServer {
             }
 
             if (i == 0) {
-                this.worldServers[i] = (WorldServer)(new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)new WorldServer(this, isavehandler, worldinfo, j, this.theProfiler).init();
                 this.worldServers[i].initialize(this.theWorldSettings);
             }
             else {
-                this.worldServers[i] = (WorldServer)(new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler)).init();
+                this.worldServers[i] = (WorldServer)new WorldServerMulti(this, isavehandler, j, this.worldServers[0], this.theProfiler).init();
             }
 
             this.worldServers[i].addWorldAccess(new WorldManager(this, this.worldServers[i]));

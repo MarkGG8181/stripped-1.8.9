@@ -10,7 +10,7 @@ public class EntityHugeExplodeFX extends EntityFX
     private int timeSinceStart;
 
     /** the maximum time for the explosion */
-    private int maximumTime = 8;
+    private final int maximumTime = 8;
 
     protected EntityHugeExplodeFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn, double p_i1214_8_, double p_i1214_10_, double p_i1214_12_)
     {
@@ -29,7 +29,7 @@ public class EntityHugeExplodeFX extends EntityFX
      */
     public void onUpdate()
     {
-        for (int i = 0; i < 6; ++i)
+        for (int i = 0; i < 6; i++)
         {
             double d0 = this.posX + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;
             double d1 = this.posY + (this.rand.nextDouble() - this.rand.nextDouble()) * 4.0D;

@@ -26,8 +26,8 @@ import net.minecraft.world.gen.structure.StructureOceanMonument;
 
 public class ChunkProviderFlat implements IChunkProvider
 {
-    private World worldObj;
-    private Random random;
+    private final World worldObj;
+    private final Random random;
     private final IBlockState[] cachedBlockIDs = new IBlockState[256];
     private final FlatGeneratorInfo flatWorldGenInfo;
     private final List<MapGenStructure> structureGenerators = new ArrayList<>();
@@ -96,7 +96,7 @@ public class ChunkProviderFlat implements IChunkProvider
 
         for (FlatLayerInfo flatlayerinfo : this.flatWorldGenInfo.getFlatLayers())
         {
-            for (int i = flatlayerinfo.getMinY(); i < flatlayerinfo.getMinY() + flatlayerinfo.getLayerCount(); ++i)
+            for (int i = flatlayerinfo.getMinY(); i < flatlayerinfo.getMinY() + flatlayerinfo.getLayerCount(); i++)
             {
                 IBlockState iblockstate = flatlayerinfo.getLayerMaterial();
 
@@ -130,15 +130,15 @@ public class ChunkProviderFlat implements IChunkProvider
     {
         ChunkPrimer chunkprimer = new ChunkPrimer();
 
-        for (int i = 0; i < this.cachedBlockIDs.length; ++i)
+        for (int i = 0; i < this.cachedBlockIDs.length; i++)
         {
             IBlockState iblockstate = this.cachedBlockIDs[i];
 
             if (iblockstate != null)
             {
-                for (int j = 0; j < 16; ++j)
+                for (int j = 0; j < 16; j++)
                 {
-                    for (int k = 0; k < 16; ++k)
+                    for (int k = 0; k < 16; k++)
                     {
                         chunkprimer.setBlockState(j, i, k, iblockstate);
                     }
@@ -155,7 +155,7 @@ public class ChunkProviderFlat implements IChunkProvider
         BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int l = 0; l < abyte.length; ++l)
+        for (int l = 0; l < abyte.length; l++)
         {
             abyte[l] = (byte)abiomegenbase[l].biomeID;
         }
@@ -215,9 +215,9 @@ public class ChunkProviderFlat implements IChunkProvider
 
         if (this.hasDungeons)
         {
-            for (int i1 = 0; i1 < 8; ++i1)
+            for (int i1 = 0; i1 < 8; i1++)
             {
-                (new WorldGenDungeons()).generate(this.worldObj, this.random, blockpos.add(this.random.nextInt(16) + 8, this.random.nextInt(256), this.random.nextInt(16) + 8));
+                new WorldGenDungeons().generate(this.worldObj, this.random, blockpos.add(this.random.nextInt(16) + 8, this.random.nextInt(256), this.random.nextInt(16) + 8));
             }
         }
 

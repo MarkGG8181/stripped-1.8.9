@@ -29,7 +29,7 @@ public class NoiseGeneratorSimplex
         {
         }
 
-        for (int l = 0; l < 256; ++l)
+        for (int l = 0; l < 256; l++)
         {
             int j = p_i45471_1_.nextInt(256 - l) + l;
             int k = this.p[l];
@@ -130,11 +130,11 @@ public class NoiseGeneratorSimplex
     {
         int i = 0;
 
-        for (int j = 0; j < p_151606_7_; ++j)
+        for (int j = 0; j < p_151606_7_; j++)
         {
             double d0 = (p_151606_4_ + (double)j) * p_151606_10_ + this.yo;
 
-            for (int k = 0; k < p_151606_6_; ++k)
+            for (int k = 0; k < p_151606_6_; k++)
             {
                 double d1 = (p_151606_2_ + (double)k) * p_151606_8_ + this.xo;
                 double d5 = (d1 + d0) * F2;

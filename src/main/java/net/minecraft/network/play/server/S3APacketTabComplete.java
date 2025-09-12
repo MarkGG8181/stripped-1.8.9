@@ -25,7 +25,7 @@ public class S3APacketTabComplete implements Packet<INetHandlerPlayClient>
     {
         this.matches = new String[buf.readVarIntFromBuffer()];
 
-        for (int i = 0; i < this.matches.length; ++i)
+        for (int i = 0; i < this.matches.length; i++)
         {
             this.matches[i] = buf.readStringFromBuffer(32767);
         }

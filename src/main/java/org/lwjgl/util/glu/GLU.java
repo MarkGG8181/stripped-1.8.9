@@ -417,4 +417,7 @@ public class GLU {
             default -> Util.translateGLErrorString(error_code);
         };
     }
+
+    private GLU() {
+    }
 }

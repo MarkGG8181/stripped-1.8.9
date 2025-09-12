@@ -27,10 +27,14 @@ public class TextureFix {
 
         manager.registerReloadListener(resourceManager -> {
             TextureMap textureMap = mc.getTextureMapBlocks();
-            if (textureMap == null) return;
+            if (textureMap == null) {
+                return;
+            }
 
             Map<String, TextureAtlasSprite> spriteMap = getData(textureMap);
-            if (spriteMap == null) return;
+            if (spriteMap == null) {
+                return;
+            }
 
             long savedBytes = 0L;
             int fixedCount = 0;

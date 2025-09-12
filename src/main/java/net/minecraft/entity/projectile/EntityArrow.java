@@ -235,7 +235,7 @@ public class EntityArrow extends Entity implements IProjectile {
             for (Entity value : entities) {
                 if (value.canBeCollidedWith() && (value != this.shootingEntity || this.ticksInAir >= 5)) {
                     float f1 = 0.3F;
-                    AxisAlignedBB axisalignedbb1 = (value).getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
+                    AxisAlignedBB axisalignedbb1 = value.getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
                     MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null) {
@@ -349,7 +349,7 @@ public class EntityArrow extends Entity implements IProjectile {
             }
 
             if (this.getIsCritical()) {
-                for (int k = 0; k < 4; ++k) {
+                for (int k = 0; k < 4; k++) {
                     this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
                 }
             }
@@ -381,7 +381,7 @@ public class EntityArrow extends Entity implements IProjectile {
             float f6 = 0.05F;
 
             if (this.isInWater()) {
-                for (int i1 = 0; i1 < 4; ++i1) {
+                for (int i1 = 0; i1 < 4; i1++) {
                     float f8 = 0.25F;
                     this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f8, this.posY - this.motionY * (double)f8, this.posZ - this.motionZ * (double)f8, this.motionX, this.motionY, this.motionZ, new int[0]);
                 }

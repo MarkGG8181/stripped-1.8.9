@@ -61,8 +61,8 @@ public class GuiScreenBook extends GuiScreen {
      * Update ticks since the gui was opened
      */
     private int updateCount;
-    private int bookImageWidth = 192;
-    private int bookImageHeight = 192;
+    private final int bookImageWidth = 192;
+    private final int bookImageHeight = 192;
     private int bookTotalPages = 1;
     private int currPage;
     private NBTTagList bookPages;
@@ -187,7 +187,7 @@ public class GuiScreenBook extends GuiScreen {
                     this.bookObj.setTagInfo("author", new NBTTagString(this.editingPlayer.getName()));
                     this.bookObj.setTagInfo("title", new NBTTagString(this.bookTitle.trim()));
 
-                    for (int i = 0; i < this.bookPages.tagCount(); ++i) {
+                    for (int i = 0; i < this.bookPages.tagCount(); i++) {
                         String s1 = this.bookPages.getStringTagAt(i);
                         IChatComponent ichatcomponent = new ChatComponentText(s1);
                         s1 = IChatComponent.Serializer.componentToJson(ichatcomponent);
@@ -437,7 +437,7 @@ public class GuiScreenBook extends GuiScreen {
             else {
                 int k1 = Math.min(128 / this.fontRendererObj.FONT_HEIGHT, this.cachedComponents.size());
 
-                for (int l1 = 0; l1 < k1; ++l1) {
+                for (int l1 = 0; l1 < k1; l1++) {
                     IChatComponent ichatcomponent2 = (IChatComponent)this.cachedComponents.get(l1);
                     this.fontRendererObj.drawString(ichatcomponent2.getUnformattedText(), i + 36, j + 16 + 16 + l1 * this.fontRendererObj.FONT_HEIGHT, 0);
                 }

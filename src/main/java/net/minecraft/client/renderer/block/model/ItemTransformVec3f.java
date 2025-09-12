@@ -90,7 +90,7 @@ public class ItemTransformVec3f
                 {
                     float[] afloat = new float[3];
 
-                    for (int i = 0; i < afloat.length; ++i)
+                    for (int i = 0; i < afloat.length; i++)
                     {
                         afloat[i] = JsonUtils.getFloat(jsonarray.get(i), key + "[" + i + "]");
                     }

@@ -67,7 +67,7 @@ public class S2APacketParticles implements Packet<INetHandlerPlayClient>
         int i = this.particleType.getArgumentCount();
         this.particleArguments = new int[i];
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.particleArguments[j] = buf.readVarIntFromBuffer();
         }
@@ -90,7 +90,7 @@ public class S2APacketParticles implements Packet<INetHandlerPlayClient>
         buf.writeInt(this.particleCount);
         int i = this.particleType.getArgumentCount();
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             buf.writeVarIntToBuffer(this.particleArguments[j]);
         }

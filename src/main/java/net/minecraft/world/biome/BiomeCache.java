@@ -58,7 +58,7 @@ public class BiomeCache {
         if (j > 7500L || j < 0L) {
             this.lastCleanupTime = i;
 
-            for (int k = 0; k < this.cache.size(); ++k) {
+            for (int k = 0; k < this.cache.size(); k++) {
                 BiomeCache.Block biomecache$block = this.cache.get(k);
                 long l = i - biomecache$block.lastAccessTime;
 

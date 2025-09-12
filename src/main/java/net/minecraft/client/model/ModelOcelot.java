@@ -121,7 +121,7 @@ public class ModelOcelot extends ModelBase
 
         if (this.state != 3)
         {
-            this.ocelotBody.rotateAngleX = ((float)Math.PI / 2F);
+            this.ocelotBody.rotateAngleX = (float)Math.PI / 2F;
 
             if (this.state == 2)
             {
@@ -178,21 +178,21 @@ public class ModelOcelot extends ModelBase
             ++this.ocelotTail.rotationPointY;
             this.ocelotTail2.rotationPointY += -4.0F;
             this.ocelotTail2.rotationPointZ += 2.0F;
-            this.ocelotTail.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail2.rotateAngleX = ((float)Math.PI / 2F);
+            this.ocelotTail.rotateAngleX = (float)Math.PI / 2F;
+            this.ocelotTail2.rotateAngleX = (float)Math.PI / 2F;
             this.state = 0;
         }
         else if (entityocelot.isSprinting())
         {
             this.ocelotTail2.rotationPointY = this.ocelotTail.rotationPointY;
             this.ocelotTail2.rotationPointZ += 2.0F;
-            this.ocelotTail.rotateAngleX = ((float)Math.PI / 2F);
-            this.ocelotTail2.rotateAngleX = ((float)Math.PI / 2F);
+            this.ocelotTail.rotateAngleX = (float)Math.PI / 2F;
+            this.ocelotTail2.rotateAngleX = (float)Math.PI / 2F;
             this.state = 2;
         }
         else if (entityocelot.isSitting())
         {
-            this.ocelotBody.rotateAngleX = ((float)Math.PI / 4F);
+            this.ocelotBody.rotateAngleX = (float)Math.PI / 4F;
             this.ocelotBody.rotationPointY += -4.0F;
             this.ocelotBody.rotationPointZ += 5.0F;
             this.ocelotHead.rotationPointY += -3.3F;

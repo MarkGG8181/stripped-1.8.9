@@ -145,7 +145,7 @@ public class BlockTripWire extends Block
     {
         for (EnumFacing enumfacing : new EnumFacing[]{EnumFacing.SOUTH, EnumFacing.WEST})
         {
-            for (int i = 1; i < 42; ++i)
+            for (int i = 1; i < 42; i++)
             {
                 BlockPos blockpos = pos.offset(enumfacing, i);
                 IBlockState iblockstate = worldIn.getBlockState(blockpos);

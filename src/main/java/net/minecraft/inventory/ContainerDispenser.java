@@ -5,29 +5,29 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerDispenser extends Container
 {
-    private IInventory dispenserInventory;
+    private final IInventory dispenserInventory;
 
     public ContainerDispenser(IInventory playerInventory, IInventory dispenserInventoryIn)
     {
         this.dispenserInventory = dispenserInventoryIn;
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 3; ++j)
+            for (int j = 0; j < 3; j++)
             {
                 this.addSlotToContainer(new Slot(dispenserInventoryIn, j + i * 3, 62 + j * 18, 17 + i * 18));
             }
         }
 
-        for (int k = 0; k < 3; ++k)
+        for (int k = 0; k < 3; k++)
         {
-            for (int i1 = 0; i1 < 9; ++i1)
+            for (int i1 = 0; i1 < 9; i1++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, i1 + k * 9 + 9, 8 + i1 * 18, 84 + k * 18));
             }
         }
 
-        for (int l = 0; l < 9; ++l)
+        for (int l = 0; l < 9; l++)
         {
             this.addSlotToContainer(new Slot(playerInventory, l, 8 + l * 18, 142));
         }

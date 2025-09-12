@@ -213,7 +213,7 @@ public class RenderItem implements IResourceManagerReloadListener
         boolean flag = color == -1 && stack != null;
         int i = 0;
 
-        for (int j = quads.size(); i < j; ++i)
+        for (int j = quads.size(); i < j; i++)
         {
             BakedQuad bakedquad = (BakedQuad)quads.get(i);
             int k = color;

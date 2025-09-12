@@ -152,7 +152,7 @@ public abstract class BlockRailBase extends Block
 
     protected IBlockState func_176564_a(World worldIn, BlockPos p_176564_2_, IBlockState p_176564_3_, boolean p_176564_4_)
     {
-        return worldIn.isRemote ? p_176564_3_ : (new BlockRailBase.Rail(worldIn, p_176564_2_, p_176564_3_)).func_180364_a(worldIn.isBlockPowered(p_176564_2_), p_176564_4_).getBlockState();
+        return worldIn.isRemote ? p_176564_3_ : new BlockRailBase.Rail(worldIn, p_176564_2_, p_176564_3_).func_180364_a(worldIn.isBlockPowered(p_176564_2_), p_176564_4_).getBlockState();
     }
 
     public int getMobilityFlag()
@@ -323,7 +323,7 @@ public abstract class BlockRailBase extends Block
 
         private void func_150651_b()
         {
-            for (int i = 0; i < this.connectedRails.size(); ++i)
+            for (int i = 0; i < this.connectedRails.size(); i++)
             {
                 BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.connectedRails.get(i));
 
@@ -376,7 +376,7 @@ public abstract class BlockRailBase extends Block
 
         private boolean func_180363_c(BlockPos p_180363_1_)
         {
-            for (int i = 0; i < this.connectedRails.size(); ++i)
+            for (int i = 0; i < this.connectedRails.size(); i++)
             {
                 BlockPos blockpos = (BlockPos)this.connectedRails.get(i);
 
@@ -649,7 +649,7 @@ public abstract class BlockRailBase extends Block
             {
                 this.world.setBlockState(this.pos, this.state, 3);
 
-                for (int i = 0; i < this.connectedRails.size(); ++i)
+                for (int i = 0; i < this.connectedRails.size(); i++)
                 {
                     BlockRailBase.Rail blockrailbase$rail = this.findRailAt((BlockPos)this.connectedRails.get(i));
 

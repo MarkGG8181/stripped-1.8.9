@@ -54,7 +54,7 @@ public abstract class MobSpawnerBaseLogic
     {
         if (this.getRandomEntity() == null)
         {
-            if (this.mobID != null && this.mobID.equals("Minecart"))
+            if ("Minecart".equals(this.mobID))
             {
                 this.mobID = "MinecartRideable";
             }
@@ -118,7 +118,7 @@ public abstract class MobSpawnerBaseLogic
 
                 boolean flag = false;
 
-                for (int i = 0; i < this.spawnCount; ++i)
+                for (int i = 0; i < this.spawnCount; i++)
                 {
                     Entity entity = EntityList.createEntityByName(this.getEntityNameToSpawn(), this.getSpawnerWorld());
 
@@ -127,7 +127,7 @@ public abstract class MobSpawnerBaseLogic
                         return;
                     }
 
-                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(entity.getClass(), (new AxisAlignedBB((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), (double)(blockpos.getX() + 1), (double)(blockpos.getY() + 1), (double)(blockpos.getZ() + 1))).expand((double)this.spawnRange, (double)this.spawnRange, (double)this.spawnRange)).size();
+                    int j = this.getSpawnerWorld().getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), (double)(blockpos.getX() + 1), (double)(blockpos.getY() + 1), (double)(blockpos.getZ() + 1)).expand((double)this.spawnRange, (double)this.spawnRange, (double)this.spawnRange)).size();
 
                     if (j >= this.maxNearbyEntities)
                     {
@@ -258,7 +258,7 @@ public abstract class MobSpawnerBaseLogic
         {
             NBTTagList nbttaglist = nbt.getTagList("SpawnPotentials", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 this.minecartToSpawn.add(new MobSpawnerBaseLogic.WeightedRandomMinecart(nbttaglist.getCompoundTagAt(i)));
             }
@@ -415,7 +415,7 @@ public abstract class MobSpawnerBaseLogic
         {
             super(weight);
 
-            if (type.equals("Minecart"))
+            if ("Minecart".equals(type))
             {
                 if (tagCompound != null)
                 {

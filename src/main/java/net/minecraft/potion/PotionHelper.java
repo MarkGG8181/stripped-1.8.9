@@ -78,7 +78,7 @@ public class PotionHelper
                 {
                     int j = Potion.potionTypes[potioneffect.getPotionID()].getLiquidColor();
 
-                    for (int k = 0; k <= potioneffect.getAmplifier(); ++k)
+                    for (int k = 0; k <= potioneffect.getAmplifier(); k++)
                     {
                         f += (float)(j >> 16 & 255) / 255.0F;
                         f1 += (float)(j >> 8 & 255) / 255.0F;
@@ -205,7 +205,7 @@ public class PotionHelper
     {
         int i;
 
-        for (i = 0; p_77907_0_ > 0; ++i)
+        for (i = 0; p_77907_0_ > 0; i++)
         {
             p_77907_0_ &= p_77907_0_ - 1;
         }
@@ -263,7 +263,7 @@ public class PotionHelper
                     int i1 = 0;
                     int j1 = 0;
 
-                    for (int k1 = p_77912_1_; k1 < p_77912_2_; ++k1)
+                    for (int k1 = p_77912_1_; k1 < p_77912_2_; k1++)
                     {
                         char c0 = p_77912_0_.charAt(k1);
 
@@ -493,7 +493,7 @@ public class PotionHelper
         boolean flag3 = false;
         int k = 0;
 
-        for (int l = i; l < j; ++l)
+        for (int l = i; l < j; l++)
         {
             char c0 = p_77913_1_.charAt(l);
 
@@ -596,5 +596,8 @@ public class PotionHelper
         potionAmplifiers.put(Integer.valueOf(Potion.resistance.getId()), "5");
         potionAmplifiers.put(Integer.valueOf(Potion.poison.getId()), "5");
         potionAmplifiers.put(Integer.valueOf(Potion.jump.getId()), "5");
+    }
+
+    private PotionHelper() {
     }
 }

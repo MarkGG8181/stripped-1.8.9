@@ -122,7 +122,7 @@ public class BlockTripWireHook extends Block {
         int i = 0;
         IBlockState[] aiblockstate = new IBlockState[42];
 
-        for (int j = 1; j < 42; ++j) {
+        for (int j = 1; j < 42; j++) {
             BlockPos blockpos = pos.offset(enumfacing, j);
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
@@ -180,7 +180,7 @@ public class BlockTripWireHook extends Block {
         }
 
         if (flag != flag3) {
-            for (int k = 1; k < i; ++k) {
+            for (int k = 1; k < i; k++) {
                 BlockPos blockpos2 = pos.offset(enumfacing, k);
                 IBlockState iblockstate2 = aiblockstate[k];
 

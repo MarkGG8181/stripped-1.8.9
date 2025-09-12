@@ -145,7 +145,7 @@ public class LongHashMap<V>
         LongHashMap.Entry<V>[] entry = this.hashArray;
         int i = p_76154_1_.length;
 
-        for (int j = 0; j < entry.length; ++j)
+        for (int j = 0; j < entry.length; j++)
         {
             LongHashMap.Entry<V> entry1 = entry[j];
 

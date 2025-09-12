@@ -39,7 +39,7 @@ public class BlockMushroom extends BlockBush implements IGrowable
 
             BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
 
-            for (int k = 0; k < 4; ++k)
+            for (int k = 0; k < 4; k++)
             {
                 if (worldIn.isAirBlock(blockpos1) && this.canBlockStay(worldIn, blockpos1, this.getDefaultState()))
                 {

@@ -29,4 +29,7 @@ public class StringUtils
     {
         return org.apache.commons.lang3.StringUtils.isEmpty(string);
     }
+
+    private StringUtils() {
+    }
 }

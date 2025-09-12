@@ -210,7 +210,7 @@ public class ChatComponentTranslation extends ChatComponentStyle
     {
         Object[] aobject = new Object[this.formatArgs.length];
 
-        for (int i = 0; i < this.formatArgs.length; ++i)
+        for (int i = 0; i < this.formatArgs.length; i++)
         {
             if (this.formatArgs[i] instanceof IChatComponent component)
             {

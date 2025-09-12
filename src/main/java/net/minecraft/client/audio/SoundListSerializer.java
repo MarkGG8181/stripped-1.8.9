@@ -23,7 +23,7 @@ public class SoundListSerializer implements JsonDeserializer<SoundList> {
             if (jsonobject.has("sounds")) {
                 JsonArray jsonarray = JsonUtils.getJsonArray(jsonobject, "sounds");
 
-                for (int i = 0; i < jsonarray.size(); ++i) {
+                for (int i = 0; i < jsonarray.size(); i++) {
                     JsonElement jsonelement = jsonarray.get(i);
                     SoundList.SoundEntry soundlist$soundentry = new SoundList.SoundEntry();
 

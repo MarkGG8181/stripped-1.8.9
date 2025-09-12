@@ -184,16 +184,16 @@ public class BlockBed extends BlockDirectional
         int j = pos.getY();
         int k = pos.getZ();
 
-        for (int l = 0; l <= 1; ++l)
+        for (int l = 0; l <= 1; l++)
         {
             int i1 = i - enumfacing.getFrontOffsetX() * l - 1;
             int j1 = k - enumfacing.getFrontOffsetZ() * l - 1;
             int k1 = i1 + 2;
             int l1 = j1 + 2;
 
-            for (int i2 = i1; i2 <= k1; ++i2)
+            for (int i2 = i1; i2 <= k1; i2++)
             {
-                for (int j2 = j1; j2 <= l1; ++j2)
+                for (int j2 = j1; j2 <= l1; j2++)
                 {
                     BlockPos blockpos = new BlockPos(i2, j, j2);
 

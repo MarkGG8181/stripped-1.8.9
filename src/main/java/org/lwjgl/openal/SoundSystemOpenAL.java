@@ -26,7 +26,9 @@ public class SoundSystemOpenAL {
     public static void create() {
         String defaultDeviceName = alcGetString(0, ALC_DEFAULT_DEVICE_SPECIFIER);
         audioDevice = alcOpenDevice(defaultDeviceName);
-        if (audioDevice == 0L) throw new RuntimeException("Failed to open OpenAL device");
+        if (audioDevice == 0L) {
+            throw new RuntimeException("Failed to open OpenAL device");
+        }
 
         int[] attribs = {
             ALC_FREQUENCY, 44100,
@@ -37,12 +39,16 @@ public class SoundSystemOpenAL {
             0
         };
         audioContext = alcCreateContext(audioDevice, attribs);
-        if (audioContext == 0L) throw new RuntimeException("Failed to create OpenAL context");
+        if (audioContext == 0L) {
+            throw new RuntimeException("Failed to create OpenAL context");
+        }
 
         alcMakeContextCurrent(audioContext);
         ALCCapabilities alcCapabilities = ALC.createCapabilities(audioDevice);
         ALCapabilities alCapabilities = AL.createCapabilities(alcCapabilities);
-        if (!alCapabilities.OpenAL10) throw new RuntimeException("OpenAL 1.0 not supported");
+        if (!alCapabilities.OpenAL10) {
+            throw new RuntimeException("OpenAL 1.0 not supported");
+        }
 
         alEnable(AL_SOURCE_DISTANCE_MODEL);
         alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);

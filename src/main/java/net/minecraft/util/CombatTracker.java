@@ -176,7 +176,7 @@ public class CombatTracker
         int i = 0;
         float f = 0.0F;
 
-        for (int j = 0; j < this.combatEntries.size(); ++j)
+        for (int j = 0; j < this.combatEntries.size(); j++)
         {
             CombatEntry combatentry2 = (CombatEntry)this.combatEntries.get(j);
             CombatEntry combatentry3 = j > 0 ? (CombatEntry)this.combatEntries.get(j - 1) : null;

@@ -545,7 +545,7 @@ public class MathHelper
 
     static
         {
-        for (int i = 0; i < 65536; ++i)
+        for (int i = 0; i < 65536; i++)
         {
             SIN_TABLE[i] = (float)Math.sin((double)i * Math.PI * 2.0D / 65536.0D);
         }
@@ -555,12 +555,15 @@ public class MathHelper
         ASINE_TAB = new double[257];
         COS_TAB = new double[257];
 
-        for (int j = 0; j < 257; ++j)
+        for (int j = 0; j < 257; j++)
         {
             double d0 = (double)j / 256.0D;
             double d1 = Math.asin(d0);
             COS_TAB[j] = Math.cos(d1);
             ASINE_TAB[j] = d1;
         }
+    }
+
+    private MathHelper() {
     }
 }

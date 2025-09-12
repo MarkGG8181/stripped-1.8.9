@@ -16,7 +16,9 @@ import org.lwjgl.opengl.Display;
 public class Sys {
 
     static {
-        if (!glfwInit()) throw new IllegalStateException("Unable to initialize glfw");
+        if (!glfwInit()) {
+            throw new IllegalStateException("Unable to initialize glfw");
+        }
     }
 
     public static void initialize() {
@@ -54,10 +56,14 @@ public class Sys {
     }
 
     public static boolean openURL(String url) {
-        if (!Desktop.isDesktopSupported()) return false;
+        if (!Desktop.isDesktopSupported()) {
+            return false;
+        }
 
         Desktop desktop = Desktop.getDesktop();
-        if (!desktop.isSupported(Desktop.Action.BROWSE)) return false;
+        if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+            return false;
+        }
 
         try {
             desktop.browse(new URI(url));

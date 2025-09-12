@@ -87,8 +87,10 @@ public abstract class Vector implements Serializable, ReadableVector {
         if (len != 0.0f) {
             float l = 1.0f / len;
             return scale(l);
-        } else
+        }
+        else {
             throw new IllegalStateException("Zero length vector");
+        }
     }
 
 

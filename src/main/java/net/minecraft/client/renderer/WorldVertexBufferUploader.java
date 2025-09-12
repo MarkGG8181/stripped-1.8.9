@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL15;
 
 public class WorldVertexBufferUploader
 {
-    private int vboId = 0;
+    private int vboId;
 
     public void draw(WorldRenderer p_181679_1_)
     {
@@ -29,7 +29,7 @@ public class WorldVertexBufferUploader
 
             OpenGlHelper.glBufferData(OpenGlHelper.GL_ARRAY_BUFFER, bytebuffer, GL15.GL_STREAM_DRAW);
 
-            for (int j = 0; j < list.size(); ++j)
+            for (int j = 0; j < list.size(); j++)
             {
                 VertexFormatElement vertexformatelement = (VertexFormatElement)list.get(j);
                 VertexFormatElement.EnumUsage vertexformatelement$enumusage = vertexformatelement.getUsage();
@@ -62,7 +62,7 @@ public class WorldVertexBufferUploader
             GL11.glDrawArrays(p_181679_1_.getDrawMode(), 0, p_181679_1_.getVertexCount());
 
             int i1 = 0;
-            for (int j1 = list.size(); i1 < j1; ++i1)
+            for (int j1 = list.size(); i1 < j1; i1++)
             {
                 VertexFormatElement vertexformatelement1 = (VertexFormatElement)list.get(i1);
                 VertexFormatElement.EnumUsage vertexformatelement$enumusage1 = vertexformatelement1.getUsage();

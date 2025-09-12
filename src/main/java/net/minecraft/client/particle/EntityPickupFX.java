@@ -10,12 +10,12 @@ import net.minecraft.world.World;
 
 public class EntityPickupFX extends EntityFX
 {
-    private Entity item;
-    private Entity target;
+    private final Entity item;
+    private final Entity target;
     private int age;
-    private int maxAge;
-    private float yOffset;
-    private RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+    private final int maxAge;
+    private final float yOffset;
+    private final RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 
     public EntityPickupFX(World worldIn, Entity p_i1233_2_, Entity p_i1233_3_, float p_i1233_4_)
     {

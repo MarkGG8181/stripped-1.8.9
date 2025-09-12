@@ -68,9 +68,9 @@ public class Explosion {
         Set<BlockPos> set = new HashSet<>();
         int i = 16;
 
-        for (int j = 0; j < 16; ++j) {
-            for (int k = 0; k < 16; ++k) {
-                for (int l = 0; l < 16; ++l) {
+        for (int j = 0; j < 16; j++) {
+            for (int k = 0; k < 16; k++) {
+                for (int l = 0; l < 16; l++) {
                     if (j == 0 || j == 15 || k == 0 || k == 15 || l == 0 || l == 15) {
                         double d0 = (double)((float)j / 15.0F * 2.0F - 1.0F);
                         double d1 = (double)((float)k / 15.0F * 2.0F - 1.0F);
@@ -117,7 +117,7 @@ public class Explosion {
         List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, new AxisAlignedBB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
         Vec3 vec3 = new Vec3(this.explosionX, this.explosionY, this.explosionZ);
 
-        for (int k2 = 0; k2 < list.size(); ++k2) {
+        for (int k2 = 0; k2 < list.size(); k2++) {
             Entity entity = (Entity)list.get(k2);
 
             if (!entity.isImmuneToExplosions()) {

@@ -105,7 +105,7 @@ public class ModelSpider extends ModelBase
     {
         this.spiderHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
         this.spiderHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
-        float f = ((float)Math.PI / 4F);
+        float f = (float)Math.PI / 4F;
         this.spiderLeg1.rotateAngleZ = -f;
         this.spiderLeg2.rotateAngleZ = f;
         this.spiderLeg3.rotateAngleZ = -f * 0.74F;

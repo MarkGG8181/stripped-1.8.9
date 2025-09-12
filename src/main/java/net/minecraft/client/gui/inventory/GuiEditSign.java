@@ -18,7 +18,7 @@ import org.lwjgl.input.Keyboard;
 public class GuiEditSign extends GuiScreen
 {
     /** Reference to the sign object. */
-    private TileEntitySign tileSign;
+    private final TileEntitySign tileSign;
 
     /** Counts the number of screen updates. */
     private int updateCounter;

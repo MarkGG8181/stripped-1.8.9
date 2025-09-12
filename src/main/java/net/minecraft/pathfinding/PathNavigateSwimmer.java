@@ -42,7 +42,7 @@ public class PathNavigateSwimmer extends PathNavigate
             this.currentPath.incrementPathIndex();
         }
 
-        for (var j = Math.min(this.currentPath.getCurrentPathIndex() + i, this.currentPath.getCurrentPathLength() - 1); j > this.currentPath.getCurrentPathIndex(); --j)
+        for (var j = Math.min(this.currentPath.getCurrentPathIndex() + i, this.currentPath.getCurrentPathLength() - 1); j > this.currentPath.getCurrentPathIndex(); j--)
         {
             var vec31 = this.currentPath.getVectorFromIndex(this.theEntity, j);
 

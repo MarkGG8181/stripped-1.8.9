@@ -37,7 +37,7 @@ public class EntityCreeper extends EntityMob
 
     /** Explosion radius for this creeper. */
     private int explosionRadius = 3;
-    private int droppedSkulls = 0;
+    private int droppedSkulls;
 
     public EntityCreeper(World worldIn)
     {

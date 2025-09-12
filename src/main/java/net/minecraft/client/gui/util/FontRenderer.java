@@ -32,7 +32,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
     /**
      * Array of width of all the characters in default.png
      */
-    private int[] charWidth = new int[256];
+    private final int[] charWidth = new int[256];
 
     /**
      * the height in pixels of default text
@@ -43,13 +43,13 @@ public class FontRenderer implements IResourceManagerReloadListener {
     /**
      * Array of the start/end column (in upper/lower nibble) for every glyph in the /font directory.
      */
-    private byte[] glyphWidth = new byte[65536];
+    private final byte[] glyphWidth = new byte[65536];
 
     /**
      * Array of RGB triplets defining the 16 standard chat colors followed by 16 darker version of the same colors for
      * drop shadows.
      */
-    private int[] colorCode = new int[32];
+    private final int[] colorCode = new int[32];
     private final ResourceLocation locationFontTexture;
 
     /**
@@ -122,7 +122,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
         this.renderEngine = textureManagerIn;
         textureManagerIn.bindTexture(this.locationFontTexture);
 
-        for (int i = 0; i < 32; ++i) {
+        for (int i = 0; i < 32; i++) {
             int j = (i >> 3 & 1) * 85;
             int k = (i >> 2 & 1) * 170 + j;
             int l = (i >> 1 & 1) * 170 + j;
@@ -166,7 +166,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
         int i1 = 1;
         float f = 8.0F / (float)l;
 
-        for (int j1 = 0; j1 < 256; ++j1) {
+        for (int j1 = 0; j1 < 256; j1++) {
             int k1 = j1 % 16;
             int l1 = j1 / 16;
 
@@ -176,11 +176,11 @@ public class FontRenderer implements IResourceManagerReloadListener {
 
             int i2;
 
-            for (i2 = l - 1; i2 >= 0; --i2) {
+            for (i2 = l - 1; i2 >= 0; i2--) {
                 int j2 = k1 * l + i2;
                 boolean flag = true;
 
-                for (int k2 = 0; k2 < k && flag; ++k2) {
+                for (int k2 = 0; k2 < k && flag; k2++) {
                     int l2 = (l1 * l + k2) * i;
 
                     if ((aint[j2 + l2] >> 24 & 255) != 0) {
@@ -333,7 +333,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
      */
     private String bidiReorder(String text) {
         try {
-            Bidi bidi = new Bidi((new ArabicShaping(8)).shape(text), 127);
+            Bidi bidi = new Bidi(new ArabicShaping(8).shape(text), 127);
             bidi.setReorderingMode(0);
             return bidi.writeReordered(2);
         } catch (ArabicShapingException var3) {
@@ -356,7 +356,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
      * Render a single line string at the current (posX,posY) and update posX
      */
     private void renderStringAtPos(String text, boolean shadow) {
-        for (int i = 0; i < text.length(); ++i) {
+        for (int i = 0; i < text.length(); i++) {
             char c0 = text.charAt(i);
 
             if (c0 == 167 && i + 1 < text.length()) {
@@ -539,7 +539,7 @@ public class FontRenderer implements IResourceManagerReloadListener {
             int i = 0;
             boolean flag = false;
 
-            for (int j = 0; j < text.length(); ++j) {
+            for (int j = 0; j < text.length(); j++) {
                 char c0 = text.charAt(j);
                 int k = this.getCharWidth(c0);
 
@@ -738,24 +738,12 @@ public class FontRenderer implements IResourceManagerReloadListener {
         int k = 0;
         int l = -1;
 
-        for (boolean flag = false; k < i; ++k) {
+        for (boolean flag = false; k < i; k++) {
             char c0 = str.charAt(k);
 
             switch (c0) {
                 case '\n':
                     --k;
-                    break;
-
-                case ' ':
-                    l = k;
-
-                default:
-                    j += this.getCharWidth(c0);
-
-                    if (flag) {
-                        ++j;
-                    }
-
                     break;
 
                 case '\u00a7':
@@ -771,6 +759,18 @@ public class FontRenderer implements IResourceManagerReloadListener {
                         else {
                             flag = true;
                         }
+                    }
+                    break;
+
+                case ' ':
+                    l = k;
+                    break;
+
+                default:
+                    j += this.getCharWidth(c0);
+
+                    if (flag) {
+                        ++j;
                     }
             }
 

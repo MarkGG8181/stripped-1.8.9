@@ -136,7 +136,7 @@ public class SlotCrafting extends Slot
         this.onCrafting(stack);
         ItemStack[] aitemstack = CraftingManager.getInstance().func_180303_b(this.craftMatrix, playerIn.worldObj);
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
             ItemStack itemstack1 = aitemstack[i];

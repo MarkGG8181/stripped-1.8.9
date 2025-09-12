@@ -24,9 +24,9 @@ public class MapGenBase
         long j = this.rand.nextLong();
         long k = this.rand.nextLong();
 
-        for (int l = x - i; l <= x + i; ++l)
+        for (int l = x - i; l <= x + i; l++)
         {
-            for (int i1 = z - i; i1 <= z + i; ++i1)
+            for (int i1 = z - i; i1 <= z + i; i1++)
             {
                 long j1 = (long)l * j;
                 long k1 = (long)i1 * k;

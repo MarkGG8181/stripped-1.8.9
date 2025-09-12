@@ -225,7 +225,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
     {
         if (id == 18)
         {
-            for (int i = 0; i < 7; ++i)
+            for (int i = 0; i < 7; i++)
             {
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;

@@ -66,7 +66,7 @@ public class CommandCompare extends CommandBase
                 {
                     boolean flag = false;
 
-                    if (args.length > 9 && args[9].equals("masked"))
+                    if (args.length > 9 && "masked".equals(args[9]))
                     {
                         flag = true;
                     }
@@ -76,11 +76,11 @@ public class CommandCompare extends CommandBase
                     BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
                     BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
-                    for (int j = structureboundingbox.minZ; j <= structureboundingbox.maxZ; ++j)
+                    for (int j = structureboundingbox.minZ; j <= structureboundingbox.maxZ; j++)
                     {
-                        for (int k = structureboundingbox.minY; k <= structureboundingbox.maxY; ++k)
+                        for (int k = structureboundingbox.minY; k <= structureboundingbox.maxY; k++)
                         {
-                            for (int l = structureboundingbox.minX; l <= structureboundingbox.maxX; ++l)
+                            for (int l = structureboundingbox.minX; l <= structureboundingbox.maxX; l++)
                             {
                                 blockpos$mutableblockpos.set(l, k, j);
                                 blockpos$mutableblockpos1.set(l + blockpos3.getX(), k + blockpos3.getY(), j + blockpos3.getZ());

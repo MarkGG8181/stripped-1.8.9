@@ -61,13 +61,13 @@ public class ComponentScatteredFeaturePieces {
         public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, -4, 0, this.scatteredFeatureSizeX - 1, 0, this.scatteredFeatureSizeZ - 1, Blocks.sandstone.getDefaultState(), Blocks.sandstone.getDefaultState(), false);
 
-            for (int i = 1; i <= 9; ++i) {
+            for (int i = 1; i <= 9; i++) {
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, i, i, i, this.scatteredFeatureSizeX - 1 - i, i, this.scatteredFeatureSizeZ - 1 - i, Blocks.sandstone.getDefaultState(), Blocks.sandstone.getDefaultState(), false);
                 this.fillWithBlocks(worldIn, structureBoundingBoxIn, i + 1, i, i + 1, this.scatteredFeatureSizeX - 2 - i, i, this.scatteredFeatureSizeZ - 2 - i, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
             }
 
-            for (int j2 = 0; j2 < this.scatteredFeatureSizeX; ++j2) {
-                for (int j = 0; j < this.scatteredFeatureSizeZ; ++j) {
+            for (int j2 = 0; j2 < this.scatteredFeatureSizeX; j2++) {
+                for (int j = 0; j < this.scatteredFeatureSizeZ; j++) {
                     int k = -5;
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.sandstone.getDefaultState(), j2, k, j, structureBoundingBoxIn);
                 }
@@ -302,8 +302,8 @@ public class ComponentScatteredFeaturePieces {
                 int j = 0;
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k) {
-                    for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l) {
+                for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; k++) {
+                    for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; l++) {
                         blockpos$mutableblockpos.set(l, 64, k);
 
                         if (p_74935_2_.isVecInside(blockpos$mutableblockpos)) {
@@ -441,7 +441,7 @@ public class ComponentScatteredFeaturePieces {
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(k), 4, 4, 5, structureBoundingBoxIn);
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(l), 7, 4, 5, structureBoundingBoxIn);
 
-                for (int l1 = 0; l1 < 4; ++l1) {
+                for (int l1 = 0; l1 < 4; l1++) {
                     this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 5, 0 - l1, 6 + l1, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(j), 6, 0 - l1, 6 + l1, structureBoundingBoxIn);
                     this.fillWithAir(worldIn, structureBoundingBoxIn, 5, 0 - l1, 7 + l1, 6, 0 - l1, 9 + l1);
@@ -633,5 +633,8 @@ public class ComponentScatteredFeaturePieces {
                 return true;
             }
         }
+    }
+
+    private ComponentScatteredFeaturePieces() {
     }
 }

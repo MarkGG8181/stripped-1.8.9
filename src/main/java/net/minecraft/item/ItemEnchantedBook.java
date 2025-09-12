@@ -50,7 +50,7 @@ public class ItemEnchantedBook extends Item
 
         if (nbttaglist != null)
         {
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 int j = nbttaglist.getCompoundTagAt(i).getShort("id");
                 int k = nbttaglist.getCompoundTagAt(i).getShort("lvl");
@@ -71,7 +71,7 @@ public class ItemEnchantedBook extends Item
         NBTTagList nbttaglist = this.getEnchantments(stack);
         boolean flag = true;
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
 
@@ -115,7 +115,7 @@ public class ItemEnchantedBook extends Item
 
     public void getAll(Enchantment enchantment, List<ItemStack> list)
     {
-        for (int i = enchantment.getMinLevel(); i <= enchantment.getMaxLevel(); ++i)
+        for (int i = enchantment.getMinLevel(); i <= enchantment.getMaxLevel(); i++)
         {
             list.add(this.getEnchantedItemStack(new EnchantmentData(enchantment, i)));
         }

@@ -29,7 +29,7 @@ public class ChatComponentProcessor
                 s = ((Entity)list.getFirst()).getName();
             }
 
-            ichatcomponent = entityIn != null && s.equals("*") ? new ChatComponentScore(entityIn.getName(), chatcomponentscore.getObjective()) : new ChatComponentScore(s, chatcomponentscore.getObjective());
+            ichatcomponent = entityIn != null && "*".equals(s) ? new ChatComponentScore(entityIn.getName(), chatcomponentscore.getObjective()) : new ChatComponentScore(s, chatcomponentscore.getObjective());
             ((ChatComponentScore)ichatcomponent).setValue(chatcomponentscore.getUnformattedTextForChat());
         }
         else if (component instanceof ChatComponentSelector selector)
@@ -55,7 +55,7 @@ public class ChatComponentProcessor
 
             Object[] aobject = ((ChatComponentTranslation)component).getFormatArgs();
 
-            for (int i = 0; i < aobject.length; ++i)
+            for (int i = 0; i < aobject.length; i++)
             {
                 Object object = aobject[i];
 
@@ -81,5 +81,8 @@ public class ChatComponentProcessor
         }
 
         return ichatcomponent;
+    }
+
+    private ChatComponentProcessor() {
     }
 }

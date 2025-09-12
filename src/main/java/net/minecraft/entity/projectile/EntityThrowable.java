@@ -190,7 +190,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
             double d0 = 0.0D;
             EntityLivingBase entitylivingbase = this.getThrower();
 
-            for (int j = 0; j < list.size(); ++j)
+            for (int j = 0; j < list.size(); j++)
             {
                 Entity entity1 = (Entity)list.get(j);
 
@@ -263,7 +263,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
         if (this.isInWater())
         {
-            for (int i = 0; i < 4; ++i)
+            for (int i = 0; i < 4; i++)
             {
                 float f4 = 0.25F;
                 this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f4, this.posY - this.motionY * (double)f4, this.posZ - this.motionZ * (double)f4, this.motionX, this.motionY, this.motionZ, new int[0]);

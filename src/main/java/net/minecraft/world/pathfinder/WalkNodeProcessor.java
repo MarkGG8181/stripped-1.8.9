@@ -197,11 +197,11 @@ public class WalkNodeProcessor extends NodeProcessor
         BlockPos blockpos = new BlockPos(entityIn);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int i = x; i < x + sizeX; ++i)
+        for (int i = x; i < x + sizeX; i++)
         {
-            for (int j = y; j < y + sizeY; ++j)
+            for (int j = y; j < y + sizeY; j++)
             {
-                for (int k = z; k < z + sizeZ; ++k)
+                for (int k = z; k < z + sizeZ; k++)
                 {
                     blockpos$mutableblockpos.set(i, j, k);
                     Block block = blockaccessIn.getBlockState(blockpos$mutableblockpos).getBlock();

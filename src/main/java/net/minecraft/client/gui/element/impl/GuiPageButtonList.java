@@ -18,7 +18,7 @@ public class GuiPageButtonList extends GuiListExtended
     private final List<GuiTextField> editBoxes = new ArrayList<>();
     private final GuiPageButtonList.GuiListEntry[][] pages;
     private int page;
-    private GuiPageButtonList.GuiResponder responder;
+    private final GuiPageButtonList.GuiResponder responder;
     private Gui focusedControl;
 
     public GuiPageButtonList(Minecraft mcIn, int widthIn, int heightIn, int topIn, int bottomIn, int slotHeightIn, GuiPageButtonList.GuiResponder p_i45536_7_, GuiPageButtonList.GuiListEntry[]... p_i45536_8_)

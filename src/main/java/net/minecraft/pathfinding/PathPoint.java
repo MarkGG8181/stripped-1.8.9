@@ -71,7 +71,9 @@ public class PathPoint
 
     public boolean equals(Object p_equals_1_)
     {
-        if (this == p_equals_1_) return true;
+        if (this == p_equals_1_) {
+            return true;
+        }
         if (!(p_equals_1_ instanceof PathPoint pathpoint))
         {
             return false;

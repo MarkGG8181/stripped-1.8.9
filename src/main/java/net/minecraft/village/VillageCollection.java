@@ -131,9 +131,9 @@ public class VillageCollection extends WorldSavedData {
         int j = 4;
         int k = 16;
 
-        for (int l = -i; l < i; ++l) {
-            for (int i1 = -j; i1 < j; ++i1) {
-                for (int j1 = -k; j1 < k; ++j1) {
+        for (int l = -i; l < i; l++) {
+            for (int i1 = -j; i1 < j; i1++) {
+                for (int j1 = -k; j1 < k; j1++) {
                     BlockPos blockpos = central.add(l, i1, j1);
 
                     if (this.isWoodDoor(blockpos)) {
@@ -189,7 +189,7 @@ public class VillageCollection extends WorldSavedData {
     private int countBlocksCanSeeSky(BlockPos centerPos, EnumFacing direction, int limitation) {
         int i = 0;
 
-        for (int j = 1; j <= 5; ++j) {
+        for (int j = 1; j <= 5; j++) {
             if (this.worldObj.canSeeSky(centerPos.offset(direction, j))) {
                 ++i;
 
@@ -224,7 +224,7 @@ public class VillageCollection extends WorldSavedData {
         this.tickCounter = nbt.getInteger("Tick");
         NBTTagList nbttaglist = nbt.getTagList("Villages", 10);
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (int i = 0; i < nbttaglist.tagCount(); i++) {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             Village village = new Village();
             village.readVillageDataFromNBT(nbttagcompound);

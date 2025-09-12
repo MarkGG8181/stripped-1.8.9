@@ -87,7 +87,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
         int i = -1;
         int j = 1;
 
-        for (int k = 0; k < this.stacks.length; ++k)
+        for (int k = 0; k < this.stacks.length; k++)
         {
             if (this.stacks[k] != null && RNG.nextInt(j++) == 0)
             {
@@ -119,7 +119,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
      */
     public int addItemStack(ItemStack stack)
     {
-        for (int i = 0; i < this.stacks.length; ++i)
+        for (int i = 0; i < this.stacks.length; i++)
         {
             if (this.stacks[i] == null || this.stacks[i].getItem() == null)
             {
@@ -158,7 +158,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.stacks = new ItemStack[this.getSizeInventory()];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
@@ -180,7 +180,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
         super.writeToNBT(compound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.stacks.length; ++i)
+        for (int i = 0; i < this.stacks.length; i++)
         {
             if (this.stacks[i] != null)
             {
@@ -257,7 +257,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 
     public void clear()
     {
-        for (int i = 0; i < this.stacks.length; ++i)
+        for (int i = 0; i < this.stacks.length; i++)
         {
             this.stacks[i] = null;
         }

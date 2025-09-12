@@ -107,30 +107,30 @@ public class CommandFill extends CommandBase
                 List<BlockPos> list = new ArrayList<>();
                 j = 0;
 
-                for (int i1 = blockpos2.getZ(); i1 <= blockpos3.getZ(); ++i1)
+                for (int i1 = blockpos2.getZ(); i1 <= blockpos3.getZ(); i1++)
                 {
-                    for (int j1 = blockpos2.getY(); j1 <= blockpos3.getY(); ++j1)
+                    for (int j1 = blockpos2.getY(); j1 <= blockpos3.getY(); j1++)
                     {
-                        for (int k1 = blockpos2.getX(); k1 <= blockpos3.getX(); ++k1)
+                        for (int k1 = blockpos2.getX(); k1 <= blockpos3.getX(); k1++)
                         {
                             BlockPos blockpos4 = new BlockPos(k1, j1, i1);
 
                             if (args.length >= 9)
                             {
-                                if (!args[8].equals("outline") && !args[8].equals("hollow"))
+                                if (!"outline".equals(args[8]) && !"hollow".equals(args[8]))
                                 {
-                                    if (args[8].equals("destroy"))
+                                    if ("destroy".equals(args[8]))
                                     {
                                         world.destroyBlock(blockpos4, true);
                                     }
-                                    else if (args[8].equals("keep"))
+                                    else if ("keep".equals(args[8]))
                                     {
                                         if (!world.isAirBlock(blockpos4))
                                         {
                                             continue;
                                         }
                                     }
-                                    else if (args[8].equals("replace") && !block.hasTileEntity())
+                                    else if ("replace".equals(args[8]) && !block.hasTileEntity())
                                     {
                                         if (args.length > 9)
                                         {
@@ -156,7 +156,7 @@ public class CommandFill extends CommandBase
                                 }
                                 else if (k1 != blockpos2.getX() && k1 != blockpos3.getX() && j1 != blockpos2.getY() && j1 != blockpos3.getY() && i1 != blockpos2.getZ() && i1 != blockpos3.getZ())
                                 {
-                                    if (args[8].equals("hollow"))
+                                    if ("hollow".equals(args[8]))
                                     {
                                         world.setBlockState(blockpos4, Blocks.air.getDefaultState(), 2);
                                         list.add(blockpos4);

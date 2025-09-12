@@ -116,7 +116,7 @@ public class EntitySquid extends EntityWaterMob
     {
         int i = this.rand.nextInt(3 + lootingModifier) + 1;
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.entityDropItem(new ItemStack(Items.dye, 1, EnumDyeColor.BLACK.getDyeDamage()), 0.0F);
         }
@@ -148,7 +148,7 @@ public class EntitySquid extends EntityWaterMob
         {
             if (this.worldObj.isRemote)
             {
-                this.squidRotation = ((float)Math.PI * 2F);
+                this.squidRotation = (float)Math.PI * 2F;
             }
             else
             {
@@ -195,10 +195,10 @@ public class EntitySquid extends EntityWaterMob
             }
 
             float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.renderYawOffset += (-((float)MathHelper.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
+            this.renderYawOffset += (-(float)MathHelper.atan2(this.motionX, this.motionZ) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
             this.squidYaw = (float)((double)this.squidYaw + Math.PI * (double)this.rotateSpeed * 1.5D);
-            this.squidPitch += (-((float)MathHelper.atan2((double)f1, this.motionY)) * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
+            this.squidPitch += (-(float)MathHelper.atan2((double)f1, this.motionY) * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
         }
         else
         {

@@ -31,11 +31,11 @@ public class MapGenVillage extends MapGenStructure
 
         for (Entry<String, String> entry : p_i2093_1_.entrySet())
         {
-            if (((String)entry.getKey()).equals("size"))
+            if ("size".equals((String)entry.getKey()))
             {
                 this.terrainType = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.terrainType, 0);
             }
-            else if (((String)entry.getKey()).equals("distance"))
+            else if ("distance".equals((String)entry.getKey()))
             {
                 this.distance = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.distance, this.minTownSeparation + 1);
             }

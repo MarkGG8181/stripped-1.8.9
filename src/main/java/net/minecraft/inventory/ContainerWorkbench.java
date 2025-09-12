@@ -13,10 +13,10 @@ public class ContainerWorkbench extends Container
     /** The crafting matrix inventory (3x3). */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
-    private World worldObj;
+    private final World worldObj;
 
     /** Position of the workbench */
-    private BlockPos pos;
+    private final BlockPos pos;
 
     public ContainerWorkbench(InventoryPlayer playerInventory, World worldIn, BlockPos posIn)
     {
@@ -24,23 +24,23 @@ public class ContainerWorkbench extends Container
         this.pos = posIn;
         this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 3; ++j)
+            for (int j = 0; j < 3; j++)
             {
                 this.addSlotToContainer(new Slot(this.craftMatrix, j + i * 3, 30 + j * 18, 17 + i * 18));
             }
         }
 
-        for (int k = 0; k < 3; ++k)
+        for (int k = 0; k < 3; k++)
         {
-            for (int i1 = 0; i1 < 9; ++i1)
+            for (int i1 = 0; i1 < 9; i1++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, i1 + k * 9 + 9, 8 + i1 * 18, 84 + k * 18));
             }
         }
 
-        for (int l = 0; l < 9; ++l)
+        for (int l = 0; l < 9; l++)
         {
             this.addSlotToContainer(new Slot(playerInventory, l, 8 + l * 18, 142));
         }
@@ -65,7 +65,7 @@ public class ContainerWorkbench extends Container
 
         if (!this.worldObj.isRemote)
         {
-            for (int i = 0; i < 9; ++i)
+            for (int i = 0; i < 9; i++)
             {
                 ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
 

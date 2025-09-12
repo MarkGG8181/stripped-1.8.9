@@ -117,8 +117,8 @@ public abstract class EntityHanging extends Entity {
             BlockPos blockpos = this.hangingPosition.offset(this.facingDirection.getOpposite());
             EnumFacing enumfacing = this.facingDirection.rotateYCCW();
 
-            for (int k = 0; k < i; ++k) {
-                for (int l = 0; l < j; ++l) {
+            for (int k = 0; k < i; k++) {
+                for (int l = 0; l < j; l++) {
                     BlockPos blockpos1 = blockpos.offset(enumfacing, k).up(l);
                     Block block = this.worldObj.getBlockState(blockpos1).getBlock();
 

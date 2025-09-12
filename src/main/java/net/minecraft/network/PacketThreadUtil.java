@@ -18,4 +18,7 @@ public class PacketThreadUtil
             throw ThreadQuickExitException.INSTANCE;
         }
     }
+
+    private PacketThreadUtil() {
+    }
 }

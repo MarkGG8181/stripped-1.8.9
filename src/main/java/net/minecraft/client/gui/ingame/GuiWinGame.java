@@ -31,7 +31,7 @@ public class GuiWinGame extends GuiScreen {
     private int time;
     private List<String> lines;
     private int totalScrollLength;
-    private float scrollSpeed = 0.5F;
+    private final float scrollSpeed = 0.5F;
 
     /**
      * Called from the main game loop to update the screen.
@@ -106,7 +106,7 @@ public class GuiWinGame extends GuiScreen {
 
                 inputstream.close();
 
-                for (int k = 0; k < 8; ++k) {
+                for (int k = 0; k < 8; k++) {
                     this.lines.add("");
                 }
 
@@ -177,7 +177,7 @@ public class GuiWinGame extends GuiScreen {
         this.drawTexturedModalRect(j + 155, k, 0, 45, 155, 44);
         int l = k + 200;
 
-        for (int i1 = 0; i1 < this.lines.size(); ++i1) {
+        for (int i1 = 0; i1 < this.lines.size(); i1++) {
             if (i1 == this.lines.size() - 1) {
                 float f1 = (float)l + f - (float)(this.height / 2 - 6);
 

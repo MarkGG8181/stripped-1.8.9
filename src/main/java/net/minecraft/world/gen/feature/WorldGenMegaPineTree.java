@@ -19,7 +19,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
     private static final IBlockState TRUNK = Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE);
     private static final IBlockState LEAF = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
     private static final IBlockState PODZOL = Blocks.dirt.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL);
-    private boolean useBaseHeight;
+    private final boolean useBaseHeight;
 
     public WorldGenMegaPineTree(boolean p_i45457_1_, boolean p_i45457_2_)
     {
@@ -39,7 +39,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
         {
             this.func_150541_c(worldIn, position.getX(), position.getZ(), position.getY() + i, 0, rand);
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 Block block = worldIn.getBlockState(position.up(j)).getBlock();
 
@@ -82,7 +82,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
         int i = p_150541_6_.nextInt(5) + (this.useBaseHeight ? this.baseHeight : 3);
         int j = 0;
 
-        for (int k = p_150541_4_ - i; k <= p_150541_4_; ++k)
+        for (int k = p_150541_4_ - i; k <= p_150541_4_; k++)
         {
             int l = p_150541_4_ - k;
             int i1 = p_150541_5_ + MathHelper.floor_float((float)l / (float)i * 3.5F);
@@ -98,7 +98,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
         this.func_175933_b(worldIn, p_180711_3_.west().south(2));
         this.func_175933_b(worldIn, p_180711_3_.east(2).south(2));
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 5; i++)
         {
             int j = p_180711_2_.nextInt(64);
             int k = j % 8;
@@ -113,9 +113,9 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 
     private void func_175933_b(World worldIn, BlockPos p_175933_2_)
     {
-        for (int i = -2; i <= 2; ++i)
+        for (int i = -2; i <= 2; i++)
         {
-            for (int j = -2; j <= 2; ++j)
+            for (int j = -2; j <= 2; j++)
             {
                 if (Math.abs(i) != 2 || Math.abs(j) != 2)
                 {
@@ -127,7 +127,7 @@ public class WorldGenMegaPineTree extends WorldGenHugeTrees
 
     private void func_175934_c(World worldIn, BlockPos p_175934_2_)
     {
-        for (int i = 2; i >= -3; --i)
+        for (int i = 2; i >= -3; i--)
         {
             BlockPos blockpos = p_175934_2_.up(i);
             Block block = worldIn.getBlockState(blockpos).getBlock();

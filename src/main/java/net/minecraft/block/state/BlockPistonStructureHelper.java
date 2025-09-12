@@ -60,7 +60,7 @@ public class BlockPistonStructureHelper
         }
         else
         {
-            for (int i = 0; i < this.toMove.size(); ++i)
+            for (int i = 0; i < this.toMove.size(); i++)
             {
                 BlockPos blockpos = (BlockPos)this.toMove.get(i);
 
@@ -124,7 +124,7 @@ public class BlockPistonStructureHelper
 
                 int i1 = 0;
 
-                for (int j = i - 1; j >= 0; --j)
+                for (int j = i - 1; j >= 0; j--)
                 {
                     this.toMove.add(origin.offset(this.moveDirection.getOpposite(), j));
                     ++i1;
@@ -141,7 +141,7 @@ public class BlockPistonStructureHelper
                     {
                         this.func_177255_a(i1, k);
 
-                        for (int l = 0; l <= k + i1; ++l)
+                        for (int l = 0; l <= k + i1; l++)
                         {
                             BlockPos blockpos2 = (BlockPos)this.toMove.get(l);
 

@@ -66,7 +66,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
                 this.attackEntityFrom(DamageSource.onFire, 1.0F);
             }
 
-            for (int l = 0; l < 4; ++l)
+            for (int l = 0; l < 4; l++)
             {
                 i = MathHelper.floor_double(this.posX + (double)((float)(l % 2 * 2 - 1) * 0.25F));
                 j = MathHelper.floor_double(this.posY);
@@ -97,7 +97,7 @@ public class EntitySnowman extends EntityGolem implements IRangedAttackMob
     {
         int i = this.rand.nextInt(16);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItem(Items.snowball, 1);
         }

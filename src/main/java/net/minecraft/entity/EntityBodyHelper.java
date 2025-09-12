@@ -5,7 +5,7 @@ import net.minecraft.util.MathHelper;
 public class EntityBodyHelper
 {
     /** Instance of EntityLiving. */
-    private EntityLivingBase theLiving;
+    private final EntityLivingBase theLiving;
 
     /**
      * Used to progressively ajust the rotation of the body to the rotation of the head

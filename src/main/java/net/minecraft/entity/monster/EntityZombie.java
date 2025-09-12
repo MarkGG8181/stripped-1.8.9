@@ -45,7 +45,7 @@ public class EntityZombie extends EntityMob
     /**
      * The attribute which determines the chance that this mob will spawn reinforcements
      */
-    protected static final IAttribute reinforcementChance = (new RangedAttribute((IAttribute)null, "zombie.spawnReinforcements", 0.0D, 0.0D, 1.0D)).setDescription("Spawn Reinforcements Chance");
+    protected static final IAttribute reinforcementChance = new RangedAttribute((IAttribute)null, "zombie.spawnReinforcements", 0.0D, 0.0D, 1.0D).setDescription("Spawn Reinforcements Chance");
     private static final UUID babySpeedBoostUUID = FastUUID.parseUUID("B9766B59-9566-4402-BC1F-2EE2A276D836");
     private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(babySpeedBoostUUID, "Baby speed boost", 0.5D, 1);
     private final EntityAIBreakDoor breakDoor = new EntityAIBreakDoor(this);
@@ -54,7 +54,7 @@ public class EntityZombie extends EntityMob
      * Ticker used to determine the time remaining for this zombie to convert into a villager when cured.
      */
     private int conversionTime;
-    private boolean isBreakDoorsTaskSet = false;
+    private boolean isBreakDoorsTaskSet;
 
     /** The width of the entity */
     private float zombieWidth = -1.0F;
@@ -270,7 +270,7 @@ public class EntityZombie extends EntityMob
                 int k = MathHelper.floor_double(this.posZ);
                 EntityZombie entityzombie = new EntityZombie(this.worldObj);
 
-                for (int l = 0; l < 50; ++l)
+                for (int l = 0; l < 50; l++)
                 {
                     int i1 = i + MathHelper.getRandomIntegerInRange(this.rand, 7, 40) * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
                     int j1 = j + MathHelper.getRandomIntegerInRange(this.rand, 7, 40) * MathHelper.getRandomIntegerInRange(this.rand, -1, 1);
@@ -723,11 +723,11 @@ public class EntityZombie extends EntityMob
             int j = 0;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k = (int)this.posX - 4; k < (int)this.posX + 4 && j < 14; ++k)
+            for (int k = (int)this.posX - 4; k < (int)this.posX + 4 && j < 14; k++)
             {
-                for (int l = (int)this.posY - 4; l < (int)this.posY + 4 && j < 14; ++l)
+                for (int l = (int)this.posY - 4; l < (int)this.posY + 4 && j < 14; l++)
                 {
-                    for (int i1 = (int)this.posZ - 4; i1 < (int)this.posZ + 4 && j < 14; ++i1)
+                    for (int i1 = (int)this.posZ - 4; i1 < (int)this.posZ + 4 && j < 14; i1++)
                     {
                         Block block = this.worldObj.getBlockState(blockpos$mutableblockpos.set(k, l, i1)).getBlock();
 

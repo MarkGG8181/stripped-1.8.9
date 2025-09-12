@@ -250,7 +250,7 @@ public class OpenGlHelper {
         }
 
         try {
-            List<CentralProcessor.LogicalProcessor> aprocessor = (new SystemInfo()).getHardware().getProcessor().getLogicalProcessors();
+            List<CentralProcessor.LogicalProcessor> aprocessor = new SystemInfo().getHardware().getProcessor().getLogicalProcessors();
             cpu = "%dx %s".formatted(aprocessor.size(), aprocessor.getFirst()).replaceAll("\\s+", " ");
         } catch (Throwable ignored) {
         }
@@ -721,5 +721,8 @@ public class OpenGlHelper {
 
     public static String getCpu() {
         return cpu == null ? "<unknown>" : cpu;
+    }
+
+    private OpenGlHelper() {
     }
 }

@@ -36,7 +36,7 @@ public class LayerEnderDragonDeath implements LayerRenderer<EntityDragon>
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, -1.0F, -2.0F);
 
-            for (int i = 0; (float)i < (f + f * f) / 2.0F * 60.0F; ++i)
+            for (int i = 0; (float)i < (f + f * f) / 2.0F * 60.0F; i++)
             {
                 GlStateManager.rotate(random.nextFloat() * 360.0F, 1.0F, 0.0F, 0.0F);
                 GlStateManager.rotate(random.nextFloat() * 360.0F, 0.0F, 1.0F, 0.0F);

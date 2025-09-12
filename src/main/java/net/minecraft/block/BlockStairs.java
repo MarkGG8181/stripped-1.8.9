@@ -685,7 +685,7 @@ public class BlockStairs extends Block
         int[] aint = field_150150_a[i + (flag ? 4 : 0)];
         this.hasRaytraced = true;
 
-        for (int j = 0; j < 8; ++j)
+        for (int j = 0; j < 8; j++)
         {
             this.rayTracePass = j;
 

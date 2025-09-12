@@ -92,7 +92,7 @@ public class CommandSetBlock extends CommandBase
 
                 if (args.length >= 6)
                 {
-                    if (args[5].equals("destroy"))
+                    if ("destroy".equals(args[5]))
                     {
                         world.destroyBlock(blockpos, true);
 
@@ -102,7 +102,7 @@ public class CommandSetBlock extends CommandBase
                             return;
                         }
                     }
-                    else if (args[5].equals("keep") && !world.isAirBlock(blockpos))
+                    else if ("keep".equals(args[5]) && !world.isAirBlock(blockpos))
                     {
                         throw new CommandException("commands.setblock.noChange", new Object[0]);
                     }

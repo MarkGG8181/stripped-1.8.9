@@ -35,11 +35,11 @@ public class WorldGenDungeons extends WorldGenerator
         int i2 = k1 + 1;
         int j2 = 0;
 
-        for (int k2 = k; k2 <= l; ++k2)
+        for (int k2 = k; k2 <= l; k2++)
         {
-            for (int l2 = -1; l2 <= 4; ++l2)
+            for (int l2 = -1; l2 <= 4; l2++)
             {
-                for (int i3 = l1; i3 <= i2; ++i3)
+                for (int i3 = l1; i3 <= i2; i3++)
                 {
                     BlockPos blockpos = position.add(k2, l2, i3);
                     Material material = worldIn.getBlockState(blockpos).getBlock().getMaterial();
@@ -65,11 +65,11 @@ public class WorldGenDungeons extends WorldGenerator
 
         if (j2 >= 1 && j2 <= 5)
         {
-            for (int k3 = k; k3 <= l; ++k3)
+            for (int k3 = k; k3 <= l; k3++)
             {
-                for (int i4 = 3; i4 >= -1; --i4)
+                for (int i4 = 3; i4 >= -1; i4--)
                 {
-                    for (int k4 = l1; k4 <= i2; ++k4)
+                    for (int k4 = l1; k4 <= i2; k4++)
                     {
                         BlockPos blockpos1 = position.add(k3, i4, k4);
 
@@ -99,9 +99,9 @@ public class WorldGenDungeons extends WorldGenerator
                 }
             }
 
-            for (int l3 = 0; l3 < 2; ++l3)
+            for (int l3 = 0; l3 < 2; l3++)
             {
-                for (int j4 = 0; j4 < 3; ++j4)
+                for (int j4 = 0; j4 < 3; j4++)
                 {
                     int l4 = position.getX() + rand.nextInt(j * 2 + 1) - j;
                     int i5 = position.getY();

@@ -44,8 +44,8 @@ public class GuiEnchantment extends GuiContainer
     private final InventoryPlayer playerInventory;
 
     /** A Random instance for use with the enchantment gui */
-    private Random random = new Random();
-    private ContainerEnchantment container;
+    private final Random random = new Random();
+    private final ContainerEnchantment container;
     public int ticks;
     public float flip;
     public float oFlip;
@@ -91,7 +91,7 @@ public class GuiEnchantment extends GuiContainer
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
 
-        for (int k = 0; k < 3; ++k)
+        for (int k = 0; k < 3; k++)
         {
             int l = mouseX - (i + 60);
             int i1 = mouseY - (j + 14 + 19 * k);
@@ -175,7 +175,7 @@ public class GuiEnchantment extends GuiContainer
         EnchantmentNameParts.getInstance().reseedRandomGenerator((long)this.container.xpSeed);
         int k = this.container.getLapisAmount();
 
-        for (int l = 0; l < 3; ++l)
+        for (int l = 0; l < 3; l++)
         {
             int i1 = i + 60;
             int j1 = i1 + 20;
@@ -238,7 +238,7 @@ public class GuiEnchantment extends GuiContainer
         boolean flag = this.mc.thePlayer.capabilities.isCreativeMode;
         int i = this.container.getLapisAmount();
 
-        for (int j = 0; j < 3; ++j)
+        for (int j = 0; j < 3; j++)
         {
             int k = this.container.enchantLevels[j];
             int l = this.container.enchantmentIds[j];
@@ -330,7 +330,7 @@ public class GuiEnchantment extends GuiContainer
         this.oOpen = this.open;
         boolean flag = false;
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             if (this.container.enchantLevels[i] != 0)
             {

@@ -33,7 +33,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     protected ModelBase mainModel;
     protected FloatBuffer brightnessBuffer = GLAllocation.createDirectFloatBuffer(4);
     protected List<LayerRenderer<T>> layerRenderers = Lists.<LayerRenderer<T>>newArrayList();
-    protected boolean renderOutlines = false;
+    protected boolean renderOutlines;
 
     public RendererLivingEntity(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn)
     {
@@ -430,7 +430,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         {
             String s = EnumChatFormatting.getTextWithoutFormattingCodes(bat.getName());
 
-            if (s != null && (s.equals("Dinnerbone") || s.equals("Grumm")) && (!(bat instanceof EntityPlayer) || ((EntityPlayer)bat).isWearing(EnumPlayerModelParts.CAPE)))
+            if (s != null && ("Dinnerbone".equals(s) || "Grumm".equals(s)) && (!(bat instanceof EntityPlayer) || ((EntityPlayer)bat).isWearing(EnumPlayerModelParts.CAPE)))
             {
                 GlStateManager.translate(0.0F, bat.height + 0.1F, 0.0F);
                 GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
@@ -582,7 +582,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         {
         int[] aint = textureBrightness.getTextureData();
 
-        for (int i = 0; i < 256; ++i)
+        for (int i = 0; i < 256; i++)
         {
             aint[i] = -1;
         }

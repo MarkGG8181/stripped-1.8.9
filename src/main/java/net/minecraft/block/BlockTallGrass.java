@@ -112,7 +112,7 @@ public class BlockTallGrass extends BlockBush implements IGrowable
      */
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for (int i = 1; i < 3; ++i)
+        for (int i = 1; i < 3; i++)
         {
             list.add(new ItemStack(itemIn, 1, i));
         }

@@ -29,15 +29,15 @@ class Sync {
     private static final long NANOS_IN_SECOND = 1000L * 1000L * 1000L;
 
     /** The time to sleep/yield until the next frame */
-    private static long nextFrame = 0;
+    private static long nextFrame;
 
     /** whether the initialisation code has run */
-    private static boolean initialised = false;
+    private static boolean initialised;
 
     /** for calculating the averages the previous sleep/yield times are stored */
-    private static RunningAvg sleepDurations = new RunningAvg(10);
+    private static final RunningAvg sleepDurations = new RunningAvg(10);
 
-    private static RunningAvg yieldDurations = new RunningAvg(10);
+    private static final RunningAvg yieldDurations = new RunningAvg(10);
 
     /**
      * An accurate sync method that will attempt to run at a constant frame rate. It should be called once every frame.
@@ -45,8 +45,12 @@ class Sync {
      * @param fps - the desired frame rate, in frames per second
      */
     public static void sync(int fps) {
-        if (fps <= 0) return;
-        if (!initialised) initialise();
+        if (fps <= 0) {
+            return;
+        }
+        if (!initialised) {
+            initialise();
+        }
 
         try {
             // sleep until the average sleep time is greater than the time remaining till nextFrame
@@ -153,5 +157,8 @@ class Sync {
                 }
             }
         }
+    }
+
+    private Sync() {
     }
 }

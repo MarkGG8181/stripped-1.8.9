@@ -36,7 +36,7 @@ public class GuiStats extends GuiScreen implements IProgressMeter
     private GuiStats.StatsItem itemStats;
     private GuiStats.StatsBlock blockStats;
     private GuiStats.StatsMobsList mobStats;
-    private StatFileWriter stats;
+    private final StatFileWriter stats;
     private GuiSlot displaySlot;
 
     /** When true, the game will be paused when the gui is shown */

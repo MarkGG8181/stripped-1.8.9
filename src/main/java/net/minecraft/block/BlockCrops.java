@@ -75,9 +75,9 @@ public class BlockCrops extends BlockBush implements IGrowable
         float f = 1.0F;
         BlockPos blockpos = pos.down();
 
-        for (int i = -1; i <= 1; ++i)
+        for (int i = -1; i <= 1; i++)
         {
-            for (int j = -1; j <= 1; ++j)
+            for (int j = -1; j <= 1; j++)
             {
                 float f1 = 0.0F;
                 IBlockState iblockstate = worldIn.getBlockState(blockpos.add(i, 0, j));
@@ -155,7 +155,7 @@ public class BlockCrops extends BlockBush implements IGrowable
             {
                 int j = 3 + fortune;
 
-                for (int k = 0; k < j; ++k)
+                for (int k = 0; k < j; k++)
                 {
                     if (worldIn.rand.nextInt(15) <= i)
                     {

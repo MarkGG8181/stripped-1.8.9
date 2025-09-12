@@ -271,7 +271,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.villagerInventory.getSizeInventory(); ++i)
+        for (int i = 0; i < this.villagerInventory.getSizeInventory(); i++)
         {
             ItemStack itemstack = this.villagerInventory.getStackInSlot(i);
 
@@ -304,7 +304,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
         NBTTagList nbttaglist = tagCompund.getTagList("Inventory", 10);
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             ItemStack itemstack = ItemStack.loadItemStackFromNBT(nbttaglist.getCompoundTagAt(i));
 
@@ -465,7 +465,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         {
             boolean flag = false;
 
-            for (int i = 0; i < this.villagerInventory.getSizeInventory(); ++i)
+            for (int i = 0; i < this.villagerInventory.getSizeInventory(); i++)
             {
                 ItemStack itemstack = this.villagerInventory.getStackInSlot(i);
 
@@ -733,7 +733,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
     private void spawnParticles(EnumParticleTypes particleType)
     {
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 5; i++)
         {
             double d0 = this.rand.nextGaussian() * 0.02D;
             double d1 = this.rand.nextGaussian() * 0.02D;
@@ -855,7 +855,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     {
         boolean flag = this.getProfession() == 0;
 
-        for (int i = 0; i < this.villagerInventory.getSizeInventory(); ++i)
+        for (int i = 0; i < this.villagerInventory.getSizeInventory(); i++)
         {
             ItemStack itemstack = this.villagerInventory.getStackInSlot(i);
 
@@ -881,7 +881,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     public boolean isFarmItemInInventory()
     {
-        for (int i = 0; i < this.villagerInventory.getSizeInventory(); ++i)
+        for (int i = 0; i < this.villagerInventory.getSizeInventory(); i++)
         {
             ItemStack itemstack = this.villagerInventory.getStackInSlot(i);
 

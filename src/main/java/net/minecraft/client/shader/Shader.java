@@ -64,7 +64,7 @@ public class Shader {
         GlStateManager.viewport(0, 0, (int)f, (int)f1);
         this.manager.addSamplerTexture("DiffuseSampler", this.framebufferIn);
 
-        for (int i = 0; i < this.listAuxFramebuffers.size(); ++i) {
+        for (int i = 0; i < this.listAuxFramebuffers.size(); i++) {
             this.manager.addSamplerTexture((String)this.listAuxNames.get(i), this.listAuxFramebuffers.get(i));
             this.manager.getShaderUniformOrDefault("AuxSize" + i).set((float)((Integer)this.listAuxWidths.get(i)).intValue(), (float)((Integer)this.listAuxHeights.get(i)).intValue());
         }

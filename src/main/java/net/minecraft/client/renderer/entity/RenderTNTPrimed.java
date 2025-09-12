@@ -72,7 +72,9 @@ public class RenderTNTPrimed extends Render<EntityTNTPrimed>
         GlStateManager.popMatrix();
 
         float remainingTicks = (float)entity.fuse - partialTicks;
-        if (remainingTicks < 0.0F) remainingTicks = 0.0F;
+        if (remainingTicks < 0.0F) {
+            remainingTicks = 0.0F;
+        }
         float seconds = remainingTicks / 20.0F;
         String str = decimalFormat.format(seconds);
         float green = MathHelper.clamp_float(remainingTicks / 80.0F, 0.0F, 1.0F);

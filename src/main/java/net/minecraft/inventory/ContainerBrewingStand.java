@@ -8,7 +8,7 @@ import net.minecraft.stats.AchievementList;
 
 public class ContainerBrewingStand extends Container
 {
-    private IInventory tileBrewingStand;
+    private final IInventory tileBrewingStand;
 
     /** Instance of Slot. */
     private final Slot theSlot;
@@ -22,15 +22,15 @@ public class ContainerBrewingStand extends Container
         this.addSlotToContainer(new ContainerBrewingStand.Potion(playerInventory.player, tileBrewingStandIn, 2, 102, 46));
         this.theSlot = this.addSlotToContainer(new ContainerBrewingStand.Ingredient(tileBrewingStandIn, 3, 79, 17));
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 9; ++j)
+            for (int j = 0; j < 9; j++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        for (int k = 0; k < 9; ++k)
+        for (int k = 0; k < 9; k++)
         {
             this.addSlotToContainer(new Slot(playerInventory, k, 8 + k * 18, 142));
         }
@@ -49,7 +49,7 @@ public class ContainerBrewingStand extends Container
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < this.crafters.size(); i++)
         {
             ICrafting icrafting = (ICrafting)this.crafters.get(i);
 

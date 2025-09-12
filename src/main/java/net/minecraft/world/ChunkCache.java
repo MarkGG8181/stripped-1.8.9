@@ -31,17 +31,17 @@ public class ChunkCache implements IBlockAccess
         this.chunkArray = new Chunk[i - this.chunkX + 1][j - this.chunkZ + 1];
         this.hasExtendedLevels = true;
 
-        for (int k = this.chunkX; k <= i; ++k)
+        for (int k = this.chunkX; k <= i; k++)
         {
-            for (int l = this.chunkZ; l <= j; ++l)
+            for (int l = this.chunkZ; l <= j; l++)
             {
                 this.chunkArray[k - this.chunkX][l - this.chunkZ] = worldIn.getChunkFromChunkCoords(k, l);
             }
         }
 
-        for (int i1 = posFromIn.getX() >> 4; i1 <= posToIn.getX() >> 4; ++i1)
+        for (int i1 = posFromIn.getX() >> 4; i1 <= posToIn.getX() >> 4; i1++)
         {
-            for (int j1 = posFromIn.getZ() >> 4; j1 <= posToIn.getZ() >> 4; ++j1)
+            for (int j1 = posFromIn.getZ() >> 4; j1 <= posToIn.getZ() >> 4; j1++)
             {
                 Chunk chunk = this.chunkArray[i1 - this.chunkX][j1 - this.chunkZ];
 

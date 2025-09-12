@@ -19,7 +19,7 @@ public class BlockRail extends BlockRailBase
 
     protected void onNeighborChangedInternal(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
     {
-        if (neighborBlock.canProvidePower() && (new BlockRailBase.Rail(worldIn, pos, state)).countAdjacentRails() == 3)
+        if (neighborBlock.canProvidePower() && new BlockRailBase.Rail(worldIn, pos, state).countAdjacentRails() == 3)
         {
             this.func_176564_a(worldIn, pos, state, false);
         }

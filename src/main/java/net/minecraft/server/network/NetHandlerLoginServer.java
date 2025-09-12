@@ -50,7 +50,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable 
      */
     private int connectionTimer;
     private GameProfile loginGameProfile;
-    private String serverId = "";
+    private final String serverId = "";
     private SecretKey secretKey;
     private EntityPlayerMP player;
 
@@ -162,12 +162,12 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable 
             this.secretKey = packetIn.getSecretKey(privatekey);
             this.currentLoginState = NetHandlerLoginServer.LoginState.AUTHENTICATING;
             this.networkManager.enableEncryption(this.secretKey);
-            (new Thread("User Authenticator #" + AUTHENTICATOR_THREAD_ID.incrementAndGet()) {
+            new Thread("User Authenticator #" + AUTHENTICATOR_THREAD_ID.incrementAndGet()) {
                 public void run() {
                     GameProfile gameprofile = NetHandlerLoginServer.this.loginGameProfile;
 
                     try {
-                        String s = (new BigInteger(CryptManager.getServerIdHash(NetHandlerLoginServer.this.serverId, NetHandlerLoginServer.this.server.getKeyPair().getPublic(), NetHandlerLoginServer.this.secretKey))).toString(16);
+                        String s = new BigInteger(CryptManager.getServerIdHash(NetHandlerLoginServer.this.serverId, NetHandlerLoginServer.this.server.getKeyPair().getPublic(), NetHandlerLoginServer.this.secretKey)).toString(16);
                         SocketAddress socketAddress = networkManager.getRemoteAddress();
                         InetAddress inetAddress = ((InetSocketAddress)socketAddress).getAddress();
                         NetHandlerLoginServer.this.loginGameProfile = NetHandlerLoginServer.this.server.getMinecraftSessionService().hasJoinedServer(new GameProfile(null, gameprofile.getName()), s, inetAddress);
@@ -197,7 +197,7 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer, ITickable 
                         }
                     }
                 }
-            }).start();
+            }.start();
         }
     }
 

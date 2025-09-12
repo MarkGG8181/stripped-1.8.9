@@ -29,11 +29,11 @@ public class ViewFrustum
         this.renderChunks = new RenderChunk[i];
         int j = 0;
 
-        for (int k = 0; k < this.countChunksX; ++k)
+        for (int k = 0; k < this.countChunksX; k++)
         {
-            for (int l = 0; l < this.countChunksY; ++l)
+            for (int l = 0; l < this.countChunksY; l++)
             {
-                for (int i1 = 0; i1 < this.countChunksZ; ++i1)
+                for (int i1 = 0; i1 < this.countChunksZ; i1++)
                 {
                     int j1 = (i1 * this.countChunksY + l) * this.countChunksX + k;
                     BlockPos blockpos = new BlockPos(k * 16, l * 16, i1 * 16);
@@ -65,15 +65,15 @@ public class ViewFrustum
         int j = MathHelper.floor_double(viewEntityZ) - 8;
         int k = this.countChunksX * 16;
 
-        for (int l = 0; l < this.countChunksX; ++l)
+        for (int l = 0; l < this.countChunksX; l++)
         {
             int i1 = this.func_178157_a(i, k, l);
 
-            for (int j1 = 0; j1 < this.countChunksZ; ++j1)
+            for (int j1 = 0; j1 < this.countChunksZ; j1++)
             {
                 int k1 = this.func_178157_a(j, k, j1);
 
-                for (int l1 = 0; l1 < this.countChunksY; ++l1)
+                for (int l1 = 0; l1 < this.countChunksY; l1++)
                 {
                     int i2 = l1 * 16;
                     RenderChunk renderchunk = this.renderChunks[(j1 * this.countChunksY + l1) * this.countChunksX + l];
@@ -110,7 +110,7 @@ public class ViewFrustum
         int i1 = MathHelper.bucketInt(toY, 16);
         int j1 = MathHelper.bucketInt(toZ, 16);
 
-        for (int k1 = i; k1 <= l; ++k1)
+        for (int k1 = i; k1 <= l; k1++)
         {
             int l1 = k1 % this.countChunksX;
 
@@ -119,7 +119,7 @@ public class ViewFrustum
                 l1 += this.countChunksX;
             }
 
-            for (int i2 = j; i2 <= i1; ++i2)
+            for (int i2 = j; i2 <= i1; i2++)
             {
                 int j2 = i2 % this.countChunksY;
 
@@ -128,7 +128,7 @@ public class ViewFrustum
                     j2 += this.countChunksY;
                 }
 
-                for (int k2 = k; k2 <= j1; ++k2)
+                for (int k2 = k; k2 <= j1; k2++)
                 {
                     int l2 = k2 % this.countChunksZ;
 

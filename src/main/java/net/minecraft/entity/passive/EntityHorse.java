@@ -46,7 +46,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
             return p_apply_1_ instanceof EntityHorse eh && eh.isBreeding();
         }
     };
-    private static final IAttribute horseJumpStrength = (new RangedAttribute((IAttribute)null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).setDescription("Jump Strength").setShouldWatch(true);
+    private static final IAttribute horseJumpStrength = new RangedAttribute((IAttribute)null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D).setDescription("Jump Strength").setShouldWatch(true);
     private static final String[] horseArmorTextures = new String[]{null, "textures/entity/horse/armor/horse_armor_iron.png", "textures/entity/horse/armor/horse_armor_gold.png", "textures/entity/horse/armor/horse_armor_diamond.png"};
     private static final String[] HORSE_ARMOR_TEXTURES_ABBR = new String[]{"", "meo", "goo", "dio"};
     private static final int[] armorValues = new int[]{0, 5, 7, 11};
@@ -81,8 +81,8 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
      */
     private int gallopTime;
     private String texturePrefix;
-    private String[] horseTexturesArray = new String[3];
-    private boolean hasTexture = false;
+    private final String[] horseTexturesArray = new String[3];
+    private boolean hasTexture;
 
     public EntityHorse(World worldIn) {
         super(worldIn);
@@ -142,9 +142,6 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
             int i = this.getHorseType();
 
             switch (i) {
-                case 0:
-                default:
-                    return StatCollector.translateToLocal("entity.horse.name");
 
                 case 1:
                     return StatCollector.translateToLocal("entity.donkey.name");
@@ -157,6 +154,9 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
 
                 case 4:
                     return StatCollector.translateToLocal("entity.skeletonhorse.name");
+                case 0:
+                default:
+                    return StatCollector.translateToLocal("entity.horse.name");
             }
         }
     }
@@ -399,7 +399,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
             animalchest.removeInventoryChangeListener(this);
             int i = Math.min(animalchest.getSizeInventory(), this.horseChest.getSizeInventory());
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 ItemStack itemstack = animalchest.getStackInSlot(j);
 
                 if (itemstack != null) {
@@ -1077,7 +1077,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
 
     private void dropItemsInChest(Entity entityIn, AnimalChest animalChestIn) {
         if (animalChestIn != null && !this.worldObj.isRemote) {
-            for (int i = 0; i < animalChestIn.getSizeInventory(); ++i) {
+            for (int i = 0; i < animalChestIn.getSizeInventory(); i++) {
                 ItemStack itemstack = animalChestIn.getStackInSlot(i);
 
                 if (itemstack != null) {
@@ -1186,7 +1186,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
         if (this.isChested()) {
             NBTTagList nbttaglist = new NBTTagList();
 
-            for (int i = 2; i < this.horseChest.getSizeInventory(); ++i) {
+            for (int i = 2; i < this.horseChest.getSizeInventory(); i++) {
                 ItemStack itemstack = this.horseChest.getStackInSlot(i);
 
                 if (itemstack != null) {
@@ -1246,7 +1246,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
             NBTTagList nbttaglist = tagCompund.getTagList("Items", 10);
             this.initHorseChest();
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            for (int i = 0; i < nbttaglist.tagCount(); i++) {
                 NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
                 int j = nbttagcompound.getByte("Slot") & 255;
 
@@ -1452,7 +1452,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic {
     protected void spawnHorseParticles(boolean p_110216_1_) {
         EnumParticleTypes enumparticletypes = p_110216_1_ ? EnumParticleTypes.HEART : EnumParticleTypes.SMOKE_NORMAL;
 
-        for (int i = 0; i < 7; ++i) {
+        for (int i = 0; i < 7; i++) {
             double d0 = this.rand.nextGaussian() * 0.02D;
             double d1 = this.rand.nextGaussian() * 0.02D;
             double d2 = this.rand.nextGaussian() * 0.02D;

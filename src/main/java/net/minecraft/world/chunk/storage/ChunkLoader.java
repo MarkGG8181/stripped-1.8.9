@@ -37,7 +37,7 @@ public class ChunkLoader {
         compound.setLong("LastUpdate", p_76690_0_.lastUpdated);
         int[] aint = new int[p_76690_0_.heightmap.length];
 
-        for (int i = 0; i < p_76690_0_.heightmap.length; ++i) {
+        for (int i = 0; i < p_76690_0_.heightmap.length; i++) {
             aint[i] = p_76690_0_.heightmap[i];
         }
 
@@ -45,7 +45,7 @@ public class ChunkLoader {
         compound.setBoolean("TerrainPopulated", p_76690_0_.terrainPopulated);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int j = 0; j < 8; ++j) {
+        for (int j = 0; j < 8; j++) {
             boolean flag = isFlag(p_76690_0_, j);
 
             if (!flag) {
@@ -54,9 +54,9 @@ public class ChunkLoader {
                 NibbleArray nibblearray1 = new NibbleArray();
                 NibbleArray nibblearray2 = new NibbleArray();
 
-                for (int j3 = 0; j3 < 16; ++j3) {
-                    for (int l1 = 0; l1 < 16; ++l1) {
-                        for (int i2 = 0; i2 < 16; ++i2) {
+                for (int j3 = 0; j3 < 16; j3++) {
+                    for (int l1 = 0; l1 < 16; l1++) {
+                        for (int i2 = 0; i2 < 16; i2++) {
                             int j2 = j3 << 11 | i2 << 7 | l1 + (j << 4);
                             int k2 = p_76690_0_.blocks[j2];
                             abyte1[l1 << 8 | i2 << 4 | j3] = (byte)(k2 & 255);
@@ -81,8 +81,8 @@ public class ChunkLoader {
         byte[] abyte = new byte[256];
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int l2 = 0; l2 < 16; ++l2) {
-            for (int i3 = 0; i3 < 16; ++i3) {
+        for (int l2 = 0; l2 < 16; l2++) {
+            for (int i3 = 0; i3 < 16; i3++) {
                 blockpos$mutableblockpos.set(p_76690_0_.x << 4 | l2, 0, p_76690_0_.z << 4 | i3);
                 abyte[i3 << 4 | l2] = (byte)(p_76690_2_.getBiomeGenerator(blockpos$mutableblockpos, BiomeGenBase.DEFAULT).biomeID & 255);
             }
@@ -100,9 +100,9 @@ public class ChunkLoader {
     private static boolean isFlag(AnvilConverterData p_76690_0_, int j) {
         boolean flag = true;
 
-        for (int k = 0; k < 16 && flag; ++k) {
-            for (int l = 0; l < 16 && flag; ++l) {
-                for (int i1 = 0; i1 < 16; ++i1) {
+        for (int k = 0; k < 16 && flag; k++) {
+            for (int l = 0; l < 16 && flag; l++) {
+                for (int i1 = 0; i1 < 16; i1++) {
                     int j1 = k << 11 | i1 << 7 | l + (j << 4);
                     int k1 = p_76690_0_.blocks[j1];
 
@@ -134,5 +134,8 @@ public class ChunkLoader {
             this.x = xIn;
             this.z = zIn;
         }
+    }
+
+    private ChunkLoader() {
     }
 }

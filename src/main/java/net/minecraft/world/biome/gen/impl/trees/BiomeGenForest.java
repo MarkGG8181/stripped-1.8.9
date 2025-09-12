@@ -84,8 +84,8 @@ public class BiomeGenForest extends BiomeGenBase {
 
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         if (this.type == 3) {
-            for (int i = 0; i < 4; ++i) {
-                for (int j = 0; j < 4; ++j) {
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
                     int k = i * 4 + 1 + 8 + rand.nextInt(3);
                     int l = j * 4 + 1 + 8 + rand.nextInt(3);
                     BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
@@ -112,7 +112,7 @@ public class BiomeGenForest extends BiomeGenBase {
             j1 += 2;
         }
 
-        for (int k1 = 0; k1 < j1; ++k1) {
+        for (int k1 = 0; k1 < j1; k1++) {
             int l1 = rand.nextInt(3);
 
             if (l1 == 0) {
@@ -125,7 +125,7 @@ public class BiomeGenForest extends BiomeGenBase {
                 DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.PAEONIA);
             }
 
-            for (int i2 = 0; i2 < 5; ++i2) {
+            for (int i2 = 0; i2 < 5; i2++) {
                 int j2 = rand.nextInt(16) + 8;
                 int k2 = rand.nextInt(16) + 8;
                 int i1 = rand.nextInt(worldIn.getHeight(pos.add(j2, 0, k2)).getY() + 32);

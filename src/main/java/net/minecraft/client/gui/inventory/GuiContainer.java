@@ -133,7 +133,7 @@ public abstract class GuiContainer extends GuiScreen {
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)k / 1.0F, (float)l / 1.0F);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); ++i1) {
+        for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); i1++) {
             Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i1);
             this.drawSlot(slot);
 
@@ -326,7 +326,7 @@ public abstract class GuiContainer extends GuiScreen {
      * Returns the slot at the given coordinates or null if there is none.
      */
     private Slot getSlotAtPosition(int x, int y) {
-        for (int i = 0; i < this.inventorySlots.inventorySlots.size(); ++i) {
+        for (int i = 0; i < this.inventorySlots.inventorySlots.size(); i++) {
             Slot slot = (Slot)this.inventorySlots.inventorySlots.get(i);
 
             if (this.isMouseOverSlot(slot, x, y)) {
@@ -565,7 +565,7 @@ public abstract class GuiContainer extends GuiScreen {
      */
     protected boolean checkHotbarKeys(int keyCode) {
         if (this.mc.thePlayer.inventory.getItemStack() == null && this.theSlot != null) {
-            for (int i = 0; i < 9; ++i) {
+            for (int i = 0; i < 9; i++) {
                 if (keyCode == this.mc.gameSettings.keyBindsHotbar[i].getKeyCode()) {
                     this.handleMouseClick(this.theSlot, this.theSlot.slotNumber, i, 2);
                     return true;

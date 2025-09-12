@@ -12,7 +12,7 @@ public class EntityAIVillagerInteract extends EntityAIWatchClosest2
 {
     /** The delay before the villager throws an itemstack (in ticks) */
     private int interactionDelay;
-    private EntityVillager villager;
+    private final EntityVillager villager;
 
     public EntityAIVillagerInteract(EntityVillager villagerIn)
     {
@@ -52,7 +52,7 @@ public class EntityAIVillagerInteract extends EntityAIWatchClosest2
             {
                 InventoryBasic inventorybasic = this.villager.getVillagerInventory();
 
-                for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
+                for (int i = 0; i < inventorybasic.getSizeInventory(); i++)
                 {
                     ItemStack itemstack = inventorybasic.getStackInSlot(i);
                     ItemStack itemstack1 = null;

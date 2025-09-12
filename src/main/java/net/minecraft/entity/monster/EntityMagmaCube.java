@@ -93,7 +93,7 @@ public class EntityMagmaCube extends EntitySlime
                 i += this.rand.nextInt(lootingModifier + 1);
             }
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 this.dropItem(item, 1);
             }

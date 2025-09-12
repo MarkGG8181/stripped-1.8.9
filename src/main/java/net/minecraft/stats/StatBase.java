@@ -127,7 +127,7 @@ public class StatBase
     public IChatComponent createChatComponent()
     {
         IChatComponent ichatcomponent = this.getStatName();
-        IChatComponent ichatcomponent1 = (new ChatComponentText("[")).appendSibling(ichatcomponent).appendText("]");
+        IChatComponent ichatcomponent1 = new ChatComponentText("[").appendSibling(ichatcomponent).appendText("]");
         ichatcomponent1.setChatStyle(ichatcomponent.getChatStyle());
         return ichatcomponent1;
     }

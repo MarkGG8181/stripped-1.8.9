@@ -38,7 +38,7 @@ public class SoundManager implements IResourceManagerReloadListener {
     private final GameSettings options;
     private SoundSystemStarterThread sndSystem;
     private boolean loaded;
-    private int playTime = 0;
+    private int playTime;
 
     private final ConcurrentMap<String, ISound> playingSounds = Maps.newConcurrentMap();
     private final BiMap<String, ISound> playingSoundsBiMap = HashBiMap.create();
@@ -76,7 +76,7 @@ public class SoundManager implements IResourceManagerReloadListener {
     }
 
     private float getSoundCategoryVolume(SoundCategory category) {
-        return (category == null || category == SoundCategory.MASTER) ? 1.0F : options.getSoundLevel(category);
+        return category == null || category == SoundCategory.MASTER ? 1.0F : options.getSoundLevel(category);
     }
 
     public void setSoundCategoryVolume(SoundCategory category, float volume) {
@@ -128,7 +128,9 @@ public class SoundManager implements IResourceManagerReloadListener {
     }
 
     public void updateAllSounds() {
-        if (!loaded) return;
+        if (!loaded) {
+            return;
+        }
         ++playTime;
 
         Iterator<ITickableSound> tickableIterator = tickableSounds.iterator();
@@ -174,7 +176,9 @@ public class SoundManager implements IResourceManagerReloadListener {
                         categorySounds.remove(soundEvent.getSoundCategory(), sourceName);
                     }
                 }
-                if (sound instanceof ITickableSound) tickableSounds.remove(sound);
+                if (sound instanceof ITickableSound) {
+                    tickableSounds.remove(sound);
+                }
 
                 SoundPoolEntry poolEntry = playingSoundPoolEntries.get(sound);
                 if (poolEntry != null) {
@@ -231,7 +235,9 @@ public class SoundManager implements IResourceManagerReloadListener {
     }
 
     public void playSound(ISound sound) {
-        if (!loaded || sound == null || sndSystem.getMasterVolume() <= 0.0F) return;
+        if (!loaded || sound == null || sndSystem.getMasterVolume() <= 0.0F) {
+            return;
+        }
 
         SoundEventAccessorComposite soundEvent = sndHandler.getSound(sound.getSoundLocation());
 

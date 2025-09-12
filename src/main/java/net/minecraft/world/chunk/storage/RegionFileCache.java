@@ -65,4 +65,7 @@ public class RegionFileCache {
         RegionFile regionfile = createOrLoadRegionFile(worldDir, chunkX, chunkZ);
         return regionfile.getChunkDataOutputStream(chunkX & 31, chunkZ & 31);
     }
+
+    private RegionFileCache() {
+    }
 }

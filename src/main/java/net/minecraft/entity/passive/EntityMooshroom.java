@@ -59,7 +59,7 @@ public class EntityMooshroom extends EntityCow
 
                 this.worldObj.spawnEntityInWorld(entitycow);
 
-                for (int i = 0; i < 5; ++i)
+                for (int i = 0; i < 5; i++)
                 {
                     this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY + (double)this.height, this.posZ, new ItemStack(Blocks.red_mushroom)));
                 }

@@ -45,7 +45,7 @@ public class SoundList
         private float pitch = 1.0F;
         private int weight = 1;
         private SoundList.SoundEntry.Type type = SoundList.SoundEntry.Type.FILE;
-        private boolean streaming = false;
+        private boolean streaming;
 
         public String getSoundEntryName()
         {

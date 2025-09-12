@@ -22,7 +22,7 @@ public class GuiScreenCustomizePresets extends GuiScreen
     private GuiScreenCustomizePresets.ListPreset list;
     private GuiButton select;
     private GuiTextField export;
-    private GuiCustomizeWorldScreen parent;
+    private final GuiCustomizeWorldScreen parent;
     protected String title = "Customize World Presets";
     private String shareText;
     private String listText;

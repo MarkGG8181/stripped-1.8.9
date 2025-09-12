@@ -232,7 +232,7 @@ public class CrashReport
         stringbuilder.append("---- Minecraft Crash Report ----\n");
         stringbuilder.append("\n");
         stringbuilder.append("Time: ");
-        stringbuilder.append((new SimpleDateFormat()).format(new Date()));
+        stringbuilder.append(new SimpleDateFormat().format(new Date()));
         stringbuilder.append("\n");
         stringbuilder.append("Description: ");
         stringbuilder.append(this.description);
@@ -240,7 +240,7 @@ public class CrashReport
         stringbuilder.append(this.getCauseStackTraceOrString());
         stringbuilder.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
 
-        for (int i = 0; i < 87; ++i)
+        for (int i = 0; i < 87; i++)
         {
             stringbuilder.append("-");
         }

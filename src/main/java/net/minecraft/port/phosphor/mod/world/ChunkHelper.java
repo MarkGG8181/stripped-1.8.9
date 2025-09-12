@@ -20,4 +20,7 @@ public class ChunkHelper {
         }
         return null;
     }
+
+    private ChunkHelper() {
+    }
 }

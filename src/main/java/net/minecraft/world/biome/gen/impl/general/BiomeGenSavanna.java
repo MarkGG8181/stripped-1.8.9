@@ -40,7 +40,7 @@ public class BiomeGenSavanna extends BiomeGenBase {
     public void decorate(World worldIn, Random rand, BlockPos pos) {
         DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.GRASS);
 
-        for (int i = 0; i < 7; ++i) {
+        for (int i = 0; i < 7; i++) {
             int j = rand.nextInt(16) + 8;
             int k = rand.nextInt(16) + 8;
             int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);

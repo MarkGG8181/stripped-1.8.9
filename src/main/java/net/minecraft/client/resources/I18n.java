@@ -16,4 +16,7 @@ public class I18n
     {
         return i18nLocale.formatMessage(translateKey, parameters);
     }
+
+    private I18n() {
+    }
 }

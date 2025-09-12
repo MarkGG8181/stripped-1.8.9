@@ -123,7 +123,7 @@ public abstract class PathNavigate
 
         var f = this.getPathSearchRange();
         this.worldObj.theProfiler.startSection("pathfind");
-        var blockpos = (new BlockPos(this.theEntity)).up();
+        var blockpos = new BlockPos(this.theEntity).up();
         var i = (int)(f + 16.0F);
         var chunkcache = new ChunkCache(this.worldObj, blockpos.add(-i, -i, -i), blockpos.add(i, i, i), 0);
         var pathentity = this.pathFinder.createEntityPathTo(chunkcache, this.theEntity, entityIn, f);
@@ -183,7 +183,9 @@ public abstract class PathNavigate
     {
         ++this.totalTicks;
 
-        if (this.noPath()) return;
+        if (this.noPath()) {
+            return;
+        }
 
         if (this.canNavigate())
         {
@@ -206,7 +208,7 @@ public abstract class PathNavigate
 
             if (vec32 != null)
             {
-                var axisalignedbb1 = (new AxisAlignedBB(vec32.x, vec32.y, vec32.z, vec32.x, vec32.y, vec32.z)).expand(0.5D, 0.5D, 0.5D);
+                var axisalignedbb1 = new AxisAlignedBB(vec32.x, vec32.y, vec32.z, vec32.x, vec32.y, vec32.z).expand(0.5D, 0.5D, 0.5D);
                 var list = this.worldObj.getCollidingBoundingBoxes(this.theEntity, axisalignedbb1.addCoord(0.0D, -1.0D, 0.0D));
                 var d0 = -1.0D;
                 axisalignedbb1 = axisalignedbb1.offset(0.0D, 1.0D, 0.0D);
@@ -226,7 +228,7 @@ public abstract class PathNavigate
         var vec3 = this.getEntityPosition();
         var i = this.currentPath.getCurrentPathLength();
 
-        for (var j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); ++j)
+        for (var j = this.currentPath.getCurrentPathIndex(); j < this.currentPath.getCurrentPathLength(); j++)
         {
             if (this.currentPath.getPathPointFromIndex(j).yCoord != (int)vec3.y)
             {
@@ -237,7 +239,7 @@ public abstract class PathNavigate
 
         var f = this.theEntity.width * this.theEntity.width * this.heightRequirement;
 
-        for (var k = this.currentPath.getCurrentPathIndex(); k < i; ++k)
+        for (var k = this.currentPath.getCurrentPathIndex(); k < i; k++)
         {
             var vec31 = this.currentPath.getVectorFromIndex(this.theEntity, k);
 
@@ -250,7 +252,7 @@ public abstract class PathNavigate
         var j1 = MathHelper.ceiling_float_int(this.theEntity.width);
         var k1 = (int)this.theEntity.height + 1;
 
-        for (var i1 = i - 1; i1 >= this.currentPath.getCurrentPathIndex(); --i1)
+        for (var i1 = i - 1; i1 >= this.currentPath.getCurrentPathIndex(); i1--)
         {
             if (this.isDirectPathBetweenPoints(vec3, this.currentPath.getVectorFromIndex(this.theEntity, i1), j1, k1, j1))
             {

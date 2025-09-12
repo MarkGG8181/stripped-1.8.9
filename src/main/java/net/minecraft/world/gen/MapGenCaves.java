@@ -40,7 +40,7 @@ public class MapGenCaves extends MapGenBase {
 
         int j = random.nextInt(p_180702_16_ / 2) + p_180702_16_ / 4;
 
-        for (boolean flag = random.nextInt(6) == 0; p_180702_15_ < p_180702_16_; ++p_180702_15_) {
+        for (boolean flag = random.nextInt(6) == 0; p_180702_15_ < p_180702_16_; p_180702_15_++) {
             double d2 = 1.5D + (double)(MathHelper.sin((float)p_180702_15_ * (float)Math.PI / (float)p_180702_16_) * p_180702_12_ * 1.0F);
             double d3 = d2 * p_180702_17_;
             float f2 = MathHelper.cos(p_180702_14_);
@@ -113,9 +113,9 @@ public class MapGenCaves extends MapGenBase {
 
                     boolean flag3 = false;
 
-                    for (int j1 = k2; !flag3 && j1 < k; ++j1) {
-                        for (int k1 = i3; !flag3 && k1 < i1; ++k1) {
-                            for (int l1 = l + 1; !flag3 && l1 >= l2 - 1; --l1) {
+                    for (int j1 = k2; !flag3 && j1 < k; j1++) {
+                        for (int k1 = i3; !flag3 && k1 < i1; k1++) {
+                            for (int l1 = l + 1; !flag3 && l1 >= l2 - 1; l1--) {
                                 if (l1 >= 0 && l1 < 256) {
                                     IBlockState iblockstate = p_180702_5_.getBlockState(j1, l1, k1);
 
@@ -134,15 +134,15 @@ public class MapGenCaves extends MapGenBase {
                     if (!flag3) {
                         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                        for (int j3 = k2; j3 < k; ++j3) {
+                        for (int j3 = k2; j3 < k; j3++) {
                             double d10 = ((double)(j3 + p_180702_3_ * 16) + 0.5D - p_180702_6_) / d2;
 
-                            for (int i2 = i3; i2 < i1; ++i2) {
+                            for (int i2 = i3; i2 < i1; i2++) {
                                 double d8 = ((double)(i2 + p_180702_4_ * 16) + 0.5D - p_180702_10_) / d2;
                                 boolean flag1 = false;
 
                                 if (d10 * d10 + d8 * d8 < 1.0D) {
-                                    for (int j2 = l; j2 > l2; --j2) {
+                                    for (int j2 = l; j2 > l2; j2--) {
                                         double d9 = ((double)(j2 - 1) + 0.5D - p_180702_8_) / d3;
 
                                         if (d9 > -0.7D && d10 * d10 + d9 * d9 + d8 * d8 < 1.0D) {
@@ -199,7 +199,7 @@ public class MapGenCaves extends MapGenBase {
             i = 0;
         }
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             double d0 = (double)(chunkX * 16 + this.rand.nextInt(16));
             double d1 = (double)this.rand.nextInt(this.rand.nextInt(120) + 8);
             double d2 = (double)(chunkZ * 16 + this.rand.nextInt(16));
@@ -210,7 +210,7 @@ public class MapGenCaves extends MapGenBase {
                 k += this.rand.nextInt(4);
             }
 
-            for (int l = 0; l < k; ++l) {
+            for (int l = 0; l < k; l++) {
                 float f = this.rand.nextFloat() * (float)Math.PI * 2.0F;
                 float f1 = (this.rand.nextFloat() - 0.5F) * 2.0F / 8.0F;
                 float f2 = this.rand.nextFloat() * 2.0F + this.rand.nextFloat();

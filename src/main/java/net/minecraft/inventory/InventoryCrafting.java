@@ -192,7 +192,7 @@ public class InventoryCrafting implements IInventory
 
     public void clear()
     {
-        for (int i = 0; i < this.stackList.length; ++i)
+        for (int i = 0; i < this.stackList.length; i++)
         {
             this.stackList[i] = null;
         }

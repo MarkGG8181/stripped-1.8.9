@@ -28,7 +28,7 @@ import net.minecraft.world.gen.structure.StructureOceanMonument;
 public class ChunkProviderGenerate implements IChunkProvider
 {
     /** RNG. */
-    private Random rand;
+    private final Random rand;
     private final NoiseGeneratorOctaves field_147431_j;
     private final NoiseGeneratorOctaves field_147432_k;
     private final NoiseGeneratorOctaves field_147429_l;
@@ -42,31 +42,31 @@ public class ChunkProviderGenerate implements IChunkProvider
     public NoiseGeneratorOctaves mobSpawnerNoise;
 
     /** Reference to the World object. */
-    private World worldObj;
+    private final World worldObj;
 
     /** are map structures going to be generated (e.g. strongholds) */
     private final boolean mapFeaturesEnabled;
-    private WorldType field_177475_o;
+    private final WorldType field_177475_o;
     private final double[] field_147434_q;
     private final float[] parabolicField;
     private ChunkProviderSettings settings;
     private Block oceanBlockTmpl = Blocks.water;
     private double[] stoneNoise = new double[256];
-    private MapGenBase caveGenerator = new MapGenCaves();
+    private final MapGenBase caveGenerator = new MapGenCaves();
 
     /** Holds Stronghold Generator */
-    private MapGenStronghold strongholdGenerator = new MapGenStronghold();
+    private final MapGenStronghold strongholdGenerator = new MapGenStronghold();
 
     /** Holds Village Generator */
-    private MapGenVillage villageGenerator = new MapGenVillage();
+    private final MapGenVillage villageGenerator = new MapGenVillage();
 
     /** Holds Mineshaft Generator */
-    private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
-    private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
+    private final MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
+    private final MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
 
     /** Holds ravine generator */
-    private MapGenBase ravineGenerator = new MapGenRavine();
-    private StructureOceanMonument oceanMonumentGenerator = new StructureOceanMonument();
+    private final MapGenBase ravineGenerator = new MapGenRavine();
+    private final StructureOceanMonument oceanMonumentGenerator = new StructureOceanMonument();
 
     /** The biomes that are used to generate the chunk */
     private BiomeGenBase[] biomesForGeneration;
@@ -91,9 +91,9 @@ public class ChunkProviderGenerate implements IChunkProvider
         this.field_147434_q = new double[825];
         this.parabolicField = new float[25];
 
-        for (int i = -2; i <= 2; ++i)
+        for (int i = -2; i <= 2; i++)
         {
-            for (int j = -2; j <= 2; ++j)
+            for (int j = -2; j <= 2; j++)
             {
                 float f = 10.0F / MathHelper.sqrt_float((float)(i * i + j * j) + 0.2F);
                 this.parabolicField[i + 2 + (j + 2) * 5] = f;
@@ -116,19 +116,19 @@ public class ChunkProviderGenerate implements IChunkProvider
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.func_147423_a(x * 4, 0, z * 4);
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             int j = i * 5;
             int k = (i + 1) * 5;
 
-            for (int l = 0; l < 4; ++l)
+            for (int l = 0; l < 4; l++)
             {
                 int i1 = (j + l) * 33;
                 int j1 = (j + l + 1) * 33;
                 int k1 = (k + l) * 33;
                 int l1 = (k + l + 1) * 33;
 
-                for (int i2 = 0; i2 < 32; ++i2)
+                for (int i2 = 0; i2 < 32; i2++)
                 {
                     double d0 = 0.125D;
                     double d1 = this.field_147434_q[i1 + i2];
@@ -140,7 +140,7 @@ public class ChunkProviderGenerate implements IChunkProvider
                     double d7 = (this.field_147434_q[k1 + i2 + 1] - d3) * d0;
                     double d8 = (this.field_147434_q[l1 + i2 + 1] - d4) * d0;
 
-                    for (int j2 = 0; j2 < 8; ++j2)
+                    for (int j2 = 0; j2 < 8; j2++)
                     {
                         double d9 = 0.25D;
                         double d10 = d1;
@@ -148,13 +148,13 @@ public class ChunkProviderGenerate implements IChunkProvider
                         double d12 = (d3 - d1) * d9;
                         double d13 = (d4 - d2) * d9;
 
-                        for (int k2 = 0; k2 < 4; ++k2)
+                        for (int k2 = 0; k2 < 4; k2++)
                         {
                             double d14 = 0.25D;
                             double d16 = (d11 - d10) * d14;
                             double lvt_45_1_ = d10 - d16;
 
-                            for (int l2 = 0; l2 < 4; ++l2)
+                            for (int l2 = 0; l2 < 4; l2++)
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
@@ -189,9 +189,9 @@ public class ChunkProviderGenerate implements IChunkProvider
         double d0 = 0.03125D;
         this.stoneNoise = this.field_147430_m.func_151599_a(this.stoneNoise, (double)(x * 16), (double)(z * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
-        for (int i = 0; i < 16; ++i)
+        for (int i = 0; i < 16; i++)
         {
-            for (int j = 0; j < 16; ++j)
+            for (int j = 0; j < 16; j++)
             {
                 BiomeGenBase biomegenbase = biomeGens[j + i * 16];
                 biomegenbase.genTerrainBlocks(this.worldObj, this.rand, primer, x * 16 + i, z * 16 + j, this.stoneNoise[j + i * 16]);
@@ -249,7 +249,7 @@ public class ChunkProviderGenerate implements IChunkProvider
         Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int i = 0; i < abyte.length; ++i)
+        for (int i = 0; i < abyte.length; i++)
         {
             abyte[i] = (byte)this.biomesForGeneration[i].biomeID;
         }
@@ -271,9 +271,9 @@ public class ChunkProviderGenerate implements IChunkProvider
         int i = 0;
         int j = 0;
 
-        for (int k = 0; k < 5; ++k)
+        for (int k = 0; k < 5; k++)
         {
-            for (int l = 0; l < 5; ++l)
+            for (int l = 0; l < 5; l++)
             {
                 float f2 = 0.0F;
                 float f3 = 0.0F;
@@ -281,9 +281,9 @@ public class ChunkProviderGenerate implements IChunkProvider
                 int i1 = 2;
                 BiomeGenBase biomegenbase = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
-                for (int j1 = -i1; j1 <= i1; ++j1)
+                for (int j1 = -i1; j1 <= i1; j1++)
                 {
-                    for (int k1 = -i1; k1 <= i1; ++k1)
+                    for (int k1 = -i1; k1 <= i1; k1++)
                     {
                         BiomeGenBase biomegenbase1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
                         float f5 = this.settings.biomeDepthOffSet + biomegenbase1.minHeight * this.settings.biomeDepthWeight;
@@ -350,7 +350,7 @@ public class ChunkProviderGenerate implements IChunkProvider
                 d8 = d8 * (double)this.settings.baseSize / 8.0D;
                 double d0 = (double)this.settings.baseSize + d8 * 4.0D;
 
-                for (int l1 = 0; l1 < 33; ++l1)
+                for (int l1 = 0; l1 < 33; l1++)
                 {
                     double d1 = ((double)l1 - d0) * (double)this.settings.stretchY * 128.0D / 256.0D / d9;
 
@@ -432,7 +432,7 @@ public class ChunkProviderGenerate implements IChunkProvider
             int i1 = this.rand.nextInt(16) + 8;
             int j1 = this.rand.nextInt(256);
             int k1 = this.rand.nextInt(16) + 8;
-            (new WorldGenLakes(Blocks.water)).generate(this.worldObj, this.rand, blockpos.add(i1, j1, k1));
+            new WorldGenLakes(Blocks.water).generate(this.worldObj, this.rand, blockpos.add(i1, j1, k1));
         }
 
         if (!flag && this.rand.nextInt(this.settings.lavaLakeChance / 10) == 0 && this.settings.useLavaLakes)
@@ -443,18 +443,18 @@ public class ChunkProviderGenerate implements IChunkProvider
 
             if (l2 < this.worldObj.getSeaLevel() || this.rand.nextInt(this.settings.lavaLakeChance / 8) == 0)
             {
-                (new WorldGenLakes(Blocks.lava)).generate(this.worldObj, this.rand, blockpos.add(i2, l2, k3));
+                new WorldGenLakes(Blocks.lava).generate(this.worldObj, this.rand, blockpos.add(i2, l2, k3));
             }
         }
 
         if (this.settings.useDungeons)
         {
-            for (int j2 = 0; j2 < this.settings.dungeonChance; ++j2)
+            for (int j2 = 0; j2 < this.settings.dungeonChance; j2++)
             {
                 int i3 = this.rand.nextInt(16) + 8;
                 int l3 = this.rand.nextInt(256);
                 int l1 = this.rand.nextInt(16) + 8;
-                (new WorldGenDungeons()).generate(this.worldObj, this.rand, blockpos.add(i3, l3, l1));
+                new WorldGenDungeons().generate(this.worldObj, this.rand, blockpos.add(i3, l3, l1));
             }
         }
 
@@ -462,9 +462,9 @@ public class ChunkProviderGenerate implements IChunkProvider
         SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, i + 8, j + 8, 16, 16, this.rand);
         blockpos = blockpos.add(8, 0, 8);
 
-        for (int k2 = 0; k2 < 16; ++k2)
+        for (int k2 = 0; k2 < 16; k2++)
         {
-            for (int j3 = 0; j3 < 16; ++j3)
+            for (int j3 = 0; j3 < 16; j3++)
             {
                 BlockPos blockpos1 = this.worldObj.getPrecipitationHeight(blockpos.add(k2, 0, j3));
                 BlockPos blockpos2 = blockpos1.down();

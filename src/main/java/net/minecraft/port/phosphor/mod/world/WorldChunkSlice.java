@@ -43,8 +43,8 @@ public class WorldChunkSlice {
         xEnd = (xEnd >> 4) - this.x;
         zEnd = (zEnd >> 4) - this.z;
 
-        for (int i = xStart; i <= xEnd; ++i) {
-            for (int j = zStart; j <= zEnd; ++j) {
+        for (int i = xStart; i <= xEnd; i++) {
+            for (int j = zStart; j <= zEnd; j++) {
                 if (this.getChunk(i, j) == null) {
                     return false;
                 }

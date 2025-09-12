@@ -24,7 +24,7 @@ public class S22PacketMultiBlockChange implements Packet<INetHandlerPlayClient>
         this.chunkPosCoord = new ChunkCoordIntPair(chunkIn.xPosition, chunkIn.zPosition);
         this.changedBlocks = new S22PacketMultiBlockChange.BlockUpdateData[p_i45181_1_];
 
-        for (int i = 0; i < this.changedBlocks.length; ++i)
+        for (int i = 0; i < this.changedBlocks.length; i++)
         {
             this.changedBlocks[i] = new S22PacketMultiBlockChange.BlockUpdateData(crammedPositionsIn[i], chunkIn);
         }
@@ -38,7 +38,7 @@ public class S22PacketMultiBlockChange implements Packet<INetHandlerPlayClient>
         this.chunkPosCoord = new ChunkCoordIntPair(buf.readInt(), buf.readInt());
         this.changedBlocks = new S22PacketMultiBlockChange.BlockUpdateData[buf.readVarIntFromBuffer()];
 
-        for (int i = 0; i < this.changedBlocks.length; ++i)
+        for (int i = 0; i < this.changedBlocks.length; i++)
         {
             this.changedBlocks[i] = new S22PacketMultiBlockChange.BlockUpdateData(buf.readShort(), (IBlockState)Block.BLOCK_STATE_IDS.getByValue(buf.readVarIntFromBuffer()));
         }

@@ -8,40 +8,40 @@ import net.minecraft.entity.boss.EntityDragon;
 public class ModelDragon extends ModelBase
 {
     /** The head Model renderer of the dragon */
-    private ModelRenderer head;
+    private final ModelRenderer head;
 
     /** The spine Model renderer of the dragon */
-    private ModelRenderer spine;
+    private final ModelRenderer spine;
 
     /** The jaw Model renderer of the dragon */
-    private ModelRenderer jaw;
+    private final ModelRenderer jaw;
 
     /** The body Model renderer of the dragon */
-    private ModelRenderer body;
+    private final ModelRenderer body;
 
     /** The rear leg Model renderer of the dragon */
-    private ModelRenderer rearLeg;
+    private final ModelRenderer rearLeg;
 
     /** The front leg Model renderer of the dragon */
-    private ModelRenderer frontLeg;
+    private final ModelRenderer frontLeg;
 
     /** The rear leg tip Model renderer of the dragon */
-    private ModelRenderer rearLegTip;
+    private final ModelRenderer rearLegTip;
 
     /** The front leg tip Model renderer of the dragon */
-    private ModelRenderer frontLegTip;
+    private final ModelRenderer frontLegTip;
 
     /** The rear foot Model renderer of the dragon */
-    private ModelRenderer rearFoot;
+    private final ModelRenderer rearFoot;
 
     /** The front foot Model renderer of the dragon */
-    private ModelRenderer frontFoot;
+    private final ModelRenderer frontFoot;
 
     /** The wing Model renderer of the dragon */
-    private ModelRenderer wing;
+    private final ModelRenderer wing;
 
     /** The wing tip Model renderer of the dragon */
-    private ModelRenderer wingTip;
+    private final ModelRenderer wingTip;
     private float partialTicks;
 
     public ModelDragon(float p_i46360_1_)
@@ -156,7 +156,7 @@ public class ModelDragon extends ModelBase
         f2 = 20.0F;
         float f3 = -12.0F;
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 5; i++)
         {
             double[] adouble1 = entitydragon.getMovementOffsets(5 - i, this.partialTicks);
             float f9 = (float)Math.cos((double)((float)i * 0.45F + f8)) * 0.15F;
@@ -186,14 +186,14 @@ public class ModelDragon extends ModelBase
         this.body.rotateAngleZ = 0.0F;
         this.body.render(scale);
 
-        for (int j = 0; j < 2; ++j)
+        for (int j = 0; j < 2; j++)
         {
             GlStateManager.enableCull();
             float f11 = f * (float)Math.PI * 2.0F;
             this.wing.rotateAngleX = 0.125F - (float)Math.cos((double)f11) * 0.2F;
             this.wing.rotateAngleY = 0.25F;
             this.wing.rotateAngleZ = (float)(Math.sin((double)f11) + 0.125D) * 0.8F;
-            this.wingTip.rotateAngleZ = -((float)(Math.sin((double)(f11 + 2.0F)) + 0.5D)) * 0.75F;
+            this.wingTip.rotateAngleZ = -(float)(Math.sin((double)(f11 + 2.0F)) + 0.5D) * 0.75F;
             this.rearLeg.rotateAngleX = 1.0F + f1 * 0.1F;
             this.rearLegTip.rotateAngleX = 0.5F + f1 * 0.1F;
             this.rearFoot.rotateAngleX = 0.75F + f1 * 0.1F;
@@ -214,14 +214,14 @@ public class ModelDragon extends ModelBase
         GlStateManager.popMatrix();
         GlStateManager.cullFace(1029);
         GlStateManager.disableCull();
-        float f10 = -((float)Math.sin((double)(f * (float)Math.PI * 2.0F))) * 0.0F;
+        float f10 = -(float)Math.sin((double)(f * (float)Math.PI * 2.0F)) * 0.0F;
         f8 = f * (float)Math.PI * 2.0F;
         f2 = 10.0F;
         f3 = 60.0F;
         f4 = 0.0F;
         adouble = entitydragon.getMovementOffsets(11, this.partialTicks);
 
-        for (int k = 0; k < 12; ++k)
+        for (int k = 0; k < 12; k++)
         {
             adouble2 = entitydragon.getMovementOffsets(12 + k, this.partialTicks);
             f10 = (float)((double)f10 + Math.sin((double)((float)k * 0.45F + f8)) * 0.05000000074505806D);

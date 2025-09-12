@@ -30,18 +30,18 @@ public class RegionFile {
             this.dataFile = new RandomAccessFile(fileNameIn, "rw");
 
             if (this.dataFile.length() < 4096L) {
-                for (int i = 0; i < 1024; ++i) {
+                for (int i = 0; i < 1024; i++) {
                     this.dataFile.writeInt(0);
                 }
 
-                for (int i1 = 0; i1 < 1024; ++i1) {
+                for (int i1 = 0; i1 < 1024; i1++) {
                     this.dataFile.writeInt(0);
                 }
 
             }
 
             if ((this.dataFile.length() & 4095L) != 0L) {
-                for (int j1 = 0; (long)j1 < (this.dataFile.length() & 4095L); ++j1) {
+                for (int j1 = 0; (long)j1 < (this.dataFile.length() & 4095L); j1++) {
                     this.dataFile.write(0);
                 }
             }
@@ -49,7 +49,7 @@ public class RegionFile {
             int k1 = (int)this.dataFile.length() / 4096;
             this.sectorFree = Lists.newArrayListWithCapacity(k1);
 
-            for (int j = 0; j < k1; ++j) {
+            for (int j = 0; j < k1; j++) {
                 this.sectorFree.add(true);
             }
 
@@ -57,18 +57,18 @@ public class RegionFile {
             this.sectorFree.set(1, false);
             this.dataFile.seek(0L);
 
-            for (int l1 = 0; l1 < 1024; ++l1) {
+            for (int l1 = 0; l1 < 1024; l1++) {
                 int k = this.dataFile.readInt();
                 this.offsets[l1] = k;
 
                 if (k != 0 && (k >> 8) + (k & 255) <= this.sectorFree.size()) {
-                    for (int l = 0; l < (k & 255); ++l) {
+                    for (int l = 0; l < (k & 255); l++) {
                         this.sectorFree.set((k >> 8) + l, false);
                     }
                 }
             }
 
-            for (int i2 = 0; i2 < 1024; ++i2) {
+            for (int i2 = 0; i2 < 1024; i2++) {
                 int j2 = this.dataFile.readInt();
                 this.chunkTimestamps[i2] = j2;
             }
@@ -158,7 +158,7 @@ public class RegionFile {
                 this.write(j, data, length);
             }
             else {
-                for (int i1 = 0; i1 < k; ++i1) {
+                for (int i1 = 0; i1 < k; i1++) {
                     this.sectorFree.set(j + i1, true);
                 }
 
@@ -166,7 +166,7 @@ public class RegionFile {
                 int j1 = 0;
 
                 if (l1 != -1) {
-                    for (int k1 = l1; k1 < this.sectorFree.size(); ++k1) {
+                    for (int k1 = l1; k1 < this.sectorFree.size(); k1++) {
                         if (j1 != 0) {
                             if (this.sectorFree.get(k1)) {
                                 ++j1;
@@ -190,7 +190,7 @@ public class RegionFile {
                     j = l1;
                     this.setOffset(x, z, l1 << 8 | l);
 
-                    for (int j2 = 0; j2 < l; ++j2) {
+                    for (int j2 = 0; j2 < l; j2++) {
                         this.sectorFree.set(j + j2, false);
                     }
 
@@ -200,7 +200,7 @@ public class RegionFile {
                     this.dataFile.seek(this.dataFile.length());
                     j = this.sectorFree.size();
 
-                    for (int i2 = 0; i2 < l; ++i2) {
+                    for (int i2 = 0; i2 < l; i2++) {
                         this.dataFile.write(emptySector);
                         this.sectorFree.add(false);
                     }

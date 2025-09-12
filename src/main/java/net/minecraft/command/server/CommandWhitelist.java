@@ -50,23 +50,23 @@ public class CommandWhitelist extends CommandBase
         {
             MinecraftServer minecraftserver = MinecraftServer.getServer();
 
-            if (args[0].equals("on"))
+            if ("on".equals(args[0]))
             {
                 minecraftserver.getConfigurationManager().setWhiteListEnabled(true);
                 notifyOperators(sender, this, "commands.whitelist.enabled", new Object[0]);
             }
-            else if (args[0].equals("off"))
+            else if ("off".equals(args[0]))
             {
                 minecraftserver.getConfigurationManager().setWhiteListEnabled(false);
                 notifyOperators(sender, this, "commands.whitelist.disabled", new Object[0]);
             }
-            else if (args[0].equals("list"))
+            else if ("list".equals(args[0]))
             {
                 sender.addChatMessage(new ChatComponentTranslation("commands.whitelist.list", new Object[]{Integer.valueOf(minecraftserver.getConfigurationManager().getWhitelistedPlayerNames().length), Integer.valueOf(minecraftserver.getConfigurationManager().getAvailablePlayerDat().length)}));
                 String[] astring = minecraftserver.getConfigurationManager().getWhitelistedPlayerNames();
                 sender.addChatMessage(new ChatComponentText(joinNiceString(astring)));
             }
-            else if (args[0].equals("add"))
+            else if ("add".equals(args[0]))
             {
                 if (args.length < 2)
                 {
@@ -83,7 +83,7 @@ public class CommandWhitelist extends CommandBase
                 minecraftserver.getConfigurationManager().addWhitelistedPlayer(gameprofile);
                 notifyOperators(sender, this, "commands.whitelist.add.success", new Object[]{args[1]});
             }
-            else if (args[0].equals("remove"))
+            else if ("remove".equals(args[0]))
             {
                 if (args.length < 2)
                 {
@@ -100,7 +100,7 @@ public class CommandWhitelist extends CommandBase
                 minecraftserver.getConfigurationManager().removePlayerFromWhitelist(gameprofile1);
                 notifyOperators(sender, this, "commands.whitelist.remove.success", new Object[]{args[1]});
             }
-            else if (args[0].equals("reload"))
+            else if ("reload".equals(args[0]))
             {
                 minecraftserver.getConfigurationManager().loadWhiteList();
                 notifyOperators(sender, this, "commands.whitelist.reloaded", new Object[0]);
@@ -118,12 +118,12 @@ public class CommandWhitelist extends CommandBase
         {
             if (args.length == 2)
             {
-                if (args[0].equals("remove"))
+                if ("remove".equals(args[0]))
                 {
                     return getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getConfigurationManager().getWhitelistedPlayerNames());
                 }
 
-                if (args[0].equals("add"))
+                if ("add".equals(args[0]))
                 {
                     return getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getPlayerProfileCache().getUsernames());
                 }

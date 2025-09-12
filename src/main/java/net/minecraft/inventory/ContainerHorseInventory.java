@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerHorseInventory extends Container
 {
-    private IInventory horseInventory;
-    private EntityHorse theHorse;
+    private final IInventory horseInventory;
+    private final EntityHorse theHorse;
 
     public ContainerHorseInventory(IInventory playerInventory, final IInventory horseInventoryIn, final EntityHorse horse, EntityPlayer player)
     {
@@ -39,24 +39,24 @@ public class ContainerHorseInventory extends Container
 
         if (horse.isChested())
         {
-            for (int k = 0; k < i; ++k)
+            for (int k = 0; k < i; k++)
             {
-                for (int l = 0; l < 5; ++l)
+                for (int l = 0; l < 5; l++)
                 {
                     this.addSlotToContainer(new Slot(horseInventoryIn, 2 + l + k * 5, 80 + l * 18, 18 + k * 18));
                 }
             }
         }
 
-        for (int i1 = 0; i1 < 3; ++i1)
+        for (int i1 = 0; i1 < 3; i1++)
         {
-            for (int k1 = 0; k1 < 9; ++k1)
+            for (int k1 = 0; k1 < 9; k1++)
             {
                 this.addSlotToContainer(new Slot(playerInventory, k1 + i1 * 9 + 9, 8 + k1 * 18, 102 + i1 * 18 + j));
             }
         }
 
-        for (int j1 = 0; j1 < 9; ++j1)
+        for (int j1 = 0; j1 < 9; j1++)
         {
             this.addSlotToContainer(new Slot(playerInventory, j1, 8 + j1 * 18, 160 + j));
         }

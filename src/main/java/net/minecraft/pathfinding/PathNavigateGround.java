@@ -76,7 +76,7 @@ public class PathNavigateGround extends PathNavigate {
             }
 
             var mutablePos = new BlockPos.MutableBlockPos();
-            for (var i = 0; i < this.currentPath.getCurrentPathLength(); ++i) {
+            for (var i = 0; i < this.currentPath.getCurrentPathLength(); i++) {
                 var pathpoint = this.currentPath.getPathPointFromIndex(i);
                 mutablePos.set(pathpoint.xCoord, pathpoint.yCoord, pathpoint.zCoord);
                 if (this.worldObj.canSeeSky(mutablePos)) {
@@ -119,8 +119,12 @@ public class PathNavigateGround extends PathNavigate {
         var d6 = (double)i - posVec31.x;
         var d7 = (double)j - posVec31.z;
 
-        if (d0 >= 0.0D) ++d6;
-        if (d1 >= 0.0D) ++d7;
+        if (d0 >= 0.0D) {
+            ++d6;
+        }
+        if (d1 >= 0.0D) {
+            ++d7;
+        }
 
         d6 /= d0;
         d7 /= d1;
@@ -163,8 +167,8 @@ public class PathNavigateGround extends PathNavigate {
         }
 
         var mutablePos = new BlockPos.MutableBlockPos();
-        for (var k = i; k < i + sizeX; ++k) {
-            for (var l = j; l < j + sizeZ; ++l) {
+        for (var k = i; k < i + sizeX; k++) {
+            for (var l = j; l < j + sizeZ; l++) {
                 var d0 = (double)k + 0.5D - vec31.x;
                 var d1 = (double)l + 0.5D - vec31.z;
 
@@ -172,9 +176,15 @@ public class PathNavigateGround extends PathNavigate {
                     mutablePos.set(k, y - 1, l);
                     var material = this.worldObj.getBlockState(mutablePos).getBlock().getMaterial();
 
-                    if (material == Material.air) return true;
-                    if (material == Material.water && !this.theEntity.isInWater()) return true;
-                    if (material == Material.lava) return true;
+                    if (material == Material.air) {
+                        return true;
+                    }
+                    if (material == Material.water && !this.theEntity.isInWater()) {
+                        return true;
+                    }
+                    if (material == Material.lava) {
+                        return true;
+                    }
                 }
             }
         }
@@ -191,9 +201,9 @@ public class PathNavigateGround extends PathNavigate {
         var maxZ = p_179692_3_ + p_179692_6_ - 1;
 
         var mutablePos = new BlockPos.MutableBlockPos();
-        for (var curX = p_179692_1_; curX <= maxX; ++curX) {
-            for (var curY = p_179692_2_; curY <= maxY; ++curY) {
-                for (var curZ = p_179692_3_; curZ <= maxZ; ++curZ) {
+        for (var curX = p_179692_1_; curX <= maxX; curX++) {
+            for (var curY = p_179692_2_; curY <= maxY; curY++) {
+                for (var curZ = p_179692_3_; curZ <= maxZ; curZ++) {
                     var d0 = (double)curX + 0.5D - p_179692_7_.x;
                     var d1 = (double)curZ + 0.5D - p_179692_7_.z;
                     if (d0 * p_179692_8_ + d1 * p_179692_10_ >= 0.0D) {

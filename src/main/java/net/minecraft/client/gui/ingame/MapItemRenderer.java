@@ -80,7 +80,7 @@ public class MapItemRenderer
             this.mapTextureData = this.mapTexture.getTextureData();
             this.location = MapItemRenderer.this.textureManager.getDynamicTextureLocation("map/" + mapdataIn.mapName, this.mapTexture);
 
-            for (int i = 0; i < this.mapTextureData.length; ++i)
+            for (int i = 0; i < this.mapTextureData.length; i++)
             {
                 this.mapTextureData[i] = 0;
             }
@@ -88,7 +88,7 @@ public class MapItemRenderer
 
         private void updateMapTexture()
         {
-            for (int i = 0; i < 16384; ++i)
+            for (int i = 0; i < 16384; i++)
             {
                 int j = this.mapData.colors[i] & 255;
 

@@ -16,7 +16,7 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiCreateWorld extends GuiScreen
 {
-    private GuiScreen parentScreen;
+    private final GuiScreen parentScreen;
     private GuiTextField worldNameField;
     private GuiTextField worldSeedField;
     private String saveDirName;
@@ -226,7 +226,7 @@ public class GuiCreateWorld extends GuiScreen
                 }
 
                 this.alreadyGenerated = true;
-                long i = (new Random()).nextLong();
+                long i = new Random().nextLong();
                 String s = this.worldSeedField.getText();
 
                 if (!StringUtils.isEmpty(s))
@@ -268,7 +268,7 @@ public class GuiCreateWorld extends GuiScreen
             }
             else if (button.id == 2)
             {
-                if (this.gameMode.equals("survival"))
+                if ("survival".equals(this.gameMode))
                 {
                     if (!this.allowCheatsWasSetByUser)
                     {
@@ -282,7 +282,7 @@ public class GuiCreateWorld extends GuiScreen
                     this.btnBonusItems.enabled = false;
                     this.updateDisplayState();
                 }
-                else if (this.gameMode.equals("hardcore"))
+                else if ("hardcore".equals(this.gameMode))
                 {
                     if (!this.allowCheatsWasSetByUser)
                     {

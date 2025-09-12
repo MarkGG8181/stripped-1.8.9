@@ -147,18 +147,18 @@ public class CommandSpreadPlayers extends CommandBase
         double d0 = 3.4028234663852886E38D;
         int i;
 
-        for (i = 0; i < 10000 && flag; ++i)
+        for (i = 0; i < 10000 && flag; i++)
         {
             flag = false;
             d0 = 3.4028234663852886E38D;
 
-            for (int j = 0; j < p_110668_14_.length; ++j)
+            for (int j = 0; j < p_110668_14_.length; j++)
             {
                 CommandSpreadPlayers.Position commandspreadplayers$position = p_110668_14_[j];
                 int k = 0;
                 CommandSpreadPlayers.Position commandspreadplayers$position1 = new CommandSpreadPlayers.Position();
 
-                for (int l = 0; l < p_110668_14_.length; ++l)
+                for (int l = 0; l < p_110668_14_.length; l++)
                 {
                     if (j != l)
                     {
@@ -229,7 +229,7 @@ public class CommandSpreadPlayers extends CommandBase
         int i = 0;
         Map<Team, CommandSpreadPlayers.Position> map = new HashMap<>();
 
-        for (int j = 0; j < p_110671_1_.size(); ++j)
+        for (int j = 0; j < p_110671_1_.size(); j++)
         {
             Entity entity = (Entity)p_110671_1_.get(j);
             CommandSpreadPlayers.Position commandspreadplayers$position;
@@ -253,7 +253,7 @@ public class CommandSpreadPlayers extends CommandBase
             entity.setPositionAndUpdate((double)((float)MathHelper.floor_double(commandspreadplayers$position.x) + 0.5F), (double)commandspreadplayers$position.func_111092_a(worldIn), (double)MathHelper.floor_double(commandspreadplayers$position.z) + 0.5D);
             double d2 = Double.MAX_VALUE;
 
-            for (int k = 0; k < p_110671_3_.length; ++k)
+            for (int k = 0; k < p_110671_3_.length; k++)
             {
                 if (commandspreadplayers$position != p_110671_3_[k])
                 {
@@ -273,7 +273,7 @@ public class CommandSpreadPlayers extends CommandBase
     {
         CommandSpreadPlayers.Position[] acommandspreadplayers$position = new CommandSpreadPlayers.Position[p_110670_2_];
 
-        for (int i = 0; i < acommandspreadplayers$position.length; ++i)
+        for (int i = 0; i < acommandspreadplayers$position.length; i++)
         {
             CommandSpreadPlayers.Position commandspreadplayers$position = new CommandSpreadPlayers.Position();
             commandspreadplayers$position.func_111097_a(p_110670_1_, p_110670_3_, p_110670_5_, p_110670_7_, p_110670_9_);

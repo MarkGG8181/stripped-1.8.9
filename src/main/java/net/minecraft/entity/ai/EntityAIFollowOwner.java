@@ -14,11 +14,11 @@ import net.minecraft.world.World;
 
 public class EntityAIFollowOwner extends EntityAIBase
 {
-    private EntityTameable thePet;
+    private final EntityTameable thePet;
     private EntityLivingBase theOwner;
     World theWorld;
-    private double followSpeed;
-    private PathNavigate petPathfinder;
+    private final double followSpeed;
+    private final PathNavigate petPathfinder;
     private int timeToRecalcPath;
     float maxDist;
     float minDist;
@@ -128,9 +128,9 @@ public class EntityAIFollowOwner extends EntityAIBase
                             int j = MathHelper.floor_double(this.theOwner.posZ) - 2;
                             int k = MathHelper.floor_double(this.theOwner.getEntityBoundingBox().minY);
 
-                            for (int l = 0; l <= 4; ++l)
+                            for (int l = 0; l <= 4; l++)
                             {
-                                for (int i1 = 0; i1 <= 4; ++i1)
+                                for (int i1 = 0; i1 <= 4; i1++)
                                 {
                                     if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && World.doesBlockHaveSolidTopSurface(this.theWorld, new BlockPos(i + l, k - 1, j + i1)) && this.func_181065_a(new BlockPos(i + l, k, j + i1)) && this.func_181065_a(new BlockPos(i + l, k + 1, j + i1)))
                                     {

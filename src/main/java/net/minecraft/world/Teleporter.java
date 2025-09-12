@@ -47,11 +47,11 @@ public class Teleporter
             int l = 1;
             int i1 = 0;
 
-            for (int j1 = -2; j1 <= 2; ++j1)
+            for (int j1 = -2; j1 <= 2; j1++)
             {
-                for (int k1 = -2; k1 <= 2; ++k1)
+                for (int k1 = -2; k1 <= 2; k1++)
                 {
-                    for (int l1 = -1; l1 < 3; ++l1)
+                    for (int l1 = -1; l1 < 3; l1++)
                     {
                         int i2 = i + k1 * l + j1 * i1;
                         int j2 = j + l1;
@@ -89,11 +89,11 @@ public class Teleporter
         {
             BlockPos blockpos3 = new BlockPos(entityIn);
 
-            for (int i1 = -128; i1 <= 128; ++i1)
+            for (int i1 = -128; i1 <= 128; i1++)
             {
                 BlockPos blockpos2;
 
-                for (int j1 = -128; j1 <= 128; ++j1)
+                for (int j1 = -128; j1 <= 128; j1++)
                 {
                     for (BlockPos blockpos1 = blockpos3.add(i1, this.worldServerInstance.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2)
                     {
@@ -203,16 +203,16 @@ public class Teleporter
         int i2 = this.random.nextInt(4);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int j2 = j - i; j2 <= j + i; ++j2)
+        for (int j2 = j - i; j2 <= j + i; j2++)
         {
             double d1 = (double)j2 + 0.5D - entityIn.posX;
 
-            for (int l2 = l - i; l2 <= l + i; ++l2)
+            for (int l2 = l - i; l2 <= l + i; l2++)
             {
                 double d2 = (double)l2 + 0.5D - entityIn.posZ;
                 label142:
 
-                for (int j3 = this.worldServerInstance.getActualHeight() - 1; j3 >= 0; --j3)
+                for (int j3 = this.worldServerInstance.getActualHeight() - 1; j3 >= 0; j3--)
                 {
                     if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(j2, j3, l2)))
                     {
@@ -221,7 +221,7 @@ public class Teleporter
                             --j3;
                         }
 
-                        for (int k3 = i2; k3 < i2 + 4; ++k3)
+                        for (int k3 = i2; k3 < i2 + 4; k3++)
                         {
                             int l3 = k3 % 2;
                             int i4 = 1 - l3;
@@ -232,11 +232,11 @@ public class Teleporter
                                 i4 = -i4;
                             }
 
-                            for (int j4 = 0; j4 < 3; ++j4)
+                            for (int j4 = 0; j4 < 3; j4++)
                             {
-                                for (int k4 = 0; k4 < 4; ++k4)
+                                for (int k4 = 0; k4 < 4; k4++)
                                 {
-                                    for (int l4 = -1; l4 < 4; ++l4)
+                                    for (int l4 = -1; l4 < 4; l4++)
                                     {
                                         int i5 = j2 + (k4 - 1) * l3 + j4 * i4;
                                         int j5 = j3 + l4;
@@ -270,16 +270,16 @@ public class Teleporter
 
         if (d0 < 0.0D)
         {
-            for (int l5 = j - i; l5 <= j + i; ++l5)
+            for (int l5 = j - i; l5 <= j + i; l5++)
             {
                 double d3 = (double)l5 + 0.5D - entityIn.posX;
 
-                for (int j6 = l - i; j6 <= l + i; ++j6)
+                for (int j6 = l - i; j6 <= l + i; j6++)
                 {
                     double d4 = (double)j6 + 0.5D - entityIn.posZ;
                     label562:
 
-                    for (int i7 = this.worldServerInstance.getActualHeight() - 1; i7 >= 0; --i7)
+                    for (int i7 = this.worldServerInstance.getActualHeight() - 1; i7 >= 0; i7--)
                     {
                         if (this.worldServerInstance.isAirBlock(blockpos$mutableblockpos.set(l5, i7, j6)))
                         {
@@ -288,14 +288,14 @@ public class Teleporter
                                 --i7;
                             }
 
-                            for (int k7 = i2; k7 < i2 + 2; ++k7)
+                            for (int k7 = i2; k7 < i2 + 2; k7++)
                             {
                                 int j8 = k7 % 2;
                                 int j9 = 1 - j8;
 
-                                for (int j10 = 0; j10 < 4; ++j10)
+                                for (int j10 = 0; j10 < 4; j10++)
                                 {
-                                    for (int j11 = -1; j11 < 4; ++j11)
+                                    for (int j11 = -1; j11 < 4; j11++)
                                     {
                                         int j12 = l5 + (j10 - 1) * j8;
                                         int i13 = i7 + j11;
@@ -344,11 +344,11 @@ public class Teleporter
             j1 = MathHelper.clamp_int(j1, 70, this.worldServerInstance.getActualHeight() - 10);
             k2 = j1;
 
-            for (int j7 = -1; j7 <= 1; ++j7)
+            for (int j7 = -1; j7 <= 1; j7++)
             {
-                for (int l7 = 1; l7 < 3; ++l7)
+                for (int l7 = 1; l7 < 3; l7++)
                 {
-                    for (int k8 = -1; k8 < 3; ++k8)
+                    for (int k8 = -1; k8 < 3; k8++)
                     {
                         int k9 = i6 + (l7 - 1) * l6 + j7 * i3;
                         int k10 = k2 + k8;
@@ -362,11 +362,11 @@ public class Teleporter
 
         IBlockState iblockstate = Blocks.portal.getDefaultState().withProperty(BlockPortal.AXIS, l6 != 0 ? EnumFacing.Axis.X : EnumFacing.Axis.Z);
 
-        for (int i8 = 0; i8 < 4; ++i8)
+        for (int i8 = 0; i8 < 4; i8++)
         {
-            for (int l8 = 0; l8 < 4; ++l8)
+            for (int l8 = 0; l8 < 4; l8++)
             {
-                for (int l9 = -1; l9 < 4; ++l9)
+                for (int l9 = -1; l9 < 4; l9++)
                 {
                     int l10 = i6 + (l8 - 1) * l6;
                     int l11 = k2 + l9;
@@ -376,9 +376,9 @@ public class Teleporter
                 }
             }
 
-            for (int i9 = 0; i9 < 4; ++i9)
+            for (int i9 = 0; i9 < 4; i9++)
             {
-                for (int i10 = -1; i10 < 4; ++i10)
+                for (int i10 = -1; i10 < 4; i10++)
                 {
                     int i11 = i6 + (i9 - 1) * l6;
                     int i12 = k2 + i10;

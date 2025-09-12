@@ -164,8 +164,9 @@ public class Quaternion extends Vector implements ReadableVector4f {
     public static Quaternion normalise(Quaternion src, Quaternion dest) {
         float inv_l = 1f / src.length();
 
-        if (dest == null)
+        if (dest == null) {
             dest = new Quaternion();
+        }
 
         dest.set(src.x * inv_l, src.y * inv_l, src.z * inv_l, src.w * inv_l);
 
@@ -219,8 +220,9 @@ public class Quaternion extends Vector implements ReadableVector4f {
      *            quaternion
      */
     public static Quaternion negate(Quaternion src, Quaternion dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Quaternion();
+        }
 
         dest.x = -src.x;
         dest.y = -src.y;
@@ -265,8 +267,9 @@ public class Quaternion extends Vector implements ReadableVector4f {
      * @return The scaled quaternion
      */
     public static Quaternion scale(float scale, Quaternion src, Quaternion dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Quaternion();
+        }
         dest.x = src.x * scale;
         dest.y = src.y * scale;
         dest.z = src.z * scale;
@@ -370,8 +373,9 @@ public class Quaternion extends Vector implements ReadableVector4f {
      */
     public static Quaternion mul(Quaternion left, Quaternion right,
                                  Quaternion dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Quaternion();
+        }
         dest.set(left.x * right.w + left.w * right.x + left.y * right.z
             - left.z * right.y, left.y * right.w + left.w * right.y
             + left.z * right.x - left.x * right.z, left.z * right.w
@@ -396,10 +400,11 @@ public class Quaternion extends Vector implements ReadableVector4f {
                                         Quaternion dest) {
         float n = right.lengthSquared();
         // zero-div may occur.
-        n = (n == 0.0 ? n : 1 / n);
+        n = n == 0.0 ? n : 1 / n;
         // store on stack once for aliasing-safty
-        if (dest == null)
+        if (dest == null) {
             dest = new Quaternion();
+        }
         dest
             .set((left.x * right.w - left.w * right.x - left.y
                 * right.z + left.z * right.y)

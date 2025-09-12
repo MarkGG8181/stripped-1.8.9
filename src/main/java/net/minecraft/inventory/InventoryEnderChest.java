@@ -22,12 +22,12 @@ public class InventoryEnderChest extends InventoryBasic
 
     public void loadInventoryFromNBT(NBTTagList p_70486_1_)
     {
-        for (int i = 0; i < this.getSizeInventory(); ++i)
+        for (int i = 0; i < this.getSizeInventory(); i++)
         {
             this.setInventorySlotContents(i, (ItemStack)null);
         }
 
-        for (int k = 0; k < p_70486_1_.tagCount(); ++k)
+        for (int k = 0; k < p_70486_1_.tagCount(); k++)
         {
             NBTTagCompound nbttagcompound = p_70486_1_.getCompoundTagAt(k);
             int j = nbttagcompound.getByte("Slot") & 255;
@@ -43,7 +43,7 @@ public class InventoryEnderChest extends InventoryBasic
     {
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.getSizeInventory(); ++i)
+        for (int i = 0; i < this.getSizeInventory(); i++)
         {
             ItemStack itemstack = this.getStackInSlot(i);
 

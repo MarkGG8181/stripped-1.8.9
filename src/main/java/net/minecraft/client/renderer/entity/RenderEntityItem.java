@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderEntityItem extends Render<EntityItem>
 {
     private final RenderItem itemRenderer;
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public RenderEntityItem(RenderManager renderManagerIn, RenderItem p_i46167_2_)
     {
@@ -108,7 +108,7 @@ public class RenderEntityItem extends Render<EntityItem>
         IBakedModel ibakedmodel = this.itemRenderer.getItemModelMesher().getItemModel(itemstack);
         int i = this.func_177077_a(entity, x, y, z, partialTicks, ibakedmodel);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             if (ibakedmodel.isGui3d())
             {

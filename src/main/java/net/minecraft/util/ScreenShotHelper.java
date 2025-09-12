@@ -88,9 +88,9 @@ public class ScreenShotHelper
                 bufferedimage = new BufferedImage(buffer.framebufferWidth, buffer.framebufferHeight, 1);
                 int j = buffer.framebufferTextureHeight - buffer.framebufferHeight;
 
-                for (int k = j; k < buffer.framebufferTextureHeight; ++k)
+                for (int k = j; k < buffer.framebufferTextureHeight; k++)
                 {
-                    for (int l = 0; l < buffer.framebufferWidth; ++l)
+                    for (int l = 0; l < buffer.framebufferWidth; l++)
                     {
                         bufferedimage.setRGB(l, k - j, pixelValues[k * buffer.framebufferTextureWidth + l]);
                     }
@@ -148,5 +148,8 @@ public class ScreenShotHelper
 
             ++i;
         }
+    }
+
+    private ScreenShotHelper() {
     }
 }

@@ -25,12 +25,12 @@ public class GenLayerVoronoiZoom extends GenLayer
         int j1 = l - 1 << 2;
         int[] aint1 = IntCache.getIntCache(i1 * j1);
 
-        for (int k1 = 0; k1 < l - 1; ++k1)
+        for (int k1 = 0; k1 < l - 1; k1++)
         {
             int l1 = 0;
             int i2 = aint[l1 + 0 + (k1 + 0) * k];
 
-            for (int j2 = aint[l1 + 0 + (k1 + 1) * k]; l1 < k - 1; ++l1)
+            for (int j2 = aint[l1 + 0 + (k1 + 1) * k]; l1 < k - 1; l1++)
             {
                 double d0 = 3.6D;
                 this.initChunkSeed((long)(l1 + i << 2), (long)(k1 + j << 2));
@@ -48,11 +48,11 @@ public class GenLayerVoronoiZoom extends GenLayer
                 int k2 = aint[l1 + 1 + (k1 + 0) * k] & 255;
                 int l2 = aint[l1 + 1 + (k1 + 1) * k] & 255;
 
-                for (int i3 = 0; i3 < 4; ++i3)
+                for (int i3 = 0; i3 < 4; i3++)
                 {
                     int j3 = ((k1 << 2) + i3) * i1 + (l1 << 2);
 
-                    for (int k3 = 0; k3 < 4; ++k3)
+                    for (int k3 = 0; k3 < 4; k3++)
                     {
                         double d9 = ((double)i3 - d2) * ((double)i3 - d2) + ((double)k3 - d1) * ((double)k3 - d1);
                         double d10 = ((double)i3 - d4) * ((double)i3 - d4) + ((double)k3 - d3) * ((double)k3 - d3);
@@ -85,7 +85,7 @@ public class GenLayerVoronoiZoom extends GenLayer
 
         int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int l3 = 0; l3 < areaHeight; ++l3)
+        for (int l3 = 0; l3 < areaHeight; l3++)
         {
             System.arraycopy(aint1, (l3 + (areaY & 3)) * i1 + (areaX & 3), aint2, l3 * areaWidth, areaWidth);
         }

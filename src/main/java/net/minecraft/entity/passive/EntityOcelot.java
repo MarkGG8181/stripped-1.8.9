@@ -377,7 +377,7 @@ public class EntityOcelot extends EntityTameable
 
         if (this.worldObj.rand.nextInt(7) == 0)
         {
-            for (int i = 0; i < 2; ++i)
+            for (int i = 0; i < 2; i++)
             {
                 EntityOcelot entityocelot = new EntityOcelot(this.worldObj);
                 entityocelot.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);

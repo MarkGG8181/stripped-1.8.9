@@ -45,15 +45,15 @@ public class MapGenStronghold extends MapGenStructure
 
         for (Entry<String, String> entry : p_i2068_1_.entrySet())
         {
-            if (((String)entry.getKey()).equals("distance"))
+            if ("distance".equals((String)entry.getKey()))
             {
                 this.distance = MathHelper.parseDoubleWithDefaultAndMax((String)entry.getValue(), this.distance, 1.0D);
             }
-            else if (((String)entry.getKey()).equals("count"))
+            else if ("count".equals((String)entry.getKey()))
             {
                 this.structureCoords = new ChunkCoordIntPair[MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.structureCoords.length, 1)];
             }
-            else if (((String)entry.getKey()).equals("spread"))
+            else if ("spread".equals((String)entry.getKey()))
             {
                 this.spread = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.spread, 1);
             }
@@ -74,7 +74,7 @@ public class MapGenStronghold extends MapGenStructure
             double d0 = random.nextDouble() * Math.PI * 2.0D;
             int i = 1;
 
-            for (int j = 0; j < this.structureCoords.length; ++j)
+            for (int j = 0; j < this.structureCoords.length; j++)
             {
                 double d1 = (1.25D * (double)i + random.nextDouble()) * this.distance * (double)i;
                 int k = (int)Math.round(Math.cos(d0) * d1);

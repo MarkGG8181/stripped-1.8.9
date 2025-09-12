@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class ItemPotion extends Item
 {
-    private Map<Integer, List<PotionEffect>> effectCache = new HashMap<>();
+    private final Map<Integer, List<PotionEffect>> effectCache = new HashMap<>();
     private static final Map<List<PotionEffect>, Integer> SUB_ITEMS_CACHE = new LinkedHashMap<>();
 
     public ItemPotion()
@@ -41,7 +41,7 @@ public class ItemPotion extends Item
             List<PotionEffect> list1 = new ArrayList<>();
             NBTTagList nbttaglist = stack.getTagCompound().getTagList("CustomPotionEffects", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
                 PotionEffect potioneffect = PotionEffect.readCustomPotionEffectFromNBT(nbttagcompound);
@@ -339,9 +339,9 @@ public class ItemPotion extends Item
 
         if (SUB_ITEMS_CACHE.isEmpty())
         {
-            for (int i = 0; i <= 15; ++i)
+            for (int i = 0; i <= 15; i++)
             {
-                for (int j = 0; j <= 1; ++j)
+                for (int j = 0; j <= 1; j++)
                 {
                     int lvt_6_1_;
 
@@ -354,7 +354,7 @@ public class ItemPotion extends Item
                         lvt_6_1_ = i | 16384;
                     }
 
-                    for (int l = 0; l <= 2; ++l)
+                    for (int l = 0; l <= 2; l++)
                     {
                         int i1 = lvt_6_1_;
 

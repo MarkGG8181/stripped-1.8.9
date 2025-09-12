@@ -56,7 +56,7 @@ public class BiomeGenPlains extends BiomeGenBase {
             this.theBiomeDecorator.grassPerChunk = 10;
             DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.GRASS);
 
-            for (int i = 0; i < 7; ++i) {
+            for (int i = 0; i < 7; i++) {
                 int j = rand.nextInt(16) + 8;
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
@@ -67,7 +67,7 @@ public class BiomeGenPlains extends BiomeGenBase {
         if (this.sunflowers) {
             DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.SUNFLOWER);
 
-            for (int i1 = 0; i1 < 10; ++i1) {
+            for (int i1 = 0; i1 < 10; i1++) {
                 int j1 = rand.nextInt(16) + 8;
                 int k1 = rand.nextInt(16) + 8;
                 int l1 = rand.nextInt(worldIn.getHeight(pos.add(j1, 0, k1)).getY() + 32);

@@ -21,7 +21,7 @@ public class ItemModelGenerator
         Map<String, String> map = new HashMap<>();
         List<BlockPart> list = new ArrayList<>();
 
-        for (int i = 0; i < LAYERS.size(); ++i)
+        for (int i = 0; i < LAYERS.size(); i++)
         {
             String s = (String)LAYERS.get(i);
 
@@ -32,7 +32,7 @@ public class ItemModelGenerator
 
             String s1 = blockModel.resolveTextureName(s);
             map.put(s, s1);
-            TextureAtlasSprite textureatlassprite = textureMapIn.getAtlasSprite((new ResourceLocation(s1)).toString());
+            TextureAtlasSprite textureatlassprite = textureMapIn.getAtlasSprite(new ResourceLocation(s1).toString());
             list.addAll(this.func_178394_a(i, s, textureatlassprite));
         }
 
@@ -174,13 +174,13 @@ public class ItemModelGenerator
         int j = p_178393_1_.getIconHeight();
         List<ItemModelGenerator.Span> list = new ArrayList<>();
 
-        for (int k = 0; k < p_178393_1_.getFrameCount(); ++k)
+        for (int k = 0; k < p_178393_1_.getFrameCount(); k++)
         {
             int[] aint = p_178393_1_.getFrameTextureData(k)[0];
 
-            for (int l = 0; l < j; ++l)
+            for (int l = 0; l < j; l++)
             {
-                for (int i1 = 0; i1 < i; ++i1)
+                for (int i1 = 0; i1 < i; i1++)
                 {
                     boolean flag = !this.func_178391_a(aint, i1, l, i, j);
                     this.func_178396_a(ItemModelGenerator.SpanFacing.UP, list, aint, i1, l, i, j, flag);

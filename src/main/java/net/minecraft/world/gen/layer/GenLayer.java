@@ -75,7 +75,7 @@ public abstract class GenLayer
         GenLayerSmooth genlayersmooth = new GenLayerSmooth(1000L, genlayerriver);
         genlayerhills = new GenLayerRareBiome(1001L, genlayerhills);
 
-        for (int k = 0; k < i; ++k)
+        for (int k = 0; k < i; k++)
         {
             genlayerhills = new GenLayerZoom((long)(1000 + k), genlayerhills);
 

@@ -96,7 +96,7 @@ public class PathEntity {
             return false;
         }
         else {
-            for (var i = 0; i < this.points.length; ++i) {
+            for (var i = 0; i < this.points.length; i++) {
                 if (this.points[i].xCoord != pathentityIn.points[i].xCoord || this.points[i].yCoord != pathentityIn.points[i].yCoord || this.points[i].zCoord != pathentityIn.points[i].zCoord) {
                     return false;
                 }

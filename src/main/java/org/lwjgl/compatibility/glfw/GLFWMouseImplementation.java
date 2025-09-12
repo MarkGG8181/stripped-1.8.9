@@ -43,8 +43,9 @@ public class GLFWMouseImplementation implements MouseImplementation {
 
             putMouseEvent((byte)button, state, 0, System.nanoTime());
 
-            if (button < button_states.length)
+            if (button < button_states.length) {
                 button_states[button] = state;
+            }
         });
 
         this.posCallback = GLFWCursorPosCallback.create((window, xpos, ypos) -> {
@@ -98,10 +99,12 @@ public class GLFWMouseImplementation implements MouseImplementation {
 
 
     private void putMouseEvent(byte button, byte state, int dz, long nanos) {
-        if (grabbed)
+        if (grabbed) {
             putMouseEventWithCoords(button, state, 0, 0, dz, nanos);
-        else
+        }
+        else {
             putMouseEventWithCoords(button, state, last_x, last_y, dz, nanos);
+        }
     }
 
     private void putMouseEventWithCoords(byte button, byte state, int coord1, int coord2, int dz, long nanos) {
@@ -136,8 +139,9 @@ public class GLFWMouseImplementation implements MouseImplementation {
         }
         coord_buffer.put(2, accum_dz);
         accum_dx = accum_dy = accum_dz = 0;
-        for (int i = 0; i < button_states.length; i++)
+        for (int i = 0; i < button_states.length; i++) {
             buttons_buffer.put(i, button_states[i]);
+        }
     }
 
     @Override

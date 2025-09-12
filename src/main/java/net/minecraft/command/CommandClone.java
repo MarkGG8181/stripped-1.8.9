@@ -71,13 +71,13 @@ public class CommandClone extends CommandBase
                 Block block = null;
                 int j = -1;
 
-                if ((args.length < 11 || !args[10].equals("force") && !args[10].equals("move")) && structureboundingbox.intersectsWith(structureboundingbox1))
+                if ((args.length < 11 || !"force".equals(args[10]) && !"move".equals(args[10])) && structureboundingbox.intersectsWith(structureboundingbox1))
                 {
                     throw new CommandException("commands.clone.noOverlap", new Object[0]);
                 }
                 else
                 {
-                    if (args.length >= 11 && args[10].equals("move"))
+                    if (args.length >= 11 && "move".equals(args[10]))
                     {
                         flag = true;
                     }
@@ -92,11 +92,11 @@ public class CommandClone extends CommandBase
 
                             if (args.length >= 10)
                             {
-                                if (args[9].equals("masked"))
+                                if ("masked".equals(args[9]))
                                 {
                                     flag1 = true;
                                 }
-                                else if (args[9].equals("filtered"))
+                                else if ("filtered".equals(args[9]))
                                 {
                                     if (args.length < 12)
                                     {
@@ -118,11 +118,11 @@ public class CommandClone extends CommandBase
                             LinkedList<BlockPos> linkedlist = new LinkedList<>();
                             BlockPos blockpos3 = new BlockPos(structureboundingbox1.minX - structureboundingbox.minX, structureboundingbox1.minY - structureboundingbox.minY, structureboundingbox1.minZ - structureboundingbox.minZ);
 
-                            for (int k = structureboundingbox.minZ; k <= structureboundingbox.maxZ; ++k)
+                            for (int k = structureboundingbox.minZ; k <= structureboundingbox.maxZ; k++)
                             {
-                                for (int l = structureboundingbox.minY; l <= structureboundingbox.maxY; ++l)
+                                for (int l = structureboundingbox.minY; l <= structureboundingbox.maxY; l++)
                                 {
-                                    for (int i1 = structureboundingbox.minX; i1 <= structureboundingbox.maxX; ++i1)
+                                    for (int i1 = structureboundingbox.minX; i1 <= structureboundingbox.maxX; i1++)
                                     {
                                         BlockPos blockpos4 = new BlockPos(i1, l, k);
                                         BlockPos blockpos5 = blockpos4.add(blockpos3);

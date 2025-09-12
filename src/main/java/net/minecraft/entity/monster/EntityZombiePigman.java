@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 public class EntityZombiePigman extends EntityZombie
 {
     private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = FastUUID.parseUUID("49455A49-7EC5-45BA-B886-3B90B23A1718");
-    private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
+    private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0).setSaved(false);
 
     /** Above zero if this PigZombie is Angry. */
     private int angerLevel;
@@ -237,14 +237,14 @@ public class EntityZombiePigman extends EntityZombie
     {
         int i = this.rand.nextInt(2 + lootingModifier);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItem(Items.rotten_flesh, 1);
         }
 
         i = this.rand.nextInt(2 + lootingModifier);
 
-        for (int k = 0; k < i; ++k)
+        for (int k = 0; k < i; k++)
         {
             this.dropItem(Items.gold_nugget, 1);
         }

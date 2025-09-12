@@ -18,8 +18,8 @@ import org.lwjgl.BufferUtils;
 public class ShaderLoader {
     private final ShaderLoader.ShaderType shaderType;
     private final String shaderFilename;
-    private int shader;
-    private int shaderAttachCount = 0;
+    private final int shader;
+    private int shaderAttachCount;
 
     private ShaderLoader(ShaderLoader.ShaderType type, int shaderId, String filename) {
         this.shaderType = type;

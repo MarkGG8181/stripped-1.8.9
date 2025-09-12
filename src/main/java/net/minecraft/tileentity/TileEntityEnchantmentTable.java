@@ -25,7 +25,7 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
     public float bookRotation;
     public float bookRotationPrev;
     public float tRot;
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
     private String customName;
 
     public void writeToNBT(NBTTagCompound compound)
@@ -87,33 +87,33 @@ public class TileEntityEnchantmentTable extends TileEntity implements ITickable,
 
         while (this.bookRotation >= (float)Math.PI)
         {
-            this.bookRotation -= ((float)Math.PI * 2F);
+            this.bookRotation -= (float)Math.PI * 2F;
         }
 
         while (this.bookRotation < -(float)Math.PI)
         {
-            this.bookRotation += ((float)Math.PI * 2F);
+            this.bookRotation += (float)Math.PI * 2F;
         }
 
         while (this.tRot >= (float)Math.PI)
         {
-            this.tRot -= ((float)Math.PI * 2F);
+            this.tRot -= (float)Math.PI * 2F;
         }
 
         while (this.tRot < -(float)Math.PI)
         {
-            this.tRot += ((float)Math.PI * 2F);
+            this.tRot += (float)Math.PI * 2F;
         }
 
         float f2;
 
-        for (f2 = this.tRot - this.bookRotation; f2 >= (float)Math.PI; f2 -= ((float)Math.PI * 2F))
+        for (f2 = this.tRot - this.bookRotation; f2 >= (float)Math.PI; f2 -= (float)Math.PI * 2F)
         {
         }
 
         while (f2 < -(float)Math.PI)
         {
-            f2 += ((float)Math.PI * 2F);
+            f2 += (float)Math.PI * 2F;
         }
 
         this.bookRotation += f2 * 0.4F;

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class EntityLavaFX extends EntityFX
 {
-    private float lavaParticleScale;
+    private final float lavaParticleScale;
 
     protected EntityLavaFX(World worldIn, double xCoordIn, double yCoordIn, double zCoordIn)
     {

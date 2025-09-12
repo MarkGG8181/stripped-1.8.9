@@ -30,7 +30,7 @@ public class Display {
     private static String title = "";
     private static boolean resizable;
 
-    private static org.lwjgl.opengl.DisplayMode displayMode = new org.lwjgl.opengl.DisplayMode(640, 480, 32, 60);
+    private static DisplayMode displayMode = new DisplayMode(640, 480, 32, 60);
 
     private static int width;
     private static int height;
@@ -45,13 +45,13 @@ public class Display {
 
     private static boolean windowResized;
 
-    private static GLFWWindowSizeCallback sizeCallback = null;
+    private static GLFWWindowSizeCallback sizeCallback;
 
-    private static int samples = 0;
+    private static int samples;
 
-    private static ByteBuffer[] cachedIcons = null;
+    private static ByteBuffer[] cachedIcons;
 
-    private static boolean wayland = false;
+    private static boolean wayland;
 
     // ------------------------------ Functions here ------------------------------
 
@@ -193,12 +193,14 @@ public class Display {
     }
 
     public static void setFullscreen(boolean fullscreen) {
-        if (isFullScreen() == fullscreen || !isCreated() || monitor == MemoryUtil.NULL)
+        if (isFullScreen() == fullscreen || !isCreated() || monitor == MemoryUtil.NULL) {
             return;
+        }
 
         GLFWVidMode mode = GLFW.glfwGetVideoMode(monitor);
-        if (mode == null)
+        if (mode == null) {
             return;
+        }
 
         if (fullscreen) {
             lastWidth = width;
@@ -228,11 +230,11 @@ public class Display {
         Mouse.setIgnoreFirstMove(true);
     }
 
-    public static org.lwjgl.opengl.DisplayMode getDisplayMode() {
+    public static DisplayMode getDisplayMode() {
         return displayMode;
     }
 
-    public static void setDisplayMode(org.lwjgl.opengl.DisplayMode mode) {
+    public static void setDisplayMode(DisplayMode mode) {
         displayMode = mode;
         if (isCreated() && !isFullScreen()) {
             GLFW.glfwSetWindowSize(windowHandle, mode.getWidth(), mode.getHeight());
@@ -269,35 +271,35 @@ public class Display {
         return height;
     }
 
-    public static org.lwjgl.opengl.DisplayMode[] getAvailableDisplayModes() {
+    public static DisplayMode[] getAvailableDisplayModes() {
         long primaryMonitor = GLFW.glfwGetPrimaryMonitor();
         if (primaryMonitor == MemoryUtil.NULL) {
-            return new org.lwjgl.opengl.DisplayMode[0];
+            return new DisplayMode[0];
         }
 
         GLFWVidMode.Buffer videoModes = GLFW.glfwGetVideoModes(primaryMonitor);
         if (videoModes == null) {
-            return new org.lwjgl.opengl.DisplayMode[0];
+            return new DisplayMode[0];
         }
 
-        org.lwjgl.opengl.DisplayMode[] modes = new org.lwjgl.opengl.DisplayMode[videoModes.capacity()];
+        DisplayMode[] modes = new DisplayMode[videoModes.capacity()];
         for (int i = 0; i < videoModes.capacity(); i++) {
             GLFWVidMode mode = videoModes.get(i);
-            modes[i] = new org.lwjgl.opengl.DisplayMode(mode.width(), mode.height(), mode.redBits() + mode.blueBits() + mode.greenBits(), mode.refreshRate());
+            modes[i] = new DisplayMode(mode.width(), mode.height(), mode.redBits() + mode.blueBits() + mode.greenBits(), mode.refreshRate());
         }
         return modes;
     }
 
-    public static org.lwjgl.opengl.DisplayMode getDesktopDisplayMode() {
-        org.lwjgl.opengl.DisplayMode[] displayModes = getAvailableDisplayModes();
+    public static DisplayMode getDesktopDisplayMode() {
+        DisplayMode[] displayModes = getAvailableDisplayModes();
         if (displayModes.length == 0) {
             return null;
         }
 
-        org.lwjgl.opengl.DisplayMode maxElement = displayModes[0];
+        DisplayMode maxElement = displayModes[0];
         int maxValue = maxElement.getWidth() * maxElement.getHeight();
 
-        for (org.lwjgl.opengl.DisplayMode element : displayModes) {
+        for (DisplayMode element : displayModes) {
             int area = element.getWidth() * element.getHeight();
             if (maxValue < area) {
                 maxElement = element;
@@ -345,7 +347,7 @@ public class Display {
     }
 
     public static void sync(int fps) {
-        org.lwjgl.opengl.Sync.sync(fps);
+        Sync.sync(fps);
     }
 
     public static void setVSyncEnabled(boolean enabled) {
@@ -440,14 +442,19 @@ public class Display {
 
             while (true) {
                 int bytes = rbc.read(buffer);
-                if (bytes == -1)
+                if (bytes == -1) {
                     break;
-                if (buffer.remaining() == 0)
+                }
+                if (buffer.remaining() == 0) {
                     buffer = resizeBuffer(buffer, buffer.capacity() * 2);
+                }
             }
         }
 
         buffer.flip();
         return buffer;
+    }
+
+    private Display() {
     }
 }

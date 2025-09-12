@@ -103,9 +103,9 @@ public abstract class BlockLiquid extends Block
 
     public boolean shouldRenderSides(IBlockAccess blockAccess, BlockPos pos)
     {
-        for (int i = -1; i <= 1; ++i)
+        for (int i = -1; i <= 1; i++)
         {
-            for (int j = -1; j <= 1; ++j)
+            for (int j = -1; j <= 1; j++)
             {
                 IBlockState iblockstate = blockAccess.getBlockState(pos.add(i, 0, j));
                 Block block = iblockstate.getBlock();
@@ -360,7 +360,7 @@ public abstract class BlockLiquid extends Block
         double d2 = (double)pos.getZ();
         worldIn.playSoundEffect(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D, "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
-        for (int i = 0; i < 8; ++i)
+        for (int i = 0; i < 8; i++)
         {
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0 + ThreadLocalRandom.current().nextDouble(), d1 + 1.2D, d2 + ThreadLocalRandom.current().nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
         }

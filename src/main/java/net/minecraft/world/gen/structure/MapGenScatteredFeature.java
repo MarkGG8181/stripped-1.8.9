@@ -35,7 +35,7 @@ public class MapGenScatteredFeature extends MapGenStructure
 
         for (Entry<String, String> entry : p_i2061_1_.entrySet())
         {
-            if (((String)entry.getKey()).equals("distance"))
+            if ("distance".equals((String)entry.getKey()))
             {
                 this.maxDistanceBetweenScatteredFeatures = MathHelper.parseIntWithDefaultAndMax((String)entry.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
             }

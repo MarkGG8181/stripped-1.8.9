@@ -24,7 +24,7 @@ public class NetworkPlayerInfo {
      * Player response time to server in milliseconds
      */
     private int responseTime;
-    private boolean playerTexturesLoaded = false;
+    private boolean playerTexturesLoaded;
     private ResourceLocation locationSkin;
     private ResourceLocation locationCape;
     private String skinType;
@@ -33,11 +33,11 @@ public class NetworkPlayerInfo {
      * When this is non-null, it is displayed instead of the player's real name
      */
     private IChatComponent displayName;
-    private int lastHealth = 0;
-    private int displayHealth = 0;
-    private long lastHealthTime = 0L;
-    private long healthBlinkTime = 0L;
-    private long renderVisibilityId = 0L;
+    private int lastHealth;
+    private int displayHealth;
+    private long lastHealthTime;
+    private long healthBlinkTime;
+    private long renderVisibilityId;
 
     public NetworkPlayerInfo(GameProfile p_i46294_1_) {
         this.gameProfile = p_i46294_1_;

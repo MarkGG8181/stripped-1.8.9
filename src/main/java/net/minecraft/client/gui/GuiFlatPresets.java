@@ -165,7 +165,7 @@ public class GuiFlatPresets extends GuiScreen
     {
         FlatGeneratorInfo flatgeneratorinfo = new FlatGeneratorInfo();
 
-        for (int i = p_175354_5_.length - 1; i >= 0; --i)
+        for (int i = p_175354_5_.length - 1; i >= 0; i--)
         {
             flatgeneratorinfo.getFlatLayers().add(p_175354_5_[i]);
         }

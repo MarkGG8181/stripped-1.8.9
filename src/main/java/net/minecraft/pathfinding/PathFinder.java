@@ -78,7 +78,7 @@ public class PathFinder
             pathpoint1.visited = true;
             var i = this.nodeProcessor.findPathOptions(this.pathOptions, entityIn, pathpoint1, pathpointEnd, maxDistance);
 
-            for (var j = 0; j < i; ++j)
+            for (var j = 0; j < i; j++)
             {
                 var pathpoint2 = this.pathOptions[j];
                 var f = pathpoint1.totalPathDistance + pathpoint1.distanceToSquared(pathpoint2);

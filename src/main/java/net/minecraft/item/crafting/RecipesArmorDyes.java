@@ -22,7 +22,7 @@ public class RecipesArmorDyes implements IRecipe
         ItemStack itemstack = null;
         List<ItemStack> list = new ArrayList<>();
 
-        for (int i = 0; i < inv.getSizeInventory(); ++i)
+        for (int i = 0; i < inv.getSizeInventory(); i++)
         {
             ItemStack itemstack1 = inv.getStackInSlot(i);
 
@@ -65,7 +65,7 @@ public class RecipesArmorDyes implements IRecipe
         int j = 0;
         ItemArmor itemarmor = null;
 
-        for (int k = 0; k < inv.getSizeInventory(); ++k)
+        for (int k = 0; k < inv.getSizeInventory(); k++)
         {
             ItemStack itemstack1 = inv.getStackInSlot(k);
 
@@ -154,7 +154,7 @@ public class RecipesArmorDyes implements IRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 

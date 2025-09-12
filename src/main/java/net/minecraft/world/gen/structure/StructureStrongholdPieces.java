@@ -293,7 +293,7 @@ public class StructureStrongholdPieces
                 this.setBlockState(worldIn, Blocks.stone_slab.getStateFromMeta(BlockStoneSlab.EnumType.SMOOTHBRICK.getMetadata()), 3, 2, 2, structureBoundingBoxIn);
                 this.setBlockState(worldIn, Blocks.stone_slab.getStateFromMeta(BlockStoneSlab.EnumType.SMOOTHBRICK.getMetadata()), 3, 2, 4, structureBoundingBoxIn);
 
-                for (int i = 2; i <= 4; ++i)
+                for (int i = 2; i <= 4; i++)
                 {
                     this.setBlockState(worldIn, Blocks.stone_slab.getStateFromMeta(BlockStoneSlab.EnumType.SMOOTHBRICK.getMetadata()), 2, 1, i, structureBoundingBoxIn);
                 }
@@ -351,7 +351,7 @@ public class StructureStrongholdPieces
             {
                 if (structurecomponent.getBoundingBox().minY == structureboundingbox.minY)
                 {
-                    for (int j = 3; j >= 1; --j)
+                    for (int j = 3; j >= 1; j--)
                     {
                         structureboundingbox = StructureBoundingBox.getComponentToAddBoundingBox(p_175869_2_, p_175869_3_, p_175869_4_, -1, -1, 0, 5, 5, j - 1, p_175869_5_);
 
@@ -374,7 +374,7 @@ public class StructureStrongholdPieces
             }
             else
             {
-                for (int i = 0; i < this.steps; ++i)
+                for (int i = 0; i < this.steps; i++)
                 {
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 0, 0, i, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 1, 0, i, structureBoundingBoxIn);
@@ -382,7 +382,7 @@ public class StructureStrongholdPieces
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 3, 0, i, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 4, 0, i, structureBoundingBoxIn);
 
-                    for (int j = 1; j <= 3; ++j)
+                    for (int j = 1; j <= 3; j++)
                     {
                         this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 0, j, i, structureBoundingBoxIn);
                         this.setBlockState(worldIn, Blocks.air.getDefaultState(), 1, j, i, structureBoundingBoxIn);
@@ -660,7 +660,7 @@ public class StructureStrongholdPieces
                 int j = 1;
                 int k = 12;
 
-                for (int l = 1; l <= 13; ++l)
+                for (int l = 1; l <= 13; l++)
                 {
                     if ((l - 1) % 4 == 0)
                     {
@@ -852,7 +852,7 @@ public class StructureStrongholdPieces
             this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 4, 2, 6, 6, 2, 7, false, randomIn, StructureStrongholdPieces.strongholdStones);
             this.fillWithRandomizedBlocks(worldIn, structureBoundingBoxIn, 4, 3, 7, 6, 3, 7, false, randomIn, StructureStrongholdPieces.strongholdStones);
 
-            for (int k = 4; k <= 6; ++k)
+            for (int k = 4; k <= 6; k++)
             {
                 this.setBlockState(worldIn, Blocks.stone_brick_stairs.getStateFromMeta(l1), k, 1, 4, structureBoundingBoxIn);
                 this.setBlockState(worldIn, Blocks.stone_brick_stairs.getStateFromMeta(l1), k, 2, 5, structureBoundingBoxIn);
@@ -1093,7 +1093,7 @@ public class StructureStrongholdPieces
                         break;
 
                     case 1:
-                        for (int i1 = 0; i1 < 5; ++i1)
+                        for (int i1 = 0; i1 < 5; i1++)
                         {
                             this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 3, 1, 3 + i1, structureBoundingBoxIn);
                             this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), 7, 1, 3 + i1, structureBoundingBoxIn);
@@ -1108,13 +1108,13 @@ public class StructureStrongholdPieces
                         break;
 
                     case 2:
-                        for (int i = 1; i <= 9; ++i)
+                        for (int i = 1; i <= 9; i++)
                         {
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 1, 3, i, structureBoundingBoxIn);
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 9, 3, i, structureBoundingBoxIn);
                         }
 
-                        for (int j = 1; j <= 9; ++j)
+                        for (int j = 1; j <= 9; j++)
                         {
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), j, 3, 1, structureBoundingBoxIn);
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), j, 3, 9, structureBoundingBoxIn);
@@ -1129,7 +1129,7 @@ public class StructureStrongholdPieces
                         this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 4, 3, 5, structureBoundingBoxIn);
                         this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 6, 3, 5, structureBoundingBoxIn);
 
-                        for (int k = 1; k <= 3; ++k)
+                        for (int k = 1; k <= 3; k++)
                         {
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 4, k, 4, structureBoundingBoxIn);
                             this.setBlockState(worldIn, Blocks.cobblestone.getDefaultState(), 6, k, 4, structureBoundingBoxIn);
@@ -1139,7 +1139,7 @@ public class StructureStrongholdPieces
 
                         this.setBlockState(worldIn, Blocks.torch.getDefaultState(), 5, 3, 5, structureBoundingBoxIn);
 
-                        for (int l = 2; l <= 8; ++l)
+                        for (int l = 2; l <= 8; l++)
                         {
                             this.setBlockState(worldIn, Blocks.planks.getDefaultState(), 2, 3, l, structureBoundingBoxIn);
                             this.setBlockState(worldIn, Blocks.planks.getDefaultState(), 3, 3, l, structureBoundingBoxIn);
@@ -1322,7 +1322,7 @@ public class StructureStrongholdPieces
                 this.placeDoor(worldIn, randomIn, structureBoundingBoxIn, StructureStrongholdPieces.Stronghold.Door.OPENING, 1, 1, 7);
                 int i = this.getMetadataWithOffset(Blocks.stone_stairs, 2);
 
-                for (int j = 0; j < 6; ++j)
+                for (int j = 0; j < 6; j++)
                 {
                     this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(i), 1, 6 - j, 1 + j, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(i), 2, 6 - j, 1 + j, structureBoundingBoxIn);
@@ -1489,10 +1489,6 @@ public class StructureStrongholdPieces
         {
             switch (p_74990_4_)
             {
-                case OPENING:
-                default:
-                    this.fillWithBlocks(worldIn, p_74990_3_, p_74990_5_, p_74990_6_, p_74990_7_, p_74990_5_ + 3 - 1, p_74990_6_ + 3 - 1, p_74990_7_, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
-                    break;
 
                 case WOOD_DOOR:
                     this.setBlockState(worldIn, Blocks.stonebrick.getDefaultState(), p_74990_5_, p_74990_6_, p_74990_7_, p_74990_3_);
@@ -1530,6 +1526,10 @@ public class StructureStrongholdPieces
                     this.setBlockState(worldIn, Blocks.iron_door.getStateFromMeta(8), p_74990_5_ + 1, p_74990_6_ + 1, p_74990_7_, p_74990_3_);
                     this.setBlockState(worldIn, Blocks.stone_button.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_button, 4)), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ + 1, p_74990_3_);
                     this.setBlockState(worldIn, Blocks.stone_button.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_button, 3)), p_74990_5_ + 2, p_74990_6_ + 1, p_74990_7_ - 1, p_74990_3_);
+                    break;
+                case OPENING:
+                default:
+                    this.fillWithBlocks(worldIn, p_74990_3_, p_74990_5_, p_74990_6_, p_74990_7_, p_74990_5_ + 3 - 1, p_74990_6_ + 3 - 1, p_74990_7_, Blocks.air.getDefaultState(), Blocks.air.getDefaultState(), false);
             }
         }
 
@@ -1539,10 +1539,6 @@ public class StructureStrongholdPieces
 
             switch (i)
             {
-                case 0:
-                case 1:
-                default:
-                    return StructureStrongholdPieces.Stronghold.Door.OPENING;
 
                 case 2:
                     return StructureStrongholdPieces.Stronghold.Door.WOOD_DOOR;
@@ -1552,6 +1548,10 @@ public class StructureStrongholdPieces
 
                 case 4:
                     return StructureStrongholdPieces.Stronghold.Door.IRON_DOOR;
+                case 0:
+                case 1:
+                default:
+                    return StructureStrongholdPieces.Stronghold.Door.OPENING;
             }
         }
 
@@ -1636,5 +1636,8 @@ public class StructureStrongholdPieces
             GRATES,
             IRON_DOOR
         }
+    }
+
+    private StructureStrongholdPieces() {
     }
 }

@@ -18,11 +18,11 @@ import net.minecraft.util.EnumFacing;
 public class TileEntityItemStackRenderer
 {
     public static TileEntityItemStackRenderer instance = new TileEntityItemStackRenderer();
-    private TileEntityChest chestBasic = new TileEntityChest(0);
-    private TileEntityChest chestTrap = new TileEntityChest(1);
-    private TileEntityEnderChest enderChest = new TileEntityEnderChest();
-    private TileEntityBanner banner = new TileEntityBanner();
-    private TileEntitySkull skull = new TileEntitySkull();
+    private final TileEntityChest chestBasic = new TileEntityChest(0);
+    private final TileEntityChest chestTrap = new TileEntityChest(1);
+    private final TileEntityEnderChest enderChest = new TileEntityEnderChest();
+    private final TileEntityBanner banner = new TileEntityBanner();
+    private final TileEntitySkull skull = new TileEntitySkull();
 
     public void renderByItem(ItemStack itemStackIn)
     {

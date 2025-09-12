@@ -350,7 +350,7 @@ public class Minecraft implements IThreadListener {
      */
     private String debugProfilerName = "root";
 
-    private boolean isWindowInactive = false;
+    private boolean isWindowInactive;
     private int previousFramerateLimit;
     private int previousRenderDistance;
 
@@ -362,10 +362,10 @@ public class Minecraft implements IThreadListener {
         this.fileResourcepacks = gameConfig.folderInfo().resourcePacksDir();
         this.launchedVersion = gameConfig.gameInfo().version();
         this.profileProperties = gameConfig.userInfo().profileProperties();
-        this.mcDefaultResourcePack = new DefaultResourcePack((new ResourceIndex(gameConfig.folderInfo().assetsDir(), gameConfig.folderInfo().assetIndex())).getResourceMap());
+        this.mcDefaultResourcePack = new DefaultResourcePack(new ResourceIndex(gameConfig.folderInfo().assetsDir(), gameConfig.folderInfo().assetIndex()).getResourceMap());
         this.proxy = gameConfig.userInfo().proxy() == null ? Proxy.NO_PROXY : gameConfig.userInfo().proxy();
         assert gameConfig.userInfo().proxy() != null;
-        this.sessionService = (new YggdrasilAuthenticationService(gameConfig.userInfo().proxy(), UUID.randomUUID().toString())).createMinecraftSessionService();
+        this.sessionService = new YggdrasilAuthenticationService(gameConfig.userInfo().proxy(), UUID.randomUUID().toString()).createMinecraftSessionService();
         this.session = gameConfig.userInfo().session();
         logger.info("Setting user: {}", this.session.getUsername());
         logger.info("(Session ID is {})", this.session.getSessionID());
@@ -609,7 +609,7 @@ public class Minecraft implements IThreadListener {
      */
     public void displayCrashReport(CrashReport crashReportIn) {
         File file1 = new File(getMinecraft().mcDataDir, "crash-reports");
-        File file2 = new File(file1, "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-client.txt");
+        File file2 = new File(file1, "crash-" + new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss").format(new Date()) + "-client.txt");
         Bootstrap.printToSYSOUT(crashReportIn.getCompleteReport());
 
         if (crashReportIn.getFile() != null) {
@@ -882,7 +882,7 @@ public class Minecraft implements IThreadListener {
         this.mcProfiler.endSection();
         this.mcProfiler.startSection("tick");
 
-        for (int j = 0; j < this.timer.elapsedTicks; ++j) {
+        for (int j = 0; j < this.timer.elapsedTicks; j++) {
             this.runTick();
         }
 
@@ -1058,7 +1058,7 @@ public class Minecraft implements IThreadListener {
             else {
                 --keyCount;
 
-                if (keyCount < list.size() && !list.get(keyCount).profilerName.equals("unspecified")) {
+                if (keyCount < list.size() && !"unspecified".equals(list.get(keyCount).profilerName)) {
                     if (!this.debugProfilerName.isEmpty()) {
                         this.debugProfilerName = this.debugProfilerName + ".";
                     }
@@ -1110,7 +1110,7 @@ public class Minecraft implements IThreadListener {
                 int i2 = j1 & 255;
                 worldrenderer.pos((double)j, (double)k, 0.0D).color(k1, l1, i2, 255).endVertex();
 
-                for (int j2 = i1; j2 >= 0; --j2) {
+                for (int j2 = i1; j2 >= 0; j2--) {
                     float f = (float)((d0 + result.usePercentage * (double)j2 / (double)i1) * Math.PI * 2.0D / 100.0D);
                     float f1 = MathHelper.sin(f) * (float)i;
                     float f2 = MathHelper.cos(f) * (float)i * 0.5F;
@@ -1120,7 +1120,7 @@ public class Minecraft implements IThreadListener {
                 tessellator.draw();
                 worldrenderer.begin(5, DefaultVertexFormats.POSITION_COLOR);
 
-                for (int i3 = i1; i3 >= 0; --i3) {
+                for (int i3 = i1; i3 >= 0; i3--) {
                     float f3 = (float)((d0 + result.usePercentage * (double)i3 / (double)i1) * Math.PI * 2.0D / 100.0D);
                     float f4 = MathHelper.sin(f3) * (float)i;
                     float f5 = MathHelper.cos(f3) * (float)i * 0.5F;
@@ -1136,7 +1136,7 @@ public class Minecraft implements IThreadListener {
             GlStateManager.enableTexture2D();
             String s = "";
 
-            if (!profiler$result.profilerName.equals("unspecified")) {
+            if (!"unspecified".equals(profiler$result.profilerName)) {
                 s = s + "[0] ";
             }
 
@@ -1151,11 +1151,11 @@ public class Minecraft implements IThreadListener {
             this.fontRendererObj.drawStringWithShadow(s, (float)(j - i), (float)(k - i / 2 - 16), l2);
             this.fontRendererObj.drawStringWithShadow(s = decimalformat.format(profiler$result.totalUsePercentage) + "%", (float)(j + i - this.fontRendererObj.getStringWidth(s)), (float)(k - i / 2 - 16), l2);
 
-            for (int k2 = 0; k2 < list.size(); ++k2) {
+            for (int k2 = 0; k2 < list.size(); k2++) {
                 Profiler.Result profiler$result2 = list.get(k2);
                 String s1 = "";
 
-                if (profiler$result2.profilerName.equals("unspecified")) {
+                if ("unspecified".equals(profiler$result2.profilerName)) {
                     s1 = s1 + "[?] ";
                 }
                 else {
@@ -1260,6 +1260,7 @@ public class Minecraft implements IThreadListener {
                             this.playerController.clickBlock(blockpos, this.objectMouseOver.sideHit);
                             break;
                         }
+                        break;
 
                     case MISS:
                     default:
@@ -1621,7 +1622,7 @@ public class Minecraft implements IThreadListener {
                             this.updateDebugProfilerName(0);
                         }
 
-                        for (int j1 = 0; j1 < 9; ++j1) {
+                        for (int j1 = 0; j1 < 9; j1++) {
                             if (k == 2 + j1) {
                                 this.updateDebugProfilerName(j1 + 1);
                             }
@@ -1630,7 +1631,7 @@ public class Minecraft implements IThreadListener {
                 }
             }
 
-            for (int l = 0; l < 9; ++l) {
+            for (int l = 0; l < 9; l++) {
                 if (this.gameSettings.keyBindsHotbar[l].isPressed()) {
                     if (this.thePlayer.isSpectator()) {
                         this.ingameGUI.getSpectatorGui().func_175260_a(l);
@@ -2015,13 +2016,20 @@ public class Minecraft implements IThreadListener {
                             flag1 = true;
                         }
                     }
-                    case EntityMinecart entityminecart -> item = switch (entityminecart.getMinecartType()) {
-                        case FURNACE -> Items.furnace_minecart;
-                        case CHEST -> Items.chest_minecart;
-                        case TNT -> Items.tnt_minecart;
-                        case HOPPER -> Items.hopper_minecart;
-                        case COMMAND_BLOCK -> Items.command_block_minecart;
-                        default -> Items.minecart;
+                    case EntityMinecart entityminecart ->
+                        break; item = switch (entityminecart.getMinecartType()) {
+                        case FURNACE ->
+                            break; Items.furnace_minecart;
+                        case CHEST ->
+                            break; Items.chest_minecart;
+                        case TNT ->
+                            break; Items.tnt_minecart;
+                        case HOPPER ->
+                            break; Items.hopper_minecart;
+                        case COMMAND_BLOCK ->
+                            break; Items.command_block_minecart;
+                        default ->
+                            break; Items.minecart;
                     };
                     case EntityBoat ignored -> item = Items.boat;
                     case EntityArmorStand ignored -> item = Items.armor_stand;

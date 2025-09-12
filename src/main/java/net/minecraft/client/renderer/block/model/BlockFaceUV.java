@@ -106,7 +106,7 @@ public class BlockFaceUV
                 {
                     float[] afloat = new float[4];
 
-                    for (int i = 0; i < afloat.length; ++i)
+                    for (int i = 0; i < afloat.length; i++)
                     {
                         afloat[i] = JsonUtils.getFloat(jsonarray.get(i), "uv[" + i + "]");
                     }

@@ -83,7 +83,7 @@ public class BlockDragonEgg extends Block
 
         if (iblockstate.getBlock() == this)
         {
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < 1000; i++)
             {
                 BlockPos blockpos = pos.add(worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16), worldIn.rand.nextInt(8) - worldIn.rand.nextInt(8), worldIn.rand.nextInt(16) - worldIn.rand.nextInt(16));
 
@@ -91,7 +91,7 @@ public class BlockDragonEgg extends Block
                 {
                     if (worldIn.isRemote)
                     {
-                        for (int j = 0; j < 128; ++j)
+                        for (int j = 0; j < 128; j++)
                         {
                             double d0 = worldIn.rand.nextDouble();
                             float f = (worldIn.rand.nextFloat() - 0.5F) * 0.2F;

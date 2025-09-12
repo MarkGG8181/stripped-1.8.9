@@ -427,7 +427,7 @@ public class ItemRenderer
             IBlockState iblockstate = this.mc.theWorld.getBlockState(new BlockPos(this.mc.thePlayer));
             EntityPlayer entityplayer = this.mc.thePlayer;
 
-            for (int i = 0; i < 8; ++i)
+            for (int i = 0; i < 8; i++)
             {
                 double d0 = entityplayer.posX + (double)(((float)((i >> 0) % 2) - 0.5F) * entityplayer.width * 0.8F);
                 double d1 = entityplayer.posY + (double)(((float)((i >> 1) % 2) - 0.5F) * 0.1F);
@@ -547,7 +547,7 @@ public class ItemRenderer
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
         float f = 1.0F;
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
             GlStateManager.pushMatrix();
             TextureAtlasSprite textureatlassprite = this.mc.getTextureMapBlocks().getAtlasSprite("minecraft:blocks/fire_layer_1");

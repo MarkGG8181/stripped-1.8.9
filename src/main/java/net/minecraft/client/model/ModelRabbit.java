@@ -44,7 +44,7 @@ public class ModelRabbit extends ModelBase
     /** The Rabbit's Nose */
     ModelRenderer rabbitNose;
     private float jumpRotation = 0.0F;
-    private float field_178699_n = 0.0F;
+    private final float field_178699_n = 0.0F;
 
     public ModelRabbit()
     {

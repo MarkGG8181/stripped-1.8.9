@@ -81,9 +81,9 @@ public class BlockSapling extends BlockBush implements IGrowable
         {
             case SPRUCE:
                 label114:
-                for (i = 0; i >= -1; --i)
+                for (i = 0; i >= -1; i--)
                 {
-                    for (j = 0; j >= -1; --j)
+                    for (j = 0; j >= -1; j--)
                     {
                         if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.SPRUCE))
                         {
@@ -112,9 +112,9 @@ public class BlockSapling extends BlockBush implements IGrowable
                 IBlockState iblockstate1 = Blocks.leaves.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
                 label269:
 
-                for (i = 0; i >= -1; --i)
+                for (i = 0; i >= -1; i--)
                 {
-                    for (j = 0; j >= -1; --j)
+                    for (j = 0; j >= -1; j--)
                     {
                         if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.JUNGLE))
                         {
@@ -140,9 +140,9 @@ public class BlockSapling extends BlockBush implements IGrowable
 
             case DARK_OAK:
                 label390:
-                for (i = 0; i >= -1; --i)
+                for (i = 0; i >= -1; i--)
                 {
-                    for (j = 0; j >= -1; --j)
+                    for (j = 0; j >= -1; j--)
                     {
                         if (this.func_181624_a(worldIn, pos, i, j, BlockPlanks.EnumType.DARK_OAK))
                         {
@@ -157,6 +157,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 {
                     return;
                 }
+                break;
 
             case OAK:
         }

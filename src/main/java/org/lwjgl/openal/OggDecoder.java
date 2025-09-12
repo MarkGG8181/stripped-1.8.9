@@ -17,7 +17,9 @@ public class OggDecoder {
     private static final Logger logger = LogManager.getLogger("OggDecoder");
 
     public static int loadOgg(ByteBuffer vorbisData) {
-        if (vorbisData.position() != 0) vorbisData.rewind();
+        if (vorbisData.position() != 0) {
+            vorbisData.rewind();
+        }
         try (MemoryStack stack = MemoryStack.stackPush()) {
             IntBuffer error = stack.mallocInt(1);
             long decoder = STBVorbis.stb_vorbis_open_memory(vorbisData, error, null);
@@ -29,7 +31,7 @@ public class OggDecoder {
             STBVorbis.stb_vorbis_get_info(decoder, info);
             int sampleRate = info.sample_rate();
             int channels = info.channels();
-            int format = (channels == 1) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
+            int format = channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
             int samples = STBVorbis.stb_vorbis_stream_length_in_samples(decoder);
             if (samples <= 0) {
                 STBVorbis.stb_vorbis_close(decoder);
@@ -38,7 +40,9 @@ public class OggDecoder {
             int bufferSize = samples * channels * 2;
             ShortBuffer pcm = BufferUtils.createShortBuffer(bufferSize);
             int samplesDecoded = STBVorbis.stb_vorbis_get_samples_short_interleaved(decoder, channels, pcm);
-            if (samplesDecoded != samples) logger.warn("Decoded sample count mismatch: expected {}, got {}", samples, samplesDecoded);
+            if (samplesDecoded != samples) {
+                logger.warn("Decoded sample count mismatch: expected {}, got {}", samples, samplesDecoded);
+            }
             pcm.limit(samplesDecoded * channels);
             int bufferId = alGenBuffers();
             if (!alIsBuffer(bufferId)) {
@@ -59,5 +63,8 @@ public class OggDecoder {
             logger.error("Exception in OggDecoder.loadOgg", e);
             return 0;
         }
+    }
+
+    private OggDecoder() {
     }
 }

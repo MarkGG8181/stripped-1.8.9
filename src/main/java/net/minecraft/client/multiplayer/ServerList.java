@@ -40,7 +40,7 @@ public class ServerList {
 
             NBTTagList nbttaglist = nbttagcompound.getTagList("servers", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            for (int i = 0; i < nbttaglist.tagCount(); i++) {
                 this.servers.add(ServerData.getServerDataFromNBTCompound(nbttaglist.getCompoundTagAt(i)));
             }
         } catch (Exception exception) {
@@ -114,7 +114,7 @@ public class ServerList {
         ServerList serverlist = new ServerList(Minecraft.getMinecraft());
         serverlist.loadServerList();
 
-        for (int i = 0; i < serverlist.countServers(); ++i) {
+        for (int i = 0; i < serverlist.countServers(); i++) {
             ServerData serverdata = serverlist.getServerData(i);
 
             if (serverdata.serverName.equals(p_147414_0_.serverName) && serverdata.serverIP.equals(p_147414_0_.serverIP)) {

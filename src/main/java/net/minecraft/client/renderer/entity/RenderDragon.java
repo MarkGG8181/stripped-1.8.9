@@ -128,7 +128,7 @@ public class RenderDragon extends RenderLiving<EntityDragon>
         worldrenderer.begin(5, DefaultVertexFormats.POSITION_TEX_COLOR);
         int i = 8;
 
-        for (int j = 0; j <= 8; ++j)
+        for (int j = 0; j <= 8; j++)
         {
             float f9 = MathHelper.sin((float)(j % 8) * (float)Math.PI * 2.0F / 8.0F) * 0.75F;
             float f10 = MathHelper.cos((float)(j % 8) * (float)Math.PI * 2.0F / 8.0F) * 0.75F;

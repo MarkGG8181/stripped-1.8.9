@@ -55,7 +55,7 @@ public class S27PacketExplosion implements Packet<INetHandlerPlayClient>
         int k = (int)this.posY;
         int l = (int)this.posZ;
 
-        for (int i1 = 0; i1 < i; ++i1)
+        for (int i1 = 0; i1 < i; i1++)
         {
             int j1 = buf.readByte() + j;
             int k1 = buf.readByte() + k;

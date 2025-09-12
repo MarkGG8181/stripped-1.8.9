@@ -267,7 +267,7 @@ public class EntityGuardian extends EntityMob {
                     this.worldObj.playSound(this.posX, this.posY, this.posZ, "mob.guardian.flop", 1.0F, 1.0F, false);
                 }
 
-                this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube((new BlockPos(this)).down(), false);
+                this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube(new BlockPos(this).down(), false);
             }
             else if (this.func_175472_n()) {
                 if (this.clientSideTailAnimationSpeed < 0.5F) {
@@ -297,7 +297,7 @@ public class EntityGuardian extends EntityMob {
             if (this.func_175472_n() && this.isInWater()) {
                 Vec3 vec3 = this.getLook(0.0F);
 
-                for (int i = 0; i < 2; ++i) {
+                for (int i = 0; i < 2; i++) {
                     this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.x * 1.5D, this.posY + this.rand.nextDouble() * (double)this.height - vec3.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.z * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }

@@ -54,7 +54,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
     };
 
     /** Cooldown before command block logic runs again in ticks */
-    private int activatorRailCooldown = 0;
+    private int activatorRailCooldown;
 
     public EntityMinecartCommandBlock(World worldIn)
     {

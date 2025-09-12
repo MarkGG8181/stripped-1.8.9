@@ -8,10 +8,10 @@ import net.minecraft.util.Vec3;
 
 public class ModelGuardian extends ModelBase
 {
-    private ModelRenderer guardianBody;
-    private ModelRenderer guardianEye;
-    private ModelRenderer[] guardianSpines;
-    private ModelRenderer[] guardianTail;
+    private final ModelRenderer guardianBody;
+    private final ModelRenderer guardianEye;
+    private final ModelRenderer[] guardianSpines;
+    private final ModelRenderer[] guardianTail;
 
     public ModelGuardian()
     {
@@ -25,7 +25,7 @@ public class ModelGuardian extends ModelBase
         this.guardianBody.setTextureOffset(16, 40).addBox(-6.0F, 8.0F, -6.0F, 12, 2, 12);
         this.guardianBody.setTextureOffset(16, 40).addBox(-6.0F, 22.0F, -6.0F, 12, 2, 12);
 
-        for (int i = 0; i < this.guardianSpines.length; ++i)
+        for (int i = 0; i < this.guardianSpines.length; i++)
         {
             this.guardianSpines[i] = new ModelRenderer(this, 0, 0);
             this.guardianSpines[i].addBox(-1.0F, -4.5F, -1.0F, 2, 9, 2);
@@ -81,7 +81,7 @@ public class ModelGuardian extends ModelBase
         float[] afloat5 = new float[]{8.0F, -8.0F, 0.0F, 0.0F, -8.0F, -8.0F, 8.0F, 8.0F, 8.0F, -8.0F, 0.0F, 0.0F};
         float f1 = (1.0F - entityguardian.func_175469_o(f)) * 0.55F;
 
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < 12; i++)
         {
             this.guardianSpines[i].rotateAngleX = (float)Math.PI * afloat[i];
             this.guardianSpines[i].rotateAngleY = (float)Math.PI * afloat1[i];
@@ -116,7 +116,7 @@ public class ModelGuardian extends ModelBase
 
             Vec3 vec32 = entityIn.getLook(0.0F);
             vec32 = new Vec3(vec32.x, 0.0D, vec32.z);
-            Vec3 vec33 = (new Vec3(vec31.x - vec3.x, 0.0D, vec31.z - vec3.z)).normalize().rotateYaw(((float)Math.PI / 2F));
+            Vec3 vec33 = new Vec3(vec31.x - vec3.x, 0.0D, vec31.z - vec3.z).normalize().rotateYaw((float)Math.PI / 2F);
             double d1 = vec32.dotProduct(vec33);
             this.guardianEye.rotationPointX = MathHelper.sqrt_float((float)Math.abs(d1)) * 2.0F * (float)Math.signum(d1);
         }

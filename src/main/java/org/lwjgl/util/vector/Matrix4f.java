@@ -155,8 +155,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The copied matrix
      */
     public static Matrix4f load(Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
         dest.m00 = src.m00;
         dest.m01 = src.m01;
         dest.m02 = src.m02;
@@ -311,8 +312,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix4f add(Matrix4f left, Matrix4f right, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         dest.m00 = left.m00 + right.m00;
         dest.m01 = left.m01 + right.m01;
@@ -342,8 +344,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix4f sub(Matrix4f left, Matrix4f right, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         dest.m00 = left.m00 - right.m00;
         dest.m01 = left.m01 - right.m01;
@@ -373,8 +376,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix4f mul(Matrix4f left, Matrix4f right, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         float m00 = left.m00 * right.m00 + left.m10 * right.m01 + left.m20 * right.m02 + left.m30 * right.m03;
         float m01 = left.m01 * right.m00 + left.m11 * right.m01 + left.m21 * right.m02 + left.m31 * right.m03;
@@ -422,8 +426,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the destination vector
      */
     public static Vector4f transform(Matrix4f left, Vector4f right, Vector4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector4f();
+        }
 
         float x = left.m00 * right.x + left.m10 * right.y + left.m20 * right.z + left.m30 * right.w;
         float y = left.m01 * right.x + left.m11 * right.y + left.m21 * right.z + left.m31 * right.w;
@@ -481,8 +486,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The scaled matrix
      */
     public static Matrix4f scale(Vector3f vec, Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
         dest.m00 = src.m00 * vec.x;
         dest.m01 = src.m01 * vec.x;
         dest.m02 = src.m02 * vec.x;
@@ -529,8 +535,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The rotated matrix
      */
     public static Matrix4f rotate(float angle, Vector3f axis, Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
         float c = (float)Math.cos(angle);
         float s = (float)Math.sin(angle);
         float oneminusc = 1.0f - c;
@@ -594,8 +601,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The translated matrix
      */
     public static Matrix4f translate(Vector3f vec, Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         dest.m30 += src.m00 * vec.x + src.m10 * vec.y + src.m20 * vec.z;
         dest.m31 += src.m01 * vec.x + src.m11 * vec.y + src.m21 * vec.z;
@@ -623,8 +631,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The translated matrix
      */
     public static Matrix4f translate(Vector2f vec, Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         dest.m30 += src.m00 * vec.x + src.m10 * vec.y;
         dest.m31 += src.m01 * vec.x + src.m11 * vec.y;
@@ -650,8 +659,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return the transposed matrix
      */
     public static Matrix4f transpose(Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
         float m00 = src.m00;
         float m01 = src.m10;
         float m02 = src.m20;
@@ -755,8 +765,9 @@ public class Matrix4f extends Matrix implements Serializable {
              * m20 m21 m22 m23
              * m30 m31 m32 m33
              */
-            if (dest == null)
+            if (dest == null) {
                 dest = new Matrix4f();
+            }
             float determinant_inv = 1f / determinant;
 
             // first row
@@ -798,8 +809,10 @@ public class Matrix4f extends Matrix implements Serializable {
             dest.m32 = t23 * determinant_inv;
             dest.m23 = t32 * determinant_inv;
             return dest;
-        } else
+        }
+        else {
             return null;
+        }
     }
 
     /**
@@ -826,8 +839,9 @@ public class Matrix4f extends Matrix implements Serializable {
      * @return The negated matrix
      */
     public static Matrix4f negate(Matrix4f src, Matrix4f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix4f();
+        }
 
         dest.m00 = -src.m00;
         dest.m01 = -src.m01;

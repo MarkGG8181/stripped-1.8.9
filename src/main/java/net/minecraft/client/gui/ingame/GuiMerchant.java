@@ -30,7 +30,7 @@ public class GuiMerchant extends GuiContainer
     private static final ResourceLocation MERCHANT_GUI_TEXTURE = new ResourceLocation("textures/gui/container/villager.png");
 
     /** The current IMerchant instance in use for this specific merchant. */
-    private IMerchant merchant;
+    private final IMerchant merchant;
 
     /** The button which proceeds to the next available merchant recipe. */
     private GuiMerchant.MerchantButton nextButton;
@@ -44,7 +44,7 @@ public class GuiMerchant extends GuiContainer
     private int selectedMerchantRecipe;
 
     /** The chat component utilized by this GuiMerchant instance. */
-    private IChatComponent chatComponent;
+    private final IChatComponent chatComponent;
 
     public GuiMerchant(InventoryPlayer p_i45500_1_, IMerchant p_i45500_2_, World worldIn)
     {

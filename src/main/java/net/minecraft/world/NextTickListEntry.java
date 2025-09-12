@@ -15,7 +15,7 @@ public class NextTickListEntry implements Comparable<NextTickListEntry>
     public int priority;
 
     /** The id of the tick entry */
-    private long tickEntryID;
+    private final long tickEntryID;
 
     public NextTickListEntry(BlockPos positionIn, Block blockIn)
     {

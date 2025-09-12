@@ -16,10 +16,10 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
     protected T modelLeggings;
     protected T modelArmor;
     private final RendererLivingEntity<?> renderer;
-    private float alpha = 1.0F;
-    private float colorR = 1.0F;
-    private float colorG = 1.0F;
-    private float colorB = 1.0F;
+    private final float alpha = 1.0F;
+    private final float colorR = 1.0F;
+    private final float colorG = 1.0F;
+    private final float colorB = 1.0F;
     private boolean skipRenderGlint;
     private static final Map<String, ResourceLocation> ARMOR_TEXTURE_RES_MAP = new HashMap<>();
 
@@ -66,6 +66,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
                     GlStateManager.color(this.colorR * f, this.colorG * f1, this.colorB * f2, this.alpha);
                     t.render(entitylivingbaseIn, p_177182_2_, p_177182_3_, p_177182_5_, p_177182_6_, p_177182_7_, scale);
                     this.renderer.bindTexture(this.getArmorResource(itemarmor, flag, "overlay"));
+                    break;
 
                 case CHAIN:
                 case IRON:
@@ -73,6 +74,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
                 case DIAMOND:
                     GlStateManager.color(this.colorR, this.colorG, this.colorB, this.alpha);
                     t.render(entitylivingbaseIn, p_177182_2_, p_177182_3_, p_177182_5_, p_177182_6_, p_177182_7_, scale);
+                    break;
 
                 default:
                     if (!this.skipRenderGlint && itemstack.isItemEnchanted())
@@ -108,7 +110,7 @@ public abstract class LayerArmorBase<T extends ModelBase> implements LayerRender
         float f1 = 0.5F;
         GlStateManager.color(f1, f1, f1, 1.0F);
 
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 2; i++)
         {
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(768, 1);

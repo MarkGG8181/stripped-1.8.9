@@ -14,4 +14,7 @@ public final class BossStatus
         bossName = displayData.getDisplayName().getFormattedText();
         hasColorModifier = hasColorModifierIn;
     }
+
+    private BossStatus() {
+    }
 }

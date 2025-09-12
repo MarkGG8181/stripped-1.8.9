@@ -31,4 +31,7 @@ public class BlockStateHelper {
         // Use the direct getter from the chunk section
         return section.get(pos.getX() & 15, y & 15, pos.getZ() & 15);
     }
+
+    private BlockStateHelper() {
+    }
 }

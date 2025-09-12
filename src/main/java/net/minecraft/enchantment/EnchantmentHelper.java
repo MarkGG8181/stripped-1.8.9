@@ -53,7 +53,7 @@ public class EnchantmentHelper
             }
             else
             {
-                for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                for (int i = 0; i < nbttaglist.tagCount(); i++)
                 {
                     int j = nbttaglist.getCompoundTagAt(i).getShort("id");
                     int k = nbttaglist.getCompoundTagAt(i).getShort("lvl");
@@ -76,7 +76,7 @@ public class EnchantmentHelper
 
         if (nbttaglist != null)
         {
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 int j = nbttaglist.getCompoundTagAt(i).getShort("id");
                 int k = nbttaglist.getCompoundTagAt(i).getShort("lvl");
@@ -165,7 +165,7 @@ public class EnchantmentHelper
 
             if (nbttaglist != null)
             {
-                for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                for (int i = 0; i < nbttaglist.tagCount(); i++)
                 {
                     int j = nbttaglist.getCompoundTagAt(i).getShort("id");
                     int k = nbttaglist.getCompoundTagAt(i).getShort("lvl");
@@ -489,7 +489,7 @@ public class EnchantmentHelper
         {
             if (enchantment != null && (enchantment.type.canEnchantItem(item) || flag))
             {
-                for (int i = enchantment.getMinLevel(); i <= enchantment.getMaxLevel(); ++i)
+                for (int i = enchantment.getMinLevel(); i <= enchantment.getMaxLevel(); i++)
                 {
                     if (p_77505_0_ >= enchantment.getMinEnchantability(i) && p_77505_0_ <= enchantment.getMaxEnchantability(i))
                     {
@@ -570,5 +570,8 @@ public class EnchantmentHelper
         {
             this.livingModifier += enchantmentIn.calcDamageByCreature(enchantmentLevel, this.entityLiving);
         }
+    }
+
+    private EnchantmentHelper() {
     }
 }

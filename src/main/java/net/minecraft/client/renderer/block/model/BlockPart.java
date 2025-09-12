@@ -217,7 +217,7 @@ public class BlockPart
             {
                 float[] afloat = new float[3];
 
-                for (int i = 0; i < afloat.length; ++i)
+                for (int i = 0; i < afloat.length; i++)
                 {
                     afloat[i] = JsonUtils.getFloat(jsonarray.get(i), p_178251_2_ + "[" + i + "]");
                 }

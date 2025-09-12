@@ -79,10 +79,6 @@ public class BlockSkull extends BlockContainer
     {
         switch ((EnumFacing)worldIn.getBlockState(pos).getValue(FACING))
         {
-            case UP:
-            default:
-                this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
-                break;
 
             case NORTH:
                 this.setBlockBounds(0.25F, 0.25F, 0.5F, 0.75F, 0.75F, 1.0F);
@@ -98,6 +94,10 @@ public class BlockSkull extends BlockContainer
 
             case EAST:
                 this.setBlockBounds(0.0F, 0.25F, 0.25F, 0.5F, 0.75F, 0.75F);
+                break;
+            case UP:
+            default:
+                this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
         }
     }
 
@@ -206,15 +206,15 @@ public class BlockSkull extends BlockContainer
 
             if (blockpattern$patternhelper != null)
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 3; i++)
                 {
                     BlockWorldState blockworldstate = blockpattern$patternhelper.translateOffset(i, 0, 0);
                     worldIn.setBlockState(blockworldstate.getPos(), blockworldstate.getBlockState().withProperty(NODROP, Boolean.valueOf(true)), 2);
                 }
 
-                for (int j = 0; j < blockpattern.getPalmLength(); ++j)
+                for (int j = 0; j < blockpattern.getPalmLength(); j++)
                 {
-                    for (int k = 0; k < blockpattern.getThumbLength(); ++k)
+                    for (int k = 0; k < blockpattern.getThumbLength(); k++)
                     {
                         BlockWorldState blockworldstate1 = blockpattern$patternhelper.translateOffset(j, k, 0);
                         worldIn.setBlockState(blockworldstate1.getPos(), Blocks.air.getDefaultState(), 2);
@@ -235,14 +235,14 @@ public class BlockSkull extends BlockContainer
 
                 worldIn.spawnEntityInWorld(entitywither);
 
-                for (int l = 0; l < 120; ++l)
+                for (int l = 0; l < 120; l++)
                 {
                     worldIn.spawnParticle(EnumParticleTypes.SNOWBALL, (double)blockpos.getX() + worldIn.rand.nextDouble(), (double)(blockpos.getY() - 2) + worldIn.rand.nextDouble() * 3.9D, (double)blockpos.getZ() + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
                 }
 
-                for (int i1 = 0; i1 < blockpattern.getPalmLength(); ++i1)
+                for (int i1 = 0; i1 < blockpattern.getPalmLength(); i1++)
                 {
-                    for (int j1 = 0; j1 < blockpattern.getThumbLength(); ++j1)
+                    for (int j1 = 0; j1 < blockpattern.getThumbLength(); j1++)
                     {
                         BlockWorldState blockworldstate2 = blockpattern$patternhelper.translateOffset(i1, j1, 0);
                         worldIn.notifyNeighborsRespectDebug(blockworldstate2.getPos(), Blocks.air);

@@ -78,7 +78,7 @@ public class WorldChunkManager {
 
         int[] aint = this.biomeIndexLayer.getInts(x, z, width, length);
 
-        for (int i = 0; i < width * length; ++i) {
+        for (int i = 0; i < width * length; i++) {
             try {
                 float f = (float)BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT).getIntRainfall() / 65536.0F;
 
@@ -122,7 +122,7 @@ public class WorldChunkManager {
         int[] aint = this.genBiomes.getInts(x, z, width, height);
 
         try {
-            for (int i = 0; i < width * height; ++i) {
+            for (int i = 0; i < width * height; i++) {
                 biomes[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT);
             }
 
@@ -165,7 +165,7 @@ public class WorldChunkManager {
         else {
             int[] aint = this.biomeIndexLayer.getInts(x, z, width, length);
 
-            for (int i = 0; i < width * length; ++i) {
+            for (int i = 0; i < width * length; i++) {
                 listToReuse[i] = BiomeGenBase.getBiomeFromBiomeList(aint[i], BiomeGenBase.DEFAULT);
             }
         }
@@ -187,7 +187,7 @@ public class WorldChunkManager {
         int[] aint = this.genBiomes.getInts(i, j, i1, j1);
 
         try {
-            for (int k1 = 0; k1 < i1 * j1; ++k1) {
+            for (int k1 = 0; k1 < i1 * j1; k1++) {
                 BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[k1]);
 
                 if (!p_76940_4_.contains(biomegenbase)) {
@@ -220,7 +220,7 @@ public class WorldChunkManager {
         BlockPos blockpos = null;
         int k1 = 0;
 
-        for (int l1 = 0; l1 < i1 * j1; ++l1) {
+        for (int l1 = 0; l1 < i1 * j1; l1++) {
             int i2 = i + l1 % i1 << 2;
             int j2 = j + l1 / i1 << 2;
             BiomeGenBase biomegenbase = BiomeGenBase.getBiome(aint[l1]);

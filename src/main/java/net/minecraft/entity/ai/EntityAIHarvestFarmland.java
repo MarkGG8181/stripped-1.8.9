@@ -92,7 +92,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
             {
                 InventoryBasic inventorybasic = this.theVillager.getVillagerInventory();
 
-                for (int i = 0; i < inventorybasic.getSizeInventory(); ++i)
+                for (int i = 0; i < inventorybasic.getSizeInventory(); i++)
                 {
                     ItemStack itemstack = inventorybasic.getStackInSlot(i);
                     boolean flag = false;

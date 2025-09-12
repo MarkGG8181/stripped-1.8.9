@@ -4,12 +4,12 @@ import net.minecraft.util.BlockPos;
 
 public class BlockEventData
 {
-    private BlockPos position;
-    private Block blockType;
+    private final BlockPos position;
+    private final Block blockType;
 
     /** Different for each blockID */
-    private int eventID;
-    private int eventParameter;
+    private final int eventID;
+    private final int eventParameter;
 
     public BlockEventData(BlockPos pos, Block blockType, int eventId, int p_i45756_4_)
     {

@@ -181,7 +181,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
     private float fogColorBlue;
     private float fogColor2;
     private float fogColor1;
-    public boolean fogStandard = false;
+    public boolean fogStandard;
 
     private final boolean debugView = false;
     private double cameraYaw;
@@ -206,8 +206,8 @@ public class EntityRenderer implements IResourceManagerReloadListener {
         this.lightmapColors = this.lightmapTexture.getTextureData();
         this.theShaderGroup = null;
 
-        for (int i = 0; i < 32; ++i) {
-            for (int j = 0; j < 32; ++j) {
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 32; j++) {
                 float f = (float)(j - 16);
                 float f1 = (float)(i - 16);
                 float f2 = MathHelper.sqrt_float(f * f + f1 * f1);
@@ -596,7 +596,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 double d5 = (double)(MathHelper.cos(f1 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI)) * d3;
                 double d6 = (double)(-MathHelper.sin(f2 / 180.0F * (float)Math.PI)) * d3;
 
-                for (int i = 0; i < 8; ++i) {
+                for (int i = 0; i < 8; i++) {
                     float f3 = (float)((i & 1) * 2 - 1);
                     float f4 = (float)((i >> 1 & 1) * 2 - 1);
                     float f5 = (float)((i >> 2 & 1) * 2 - 1);
@@ -778,7 +778,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 float f = world.getSunBrightness(1.0F);
                 float f1 = f * 0.95F + 0.05F;
 
-                for (int i = 0; i < 256; ++i) {
+                for (int i = 0; i < 256; i++) {
                     float f2 = world.provider.getLightBrightnessTable()[i / 16] * f1;
                     float f3 = world.provider.getLightBrightnessTable()[i % 16] * (this.torchFlickerX * 0.1F + 1.5F);
 
@@ -1280,7 +1280,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 k = 0;
             }
 
-            for (int l = 0; l < k; ++l) {
+            for (int l = 0; l < k; l++) {
                 BlockPos blockpos1 = world.getPrecipitationHeight(blockpos.add(this.random.nextInt(i) - this.random.nextInt(i), 0, this.random.nextInt(i) - this.random.nextInt(i)));
                 BiomeGenBase biomegenbase = world.getBiomeGenForCoords(blockpos1);
                 BlockPos blockpos2 = blockpos1.down();
@@ -1357,8 +1357,8 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k1 = k - i1; k1 <= k + i1; ++k1) {
-                for (int l1 = i - i1; l1 <= i + i1; ++l1) {
+            for (int k1 = k - i1; k1 <= k + i1; k1++) {
+                for (int l1 = i - i1; l1 <= i + i1; l1++) {
                     int i2 = (k1 - k + 16) * 32 + l1 - i + 16;
                     double d3 = (double)this.rainXCoords[i2] * 0.5D;
                     double d4 = (double)this.rainYCoords[i2] * 0.5D;

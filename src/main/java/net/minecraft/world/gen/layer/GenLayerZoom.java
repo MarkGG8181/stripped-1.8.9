@@ -23,13 +23,13 @@ public class GenLayerZoom extends GenLayer
         int j1 = l - 1 << 1;
         int[] aint1 = IntCache.getIntCache(i1 * j1);
 
-        for (int k1 = 0; k1 < l - 1; ++k1)
+        for (int k1 = 0; k1 < l - 1; k1++)
         {
             int l1 = (k1 << 1) * i1;
             int i2 = 0;
             int j2 = aint[i2 + 0 + (k1 + 0) * k];
 
-            for (int k2 = aint[i2 + 0 + (k1 + 1) * k]; i2 < k - 1; ++i2)
+            for (int k2 = aint[i2 + 0 + (k1 + 1) * k]; i2 < k - 1; i2++)
             {
                 this.initChunkSeed((long)(i2 + i << 1), (long)(k1 + j << 1));
                 int l2 = aint[i2 + 1 + (k1 + 0) * k];
@@ -45,7 +45,7 @@ public class GenLayerZoom extends GenLayer
 
         int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int j3 = 0; j3 < areaHeight; ++j3)
+        for (int j3 = 0; j3 < areaHeight; j3++)
         {
             System.arraycopy(aint1, (j3 + (areaY & 1)) * i1 + (areaX & 1), aint2, j3 * areaWidth, areaWidth);
         }
@@ -60,7 +60,7 @@ public class GenLayerZoom extends GenLayer
     {
         GenLayer genlayer = p_75915_2_;
 
-        for (int i = 0; i < p_75915_3_; ++i)
+        for (int i = 0; i < p_75915_3_; i++)
         {
             genlayer = new GenLayerZoom(p_75915_0_ + (long)i, genlayer);
         }

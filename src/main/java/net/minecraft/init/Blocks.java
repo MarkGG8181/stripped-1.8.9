@@ -453,4 +453,7 @@ public class Blocks
             stone_slab2 = (BlockSlab)getRegisteredBlock("stone_slab2");
         }
     }
+
+    private Blocks() {
+    }
 }

@@ -54,7 +54,7 @@ public class NBTTagList extends NBTBase {
                 sizeTracker.read(32L * (long)i);
                 this.tagList = new ArrayList<>(i);
 
-                for (int j = 0; j < i; ++j) {
+                for (int j = 0; j < i; j++) {
                     NBTBase nbtbase = NBTBase.createNewByType(this.tagType);
                     nbtbase.read(input, depth + 1, sizeTracker);
                     this.tagList.add(nbtbase);
@@ -74,7 +74,7 @@ public class NBTTagList extends NBTBase {
     public String toString() {
         StringBuilder stringbuilder = new StringBuilder("[");
 
-        for (int i = 0; i < this.tagList.size(); ++i) {
+        for (int i = 0; i < this.tagList.size(); i++) {
             if (i != 0) {
                 stringbuilder.append(',');
             }

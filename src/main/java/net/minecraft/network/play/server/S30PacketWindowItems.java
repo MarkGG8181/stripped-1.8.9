@@ -21,7 +21,7 @@ public class S30PacketWindowItems implements Packet<INetHandlerPlayClient>
         this.windowId = windowIdIn;
         this.itemStacks = new ItemStack[p_i45186_2_.size()];
 
-        for (int i = 0; i < this.itemStacks.length; ++i)
+        for (int i = 0; i < this.itemStacks.length; i++)
         {
             ItemStack itemstack = (ItemStack)p_i45186_2_.get(i);
             this.itemStacks[i] = itemstack == null ? null : itemstack.copy();
@@ -37,7 +37,7 @@ public class S30PacketWindowItems implements Packet<INetHandlerPlayClient>
         int i = buf.readShort();
         this.itemStacks = new ItemStack[i];
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.itemStacks[j] = buf.readItemStackFromBuffer();
         }

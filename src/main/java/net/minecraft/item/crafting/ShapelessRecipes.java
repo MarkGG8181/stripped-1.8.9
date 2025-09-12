@@ -27,7 +27,7 @@ public class ShapelessRecipes implements IRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 
@@ -47,9 +47,9 @@ public class ShapelessRecipes implements IRecipe
     {
         List<ItemStack> list = Lists.newArrayList(this.recipeItems);
 
-        for (int i = 0; i < inv.getHeight(); ++i)
+        for (int i = 0; i < inv.getHeight(); i++)
         {
-            for (int j = 0; j < inv.getWidth(); ++j)
+            for (int j = 0; j < inv.getWidth(); j++)
             {
                 ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
 

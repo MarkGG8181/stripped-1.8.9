@@ -103,9 +103,9 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class RenderManager {
-    private Map<Class<? extends Entity>, Render<? extends Entity>> entityRenderMap = new HashMap<>();
-    private Map<String, RenderPlayer> skinMap = new HashMap<>();
-    private RenderPlayer playerRenderer;
+    private final Map<Class<? extends Entity>, Render<? extends Entity>> entityRenderMap = new HashMap<>();
+    private final Map<String, RenderPlayer> skinMap = new HashMap<>();
+    private final RenderPlayer playerRenderer;
 
     /**
      * Renders fonts
@@ -136,13 +136,13 @@ public class RenderManager {
     public double viewerPosX;
     public double viewerPosY;
     public double viewerPosZ;
-    private boolean renderOutlines = false;
+    private boolean renderOutlines;
     private boolean renderShadow = true;
 
     /**
      * whether bounding box should be rendered or not
      */
-    private boolean debugBoundingBox = false;
+    private boolean debugBoundingBox;
 
     public RenderManager(TextureManager renderEngineIn, RenderItem itemRendererIn) {
         this.renderEngine = renderEngineIn;

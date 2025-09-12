@@ -124,7 +124,7 @@ public abstract class EntityFireball extends Entity {
             List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
 
-            for (int i = 0; i < list.size(); ++i) {
+            for (int i = 0; i < list.size(); i++) {
                 Entity entity1 = (Entity)list.get(i);
 
                 if (entity1.canBeCollidedWith() && (!entity1.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25)) {
@@ -177,7 +177,7 @@ public abstract class EntityFireball extends Entity {
             float f2 = this.getMotionFactor();
 
             if (this.isInWater()) {
-                for (int j = 0; j < 4; ++j) {
+                for (int j = 0; j < 4; j++) {
                     float f3 = 0.25F;
                     this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ, new int[0]);
                 }

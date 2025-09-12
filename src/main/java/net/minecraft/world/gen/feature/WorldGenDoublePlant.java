@@ -19,7 +19,7 @@ public class WorldGenDoublePlant extends WorldGenerator
     {
         boolean flag = false;
 
-        for (int i = 0; i < 64; ++i)
+        for (int i = 0; i < 64; i++)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 

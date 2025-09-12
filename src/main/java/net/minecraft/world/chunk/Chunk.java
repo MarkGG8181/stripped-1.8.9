@@ -140,7 +140,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         this.zPosition = z;
         this.heightMap = new int[256];
 
-        for (int i = 0; i < this.entityLists.length; ++i) {
+        for (int i = 0; i < this.entityLists.length; i++) {
             this.entityLists[i] = new ClassInheritanceMultiMap(Entity.class);
         }
 
@@ -155,9 +155,9 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         int i = 256;
         boolean flag = !worldIn.provider.getHasNoSky();
 
-        for (int j = 0; j < 16; ++j) {
-            for (int k = 0; k < 16; ++k) {
-                for (int l = 0; l < i; ++l) {
+        for (int j = 0; j < 16; j++) {
+            for (int k = 0; k < 16; k++) {
+                for (int l = 0; l < i; l++) {
                     int i1 = j * i * 16 | k * i | l;
                     IBlockState iblockstate = primer.getBlockState(i1);
 
@@ -199,7 +199,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
      * Returns the topmost ExtendedBlockStorage instance for this Chunk that actually contains a block.
      */
     public int getTopFilledSegment() {
-        for (int i = this.storageArrays.length - 1; i >= 0; --i) {
+        for (int i = this.storageArrays.length - 1; i >= 0; i--) {
             if (this.storageArrays[i] != null) {
                 return this.storageArrays[i].getYLocation();
             }
@@ -222,11 +222,11 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         int i = this.getTopFilledSegment();
         this.heightMapMinimum = Integer.MAX_VALUE;
 
-        for (int j = 0; j < 16; ++j) {
-            for (int k = 0; k < 16; ++k) {
+        for (int j = 0; j < 16; j++) {
+            for (int k = 0; k < 16; k++) {
                 this.precipitationHeightMap[j + (k << 4)] = -999;
 
-                for (int l = i + 16; l > 0; --l) {
+                for (int l = i + 16; l > 0; l--) {
                     Block block = this.getBlock0(j, l - 1, k);
 
                     if (block.getLightOpacity() != 0) {
@@ -252,11 +252,11 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         int i = this.getTopFilledSegment();
         this.heightMapMinimum = Integer.MAX_VALUE;
 
-        for (int j = 0; j < 16; ++j) {
-            for (int k = 0; k < 16; ++k) {
+        for (int j = 0; j < 16; j++) {
+            for (int k = 0; k < 16; k++) {
                 this.precipitationHeightMap[j + (k << 4)] = -999;
 
-                for (int l = i + 16; l > 0; --l) {
+                for (int l = i + 16; l > 0; l--) {
                     if (this.getBlockLightOpacity(j, l - 1, k) != 0) {
                         this.heightMap[k << 4 | j] = l;
 
@@ -317,8 +317,8 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         WorldChunkSlice slice = new WorldChunkSlice(this.worldObj, this.xPosition, this.zPosition);
 
         if (this.worldObj.isAreaLoaded(new BlockPos(this.xPosition * 16 + 8, 0, this.zPosition * 16 + 8), 16)) {
-            for (int x = 0; x < 16; ++x) {
-                for (int z = 0; z < 16; ++z) {
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
                     if (this.recheckGapsForColumn(x, z)) {
                         if (onlyOne) {
                             this.worldObj.theProfiler.endSection();
@@ -371,7 +371,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
     private void updateSkylightNeighborHeight(int x, int z, int startY, int endY) {
         if (endY > startY && this.worldObj.isAreaLoaded(new BlockPos(x, 0, z), 16)) {
-            for (int i = startY; i < endY; ++i) {
+            for (int i = startY; i < endY; i++) {
                 this.worldObj.checkLightFor(EnumSkyBlock.SKY, new BlockPos(x, i, z));
             }
 
@@ -461,7 +461,9 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
         if (y >= 0 && y >> 4 < chunk.getBlockStorageArray().length) {
             final ExtendedBlockStorage storage = chunk.getBlockStorageArray()[y >> 4];
-            if (storage != null) return storage.get(pos.getX() & 15, y & 15, pos.getZ() & 15);
+            if (storage != null) {
+                return storage.get(pos.getX() & 15, y & 15, pos.getZ() & 15);
+            }
         }
 
         return Blocks.air.getDefaultState();
@@ -792,7 +794,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
         j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
 
-        for (int k = i; k <= j; ++k) {
+        for (int k = i; k <= j; k++) {
             if (!this.entityLists[k].isEmpty()) {
                 for (Entity entity : this.entityLists[k]) {
                     if (entity.getEntityBoundingBox().intersectsWith(aabb) && entity != entityIn) {
@@ -823,7 +825,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
         j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
 
-        for (int k = i; k <= j; ++k) {
+        for (int k = i; k <= j; k++) {
             for (T t : this.entityLists[k].getByClass(entityClass)) {
                 if (t.getEntityBoundingBox().intersectsWith(aabb) && (p_177430_4_ == null || p_177430_4_.apply(t))) {
                     listToFill.add(t);
@@ -1011,7 +1013,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         int i = 0;
         boolean flag = !this.worldObj.provider.getHasNoSky();
 
-        for (int j = 0; j < this.storageArrays.length; ++j) {
+        for (int j = 0; j < this.storageArrays.length; j++) {
             if ((p_177439_2_ & 1 << j) != 0) {
                 if (this.storageArrays[j] == null) {
                     this.storageArrays[j] = new ExtendedBlockStorage(j << 4, flag);
@@ -1019,7 +1021,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
 
                 char[] achar = this.storageArrays[j].getData();
 
-                for (int k = 0; k < achar.length; ++k) {
+                for (int k = 0; k < achar.length; k++) {
                     achar[k] = (char)((p_177439_1_[i + 1] & 255) << 8 | p_177439_1_[i] & 255);
                     i += 2;
                 }
@@ -1029,7 +1031,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             }
         }
 
-        for (int l = 0; l < this.storageArrays.length; ++l) {
+        for (int l = 0; l < this.storageArrays.length; l++) {
             if ((p_177439_2_ & 1 << l) != 0 && this.storageArrays[l] != null) {
                 NibbleArray nibblearray = this.storageArrays[l].getBlocklightArray();
                 System.arraycopy(p_177439_1_, i, nibblearray.getData(), 0, nibblearray.getData().length);
@@ -1038,7 +1040,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         }
 
         if (flag) {
-            for (int i1 = 0; i1 < this.storageArrays.length; ++i1) {
+            for (int i1 = 0; i1 < this.storageArrays.length; i1++) {
                 if ((p_177439_2_ & 1 << i1) != 0 && this.storageArrays[i1] != null) {
                     NibbleArray nibblearray1 = this.storageArrays[i1].getSkylightArray();
                     System.arraycopy(p_177439_1_, i, nibblearray1.getData(), 0, nibblearray1.getData().length);
@@ -1051,7 +1053,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             System.arraycopy(p_177439_1_, i, this.blockBiomeArray, 0, this.blockBiomeArray.length);
         }
 
-        for (int j1 = 0; j1 < this.storageArrays.length; ++j1) {
+        for (int j1 = 0; j1 < this.storageArrays.length; j1++) {
             if (this.storageArrays[j1] != null && (p_177439_2_ & 1 << j1) != 0) {
                 this.storageArrays[j1].removeInvalidBlocks();
             }
@@ -1116,7 +1118,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     public void enqueueRelightChecks() {
         BlockPos blockpos = new BlockPos(this.xPosition << 4, 0, this.zPosition << 4);
 
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 8; i++) {
             if (this.queuedLightChecks >= 4096) {
                 return;
             }
@@ -1126,7 +1128,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             int l = this.queuedLightChecks / 256;
             ++this.queuedLightChecks;
 
-            for (int i1 = 0; i1 < 16; ++i1) {
+            for (int i1 = 0; i1 < 16; i1++) {
                 BlockPos blockpos1 = blockpos.add(k, (j << 4) + i1, l);
                 boolean flag = i1 == 0 || i1 == 15 || k == 0 || k == 15 || l == 0 || l == 15;
 
@@ -1159,22 +1161,22 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
     private void func_180700_a(EnumFacing facing) {
         if (this.isTerrainPopulated) {
             if (facing == EnumFacing.EAST) {
-                for (int i = 0; i < 16; ++i) {
+                for (int i = 0; i < 16; i++) {
                     this.func_150811_f(15, i);
                 }
             }
             else if (facing == EnumFacing.WEST) {
-                for (int j = 0; j < 16; ++j) {
+                for (int j = 0; j < 16; j++) {
                     this.func_150811_f(0, j);
                 }
             }
             else if (facing == EnumFacing.SOUTH) {
-                for (int k = 0; k < 16; ++k) {
+                for (int k = 0; k < 16; k++) {
                     this.func_150811_f(k, 15);
                 }
             }
             else if (facing == EnumFacing.NORTH) {
-                for (int l = 0; l < 16; ++l) {
+                for (int l = 0; l < 16; l++) {
                     this.func_150811_f(l, 0);
                 }
             }
@@ -1187,7 +1189,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         boolean flag1 = false;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos((this.xPosition << 4) + x, 0, (this.zPosition << 4) + z);
 
-        for (int j = i + 16 - 1; j > this.worldObj.getSeaLevel() || j > 0 && !flag1; --j) {
+        for (int j = i + 16 - 1; j > this.worldObj.getSeaLevel() || j > 0 && !flag1; j--) {
             blockpos$mutableblockpos.set(blockpos$mutableblockpos.getX(), j, blockpos$mutableblockpos.getZ());
             int k = this.getBlockLightOpacity(blockpos$mutableblockpos);
 
@@ -1203,7 +1205,7 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
             }
         }
 
-        for (int l = blockpos$mutableblockpos.getY(); l > 0; --l) {
+        for (int l = blockpos$mutableblockpos.getY(); l > 0; l--) {
             blockpos$mutableblockpos.set(blockpos$mutableblockpos.getX(), l, blockpos$mutableblockpos.getZ());
 
             if (this.getBlock(blockpos$mutableblockpos).getLightValue() > 0) {

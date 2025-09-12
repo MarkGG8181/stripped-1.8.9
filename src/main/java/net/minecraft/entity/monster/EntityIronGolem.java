@@ -252,14 +252,14 @@ public class EntityIronGolem extends EntityGolem
     {
         int i = this.rand.nextInt(3);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItemWithOffset(Item.getItemFromBlock(Blocks.red_flower), 1, (float)BlockFlower.EnumFlowerType.POPPY.getMeta());
         }
 
         int l = 3 + this.rand.nextInt(3);
 
-        for (int k = 0; k < l; ++k)
+        for (int k = 0; k < l; k++)
         {
             this.dropItem(Items.iron_ingot, 1);
         }

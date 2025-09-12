@@ -30,7 +30,7 @@ public class LayerArrow implements LayerRenderer<EntityLivingBase>
             Random random = new Random((long)entitylivingbaseIn.getEntityId());
             RenderHelper.disableStandardItemLighting();
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 GlStateManager.pushMatrix();
                 ModelRenderer modelrenderer = this.renderer.getMainModel().getRandomModelBox(random);

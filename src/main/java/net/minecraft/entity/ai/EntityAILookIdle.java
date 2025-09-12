@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLiving;
 public class EntityAILookIdle extends EntityAIBase
 {
     /** The entity that is looking idle. */
-    private EntityLiving idleEntity;
+    private final EntityLiving idleEntity;
 
     /** X offset to look at */
     private double lookX;

@@ -39,4 +39,7 @@ public class BiomeColorHelper {
     interface ColorResolver {
         int getColorAtPos(BiomeGenBase biome, BlockPos blockPosition);
     }
+
+    private BiomeColorHelper() {
+    }
 }

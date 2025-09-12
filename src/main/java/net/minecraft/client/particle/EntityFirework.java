@@ -214,7 +214,7 @@ public class EntityFirework
                 {
                     this.particleMaxAge = this.fireworkExplosions.tagCount() * 2 - 1;
 
-                    for (int i = 0; i < this.fireworkExplosions.tagCount(); ++i)
+                    for (int i = 0; i < this.fireworkExplosions.tagCount(); i++)
                     {
                         NBTTagCompound nbttagcompound = this.fireworkExplosions.getCompoundTagAt(i);
 
@@ -246,7 +246,7 @@ public class EntityFirework
                 }
                 else
                 {
-                    for (int i = 0; i < this.fireworkExplosions.tagCount(); ++i)
+                    for (int i = 0; i < this.fireworkExplosions.tagCount(); i++)
                     {
                         NBTTagCompound nbttagcompound = this.fireworkExplosions.getCompoundTagAt(i);
 
@@ -351,11 +351,11 @@ public class EntityFirework
             double d1 = this.posY;
             double d2 = this.posZ;
 
-            for (int i = -size; i <= size; ++i)
+            for (int i = -size; i <= size; i++)
             {
-                for (int j = -size; j <= size; ++j)
+                for (int j = -size; j <= size; j++)
                 {
-                    for (int k = -size; k <= size; ++k)
+                    for (int k = -size; k <= size; k++)
                     {
                         double d3 = (double)j + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
                         double d4 = (double)i + (this.rand.nextDouble() - this.rand.nextDouble()) * 0.5D;
@@ -380,13 +380,13 @@ public class EntityFirework
             float f = this.rand.nextFloat() * (float)Math.PI;
             double d2 = p_92038_8_ ? 0.034D : 0.34D;
 
-            for (int i = 0; i < 3; ++i)
+            for (int i = 0; i < 3; i++)
             {
                 double d3 = (double)f + (double)((float)i * (float)Math.PI) * d2;
                 double d4 = d0;
                 double d5 = d1;
 
-                for (int j = 1; j < shape.length; ++j)
+                for (int j = 1; j < shape.length; j++)
                 {
                     double d6 = shape[j][0];
                     double d7 = shape[j][1];
@@ -415,7 +415,7 @@ public class EntityFirework
             double d0 = this.rand.nextGaussian() * 0.05D;
             double d1 = this.rand.nextGaussian() * 0.05D;
 
-            for (int i = 0; i < 70; ++i)
+            for (int i = 0; i < 70; i++)
             {
                 double d2 = this.motionX * 0.5D + this.rand.nextGaussian() * 0.15D + d0;
                 double d3 = this.motionZ * 0.5D + this.rand.nextGaussian() * 0.15D + d1;

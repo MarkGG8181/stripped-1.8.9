@@ -143,7 +143,7 @@ public class EntityChicken extends EntityAnimal
     {
         int i = this.rand.nextInt(3) + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             this.dropItem(Items.feather, 1);
         }

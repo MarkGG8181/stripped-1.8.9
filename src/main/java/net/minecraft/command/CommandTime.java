@@ -38,15 +38,15 @@ public class CommandTime extends CommandBase
     {
         if (args.length > 1)
         {
-            if (args[0].equals("set"))
+            if ("set".equals(args[0]))
             {
                 int l;
 
-                if (args[1].equals("day"))
+                if ("day".equals(args[1]))
                 {
                     l = 1000;
                 }
-                else if (args[1].equals("night"))
+                else if ("night".equals(args[1]))
                 {
                     l = 13000;
                 }
@@ -60,7 +60,7 @@ public class CommandTime extends CommandBase
                 return;
             }
 
-            if (args[0].equals("add"))
+            if ("add".equals(args[0]))
             {
                 int k = parseInt(args[1], 0);
                 this.addTime(sender, k);
@@ -68,9 +68,9 @@ public class CommandTime extends CommandBase
                 return;
             }
 
-            if (args[0].equals("query"))
+            if ("query".equals(args[0]))
             {
-                if (args[1].equals("daytime"))
+                if ("daytime".equals(args[1]))
                 {
                     int j = (int)(sender.getEntityWorld().getWorldTime() % 2147483647L);
                     sender.setCommandStat(CommandResultStats.Type.QUERY_RESULT, j);
@@ -78,7 +78,7 @@ public class CommandTime extends CommandBase
                     return;
                 }
 
-                if (args[1].equals("gametime"))
+                if ("gametime".equals(args[1]))
                 {
                     int i = (int)(sender.getEntityWorld().getTotalWorldTime() % 2147483647L);
                     sender.setCommandStat(CommandResultStats.Type.QUERY_RESULT, i);
@@ -93,7 +93,7 @@ public class CommandTime extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"set", "add", "query"}) : (args.length == 2 && args[0].equals("set") ? getListOfStringsMatchingLastWord(args, new String[]{"day", "night"}) : (args.length == 2 && args[0].equals("query") ? getListOfStringsMatchingLastWord(args, new String[]{"daytime", "gametime"}) : null));
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"set", "add", "query"}) : (args.length == 2 && "set".equals(args[0]) ? getListOfStringsMatchingLastWord(args, new String[]{"day", "night"}) : (args.length == 2 && "query".equals(args[0]) ? getListOfStringsMatchingLastWord(args, new String[]{"daytime", "gametime"}) : null));
     }
 
     /**
@@ -101,7 +101,7 @@ public class CommandTime extends CommandBase
      */
     protected void setTime(ICommandSender sender, int time)
     {
-        for (int i = 0; i < MinecraftServer.getServer().worldServers.length; ++i)
+        for (int i = 0; i < MinecraftServer.getServer().worldServers.length; i++)
         {
             MinecraftServer.getServer().worldServers[i].setWorldTime((long)time);
         }
@@ -112,7 +112,7 @@ public class CommandTime extends CommandBase
      */
     protected void addTime(ICommandSender sender, int time)
     {
-        for (int i = 0; i < MinecraftServer.getServer().worldServers.length; ++i)
+        for (int i = 0; i < MinecraftServer.getServer().worldServers.length; i++)
         {
             WorldServer worldserver = MinecraftServer.getServer().worldServers[i];
             worldserver.setWorldTime(worldserver.getWorldTime() + (long)time);

@@ -7,8 +7,8 @@ import net.minecraft.client.resources.I18n;
 
 public class GuiErrorScreen extends GuiScreen
 {
-    private String title;
-    private String message;
+    private final String title;
+    private final String message;
 
     public GuiErrorScreen(String p_i46319_1_, String p_i46319_2_)
     {

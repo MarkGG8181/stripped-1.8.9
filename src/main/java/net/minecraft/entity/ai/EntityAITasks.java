@@ -10,15 +10,15 @@ import org.apache.logging.log4j.Logger;
 
 public class EntityAITasks {
     private static final Logger logger = LogManager.getLogger();
-    private List<EntityAITasks.EntityAITaskEntry> taskEntries = new ArrayList<>();
-    private List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = new ArrayList<>();
+    private final List<EntityAITasks.EntityAITaskEntry> taskEntries = new ArrayList<>();
+    private final List<EntityAITasks.EntityAITaskEntry> executingTaskEntries = new ArrayList<>();
 
     /**
      * Instance of Profiler.
      */
     private final Profiler theProfiler;
     private int tickCount;
-    private int tickRate = 3;
+    private final int tickRate = 3;
 
     public EntityAITasks(Profiler profilerIn) {
         this.theProfiler = profilerIn;

@@ -26,7 +26,7 @@ public class MapData extends WorldSavedData {
      */
     public byte[] colors = new byte[16384];
     public List<MapData.MapInfo> playersArrayList = new ArrayList<>();
-    private Map<EntityPlayer, MapData.MapInfo> playersHashMap = new HashMap<>();
+    private final Map<EntityPlayer, MapData.MapInfo> playersHashMap = new HashMap<>();
     public Map<String, Vec4b> mapDecorations = new LinkedHashMap<>();
 
     public MapData(String mapname) {
@@ -62,11 +62,11 @@ public class MapData extends WorldSavedData {
             int k = (128 - i) / 2;
             int l = (128 - j) / 2;
 
-            for (int i1 = 0; i1 < j; ++i1) {
+            for (int i1 = 0; i1 < j; i1++) {
                 int j1 = i1 + l;
 
                 if (j1 >= 0 || j1 < 128) {
-                    for (int k1 = 0; k1 < i; ++k1) {
+                    for (int k1 = 0; k1 < i; k1++) {
                         int l1 = k1 + k;
 
                         if (l1 >= 0 || l1 < 128) {
@@ -105,7 +105,7 @@ public class MapData extends WorldSavedData {
             this.mapDecorations.remove(player.getName());
         }
 
-        for (int i = 0; i < this.playersArrayList.size(); ++i) {
+        for (int i = 0; i < this.playersArrayList.size(); i++) {
             MapData.MapInfo mapdata$mapinfo1 = (MapData.MapInfo)this.playersArrayList.get(i);
 
             if (!mapdata$mapinfo1.entityplayerObj.isDead && (mapdata$mapinfo1.entityplayerObj.inventory.hasItemStack(mapStack) || mapStack.isOnItemFrame())) {
@@ -128,7 +128,7 @@ public class MapData extends WorldSavedData {
         if (mapStack.hasTagCompound() && mapStack.getTagCompound().hasKey("Decorations", 9)) {
             NBTTagList nbttaglist = mapStack.getTagCompound().getTagList("Decorations", 10);
 
-            for (int j = 0; j < nbttaglist.tagCount(); ++j) {
+            for (int j = 0; j < nbttaglist.tagCount(); j++) {
                 NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(j);
 
                 if (!this.mapDecorations.containsKey(nbttagcompound.getString("id"))) {
@@ -213,8 +213,8 @@ public class MapData extends WorldSavedData {
     public class MapInfo {
         public final EntityPlayer entityplayerObj;
         private boolean isDirty = true;
-        private int minX = 0;
-        private int minY = 0;
+        private int minX;
+        private int minY;
         private int maxX = 127;
         private int maxY = 127;
         private int tick;

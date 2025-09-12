@@ -30,7 +30,7 @@ public class TexturedQuad {
     public void flipFace() {
         PositionTextureVertex[] apositiontexturevertex = new PositionTextureVertex[this.vertexPositions.length];
 
-        for (int i = 0; i < this.vertexPositions.length; ++i) {
+        for (int i = 0; i < this.vertexPositions.length; i++) {
             apositiontexturevertex[i] = this.vertexPositions[this.vertexPositions.length - i - 1];
         }
 
@@ -57,7 +57,7 @@ public class TexturedQuad {
             renderer.begin(7, DefaultVertexFormats.OLDMODEL_POSITION_TEX_NORMAL);
         }
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; i++) {
             PositionTextureVertex positiontexturevertex = this.vertexPositions[i];
             renderer.pos(positiontexturevertex.vector3D.x * (double)scale, positiontexturevertex.vector3D.y * (double)scale, positiontexturevertex.vector3D.z * (double)scale).tex((double)positiontexturevertex.texturePositionX, (double)positiontexturevertex.texturePositionY).normal(f, f1, f2).endVertex();
         }

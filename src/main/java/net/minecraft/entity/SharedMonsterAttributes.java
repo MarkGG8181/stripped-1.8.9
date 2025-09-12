@@ -15,10 +15,10 @@ import org.apache.logging.log4j.Logger;
 public class SharedMonsterAttributes
 {
     private static final Logger logger = LogManager.getLogger();
-    public static final IAttribute maxHealth = (new RangedAttribute((IAttribute)null, "generic.maxHealth", 20.0D, 0.0D, 1024.0D)).setDescription("Max Health").setShouldWatch(true);
-    public static final IAttribute followRange = (new RangedAttribute((IAttribute)null, "generic.followRange", 32.0D, 0.0D, 2048.0D)).setDescription("Follow Range");
-    public static final IAttribute knockbackResistance = (new RangedAttribute((IAttribute)null, "generic.knockbackResistance", 0.0D, 0.0D, 1.0D)).setDescription("Knockback Resistance");
-    public static final IAttribute movementSpeed = (new RangedAttribute((IAttribute)null, "generic.movementSpeed", 0.699999988079071D, 0.0D, 1024.0D)).setDescription("Movement Speed").setShouldWatch(true);
+    public static final IAttribute maxHealth = new RangedAttribute((IAttribute)null, "generic.maxHealth", 20.0D, 0.0D, 1024.0D).setDescription("Max Health").setShouldWatch(true);
+    public static final IAttribute followRange = new RangedAttribute((IAttribute)null, "generic.followRange", 32.0D, 0.0D, 2048.0D).setDescription("Follow Range");
+    public static final IAttribute knockbackResistance = new RangedAttribute((IAttribute)null, "generic.knockbackResistance", 0.0D, 0.0D, 1.0D).setDescription("Knockback Resistance");
+    public static final IAttribute movementSpeed = new RangedAttribute((IAttribute)null, "generic.movementSpeed", 0.699999988079071D, 0.0D, 1024.0D).setDescription("Movement Speed").setShouldWatch(true);
     public static final IAttribute attackDamage = new RangedAttribute((IAttribute)null, "generic.attackDamage", 2.0D, 0.0D, 2048.0D);
 
     /**
@@ -81,7 +81,7 @@ public class SharedMonsterAttributes
 
     public static void setAttributeModifiers(BaseAttributeMap map, NBTTagList list)
     {
-        for (int i = 0; i < list.tagCount(); ++i)
+        for (int i = 0; i < list.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = list.getCompoundTagAt(i);
             IAttributeInstance iattributeinstance = map.getAttributeInstanceByName(nbttagcompound.getString("Name"));
@@ -105,7 +105,7 @@ public class SharedMonsterAttributes
         {
             NBTTagList nbttaglist = compound.getTagList("Modifiers", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 AttributeModifier attributemodifier = readAttributeModifierFromNBT(nbttaglist.getCompoundTagAt(i));
 
@@ -140,5 +140,8 @@ public class SharedMonsterAttributes
             logger.warn("Unable to create attribute: " + exception.getMessage());
             return null;
         }
+    }
+
+    private SharedMonsterAttributes() {
     }
 }

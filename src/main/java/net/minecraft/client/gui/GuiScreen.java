@@ -101,11 +101,11 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        for (int i = 0; i < this.buttonList.size(); ++i) {
+        for (int i = 0; i < this.buttonList.size(); i++) {
             ((GuiButton)this.buttonList.get(i)).drawButton(this.mc, mouseX, mouseY);
         }
 
-        for (int j = 0; j < this.labelList.size(); ++j) {
+        for (int j = 0; j < this.labelList.size(); j++) {
             ((GuiLabel)this.labelList.get(j)).drawLabel(this.mc, mouseX, mouseY);
         }
     }
@@ -156,7 +156,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     protected void renderToolTip(ItemStack stack, int x, int y) {
         List<String> list = stack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
 
-        for (int i = 0; i < list.size(); ++i) {
+        for (int i = 0; i < list.size(); i++) {
             if (i == 0) {
                 list.set(i, stack.getRarity().rarityColor + (String)list.get(i));
             }
@@ -226,7 +226,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
             this.drawGradientRect(l1 - 3, i2 - 3, l1 + i + 3, i2 - 3 + 1, i1, i1);
             this.drawGradientRect(l1 - 3, i2 + k + 2, l1 + i + 3, i2 + k + 3, j1, j1);
 
-            for (int k1 = 0; k1 < textLines.size(); ++k1) {
+            for (int k1 = 0; k1 < textLines.size(); k1++) {
                 String s1 = (String)textLines.get(k1);
                 this.fontRendererObj.drawStringWithShadow(s1, (float)l1, (float)i2, -1);
 
@@ -382,7 +382,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                     }
                 }
                 else if (clickevent.action() == ClickEvent.Action.OPEN_FILE) {
-                    URI uri1 = (new File(clickevent.value())).toURI();
+                    URI uri1 = new File(clickevent.value()).toURI();
                     this.openWebLink(uri1);
                 }
                 else if (clickevent.action() == ClickEvent.Action.SUGGEST_COMMAND) {
@@ -422,7 +422,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         if (mouseButton == 0) {
-            for (int i = 0; i < this.buttonList.size(); ++i) {
+            for (int i = 0; i < this.buttonList.size(); i++) {
                 GuiButton guibutton = (GuiButton)this.buttonList.get(i);
 
                 if (guibutton.mousePressed(this.mc, mouseX, mouseY)) {

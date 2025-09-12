@@ -47,7 +47,7 @@ public class CommandEffect extends CommandBase
         {
             EntityLivingBase entitylivingbase = (EntityLivingBase)getEntity(sender, args[0], EntityLivingBase.class);
 
-            if (args[1].equals("clear"))
+            if ("clear".equals(args[1]))
             {
                 if (entitylivingbase.getActivePotionEffects().isEmpty())
                 {

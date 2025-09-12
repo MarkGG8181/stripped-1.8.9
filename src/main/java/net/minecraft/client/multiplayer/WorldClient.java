@@ -38,7 +38,7 @@ import net.minecraft.world.storage.WorldInfo;
 public class WorldClient extends World
 {
     /** The packets that need to be sent to the server. */
-    private NetHandlerPlayClient sendQueue;
+    private final NetHandlerPlayClient sendQueue;
 
     /** The ChunkProviderClient instance */
     private ChunkProviderClient clientChunkProvider;
@@ -75,7 +75,7 @@ public class WorldClient extends World
 
         this.theProfiler.startSection("reEntryProcessing");
 
-        for (int i = 0; i < 10 && !this.entitySpawnQueue.isEmpty(); ++i)
+        for (int i = 0; i < 10 && !this.entitySpawnQueue.isEmpty(); i++)
         {
             Entity entity = (Entity)this.entitySpawnQueue.iterator().next();
             this.entitySpawnQueue.remove(entity);
@@ -309,7 +309,7 @@ public class WorldClient extends World
         boolean flag = this.mc.playerController.getCurrentGameType() == WorldSettings.GameType.CREATIVE && itemstack != null && Block.getBlockFromItem(itemstack.getItem()) == Blocks.barrier;
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int j = 0; j < 1000; ++j)
+        for (int j = 0; j < 1000; j++)
         {
             int k = posX + this.rand.nextInt(i) - this.rand.nextInt(i);
             int l = posY + this.rand.nextInt(i) - this.rand.nextInt(i);
@@ -332,7 +332,7 @@ public class WorldClient extends World
     {
         this.loadedEntityList.removeAll(this.unloadedEntityList);
 
-        for (int i = 0; i < this.unloadedEntityList.size(); ++i)
+        for (int i = 0; i < this.unloadedEntityList.size(); i++)
         {
             Entity entity = (Entity)this.unloadedEntityList.get(i);
             int j = entity.chunkCoordX;
@@ -344,14 +344,14 @@ public class WorldClient extends World
             }
         }
 
-        for (int l = 0; l < this.unloadedEntityList.size(); ++l)
+        for (int l = 0; l < this.unloadedEntityList.size(); l++)
         {
             this.onEntityRemoved((Entity)this.unloadedEntityList.get(l));
         }
 
         this.unloadedEntityList.clear();
 
-        for (int i1 = 0; i1 < this.loadedEntityList.size(); ++i1)
+        for (int i1 = 0; i1 < this.loadedEntityList.size(); i1++)
         {
             Entity entity1 = (Entity)this.loadedEntityList.get(i1);
 

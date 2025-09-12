@@ -39,15 +39,15 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 public class EntityRabbit extends EntityAnimal {
-    private EntityRabbit.AIAvoidEntity<EntityWolf> aiAvoidWolves;
-    private int jumpTicks = 0;
-    private int jumpDuration = 0;
-    private boolean field_175536_bo = false;
-    private boolean wasOnGround = false;
-    private int currentMoveTypeDuration = 0;
+    private final EntityRabbit.AIAvoidEntity<EntityWolf> aiAvoidWolves;
+    private int jumpTicks;
+    private int jumpDuration;
+    private boolean field_175536_bo;
+    private boolean wasOnGround;
+    private int currentMoveTypeDuration;
     private EntityRabbit.EnumMoveType moveType = EntityRabbit.EnumMoveType.HOP;
-    private int carrotTicks = 0;
-    private EntityPlayer field_175543_bt = null;
+    private int carrotTicks;
+    private final EntityPlayer field_175543_bt = null;
 
     public EntityRabbit(World worldIn) {
         super(worldIn);
@@ -315,13 +315,13 @@ public class EntityRabbit extends EntityAnimal {
     protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
         int i = this.rand.nextInt(2) + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             this.dropItem(Items.rabbit_hide, 1);
         }
 
         i = this.rand.nextInt(2);
 
-        for (int k = 0; k < i; ++k) {
+        for (int k = 0; k < i; k++) {
             if (this.isBurning()) {
                 this.dropItem(Items.cooked_rabbit, 1);
             }
@@ -469,7 +469,7 @@ public class EntityRabbit extends EntityAnimal {
     static class AIRaidFarm extends EntityAIMoveToBlock {
         private final EntityRabbit rabbit;
         private boolean wantsToRaid;
-        private boolean canRaid = false;
+        private boolean canRaid;
 
         public AIRaidFarm(EntityRabbit rabbitIn) {
             super(rabbitIn, 0.699999988079071D, 16);
@@ -578,7 +578,7 @@ public class EntityRabbit extends EntityAnimal {
 
     public class RabbitJumpHelper extends EntityJumpHelper {
         private EntityRabbit theEntity;
-        private boolean canJump = false;
+        private boolean canJump;
 
         public RabbitJumpHelper(EntityRabbit rabbit) {
             super(rabbit);

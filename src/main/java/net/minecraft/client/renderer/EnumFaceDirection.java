@@ -45,6 +45,9 @@ public enum EnumFaceDirection
         public static final int NORTH_INDEX = EnumFacing.NORTH.getIndex();
         public static final int DOWN_INDEX = EnumFacing.DOWN.getIndex();
         public static final int WEST_INDEX = EnumFacing.WEST.getIndex();
+
+        private Constants() {
+        }
     }
 
     public static class VertexInformation {

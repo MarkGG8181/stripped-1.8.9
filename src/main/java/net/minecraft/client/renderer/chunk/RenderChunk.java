@@ -40,7 +40,7 @@ public class RenderChunk {
     public CompiledChunk compiledChunk = CompiledChunk.DUMMY;
     private final ReentrantLock lockCompileTask = new ReentrantLock();
     private final ReentrantLock lockCompiledChunk = new ReentrantLock();
-    private ChunkCompileTaskGenerator compileTask = null;
+    private ChunkCompileTaskGenerator compileTask;
     private final Set<TileEntity> setTileEntities = new HashSet<>();
     private final int index;
     private final FloatBuffer modelviewMatrix = GLAllocation.createDirectFloatBuffer(16);
@@ -48,7 +48,7 @@ public class RenderChunk {
     public AxisAlignedBB boundingBox;
     private int frameIndex = -1;
     private boolean needsUpdate = true;
-    private EnumMap<EnumFacing, BlockPos> mapEnumFacing = Maps.newEnumMap(EnumFacing.class);
+    private final EnumMap<EnumFacing, BlockPos> mapEnumFacing = Maps.newEnumMap(EnumFacing.class);
 
     public RenderChunk(World worldIn, RenderGlobal renderGlobalIn, BlockPos blockPosIn, int indexIn) {
         this.world = worldIn;
@@ -59,7 +59,7 @@ public class RenderChunk {
             this.setPosition(blockPosIn);
         }
 
-        for (int i = 0; i < EnumWorldBlockLayer.values().length; ++i) {
+        for (int i = 0; i < EnumWorldBlockLayer.values().length; i++) {
             this.vertexBuffers[i] = new VertexBuffer(DefaultVertexFormats.BLOCK);
         }
     }
@@ -299,7 +299,7 @@ public class RenderChunk {
         this.stopCompileTask();
         this.world = null;
 
-        for (int i = 0; i < EnumWorldBlockLayer.values().length; ++i) {
+        for (int i = 0; i < EnumWorldBlockLayer.values().length; i++) {
             if (this.vertexBuffers[i] != null) {
                 this.vertexBuffers[i].deleteGlBuffers();
             }

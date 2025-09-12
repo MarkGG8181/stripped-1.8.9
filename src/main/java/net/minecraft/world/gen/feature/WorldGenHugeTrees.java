@@ -47,7 +47,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
 
         if (p_175926_2_.getY() >= 1 && p_175926_2_.getY() + p_175926_3_ + 1 <= 256)
         {
-            for (int i = 0; i <= 1 + p_175926_3_; ++i)
+            for (int i = 0; i <= 1 + p_175926_3_; i++)
             {
                 int j = 2;
 
@@ -60,9 +60,9 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
                     j = 2;
                 }
 
-                for (int k = -j; k <= j && flag; ++k)
+                for (int k = -j; k <= j && flag; k++)
                 {
-                    for (int l = -j; l <= j && flag; ++l)
+                    for (int l = -j; l <= j && flag; l++)
                     {
                         if (p_175926_2_.getY() + i < 0 || p_175926_2_.getY() + i >= 256 || !this.func_150523_a(worldIn.getBlockState(p_175926_2_.add(k, i, l)).getBlock()))
                         {
@@ -108,9 +108,9 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
     {
         int i = p_175925_3_ * p_175925_3_;
 
-        for (int j = -p_175925_3_; j <= p_175925_3_ + 1; ++j)
+        for (int j = -p_175925_3_; j <= p_175925_3_ + 1; j++)
         {
-            for (int k = -p_175925_3_; k <= p_175925_3_ + 1; ++k)
+            for (int k = -p_175925_3_; k <= p_175925_3_ + 1; k++)
             {
                 int l = j - 1;
                 int i1 = k - 1;
@@ -133,9 +133,9 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
     {
         int i = p_175928_3_ * p_175928_3_;
 
-        for (int j = -p_175928_3_; j <= p_175928_3_; ++j)
+        for (int j = -p_175928_3_; j <= p_175928_3_; j++)
         {
-            for (int k = -p_175928_3_; k <= p_175928_3_; ++k)
+            for (int k = -p_175928_3_; k <= p_175928_3_; k++)
             {
                 if (j * j + k * k <= i)
                 {

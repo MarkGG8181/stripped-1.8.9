@@ -8,8 +8,8 @@ public class VertexFormatElement
     private static final Logger LOGGER = LogManager.getLogger();
     private final VertexFormatElement.EnumType type;
     private final VertexFormatElement.EnumUsage usage;
-    private int index;
-    private int elementCount;
+    private final int index;
+    private final int elementCount;
 
     public VertexFormatElement(int indexIn, VertexFormatElement.EnumType typeIn, VertexFormatElement.EnumUsage usageIn, int count)
     {

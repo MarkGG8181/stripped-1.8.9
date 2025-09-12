@@ -237,7 +237,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
     private boolean doneLoadingTerrain;
     private final Map<UUID, NetworkPlayerInfo> playerInfoMap = new HashMap<>();
     public int currentServerMaxPlayers = 20;
-    private boolean hasStatistics = false;
+    private boolean hasStatistics;
 
     /**
      * Just an ordinary random number generator, used to randomize audio pitch of item/orb pickup and randomize both
@@ -275,7 +275,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         this.currentServerMaxPlayers = packetIn.getMaxPlayers();
         this.gameController.playerController.setGameType(packetIn.getGameType());
         this.gameController.gameSettings.sendSettingsToServer();
-        this.netManager.sendPacket(new C17PacketCustomPayload("MC|Brand", (new PacketBuffer(Unpooled.buffer())).writeString(ClientBrandRetriever.getClientModName())));
+        this.netManager.sendPacket(new C17PacketCustomPayload("MC|Brand", new PacketBuffer(Unpooled.buffer()).writeString(ClientBrandRetriever.getClientModName())));
     }
 
     /**
@@ -377,7 +377,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
             if (aentity != null) {
                 int i = packetIn.getEntityID() - entity.getEntityId();
 
-                for (int j = 0; j < aentity.length; ++j) {
+                for (int j = 0; j < aentity.length; j++) {
                     aentity[j].setEntityId(aentity[j].getEntityId() + i);
                 }
             }
@@ -589,7 +589,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
     public void handleDestroyEntities(S13PacketDestroyEntities packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
 
-        for (int i = 0; i < packetIn.getEntityIDs().length; ++i) {
+        for (int i = 0; i < packetIn.getEntityIDs().length; i++) {
             this.clientWorldController.removeEntityFromWorld(packetIn.getEntityIDs()[i]);
         }
     }
@@ -815,7 +815,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
         if (aentity != null) {
             int i = packetIn.getEntityID() - entitylivingbase.getEntityId();
 
-            for (int j = 0; j < aentity.length; ++j) {
+            for (int j = 0; j < aentity.length; j++) {
                 aentity[j].setEntityId(aentity[j].getEntityId() + i);
             }
         }
@@ -1160,7 +1160,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
     public void handleMapChunkBulk(S26PacketMapChunkBulk packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
 
-        for (int i = 0; i < packetIn.getChunkCount(); ++i) {
+        for (int i = 0; i < packetIn.getChunkCount(); i++) {
             int j = packetIn.getChunkX(i);
             int k = packetIn.getChunkZ(i);
             this.clientWorldController.doPreChunk(j, k, true);
@@ -1687,7 +1687,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient {
             }
         }
         else {
-            for (int i = 0; i < packetIn.getParticleCount(); ++i) {
+            for (int i = 0; i < packetIn.getParticleCount(); i++) {
                 double d1 = this.avRandomizer.nextGaussian() * (double)packetIn.getXOffset();
                 double d3 = this.avRandomizer.nextGaussian() * (double)packetIn.getYOffset();
                 double d5 = this.avRandomizer.nextGaussian() * (double)packetIn.getZOffset();

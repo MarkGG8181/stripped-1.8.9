@@ -52,7 +52,7 @@ public class EntitySheep extends EntityAnimal {
      * tick.
      */
     private int sheepTimer;
-    private EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
+    private final EntityAIEatGrass entityAIEatGrass = new EntityAIEatGrass(this);
 
     public static float[] getDyeRgb(EnumDyeColor dyeColor) {
         return (float[])DYE_TO_RGB.get(dyeColor);
@@ -117,7 +117,7 @@ public class EntitySheep extends EntityAnimal {
 
         int i = this.rand.nextInt(2) + 1 + this.rand.nextInt(1 + lootingModifier);
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             if (this.isBurning()) {
                 this.dropItem(Items.cooked_mutton, 1);
             }
@@ -165,7 +165,7 @@ public class EntitySheep extends EntityAnimal {
                 this.setSheared(true);
                 int i = 1 + this.rand.nextInt(3);
 
-                for (int j = 0; j < i; ++j) {
+                for (int j = 0; j < i; j++) {
                     EntityItem entityitem = this.entityDropItem(new ItemStack(Item.getItemFromBlock(Blocks.wool), 1, this.getFleeceColor().getMetadata()), 1.0F);
                     entityitem.motionY += (double)(this.rand.nextFloat() * 0.05F);
                     entityitem.motionX += (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);

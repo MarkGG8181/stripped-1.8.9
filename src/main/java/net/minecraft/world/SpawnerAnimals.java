@@ -45,9 +45,9 @@ public final class SpawnerAnimals
                     int k = MathHelper.floor_double(entityplayer.posZ / 16.0D);
                     int l = 8;
 
-                    for (int i1 = -l; i1 <= l; ++i1)
+                    for (int i1 = -l; i1 <= l; i1++)
                     {
-                        for (int j1 = -l; j1 <= l; ++j1)
+                        for (int j1 = -l; j1 <= l; j1++)
                         {
                             boolean flag = i1 == -l || i1 == l || j1 == -l || j1 == l;
                             ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i1 + j, j1 + k);
@@ -92,7 +92,7 @@ public final class SpawnerAnimals
                             {
                                 int j2 = 0;
 
-                                for (int k2 = 0; k2 < 3; ++k2)
+                                for (int k2 = 0; k2 < 3; k2++)
                                 {
                                     int l2 = k1;
                                     int i3 = l1;
@@ -101,7 +101,7 @@ public final class SpawnerAnimals
                                     BiomeGenBase.SpawnListEntry biomegenbase$spawnlistentry = null;
                                     IEntityLivingData ientitylivingdata = null;
 
-                                    for (int l3 = 0; l3 < 4; ++l3)
+                                    for (int l3 = 0; l3 < 4; l3++)
                                     {
                                         l2 += worldServerIn.rand.nextInt(k3) - worldServerIn.rand.nextInt(k3);
                                         i3 += worldServerIn.rand.nextInt(1) - worldServerIn.rand.nextInt(1);
@@ -230,11 +230,11 @@ public final class SpawnerAnimals
                 int l = j;
                 int i1 = k;
 
-                for (int j1 = 0; j1 < i; ++j1)
+                for (int j1 = 0; j1 < i; j1++)
                 {
                     boolean flag = false;
 
-                    for (int k1 = 0; !flag && k1 < 4; ++k1)
+                    for (int k1 = 0; !flag && k1 < 4; k1++)
                     {
                         BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
 

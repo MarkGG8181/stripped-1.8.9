@@ -41,8 +41,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderHell;
 
 public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
-    private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
-    private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false);
+    private final EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
+    private final EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false);
 
     public EntitySkeleton(World worldIn) {
         super(worldIn);
@@ -203,21 +203,21 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
         if (this.getSkeletonType() == 1) {
             int i = this.rand.nextInt(3 + lootingModifier) - 1;
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 this.dropItem(Items.coal, 1);
             }
         }
         else {
             int k = this.rand.nextInt(3 + lootingModifier);
 
-            for (int i1 = 0; i1 < k; ++i1) {
+            for (int i1 = 0; i1 < k; i1++) {
                 this.dropItem(Items.arrow, 1);
             }
         }
 
         int l = this.rand.nextInt(3 + lootingModifier);
 
-        for (int j1 = 0; j1 < l; ++j1) {
+        for (int j1 = 0; j1 < l; j1++) {
             this.dropItem(Items.bone, 1);
         }
     }

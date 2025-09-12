@@ -97,7 +97,7 @@ public class CommandEnchant extends CommandBase
 
                         if (nbttaglist != null)
                         {
-                            for (int k = 0; k < nbttaglist.tagCount(); ++k)
+                            for (int k = 0; k < nbttaglist.tagCount(); k++)
                             {
                                 int l = nbttaglist.getCompoundTagAt(k).getShort("id");
 

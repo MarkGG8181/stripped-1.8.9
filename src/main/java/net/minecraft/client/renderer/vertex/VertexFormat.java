@@ -21,7 +21,7 @@ public class VertexFormat
     {
         this();
 
-        for (int i = 0; i < vertexFormatIn.getElementCount(); ++i)
+        for (int i = 0; i < vertexFormatIn.getElementCount(); i++)
         {
             this.addElement(vertexFormatIn.getElement(i));
         }
@@ -115,7 +115,7 @@ public class VertexFormat
     {
         String s = "format: " + this.elements.size() + " elements: ";
 
-        for (int i = 0; i < this.elements.size(); ++i)
+        for (int i = 0; i < this.elements.size(); i++)
         {
             s = s + ((VertexFormatElement)this.elements.get(i)).toString();
 
@@ -132,7 +132,7 @@ public class VertexFormat
     {
         int i = 0;
 
-        for (int j = this.elements.size(); i < j; ++i)
+        for (int j = this.elements.size(); i < j; i++)
         {
             VertexFormatElement vertexformatelement = (VertexFormatElement)this.elements.get(i);
 

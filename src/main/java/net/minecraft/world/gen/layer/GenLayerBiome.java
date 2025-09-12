@@ -7,9 +7,9 @@ import net.minecraft.world.gen.ChunkProviderSettings;
 public class GenLayerBiome extends GenLayer
 {
     private BiomeGenBase[] warmBiomes = new BiomeGenBase[]{BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.desert, BiomeGenBase.savanna, BiomeGenBase.savanna, BiomeGenBase.plains};
-    private BiomeGenBase[] mediumBiomes = new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.roofedForest, BiomeGenBase.extremeHills, BiomeGenBase.plains, BiomeGenBase.birchForest, BiomeGenBase.swampland};
-    private BiomeGenBase[] coldBiomes = new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.taiga, BiomeGenBase.plains};
-    private BiomeGenBase[] iceBiomes = new BiomeGenBase[]{BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.coldTaiga};
+    private final BiomeGenBase[] mediumBiomes = new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.roofedForest, BiomeGenBase.extremeHills, BiomeGenBase.plains, BiomeGenBase.birchForest, BiomeGenBase.swampland};
+    private final BiomeGenBase[] coldBiomes = new BiomeGenBase[]{BiomeGenBase.forest, BiomeGenBase.extremeHills, BiomeGenBase.taiga, BiomeGenBase.plains};
+    private final BiomeGenBase[] iceBiomes = new BiomeGenBase[]{BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.icePlains, BiomeGenBase.coldTaiga};
     private final ChunkProviderSettings settings;
 
     public GenLayerBiome(long p_i45560_1_, GenLayer p_i45560_3_, WorldType p_i45560_4_, String p_i45560_5_)
@@ -41,9 +41,9 @@ public class GenLayerBiome extends GenLayer
         int[] aint = this.parent.getInts(areaX, areaY, areaWidth, areaHeight);
         int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int i = 0; i < areaHeight; i++)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int j = 0; j < areaWidth; j++)
             {
                 this.initChunkSeed((long)(j + areaX), (long)(i + areaY));
                 int k = aint[j + i * areaWidth];

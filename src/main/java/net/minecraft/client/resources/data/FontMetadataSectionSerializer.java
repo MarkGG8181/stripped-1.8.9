@@ -41,7 +41,7 @@ public class FontMetadataSectionSerializer extends BaseMetadataSectionSerializer
                 Validate.inclusiveBetween(0.0D, 3.4028234663852886E38D, (double)f2, "Invalid default left");
             }
 
-            for (int i = 0; i < 256; ++i) {
+            for (int i = 0; i < 256; i++) {
                 JsonElement jsonelement = jsonobject1.get(Integer.toString(i));
                 float f3 = f;
                 float f4 = f1;

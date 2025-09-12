@@ -28,7 +28,7 @@ public class TileEntityEndPortalRenderer extends TileEntitySpecialRenderer<TileE
         RANDOM.setSeed(31100L);
         float f3 = 0.75F;
 
-        for (int i = 0; i < 16; ++i)
+        for (int i = 0; i < 16; i++)
         {
             GlStateManager.pushMatrix();
             float f4 = (float)(16 - i);

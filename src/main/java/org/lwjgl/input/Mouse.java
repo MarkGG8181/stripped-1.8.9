@@ -134,8 +134,9 @@ public class Mouse {
     }
 
     public static void setCursorPosition(int new_x, int new_y) {
-        if (!isCreated())
+        if (!isCreated()) {
             throw new IllegalStateException("Mouse is not created");
+        }
 
         eventX = new_x;
         x = new_x;
@@ -182,11 +183,13 @@ public class Mouse {
     }
 
     private static void create(InputImplementation impl) throws LWJGLException {
-        if (created)
+        if (created) {
             return;
+        }
 
-        if (!initialized)
+        if (!initialized) {
             initialize();
+        }
 
         implementation = impl;
         implementation.createMouse();
@@ -203,7 +206,9 @@ public class Mouse {
     }
 
     public static void create() throws LWJGLException {
-        if (!Display.isCreated()) throw new IllegalStateException("Display must be created.");
+        if (!Display.isCreated()) {
+            throw new IllegalStateException("Display must be created.");
+        }
 
         create(LWJGLImplementationUtils.getOrCreateInputImplementation());
     }
@@ -213,8 +218,9 @@ public class Mouse {
     }
 
     public static void destroy() {
-        if (!created)
+        if (!created) {
             return;
+        }
 
         created = false;
         buttons = null;
@@ -228,8 +234,9 @@ public class Mouse {
     }
 
     public static void poll() {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Mouse must be created before you can poll it");
+        }
 
         if (isFixClip()) {
             return;
@@ -278,34 +285,42 @@ public class Mouse {
     }
 
     public static boolean isButtonDown(int button) {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Mouse must be created before you can poll the button state");
+        }
 
-        if (button >= buttonCount || button < 0)
+        if (button >= buttonCount || button < 0) {
             return false;
-        else
+        }
+        else {
             return buttons.get(button) == 1;
+        }
     }
 
     public static String getButtonName(int button) {
-        if (button >= buttonName.length || button < 0)
+        if (button >= buttonName.length || button < 0) {
             return null;
-        else
+        }
+        else {
             return buttonName[button];
+        }
     }
 
     public static int getButtonIndex(String buttonName) {
         Integer ret = buttonMap.get(buttonName);
 
-        if (ret == null)
+        if (ret == null) {
             return -1;
-        else
+        }
+        else {
             return ret;
+        }
     }
 
     public static boolean next() {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Mouse must be created before you can read events");
+        }
 
         if (isFixClip()) {
             setFixClip(false);
@@ -354,8 +369,10 @@ public class Mouse {
             }
 
             return true;
-        } else
+        }
+        else {
             return false;
+        }
     }
 
     public static int getEventButton() {
@@ -491,8 +508,8 @@ public class Mouse {
     }
 
     public static void setRawInput(boolean state) {
-        if (Display.isCreated() && GLFW.glfwRawMouseMotionSupported() &&
-            !Mouse.getPrivilegedBoolean("org.input.org.lwjgl.Mouse.disableRawInput")) {
+        if (Display.isCreated() && GLFW.glfwRawMouseMotionSupported()
+            && !Mouse.getPrivilegedBoolean("org.input.org.lwjgl.Mouse.disableRawInput")) {
             GLFW.glfwSetInputMode(Display.getWindowHandle(), GLFW.GLFW_RAW_MOUSE_MOTION,
                 state ? GLFW.GLFW_TRUE : GLFW.GLFW_FALSE);
         }

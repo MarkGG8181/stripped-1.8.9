@@ -27,7 +27,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
             return !this.func_181078_a(p_77203_1_, merchantrecipe1.getItemToBuy()) || (p_77203_2_ != null || merchantrecipe1.hasSecondItemToBuy()) && (!merchantrecipe1.hasSecondItemToBuy() || !this.func_181078_a(p_77203_2_, merchantrecipe1.getSecondItemToBuy())) || p_77203_1_.stackSize < merchantrecipe1.getItemToBuy().stackSize || merchantrecipe1.hasSecondItemToBuy() && Objects.requireNonNull(p_77203_2_).stackSize < merchantrecipe1.getSecondItemToBuy().stackSize ? null : merchantrecipe1;
         }
         else {
-            for (int i = 0; i < this.size(); ++i) {
+            for (int i = 0; i < this.size(); i++) {
                 MerchantRecipe merchantrecipe = this.get(i);
 
                 if (this.func_181078_a(p_77203_1_, merchantrecipe.getItemToBuy()) && p_77203_1_.stackSize >= merchantrecipe.getItemToBuy().stackSize && (!merchantrecipe.hasSecondItemToBuy() && p_77203_2_ == null || merchantrecipe.hasSecondItemToBuy() && this.func_181078_a(p_77203_2_, merchantrecipe.getSecondItemToBuy()) && p_77203_2_.stackSize >= merchantrecipe.getSecondItemToBuy().stackSize)) {
@@ -66,7 +66,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
         MerchantRecipeList merchantrecipelist = new MerchantRecipeList();
         int i = buffer.readByte() & 255;
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             ItemStack itemstack = buffer.readItemStackFromBuffer();
             ItemStack itemstack1 = buffer.readItemStackFromBuffer();
             ItemStack itemstack2 = null;
@@ -93,7 +93,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
     public void readRecipiesFromTags(NBTTagCompound compound) {
         NBTTagList nbttaglist = compound.getTagList("Recipes", 10);
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (int i = 0; i < nbttaglist.tagCount(); i++) {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             this.add(new MerchantRecipe(nbttagcompound));
         }

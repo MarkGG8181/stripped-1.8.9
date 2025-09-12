@@ -89,11 +89,11 @@ public class FactoryBlockPattern
         this.checkMissingPredicates();
         Predicate<BlockWorldState>[][][] predicate = (Predicate[][][])((Predicate[][][])Array.newInstance(Predicate.class, new int[]{this.depth.size(), this.aisleHeight, this.rowWidth}));
 
-        for (int i = 0; i < this.depth.size(); ++i)
+        for (int i = 0; i < this.depth.size(); i++)
         {
-            for (int j = 0; j < this.aisleHeight; ++j)
+            for (int j = 0; j < this.aisleHeight; j++)
             {
-                for (int k = 0; k < this.rowWidth; ++k)
+                for (int k = 0; k < this.rowWidth; k++)
                 {
                     predicate[i][j][k] = (Predicate)this.symbolMap.get(Character.valueOf(((String[])this.depth.get(i))[j].charAt(k)));
                 }

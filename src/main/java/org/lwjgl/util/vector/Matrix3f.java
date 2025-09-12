@@ -83,8 +83,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return The copied matrix
      */
     public static Matrix3f load(Matrix3f src, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
 
         dest.m00 = src.m00;
         dest.m10 = src.m10;
@@ -187,8 +188,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix3f add(Matrix3f left, Matrix3f right, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
 
         dest.m00 = left.m00 + right.m00;
         dest.m01 = left.m01 + right.m01;
@@ -211,8 +213,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix3f sub(Matrix3f left, Matrix3f right, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
 
         dest.m00 = left.m00 - right.m00;
         dest.m01 = left.m01 - right.m01;
@@ -235,8 +238,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix3f mul(Matrix3f left, Matrix3f right, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
 
         float m00 =
             left.m00 * right.m00 + left.m10 * right.m01 + left.m20 * right.m02;
@@ -279,8 +283,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the destination vector
      */
     public static Vector3f transform(Matrix3f left, Vector3f right, Vector3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector3f();
+        }
 
         float x = left.m00 * right.x + left.m10 * right.y + left.m20 * right.z;
         float y = left.m01 * right.x + left.m11 * right.y + left.m21 * right.z;
@@ -317,8 +322,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the transposed matrix
      */
     public static Matrix3f transpose(Matrix3f src, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
         float m00 = src.m00;
         float m01 = src.m10;
         float m02 = src.m20;
@@ -381,8 +387,9 @@ public class Matrix3f extends Matrix implements Serializable {
         float determinant = src.determinant();
 
         if (determinant != 0) {
-            if (dest == null)
+            if (dest == null) {
                 dest = new Matrix3f();
+            }
             /* do it the ordinary way
              *
              * inv(A) = 1/det(A) * adj(T), where adj(T) = transpose(Conjugate Matrix)
@@ -414,8 +421,10 @@ public class Matrix3f extends Matrix implements Serializable {
             dest.m12 = t21 * determinant_inv;
             dest.m21 = t12 * determinant_inv;
             return dest;
-        } else
+        }
+        else {
             return null;
+        }
     }
 
 
@@ -443,8 +452,9 @@ public class Matrix3f extends Matrix implements Serializable {
      * @return the negated matrix
      */
     public static Matrix3f negate(Matrix3f src, Matrix3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix3f();
+        }
 
         dest.m00 = -src.m00;
         dest.m01 = -src.m02;

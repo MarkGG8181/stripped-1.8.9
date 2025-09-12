@@ -6,22 +6,22 @@ import net.minecraft.util.MathHelper;
 
 public class ModelBat extends ModelBase
 {
-    private ModelRenderer batHead;
+    private final ModelRenderer batHead;
 
     /** The body box of the bat model. */
-    private ModelRenderer batBody;
+    private final ModelRenderer batBody;
 
     /** The inner right wing box of the bat model. */
-    private ModelRenderer batRightWing;
+    private final ModelRenderer batRightWing;
 
     /** The inner left wing box of the bat model. */
-    private ModelRenderer batLeftWing;
+    private final ModelRenderer batLeftWing;
 
     /** The outer right wing box of the bat model. */
-    private ModelRenderer batOuterRightWing;
+    private final ModelRenderer batOuterRightWing;
 
     /** The outer left wing box of the bat model. */
-    private ModelRenderer batOuterLeftWing;
+    private final ModelRenderer batOuterLeftWing;
 
     public ModelBat()
     {
@@ -76,7 +76,7 @@ public class ModelBat extends ModelBase
     {
         if (((EntityBat)entityIn).getIsBatHanging())
         {
-            float f = (180F / (float)Math.PI);
+            float f = 180F / (float)Math.PI;
             this.batHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
             this.batHead.rotateAngleY = (float)Math.PI - netHeadYaw / (180F / (float)Math.PI);
             this.batHead.rotateAngleZ = (float)Math.PI;
@@ -93,7 +93,7 @@ public class ModelBat extends ModelBase
         }
         else
         {
-            float f1 = (180F / (float)Math.PI);
+            float f1 = 180F / (float)Math.PI;
             this.batHead.rotateAngleX = headPitch / (180F / (float)Math.PI);
             this.batHead.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
             this.batHead.rotateAngleZ = 0.0F;

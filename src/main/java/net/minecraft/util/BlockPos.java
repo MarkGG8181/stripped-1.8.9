@@ -223,7 +223,7 @@ public class BlockPos extends Vec3i
             {
                 return new AbstractIterator<BlockPos>()
                 {
-                    private BlockPos lastReturned = null;
+                    private BlockPos lastReturned;
 
                     protected BlockPos computeNext()
                     {
@@ -277,7 +277,7 @@ public class BlockPos extends Vec3i
             {
                 return new AbstractIterator<BlockPos.MutableBlockPos>()
                 {
-                    private BlockPos.MutableBlockPos theBlockPos = null;
+                    private BlockPos.MutableBlockPos theBlockPos;
 
                     protected BlockPos.MutableBlockPos computeNext()
                     {

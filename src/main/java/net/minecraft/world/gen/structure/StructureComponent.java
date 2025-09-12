@@ -142,9 +142,9 @@ public abstract class StructureComponent
         int j1 = Math.min(this.boundingBox.maxZ + 1, boundingboxIn.maxZ);
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-        for (int k1 = i; k1 <= l; ++k1)
+        for (int k1 = i; k1 <= l; k1++)
         {
-            for (int l1 = k; l1 <= j1; ++l1)
+            for (int l1 = k; l1 <= j1; l1++)
             {
                 if (worldIn.getBlockState(blockpos$mutableblockpos.set(k1, j, l1)).getBlock().getMaterial().isLiquid())
                 {
@@ -158,9 +158,9 @@ public abstract class StructureComponent
             }
         }
 
-        for (int i2 = i; i2 <= l; ++i2)
+        for (int i2 = i; i2 <= l; i2++)
         {
-            for (int k2 = j; k2 <= i1; ++k2)
+            for (int k2 = j; k2 <= i1; k2++)
             {
                 if (worldIn.getBlockState(blockpos$mutableblockpos.set(i2, k2, k)).getBlock().getMaterial().isLiquid())
                 {
@@ -174,9 +174,9 @@ public abstract class StructureComponent
             }
         }
 
-        for (int j2 = k; j2 <= j1; ++j2)
+        for (int j2 = k; j2 <= j1; j2++)
         {
-            for (int l2 = j; l2 <= i1; ++l2)
+            for (int l2 = j; l2 <= i1; l2++)
             {
                 if (worldIn.getBlockState(blockpos$mutableblockpos.set(i, l2, j2)).getBlock().getMaterial().isLiquid())
                 {
@@ -613,11 +613,11 @@ public abstract class StructureComponent
      */
     protected void fillWithAir(World worldIn, StructureBoundingBox structurebb, int minX, int minY, int minZ, int maxX, int maxY, int maxZ)
     {
-        for (int i = minY; i <= maxY; ++i)
+        for (int i = minY; i <= maxY; i++)
         {
-            for (int j = minX; j <= maxX; ++j)
+            for (int j = minX; j <= maxX; j++)
             {
-                for (int k = minZ; k <= maxZ; ++k)
+                for (int k = minZ; k <= maxZ; k++)
                 {
                     this.setBlockState(worldIn, Blocks.air.getDefaultState(), j, i, k, structurebb);
                 }
@@ -630,11 +630,11 @@ public abstract class StructureComponent
      */
     protected void fillWithBlocks(World worldIn, StructureBoundingBox boundingboxIn, int xMin, int yMin, int zMin, int xMax, int yMax, int zMax, IBlockState boundaryBlockState, IBlockState insideBlockState, boolean existingOnly)
     {
-        for (int i = yMin; i <= yMax; ++i)
+        for (int i = yMin; i <= yMax; i++)
         {
-            for (int j = xMin; j <= xMax; ++j)
+            for (int j = xMin; j <= xMax; j++)
             {
-                for (int k = zMin; k <= zMax; ++k)
+                for (int k = zMin; k <= zMax; k++)
                 {
                     if (!existingOnly || this.getBlockStateFromPos(worldIn, j, i, k, boundingboxIn).getBlock().getMaterial() != Material.air)
                     {
@@ -658,11 +658,11 @@ public abstract class StructureComponent
      */
     protected void fillWithRandomizedBlocks(World worldIn, StructureBoundingBox boundingboxIn, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, boolean alwaysReplace, Random rand, StructureComponent.BlockSelector blockselector)
     {
-        for (int i = minY; i <= maxY; ++i)
+        for (int i = minY; i <= maxY; i++)
         {
-            for (int j = minX; j <= maxX; ++j)
+            for (int j = minX; j <= maxX; j++)
             {
-                for (int k = minZ; k <= maxZ; ++k)
+                for (int k = minZ; k <= maxZ; k++)
                 {
                     if (!alwaysReplace || this.getBlockStateFromPos(worldIn, j, i, k, boundingboxIn).getBlock().getMaterial() != Material.air)
                     {
@@ -676,11 +676,11 @@ public abstract class StructureComponent
 
     protected void func_175805_a(World worldIn, StructureBoundingBox boundingboxIn, Random rand, float chance, int minX, int minY, int minZ, int maxX, int maxY, int maxZ, IBlockState blockstate1, IBlockState blockstate2, boolean p_175805_13_)
     {
-        for (int i = minY; i <= maxY; ++i)
+        for (int i = minY; i <= maxY; i++)
         {
-            for (int j = minX; j <= maxX; ++j)
+            for (int j = minX; j <= maxX; j++)
             {
-                for (int k = minZ; k <= maxZ; ++k)
+                for (int k = minZ; k <= maxZ; k++)
                 {
                     if (rand.nextFloat() <= chance && (!p_175805_13_ || this.getBlockStateFromPos(worldIn, j, i, k, boundingboxIn).getBlock().getMaterial() != Material.air))
                     {
@@ -714,15 +714,15 @@ public abstract class StructureComponent
         float f3 = (float)minX + f / 2.0F;
         float f4 = (float)minZ + f2 / 2.0F;
 
-        for (int i = minY; i <= maxY; ++i)
+        for (int i = minY; i <= maxY; i++)
         {
             float f5 = (float)(i - minY) / f1;
 
-            for (int j = minX; j <= maxX; ++j)
+            for (int j = minX; j <= maxX; j++)
             {
                 float f6 = ((float)j - f3) / (f * 0.5F);
 
-                for (int k = minZ; k <= maxZ; ++k)
+                for (int k = minZ; k <= maxZ; k++)
                 {
                     float f7 = ((float)k - f4) / (f2 * 0.5F);
 

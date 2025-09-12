@@ -41,4 +41,7 @@ public class ColorizerFoliage
     {
         return 4764952;
     }
+
+    private ColorizerFoliage() {
+    }
 }

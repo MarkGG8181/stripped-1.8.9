@@ -57,7 +57,7 @@ public class GuiOverlayDebug extends Gui {
     protected void renderDebugInfoLeft() {
         List<String> list = this.call();
 
-        for (int i = 0; i < list.size(); ++i) {
+        for (int i = 0; i < list.size(); i++) {
             String s = list.get(i);
 
             if (!Strings.isNullOrEmpty(s)) {
@@ -73,7 +73,7 @@ public class GuiOverlayDebug extends Gui {
     protected void renderDebugInfoRight(ScaledResolution scaledRes) {
         List<String> list = this.getDebugInfoRight();
 
-        for (int i = 0; i < list.size(); ++i) {
+        for (int i = 0; i < list.size(); i++) {
             String text = list.get(i);
 
             if (!Strings.isNullOrEmpty(text)) {

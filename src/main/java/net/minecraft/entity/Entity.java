@@ -948,11 +948,11 @@ public abstract class Entity implements ICommandSender
 
         if (this.worldObj.isAreaLoaded(blockpos, blockpos1))
         {
-            for (int i = blockpos.getX(); i <= blockpos1.getX(); ++i)
+            for (int i = blockpos.getX(); i <= blockpos1.getX(); i++)
             {
-                for (int j = blockpos.getY(); j <= blockpos1.getY(); ++j)
+                for (int j = blockpos.getY(); j <= blockpos1.getY(); j++)
                 {
-                    for (int k = blockpos.getZ(); k <= blockpos1.getZ(); ++k)
+                    for (int k = blockpos.getZ(); k <= blockpos1.getZ(); k++)
                     {
                         BlockPos blockpos2 = new BlockPos(i, j, k);
                         IBlockState iblockstate = this.worldObj.getBlockState(blockpos2);
@@ -1135,14 +1135,14 @@ public abstract class Entity implements ICommandSender
         this.playSound(this.getSplashSound(), f, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
         float f1 = (float)MathHelper.floor_double(this.getEntityBoundingBox().minY);
 
-        for (int i = 0; (float)i < 1.0F + this.width * 20.0F; ++i)
+        for (int i = 0; (float)i < 1.0F + this.width * 20.0F; i++)
         {
             float f2 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
             float f3 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
             this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (double)f2, (double)(f1 + 1.0F), this.posZ + (double)f3, this.motionX, this.motionY - (double)(this.rand.nextFloat() * 0.2F), this.motionZ, new int[0]);
         }
 
-        for (int j = 0; (float)j < 1.0F + this.width * 20.0F; ++j)
+        for (int j = 0; (float)j < 1.0F + this.width * 20.0F; j++)
         {
             float f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
             float f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
@@ -1843,7 +1843,7 @@ public abstract class Entity implements ICommandSender
         {
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
-            for (int i = 0; i < 8; ++i)
+            for (int i = 0; i < 8; i++)
             {
                 int j = MathHelper.floor_double(this.posY + (double)(((float)((i >> 0) % 2) - 0.5F) * 0.1F) + (double)this.getEyeHeight());
                 int k = MathHelper.floor_double(this.posX + (double)(((float)((i >> 1) % 2) - 0.5F) * this.width * 0.8F));

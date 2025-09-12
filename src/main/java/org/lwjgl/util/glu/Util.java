@@ -54,7 +54,7 @@ public class Util {
     /**
      * temp IntBuffer of one for getting an int from some GL functions
      */
-    private static IntBuffer scratch = BufferUtils.createIntBuffer(16);
+    private static final IntBuffer scratch = BufferUtils.createIntBuffer(16);
 
     /**
      * Return ceiling of integer division
@@ -65,7 +65,7 @@ public class Util {
      * @return int
      */
     protected static int ceil(int a, int b) {
-        return (a % b == 0 ? a / b : a / b + 1);
+        return a % b == 0 ? a / b : a / b + 1;
     }
 
     /**
@@ -79,8 +79,9 @@ public class Util {
         float r;
 
         r = (float)Math.sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
-        if (r == 0.0)
+        if (r == 0.0) {
             return v;
+        }
 
         r = 1.0f / r;
 
@@ -151,8 +152,9 @@ public class Util {
         i = 1;
 
         /* Error! */
-        if (value == 0)
+        if (value == 0) {
             return -1;
+        }
 
         for (; ; ) {
             if (value == 1) {
@@ -248,5 +250,8 @@ public class Util {
             case GL_INVALID_FRAMEBUFFER_OPERATION -> "Invalid framebuffer operation";
             default -> null;
         };
+    }
+
+    private Util() {
     }
 }

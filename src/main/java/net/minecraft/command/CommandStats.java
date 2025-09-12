@@ -53,13 +53,13 @@ public class CommandStats extends CommandBase
         {
             boolean flag;
 
-            if (args[0].equals("entity"))
+            if ("entity".equals(args[0]))
             {
                 flag = false;
             }
             else
             {
-                if (!args[0].equals("block"))
+                if (!"block".equals(args[0]))
                 {
                     throw new WrongUsageException("commands.stats.usage", new Object[0]);
                 }
@@ -192,7 +192,7 @@ public class CommandStats extends CommandBase
 
     public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
     {
-        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"entity", "block"}) : (args.length == 2 && args[0].equals("entity") ? getListOfStringsMatchingLastWord(args, this.func_175776_d()) : (args.length >= 2 && args.length <= 4 && args[0].equals("block") ? func_175771_a(args, 1, pos) : ((args.length != 3 || !args[0].equals("entity")) && (args.length != 5 || !args[0].equals("block")) ? ((args.length != 4 || !args[0].equals("entity")) && (args.length != 6 || !args[0].equals("block")) ? ((args.length != 6 || !args[0].equals("entity")) && (args.length != 8 || !args[0].equals("block")) ? null : getListOfStringsMatchingLastWord(args, this.func_175777_e())) : getListOfStringsMatchingLastWord(args, CommandResultStats.Type.getTypeNames())) : getListOfStringsMatchingLastWord(args, new String[]{"set", "clear"}))));
+        return args.length == 1 ? getListOfStringsMatchingLastWord(args, new String[]{"entity", "block"}) : (args.length == 2 && "entity".equals(args[0]) ? getListOfStringsMatchingLastWord(args, this.func_175776_d()) : (args.length >= 2 && args.length <= 4 && "block".equals(args[0]) ? func_175771_a(args, 1, pos) : ((args.length != 3 || !"entity".equals(args[0])) && (args.length != 5 || !"block".equals(args[0])) ? ((args.length != 4 || !"entity".equals(args[0])) && (args.length != 6 || !"block".equals(args[0])) ? ((args.length != 6 || !"entity".equals(args[0])) && (args.length != 8 || !"block".equals(args[0])) ? null : getListOfStringsMatchingLastWord(args, this.func_175777_e())) : getListOfStringsMatchingLastWord(args, CommandResultStats.Type.getTypeNames())) : getListOfStringsMatchingLastWord(args, new String[]{"set", "clear"}))));
     }
 
     protected String[] func_175776_d()
@@ -221,6 +221,6 @@ public class CommandStats extends CommandBase
      */
     public boolean isUsernameIndex(String[] args, int index)
     {
-        return args.length > 0 && args[0].equals("entity") && index == 1;
+        return args.length > 0 && "entity".equals(args[0]) && index == 1;
     }
 }

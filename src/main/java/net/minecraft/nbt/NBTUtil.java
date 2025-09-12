@@ -54,7 +54,7 @@ public final class NBTUtil
                 {
                     NBTTagList nbttaglist = nbttagcompound.getTagList(s2, 10);
 
-                    for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                    for (int i = 0; i < nbttaglist.tagCount(); i++)
                     {
                         NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
                         String s3 = nbttagcompound1.getString("Value");
@@ -164,12 +164,12 @@ public final class NBTUtil
             }
             else
             {
-                for (int i = 0; i < nbttaglist.tagCount(); ++i)
+                for (int i = 0; i < nbttaglist.tagCount(); i++)
                 {
                     NBTBase nbtbase = nbttaglist.get(i);
                     boolean flag = false;
 
-                    for (int j = 0; j < nbttaglist1.tagCount(); ++j)
+                    for (int j = 0; j < nbttaglist1.tagCount(); j++)
                     {
                         if (func_181123_a(nbtbase, nbttaglist1.get(j), p_181123_2_))
                         {
@@ -191,5 +191,8 @@ public final class NBTUtil
         {
             return p_181123_0_.equals(p_181123_1_);
         }
+    }
+
+    private NBTUtil() {
     }
 }

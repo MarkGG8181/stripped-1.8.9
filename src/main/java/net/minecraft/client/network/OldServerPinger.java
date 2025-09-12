@@ -52,9 +52,9 @@ public class OldServerPinger {
         server.playerList = null;
 
         networkmanager.setNetHandler(new INetHandlerStatusClient() {
-            private boolean successful = false;
-            private boolean receivedStatus = false;
-            private long pingSentAt = 0L;
+            private boolean successful;
+            private boolean receivedStatus;
+            private long pingSentAt;
 
             @Override
             public void handleServerInfo(S00PacketServerInfo packetIn) {

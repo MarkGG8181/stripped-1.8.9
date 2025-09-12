@@ -17,7 +17,7 @@ public class RecipeBookCloning implements IRecipe
         int i = 0;
         ItemStack itemstack = null;
 
-        for (int j = 0; j < inv.getSizeInventory(); ++j)
+        for (int j = 0; j < inv.getSizeInventory(); j++)
         {
             ItemStack itemstack1 = inv.getStackInSlot(j);
 
@@ -55,7 +55,7 @@ public class RecipeBookCloning implements IRecipe
         int i = 0;
         ItemStack itemstack = null;
 
-        for (int j = 0; j < inv.getSizeInventory(); ++j)
+        for (int j = 0; j < inv.getSizeInventory(); j++)
         {
             ItemStack itemstack1 = inv.getStackInSlot(j);
 
@@ -118,7 +118,7 @@ public class RecipeBookCloning implements IRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
 

@@ -177,7 +177,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
             {
                 if (this.ringBufferIndex < 0)
                 {
-                    for (int i = 0; i < this.ringBuffer.length; ++i)
+                    for (int i = 0; i < this.ringBuffer.length; i++)
                     {
                         this.ringBuffer[i][0] = (double)this.rotationYaw;
                         this.ringBuffer[i][1] = this.posY;
@@ -259,9 +259,9 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
                         d6 = -50.0D;
                     }
 
-                    Vec3 vec3 = (new Vec3(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ)).normalize();
+                    Vec3 vec3 = new Vec3(this.targetX - this.posX, this.targetY - this.posY, this.targetZ - this.posZ).normalize();
                     double d15 = (double)(-MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F));
-                    Vec3 vec31 = (new Vec3((double)MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, d15)).normalize();
+                    Vec3 vec31 = new Vec3((double)MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F), this.motionY, d15).normalize();
                     float f5 = ((float)vec31.dotProduct(vec3) + 0.5F) / 1.5F;
 
                     if (f5 < 0.0F)
@@ -293,7 +293,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
                         this.moveEntity(this.motionX, this.motionY, this.motionZ);
                     }
 
-                    Vec3 vec32 = (new Vec3(this.motionX, this.motionY, this.motionZ)).normalize();
+                    Vec3 vec32 = new Vec3(this.motionX, this.motionY, this.motionZ).normalize();
                     float f9 = ((float)vec32.dotProduct(vec31) + 1.0F) / 2.0F;
                     f9 = 0.8F + 0.15F * f9;
                     this.motionX *= (double)f9;
@@ -339,7 +339,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
                 this.dragonPartHead.onUpdate();
                 this.dragonPartHead.setLocationAndAngles(this.posX + (double)(f18 * 5.5F * f2), this.posY + (adouble[1] - adouble1[1]) * 1.0D + (double)(f15 * 5.5F), this.posZ - (double)(f19 * 5.5F * f2), 0.0F, 0.0F);
 
-                for (int j = 0; j < 3; ++j)
+                for (int j = 0; j < 3; j++)
                 {
                     EntityDragonPart entitydragonpart = null;
 
@@ -445,7 +445,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
      */
     private void attackEntitiesInList(List<Entity> p_70971_1_)
     {
-        for (int i = 0; i < p_70971_1_.size(); ++i)
+        for (int i = 0; i < p_70971_1_.size(); i++)
         {
             Entity entity = (Entity)p_70971_1_.get(i);
 
@@ -524,11 +524,11 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
         boolean flag = false;
         boolean flag1 = false;
 
-        for (int k1 = i; k1 <= l; ++k1)
+        for (int k1 = i; k1 <= l; k1++)
         {
-            for (int l1 = j; l1 <= i1; ++l1)
+            for (int l1 = j; l1 <= i1; l1++)
             {
-                for (int i2 = k; i2 <= j1; ++i2)
+                for (int i2 = k; i2 <= j1; i2++)
                 {
                     BlockPos blockpos = new BlockPos(k1, l1, i2);
                     Block block = this.worldObj.getBlockState(blockpos).getBlock();
@@ -679,11 +679,11 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
         double d0 = 12.25D;
         double d1 = 6.25D;
 
-        for (int j = -1; j <= 32; ++j)
+        for (int j = -1; j <= 32; j++)
         {
-            for (int k = -4; k <= 4; ++k)
+            for (int k = -4; k <= 4; k++)
             {
-                for (int l = -4; l <= 4; ++l)
+                for (int l = -4; l <= 4; l++)
                 {
                     double d2 = (double)(k * k + l * l);
 

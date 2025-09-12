@@ -35,7 +35,7 @@ public class FallbackResourceManager implements IResourceManager {
         IResourcePack iresourcepack = null;
         ResourceLocation resourcelocation = getLocationMcmeta(location);
 
-        for (int i = this.resourcePacks.size() - 1; i >= 0; --i) {
+        for (int i = this.resourcePacks.size() - 1; i >= 0; i--) {
             IResourcePack iresourcepack1 = (IResourcePack)this.resourcePacks.get(i);
 
             if (iresourcepack == null && iresourcepack1.resourceExists(resourcelocation)) {
@@ -87,12 +87,12 @@ public class FallbackResourceManager implements IResourceManager {
     static class InputStreamLeakedResourceLogger extends InputStream {
         private final InputStream inputStream;
         private final String message;
-        private boolean isClosed = false;
+        private boolean isClosed;
 
         public InputStreamLeakedResourceLogger(InputStream p_i46093_1_, ResourceLocation location, String resourcePack) {
             this.inputStream = p_i46093_1_;
             ByteArrayOutputStream bytearrayoutputstream = new ByteArrayOutputStream();
-            (new Exception()).printStackTrace(new PrintStream(bytearrayoutputstream));
+            new Exception().printStackTrace(new PrintStream(bytearrayoutputstream));
             this.message = "Leaked resource: \'" + location + "\' loaded from pack: \'" + resourcePack + "\'\n" + bytearrayoutputstream.toString();
         }
 

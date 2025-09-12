@@ -59,7 +59,7 @@ public class BlockPumpkin extends BlockDirectional
 
         if ((blockpattern$patternhelper = this.getSnowmanPattern().match(worldIn, pos)) != null)
         {
-            for (int i = 0; i < this.getSnowmanPattern().getThumbLength(); ++i)
+            for (int i = 0; i < this.getSnowmanPattern().getThumbLength(); i++)
             {
                 BlockWorldState blockworldstate = blockpattern$patternhelper.translateOffset(0, i, 0);
                 worldIn.setBlockState(blockworldstate.getPos(), Blocks.air.getDefaultState(), 2);
@@ -70,12 +70,12 @@ public class BlockPumpkin extends BlockDirectional
             entitysnowman.setLocationAndAngles((double)blockpos1.getX() + 0.5D, (double)blockpos1.getY() + 0.05D, (double)blockpos1.getZ() + 0.5D, 0.0F, 0.0F);
             worldIn.spawnEntityInWorld(entitysnowman);
 
-            for (int j = 0; j < 120; ++j)
+            for (int j = 0; j < 120; j++)
             {
                 worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, (double)blockpos1.getX() + worldIn.rand.nextDouble(), (double)blockpos1.getY() + worldIn.rand.nextDouble() * 2.5D, (double)blockpos1.getZ() + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
             }
 
-            for (int i1 = 0; i1 < this.getSnowmanPattern().getThumbLength(); ++i1)
+            for (int i1 = 0; i1 < this.getSnowmanPattern().getThumbLength(); i1++)
             {
                 BlockWorldState blockworldstate1 = blockpattern$patternhelper.translateOffset(0, i1, 0);
                 worldIn.notifyNeighborsRespectDebug(blockworldstate1.getPos(), Blocks.air);
@@ -83,9 +83,9 @@ public class BlockPumpkin extends BlockDirectional
         }
         else if ((blockpattern$patternhelper = this.getGolemPattern().match(worldIn, pos)) != null)
         {
-            for (int k = 0; k < this.getGolemPattern().getPalmLength(); ++k)
+            for (int k = 0; k < this.getGolemPattern().getPalmLength(); k++)
             {
-                for (int l = 0; l < this.getGolemPattern().getThumbLength(); ++l)
+                for (int l = 0; l < this.getGolemPattern().getThumbLength(); l++)
                 {
                     worldIn.setBlockState(blockpattern$patternhelper.translateOffset(k, l, 0).getPos(), Blocks.air.getDefaultState(), 2);
                 }
@@ -97,14 +97,14 @@ public class BlockPumpkin extends BlockDirectional
             entityirongolem.setLocationAndAngles((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.05D, (double)blockpos.getZ() + 0.5D, 0.0F, 0.0F);
             worldIn.spawnEntityInWorld(entityirongolem);
 
-            for (int j1 = 0; j1 < 120; ++j1)
+            for (int j1 = 0; j1 < 120; j1++)
             {
                 worldIn.spawnParticle(EnumParticleTypes.SNOWBALL, (double)blockpos.getX() + worldIn.rand.nextDouble(), (double)blockpos.getY() + worldIn.rand.nextDouble() * 3.9D, (double)blockpos.getZ() + worldIn.rand.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
             }
 
-            for (int k1 = 0; k1 < this.getGolemPattern().getPalmLength(); ++k1)
+            for (int k1 = 0; k1 < this.getGolemPattern().getPalmLength(); k1++)
             {
-                for (int l1 = 0; l1 < this.getGolemPattern().getThumbLength(); ++l1)
+                for (int l1 = 0; l1 < this.getGolemPattern().getThumbLength(); l1++)
                 {
                     BlockWorldState blockworldstate2 = blockpattern$patternhelper.translateOffset(k1, l1, 0);
                     worldIn.notifyNeighborsRespectDebug(blockworldstate2.getPos(), Blocks.air);

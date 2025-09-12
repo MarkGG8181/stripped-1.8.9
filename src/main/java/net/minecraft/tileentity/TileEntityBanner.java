@@ -163,7 +163,7 @@ public class TileEntityBanner extends TileEntity
 
                 if (this.patterns != null)
                 {
-                    for (int i = 0; i < this.patterns.tagCount(); ++i)
+                    for (int i = 0; i < this.patterns.tagCount(); i++)
                     {
                         NBTTagCompound nbttagcompound = this.patterns.getCompoundTagAt(i);
                         TileEntityBanner.EnumBannerPattern tileentitybanner$enumbannerpattern = TileEntityBanner.EnumBannerPattern.getPatternByID(nbttagcompound.getString("Pattern"));

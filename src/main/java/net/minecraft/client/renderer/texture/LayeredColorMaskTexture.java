@@ -50,7 +50,7 @@ public class LayeredColorMaskTexture extends AbstractTexture
             Graphics graphics = bufferedimage.getGraphics();
             graphics.drawImage(bufferedimage1, 0, 0, (ImageObserver)null);
 
-            for (int j = 0; j < 17 && j < this.listTextures.size() && j < this.listDyeColors.size(); ++j)
+            for (int j = 0; j < 17 && j < this.listTextures.size() && j < this.listDyeColors.size(); j++)
             {
                 String s = (String)this.listTextures.get(j);
                 MapColor mapcolor = ((EnumDyeColor)this.listDyeColors.get(j)).getMapColor();
@@ -62,9 +62,9 @@ public class LayeredColorMaskTexture extends AbstractTexture
 
                     if (bufferedimage2.getWidth() == bufferedimage.getWidth() && bufferedimage2.getHeight() == bufferedimage.getHeight() && bufferedimage2.getType() == 6)
                     {
-                        for (int k = 0; k < bufferedimage2.getHeight(); ++k)
+                        for (int k = 0; k < bufferedimage2.getHeight(); k++)
                         {
-                            for (int l = 0; l < bufferedimage2.getWidth(); ++l)
+                            for (int l = 0; l < bufferedimage2.getWidth(); l++)
                             {
                                 int i1 = bufferedimage2.getRGB(l, k);
 

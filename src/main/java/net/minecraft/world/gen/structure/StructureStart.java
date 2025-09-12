@@ -101,7 +101,7 @@ public abstract class StructureStart
 
         NBTTagList nbttaglist = tagCompound.getTagList("Children", 10);
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             this.components.add(MapGenStructureIO.getStructureComponent(nbttaglist.getCompoundTagAt(i), worldIn));
         }

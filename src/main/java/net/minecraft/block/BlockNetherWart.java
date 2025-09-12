@@ -74,7 +74,7 @@ public class BlockNetherWart extends BlockBush
                 }
             }
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 spawnAsEntity(worldIn, pos, new ItemStack(Items.nether_wart));
             }

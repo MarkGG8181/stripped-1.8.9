@@ -12,8 +12,8 @@ import net.minecraft.world.LockCode;
 
 public class ContainerLocalMenu extends InventoryBasic implements ILockableContainer
 {
-    private String guiID;
-    private Map<Integer, Integer> dataValues = new HashMap<>();
+    private final String guiID;
+    private final Map<Integer, Integer> dataValues = new HashMap<>();
 
     public ContainerLocalMenu(String id, IChatComponent title, int slotCount)
     {

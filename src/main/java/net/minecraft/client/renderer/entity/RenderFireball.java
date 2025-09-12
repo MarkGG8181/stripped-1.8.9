@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderFireball extends Render<EntityFireball>
 {
-    private float scale;
+    private final float scale;
 
     public RenderFireball(RenderManager renderManagerIn, float scaleIn)
     {

@@ -25,7 +25,7 @@ public class S13PacketDestroyEntities implements Packet<INetHandlerPlayClient>
     {
         this.entityIDs = new int[buf.readVarIntFromBuffer()];
 
-        for (int i = 0; i < this.entityIDs.length; ++i)
+        for (int i = 0; i < this.entityIDs.length; i++)
         {
             this.entityIDs[i] = buf.readVarIntFromBuffer();
         }
@@ -38,7 +38,7 @@ public class S13PacketDestroyEntities implements Packet<INetHandlerPlayClient>
     {
         buf.writeVarIntToBuffer(this.entityIDs.length);
 
-        for (int i = 0; i < this.entityIDs.length; ++i)
+        for (int i = 0; i < this.entityIDs.length; i++)
         {
             buf.writeVarIntToBuffer(this.entityIDs[i]);
         }

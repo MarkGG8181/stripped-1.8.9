@@ -12,10 +12,10 @@ import net.minecraft.util.BlockPos;
 public class WorldManager implements IWorldAccess
 {
     /** Reference to the MinecraftServer object. */
-    private MinecraftServer mcServer;
+    private final MinecraftServer mcServer;
 
     /** The WorldServer object. */
-    private WorldServer theWorldServer;
+    private final WorldServer theWorldServer;
 
     public WorldManager(MinecraftServer mcServerIn, WorldServer worldServerIn)
     {

@@ -32,16 +32,16 @@ public class WorldGenIceSpike extends WorldGenerator
                 position = position.up(10 + rand.nextInt(30));
             }
 
-            for (int k = 0; k < i; ++k)
+            for (int k = 0; k < i; k++)
             {
                 float f = (1.0F - (float)k / (float)i) * (float)j;
                 int l = MathHelper.ceiling_float_int(f);
 
-                for (int i1 = -l; i1 <= l; ++i1)
+                for (int i1 = -l; i1 <= l; i1++)
                 {
                     float f1 = (float)MathHelper.abs_int(i1) - 0.25F;
 
-                    for (int j1 = -l; j1 <= l; ++j1)
+                    for (int j1 = -l; j1 <= l; j1++)
                     {
                         float f2 = (float)MathHelper.abs_int(j1) - 0.25F;
 
@@ -79,9 +79,9 @@ public class WorldGenIceSpike extends WorldGenerator
                 k1 = 1;
             }
 
-            for (int l1 = -k1; l1 <= k1; ++l1)
+            for (int l1 = -k1; l1 <= k1; l1++)
             {
-                for (int i2 = -k1; i2 <= k1; ++i2)
+                for (int i2 = -k1; i2 <= k1; i2++)
                 {
                     BlockPos blockpos = position.add(l1, -1, i2);
                     int j2 = 50;

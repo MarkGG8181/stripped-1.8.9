@@ -41,12 +41,12 @@ public class BlockNewLog extends BlockLog
             default:
                 switch (blockplanks$enumtype)
                 {
-                    case ACACIA:
-                    default:
-                        return MapColor.stoneColor;
 
                     case DARK_OAK:
                         return BlockPlanks.EnumType.DARK_OAK.getMapColor();
+                    case ACACIA:
+                    default:
+                        return MapColor.stoneColor;
                 }
 
             case Y:

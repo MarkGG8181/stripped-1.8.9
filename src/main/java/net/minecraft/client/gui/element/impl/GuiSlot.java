@@ -454,7 +454,7 @@ public abstract class GuiSlot
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             int k = p_148120_2_ + j * this.slotHeight + this.headerPadding;
             int l = this.slotHeight - 4;

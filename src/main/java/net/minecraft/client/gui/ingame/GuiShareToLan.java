@@ -63,15 +63,15 @@ public class GuiShareToLan extends GuiScreen
         }
         else if (button.id == 104)
         {
-            if (this.gameMode.equals("spectator"))
+            if ("spectator".equals(this.gameMode))
             {
                 this.gameMode = "creative";
             }
-            else if (this.gameMode.equals("creative"))
+            else if ("creative".equals(this.gameMode))
             {
                 this.gameMode = "adventure";
             }
-            else if (this.gameMode.equals("adventure"))
+            else if ("adventure".equals(this.gameMode))
             {
                 this.gameMode = "survival";
             }

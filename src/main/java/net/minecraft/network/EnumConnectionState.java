@@ -243,8 +243,8 @@ public enum EnumConnectionState {
         }
     };
 
-    private static int field_181136_e = -1;
-    private static int field_181137_f = 2;
+    private static final int field_181136_e = -1;
+    private static final int field_181137_f = 2;
     private static final EnumConnectionState[] STATES_BY_ID = new EnumConnectionState[field_181137_f - field_181136_e + 1];
     private static final Map<Class<? extends Packet>, EnumConnectionState> STATES_BY_CLASS = new HashMap<>();
     private final int id;
@@ -306,7 +306,7 @@ public enum EnumConnectionState {
             STATES_BY_ID[i - field_181136_e] = enumconnectionstate;
 
             for (EnumPacketDirection enumpacketdirection : enumconnectionstate.directionMaps.keySet()) {
-                for (Class<? extends Packet> oclass : (enumconnectionstate.directionMaps.get(enumpacketdirection)).values()) {
+                for (Class<? extends Packet> oclass : enumconnectionstate.directionMaps.get(enumpacketdirection).values()) {
                     if (STATES_BY_CLASS.containsKey(oclass) && STATES_BY_CLASS.get(oclass) != enumconnectionstate) {
                         throw new Error("Packet " + oclass + " is already assigned to protocol " + STATES_BY_CLASS.get(oclass) + " - can\'t reassign to " + enumconnectionstate);
                     }

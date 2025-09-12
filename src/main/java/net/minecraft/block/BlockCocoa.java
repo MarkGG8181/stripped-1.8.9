@@ -161,7 +161,7 @@ public class BlockCocoa extends BlockDirectional implements IGrowable
             j = 3;
         }
 
-        for (int k = 0; k < j; ++k)
+        for (int k = 0; k < j; k++)
         {
             spawnAsEntity(worldIn, pos, new ItemStack(Items.dye, 1, EnumDyeColor.BROWN.getDyeDamage()));
         }

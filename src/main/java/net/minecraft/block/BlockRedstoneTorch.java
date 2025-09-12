@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockRedstoneTorch extends BlockTorch
 {
-    private static Map<World, List<BlockRedstoneTorch.Toggle>> toggles = new WeakHashMap<>();
+    private static final Map<World, List<BlockRedstoneTorch.Toggle>> toggles = new WeakHashMap<>();
     private final boolean isOn;
 
     private boolean isBurnedOut(World worldIn, BlockPos pos, boolean turnOff)
@@ -35,7 +35,7 @@ public class BlockRedstoneTorch extends BlockTorch
 
         int i = 0;
 
-        for (int j = 0; j < list.size(); ++j)
+        for (int j = 0; j < list.size(); j++)
         {
             BlockRedstoneTorch.Toggle blockredstonetorch$toggle = (BlockRedstoneTorch.Toggle)list.get(j);
 
@@ -128,7 +128,7 @@ public class BlockRedstoneTorch extends BlockTorch
                 {
                     worldIn.playSoundEffect((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
-                    for (int i = 0; i < 5; ++i)
+                    for (int i = 0; i < 5; i++)
                     {
                         double d0 = (double)pos.getX() + rand.nextDouble() * 0.6D + 0.2D;
                         double d1 = (double)pos.getY() + rand.nextDouble() * 0.6D + 0.2D;

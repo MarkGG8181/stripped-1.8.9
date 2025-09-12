@@ -17,10 +17,10 @@ import net.minecraft.world.WorldSavedData;
 
 public class MapStorage
 {
-    private ISaveHandler saveHandler;
+    private final ISaveHandler saveHandler;
     protected Map<String, WorldSavedData> loadedDataMap = new HashMap<>();
-    private List<WorldSavedData> loadedDataList = new ArrayList<>();
-    private Map<String, Short> idCounts = new HashMap<>();
+    private final List<WorldSavedData> loadedDataList = new ArrayList<>();
+    private final Map<String, Short> idCounts = new HashMap<>();
 
     public MapStorage(ISaveHandler saveHandlerIn)
     {
@@ -100,7 +100,7 @@ public class MapStorage
      */
     public void saveAllData()
     {
-        for (int i = 0; i < this.loadedDataList.size(); ++i)
+        for (int i = 0; i < this.loadedDataList.size(); i++)
         {
             WorldSavedData worldsaveddata = (WorldSavedData)this.loadedDataList.get(i);
 

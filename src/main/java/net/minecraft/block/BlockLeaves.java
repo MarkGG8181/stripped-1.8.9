@@ -59,11 +59,11 @@ public abstract class BlockLeaves extends BlockLeavesBase
 
         if (worldIn.isAreaLoaded(new BlockPos(k - j, l - j, i1 - j), new BlockPos(k + j, l + j, i1 + j)))
         {
-            for (int j1 = -i; j1 <= i; ++j1)
+            for (int j1 = -i; j1 <= i; j1++)
             {
-                for (int k1 = -i; k1 <= i; ++k1)
+                for (int k1 = -i; k1 <= i; k1++)
                 {
-                    for (int l1 = -i; l1 <= i; ++l1)
+                    for (int l1 = -i; l1 <= i; l1++)
                     {
                         BlockPos blockpos = pos.add(j1, k1, l1);
                         IBlockState iblockstate = worldIn.getBlockState(blockpos);
@@ -102,11 +102,11 @@ public abstract class BlockLeaves extends BlockLeavesBase
                 {
                     BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                    for (int i2 = -i; i2 <= i; ++i2)
+                    for (int i2 = -i; i2 <= i; i2++)
                     {
-                        for (int j2 = -i; j2 <= i; ++j2)
+                        for (int j2 = -i; j2 <= i; j2++)
                         {
-                            for (int k2 = -i; k2 <= i; ++k2)
+                            for (int k2 = -i; k2 <= i; k2++)
                             {
                                 Block block = worldIn.getBlockState(blockpos$mutableblockpos.set(k + i2, l + j2, i1 + k2)).getBlock();
 
@@ -129,13 +129,13 @@ public abstract class BlockLeaves extends BlockLeavesBase
                         }
                     }
 
-                    for (int i3 = 1; i3 <= 4; ++i3)
+                    for (int i3 = 1; i3 <= 4; i3++)
                     {
-                        for (int j3 = -i; j3 <= i; ++j3)
+                        for (int j3 = -i; j3 <= i; j3++)
                         {
-                            for (int k3 = -i; k3 <= i; ++k3)
+                            for (int k3 = -i; k3 <= i; k3++)
                             {
-                                for (int l3 = -i; l3 <= i; ++l3)
+                                for (int l3 = -i; l3 <= i; l3++)
                                 {
                                     if (this.surroundings[(j3 + l1) * k1 + (k3 + l1) * j1 + l3 + l1] == i3 - 1)
                                     {

@@ -18,7 +18,7 @@ import net.minecraft.world.gen.ChunkProviderSettings;
 
 public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.FormatHelper, GuiPageButtonList.GuiResponder
 {
-    private GuiCreateWorld parent;
+    private final GuiCreateWorld parent;
     protected String title = "Customize World Settings";
     protected String subtitle = "Page 1 of 3";
     protected String pageTitle = "Basic Settings";
@@ -32,10 +32,10 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
     private GuiButton confirm;
     private GuiButton cancel;
     private GuiButton presets;
-    private boolean settingsModified = false;
-    private int confirmMode = 0;
-    private boolean confirmDismissed = false;
-    private Predicate<String> numberFilter = new Predicate<String>()
+    private boolean settingsModified;
+    private int confirmMode;
+    private boolean confirmDismissed;
+    private final Predicate<String> numberFilter = new Predicate<String>()
     {
         public boolean apply(String p_apply_1_)
         {
@@ -43,11 +43,11 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
             return p_apply_1_.length() == 0 || f != null && Floats.isFinite(f.floatValue()) && f.floatValue() >= 0.0F;
         }
     };
-    private ChunkProviderSettings.Factory defaultSettings = new ChunkProviderSettings.Factory();
+    private final ChunkProviderSettings.Factory defaultSettings = new ChunkProviderSettings.Factory();
     private ChunkProviderSettings.Factory settings;
 
     /** A Random instance for this world customization */
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public GuiCustomizeWorldScreen(GuiScreen p_i45521_1_, String p_i45521_2_)
     {
@@ -119,7 +119,7 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
         GuiPageButtonList.GuiListEntry[] aguipagebuttonlist$guilistentry3 = new GuiPageButtonList.GuiListEntry[]{new GuiPageButtonList.GuiLabelEntry(400, I18n.format("createWorld.customize.custom.mainNoiseScaleX", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(132, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.mainNoiseScaleX)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(401, I18n.format("createWorld.customize.custom.mainNoiseScaleY", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(133, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.mainNoiseScaleY)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(402, I18n.format("createWorld.customize.custom.mainNoiseScaleZ", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(134, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.mainNoiseScaleZ)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(403, I18n.format("createWorld.customize.custom.depthNoiseScaleX", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(135, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.depthNoiseScaleX)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(404, I18n.format("createWorld.customize.custom.depthNoiseScaleZ", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(136, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.depthNoiseScaleZ)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(405, I18n.format("createWorld.customize.custom.depthNoiseScaleExponent", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(137, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.depthNoiseScaleExponent)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(406, I18n.format("createWorld.customize.custom.baseSize", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(138, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.baseSize)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(407, I18n.format("createWorld.customize.custom.coordinateScale", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(139, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.coordinateScale)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(408, I18n.format("createWorld.customize.custom.heightScale", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(140, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.heightScale)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(409, I18n.format("createWorld.customize.custom.stretchY", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(141, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.stretchY)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(410, I18n.format("createWorld.customize.custom.upperLimitScale", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(142, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.upperLimitScale)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(411, I18n.format("createWorld.customize.custom.lowerLimitScale", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(143, "%5.3f".formatted(new Object[]{Float.valueOf(this.settings.lowerLimitScale)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(412, I18n.format("createWorld.customize.custom.biomeDepthWeight", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(144, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.biomeDepthWeight)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(413, I18n.format("createWorld.customize.custom.biomeDepthOffset", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(145, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.biomeDepthOffset)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(414, I18n.format("createWorld.customize.custom.biomeScaleWeight", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(146, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.biomeScaleWeight)}), false, this.numberFilter), new GuiPageButtonList.GuiLabelEntry(415, I18n.format("createWorld.customize.custom.biomeScaleOffset", new Object[0]) + ":", false), new GuiPageButtonList.EditBoxEntry(147, "%2.3f".formatted(new Object[]{Float.valueOf(this.settings.biomeScaleOffset)}), false, this.numberFilter)};
         this.list = new GuiPageButtonList(this.mc, this.width, this.height, 32, this.height - 32, 25, this, new GuiPageButtonList.GuiListEntry[][]{aguipagebuttonlist$guilistentry, aguipagebuttonlist$guilistentry1, aguipagebuttonlist$guilistentry2, aguipagebuttonlist$guilistentry3});
 
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 4; i++)
         {
             this.pageNames[i] = I18n.format("createWorld.customize.custom.page" + i, new Object[0]);
         }
@@ -256,6 +256,23 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
             case 147:
                 return "%2.3f".formatted(new Object[]{Float.valueOf(p_175330_2_)});
 
+            case 162:
+                if (p_175330_2_ < 0.0F)
+                {
+                    return I18n.format("gui.all", new Object[0]);
+                }
+                else if ((int)p_175330_2_ >= BiomeGenBase.hell.biomeID)
+                {
+                    BiomeGenBase biomegenbase1 = BiomeGenBase.getBiomeGenArray()[(int)p_175330_2_ + 2];
+                    return biomegenbase1 != null ? biomegenbase1.biomeName : "?";
+                }
+                else
+                {
+                    BiomeGenBase biomegenbase = BiomeGenBase.getBiomeGenArray()[(int)p_175330_2_];
+                    return biomegenbase != null ? biomegenbase.biomeName : "?";
+                }
+                break;
+
             case 116:
             case 117:
             case 118:
@@ -288,22 +305,6 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
             case 161:
             default:
                 return "%d".formatted(new Object[]{Integer.valueOf((int)p_175330_2_)});
-
-            case 162:
-                if (p_175330_2_ < 0.0F)
-                {
-                    return I18n.format("gui.all", new Object[0]);
-                }
-                else if ((int)p_175330_2_ >= BiomeGenBase.hell.biomeID)
-                {
-                    BiomeGenBase biomegenbase1 = BiomeGenBase.getBiomeGenArray()[(int)p_175330_2_ + 2];
-                    return biomegenbase1 != null ? biomegenbase1.biomeName : "?";
-                }
-                else
-                {
-                    BiomeGenBase biomegenbase = BiomeGenBase.getBiomeGenArray()[(int)p_175330_2_];
-                    return biomegenbase != null ? biomegenbase.biomeName : "?";
-                }
         }
     }
 
@@ -423,55 +424,6 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
 
             case 114:
                 this.settings.biomeScaleWeight = value;
-                break;
-
-            case 115:
-                this.settings.biomeScaleOffset = value;
-
-            case 116:
-            case 117:
-            case 118:
-            case 119:
-            case 120:
-            case 121:
-            case 122:
-            case 123:
-            case 124:
-            case 125:
-            case 126:
-            case 127:
-            case 128:
-            case 129:
-            case 130:
-            case 131:
-            case 132:
-            case 133:
-            case 134:
-            case 135:
-            case 136:
-            case 137:
-            case 138:
-            case 139:
-            case 140:
-            case 141:
-            case 142:
-            case 143:
-            case 144:
-            case 145:
-            case 146:
-            case 147:
-            case 148:
-            case 149:
-            case 150:
-            case 151:
-            case 152:
-            case 153:
-            case 154:
-            case 155:
-            case 156:
-            case 161:
-            case 188:
-            default:
                 break;
 
             case 157:
@@ -676,6 +628,56 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
 
             case 209:
                 this.settings.lapisSpread = (int)value;
+                break;
+
+            case 115:
+                this.settings.biomeScaleOffset = value;
+                break;
+
+            case 116:
+            case 117:
+            case 118:
+            case 119:
+            case 120:
+            case 121:
+            case 122:
+            case 123:
+            case 124:
+            case 125:
+            case 126:
+            case 127:
+            case 128:
+            case 129:
+            case 130:
+            case 131:
+            case 132:
+            case 133:
+            case 134:
+            case 135:
+            case 136:
+            case 137:
+            case 138:
+            case 139:
+            case 140:
+            case 141:
+            case 142:
+            case 143:
+            case 144:
+            case 145:
+            case 146:
+            case 147:
+            case 148:
+            case 149:
+            case 150:
+            case 151:
+            case 152:
+            case 153:
+            case 154:
+            case 155:
+            case 156:
+            case 161:
+            case 188:
+            default:
         }
 
         if (id >= 100 && id < 116)
@@ -709,7 +711,7 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
                     break;
 
                 case 301:
-                    for (int i = 0; i < this.list.getSize(); ++i)
+                    for (int i = 0; i < this.list.getSize(); i++)
                     {
                         GuiPageButtonList.GuiEntry guipagebuttonlist$guientry = this.list.getListEntry(i);
                         Gui gui = guipagebuttonlist$guientry.func_178022_a();

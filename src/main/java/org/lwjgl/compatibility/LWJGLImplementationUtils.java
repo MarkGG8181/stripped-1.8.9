@@ -23,4 +23,7 @@ public class LWJGLImplementationUtils {
         );
     }
 
+    private LWJGLImplementationUtils() {
+    }
+
 }

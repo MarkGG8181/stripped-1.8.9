@@ -32,9 +32,9 @@ public class WorldGenDesertWells extends WorldGenerator
         }
         else
         {
-            for (int i = -2; i <= 2; ++i)
+            for (int i = -2; i <= 2; i++)
             {
-                for (int j = -2; j <= 2; ++j)
+                for (int j = -2; j <= 2; j++)
                 {
                     if (worldIn.isAirBlock(position.add(i, -1, j)) && worldIn.isAirBlock(position.add(i, -2, j)))
                     {
@@ -43,11 +43,11 @@ public class WorldGenDesertWells extends WorldGenerator
                 }
             }
 
-            for (int l = -1; l <= 0; ++l)
+            for (int l = -1; l <= 0; l++)
             {
-                for (int l1 = -2; l1 <= 2; ++l1)
+                for (int l1 = -2; l1 <= 2; l1++)
                 {
-                    for (int k = -2; k <= 2; ++k)
+                    for (int k = -2; k <= 2; k++)
                     {
                         worldIn.setBlockState(position.add(l1, l, k), this.sandstone, 2);
                     }
@@ -61,9 +61,9 @@ public class WorldGenDesertWells extends WorldGenerator
                 worldIn.setBlockState(position.offset(enumfacing), this.water, 2);
             }
 
-            for (int i1 = -2; i1 <= 2; ++i1)
+            for (int i1 = -2; i1 <= 2; i1++)
             {
-                for (int i2 = -2; i2 <= 2; ++i2)
+                for (int i2 = -2; i2 <= 2; i2++)
                 {
                     if (i1 == -2 || i1 == 2 || i2 == -2 || i2 == 2)
                     {
@@ -77,9 +77,9 @@ public class WorldGenDesertWells extends WorldGenerator
             worldIn.setBlockState(position.add(0, 1, 2), this.sandSlab, 2);
             worldIn.setBlockState(position.add(0, 1, -2), this.sandSlab, 2);
 
-            for (int j1 = -1; j1 <= 1; ++j1)
+            for (int j1 = -1; j1 <= 1; j1++)
             {
-                for (int j2 = -1; j2 <= 1; ++j2)
+                for (int j2 = -1; j2 <= 1; j2++)
                 {
                     if (j1 == 0 && j2 == 0)
                     {
@@ -92,7 +92,7 @@ public class WorldGenDesertWells extends WorldGenerator
                 }
             }
 
-            for (int k1 = 1; k1 <= 3; ++k1)
+            for (int k1 = 1; k1 <= 3; k1++)
             {
                 worldIn.setBlockState(position.add(-1, k1, -1), this.sandstone, 2);
                 worldIn.setBlockState(position.add(-1, k1, 1), this.sandstone, 2);

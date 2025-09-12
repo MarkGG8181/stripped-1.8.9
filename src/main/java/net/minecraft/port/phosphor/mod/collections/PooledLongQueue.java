@@ -12,7 +12,7 @@ public class PooledLongQueue {
 
     private Segment cur, last;
 
-    private int size = 0;
+    private int size;
 
     // Stores whether or not the queue is empty. Updates to this field will be seen by all threads immediately. Writes
     // to volatile fields are generally quite a bit more expensive, so we avoid repeatedly setting this flag to true.
@@ -149,7 +149,7 @@ public class PooledLongQueue {
 
     private static class Segment {
         private final long[] longArray = new long[QUEUE_SEGMENT_SIZE];
-        private int index = 0;
+        private int index;
         private Segment next;
         private final Pool pool;
 

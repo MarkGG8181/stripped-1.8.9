@@ -122,7 +122,7 @@ public class ItemSkull extends Item
      */
     public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems)
     {
-        for (int i = 0; i < skullTypes.length; ++i)
+        for (int i = 0; i < skullTypes.length; i++)
         {
             subItems.add(new ItemStack(itemIn, 1, i));
         }

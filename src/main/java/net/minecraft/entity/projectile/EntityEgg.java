@@ -45,7 +45,7 @@ public class EntityEgg extends EntityThrowable
                 i = 4;
             }
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 EntityChicken entitychicken = new EntityChicken(this.worldObj);
                 entitychicken.setGrowingAge(-24000);
@@ -56,7 +56,7 @@ public class EntityEgg extends EntityThrowable
 
         double d0 = 0.08D;
 
-        for (int k = 0; k < 8; ++k)
+        for (int k = 0; k < 8; k++)
         {
             this.worldObj.spawnParticle(EnumParticleTypes.ITEM_CRACK, this.posX, this.posY, this.posZ, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, ((double)this.rand.nextFloat() - 0.5D) * 0.08D, new int[]{Item.getIdFromItem(Items.egg)});
         }

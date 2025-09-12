@@ -9,7 +9,7 @@ public class WorldGenCactus extends WorldGenerator
 {
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 10; i++)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
@@ -17,7 +17,7 @@ public class WorldGenCactus extends WorldGenerator
             {
                 int j = 1 + rand.nextInt(rand.nextInt(3) + 1);
 
-                for (int k = 0; k < j; ++k)
+                for (int k = 0; k < j; k++)
                 {
                     if (Blocks.cactus.canBlockStay(worldIn, blockpos))
                     {

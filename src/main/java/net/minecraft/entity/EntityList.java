@@ -379,4 +379,7 @@ public class EntityList
             this.entityKilledByStat = StatList.getStatEntityKilledBy(this);
         }
     }
+
+    private EntityList() {
+    }
 }

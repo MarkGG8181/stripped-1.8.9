@@ -4,7 +4,7 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class MovingSound extends PositionedSound implements ITickableSound
 {
-    protected boolean donePlaying = false;
+    protected boolean donePlaying;
 
     protected MovingSound(ResourceLocation location)
     {

@@ -154,7 +154,7 @@ public class BlockModelRenderer {
         float f4 = -32.0F;
         float f5 = -32.0F;
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; i++) {
             float f6 = Float.intBitsToFloat(vertexData[i * 7]);
             float f7 = Float.intBitsToFloat(vertexData[i * 7 + 1]);
             float f8 = Float.intBitsToFloat(vertexData[i * 7 + 2]);

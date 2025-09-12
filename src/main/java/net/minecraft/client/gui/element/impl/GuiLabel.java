@@ -14,17 +14,17 @@ public class GuiLabel extends Gui
     protected int height = 20;
     public int x;
     public int y;
-    private List<String> labels;
+    private final List<String> labels;
     public int id;
     private boolean centered;
     public boolean visible = true;
-    private boolean labelBgEnabled;
-    private int textColor;
-    private int backColor;
-    private int ulColor;
-    private int brColor;
-    private FontRenderer fontRenderer;
-    private int border;
+    private final boolean labelBgEnabled;
+    private final int textColor;
+    private final int backColor;
+    private final int ulColor;
+    private final int brColor;
+    private final FontRenderer fontRenderer;
+    private final int border;
 
     public GuiLabel(FontRenderer fontRendererObj, int p_i45540_2_, int p_i45540_3_, int p_i45540_4_, int p_i45540_5_, int p_i45540_6_, int p_i45540_7_)
     {
@@ -68,7 +68,7 @@ public class GuiLabel extends Gui
             int i = this.y + this.height / 2 + this.border / 2;
             int j = i - this.labels.size() * 10 / 2;
 
-            for (int k = 0; k < this.labels.size(); ++k)
+            for (int k = 0; k < this.labels.size(); k++)
             {
                 if (this.centered)
                 {

@@ -35,20 +35,20 @@ public class CraftingManager
 
     private CraftingManager()
     {
-        (new RecipesTools()).addRecipes(this);
-        (new RecipesWeapons()).addRecipes(this);
-        (new RecipesIngots()).addRecipes(this);
-        (new RecipesFood()).addRecipes(this);
-        (new RecipesCrafting()).addRecipes(this);
-        (new RecipesArmor()).addRecipes(this);
-        (new RecipesDyes()).addRecipes(this);
+        new RecipesTools().addRecipes(this);
+        new RecipesWeapons().addRecipes(this);
+        new RecipesIngots().addRecipes(this);
+        new RecipesFood().addRecipes(this);
+        new RecipesCrafting().addRecipes(this);
+        new RecipesArmor().addRecipes(this);
+        new RecipesDyes().addRecipes(this);
         this.recipes.add(new RecipesArmorDyes());
         this.recipes.add(new RecipeBookCloning());
         this.recipes.add(new RecipesMapCloning());
         this.recipes.add(new RecipesMapExtending());
         this.recipes.add(new RecipeFireworks());
         this.recipes.add(new RecipeRepairItem());
-        (new RecipesBanners()).addRecipes(this);
+        new RecipesBanners().addRecipes(this);
         this.addRecipe(new ItemStack(Items.paper, 3), new Object[]{"###", '#', Items.sugarcane});
         this.addShapelessRecipe(new ItemStack(Items.book, 1), new Object[]{Items.paper, Items.paper, Items.paper, Items.leather});
         this.addShapelessRecipe(new ItemStack(Items.writable_book, 1), new Object[]{Items.book, new ItemStack(Items.dye, 1, EnumDyeColor.BLACK.getDyeDamage()), Items.feather});
@@ -206,7 +206,7 @@ public class CraftingManager
         {
             String[] astring = (String[])((String[])recipeComponents[i++]);
 
-            for (int l = 0; l < astring.length; ++l)
+            for (int l = 0; l < astring.length; l++)
             {
                 String s2 = astring[l];
                 ++k;
@@ -250,7 +250,7 @@ public class CraftingManager
 
         ItemStack[] aitemstack = new ItemStack[j * k];
 
-        for (int i1 = 0; i1 < j * k; ++i1)
+        for (int i1 = 0; i1 < j * k; i1++)
         {
             char c0 = s.charAt(i1);
 
@@ -336,7 +336,7 @@ public class CraftingManager
 
         ItemStack[] aitemstack = new ItemStack[p_180303_1_.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for (int i = 0; i < aitemstack.length; i++)
         {
             aitemstack[i] = p_180303_1_.getStackInSlot(i);
         }

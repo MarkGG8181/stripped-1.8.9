@@ -93,7 +93,7 @@ public class ModelRenderer
         partName = this.boxName + "." + partName;
         TextureOffset textureoffset = this.baseModel.getTextureOffset(partName);
         this.setTextureOffset(textureoffset.textureOffsetX, textureoffset.textureOffsetY);
-        this.cubeList.add((new ModelBox(this, this.textureOffsetX, this.textureOffsetY, offX, offY, offZ, width, height, depth, 0.0F)).setBoxName(partName));
+        this.cubeList.add(new ModelBox(this, this.textureOffsetX, this.textureOffsetY, offX, offY, offZ, width, height, depth, 0.0F).setBoxName(partName));
         return this;
     }
 
@@ -145,7 +145,7 @@ public class ModelRenderer
 
                         if (this.childModels != null)
                         {
-                            for (int k = 0; k < this.childModels.size(); ++k)
+                            for (int k = 0; k < this.childModels.size(); k++)
                             {
                                 ((ModelRenderer)this.childModels.get(k)).render(p_78785_1_);
                             }
@@ -158,7 +158,7 @@ public class ModelRenderer
 
                         if (this.childModels != null)
                         {
-                            for (int j = 0; j < this.childModels.size(); ++j)
+                            for (int j = 0; j < this.childModels.size(); j++)
                             {
                                 ((ModelRenderer)this.childModels.get(j)).render(p_78785_1_);
                             }
@@ -191,7 +191,7 @@ public class ModelRenderer
 
                     if (this.childModels != null)
                     {
-                        for (int i = 0; i < this.childModels.size(); ++i)
+                        for (int i = 0; i < this.childModels.size(); i++)
                         {
                             ((ModelRenderer)this.childModels.get(i)).render(p_78785_1_);
                         }

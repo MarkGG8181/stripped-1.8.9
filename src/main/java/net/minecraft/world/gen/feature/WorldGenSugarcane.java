@@ -10,7 +10,7 @@ public class WorldGenSugarcane extends WorldGenerator
 {
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        for (int i = 0; i < 20; ++i)
+        for (int i = 0; i < 20; i++)
         {
             BlockPos blockpos = position.add(rand.nextInt(4) - rand.nextInt(4), 0, rand.nextInt(4) - rand.nextInt(4));
 
@@ -22,7 +22,7 @@ public class WorldGenSugarcane extends WorldGenerator
                 {
                     int j = 2 + rand.nextInt(rand.nextInt(3) + 1);
 
-                    for (int k = 0; k < j; ++k)
+                    for (int k = 0; k < j; k++)
                     {
                         if (Blocks.sugarcane.canBlockStay(worldIn, blockpos))
                         {

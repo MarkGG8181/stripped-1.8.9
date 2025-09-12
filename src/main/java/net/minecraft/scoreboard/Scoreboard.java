@@ -17,7 +17,7 @@ public class Scoreboard {
     private final ScoreObjective[] objectiveDisplaySlots = new ScoreObjective[19];
     private final Map<String, ScorePlayerTeam> teams = new HashMap<>();
     private final Map<String, ScorePlayerTeam> teamMemberships = new HashMap<>();
-    private static String[] displaySlots = null;
+    private static String[] displaySlots;
 
     /**
      * Returns a ScoreObjective for the objective name
@@ -163,7 +163,7 @@ public class Scoreboard {
     public void removeObjective(ScoreObjective p_96519_1_) {
         this.scoreObjectives.remove(p_96519_1_.getName());
 
-        for (int i = 0; i < 19; ++i) {
+        for (int i = 0; i < 19; i++) {
             if (this.getObjectiveInDisplaySlot(i) == p_96519_1_) {
                 this.setObjectiveInDisplaySlot(i, null);
             }
@@ -361,13 +361,13 @@ public class Scoreboard {
      * Returns 0 for (case-insensitive) 'list', 1 for 'sidebar', 2 for 'belowName', otherwise -1.
      */
     public static int getObjectiveDisplaySlotNumber(String p_96537_0_) {
-        if (p_96537_0_.equalsIgnoreCase("list")) {
+        if ("list".equalsIgnoreCase(p_96537_0_)) {
             return 0;
         }
-        else if (p_96537_0_.equalsIgnoreCase("sidebar")) {
+        else if ("sidebar".equalsIgnoreCase(p_96537_0_)) {
             return 1;
         }
-        else if (p_96537_0_.equalsIgnoreCase("belowName")) {
+        else if ("belowName".equalsIgnoreCase(p_96537_0_)) {
             return 2;
         }
         else {
@@ -388,7 +388,7 @@ public class Scoreboard {
         if (displaySlots == null) {
             displaySlots = new String[19];
 
-            for (int i = 0; i < 19; ++i) {
+            for (int i = 0; i < 19; i++) {
                 displaySlots[i] = getObjectiveDisplaySlot(i);
             }
         }

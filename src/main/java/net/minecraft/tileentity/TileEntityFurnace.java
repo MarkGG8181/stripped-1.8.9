@@ -159,7 +159,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
         NBTTagList nbttaglist = compound.getTagList("Items", 10);
         this.furnaceItemStacks = new ItemStack[this.getSizeInventory()];
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot");
@@ -189,7 +189,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
         compound.setShort("CookTimeTotal", (short)this.totalCookTime);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.furnaceItemStacks.length; ++i)
+        for (int i = 0; i < this.furnaceItemStacks.length; i++)
         {
             if (this.furnaceItemStacks[i] != null)
             {
@@ -389,7 +389,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
                 }
             }
 
-            return item instanceof ItemTool it && it.getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemSword is && is.getToolMaterialName().equals("WOOD") ? 200 : (item instanceof ItemHoe ih && ih.getMaterialName().equals("WOOD") ? 200 : (item == Items.stick ? 100 : (item == Items.coal ? 1600 : (item == Items.lava_bucket ? 20000 : (item == Item.getItemFromBlock(Blocks.sapling) ? 100 : (item == Items.blaze_rod ? 2400 : 0)))))));
+            return item instanceof ItemTool it && "WOOD".equals(it.getToolMaterialName()) ? 200 : (item instanceof ItemSword is && "WOOD".equals(is.getToolMaterialName()) ? 200 : (item instanceof ItemHoe ih && "WOOD".equals(ih.getMaterialName()) ? 200 : (item == Items.stick ? 100 : (item == Items.coal ? 1600 : (item == Items.lava_bucket ? 20000 : (item == Item.getItemFromBlock(Blocks.sapling) ? 100 : (item == Items.blaze_rod ? 2400 : 0)))))));
         }
     }
 
@@ -509,7 +509,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 
     public void clear()
     {
-        for (int i = 0; i < this.furnaceItemStacks.length; ++i)
+        for (int i = 0; i < this.furnaceItemStacks.length; i++)
         {
             this.furnaceItemStacks[i] = null;
         }

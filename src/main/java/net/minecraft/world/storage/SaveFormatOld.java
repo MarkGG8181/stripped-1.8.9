@@ -43,7 +43,7 @@ public class SaveFormatOld implements ISaveFormat
     {
         List<SaveFormatComparator> list = new ArrayList<>();
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 5; i++)
         {
             String s = "World" + (i + 1);
             WorldInfo worldinfo = this.getWorldInfo(s);
@@ -181,7 +181,7 @@ public class SaveFormatOld implements ISaveFormat
         {
             logger.info("Deleting level " + saveName);
 
-            for (int i = 1; i <= 5; ++i)
+            for (int i = 1; i <= 5; i++)
             {
                 logger.info("Attempt " + i + "...");
 
@@ -214,7 +214,7 @@ public class SaveFormatOld implements ISaveFormat
      */
     protected static boolean deleteFiles(File[] files)
     {
-        for (int i = 0; i < files.length; ++i)
+        for (int i = 0; i < files.length; i++)
         {
             File file1 = files[i];
             logger.debug("Deleting " + file1);

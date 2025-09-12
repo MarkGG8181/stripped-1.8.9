@@ -40,7 +40,7 @@ public class ItemWritableBook extends Item
         {
             NBTTagList nbttaglist = nbt.getTagList("pages", 8);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i)
+            for (int i = 0; i < nbttaglist.tagCount(); i++)
             {
                 String s = nbttaglist.getStringTagAt(i);
 

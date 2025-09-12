@@ -91,7 +91,7 @@ public class Village {
     }
 
     private Vec3 func_179862_a(BlockPos p_179862_1_, int p_179862_2_, int p_179862_3_, int p_179862_4_) {
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; i++) {
             BlockPos blockpos = p_179862_1_.add(this.worldObj.rand.nextInt(16) - 8, this.worldObj.rand.nextInt(6) - 3, this.worldObj.rand.nextInt(16) - 8);
 
             if (this.func_179866_a(blockpos) && this.func_179861_a(new BlockPos(p_179862_2_, p_179862_3_, p_179862_4_), blockpos)) {
@@ -110,9 +110,9 @@ public class Village {
             int i = p_179861_2_.getX() - p_179861_1_.getX() / 2;
             int j = p_179861_2_.getZ() - p_179861_1_.getZ() / 2;
 
-            for (int k = i; k < i + p_179861_1_.getX(); ++k) {
-                for (int l = p_179861_2_.getY(); l < p_179861_2_.getY() + p_179861_1_.getY(); ++l) {
-                    for (int i1 = j; i1 < j + p_179861_1_.getZ(); ++i1) {
+            for (int k = i; k < i + p_179861_1_.getX(); k++) {
+                for (int l = p_179861_2_.getY(); l < p_179861_2_.getY() + p_179861_1_.getY(); l++) {
+                    for (int i1 = j; i1 < j + p_179861_1_.getZ(); i1++) {
                         if (this.worldObj.getBlockState(new BlockPos(k, l, i1)).getBlock().isNormalCube()) {
                             return false;
                         }
@@ -381,7 +381,7 @@ public class Village {
         this.centerHelper = new BlockPos(compound.getInteger("ACX"), compound.getInteger("ACY"), compound.getInteger("ACZ"));
         NBTTagList nbttaglist = compound.getTagList("Doors", 10);
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+        for (int i = 0; i < nbttaglist.tagCount(); i++) {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             VillageDoorInfo villagedoorinfo = new VillageDoorInfo(new BlockPos(nbttagcompound.getInteger("X"), nbttagcompound.getInteger("Y"), nbttagcompound.getInteger("Z")), nbttagcompound.getInteger("IDX"), nbttagcompound.getInteger("IDZ"), nbttagcompound.getInteger("TS"));
             this.villageDoorInfoList.add(villagedoorinfo);
@@ -389,7 +389,7 @@ public class Village {
 
         NBTTagList nbttaglist1 = compound.getTagList("Players", 10);
 
-        for (int j = 0; j < nbttaglist1.tagCount(); ++j) {
+        for (int j = 0; j < nbttaglist1.tagCount(); j++) {
             NBTTagCompound nbttagcompound1 = nbttaglist1.getCompoundTagAt(j);
 
             if (nbttagcompound1.hasKey("UUID")) {

@@ -65,7 +65,7 @@ public class BlockGrass extends Block implements IGrowable
             {
                 if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
                 {
-                    for (int i = 0; i < 4; ++i)
+                    for (int i = 0; i < 4; i++)
                     {
                         BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
                         Block block = worldIn.getBlockState(blockpos.up()).getBlock();
@@ -106,7 +106,7 @@ public class BlockGrass extends Block implements IGrowable
     {
         BlockPos blockpos = pos.up();
 
-        for (int i = 0; i < 128; ++i)
+        for (int i = 0; i < 128; i++)
         {
             BlockPos blockpos1 = blockpos;
             int j = 0;

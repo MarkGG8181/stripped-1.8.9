@@ -34,7 +34,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                 int k = position.getX() + (int)(0.5F + MathHelper.cos(f) * 4.0F);
                 int l = position.getZ() + (int)(0.5F + MathHelper.sin(f) * 4.0F);
 
-                for (int i1 = 0; i1 < 5; ++i1)
+                for (int i1 = 0; i1 < 5; i1++)
                 {
                     k = position.getX() + (int)(1.5F + MathHelper.cos(f) * (float)i1);
                     l = position.getZ() + (int)(1.5F + MathHelper.sin(f) * (float)i1);
@@ -44,14 +44,14 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
                 int j2 = 1 + rand.nextInt(2);
                 int j1 = j;
 
-                for (int k1 = j - j2; k1 <= j1; ++k1)
+                for (int k1 = j - j2; k1 <= j1; k1++)
                 {
                     int l1 = k1 - j1;
                     this.func_175928_b(worldIn, new BlockPos(k, k1, l), 1 - l1);
                 }
             }
 
-            for (int i2 = 0; i2 < i; ++i2)
+            for (int i2 = 0; i2 < i; i2++)
             {
                 BlockPos blockpos = position.up(i2);
 
@@ -125,7 +125,7 @@ public class WorldGenMegaJungle extends WorldGenHugeTrees
     {
         int i = 2;
 
-        for (int j = -i; j <= 0; ++j)
+        for (int j = -i; j <= 0; j++)
         {
             this.func_175925_a(worldIn, p_175930_2_.up(j), p_175930_3_ + 1 - j);
         }

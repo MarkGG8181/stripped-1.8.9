@@ -28,7 +28,7 @@ public class LightingEngine implements ILightingEngine {
     private final PooledLongQueue initialBrightenings;
     private final PooledLongQueue initialDarkenings;
 
-    private boolean updating = false;
+    private boolean updating;
 
     private static final int lX = 26, lY = 8, lZ = 26, lL = 4;
     private static final int sZ = 0, sX = sZ + lZ, sY = sX + lX, sL = sY + lY;
@@ -50,7 +50,7 @@ public class LightingEngine implements ILightingEngine {
     private long curChunkIdentifier;
     private long curData;
 
-    private boolean isNeighborDataValid = false;
+    private boolean isNeighborDataValid;
     private final NeighborInfo[] neighborInfos = new NeighborInfo[6];
     private PooledLongQueue.LongQueueIterator queueIt;
 
@@ -64,16 +64,16 @@ public class LightingEngine implements ILightingEngine {
         this.initialBrightenings = new PooledLongQueue(pool);
         this.initialDarkenings = new PooledLongQueue(pool);
 
-        for (int i = 0; i < EnumSkyBlock.values().length; ++i) {
+        for (int i = 0; i < EnumSkyBlock.values().length; i++) {
             this.queuedLightUpdates[i] = new PooledLongQueue(pool);
         }
-        for (int i = 0; i < this.queuedDarkenings.length; ++i) {
+        for (int i = 0; i < this.queuedDarkenings.length; i++) {
             this.queuedDarkenings[i] = new PooledLongQueue(pool);
         }
-        for (int i = 0; i < this.queuedBrightenings.length; ++i) {
+        for (int i = 0; i < this.queuedBrightenings.length; i++) {
             this.queuedBrightenings[i] = new PooledLongQueue(pool);
         }
-        for (int i = 0; i < this.neighborInfos.length; ++i) {
+        for (int i = 0; i < this.neighborInfos.length; i++) {
             this.neighborInfos[i] = new NeighborInfo();
         }
     }
@@ -149,7 +149,9 @@ public class LightingEngine implements ILightingEngine {
 
         this.queueIt = queue.iterator();
         while (this.nextItem()) {
-            if (this.curChunk == null) continue;
+            if (this.curChunk == null) {
+                continue;
+            }
 
             final int oldLight = this.getCursorCachedLight(lightType);
             final int newLight = this.calculateNewLightFromCursor(lightType);
@@ -180,12 +182,14 @@ public class LightingEngine implements ILightingEngine {
 
         this.profiler.endSection();
 
-        for (int curLight = MAX_LIGHT; curLight >= 0; --curLight) {
+        for (int curLight = MAX_LIGHT; curLight >= 0; curLight--) {
             this.profiler.startSection("darkening");
 
             this.queueIt = this.queuedDarkenings[curLight].iterator();
             while (this.nextItem()) {
-                if (this.getCursorCachedLight(lightType) >= curLight) continue;
+                if (this.getCursorCachedLight(lightType) >= curLight) {
+                    continue;
+                }
 
                 final IBlockState state = BlockStateHelper.getBlockState(this.curChunk, this.curPos);
                 final int luminosity = this.getCursorLuminosity(state, lightType);
@@ -195,7 +199,9 @@ public class LightingEngine implements ILightingEngine {
                     int newLight = luminosity;
                     this.fetchNeighborDataFromCursor(lightType);
                     for (NeighborInfo info : this.neighborInfos) {
-                        if (info.chunk == null || info.light == 0) continue;
+                        if (info.chunk == null || info.light == 0) {
+                            continue;
+                        }
 
                         if (curLight - this.getPosOpacity(info.pos, BlockStateHelper.getBlockState(info.chunk, info.pos)) >= info.light) {
                             this.enqueueDarkening(info.pos, info.key, info.light, info.chunk, lightType);
@@ -230,10 +236,12 @@ public class LightingEngine implements ILightingEngine {
     }
 
     private void fetchNeighborDataFromCursor(final EnumSkyBlock lightType) {
-        if (this.isNeighborDataValid) return;
+        if (this.isNeighborDataValid) {
+            return;
+        }
         this.isNeighborDataValid = true;
 
-        for (int i = 0; i < this.neighborInfos.length; ++i) {
+        for (int i = 0; i < this.neighborInfos.length; i++) {
             NeighborInfo info = this.neighborInfos[i];
             final long nLongPos = info.key = this.curData + neighborShifts[i];
 
@@ -244,7 +252,7 @@ public class LightingEngine implements ILightingEngine {
             }
 
             final MutableBlockPos nPos = decodeWorldCoord(info.pos, nLongPos);
-            final Chunk nChunk = ((nLongPos & mChunk) == this.curChunkIdentifier) ? this.curChunk : this.getChunk(nPos);
+            final Chunk nChunk = (nLongPos & mChunk) == this.curChunkIdentifier ? this.curChunk : this.getChunk(nPos);
             info.chunk = nChunk;
 
             if (nChunk != null) {
@@ -260,7 +268,9 @@ public class LightingEngine implements ILightingEngine {
         int j = pos.getY();
         int k = pos.getZ() & 15;
 
-        if (j < 0 || j >= 256) return lightType.defaultLightValue;
+        if (j < 0 || j >= 256) {
+            return lightType.defaultLightValue;
+        }
 
         if (section == null) {
             return lightType == EnumSkyBlock.SKY && chunk.canSeeSky(pos) ? lightType.defaultLightValue : 0;
@@ -281,13 +291,17 @@ public class LightingEngine implements ILightingEngine {
     }
 
     private int calculateNewLightFromCursor(final int luminosity, final int opacity, final EnumSkyBlock lightType) {
-        if (luminosity >= MAX_LIGHT - opacity) return luminosity;
+        if (luminosity >= MAX_LIGHT - opacity) {
+            return luminosity;
+        }
 
         int newLight = luminosity;
         this.fetchNeighborDataFromCursor(lightType);
 
         for (NeighborInfo info : this.neighborInfos) {
-            if (info.chunk == null) continue;
+            if (info.chunk == null) {
+                continue;
+            }
             newLight = Math.max(info.light - opacity, newLight);
         }
         return newLight;
@@ -297,7 +311,9 @@ public class LightingEngine implements ILightingEngine {
         this.fetchNeighborDataFromCursor(lightType);
 
         for (NeighborInfo info : this.neighborInfos) {
-            if (info.chunk == null) continue;
+            if (info.chunk == null) {
+                continue;
+            }
             final int newLight = curLight - this.getPosOpacity(info.pos, BlockStateHelper.getBlockState(info.chunk, info.pos));
             if (newLight > info.light) {
                 this.enqueueBrightening(info.pos, info.key, newLight, info.chunk, lightType);

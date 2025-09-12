@@ -130,8 +130,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
      * @return the sum of left and right in dest
      */
     public static Vector3f add(Vector3f left, Vector3f right, Vector3f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector3f(left.x + right.x, left.y + right.y, left.z + right.z);
+        }
         else {
             dest.set(left.x + right.x, left.y + right.y, left.z + right.z);
             return dest;
@@ -147,8 +148,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
      * @return left minus right in dest
      */
     public static Vector3f sub(Vector3f left, Vector3f right, Vector3f dest) {
-        if (dest == null)
+        if (dest == null) {
             return new Vector3f(left.x - right.x, left.y - right.y, left.z - right.z);
+        }
         else {
             dest.set(left.x - right.x, left.y - right.y, left.z - right.z);
             return dest;
@@ -169,8 +171,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
             Vector3f dest)
     {
 
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector3f();
+        }
 
         dest.set(
             left.y * right.z - left.z * right.y,
@@ -199,8 +202,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
      * @return the negated vector
      */
     public Vector3f negate(Vector3f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector3f();
+        }
         dest.x = -x;
         dest.y = -y;
         dest.z = -z;
@@ -216,10 +220,12 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
     public Vector3f normalise(Vector3f dest) {
         float l = length();
 
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector3f(x / l, y / l, z / l);
-        else
+        }
+        else {
             dest.set(x / l, y / l, z / l);
+        }
 
         return dest;
     }
@@ -243,10 +249,12 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
      */
     public static float angle(Vector3f a, Vector3f b) {
         float dls = dot(a, b) / (a.length() * b.length());
-        if (dls < -1f)
+        if (dls < -1f) {
             dls = -1f;
-        else if (dls > 1.0f)
+        }
+        else if (dls > 1.0f) {
             dls = 1.0f;
+        }
         return (float)Math.acos(dls);
     }
 
@@ -347,12 +355,20 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         Vector3f other = (Vector3f)obj;
 
-        if (x == other.x && y == other.y && z == other.z) return true;
+        if (x == other.x && y == other.y && z == other.z) {
+            return true;
+        }
 
         return false;
     }

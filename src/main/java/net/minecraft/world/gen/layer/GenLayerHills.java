@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 public class GenLayerHills extends GenLayer
 {
     private static final Logger logger = LogManager.getLogger();
-    private GenLayer riverLayer;
+    private final GenLayer riverLayer;
 
     public GenLayerHills(long p_i45479_1_, GenLayer p_i45479_3_, GenLayer p_i45479_4_)
     {
@@ -26,9 +26,9 @@ public class GenLayerHills extends GenLayer
         int[] aint1 = this.riverLayer.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
         int[] aint2 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int i = 0; i < areaHeight; i++)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int j = 0; j < areaWidth; j++)
             {
                 this.initChunkSeed((long)(j + areaX), (long)(i + areaY));
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];

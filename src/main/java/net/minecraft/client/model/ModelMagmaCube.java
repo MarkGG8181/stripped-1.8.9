@@ -11,7 +11,7 @@ public class ModelMagmaCube extends ModelBase
 
     public ModelMagmaCube()
     {
-        for (int i = 0; i < this.segments.length; ++i)
+        for (int i = 0; i < this.segments.length; i++)
         {
             int j = 0;
             int k = i;
@@ -49,7 +49,7 @@ public class ModelMagmaCube extends ModelBase
             f = 0.0F;
         }
 
-        for (int i = 0; i < this.segments.length; ++i)
+        for (int i = 0; i < this.segments.length; i++)
         {
             this.segments[i].rotationPointY = (float)(-(4 - i)) * f * 1.7F;
         }
@@ -63,7 +63,7 @@ public class ModelMagmaCube extends ModelBase
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
         this.core.render(scale);
 
-        for (int i = 0; i < this.segments.length; ++i)
+        for (int i = 0; i < this.segments.length; i++)
         {
             this.segments[i].render(scale);
         }

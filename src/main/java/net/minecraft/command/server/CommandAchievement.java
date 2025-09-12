@@ -57,15 +57,15 @@ public class CommandAchievement extends CommandBase
         {
             final StatBase statbase = StatList.getOneShotStat(args[1]);
 
-            if (statbase == null && !args[1].equals("*"))
+            if (statbase == null && !"*".equals(args[1]))
             {
                 throw new CommandException("commands.achievement.unknownAchievement", new Object[]{args[1]});
             }
             else
             {
                 final EntityPlayerMP entityplayermp = args.length >= 3 ? getPlayer(sender, args[2]) : getCommandSenderAsPlayer(sender);
-                boolean flag = args[0].equalsIgnoreCase("give");
-                boolean flag1 = args[0].equalsIgnoreCase("take");
+                boolean flag = "give".equalsIgnoreCase(args[0]);
+                boolean flag1 = "take".equalsIgnoreCase(args[0]);
 
                 if (flag || flag1)
                 {

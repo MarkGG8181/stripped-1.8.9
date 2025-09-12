@@ -41,7 +41,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
      * Save directory for chunks using the Anvil format
      */
     private final File chunkSaveLocation;
-    private boolean savingExtraData = false;
+    private boolean savingExtraData;
 
     public AnvilChunkLoader(File chunkSaveLocationIn) {
         this.chunkSaveLocation = chunkSaveLocationIn;
@@ -214,7 +214,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
                 NibbleArray nibblearray = new NibbleArray();
                 NibbleArray nibblearray1 = null;
 
-                for (int i = 0; i < extendedblockstorage.getData().length; ++i) {
+                for (int i = 0; i < extendedblockstorage.getData().length; i++) {
                     char c0 = extendedblockstorage.getData()[i];
                     int j = i & 15;
                     int k = i >> 8 & 15;
@@ -257,7 +257,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         chunkIn.setHasEntities(false);
         NBTTagList nbttaglist1 = new NBTTagList();
 
-        for (int i1 = 0; i1 < chunkIn.getEntityLists().length; ++i1) {
+        for (int i1 = 0; i1 < chunkIn.getEntityLists().length; i1++) {
             for (Entity entity : chunkIn.getEntityLists()[i1]) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 
@@ -317,7 +317,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         ExtendedBlockStorage[] aextendedblockstorage = new ExtendedBlockStorage[k];
         boolean flag = !worldIn.provider.getHasNoSky();
 
-        for (int l = 0; l < nbttaglist.tagCount(); ++l) {
+        for (int l = 0; l < nbttaglist.tagCount(); l++) {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(l);
             int i1 = nbttagcompound.getByte("Y");
             ExtendedBlockStorage extendedblockstorage = new ExtendedBlockStorage(i1 << 4, flag);
@@ -326,7 +326,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
             NibbleArray nibblearray1 = nbttagcompound.hasKey("Add", 7) ? new NibbleArray(nbttagcompound.getByteArray("Add")) : null;
             char[] achar = new char[abyte.length];
 
-            for (int j1 = 0; j1 < achar.length; ++j1) {
+            for (int j1 = 0; j1 < achar.length; j1++) {
                 int k1 = j1 & 15;
                 int l1 = j1 >> 8 & 15;
                 int i2 = j1 >> 4 & 15;
@@ -354,7 +354,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         NBTTagList nbttaglist1 = p_75823_2_.getTagList("Entities", 10);
 
         if (nbttaglist1 != null) {
-            for (int k2 = 0; k2 < nbttaglist1.tagCount(); ++k2) {
+            for (int k2 = 0; k2 < nbttaglist1.tagCount(); k2++) {
                 NBTTagCompound nbttagcompound1 = nbttaglist1.getCompoundTagAt(k2);
                 Entity entity = EntityList.createEntityFromNBT(nbttagcompound1, worldIn);
                 chunk.setHasEntities(true);
@@ -381,7 +381,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
         NBTTagList nbttaglist2 = p_75823_2_.getTagList("TileEntities", 10);
 
         if (nbttaglist2 != null) {
-            for (int l2 = 0; l2 < nbttaglist2.tagCount(); ++l2) {
+            for (int l2 = 0; l2 < nbttaglist2.tagCount(); l2++) {
                 NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(l2);
                 TileEntity tileentity = TileEntity.createAndLoadEntity(nbttagcompound2);
 
@@ -395,7 +395,7 @@ public class AnvilChunkLoader implements IChunkLoader, IThreadedFileIO {
             NBTTagList nbttaglist3 = p_75823_2_.getTagList("TileTicks", 10);
 
             if (nbttaglist3 != null) {
-                for (int i3 = 0; i3 < nbttaglist3.tagCount(); ++i3) {
+                for (int i3 = 0; i3 < nbttaglist3.tagCount(); i3++) {
                     NBTTagCompound nbttagcompound3 = nbttaglist3.getCompoundTagAt(i3);
                     Block block;
 

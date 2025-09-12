@@ -51,7 +51,7 @@ public class BlockStaticLiquid extends BlockLiquid
                 {
                     BlockPos blockpos = pos;
 
-                    for (int j = 0; j < i; ++j)
+                    for (int j = 0; j < i; j++)
                     {
                         blockpos = blockpos.add(rand.nextInt(3) - 1, 1, rand.nextInt(3) - 1);
                         Block block = worldIn.getBlockState(blockpos).getBlock();
@@ -72,7 +72,7 @@ public class BlockStaticLiquid extends BlockLiquid
                 }
                 else
                 {
-                    for (int k = 0; k < 3; ++k)
+                    for (int k = 0; k < 3; k++)
                     {
                         BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, 0, rand.nextInt(3) - 1);
 

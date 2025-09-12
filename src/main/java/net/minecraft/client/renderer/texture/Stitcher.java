@@ -108,7 +108,7 @@ public class Stitcher
      */
     private boolean allocateSlot(Stitcher.Holder p_94310_1_)
     {
-        for (int i = 0; i < this.stitchSlots.size(); ++i)
+        for (int i = 0; i < this.stitchSlots.size(); i++)
         {
             if (((Stitcher.Slot)this.stitchSlots.get(i)).addSlot(p_94310_1_))
             {

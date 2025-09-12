@@ -101,7 +101,7 @@ public class EntityBlaze extends EntityMob {
                 this.worldObj.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
             }
 
-            for (int i = 0; i < 2; ++i) {
+            for (int i = 0; i < 2; i++) {
                 this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
@@ -156,7 +156,7 @@ public class EntityBlaze extends EntityMob {
         if (wasRecentlyHit) {
             int i = this.rand.nextInt(2 + lootingModifier);
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 this.dropItem(Items.blaze_rod, 1);
             }
         }
@@ -247,7 +247,7 @@ public class EntityBlaze extends EntityMob {
                         float f = MathHelper.sqrt_float(MathHelper.sqrt_double(d0)) * 0.5F;
                         this.blaze.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, new BlockPos((int)this.blaze.posX, (int)this.blaze.posY, (int)this.blaze.posZ), 0);
 
-                        for (int i = 0; i < 1; ++i) {
+                        for (int i = 0; i < 1; i++) {
                             EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.blaze.worldObj, this.blaze, d1 + this.blaze.getRNG().nextGaussian() * (double)f, d2, d3 + this.blaze.getRNG().nextGaussian() * (double)f);
                             entitysmallfireball.posY = this.blaze.posY + (double)(this.blaze.height / 2.0F) + 0.5D;
                             this.blaze.worldObj.spawnEntityInWorld(entitysmallfireball);

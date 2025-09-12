@@ -49,14 +49,14 @@ public class TextureUtil {
         if (p_147949_0_ > 0) {
             boolean flag = false;
 
-            for (int i = 0; i < p_147949_2_.length; ++i) {
+            for (int i = 0; i < p_147949_2_.length; i++) {
                 if (p_147949_2_[0][i] >> 24 == 0) {
                     flag = true;
                     break;
                 }
             }
 
-            for (int l1 = 1; l1 <= p_147949_0_; ++l1) {
+            for (int l1 = 1; l1 <= p_147949_0_; l1++) {
                 if (p_147949_2_[l1] != null) {
                     aint[l1] = p_147949_2_[l1];
                 }
@@ -67,8 +67,8 @@ public class TextureUtil {
                     int k = aint2.length / j;
                     int l = j << 1;
 
-                    for (int i1 = 0; i1 < j; ++i1) {
-                        for (int j1 = 0; j1 < k; ++j1) {
+                    for (int i1 = 0; i1 < j; i1++) {
+                        for (int j1 = 0; j1 < k; j1++) {
                             int k1 = 2 * (i1 + j1 * l);
                             aint2[i1 + j1 * j] = blendColors(aint1[k1 + 0], aint1[k1 + 1], aint1[k1 + 0 + l], aint1[k1 + 1 + l], flag);
                         }
@@ -100,7 +100,7 @@ public class TextureUtil {
             float f2 = 0.0F;
             float f3 = 0.0F;
 
-            for (int i = 0; i < 4; ++i) {
+            for (int i = 0; i < 4; i++) {
                 if (mipmapBuffer[i] >> 24 != 0) {
                     f += (float)Math.pow((double)((float)(mipmapBuffer[i] >> 24 & 255) / 255.0F), 2.2D);
                     f1 += (float)Math.pow((double)((float)(mipmapBuffer[i] >> 16 & 255) / 255.0F), 2.2D);
@@ -136,7 +136,7 @@ public class TextureUtil {
     }
 
     public static void uploadTextureMipmap(int[][] p_147955_0_, int p_147955_1_, int p_147955_2_, int p_147955_3_, int p_147955_4_, boolean p_147955_5_, boolean p_147955_6_) {
-        for (int i = 0; i < p_147955_0_.length; ++i) {
+        for (int i = 0; i < p_147955_0_.length; i++) {
             int[] aint = p_147955_0_[i];
             uploadTextureSub(i, aint, p_147955_1_ >> i, p_147955_2_ >> i, p_147955_3_ >> i, p_147955_4_ >> i, p_147955_5_, p_147955_6_, p_147955_0_.length > 1);
         }
@@ -177,7 +177,7 @@ public class TextureUtil {
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL14.GL_TEXTURE_LOD_BIAS, 0.0F);
         }
 
-        for (int i = 0; i <= p_180600_1_; ++i) {
+        for (int i = 0; i <= p_180600_1_; i++) {
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, i, GL11.GL_RGBA, p_180600_2_ >> i, p_180600_3_ >> i, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, (IntBuffer)((IntBuffer)null));
         }
     }
@@ -271,7 +271,7 @@ public class TextureUtil {
         int[] aint = new int[p_147953_1_];
         int i = p_147953_2_ / 2;
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             System.arraycopy(p_147953_0_, j * p_147953_1_, aint, 0, p_147953_1_);
             System.arraycopy(p_147953_0_, (p_147953_2_ - 1 - j) * p_147953_1_, p_147953_0_, j * p_147953_1_, p_147953_1_);
             System.arraycopy(aint, 0, p_147953_0_, (p_147953_2_ - 1 - j) * p_147953_1_, p_147953_1_);
@@ -285,12 +285,15 @@ public class TextureUtil {
         int[] aint1 = new int[]{-16777216, -16777216, -16777216, -16777216, -16777216, -16777216, -16777216, -16777216};
         int k = aint.length;
 
-        for (int l = 0; l < 16; ++l) {
+        for (int l = 0; l < 16; l++) {
             System.arraycopy(l < k ? aint : aint1, 0, missingTextureData, 16 * l, k);
             System.arraycopy(l < k ? aint1 : aint, 0, missingTextureData, 16 * l + k, k);
         }
 
         missingTexture.updateDynamicTexture();
         mipmapBuffer = new int[4];
+    }
+
+    private TextureUtil() {
     }
 }

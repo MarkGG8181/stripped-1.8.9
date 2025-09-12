@@ -25,8 +25,8 @@ public class FastRenderRegion implements IBlockAccess {
         this.centerZ = centerPos.getZ() >> 4;
 
         this.chunks = new Chunk[3][3];
-        for (int x = 0; x < 3; ++x) {
-            for (int z = 0; z < 3; ++z) {
+        for (int x = 0; x < 3; x++) {
+            for (int z = 0; z < 3; z++) {
                 this.chunks[x][z] = world.getChunkFromChunkCoords(this.centerX + x - 1, this.centerZ + z - 1);
             }
         }

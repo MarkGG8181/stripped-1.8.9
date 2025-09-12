@@ -139,4 +139,7 @@ public class ActiveRenderInfo {
     public static float getRotationXY() {
         return rotationXY;
     }
+
+    private ActiveRenderInfo() {
+    }
 }

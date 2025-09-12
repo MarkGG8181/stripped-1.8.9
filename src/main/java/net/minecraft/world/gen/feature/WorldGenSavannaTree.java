@@ -30,7 +30,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
+            for (int j = position.getY(); j <= position.getY() + 1 + i; j++)
             {
                 int k = 1;
 
@@ -46,9 +46,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                for (int l = position.getX() - k; l <= position.getX() + k && flag; l++)
                 {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; i1++)
                     {
                         if (j >= 0 && j < 256)
                         {
@@ -83,7 +83,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                     int j1 = position.getZ();
                     int k1 = 0;
 
-                    for (int l1 = 0; l1 < i; ++l1)
+                    for (int l1 = 0; l1 < i; l1++)
                     {
                         int i2 = position.getY() + l1;
 
@@ -106,9 +106,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                     BlockPos blockpos2 = new BlockPos(i3, k1, j1);
 
-                    for (int j3 = -3; j3 <= 3; ++j3)
+                    for (int j3 = -3; j3 <= 3; j3++)
                     {
-                        for (int i4 = -3; i4 <= 3; ++i4)
+                        for (int i4 = -3; i4 <= 3; i4++)
                         {
                             if (Math.abs(j3) != 3 || Math.abs(i4) != 3)
                             {
@@ -119,9 +119,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                     blockpos2 = blockpos2.up();
 
-                    for (int k3 = -1; k3 <= 1; ++k3)
+                    for (int k3 = -1; k3 <= 1; k3++)
                     {
-                        for (int j4 = -1; j4 <= 1; ++j4)
+                        for (int j4 = -1; j4 <= 1; j4++)
                         {
                             this.func_175924_b(worldIn, blockpos2.add(k3, 0, j4));
                         }
@@ -141,7 +141,7 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                         int k4 = 1 + rand.nextInt(3);
                         k1 = 0;
 
-                        for (int l4 = l3; l4 < i && k4 > 0; --k4)
+                        for (int l4 = l3; l4 < i && k4 > 0; k4--)
                         {
                             if (l4 >= 1)
                             {
@@ -165,9 +165,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                         {
                             BlockPos blockpos3 = new BlockPos(i3, k1, j1);
 
-                            for (int i5 = -2; i5 <= 2; ++i5)
+                            for (int i5 = -2; i5 <= 2; i5++)
                             {
-                                for (int k5 = -2; k5 <= 2; ++k5)
+                                for (int k5 = -2; k5 <= 2; k5++)
                                 {
                                     if (Math.abs(i5) != 2 || Math.abs(k5) != 2)
                                     {
@@ -178,9 +178,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                             blockpos3 = blockpos3.up();
 
-                            for (int j5 = -1; j5 <= 1; ++j5)
+                            for (int j5 = -1; j5 <= 1; j5++)
                             {
-                                for (int l5 = -1; l5 <= 1; ++l5)
+                                for (int l5 = -1; l5 <= 1; l5++)
                                 {
                                     this.func_175924_b(worldIn, blockpos3.add(j5, 0, l5));
                                 }

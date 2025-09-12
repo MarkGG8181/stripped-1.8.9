@@ -218,7 +218,7 @@ public class CommandHandler implements ICommandManager
         }
         else
         {
-            for (int i = 0; i < args.length; ++i)
+            for (int i = 0; i < args.length; i++)
             {
                 if (command.isUsernameIndex(args, i) && PlayerSelector.matchesMultiplePlayers(args[i]))
                 {

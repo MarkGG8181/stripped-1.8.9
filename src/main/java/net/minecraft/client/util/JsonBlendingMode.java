@@ -6,7 +6,7 @@ import net.minecraft.util.JsonUtils;
 import org.lwjgl.opengl.GL14;
 
 public class JsonBlendingMode {
-    private static JsonBlendingMode lastApplied = null;
+    private static JsonBlendingMode lastApplied;
     private final int srcColorFactor;
     private final int srcAlphaFactor;
     private final int destColorFactor;
@@ -152,7 +152,7 @@ public class JsonBlendingMode {
 
     private static int func_148108_a(String p_148108_0_) {
         String s = p_148108_0_.trim().toLowerCase();
-        return s.equals("add") ? 32774 : (s.equals("subtract") ? 32778 : (s.equals("reversesubtract") ? 32779 : (s.equals("reverse_subtract") ? 32779 : (s.equals("min") ? 32775 : (s.equals("max") ? 32776 : 32774)))));
+        return "add".equals(s) ? 32774 : ("subtract".equals(s) ? 32778 : ("reversesubtract".equals(s) ? 32779 : ("reverse_subtract".equals(s) ? 32779 : ("min".equals(s) ? 32775 : ("max".equals(s) ? 32776 : 32774)))));
     }
 
     private static int func_148107_b(String p_148107_0_) {
@@ -161,6 +161,6 @@ public class JsonBlendingMode {
         s = s.replaceAll("one", "1");
         s = s.replaceAll("zero", "0");
         s = s.replaceAll("minus", "-");
-        return s.equals("0") ? 0 : (s.equals("1") ? 1 : (s.equals("srccolor") ? 768 : (s.equals("1-srccolor") ? 769 : (s.equals("dstcolor") ? 774 : (s.equals("1-dstcolor") ? 775 : (s.equals("srcalpha") ? 770 : (s.equals("1-srcalpha") ? 771 : (s.equals("dstalpha") ? 772 : (s.equals("1-dstalpha") ? 773 : -1)))))))));
+        return "0".equals(s) ? 0 : ("1".equals(s) ? 1 : ("srccolor".equals(s) ? 768 : ("1-srccolor".equals(s) ? 769 : ("dstcolor".equals(s) ? 774 : ("1-dstcolor".equals(s) ? 775 : ("srcalpha".equals(s) ? 770 : ("1-srcalpha".equals(s) ? 771 : ("dstalpha".equals(s) ? 772 : ("1-dstalpha".equals(s) ? 773 : -1)))))))));
     }
 }

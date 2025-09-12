@@ -48,9 +48,9 @@ public class BlockPattern {
      * checks that the given pattern & rotation is at the block co-ordinates.
      */
     private BlockPattern.PatternHelper checkPatternAt(BlockPos pos, EnumFacing finger, EnumFacing thumb, LoadingCache<BlockPos, BlockWorldState> lcache) {
-        for (int i = 0; i < this.palmLength; ++i) {
-            for (int j = 0; j < this.thumbLength; ++j) {
-                for (int k = 0; k < this.fingerLength; ++k) {
+        for (int i = 0; i < this.palmLength; i++) {
+            for (int j = 0; j < this.thumbLength; j++) {
+                for (int k = 0; k < this.fingerLength; k++) {
                     if (!this.blockMatches[k][j][i].apply(lcache.getUnchecked(translateOffset(pos, finger, thumb, i, j, k)))) {
                         return null;
                     }

@@ -35,9 +35,9 @@ public class ChunkProviderDebug implements IChunkProvider
     {
         ChunkPrimer chunkprimer = new ChunkPrimer();
 
-        for (int i = 0; i < 16; ++i)
+        for (int i = 0; i < 16; i++)
         {
-            for (int j = 0; j < 16; ++j)
+            for (int j = 0; j < 16; j++)
             {
                 int k = x * 16 + i;
                 int l = z * 16 + j;
@@ -56,7 +56,7 @@ public class ChunkProviderDebug implements IChunkProvider
         BiomeGenBase[] abiomegenbase = this.world.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, x * 16, z * 16, 16, 16);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int i1 = 0; i1 < abyte.length; ++i1)
+        for (int i1 = 0; i1 < abyte.length; i1++)
         {
             abyte[i1] = (byte)abiomegenbase[i1].biomeID;
         }

@@ -32,7 +32,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
         {
-            for (int i1 = position.getY(); i1 <= position.getY() + 1 + i && flag; ++i1)
+            for (int i1 = position.getY(); i1 <= position.getY() + 1 + i && flag; i1++)
             {
                 int j1 = 1;
 
@@ -47,9 +47,9 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; ++k1)
+                for (int k1 = position.getX() - j1; k1 <= position.getX() + j1 && flag; k1++)
                 {
-                    for (int l1 = position.getZ() - j1; l1 <= position.getZ() + j1 && flag; ++l1)
+                    for (int l1 = position.getZ() - j1; l1 <= position.getZ() + j1 && flag; l1++)
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
@@ -83,15 +83,15 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
                     int j3 = 1;
                     int k3 = 0;
 
-                    for (int l3 = 0; l3 <= k; ++l3)
+                    for (int l3 = 0; l3 <= k; l3++)
                     {
                         int j4 = position.getY() + i - l3;
 
-                        for (int i2 = position.getX() - i3; i2 <= position.getX() + i3; ++i2)
+                        for (int i2 = position.getX() - i3; i2 <= position.getX() + i3; i2++)
                         {
                             int j2 = i2 - position.getX();
 
-                            for (int k2 = position.getZ() - i3; k2 <= position.getZ() + i3; ++k2)
+                            for (int k2 = position.getZ() - i3; k2 <= position.getZ() + i3; k2++)
                             {
                                 int l2 = k2 - position.getZ();
 
@@ -126,7 +126,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                     int i4 = rand.nextInt(3);
 
-                    for (int k4 = 0; k4 < i - i4; ++k4)
+                    for (int k4 = 0; k4 < i - i4; k4++)
                     {
                         Block block2 = worldIn.getBlockState(position.up(k4)).getBlock();
 

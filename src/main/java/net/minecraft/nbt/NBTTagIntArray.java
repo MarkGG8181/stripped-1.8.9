@@ -24,7 +24,7 @@ public class NBTTagIntArray extends NBTBase {
     void write(DataOutput output) throws IOException {
         output.writeInt(this.intArray.length);
 
-        for (int i = 0; i < this.intArray.length; ++i) {
+        for (int i = 0; i < this.intArray.length; i++) {
             output.writeInt(this.intArray[i]);
         }
     }
@@ -35,7 +35,7 @@ public class NBTTagIntArray extends NBTBase {
         sizeTracker.read((long)(32 * i));
         this.intArray = new int[i];
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             this.intArray[j] = input.readInt();
         }
     }

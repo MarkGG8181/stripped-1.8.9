@@ -30,7 +30,7 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
             try {
                 JsonArray jsonarray = JsonUtils.getJsonArray(jsonobject, "frames");
 
-                for (int j = 0; j < jsonarray.size(); ++j) {
+                for (int j = 0; j < jsonarray.size(); j++) {
                     JsonElement jsonelement = jsonarray.get(j);
                     AnimationFrame animationframe = this.parseAnimationFrame(j, jsonelement);
 
@@ -94,7 +94,7 @@ public class AnimationMetadataSectionSerializer extends BaseMetadataSectionSeria
         if (p_serialize_1_.getFrameCount() > 0) {
             JsonArray jsonarray = new JsonArray();
 
-            for (int i = 0; i < p_serialize_1_.getFrameCount(); ++i) {
+            for (int i = 0; i < p_serialize_1_.getFrameCount(); i++) {
                 if (p_serialize_1_.frameHasTime(i)) {
                     JsonObject jsonobject1 = new JsonObject();
                     jsonobject1.addProperty("index", (Number)Integer.valueOf(p_serialize_1_.getFrameIndex(i)));

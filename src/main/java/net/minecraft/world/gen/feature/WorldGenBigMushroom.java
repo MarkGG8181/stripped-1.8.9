@@ -36,7 +36,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 
         if (position.getY() >= 1 && position.getY() + i + 1 < 256)
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
+            for (int j = position.getY(); j <= position.getY() + 1 + i; j++)
             {
                 int k = 3;
 
@@ -47,9 +47,9 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                for (int l = position.getX() - k; l <= position.getX() + k && flag; l++)
                 {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; i1++)
                     {
                         if (j >= 0 && j < 256)
                         {
@@ -89,7 +89,7 @@ public class WorldGenBigMushroom extends WorldGenerator
                         k2 = position.getY() + i - 3;
                     }
 
-                    for (int l2 = k2; l2 <= position.getY() + i; ++l2)
+                    for (int l2 = k2; l2 <= position.getY() + i; l2++)
                     {
                         int j3 = 1;
 
@@ -108,9 +108,9 @@ public class WorldGenBigMushroom extends WorldGenerator
                         int j1 = position.getZ() - j3;
                         int k1 = position.getZ() + j3;
 
-                        for (int l1 = k3; l1 <= l3; ++l1)
+                        for (int l1 = k3; l1 <= l3; l1++)
                         {
-                            for (int i2 = j1; i2 <= k1; ++i2)
+                            for (int i2 = j1; i2 <= k1; i2++)
                             {
                                 int j2 = 5;
 
@@ -200,7 +200,7 @@ public class WorldGenBigMushroom extends WorldGenerator
                         }
                     }
 
-                    for (int i3 = 0; i3 < i; ++i3)
+                    for (int i3 = 0; i3 < i; i3++)
                     {
                         Block block2 = worldIn.getBlockState(position.up(i3)).getBlock();
 

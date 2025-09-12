@@ -131,7 +131,7 @@ public class BlockEnderChest extends BlockContainer
 
     public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
             int j = rand.nextInt(2) * 2 - 1;
             int k = rand.nextInt(2) * 2 - 1;

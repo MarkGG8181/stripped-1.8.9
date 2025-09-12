@@ -62,7 +62,7 @@ public class ServerSelectionList extends GuiListExtended {
     public void func_148195_a(ServerList p_148195_1_) {
         this.serverListInternet.clear();
 
-        for (int i = 0; i < p_148195_1_.countServers(); ++i) {
+        for (int i = 0; i < p_148195_1_.countServers(); i++) {
             this.serverListInternet.add(new ServerListEntryNormal(this.owner, p_148195_1_.getServerData(i)));
         }
     }

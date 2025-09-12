@@ -96,7 +96,7 @@ public class S3EPacketTeams implements Packet<INetHandlerPlayClient>
         {
             int i = buf.readVarIntFromBuffer();
 
-            for (int j = 0; j < i; ++j)
+            for (int j = 0; j < i; j++)
             {
                 this.players.add(buf.readStringFromBuffer(40));
             }

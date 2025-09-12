@@ -278,7 +278,7 @@ public final class ItemStack {
                 int i = EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, this);
                 int j = 0;
 
-                for (int k = 0; i > 0 && k < amount; ++k) {
+                for (int k = 0; i > 0 && k < amount; k++) {
                     if (EnchantmentDurability.negateDamage(this, i, rand)) {
                         ++j;
                     }
@@ -600,7 +600,7 @@ public final class ItemStack {
                 NBTTagList nbttaglist = this.getEnchantmentTagList();
 
                 if (nbttaglist != null) {
-                    for (int j = 0; j < nbttaglist.tagCount(); ++j) {
+                    for (int j = 0; j < nbttaglist.tagCount(); j++) {
                         int k = nbttaglist.getCompoundTagAt(j).getShort("id");
                         int l = nbttaglist.getCompoundTagAt(j).getShort("lvl");
 
@@ -627,7 +627,7 @@ public final class ItemStack {
                     NBTTagList nbttaglist1 = nbttagcompound.getTagList("Lore", 8);
 
                     if (nbttaglist1.tagCount() > 0) {
-                        for (int j1 = 0; j1 < nbttaglist1.tagCount(); ++j1) {
+                        for (int j1 = 0; j1 < nbttaglist1.tagCount(); j1++) {
                             list.add(EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.ITALIC + nbttaglist1.getStringTagAt(j1));
                         }
                     }
@@ -678,7 +678,7 @@ public final class ItemStack {
                 list.add("");
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.canBreak"));
 
-                for (int k1 = 0; k1 < nbttaglist2.tagCount(); ++k1) {
+                for (int k1 = 0; k1 < nbttaglist2.tagCount(); k1++) {
                     Block block = Block.getBlockFromName(nbttaglist2.getStringTagAt(k1));
 
                     if (block != null) {
@@ -698,7 +698,7 @@ public final class ItemStack {
                 list.add("");
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("item.canPlace"));
 
-                for (int l1 = 0; l1 < nbttaglist3.tagCount(); ++l1) {
+                for (int l1 = 0; l1 < nbttaglist3.tagCount(); l1++) {
                     Block block1 = Block.getBlockFromName(nbttaglist3.getStringTagAt(l1));
 
                     if (block1 != null) {
@@ -825,7 +825,7 @@ public final class ItemStack {
             multimap = HashMultimap.<String, AttributeModifier>create();
             NBTTagList nbttaglist = this.stackTagCompound.getTagList("AttributeModifiers", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            for (int i = 0; i < nbttaglist.tagCount(); i++) {
                 NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
                 AttributeModifier attributemodifier = SharedMonsterAttributes.readAttributeModifierFromNBT(nbttagcompound);
 
@@ -855,7 +855,7 @@ public final class ItemStack {
             chatcomponenttext.getChatStyle().setItalic(Boolean.valueOf(true));
         }
 
-        IChatComponent ichatcomponent = (new ChatComponentText("[")).appendSibling(chatcomponenttext).appendText("]");
+        IChatComponent ichatcomponent = new ChatComponentText("[").appendSibling(chatcomponenttext).appendText("]");
 
         if (this.item != null) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
@@ -877,7 +877,7 @@ public final class ItemStack {
             if (this.hasTagCompound() && this.stackTagCompound.hasKey("CanDestroy", 9)) {
                 NBTTagList nbttaglist = this.stackTagCompound.getTagList("CanDestroy", 8);
 
-                for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+                for (int i = 0; i < nbttaglist.tagCount(); i++) {
                     Block block = Block.getBlockFromName(nbttaglist.getStringTagAt(i));
 
                     if (block == blockIn) {
@@ -902,7 +902,7 @@ public final class ItemStack {
             if (this.hasTagCompound() && this.stackTagCompound.hasKey("CanPlaceOn", 9)) {
                 NBTTagList nbttaglist = this.stackTagCompound.getTagList("CanPlaceOn", 8);
 
-                for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+                for (int i = 0; i < nbttaglist.tagCount(); i++) {
                     Block block = Block.getBlockFromName(nbttaglist.getStringTagAt(i));
 
                     if (block == blockIn) {

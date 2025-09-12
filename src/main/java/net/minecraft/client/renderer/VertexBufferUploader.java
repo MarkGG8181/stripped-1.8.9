@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.vertex.VertexBuffer;
 
 public class VertexBufferUploader extends WorldVertexBufferUploader
 {
-    private VertexBuffer vertexBuffer = null;
+    private VertexBuffer vertexBuffer;
 
     public void draw(WorldRenderer p_181679_1_)
     {

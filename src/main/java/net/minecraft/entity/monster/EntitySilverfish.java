@@ -197,7 +197,7 @@ public class EntitySilverfish extends EntityMob
                 if (random.nextInt(10) == 0)
                 {
                     this.facing = EnumFacing.random(random);
-                    BlockPos blockpos = (new BlockPos(this.silverfish.posX, this.silverfish.posY + 0.5D, this.silverfish.posZ)).offset(this.facing);
+                    BlockPos blockpos = new BlockPos(this.silverfish.posX, this.silverfish.posY + 0.5D, this.silverfish.posZ).offset(this.facing);
                     IBlockState iblockstate = this.silverfish.worldObj.getBlockState(blockpos);
 
                     if (BlockSilverfish.canContainSilverfish(iblockstate))
@@ -226,7 +226,7 @@ public class EntitySilverfish extends EntityMob
             else
             {
                 World world = this.silverfish.worldObj;
-                BlockPos blockpos = (new BlockPos(this.silverfish.posX, this.silverfish.posY + 0.5D, this.silverfish.posZ)).offset(this.facing);
+                BlockPos blockpos = new BlockPos(this.silverfish.posX, this.silverfish.posY + 0.5D, this.silverfish.posZ).offset(this.facing);
                 IBlockState iblockstate = world.getBlockState(blockpos);
 
                 if (BlockSilverfish.canContainSilverfish(iblockstate))

@@ -38,10 +38,10 @@ public class ClippingHelperImpl extends ClippingHelper {
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
                 clippingMatrix[row * 4 + col] =
-                    modelviewMatrix[row * 4 + 0] * projectionMatrix[col + 0] +
-                        modelviewMatrix[row * 4 + 1] * projectionMatrix[col + 4] +
-                        modelviewMatrix[row * 4 + 2] * projectionMatrix[col + 8] +
-                        modelviewMatrix[row * 4 + 3] * projectionMatrix[col + 12];
+                    modelviewMatrix[row * 4 + 0] * projectionMatrix[col + 0]
+                        + modelviewMatrix[row * 4 + 1] * projectionMatrix[col + 4]
+                        + modelviewMatrix[row * 4 + 2] * projectionMatrix[col + 8]
+                        + modelviewMatrix[row * 4 + 3] * projectionMatrix[col + 12];
             }
         }
 

@@ -27,7 +27,7 @@ import org.lwjgl.opengl.GL11;
 
 public class ChunkRenderDispatcher {
     private static final Logger logger = LogManager.getLogger();
-    private static final ThreadFactory threadFactory = (new ThreadFactoryBuilder()).setNameFormat("Chunk Batcher %d").setDaemon(true).build();
+    private static final ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("Chunk Batcher %d").setDaemon(true).build();
     private final List<ChunkRenderWorker> listThreadedWorkers = new ArrayList<>();
     private final BlockingQueue<ChunkCompileTaskGenerator> queueChunkUpdates = Queues.<ChunkCompileTaskGenerator>newArrayBlockingQueue(100);
     private final BlockingQueue<RegionRenderCacheBuilder> queueFreeRenderBuilders = Queues.<RegionRenderCacheBuilder>newArrayBlockingQueue(5);
@@ -37,14 +37,14 @@ public class ChunkRenderDispatcher {
     private final ChunkRenderWorker renderWorker;
 
     public ChunkRenderDispatcher() {
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 2; i++) {
             ChunkRenderWorker chunkrenderworker = new ChunkRenderWorker(this);
             Thread thread = threadFactory.newThread(chunkrenderworker);
             thread.start();
             this.listThreadedWorkers.add(chunkrenderworker);
         }
 
-        for (int j = 0; j < 5; ++j) {
+        for (int j = 0; j < 5; j++) {
             this.queueFreeRenderBuilders.add(new RegionRenderCacheBuilder());
         }
 
@@ -132,6 +132,7 @@ public class ChunkRenderDispatcher {
         this.clearChunkUpdates();
 
         while (this.runChunkUploads(0L)) {
+            continue;
         }
 
         List<RegionRenderCacheBuilder> list = new ArrayList<>();

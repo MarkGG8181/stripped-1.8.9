@@ -32,7 +32,7 @@ public class BlockSugarcane extends Block {
             if (worldIn.isAirBlock(pos.up())) {
                 int i;
 
-                for (i = 1; worldIn.getBlockState(pos.down(i)).getBlock() == this; ++i) {
+                for (i = 1; worldIn.getBlockState(pos.down(i)).getBlock() == this; i++) {
 
                 }
 

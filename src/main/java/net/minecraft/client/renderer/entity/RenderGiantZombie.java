@@ -13,7 +13,7 @@ public class RenderGiantZombie extends RenderLiving<EntityGiantZombie>
     private static final ResourceLocation zombieTextures = new ResourceLocation("textures/entity/zombie/zombie.png");
 
     /** Scale of the model to use */
-    private float scale;
+    private final float scale;
 
     public RenderGiantZombie(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn, float scaleIn)
     {

@@ -110,7 +110,7 @@ public interface IChatComponent extends Iterable<IChatComponent>
                         JsonArray jsonarray = jsonobject.getAsJsonArray("with");
                         Object[] aobject = new Object[jsonarray.size()];
 
-                        for (int i = 0; i < aobject.length; ++i)
+                        for (int i = 0; i < aobject.length; i++)
                         {
                             aobject[i] = this.deserialize(jsonarray.get(i), p_deserialize_2_, p_deserialize_3_);
 
@@ -166,7 +166,7 @@ public interface IChatComponent extends Iterable<IChatComponent>
                         throw new JsonParseException("Unexpected empty array of components");
                     }
 
-                    for (int j = 0; j < jsonarray2.size(); ++j)
+                    for (int j = 0; j < jsonarray2.size(); j++)
                     {
                         ichatcomponent.appendSibling(this.deserialize(jsonarray2.get(j), p_deserialize_2_, p_deserialize_3_));
                     }

@@ -8,15 +8,15 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
     /**
      * Collection of noise generation functions.  Output is combined to produce different octaves of noise.
      */
-    private NoiseGeneratorImproved[] generatorCollection;
-    private int octaves;
+    private final NoiseGeneratorImproved[] generatorCollection;
+    private final int octaves;
 
     public NoiseGeneratorOctaves(Random seed, int octavesIn)
     {
         this.octaves = octavesIn;
         this.generatorCollection = new NoiseGeneratorImproved[octavesIn];
 
-        for (int i = 0; i < octavesIn; ++i)
+        for (int i = 0; i < octavesIn; i++)
         {
             this.generatorCollection[i] = new NoiseGeneratorImproved(seed);
         }
@@ -34,7 +34,7 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
         }
         else
         {
-            for (int i = 0; i < noiseArray.length; ++i)
+            for (int i = 0; i < noiseArray.length; i++)
             {
                 noiseArray[i] = 0.0D;
             }
@@ -42,7 +42,7 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
 
         double d3 = 1.0D;
 
-        for (int j = 0; j < this.octaves; ++j)
+        for (int j = 0; j < this.octaves; j++)
         {
             double d0 = (double)xOffset * d3 * xScale;
             double d1 = (double)yOffset * d3 * yScale;

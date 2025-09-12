@@ -8,59 +8,59 @@ import net.minecraft.util.MathHelper;
 
 public class ModelHorse extends ModelBase
 {
-    private ModelRenderer head;
-    private ModelRenderer upperMouth;
-    private ModelRenderer lowerMouth;
-    private ModelRenderer horseLeftEar;
-    private ModelRenderer horseRightEar;
+    private final ModelRenderer head;
+    private final ModelRenderer upperMouth;
+    private final ModelRenderer lowerMouth;
+    private final ModelRenderer horseLeftEar;
+    private final ModelRenderer horseRightEar;
 
     /** The left ear box for the mule model. */
-    private ModelRenderer muleLeftEar;
+    private final ModelRenderer muleLeftEar;
 
     /** The right ear box for the mule model. */
-    private ModelRenderer muleRightEar;
-    private ModelRenderer neck;
+    private final ModelRenderer muleRightEar;
+    private final ModelRenderer neck;
 
     /** The box for the horse's ropes on its face. */
-    private ModelRenderer horseFaceRopes;
-    private ModelRenderer mane;
-    private ModelRenderer body;
-    private ModelRenderer tailBase;
-    private ModelRenderer tailMiddle;
-    private ModelRenderer tailTip;
-    private ModelRenderer backLeftLeg;
-    private ModelRenderer backLeftShin;
-    private ModelRenderer backLeftHoof;
-    private ModelRenderer backRightLeg;
-    private ModelRenderer backRightShin;
-    private ModelRenderer backRightHoof;
-    private ModelRenderer frontLeftLeg;
-    private ModelRenderer frontLeftShin;
-    private ModelRenderer frontLeftHoof;
-    private ModelRenderer frontRightLeg;
-    private ModelRenderer frontRightShin;
-    private ModelRenderer frontRightHoof;
+    private final ModelRenderer horseFaceRopes;
+    private final ModelRenderer mane;
+    private final ModelRenderer body;
+    private final ModelRenderer tailBase;
+    private final ModelRenderer tailMiddle;
+    private final ModelRenderer tailTip;
+    private final ModelRenderer backLeftLeg;
+    private final ModelRenderer backLeftShin;
+    private final ModelRenderer backLeftHoof;
+    private final ModelRenderer backRightLeg;
+    private final ModelRenderer backRightShin;
+    private final ModelRenderer backRightHoof;
+    private final ModelRenderer frontLeftLeg;
+    private final ModelRenderer frontLeftShin;
+    private final ModelRenderer frontLeftHoof;
+    private final ModelRenderer frontRightLeg;
+    private final ModelRenderer frontRightShin;
+    private final ModelRenderer frontRightHoof;
 
     /** The left chest box on the mule model. */
-    private ModelRenderer muleLeftChest;
+    private final ModelRenderer muleLeftChest;
 
     /** The right chest box on the mule model. */
-    private ModelRenderer muleRightChest;
-    private ModelRenderer horseSaddleBottom;
-    private ModelRenderer horseSaddleFront;
-    private ModelRenderer horseSaddleBack;
-    private ModelRenderer horseLeftSaddleRope;
-    private ModelRenderer horseLeftSaddleMetal;
-    private ModelRenderer horseRightSaddleRope;
-    private ModelRenderer horseRightSaddleMetal;
+    private final ModelRenderer muleRightChest;
+    private final ModelRenderer horseSaddleBottom;
+    private final ModelRenderer horseSaddleFront;
+    private final ModelRenderer horseSaddleBack;
+    private final ModelRenderer horseLeftSaddleRope;
+    private final ModelRenderer horseLeftSaddleMetal;
+    private final ModelRenderer horseRightSaddleRope;
+    private final ModelRenderer horseRightSaddleMetal;
 
     /** The left metal connected to the horse's face ropes. */
-    private ModelRenderer horseLeftFaceMetal;
+    private final ModelRenderer horseLeftFaceMetal;
 
     /** The right metal connected to the horse's face ropes. */
-    private ModelRenderer horseRightFaceMetal;
-    private ModelRenderer horseLeftRein;
-    private ModelRenderer horseRightRein;
+    private final ModelRenderer horseRightFaceMetal;
+    private final ModelRenderer horseLeftRein;
+    private final ModelRenderer horseRightRein;
 
     public ModelHorse()
     {
@@ -154,11 +154,11 @@ public class ModelHorse extends ModelBase
         this.muleLeftChest = new ModelRenderer(this, 0, 34);
         this.muleLeftChest.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3);
         this.muleLeftChest.setRotationPoint(-7.5F, 3.0F, 10.0F);
-        this.setBoxRotation(this.muleLeftChest, 0.0F, ((float)Math.PI / 2F), 0.0F);
+        this.setBoxRotation(this.muleLeftChest, 0.0F, (float)Math.PI / 2F, 0.0F);
         this.muleRightChest = new ModelRenderer(this, 0, 47);
         this.muleRightChest.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3);
         this.muleRightChest.setRotationPoint(4.5F, 3.0F, 10.0F);
-        this.setBoxRotation(this.muleRightChest, 0.0F, ((float)Math.PI / 2F), 0.0F);
+        this.setBoxRotation(this.muleRightChest, 0.0F, (float)Math.PI / 2F, 0.0F);
         this.horseSaddleBottom = new ModelRenderer(this, 80, 0);
         this.horseSaddleBottom.addBox(-5.0F, 0.0F, -3.0F, 10, 1, 8);
         this.horseSaddleBottom.setRotationPoint(0.0F, 2.0F, 2.0F);
@@ -436,8 +436,8 @@ public class ModelHorse extends ModelBase
         this.mane.rotateAngleY = this.head.rotateAngleY;
         this.muleLeftChest.rotateAngleX = f11 / 5.0F;
         this.muleRightChest.rotateAngleX = -f11 / 5.0F;
-        float f12 = ((float)Math.PI / 2F);
-        float f13 = ((float)Math.PI * 3F / 2F);
+        float f12 = (float)Math.PI / 2F;
+        float f13 = (float)Math.PI * 3F / 2F;
         float f14 = -1.0471976F;
         float f15 = 0.2617994F * f6;
         float f16 = MathHelper.cos(f9 * 0.6F + (float)Math.PI);

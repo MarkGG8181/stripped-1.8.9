@@ -35,7 +35,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
         if (position.getY() >= 1 && position.getY() + i + 1 <= 256)
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + i; ++j)
+            for (int j = position.getY(); j <= position.getY() + 1 + i; j++)
             {
                 int k = 1;
 
@@ -51,9 +51,9 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
                 BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                for (int l = position.getX() - k; l <= position.getX() + k && flag; l++)
                 {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; i1++)
                     {
                         if (j >= 0 && j < 256)
                         {
@@ -91,16 +91,16 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                 {
                     this.func_175921_a(worldIn, position.down());
 
-                    for (int l1 = position.getY() - 3 + i; l1 <= position.getY() + i; ++l1)
+                    for (int l1 = position.getY() - 3 + i; l1 <= position.getY() + i; l1++)
                     {
                         int k2 = l1 - (position.getY() + i);
                         int i3 = 2 - k2 / 2;
 
-                        for (int k3 = position.getX() - i3; k3 <= position.getX() + i3; ++k3)
+                        for (int k3 = position.getX() - i3; k3 <= position.getX() + i3; k3++)
                         {
                             int l3 = k3 - position.getX();
 
-                            for (int j1 = position.getZ() - i3; j1 <= position.getZ() + i3; ++j1)
+                            for (int j1 = position.getZ() - i3; j1 <= position.getZ() + i3; j1++)
                             {
                                 int k1 = j1 - position.getZ();
 
@@ -117,7 +117,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                         }
                     }
 
-                    for (int i2 = 0; i2 < i; ++i2)
+                    for (int i2 = 0; i2 < i; i2++)
                     {
                         Block block2 = worldIn.getBlockState(position.up(i2)).getBlock();
 
@@ -127,15 +127,15 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                         }
                     }
 
-                    for (int j2 = position.getY() - 3 + i; j2 <= position.getY() + i; ++j2)
+                    for (int j2 = position.getY() - 3 + i; j2 <= position.getY() + i; j2++)
                     {
                         int l2 = j2 - (position.getY() + i);
                         int j3 = 2 - l2 / 2;
                         BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
 
-                        for (int i4 = position.getX() - j3; i4 <= position.getX() + j3; ++i4)
+                        for (int i4 = position.getX() - j3; i4 <= position.getX() + j3; i4++)
                         {
-                            for (int j4 = position.getZ() - j3; j4 <= position.getZ() + j3; ++j4)
+                            for (int j4 = position.getZ() - j3; j4 <= position.getZ() + j3; j4++)
                             {
                                 blockpos$mutableblockpos1.set(i4, j2, j4);
 
@@ -190,7 +190,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
         this.setBlockAndNotifyAdequately(p_181647_1_, p_181647_2_, iblockstate);
         int i = 4;
 
-        for (p_181647_2_ = p_181647_2_.down(); p_181647_1_.getBlockState(p_181647_2_).getBlock().getMaterial() == Material.air && i > 0; --i)
+        for (p_181647_2_ = p_181647_2_.down(); p_181647_1_.getBlockState(p_181647_2_).getBlock().getMaterial() == Material.air && i > 0; i--)
         {
             this.setBlockAndNotifyAdequately(p_181647_1_, p_181647_2_, iblockstate);
             p_181647_2_ = p_181647_2_.down();

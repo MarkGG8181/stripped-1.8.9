@@ -42,7 +42,7 @@ public class CommandSaveAll extends CommandBase
 
         try
         {
-            for (int i = 0; i < minecraftserver.worldServers.length; ++i)
+            for (int i = 0; i < minecraftserver.worldServers.length; i++)
             {
                 if (minecraftserver.worldServers[i] != null)
                 {
@@ -58,7 +58,7 @@ public class CommandSaveAll extends CommandBase
             {
                 sender.addChatMessage(new ChatComponentTranslation("commands.save.flushStart", new Object[0]));
 
-                for (int j = 0; j < minecraftserver.worldServers.length; ++j)
+                for (int j = 0; j < minecraftserver.worldServers.length; j++)
                 {
                     if (minecraftserver.worldServers[j] != null)
                     {

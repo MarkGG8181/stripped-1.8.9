@@ -42,4 +42,7 @@ public class DefaultPlayerSkin
     {
         return (playerUUID.hashCode() & 1) == 1;
     }
+
+    private DefaultPlayerSkin() {
+    }
 }

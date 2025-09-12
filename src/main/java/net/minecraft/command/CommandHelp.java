@@ -81,7 +81,7 @@ public class CommandHelp extends CommandBase
         chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.DARK_GREEN);
         sender.addChatMessage(chatcomponenttranslation1);
 
-        for (int i1 = k * 7; i1 < l; ++i1)
+        for (int i1 = k * 7; i1 < l; i1++)
         {
             ICommand icommand1 = (ICommand)list.get(i1);
             ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation(icommand1.getCommandUsage(sender), new Object[0]);

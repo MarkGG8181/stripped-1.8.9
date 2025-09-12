@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class WorldGenSpikes extends WorldGenerator
 {
-    private Block baseBlockRequired;
+    private final Block baseBlockRequired;
 
     public WorldGenSpikes(Block p_i45464_1_)
     {
@@ -25,9 +25,9 @@ public class WorldGenSpikes extends WorldGenerator
             int j = rand.nextInt(4) + 1;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k = position.getX() - j; k <= position.getX() + j; ++k)
+            for (int k = position.getX() - j; k <= position.getX() + j; k++)
             {
-                for (int l = position.getZ() - j; l <= position.getZ() + j; ++l)
+                for (int l = position.getZ() - j; l <= position.getZ() + j; l++)
                 {
                     int i1 = k - position.getX();
                     int j1 = l - position.getZ();
@@ -39,11 +39,11 @@ public class WorldGenSpikes extends WorldGenerator
                 }
             }
 
-            for (int l1 = position.getY(); l1 < position.getY() + i && l1 < 256; ++l1)
+            for (int l1 = position.getY(); l1 < position.getY() + i && l1 < 256; l1++)
             {
-                for (int i2 = position.getX() - j; i2 <= position.getX() + j; ++i2)
+                for (int i2 = position.getX() - j; i2 <= position.getX() + j; i2++)
                 {
-                    for (int j2 = position.getZ() - j; j2 <= position.getZ() + j; ++j2)
+                    for (int j2 = position.getZ() - j; j2 <= position.getZ() + j; j2++)
                     {
                         int k2 = i2 - position.getX();
                         int k1 = j2 - position.getZ();

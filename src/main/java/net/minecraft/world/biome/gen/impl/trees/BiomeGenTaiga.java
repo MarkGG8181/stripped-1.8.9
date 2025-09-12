@@ -59,7 +59,7 @@ public class BiomeGenTaiga extends BiomeGenBase {
         if (this.type == 1 || this.type == 2) {
             int i = rand.nextInt(3);
 
-            for (int j = 0; j < i; ++j) {
+            for (int j = 0; j < i; j++) {
                 int k = rand.nextInt(16) + 8;
                 int l = rand.nextInt(16) + 8;
                 BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
@@ -69,7 +69,7 @@ public class BiomeGenTaiga extends BiomeGenBase {
 
         DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.FERN);
 
-        for (int i1 = 0; i1 < 7; ++i1) {
+        for (int i1 = 0; i1 < 7; i1++) {
             int j1 = rand.nextInt(16) + 8;
             int k1 = rand.nextInt(16) + 8;
             int l1 = rand.nextInt(worldIn.getHeight(pos.add(j1, 0, k1)).getY() + 32);
@@ -96,6 +96,6 @@ public class BiomeGenTaiga extends BiomeGenBase {
     }
 
     protected BiomeGenBase createMutatedBiome(int p_180277_1_) {
-        return this.biomeID == BiomeGenBase.megaTaiga.biomeID ? (new BiomeGenTaiga(p_180277_1_, 2)).func_150557_a(5858897, true).setBiomeName("Mega Spruce Taiga").setFillerBlockMetadata(5159473).setTemperatureRainfall(0.25F, 0.8F).setHeight(new BiomeGenBase.Height(this.minHeight, this.maxHeight)) : super.createMutatedBiome(p_180277_1_);
+        return this.biomeID == BiomeGenBase.megaTaiga.biomeID ? new BiomeGenTaiga(p_180277_1_, 2).func_150557_a(5858897, true).setBiomeName("Mega Spruce Taiga").setFillerBlockMetadata(5159473).setTemperatureRainfall(0.25F, 0.8F).setHeight(new BiomeGenBase.Height(this.minHeight, this.maxHeight)) : super.createMutatedBiome(p_180277_1_);
     }
 }

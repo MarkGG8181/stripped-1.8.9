@@ -27,7 +27,7 @@ public class PropertyInteger extends PropertyHelper<Integer>
         {
             Set<Integer> set = new HashSet<>();
 
-            for (int i = min; i <= max; ++i)
+            for (int i = min; i <= max; i++)
             {
                 set.add(Integer.valueOf(i));
             }

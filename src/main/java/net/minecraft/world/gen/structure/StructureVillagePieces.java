@@ -344,7 +344,7 @@ public class StructureVillagePieces
             this.setBlockState(worldIn, Blocks.torch.getDefaultState().withProperty(BlockTorch.FACING, this.coordBaseMode), 2, 4, 5, structureBoundingBoxIn);
             int i = this.getMetadataWithOffset(Blocks.ladder, 4);
 
-            for (int j = 1; j <= 9; ++j)
+            for (int j = 1; j <= 9; j++)
             {
                 this.setBlockState(worldIn, Blocks.ladder.getStateFromMeta(i), 3, j, 3, structureBoundingBoxIn);
             }
@@ -358,9 +358,9 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_stairs, 3)), 2, 0, -1, structureBoundingBoxIn);
             }
 
-            for (int l = 0; l < 9; ++l)
+            for (int l = 0; l < 9; l++)
             {
-                for (int k = 0; k < 5; ++k)
+                for (int k = 0; k < 5; k++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, k, 12, l, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), k, -1, l, structureBoundingBoxIn);
@@ -462,7 +462,7 @@ public class StructureVillagePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 0, 1, 3, 0, 7, Blocks.water.getDefaultState(), Blocks.water.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 9, 0, 1, 9, 0, 7, Blocks.water.getDefaultState(), Blocks.water.getDefaultState(), false);
 
-            for (int i = 1; i <= 7; ++i)
+            for (int i = 1; i <= 7; i++)
             {
                 this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 1, 1, i, structureBoundingBoxIn);
                 this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 2, 1, i, structureBoundingBoxIn);
@@ -474,9 +474,9 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, this.cropTypeD.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 11, 1, i, structureBoundingBoxIn);
             }
 
-            for (int k = 0; k < 9; ++k)
+            for (int k = 0; k < 9; k++)
             {
-                for (int j = 0; j < 13; ++j)
+                for (int j = 0; j < 13; j++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j, 4, k, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.dirt.getDefaultState(), j, -1, k, structureBoundingBoxIn);
@@ -560,7 +560,7 @@ public class StructureVillagePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 8, 5, 0, 8, Blocks.log.getDefaultState(), Blocks.log.getDefaultState(), false);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 3, 0, 1, 3, 0, 7, Blocks.water.getDefaultState(), Blocks.water.getDefaultState(), false);
 
-            for (int i = 1; i <= 7; ++i)
+            for (int i = 1; i <= 7; i++)
             {
                 this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 1, 1, i, structureBoundingBoxIn);
                 this.setBlockState(worldIn, this.cropTypeA.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 2, 1, i, structureBoundingBoxIn);
@@ -568,9 +568,9 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, this.cropTypeB.getStateFromMeta(MathHelper.getRandomIntegerInRange(randomIn, 2, 7)), 5, 1, i, structureBoundingBoxIn);
             }
 
-            for (int k = 0; k < 9; ++k)
+            for (int k = 0; k < 9; k++)
             {
-                for (int j = 0; j < 7; ++j)
+                for (int j = 0; j < 7; j++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j, 4, k, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.dirt.getDefaultState(), j, -1, k, structureBoundingBoxIn);
@@ -638,9 +638,9 @@ public class StructureVillagePieces
             int i = this.getMetadataWithOffset(Blocks.oak_stairs, 3);
             int j = this.getMetadataWithOffset(Blocks.oak_stairs, 2);
 
-            for (int k = -1; k <= 2; ++k)
+            for (int k = -1; k <= 2; k++)
             {
-                for (int l = 0; l <= 8; ++l)
+                for (int l = 0; l <= 8; l++)
                 {
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(i), l, 4 + k, k, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(j), l, 4 + k, 5 - k, structureBoundingBoxIn);
@@ -682,9 +682,9 @@ public class StructureVillagePieces
             this.setBlockState(worldIn, Blocks.torch.getDefaultState().withProperty(BlockTorch.FACING, this.coordBaseMode.getOpposite()), 6, 3, 4, structureBoundingBoxIn);
             this.placeDoorCurrentPosition(worldIn, structureBoundingBoxIn, randomIn, 6, 1, 5, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.oak_door, 1)));
 
-            for (int i1 = 0; i1 < 5; ++i1)
+            for (int i1 = 0; i1 < 5; i1++)
             {
-                for (int j1 = 0; j1 < 9; ++j1)
+                for (int j1 = 0; j1 < 9; j1++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j1, 7, i1, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), j1, -1, i1, structureBoundingBoxIn);
@@ -742,9 +742,9 @@ public class StructureVillagePieces
             int i = this.getMetadataWithOffset(Blocks.oak_stairs, 3);
             int j = this.getMetadataWithOffset(Blocks.oak_stairs, 2);
 
-            for (int k = -1; k <= 2; ++k)
+            for (int k = -1; k <= 2; k++)
             {
-                for (int l = 0; l <= 8; ++l)
+                for (int l = 0; l <= 8; l++)
                 {
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(i), l, 6 + k, k, structureBoundingBoxIn);
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(j), l, 6 + k, 5 - k, structureBoundingBoxIn);
@@ -805,9 +805,9 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_stairs, 3)), 1, 0, -1, structureBoundingBoxIn);
             }
 
-            for (int k1 = 0; k1 < 6; ++k1)
+            for (int k1 = 0; k1 < 6; k1++)
             {
-                for (int i1 = 0; i1 < 9; ++i1)
+                for (int i1 = 0; i1 < 9; i1++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, i1, 9, k1, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), i1, -1, k1, structureBoundingBoxIn);
@@ -914,7 +914,7 @@ public class StructureVillagePieces
                 this.generateChestContents(worldIn, structureBoundingBoxIn, randomIn, 5, 1, 5, villageBlacksmithChestContents, 3 + randomIn.nextInt(6));
             }
 
-            for (int i = 6; i <= 8; ++i)
+            for (int i = 6; i <= 8; i++)
             {
                 if (this.getBlockStateFromPos(worldIn, i, 0, -1, structureBoundingBoxIn).getBlock().getMaterial() == Material.air && this.getBlockStateFromPos(worldIn, i, -1, -1, structureBoundingBoxIn).getBlock().getMaterial() != Material.air)
                 {
@@ -922,9 +922,9 @@ public class StructureVillagePieces
                 }
             }
 
-            for (int k = 0; k < 7; ++k)
+            for (int k = 0; k < 7; k++)
             {
-                for (int j = 0; j < 10; ++j)
+                for (int j = 0; j < 10; j++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j, 6, k, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), j, -1, k, structureBoundingBoxIn);
@@ -997,9 +997,9 @@ public class StructureVillagePieces
             int i = this.getMetadataWithOffset(Blocks.oak_stairs, 3);
             int j = this.getMetadataWithOffset(Blocks.oak_stairs, 2);
 
-            for (int k = -1; k <= 2; ++k)
+            for (int k = -1; k <= 2; k++)
             {
-                for (int l = 0; l <= 8; ++l)
+                for (int l = 0; l <= 8; l++)
                 {
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(i), l, 4 + k, k, structureBoundingBoxIn);
 
@@ -1017,11 +1017,11 @@ public class StructureVillagePieces
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 6, 3, 5, 6, 10, Blocks.planks.getDefaultState(), Blocks.planks.getDefaultState(), false);
             int k1 = this.getMetadataWithOffset(Blocks.oak_stairs, 0);
 
-            for (int l1 = 4; l1 >= 1; --l1)
+            for (int l1 = 4; l1 >= 1; l1--)
             {
                 this.setBlockState(worldIn, Blocks.planks.getDefaultState(), l1, 2 + l1, 7 - l1, structureBoundingBoxIn);
 
-                for (int i1 = 8 - l1; i1 <= 10; ++i1)
+                for (int i1 = 8 - l1; i1 <= 10; i1++)
                 {
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(k1), l1, 2 + l1, i1, structureBoundingBoxIn);
                 }
@@ -1032,9 +1032,9 @@ public class StructureVillagePieces
             this.setBlockState(worldIn, Blocks.planks.getDefaultState(), 7, 5, 4, structureBoundingBoxIn);
             this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(i2), 6, 6, 4, structureBoundingBoxIn);
 
-            for (int j2 = 6; j2 <= 8; ++j2)
+            for (int j2 = 6; j2 <= 8; j2++)
             {
-                for (int j1 = 5; j1 <= 10; ++j1)
+                for (int j1 = 5; j1 <= 10; j1++)
                 {
                     this.setBlockState(worldIn, Blocks.oak_stairs.getStateFromMeta(i2), j2, 12 - j2, j1, structureBoundingBoxIn);
                 }
@@ -1075,18 +1075,18 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_stairs, 3)), 2, 0, -1, structureBoundingBoxIn);
             }
 
-            for (int k2 = 0; k2 < 5; ++k2)
+            for (int k2 = 0; k2 < 5; k2++)
             {
-                for (int i3 = 0; i3 < 9; ++i3)
+                for (int i3 = 0; i3 < 9; i3++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, i3, 7, k2, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), i3, -1, k2, structureBoundingBoxIn);
                 }
             }
 
-            for (int l2 = 5; l2 < 11; ++l2)
+            for (int l2 = 5; l2 < 11; l2++)
             {
-                for (int j3 = 2; j3 < 9; ++j3)
+                for (int j3 = 2; j3 < 9; j3++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j3, 7, l2, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), j3, -1, l2, structureBoundingBoxIn);
@@ -1213,9 +1213,9 @@ public class StructureVillagePieces
 
             this.setBlockState(worldIn, Blocks.torch.getDefaultState().withProperty(BlockTorch.FACING, this.coordBaseMode), 2, 3, 1, structureBoundingBoxIn);
 
-            for (int k = 0; k < 5; ++k)
+            for (int k = 0; k < 5; k++)
             {
-                for (int j = 0; j < 5; ++j)
+                for (int j = 0; j < 5; j++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j, 6, k, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), j, -1, k, structureBoundingBoxIn);
@@ -1344,9 +1344,9 @@ public class StructureVillagePieces
             IBlockState iblockstate = this.func_175847_a(Blocks.gravel.getDefaultState());
             IBlockState iblockstate1 = this.func_175847_a(Blocks.cobblestone.getDefaultState());
 
-            for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; ++i)
+            for (int i = this.boundingBox.minX; i <= this.boundingBox.maxX; i++)
             {
-                for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; ++j)
+                for (int j = this.boundingBox.minZ; j <= this.boundingBox.maxZ; j++)
                 {
                     BlockPos blockpos = new BlockPos(i, 64, j);
 
@@ -1564,9 +1564,9 @@ public class StructureVillagePieces
             int j = 0;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-            for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k)
+            for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; k++)
             {
-                for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
+                for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; l++)
                 {
                     blockpos$mutableblockpos.set(l, 64, k);
 
@@ -1597,7 +1597,7 @@ public class StructureVillagePieces
         {
             if (this.villagersSpawned < p_74893_6_)
             {
-                for (int i = this.villagersSpawned; i < p_74893_6_; ++i)
+                for (int i = this.villagersSpawned; i < p_74893_6_; i++)
                 {
                     int j = this.getXWithOffset(p_74893_3_ + i, p_74893_5_);
                     int k = this.getYWithOffset(p_74893_4_);
@@ -1746,9 +1746,9 @@ public class StructureVillagePieces
             this.setBlockState(worldIn, Blocks.oak_fence.getDefaultState(), 4, 14, 4, structureBoundingBoxIn);
             this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 15, 1, 4, 15, 4, Blocks.cobblestone.getDefaultState(), Blocks.cobblestone.getDefaultState(), false);
 
-            for (int i = 0; i <= 5; ++i)
+            for (int i = 0; i <= 5; i++)
             {
-                for (int j = 0; j <= 5; ++j)
+                for (int j = 0; j <= 5; j++)
                 {
                     if (j == 0 || j == 5 || i == 0 || i == 5)
                     {
@@ -1863,9 +1863,9 @@ public class StructureVillagePieces
                 this.setBlockState(worldIn, Blocks.stone_stairs.getStateFromMeta(this.getMetadataWithOffset(Blocks.stone_stairs, 3)), 1, 0, -1, structureBoundingBoxIn);
             }
 
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < 5; i++)
             {
-                for (int j = 0; j < 4; ++j)
+                for (int j = 0; j < 4; j++)
                 {
                     this.clearCurrentPositionBlocksUpwards(worldIn, j, 6, i, structureBoundingBoxIn);
                     this.replaceAirAndLiquidDownwards(worldIn, Blocks.cobblestone.getDefaultState(), j, -1, i, structureBoundingBoxIn);
@@ -1875,5 +1875,8 @@ public class StructureVillagePieces
             this.spawnVillagers(worldIn, structureBoundingBoxIn, 1, 1, 2, 1);
             return true;
         }
+    }
+
+    private StructureVillagePieces() {
     }
 }

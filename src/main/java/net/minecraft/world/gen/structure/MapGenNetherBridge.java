@@ -12,7 +12,7 @@ import net.minecraft.world.biome.gen.BiomeGenBase;
 
 public class MapGenNetherBridge extends MapGenStructure
 {
-    private List<BiomeGenBase.SpawnListEntry> spawnList = new ArrayList<>();
+    private final List<BiomeGenBase.SpawnListEntry> spawnList = new ArrayList<>();
 
     public MapGenNetherBridge()
     {

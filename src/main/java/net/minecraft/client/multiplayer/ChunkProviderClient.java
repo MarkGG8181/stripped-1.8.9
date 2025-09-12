@@ -23,12 +23,12 @@ public class ChunkProviderClient implements IChunkProvider
      * The completely empty chunk used by ChunkProviderClient when chunkMapping doesn't contain the requested
      * coordinates.
      */
-    private Chunk blankChunk;
+    private final Chunk blankChunk;
     public LongHashMap<Chunk> chunkMapping = new LongHashMap<>();
-    private List<Chunk> chunkListing = new ArrayList<>();
+    private final List<Chunk> chunkListing = new ArrayList<>();
 
     /** Reference to the World object. */
-    private World worldObj;
+    private final World worldObj;
 
     public ChunkProviderClient(World worldIn)
     {

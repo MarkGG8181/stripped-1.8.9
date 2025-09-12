@@ -6,6 +6,7 @@
 package org.lwjgl.opengl;
 
 import java.nio.*;
+import java.util.Set;
 
 import org.lwjgl.PointerBuffer;
 
@@ -33,7 +34,7 @@ import static org.lwjgl.system.MemoryUtil.*;
  */
 public class GL11 {
 // -- Begin LWJGL2 Bridge --
-    public static void glColorPointer(int size, boolean unsigned, int stride, java.nio.ByteBuffer pointer) {
+    public static void glColorPointer(int size, boolean unsigned, int stride, ByteBuffer pointer) {
         glColorPointer(size, unsigned ? GL11.GL_UNSIGNED_BYTE : GL11.GL_BYTE, stride, pointer);
     }
 
@@ -41,19 +42,19 @@ public class GL11 {
         glColorPointer(size, GL11.GL_FLOAT, stride, pointer);
     }
 
-    public static void glFog(int p1, java.nio.FloatBuffer p2) {
+    public static void glFog(int p1, FloatBuffer p2) {
         glFogfv(p1, p2);
     }
 
-    public static void glFog(int p1, java.nio.IntBuffer p2) {
+    public static void glFog(int p1, IntBuffer p2) {
         glFogiv(p1, p2);
     }
 
-    public static void glGetBoolean(int p1, java.nio.ByteBuffer p2) {
+    public static void glGetBoolean(int p1, ByteBuffer p2) {
         glGetBooleanv(p1, p2);
     }
 
-    public static void glGetDouble(int p1, java.nio.DoubleBuffer p2) {
+    public static void glGetDouble(int p1, DoubleBuffer p2) {
         glGetDoublev(p1, p2);
     }
 
@@ -165,19 +166,19 @@ public class GL11 {
         glLoadMatrixf(m);
     }
 
-    public static void glMaterial(int p1, int p2, java.nio.FloatBuffer p3) {
+    public static void glMaterial(int p1, int p2, FloatBuffer p3) {
         glMaterialfv(p1, p2, p3);
     }
 
-    public static void glMaterial(int p1, int p2, java.nio.IntBuffer p3) {
+    public static void glMaterial(int p1, int p2, IntBuffer p3) {
         glMaterialiv(p1, p2, p3);
     }
 
-    public static void glMultMatrix(java.nio.DoubleBuffer p1) {
+    public static void glMultMatrix(DoubleBuffer p1) {
         glMultMatrixd(p1);
     }
 
-    public static void glMultMatrix(java.nio.FloatBuffer p1) {
+    public static void glMultMatrix(FloatBuffer p1) {
         glMultMatrixf(p1);
     }
 
@@ -197,15 +198,15 @@ public class GL11 {
         glNormalPointer(GL11.GL_SHORT, stride, pointer);
     }
 
-    public static void glPixelMap(int p1, java.nio.FloatBuffer p2) {
+    public static void glPixelMap(int p1, FloatBuffer p2) {
         glPixelMapfv(p1, p2);
     }
 
-    public static void glPixelMapu(int p1, java.nio.IntBuffer p2) {
+    public static void glPixelMapu(int p1, IntBuffer p2) {
         glPixelMapuiv(p1, p2);
     }
 
-    public static void glPixelMapu(int p1, java.nio.ShortBuffer p2) {
+    public static void glPixelMapu(int p1, ShortBuffer p2) {
         glPixelMapusv(p1, p2);
     }
 
@@ -222,23 +223,23 @@ public class GL11 {
         glTexCoordPointer(size, GL11.GL_SHORT, stride, pointer);
     }
 
-    public static void glTexEnv(int p1, int p2, java.nio.FloatBuffer p3) {
+    public static void glTexEnv(int p1, int p2, FloatBuffer p3) {
         glTexEnvfv(p1, p2, p3);
     }
 
-    public static void glTexEnv(int p1, int p2, java.nio.IntBuffer p3) {
+    public static void glTexEnv(int p1, int p2, IntBuffer p3) {
         glTexEnviv(p1, p2, p3);
     }
 
-    public static void glTexGen(int p1, int p2, java.nio.DoubleBuffer p3) {
+    public static void glTexGen(int p1, int p2, DoubleBuffer p3) {
         glTexGendv(p1, p2, p3);
     }
 
-    public static void glTexGen(int p1, int p2, java.nio.FloatBuffer p3) {
+    public static void glTexGen(int p1, int p2, FloatBuffer p3) {
         glTexGenfv(p1, p2, p3);
     }
 
-    public static void glTexGen(int p1, int p2, java.nio.IntBuffer p3) {
+    public static void glTexGen(int p1, int p2, IntBuffer p3) {
         glTexGeniv(p1, p2, p3);
     }
 
@@ -933,7 +934,7 @@ public class GL11 {
         throw new UnsupportedOperationException();
     }
 
-    static boolean isAvailable(GLCapabilities caps, java.util.Set<String> ext, boolean fc) {
+    static boolean isAvailable(GLCapabilities caps, Set<String> ext, boolean fc) {
         return (fc || checkFunctions(
             caps.glAccum, caps.glAlphaFunc, caps.glAreTexturesResident, caps.glArrayElement, caps.glBegin, caps.glBitmap, caps.glCallList, caps.glCallLists,
             caps.glClearAccum, caps.glClearIndex, caps.glClipPlane, caps.glColor3b, caps.glColor3s, caps.glColor3i, caps.glColor3f, caps.glColor3d,

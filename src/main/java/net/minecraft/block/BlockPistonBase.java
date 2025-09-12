@@ -96,7 +96,7 @@ public class BlockPistonBase extends Block
 
         if (flag && !((Boolean)state.getValue(EXTENDED)).booleanValue())
         {
-            if ((new BlockPistonStructureHelper(worldIn, pos, enumfacing, true)).canMove())
+            if (new BlockPistonStructureHelper(worldIn, pos, enumfacing, true).canMove())
             {
                 worldIn.addBlockEvent(pos, this, 0, enumfacing.getIndex());
             }
@@ -393,7 +393,7 @@ public class BlockPistonBase extends Block
             Block[] ablock = new Block[i];
             EnumFacing enumfacing = extending ? direction : direction.getOpposite();
 
-            for (int j = list1.size() - 1; j >= 0; --j)
+            for (int j = list1.size() - 1; j >= 0; j--)
             {
                 BlockPos blockpos = (BlockPos)list1.get(j);
                 Block block = worldIn.getBlockState(blockpos).getBlock();
@@ -403,7 +403,7 @@ public class BlockPistonBase extends Block
                 ablock[i] = block;
             }
 
-            for (int k = list.size() - 1; k >= 0; --k)
+            for (int k = list.size() - 1; k >= 0; k--)
             {
                 BlockPos blockpos2 = (BlockPos)list.get(k);
                 IBlockState iblockstate = worldIn.getBlockState(blockpos2);
@@ -428,12 +428,12 @@ public class BlockPistonBase extends Block
                 worldIn.setTileEntity(blockpos1, BlockPistonMoving.newTileEntity(iblockstate1, direction, true, false));
             }
 
-            for (int l = list1.size() - 1; l >= 0; --l)
+            for (int l = list1.size() - 1; l >= 0; l--)
             {
                 worldIn.notifyNeighborsOfStateChange((BlockPos)list1.get(l), ablock[i++]);
             }
 
-            for (int i1 = list.size() - 1; i1 >= 0; --i1)
+            for (int i1 = list.size() - 1; i1 >= 0; i1--)
             {
                 worldIn.notifyNeighborsOfStateChange((BlockPos)list.get(i1), ablock[i++]);
             }

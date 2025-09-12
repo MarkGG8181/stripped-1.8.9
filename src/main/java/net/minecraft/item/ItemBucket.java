@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 public class ItemBucket extends Item
 {
     /** field for checking if the bucket has been filled. */
-    private Block isFull;
+    private final Block isFull;
 
     public ItemBucket(Block containedBlock)
     {
@@ -146,7 +146,7 @@ public class ItemBucket extends Item
                     int k = pos.getZ();
                     worldIn.playSoundEffect((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), "random.fizz", 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
 
-                    for (int l = 0; l < 8; ++l)
+                    for (int l = 0; l < 8; l++)
                     {
                         worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, (double)i + ThreadLocalRandom.current().nextDouble(), (double)j + ThreadLocalRandom.current().nextDouble(), (double)k + ThreadLocalRandom.current().nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
                     }

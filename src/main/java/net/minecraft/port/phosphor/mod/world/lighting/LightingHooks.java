@@ -37,7 +37,7 @@ public class LightingHooks {
         }
 
         short emptySections = 0;
-        for (int sec = yMax >> 4; sec >= yMin >> 4; --sec) {
+        for (int sec = yMax >> 4; sec >= yMin >> 4; sec--) {
             if (sections[sec] == null) {
                 emptySections |= 1 << sec;
             }
@@ -52,7 +52,7 @@ public class LightingHooks {
                     || ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + xOffset, chunk.zPosition + zOffset) != null;
 
                 if (neighborColumnExists) {
-                    for (int sec = yMax >> 4; sec >= yMin >> 4; --sec) {
+                    for (int sec = yMax >> 4; sec >= yMin >> 4; sec--) {
                         if ((emptySections & (1 << sec)) != 0) {
                             scheduleRelightChecksForColumn(world, EnumSkyBlock.SKY, xBase + xOffset, zBase + zOffset, sec << 4, (sec << 4) + 15);
                         }
@@ -66,15 +66,15 @@ public class LightingHooks {
     }
 
     public static void scheduleRelightChecksForArea(final World world, final EnumSkyBlock lightType, final int xMin, final int yMin, final int zMin, final int xMax, final int yMax, final int zMax) {
-        for (int x = xMin; x <= xMax; ++x) {
-            for (int z = zMin; z <= zMax; ++z) {
+        for (int x = xMin; x <= xMax; x++) {
+            for (int z = zMin; z <= zMax; z++) {
                 scheduleRelightChecksForColumn(world, lightType, x, z, yMin, yMax);
             }
         }
     }
 
     private static void scheduleRelightChecksForColumn(final World world, final EnumSkyBlock lightType, final int x, final int z, final int yMin, final int yMax) {
-        for (int y = yMin; y <= yMax; ++y) {
+        for (int y = yMin; y <= yMax; y++) {
             world.checkLightFor(lightType, new BlockPos(x, y, z));
         }
     }
@@ -103,7 +103,9 @@ public class LightingHooks {
     public static void scheduleRelightChecksForChunkBoundaries(final World world, final Chunk chunk) {
         for (final EnumFacing dir : EnumFacing.Plane.HORIZONTAL) {
             final Chunk nChunk = ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + dir.getFrontOffsetX(), chunk.zPosition + dir.getFrontOffsetZ());
-            if (nChunk == null) continue;
+            if (nChunk == null) {
+                continue;
+            }
 
             for (final EnumSkyBlock lightType : ENUM_SKY_BLOCK_VALUES) {
                 for (final EnumFacing.AxisDirection axisDir : ENUM_AXIS_DIRECTION_VALUES) {
@@ -115,7 +117,9 @@ public class LightingHooks {
     }
 
     private static void mergeFlags(final EnumSkyBlock lightType, final Chunk inChunk, final Chunk outChunk, final EnumFacing dir, final EnumFacing.AxisDirection axisDir) {
-        if (((IChunkLightingData)outChunk).getNeighborLightChecks() == null) return;
+        if (((IChunkLightingData)outChunk).getNeighborLightChecks() == null) {
+            return;
+        }
 
         initNeighborLightChecks(inChunk);
 
@@ -136,13 +140,17 @@ public class LightingHooks {
 
     public static void writeNeighborLightChecksToNBT(final Chunk chunk, final NBTTagCompound nbt) {
         short[] neighborLightChecks = ((IChunkLightingData)chunk).getNeighborLightChecks();
-        if (neighborLightChecks == null) return;
+        if (neighborLightChecks == null) {
+            return;
+        }
 
         boolean empty = true;
         final NBTTagList list = new NBTTagList();
         for (final short flags : neighborLightChecks) {
             list.appendTag(new NBTTagShort(flags));
-            if (flags != 0) empty = false;
+            if (flags != 0) {
+                empty = false;
+            }
         }
 
         if (!empty) {
@@ -156,7 +164,7 @@ public class LightingHooks {
             if (list.tagCount() == FLAG_COUNT) {
                 initNeighborLightChecks(chunk);
                 short[] neighborLightChecks = ((IChunkLightingData)chunk).getNeighborLightChecks();
-                for (int i = 0; i < FLAG_COUNT; ++i) {
+                for (int i = 0; i < FLAG_COUNT; i++) {
                     neighborLightChecks[i] = ((NBTTagShort)list.get(i)).getShort();
                 }
             }
@@ -172,9 +180,11 @@ public class LightingHooks {
 
         if (world.isAreaLoaded(corner1, corner2, false)) {
             final ExtendedBlockStorage[] sections = chunk.getBlockStorageArray();
-            for (int j = 0; j < sections.length; ++j) {
+            for (int j = 0; j < sections.length; j++) {
                 final ExtendedBlockStorage section = sections[j];
-                if (section == null) continue;
+                if (section == null) {
+                    continue;
+                }
 
                 int yBase = j << 4;
                 for (int y = 0; y < 16; y++) {
@@ -204,9 +214,11 @@ public class LightingHooks {
             initChunkLighting(chunk, world);
         }
 
-        for (int x = -1; x <= 1; ++x) {
-            for (int z = -1; z <= 1; ++z) {
-                if (x == 0 && z == 0) continue;
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                if (x == 0 && z == 0) {
+                    continue;
+                }
                 Chunk nChunk = ChunkHelper.getLoadedChunk(world.getChunkProvider(), chunk.xPosition + x, chunk.zPosition + z);
                 if (nChunk == null || !((IChunkLightingData)nChunk).isLightInitialized()) {
                     return;
@@ -219,10 +231,10 @@ public class LightingHooks {
 
     public static void initSkylightForSection(final World world, final Chunk chunk, final ExtendedBlockStorage section) {
         if (!world.provider.getHasNoSky()) {
-            for (int x = 0; x < 16; ++x) {
-                for (int z = 0; z < 16; ++z) {
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
                     if (chunk.getHeightValue(x, z) <= section.getYLocation()) {
-                        for (int y = 0; y < 16; ++y) {
+                        for (int y = 0; y < 16; y++) {
                             section.setExtSkylightValue(x, y, z, EnumSkyBlock.SKY.defaultLightValue);
                         }
                     }
@@ -233,5 +245,8 @@ public class LightingHooks {
 
     public static ILightingEngine getLightingEngine(World world) {
         return ((ILightingEngineProvider)world).getLightingEngine();
+    }
+
+    private LightingHooks() {
     }
 }

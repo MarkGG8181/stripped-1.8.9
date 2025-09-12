@@ -172,7 +172,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
             this.customName = compound.getString("CustomName");
         }
 
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
             NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 255;
@@ -189,7 +189,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
         super.writeToNBT(compound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.chestContents.length; ++i)
+        for (int i = 0; i < this.chestContents.length; i++)
         {
             if (this.chestContents[i] != null)
             {
@@ -515,7 +515,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 
     public void clear()
     {
-        for (int i = 0; i < this.chestContents.length; ++i)
+        for (int i = 0; i < this.chestContents.length; i++)
         {
             this.chestContents[i] = null;
         }

@@ -29,12 +29,24 @@ public class NeighborInfoCache implements IBlockAccess {
         int dz = pos.getZ() - this.centerPos.getZ();
 
         if (dx * dx + dy * dy + dz * dz == 1) {
-            if (dx == 1) return this.neighborStates[EnumFacing.EAST.getIndex()];
-            if (dx == -1) return this.neighborStates[EnumFacing.WEST.getIndex()];
-            if (dy == 1) return this.neighborStates[EnumFacing.UP.getIndex()];
-            if (dy == -1) return this.neighborStates[EnumFacing.DOWN.getIndex()];
-            if (dz == 1) return this.neighborStates[EnumFacing.SOUTH.getIndex()];
-            if (dz == -1) return this.neighborStates[EnumFacing.NORTH.getIndex()];
+            if (dx == 1) {
+                return this.neighborStates[EnumFacing.EAST.getIndex()];
+            }
+            if (dx == -1) {
+                return this.neighborStates[EnumFacing.WEST.getIndex()];
+            }
+            if (dy == 1) {
+                return this.neighborStates[EnumFacing.UP.getIndex()];
+            }
+            if (dy == -1) {
+                return this.neighborStates[EnumFacing.DOWN.getIndex()];
+            }
+            if (dz == 1) {
+                return this.neighborStates[EnumFacing.SOUTH.getIndex()];
+            }
+            if (dz == -1) {
+                return this.neighborStates[EnumFacing.NORTH.getIndex()];
+            }
         }
 
         return this.world.getBlockState(pos);

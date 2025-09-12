@@ -43,7 +43,7 @@ import net.minecraft.world.WorldServer;
 
 public abstract class EntityLivingBase extends Entity {
     private static final UUID sprintingSpeedBoostModifierUUID = FastUUID.parseUUID("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
-    private static final AttributeModifier sprintingSpeedBoostModifier = (new AttributeModifier(sprintingSpeedBoostModifierUUID, "Sprinting speed boost", 0.30000001192092896D, 2)).setSaved(false);
+    private static final AttributeModifier sprintingSpeedBoostModifier = new AttributeModifier(sprintingSpeedBoostModifierUUID, "Sprinting speed boost", 0.30000001192092896D, 2).setSaved(false);
     private BaseAttributeMap attributeMap;
     private final CombatTracker _combatTracker = new CombatTracker(this);
     private final Map<Integer, PotionEffect> activePotionsMap = new HashMap<>();
@@ -309,7 +309,7 @@ public abstract class EntityLivingBase extends Entity {
                     if (this.getAir() == -20) {
                         this.setAir(0);
 
-                        for (int i = 0; i < 8; ++i) {
+                        for (int i = 0; i < 8; i++) {
                             float f = this.rand.nextFloat() - this.rand.nextFloat();
                             float f1 = this.rand.nextFloat() - this.rand.nextFloat();
                             float f2 = this.rand.nextFloat() - this.rand.nextFloat();
@@ -402,7 +402,7 @@ public abstract class EntityLivingBase extends Entity {
 
             this.setDead();
 
-            for (int k = 0; k < 20; ++k) {
+            for (int k = 0; k < 20; k++) {
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 double d0 = this.rand.nextGaussian() * 0.02D;
                 double d1 = this.rand.nextGaussian() * 0.02D;
@@ -529,7 +529,7 @@ public abstract class EntityLivingBase extends Entity {
         if (tagCompund.hasKey("ActiveEffects", 9)) {
             NBTTagList nbttaglist = tagCompund.getTagList("ActiveEffects", 10);
 
-            for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            for (int i = 0; i < nbttaglist.tagCount(); i++) {
                 NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
                 PotionEffect potioneffect = PotionEffect.readCustomPotionEffectFromNBT(nbttagcompound);
 
@@ -888,7 +888,7 @@ public abstract class EntityLivingBase extends Entity {
     public void renderBrokenItemStack(ItemStack stack) {
         this.playSound("random.break", 0.8F, 0.8F + this.worldObj.rand.nextFloat() * 0.4F);
 
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 5; i++) {
             Vec3 vec3 = new Vec3(((double)this.rand.nextFloat() - 0.5D) * 0.1D, ThreadLocalRandom.current().nextDouble() * 0.1D + 0.1D, 0.0D);
             vec3 = vec3.rotatePitch(-this.rotationPitch * (float)Math.PI / 180.0F);
             vec3 = vec3.rotateYaw(-this.rotationYaw * (float)Math.PI / 180.0F);
@@ -1332,8 +1332,8 @@ public abstract class EntityLivingBase extends Entity {
         double d2 = entityIn.posZ;
         int i = 1;
 
-        for (int j = -i; j <= i; ++j) {
-            for (int k = -i; k < i; ++k) {
+        for (int j = -i; j <= i; j++) {
+            for (int k = -i; k < i; k++) {
                 if (j != 0 || k != 0) {
                     int l = (int)(this.posX + (double)j);
                     int i1 = (int)(this.posZ + (double)k);
@@ -1571,7 +1571,7 @@ public abstract class EntityLivingBase extends Entity {
                 }
             }
 
-            for (int j = 0; j < 5; ++j) {
+            for (int j = 0; j < 5; j++) {
                 ItemStack itemstack = this.previousEquipment[j];
                 ItemStack itemstack1 = this.getEquipmentInSlot(j);
 
@@ -1785,7 +1785,7 @@ public abstract class EntityLivingBase extends Entity {
         }));
 
         if (!list.isEmpty()) {
-            for (int i = 0; i < list.size(); ++i) {
+            for (int i = 0; i < list.size(); i++) {
                 Entity entity = (Entity)list.get(i);
                 this.collideWithEntity(entity);
             }

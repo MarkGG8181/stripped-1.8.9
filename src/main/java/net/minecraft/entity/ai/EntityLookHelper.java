@@ -7,7 +7,7 @@ import net.minecraft.util.MathHelper;
 
 public class EntityLookHelper
 {
-    private EntityLiving entity;
+    private final EntityLiving entity;
 
     /**
      * The amount of change that is made each update for an entity facing a direction.

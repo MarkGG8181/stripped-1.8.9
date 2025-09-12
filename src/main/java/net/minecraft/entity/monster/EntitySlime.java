@@ -127,7 +127,7 @@ public class EntitySlime extends EntityLiving implements IMob
         {
             int i = this.getSlimeSize();
 
-            for (int j = 0; j < i * 8; ++j)
+            for (int j = 0; j < i * 8; j++)
             {
                 float f = this.rand.nextFloat() * (float)Math.PI * 2.0F;
                 float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
@@ -203,7 +203,7 @@ public class EntitySlime extends EntityLiving implements IMob
         {
             int j = 2 + this.rand.nextInt(3);
 
-            for (int k = 0; k < j; ++k)
+            for (int k = 0; k < j; k++)
             {
                 float f = ((float)(k % 2) - 0.5F) * (float)i / 4.0F;
                 float f1 = ((float)(k / 2) - 0.5F) * (float)i / 4.0F;

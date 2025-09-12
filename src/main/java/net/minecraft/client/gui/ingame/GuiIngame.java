@@ -122,18 +122,18 @@ public class GuiIngame extends Gui {
      * The time that the title take to fade out
      */
     private int titleFadeOut;
-    private int playerHealth = 0;
-    private int lastPlayerHealth = 0;
+    private int playerHealth;
+    private int lastPlayerHealth;
 
     /**
      * The last recorded system time
      */
-    private long lastSystemTime = 0L;
+    private long lastSystemTime;
 
     /**
      * Used with updateCounter to make the heart bar flash
      */
-    private long healthUpdateCounter = 0L;
+    private long healthUpdateCounter;
 
     public GuiIngame(Minecraft mcIn) {
         mc = mcIn;
@@ -382,7 +382,7 @@ public class GuiIngame extends Gui {
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             RenderHelper.enableGUIStandardItemLighting();
 
-            for (int j = 0; j < 9; ++j) {
+            for (int j = 0; j < 9; j++) {
                 int k = sr.getScaledWidth() / 2 - 90 + j * 20 + 2;
                 int l = sr.getScaledHeight() - 16 - 3;
                 renderHotbarItem(j, k, l, partialTicks, entityplayer);
@@ -594,7 +594,7 @@ public class GuiIngame extends Gui {
 
             mc.mcProfiler.startSection("armor");
 
-            for (int i3 = 0; i3 < 10; ++i3) {
+            for (int i3 = 0; i3 < 10; i3++) {
                 if (k2 > 0) {
                     int j3 = i1 + i3 * 8;
 
@@ -614,7 +614,7 @@ public class GuiIngame extends Gui {
 
             mc.mcProfiler.endStartSection("health");
 
-            for (int i6 = MathHelper.ceiling_float_int((f + f1) / 2.0F) - 1; i6 >= 0; --i6) {
+            for (int i6 = MathHelper.ceiling_float_int((f + f1) / 2.0F) - 1; i6 >= 0; i6--) {
                 int j6 = 16;
 
                 if (entityplayer.isPotionActive(Potion.poison)) {
@@ -686,7 +686,7 @@ public class GuiIngame extends Gui {
             if (entity == null) {
                 mc.mcProfiler.endStartSection("food");
 
-                for (int k6 = 0; k6 < 10; ++k6) {
+                for (int k6 = 0; k6 < 10; k6++) {
                     int i7 = k1;
                     int l7 = 16;
                     int j8 = 0;
@@ -728,7 +728,7 @@ public class GuiIngame extends Gui {
                     int l4 = Math.min(k8, 10);
                     k8 -= l4;
 
-                    for (int i5 = 0; i5 < l4; ++i5) {
+                    for (int i5 = 0; i5 < l4; i5++) {
                         int j5 = 52;
 
                         int l5 = j1 - i5 * 8 - 9;
@@ -754,7 +754,7 @@ public class GuiIngame extends Gui {
                 int k7 = MathHelper.ceiling_double_int((double)(l6 - 2) * 10.0D / 300.0D);
                 int i8 = MathHelper.ceiling_double_int((double)l6 * 10.0D / 300.0D) - k7;
 
-                for (int l8 = 0; l8 < k7 + i8; ++l8) {
+                for (int l8 = 0; l8 < k7 + i8; l8++) {
                     if (l8 < k7) {
                         drawTexturedModalRect(j1 - l8 * 8 - 9, j2, 16, 18, 9, 9);
                     }

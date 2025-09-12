@@ -8,7 +8,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class GeneratorBushFeature extends WorldGenerator
 {
-    private BlockBush block;
+    private final BlockBush block;
 
     public GeneratorBushFeature(BlockBush p_i45633_1_)
     {
@@ -17,7 +17,7 @@ public class GeneratorBushFeature extends WorldGenerator
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        for (int i = 0; i < 64; ++i)
+        for (int i = 0; i < 64; i++)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 

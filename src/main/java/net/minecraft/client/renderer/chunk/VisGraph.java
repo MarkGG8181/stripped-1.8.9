@@ -188,11 +188,11 @@ public class VisGraph
         int j = 15;
         int k = 0;
 
-        for (int l = 0; l < 16; ++l)
+        for (int l = 0; l < 16; l++)
         {
-            for (int i1 = 0; i1 < 16; ++i1)
+            for (int i1 = 0; i1 < 16; i1++)
             {
-                for (int j1 = 0; j1 < 16; ++j1)
+                for (int j1 = 0; j1 < 16; j1++)
                 {
                     if (l == 0 || l == 15 || i1 == 0 || i1 == 15 || j1 == 0 || j1 == 15)
                     {

@@ -309,8 +309,9 @@ public class Project extends Util {
         __gluMultMatrixVecf(modelMatrix, in, out);
         __gluMultMatrixVecf(projMatrix, out, in);
 
-        if (in[3] == 0.0)
+        if (in[3] == 0.0) {
             return false;
+        }
 
         in[3] = (1.0f / in[3]) * 0.5f;
 
@@ -351,8 +352,9 @@ public class Project extends Util {
 
         __gluMultMatricesf(modelMatrix, projMatrix, finalMatrix);
 
-        if (!__gluInvertMatrixf(finalMatrix, finalMatrix))
+        if (!__gluInvertMatrixf(finalMatrix, finalMatrix)) {
             return false;
+        }
 
         in[0] = winx;
         in[1] = winy;
@@ -370,8 +372,9 @@ public class Project extends Util {
 
         __gluMultMatrixVecf(finalMatrix, in, out);
 
-        if (out[3] == 0.0)
+        if (out[3] == 0.0) {
             return false;
+        }
 
         out[3] = 1.0f / out[3];
 

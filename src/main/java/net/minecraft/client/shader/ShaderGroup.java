@@ -27,9 +27,9 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 
 public class ShaderGroup {
-    private Framebuffer mainFramebuffer;
-    private IResourceManager resourceManager;
-    private String shaderGroupName;
+    private final Framebuffer mainFramebuffer;
+    private final IResourceManager resourceManager;
+    private final String shaderGroupName;
     private final List<Shader> listShaders = new ArrayList<>();
     private final Map<String, Framebuffer> mapFramebuffers = new HashMap<>();
     private final List<Framebuffer> listFramebuffers = new ArrayList<>();
@@ -232,9 +232,6 @@ public class ShaderGroup {
             }
 
             switch (i) {
-                case 0:
-                default:
-                    break;
 
                 case 1:
                     shaderuniform.set(afloat[0]);
@@ -250,6 +247,9 @@ public class ShaderGroup {
 
                 case 4:
                     shaderuniform.set(afloat[0], afloat[1], afloat[2], afloat[3]);
+                    break;
+                case 0:
+                default:
             }
         }
     }
@@ -334,6 +334,6 @@ public class ShaderGroup {
     }
 
     private Framebuffer getFramebuffer(String p_148017_1_) {
-        return p_148017_1_ == null ? null : (p_148017_1_.equals("minecraft:main") ? this.mainFramebuffer : (Framebuffer)this.mapFramebuffers.get(p_148017_1_));
+        return p_148017_1_ == null ? null : ("minecraft:main".equals(p_148017_1_) ? this.mainFramebuffer : (Framebuffer)this.mapFramebuffers.get(p_148017_1_));
     }
 }

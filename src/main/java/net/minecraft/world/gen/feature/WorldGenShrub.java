@@ -36,16 +36,16 @@ public class WorldGenShrub extends WorldGenTrees
             position = position.up();
             this.setBlockAndNotifyAdequately(worldIn, position, this.woodMetadata);
 
-            for (int i = position.getY(); i <= position.getY() + 2; ++i)
+            for (int i = position.getY(); i <= position.getY() + 2; i++)
             {
                 int j = i - position.getY();
                 int k = 2 - j;
 
-                for (int l = position.getX() - k; l <= position.getX() + k; ++l)
+                for (int l = position.getX() - k; l <= position.getX() + k; l++)
                 {
                     int i1 = l - position.getX();
 
-                    for (int j1 = position.getZ() - k; j1 <= position.getZ() + k; ++j1)
+                    for (int j1 = position.getZ() - k; j1 <= position.getZ() + k; j1++)
                     {
                         int k1 = j1 - position.getZ();
 

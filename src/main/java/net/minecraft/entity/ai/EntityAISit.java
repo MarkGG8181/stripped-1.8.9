@@ -5,7 +5,7 @@ import net.minecraft.entity.passive.EntityTameable;
 
 public class EntityAISit extends EntityAIBase
 {
-    private EntityTameable theEntity;
+    private final EntityTameable theEntity;
 
     /** If the EntityTameable is sitting. */
     private boolean isSitting;

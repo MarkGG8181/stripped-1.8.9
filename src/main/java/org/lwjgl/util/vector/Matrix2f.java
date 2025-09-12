@@ -81,8 +81,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return The copied matrix
      */
     public static Matrix2f load(Matrix2f src, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         dest.m00 = src.m00;
         dest.m01 = src.m01;
@@ -161,8 +162,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix2f add(Matrix2f left, Matrix2f right, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         dest.m00 = left.m00 + right.m00;
         dest.m01 = left.m01 + right.m01;
@@ -180,8 +182,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix2f sub(Matrix2f left, Matrix2f right, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         dest.m00 = left.m00 - right.m00;
         dest.m01 = left.m01 - right.m01;
@@ -199,8 +202,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the destination matrix
      */
     public static Matrix2f mul(Matrix2f left, Matrix2f right, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         float m00 = left.m00 * right.m00 + left.m10 * right.m01;
         float m01 = left.m01 * right.m00 + left.m11 * right.m01;
@@ -224,8 +228,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the destination vector
      */
     public static Vector2f transform(Matrix2f left, Vector2f right, Vector2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Vector2f();
+        }
 
         float x = left.m00 * right.x + left.m10 * right.y;
         float y = left.m01 * right.x + left.m11 * right.y;
@@ -260,8 +265,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the transposed matrix
      */
     public static Matrix2f transpose(Matrix2f src, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         float m01 = src.m10;
         float m10 = src.m01;
@@ -293,8 +299,9 @@ public class Matrix2f extends Matrix implements Serializable {
 
         float determinant = src.determinant();
         if (determinant != 0) {
-            if (dest == null)
+            if (dest == null) {
                 dest = new Matrix2f();
+            }
             float determinant_inv = 1f / determinant;
             float t00 = src.m11 * determinant_inv;
             float t01 = -src.m01 * determinant_inv;
@@ -306,8 +313,10 @@ public class Matrix2f extends Matrix implements Serializable {
             dest.m10 = t10;
             dest.m11 = t11;
             return dest;
-        } else
+        }
+        else {
             return null;
+        }
     }
 
     /**
@@ -344,8 +353,9 @@ public class Matrix2f extends Matrix implements Serializable {
      * @return the negated matrix
      */
     public static Matrix2f negate(Matrix2f src, Matrix2f dest) {
-        if (dest == null)
+        if (dest == null) {
             dest = new Matrix2f();
+        }
 
         dest.m00 = -src.m00;
         dest.m01 = -src.m01;

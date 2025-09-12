@@ -19,7 +19,7 @@ import net.minecraft.world.WorldType;
 
 public class BlockRendererDispatcher implements IResourceManagerReloadListener
 {
-    private BlockModelShapes blockModelShapes;
+    private final BlockModelShapes blockModelShapes;
     private final GameSettings gameSettings;
     private final BlockModelRenderer blockModelRenderer = new BlockModelRenderer();
     private final ChestRenderer chestRenderer = new ChestRenderer();
@@ -45,7 +45,7 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         {
             state = block.getActualState(state, blockAccess, pos);
             IBakedModel ibakedmodel = this.blockModelShapes.getModelForState(state);
-            IBakedModel ibakedmodel1 = (new SimpleBakedModel.Builder(ibakedmodel, texture)).makeBakedModel();
+            IBakedModel ibakedmodel1 = new SimpleBakedModel.Builder(ibakedmodel, texture).makeBakedModel();
             this.blockModelRenderer.renderModel(blockAccess, ibakedmodel1, state, pos, Tessellator.getInstance().getWorldRenderer());
         }
     }
@@ -138,9 +138,6 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
         {
             switch (i)
             {
-                case 1:
-                default:
-                    break;
 
                 case 2:
                     this.chestRenderer.renderChestBrightness(state.getBlock(), brightness);
@@ -149,6 +146,9 @@ public class BlockRendererDispatcher implements IResourceManagerReloadListener
                 case 3:
                     IBakedModel ibakedmodel = this.getBakedModel(state, (BlockPos)null);
                     this.blockModelRenderer.renderModelBrightness(ibakedmodel, state, brightness, true);
+                    break;
+                case 1:
+                default:
             }
         }
     }

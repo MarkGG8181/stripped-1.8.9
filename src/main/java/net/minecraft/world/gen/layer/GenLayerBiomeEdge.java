@@ -19,9 +19,9 @@ public class GenLayerBiomeEdge extends GenLayer
         int[] aint = this.parent.getInts(areaX - 1, areaY - 1, areaWidth + 2, areaHeight + 2);
         int[] aint1 = IntCache.getIntCache(areaWidth * areaHeight);
 
-        for (int i = 0; i < areaHeight; ++i)
+        for (int i = 0; i < areaHeight; i++)
         {
-            for (int j = 0; j < areaWidth; ++j)
+            for (int j = 0; j < areaWidth; j++)
             {
                 this.initChunkSeed((long)(j + areaX), (long)(i + areaY));
                 int k = aint[j + 1 + (i + 1) * (areaWidth + 2)];

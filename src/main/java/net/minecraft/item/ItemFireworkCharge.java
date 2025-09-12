@@ -115,7 +115,7 @@ public class ItemFireworkCharge extends Item
                 flag = false;
                 boolean flag1 = false;
 
-                for (int j = 0; j < ItemDye.dyeColors.length; ++j)
+                for (int j = 0; j < ItemDye.dyeColors.length; j++)
                 {
                     if (i == ItemDye.dyeColors[j])
                     {
@@ -151,7 +151,7 @@ public class ItemFireworkCharge extends Item
                 flag2 = false;
                 boolean flag5 = false;
 
-                for (int k = 0; k < 16; ++k)
+                for (int k = 0; k < 16; k++)
                 {
                     if (l == ItemDye.dyeColors[k])
                     {

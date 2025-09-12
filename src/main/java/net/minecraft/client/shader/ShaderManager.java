@@ -149,7 +149,7 @@ public class ShaderManager {
         OpenGlHelper.glUseProgram(0);
         currentProgram = -1;
 
-        for (int i = 0; i < this.shaderSamplerLocations.size(); ++i) {
+        for (int i = 0; i < this.shaderSamplerLocations.size(); i++) {
             if (this.shaderSamplers.get(this.samplerNames.get(i)) != null) {
                 GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit + i);
                 GlStateManager.bindTexture(0);
@@ -172,7 +172,7 @@ public class ShaderManager {
             GlStateManager.disableCull();
         }
 
-        for (int i = 0; i < this.shaderSamplerLocations.size(); ++i) {
+        for (int i = 0; i < this.shaderSamplerLocations.size(); i++) {
             if (this.shaderSamplers.get(this.samplerNames.get(i)) != null) {
                 GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit + i);
                 GlStateManager.enableTexture2D();
@@ -224,7 +224,7 @@ public class ShaderManager {
     private void setupUniforms() {
         int i = 0;
 
-        for (int j = 0; i < this.samplerNames.size(); ++j) {
+        for (int j = 0; i < this.samplerNames.size(); j++) {
             String s = (String)this.samplerNames.get(i);
             int k = OpenGlHelper.glGetUniformLocation(this.program, s);
 

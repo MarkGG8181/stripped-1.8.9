@@ -24,7 +24,7 @@ public class FolderResourcePack extends AbstractResourcePack
 
     protected boolean hasResourceName(String name)
     {
-        return (new File(this.resourcePackFile, name)).isFile();
+        return new File(this.resourcePackFile, name).isFile();
     }
 
     public Set<String> getResourceDomains()

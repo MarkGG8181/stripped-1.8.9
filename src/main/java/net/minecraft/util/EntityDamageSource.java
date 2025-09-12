@@ -12,7 +12,7 @@ public class EntityDamageSource extends DamageSource
     /**
      * Whether this EntityDamageSource is from an entity wearing Thorns-enchanted armor.
      */
-    private boolean isThornsDamage = false;
+    private boolean isThornsDamage;
 
     public EntityDamageSource(String damageTypeIn, Entity damageSourceEntityIn)
     {

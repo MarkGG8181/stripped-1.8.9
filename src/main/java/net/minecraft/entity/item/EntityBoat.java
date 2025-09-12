@@ -221,7 +221,7 @@ public class EntityBoat extends Entity {
         int i = 5;
         double d0 = 0.0D;
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; j++) {
             double d1 = this.getEntityBoundingBox().minY + (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) * (double)(j + 0) / (double)i - 0.125D;
             double d3 = this.getEntityBoundingBox().minY + (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) * (double)(j + 1) / (double)i - 0.125D;
             AxisAlignedBB axisalignedbb = new AxisAlignedBB(this.getEntityBoundingBox().minX, d1, this.getEntityBoundingBox().minZ, this.getEntityBoundingBox().maxX, d3, this.getEntityBoundingBox().maxZ);
@@ -237,7 +237,7 @@ public class EntityBoat extends Entity {
             double d2 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
             double d4 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
 
-            for (int k = 0; (double)k < 1.0D + d9 * 60.0D; ++k) {
+            for (int k = 0; (double)k < 1.0D + d9 * 60.0D; k++) {
                 double d5 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
                 double d6 = (double)(this.rand.nextInt(2) * 2 - 1) * 0.7D;
 
@@ -326,11 +326,11 @@ public class EntityBoat extends Entity {
                 }
             }
 
-            for (int i1 = 0; i1 < 4; ++i1) {
+            for (int i1 = 0; i1 < 4; i1++) {
                 int l1 = MathHelper.floor_double(this.posX + ((double)(i1 % 2) - 0.5D) * 0.8D);
                 int i2 = MathHelper.floor_double(this.posZ + ((double)(i1 / 2) - 0.5D) * 0.8D);
 
-                for (int j2 = 0; j2 < 2; ++j2) {
+                for (int j2 = 0; j2 < 2; j2++) {
                     int l = MathHelper.floor_double(this.posY) + j2;
                     BlockPos blockpos = new BlockPos(l1, l, i2);
                     Block block = this.worldObj.getBlockState(blockpos).getBlock();
@@ -359,11 +359,11 @@ public class EntityBoat extends Entity {
                     this.setDead();
 
                     if (this.worldObj.getGameRules().getBoolean("doEntityDrops")) {
-                        for (int j1 = 0; j1 < 3; ++j1) {
+                        for (int j1 = 0; j1 < 3; j1++) {
                             this.dropItemWithOffset(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
                         }
 
-                        for (int k1 = 0; k1 < 2; ++k1) {
+                        for (int k1 = 0; k1 < 2; k1++) {
                             this.dropItemWithOffset(Items.stick, 1, 0.0F);
                         }
                     }
@@ -401,7 +401,7 @@ public class EntityBoat extends Entity {
                 List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
                 if (list != null && !list.isEmpty()) {
-                    for (int k2 = 0; k2 < list.size(); ++k2) {
+                    for (int k2 = 0; k2 < list.size(); k2++) {
                         Entity entity = (Entity)list.get(k2);
 
                         if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityBoat) {
@@ -462,11 +462,11 @@ public class EntityBoat extends Entity {
                     this.setDead();
 
                     if (this.worldObj.getGameRules().getBoolean("doEntityDrops")) {
-                        for (int i = 0; i < 3; ++i) {
+                        for (int i = 0; i < 3; i++) {
                             this.dropItemWithOffset(Item.getItemFromBlock(Blocks.planks), 1, 0.0F);
                         }
 
-                        for (int j = 0; j < 2; ++j) {
+                        for (int j = 0; j < 2; j++) {
                             this.dropItemWithOffset(Items.stick, 1, 0.0F);
                         }
                     }
@@ -475,7 +475,7 @@ public class EntityBoat extends Entity {
                 this.fallDistance = 0.0F;
             }
         }
-        else if (this.worldObj.getBlockState((new BlockPos(this)).down()).getBlock().getMaterial() != Material.water && y < 0.0D) {
+        else if (this.worldObj.getBlockState(new BlockPos(this).down()).getBlock().getMaterial() != Material.water && y < 0.0D) {
             this.fallDistance = (float)((double)this.fallDistance - y);
         }
     }

@@ -114,8 +114,9 @@ public class Keyboard {
      * Static initialization
      */
     private static void initialize() {
-        if (initialized)
+        if (initialized) {
             return;
+        }
         Sys.initialize();
         initialized = true;
     }
@@ -127,10 +128,12 @@ public class Keyboard {
      * @throws LWJGLException if the keyboard could not be created for any reason
      */
     private static void create(InputImplementation impl) throws LWJGLException {
-        if (created)
+        if (created) {
             return;
-        if (!initialized)
+        }
+        if (!initialized) {
             initialize();
+        }
         implementation = impl;
         implementation.createKeyboard();
         created = true;
@@ -146,7 +149,9 @@ public class Keyboard {
      */
     public static void create() throws LWJGLException {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!Display.isCreated()) throw new IllegalStateException("Display must be created.");
+        if (!Display.isCreated()) {
+            throw new IllegalStateException("Display must be created.");
+        }
 
         create(LWJGLImplementationUtils.getOrCreateInputImplementation());
 //        }
@@ -154,8 +159,9 @@ public class Keyboard {
 
     private static void reset() {
         readBuffer.limit(0);
-        for (int i = 0; i < keyDownBuffer.remaining(); i++)
+        for (int i = 0; i < keyDownBuffer.remaining(); i++) {
             keyDownBuffer.put(i, (byte)0);
+        }
         current_event.reset();
     }
 
@@ -173,8 +179,9 @@ public class Keyboard {
      */
     public static void destroy() {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!created)
+        if (!created) {
             return;
+        }
         created = false;
         implementation.destroyKeyboard();
         reset();
@@ -204,8 +211,9 @@ public class Keyboard {
      */
     public static void poll() {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Keyboard must be created before you can poll the device");
+        }
         implementation.pollKeyboard(keyDownBuffer);
         read();
 //        }
@@ -225,8 +233,9 @@ public class Keyboard {
      */
     public static boolean isKeyDown(int key) {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Keyboard must be created before you can query key state");
+        }
         return keyDownBuffer.get(key) != 0;
 //        }
     }
@@ -274,12 +283,14 @@ public class Keyboard {
      */
     public static int getNumKeyboardEvents() {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Keyboard must be created before you can read events");
+        }
         int old_position = readBuffer.position();
         int num_events = 0;
-        while (readNext(tmp_event) && (!tmp_event.repeat || repeat_enabled))
+        while (readNext(tmp_event) && (!tmp_event.repeat || repeat_enabled)) {
             num_events++;
+        }
         readBuffer.position(old_position);
         return num_events;
 //        }
@@ -298,12 +309,13 @@ public class Keyboard {
      */
     public static boolean next() {
 //        synchronized (OpenGLPackageAccess.global_lock) {
-        if (!created)
+        if (!created) {
             throw new IllegalStateException("Keyboard must be created before you can read events");
+        }
 
         boolean result;
-        while ((result = readNext(current_event)) && current_event.repeat && !repeat_enabled)
-            ;
+        while ((result = readNext(current_event)) && current_event.repeat && !repeat_enabled) {
+        }
         return result;
 //        }
     }
@@ -342,8 +354,10 @@ public class Keyboard {
             event.nanos = readBuffer.getLong();
             event.repeat = readBuffer.get() == 1;
             return true;
-        } else
+        }
+        else {
             return false;
+        }
     }
 
     /**

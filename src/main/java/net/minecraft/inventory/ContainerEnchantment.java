@@ -75,15 +75,15 @@ public class ContainerEnchantment extends Container
             }
         });
 
-        for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 0; j < 9; ++j)
+            for (int j = 0; j < 9; j++)
             {
                 this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
 
-        for (int k = 0; k < 9; ++k)
+        for (int k = 0; k < 9; k++)
         {
             this.addSlotToContainer(new Slot(playerInv, k, 8 + k * 18, 142));
         }
@@ -108,7 +108,7 @@ public class ContainerEnchantment extends Container
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
+        for (int i = 0; i < this.crafters.size(); i++)
         {
             ICrafting icrafting = (ICrafting)this.crafters.get(i);
             icrafting.sendProgressBarUpdate(this, 0, this.enchantLevels[0]);
@@ -156,9 +156,9 @@ public class ContainerEnchantment extends Container
                 {
                     int l = 0;
 
-                    for (int j = -1; j <= 1; ++j)
+                    for (int j = -1; j <= 1; j++)
                     {
-                        for (int k = -1; k <= 1; ++k)
+                        for (int k = -1; k <= 1; k++)
                         {
                             if ((j != 0 || k != 0) && this.worldPointer.isAirBlock(this.position.add(k, 0, j)) && this.worldPointer.isAirBlock(this.position.add(k, 1, j)))
                             {
@@ -200,7 +200,7 @@ public class ContainerEnchantment extends Container
 
                     this.rand.setSeed((long)this.xpSeed);
 
-                    for (int i1 = 0; i1 < 3; ++i1)
+                    for (int i1 = 0; i1 < 3; i1++)
                     {
                         this.enchantLevels[i1] = EnchantmentHelper.calcItemStackEnchantability(this.rand, i1, l, itemstack);
                         this.enchantmentIds[i1] = -1;
@@ -211,7 +211,7 @@ public class ContainerEnchantment extends Container
                         }
                     }
 
-                    for (int j1 = 0; j1 < 3; ++j1)
+                    for (int j1 = 0; j1 < 3; j1++)
                     {
                         if (this.enchantLevels[j1] > 0)
                         {
@@ -230,7 +230,7 @@ public class ContainerEnchantment extends Container
             }
             else
             {
-                for (int i = 0; i < 3; ++i)
+                for (int i = 0; i < 3; i++)
                 {
                     this.enchantLevels[i] = 0;
                     this.enchantmentIds[i] = -1;
@@ -268,7 +268,7 @@ public class ContainerEnchantment extends Container
                         itemstack.setItem(Items.enchanted_book);
                     }
 
-                    for (int j = 0; j < list.size(); ++j)
+                    for (int j = 0; j < list.size(); j++)
                     {
                         EnchantmentData enchantmentdata = (EnchantmentData)list.get(j);
 
@@ -335,7 +335,7 @@ public class ContainerEnchantment extends Container
 
         if (!this.worldPointer.isRemote)
         {
-            for (int i = 0; i < this.tableInventory.getSizeInventory(); ++i)
+            for (int i = 0; i < this.tableInventory.getSizeInventory(); i++)
             {
                 ItemStack itemstack = this.tableInventory.removeStackFromSlot(i);
 

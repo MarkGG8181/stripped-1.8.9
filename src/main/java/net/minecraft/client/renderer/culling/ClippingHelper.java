@@ -11,7 +11,7 @@ public class ClippingHelper {
      */
     public boolean isBoxInFrustum(double minX, double minY, double minZ,
                                   double maxX, double maxY, double maxZ) {
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 0; i < 6; i++) {
             double[] plane = this.frustum[i];
 
             // Pick the vertex most in the direction of the normal
