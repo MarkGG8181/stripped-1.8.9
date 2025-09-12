@@ -252,6 +252,6 @@ public class Util {
         };
     }
 
-    private Util() {
+    Util() {
     }
 }

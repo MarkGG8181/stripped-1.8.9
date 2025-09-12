@@ -271,7 +271,6 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
                     BiomeGenBase biomegenbase = BiomeGenBase.getBiomeGenArray()[(int)p_175330_2_];
                     return biomegenbase != null ? biomegenbase.biomeName : "?";
                 }
-                break;
 
             case 116:
             case 117:
