@@ -5,11 +5,11 @@ import net.minecraft.util.BlockPos;
 
 public interface IBlockSource extends ILocatableSource
 {
-    double getX();
+    double x();
 
-    double getY();
+    double y();
 
-    double getZ();
+    double z();
 
     BlockPos getBlockPos();
 

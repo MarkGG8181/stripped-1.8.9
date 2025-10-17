@@ -41,7 +41,7 @@ public class EntityEnderCrystal extends Entity
 
     protected void entityInit()
     {
-        this.dataWatcher.addObject(8, Integer.valueOf(this.health));
+        this.dataWatcher.addObject(8, this.health);
     }
 
     /**
@@ -53,7 +53,7 @@ public class EntityEnderCrystal extends Entity
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         ++this.innerRotation;
-        this.dataWatcher.updateObject(8, Integer.valueOf(this.health));
+        this.dataWatcher.updateObject(8, this.health);
         int i = MathHelper.floor_double(this.posX);
         int j = MathHelper.floor_double(this.posY);
         int k = MathHelper.floor_double(this.posZ);
@@ -107,7 +107,7 @@ public class EntityEnderCrystal extends Entity
 
                     if (!this.worldObj.isRemote)
                     {
-                        this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
+                        this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, 6.0F, true);
                     }
                 }
             }

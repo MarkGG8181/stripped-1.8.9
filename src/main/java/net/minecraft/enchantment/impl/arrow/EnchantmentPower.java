@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.arrow;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentWaterWorker extends Enchantment
+public class EnchantmentPower extends Enchantment
 {
-    public EnchantmentWaterWorker(int p_i45761_1_, ResourceLocation p_i45761_2_, int p_i45761_3_)
+    public EnchantmentPower(int enchID, ResourceLocation enchName, int enchWeight)
     {
-        super(p_i45761_1_, p_i45761_2_, p_i45761_3_, EnumEnchantmentType.ARMOR_HEAD);
-        this.setName("waterWorker");
+        super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
+        this.setName("arrowDamage");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentWaterWorker extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 1;
+        return 1 + (enchantmentLevel - 1) * 10;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentWaterWorker extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return this.getMinEnchantability(enchantmentLevel) + 40;
+        return this.getMinEnchantability(enchantmentLevel) + 15;
     }
 
     /**
@@ -31,6 +33,6 @@ public class EnchantmentWaterWorker extends Enchantment
      */
     public int getMaxLevel()
     {
-        return 1;
+        return 5;
     }
 }

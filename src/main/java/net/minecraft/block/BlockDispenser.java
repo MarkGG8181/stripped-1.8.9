@@ -232,9 +232,9 @@ public class BlockDispenser extends BlockContainer
     public static IPosition getDispensePosition(IBlockSource coords)
     {
         EnumFacing enumfacing = getFacing(coords.getBlockMetadata());
-        double d0 = coords.getX() + 0.7D * (double)enumfacing.getFrontOffsetX();
-        double d1 = coords.getY() + 0.7D * (double)enumfacing.getFrontOffsetY();
-        double d2 = coords.getZ() + 0.7D * (double)enumfacing.getFrontOffsetZ();
+        double d0 = coords.x() + 0.7D * (double)enumfacing.getFrontOffsetX();
+        double d1 = coords.y() + 0.7D * (double)enumfacing.getFrontOffsetY();
+        double d2 = coords.z() + 0.7D * (double)enumfacing.getFrontOffsetZ();
         return new PositionImpl(d0, d1, d2);
     }
 

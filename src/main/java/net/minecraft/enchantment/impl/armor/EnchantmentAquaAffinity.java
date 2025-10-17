@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.armor;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentWaterWalker extends Enchantment
+public class EnchantmentAquaAffinity extends Enchantment
 {
-    public EnchantmentWaterWalker(int p_i45762_1_, ResourceLocation p_i45762_2_, int p_i45762_3_)
+    public EnchantmentAquaAffinity(int p_i45761_1_, ResourceLocation p_i45761_2_, int p_i45761_3_)
     {
-        super(p_i45762_1_, p_i45762_2_, p_i45762_3_, EnumEnchantmentType.ARMOR_FEET);
-        this.setName("waterWalker");
+        super(p_i45761_1_, p_i45761_2_, p_i45761_3_, EnumEnchantmentType.ARMOR_HEAD);
+        this.setName("waterWorker");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentWaterWalker extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return enchantmentLevel * 10;
+        return 1;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentWaterWalker extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return this.getMinEnchantability(enchantmentLevel) + 15;
+        return this.getMinEnchantability(enchantmentLevel) + 40;
     }
 
     /**
@@ -31,6 +33,6 @@ public class EnchantmentWaterWalker extends Enchantment
      */
     public int getMaxLevel()
     {
-        return 3;
+        return 1;
     }
 }

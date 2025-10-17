@@ -103,13 +103,6 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     /**
-     * Returns the collision bounding box for this entity
-     */
-    public AxisAlignedBB getCollisionBoundingBox() {
-        return null;
-    }
-
-    /**
      * Returns true if this entity should push and be pushed by other entities when colliding.
      */
     public boolean canBePushed() {
@@ -151,7 +144,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
 
                 if (flag || this.getDamage() > 40.0F) {
                     if (this.riddenByEntity != null) {
-                        this.riddenByEntity.mountEntity((Entity)null);
+                        this.riddenByEntity.mountEntity(null);
                     }
 
                     if (flag && !this.hasCustomName()) {
@@ -302,7 +295,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
                 this.func180460A(blockpos, iblockstate);
 
                 if (iblockstate.getBlock() == Blocks.activator_rail) {
-                    this.onActivatorRailPass(k, l, i1, ((Boolean)iblockstate.getValue(BlockRailPowered.POWERED)).booleanValue());
+                    this.onActivatorRailPass(k, l, i1, iblockstate.getValue(BlockRailPowered.POWERED));
                 }
             }
             else {
@@ -395,12 +388,11 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         BlockRailBase blockrailbase = (BlockRailBase)p_180460_2_.getBlock();
 
         if (blockrailbase == Blocks.golden_rail) {
-            flag = ((Boolean)p_180460_2_.getValue(BlockRailPowered.POWERED)).booleanValue();
+            flag = p_180460_2_.getValue(BlockRailPowered.POWERED);
             flag1 = !flag;
         }
 
-        double d0 = 0.0078125D;
-        BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection)p_180460_2_.getValue(blockrailbase.getShapeProperty());
+        BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = p_180460_2_.getValue(blockrailbase.getShapeProperty());
 
         switch (blockrailbase$enumraildirection) {
             case ASCENDING_EAST:
@@ -474,7 +466,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             }
         }
 
-        double d18 = 0.0D;
+        double d18;
         double d19 = (double)p_180460_1_.getX() + 0.5D + (double)aint[0][0] * 0.5D;
         double d20 = (double)p_180460_1_.getZ() + 0.5D + (double)aint[0][2] * 0.5D;
         double d21 = (double)p_180460_1_.getX() + 0.5D + (double)aint[1][0] * 0.5D;
@@ -583,19 +575,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         }
     }
 
-    /**
-     * Sets the x,y,z of the entity from the given parameters. Also seems to set up a bounding box.
-     */
-    public void setPosition(double x, double y, double z) {
-        this.posX = x;
-        this.posY = y;
-        this.posZ = z;
-        float f = this.width / 2.0F;
-        float f1 = this.height;
-        this.setEntityBoundingBox(new AxisAlignedBB(x - (double)f, y, z - (double)f, x + (double)f, y + (double)f1, z + (double)f));
-    }
-
-    public Vec3 func_70495_a(double p_70495_1_, double p_70495_3_, double p_70495_5_, double p_70495_7_) {
+    public Vec3 getPosOffset(double p_70495_1_, double p_70495_3_, double p_70495_5_, double p_70495_7_) {
         int i = MathHelper.floor_double(p_70495_1_);
         int j = MathHelper.floor_double(p_70495_3_);
         int k = MathHelper.floor_double(p_70495_5_);
@@ -607,7 +587,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         IBlockState iblockstate = this.worldObj.getBlockState(new BlockPos(i, j, k));
 
         if (BlockRailBase.isRailBlock(iblockstate)) {
-            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection)iblockstate.getValue(((BlockRailBase)iblockstate.getBlock()).getShapeProperty());
+            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getValue(((BlockRailBase)iblockstate.getBlock()).getShapeProperty());
             p_70495_3_ = (double)j;
 
             if (blockrailbase$enumraildirection.isAscending()) {
@@ -649,9 +629,9 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         IBlockState iblockstate = this.worldObj.getBlockState(new BlockPos(i, j, k));
 
         if (BlockRailBase.isRailBlock(iblockstate)) {
-            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = (BlockRailBase.EnumRailDirection)iblockstate.getValue(((BlockRailBase)iblockstate.getBlock()).getShapeProperty());
+            BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = iblockstate.getValue(((BlockRailBase)iblockstate.getBlock()).getShapeProperty());
             int[][] aint = matrix[blockrailbase$enumraildirection.getMetadata()];
-            double d0 = 0.0D;
+            double d0;
             double d1 = (double)i + 0.5D + (double)aint[0][0] * 0.5D;
             double d2 = (double)j + 0.0625D + (double)aint[0][1] * 0.5D;
             double d3 = (double)k + 0.5D + (double)aint[0][2] * 0.5D;
@@ -663,11 +643,9 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             double d9 = d6 - d3;
 
             if (d7 == 0.0D) {
-                p_70489_1_ = (double)i + 0.5D;
                 d0 = p_70489_5_ - (double)k;
             }
             else if (d9 == 0.0D) {
-                p_70489_5_ = (double)k + 0.5D;
                 d0 = p_70489_1_ - (double)i;
             }
             else {
@@ -726,7 +704,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             this.setDisplayTileOffset(tagCompund.getInteger("DisplayOffset"));
         }
 
-        if (tagCompund.hasKey("CustomName", 8) && tagCompund.getString("CustomName").length() > 0) {
+        if (tagCompund.hasKey("CustomName", 8) && !tagCompund.getString("CustomName").isEmpty()) {
             this.entityName = tagCompund.getString("CustomName");
         }
     }
@@ -738,13 +716,13 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         if (this.hasDisplayTile()) {
             tagCompound.setBoolean("CustomDisplayTile", true);
             IBlockState iblockstate = this.getDisplayTile();
-            ResourceLocation resourcelocation = (ResourceLocation)Block.blockRegistry.getNameForObject(iblockstate.getBlock());
+            ResourceLocation resourcelocation = Block.blockRegistry.getNameForObject(iblockstate.getBlock());
             tagCompound.setString("DisplayTile", resourcelocation == null ? "" : resourcelocation.toString());
             tagCompound.setInteger("DisplayData", iblockstate.getBlock().getMetaFromState(iblockstate));
             tagCompound.setInteger("DisplayOffset", this.getDisplayTileOffset());
         }
 
-        if (this.entityName != null && this.entityName.length() > 0) {
+        if (this.entityName != null && !this.entityName.isEmpty()) {
             tagCompound.setString("CustomName", this.entityName);
         }
     }
@@ -858,7 +836,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * 40.
      */
     public void setDamage(float p_70492_1_) {
-        this.dataWatcher.updateObject(19, Float.valueOf(p_70492_1_));
+        this.dataWatcher.updateObject(19, p_70492_1_);
     }
 
     /**
@@ -873,7 +851,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * Sets the rolling amplitude the cart rolls while being attacked.
      */
     public void setRollingAmplitude(int p_70497_1_) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(p_70497_1_));
+        this.dataWatcher.updateObject(17, p_70497_1_);
     }
 
     /**
@@ -887,7 +865,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * Sets the rolling direction the cart rolls while being attacked. Can be 1 or -1.
      */
     public void setRollingDirection(int p_70494_1_) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(p_70494_1_));
+        this.dataWatcher.updateObject(18, p_70494_1_);
     }
 
     /**
@@ -916,12 +894,12 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     public void func_174899_a(IBlockState p_174899_1_) {
-        this.getDataWatcher().updateObject(20, Integer.valueOf(Block.getStateId(p_174899_1_)));
+        this.getDataWatcher().updateObject(20, Block.getStateId(p_174899_1_));
         this.setHasDisplayTile(true);
     }
 
     public void setDisplayTileOffset(int p_94086_1_) {
-        this.getDataWatcher().updateObject(21, Integer.valueOf(p_94086_1_));
+        this.getDataWatcher().updateObject(21, p_94086_1_);
         this.setHasDisplayTile(true);
     }
 
@@ -930,7 +908,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     public void setHasDisplayTile(boolean p_94096_1_) {
-        this.getDataWatcher().updateObject(22, Byte.valueOf((byte)(p_94096_1_ ? 1 : 0)));
+        this.getDataWatcher().updateObject(22, (byte) (p_94096_1_ ? 1 : 0));
     }
 
     /**
@@ -969,7 +947,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             return chatcomponenttext;
         }
         else {
-            ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation(this.getName(), new Object[0]);
+            ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation(this.getName());
             chatcomponenttranslation.getChatStyle().setChatHoverEvent(this.getHoverEvent());
             chatcomponenttranslation.getChatStyle().setInsertion(this.getUniqueID().toString());
             return chatcomponenttranslation;
@@ -989,7 +967,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         private final int networkID;
         private final String name;
 
-        private EnumMinecartType(int networkID, String name) {
+        EnumMinecartType(int networkID, String name) {
             this.networkID = networkID;
             this.name = name;
         }
@@ -1003,13 +981,13 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         }
 
         public static EntityMinecart.EnumMinecartType byNetworkID(int id) {
-            EntityMinecart.EnumMinecartType entityminecart$enumminecarttype = (EntityMinecart.EnumMinecartType)ID_LOOKUP.get(Integer.valueOf(id));
+            EntityMinecart.EnumMinecartType entityminecart$enumminecarttype = ID_LOOKUP.get(id);
             return entityminecart$enumminecarttype == null ? RIDEABLE : entityminecart$enumminecarttype;
         }
 
         static {
             for (EntityMinecart.EnumMinecartType entityminecart$enumminecarttype : values()) {
-                ID_LOOKUP.put(Integer.valueOf(entityminecart$enumminecarttype.getNetworkID()), entityminecart$enumminecarttype);
+                ID_LOOKUP.put(entityminecart$enumminecarttype.getNetworkID(), entityminecart$enumminecarttype);
             }
         }
     }

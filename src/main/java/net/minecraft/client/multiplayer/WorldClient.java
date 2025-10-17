@@ -94,21 +94,6 @@ public class WorldClient extends World
     }
 
     /**
-     * Invalidates an AABB region of blocks from the receive queue, in the event that the block has been modified
-     * client-side in the intervening 80 receive ticks.
-     *  
-     * @param x1 X position of the block where the region begin
-     * @param y1 Y position of the block where the region begin
-     * @param z1 Z position of the block where the region begin
-     * @param x2 X position of the block where the region end
-     * @param y2 Y position of the block where the region end
-     * @param z2 Z position of the block where the region end
-     */
-    public void invalidateBlockReceiveRegion(int x1, int y1, int z1, int x2, int y2, int z2)
-    {
-    }
-
-    /**
      * Creates the chunk provider for this world. Called in the constructor. Retrieves provider from worldProvider?
      */
     protected IChunkProvider createChunkProvider()
@@ -277,7 +262,6 @@ public class WorldClient extends World
         int i = pos.getX();
         int j = pos.getY();
         int k = pos.getZ();
-        this.invalidateBlockReceiveRegion(i, j, k, i, j, k);
         return super.setBlockState(pos, state, 3);
     }
 

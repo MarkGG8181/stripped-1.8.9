@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.arrow;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentKnockback extends Enchantment
+public class EnchantmentPunch extends Enchantment
 {
-    protected EnchantmentKnockback(int p_i45768_1_, ResourceLocation p_i45768_2_, int p_i45768_3_)
+    public EnchantmentPunch(int enchID, ResourceLocation enchName, int enchWeight)
     {
-        super(p_i45768_1_, p_i45768_2_, p_i45768_3_, EnumEnchantmentType.WEAPON);
-        this.setName("knockback");
+        super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
+        this.setName("arrowKnockback");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentKnockback extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 5 + 20 * (enchantmentLevel - 1);
+        return 12 + (enchantmentLevel - 1) * 20;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentKnockback extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return this.getMinEnchantability(enchantmentLevel) + 25;
     }
 
     /**

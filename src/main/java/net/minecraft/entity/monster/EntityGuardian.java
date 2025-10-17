@@ -46,7 +46,7 @@ public class EntityGuardian extends EntityMob {
     private EntityLivingBase targetedEntity;
     private int clientSideAttackTime;
     private boolean clientSideTouchedGround;
-    private EntityAIWander wander;
+    private final EntityAIWander wander;
 
     public EntityGuardian(World worldIn) {
         super(worldIn);
@@ -61,7 +61,7 @@ public class EntityGuardian extends EntityMob {
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.wander.setMutexBits(3);
         entityaimovetowardsrestriction.setMutexBits(3);
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 10, true, false, new EntityGuardian.GuardianTargetSelector(this)));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 10, true, false, new EntityGuardian.GuardianTargetSelector(this)));
         this.moveHelper = new EntityGuardian.GuardianMoveHelper(this);
         this.clientSideTailAnimationO = this.clientSideTailAnimation = this.rand.nextFloat();
     }
@@ -99,8 +99,8 @@ public class EntityGuardian extends EntityMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, Integer.valueOf(0));
-        this.dataWatcher.addObject(17, Integer.valueOf(0));
+        this.dataWatcher.addObject(16, 0);
+        this.dataWatcher.addObject(17, 0);
     }
 
     /**
@@ -117,14 +117,14 @@ public class EntityGuardian extends EntityMob {
         int i = this.dataWatcher.getWatchableObjectInt(16);
 
         if (state) {
-            this.dataWatcher.updateObject(16, Integer.valueOf(i | flagId));
+            this.dataWatcher.updateObject(16, i | flagId);
         }
         else {
-            this.dataWatcher.updateObject(16, Integer.valueOf(i & ~flagId));
+            this.dataWatcher.updateObject(16, i & ~flagId);
         }
     }
 
-    public boolean func_175472_n() {
+    public boolean isMoving() {
         return this.isSyncedFlagSet(2);
     }
 
@@ -162,7 +162,7 @@ public class EntityGuardian extends EntityMob {
     }
 
     private void setTargetedEntity(int entityId) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(entityId));
+        this.dataWatcher.updateObject(17, entityId);
     }
 
     public boolean hasTargetedEntity() {
@@ -269,7 +269,7 @@ public class EntityGuardian extends EntityMob {
 
                 this.clientSideTouchedGround = this.motionY < 0.0D && this.worldObj.isBlockNormalCube(new BlockPos(this).down(), false);
             }
-            else if (this.func_175472_n()) {
+            else if (this.isMoving()) {
                 if (this.clientSideTailAnimationSpeed < 0.5F) {
                     this.clientSideTailAnimationSpeed = 4.0F;
                 }
@@ -287,18 +287,18 @@ public class EntityGuardian extends EntityMob {
             if (!this.isInWater()) {
                 this.clientSideSpikesAnimation = this.rand.nextFloat();
             }
-            else if (this.func_175472_n()) {
+            else if (this.isMoving()) {
                 this.clientSideSpikesAnimation += (0.0F - this.clientSideSpikesAnimation) * 0.25F;
             }
             else {
                 this.clientSideSpikesAnimation += (1.0F - this.clientSideSpikesAnimation) * 0.06F;
             }
 
-            if (this.func_175472_n() && this.isInWater()) {
+            if (this.isMoving() && this.isInWater()) {
                 Vec3 vec3 = this.getLook(0.0F);
 
                 for (int i = 0; i < 2; i++) {
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.x * 1.5D, this.posY + this.rand.nextDouble() * (double)this.height - vec3.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.z * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.x * 1.5D, this.posY + this.rand.nextDouble() * (double)this.height - vec3.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.z * 1.5D, 0.0D, 0.0D, 0.0D);
                 }
             }
 
@@ -450,9 +450,7 @@ public class EntityGuardian extends EntityMob {
      * Called when the entity is attacked.
      */
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if (!this.func_175472_n() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase) {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)source.getSourceOfDamage();
-
+        if (!this.isMoving() && !source.isMagicDamage() && source.getSourceOfDamage() instanceof EntityLivingBase entitylivingbase) {
             if (!source.isExplosion()) {
                 entitylivingbase.attackEntityFrom(DamageSource.causeThornsDamage(this), 2.0F);
                 entitylivingbase.playSound("damage.thorns", 0.5F, 1.0F);
@@ -483,7 +481,7 @@ public class EntityGuardian extends EntityMob {
                 this.motionY *= 0.8999999761581421D;
                 this.motionZ *= 0.8999999761581421D;
 
-                if (!this.func_175472_n() && this.getAttackTarget() == null) {
+                if (!this.isMoving() && this.getAttackTarget() == null) {
                     this.motionY -= 0.005D;
                 }
             }
@@ -497,7 +495,7 @@ public class EntityGuardian extends EntityMob {
     }
 
     static class AIGuardianAttack extends EntityAIBase {
-        private EntityGuardian theEntity;
+        private final EntityGuardian theEntity;
         private int tickCounter;
 
         public AIGuardianAttack(EntityGuardian guardian) {
@@ -557,8 +555,6 @@ public class EntityGuardian extends EntityMob {
                     entitylivingbase.attackEntityFrom(DamageSource.causeMobDamage(this.theEntity), (float)this.theEntity.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
                     this.theEntity.setAttackTarget((EntityLivingBase)null);
                 }
-                else if (this.tickCounter >= 60 && this.tickCounter % 20 == 0) {
-                }
 
                 super.updateTask();
             }
@@ -566,7 +562,7 @@ public class EntityGuardian extends EntityMob {
     }
 
     static class GuardianMoveHelper extends EntityMoveHelper {
-        private EntityGuardian entityGuardian;
+        private final EntityGuardian entityGuardian;
 
         public GuardianMoveHelper(EntityGuardian guardian) {
             super(guardian);
@@ -618,15 +614,10 @@ public class EntityGuardian extends EntityMob {
         }
     }
 
-    static class GuardianTargetSelector implements Predicate<EntityLivingBase> {
-        private EntityGuardian parentEntity;
-
-        public GuardianTargetSelector(EntityGuardian guardian) {
-            this.parentEntity = guardian;
-        }
+    record GuardianTargetSelector(EntityGuardian parentEntity) implements Predicate<EntityLivingBase> {
 
         public boolean apply(EntityLivingBase p_apply_1_) {
-            return (p_apply_1_ instanceof EntityPlayer || p_apply_1_ instanceof EntitySquid) && p_apply_1_.getDistanceSqToEntity(this.parentEntity) > 9.0D;
+                return (p_apply_1_ instanceof EntityPlayer || p_apply_1_ instanceof EntitySquid) && p_apply_1_.getDistanceSqToEntity(this.parentEntity) > 9.0D;
+            }
         }
-    }
 }

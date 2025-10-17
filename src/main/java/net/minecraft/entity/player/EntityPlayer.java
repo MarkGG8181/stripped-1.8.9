@@ -3,8 +3,6 @@ package net.minecraft.entity.player;
 import com.mojang.authlib.GameProfile;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,7 +13,7 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.server.CommandBlockLogic;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -52,9 +50,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.port.sneak.SmoothSneakingState;
 import net.minecraft.potion.Potion;
-import net.minecraft.scoreboard.IScoreObjectiveCriteria;
-import net.minecraft.scoreboard.Score;
-import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
@@ -87,7 +82,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public InventoryPlayer inventory = new InventoryPlayer(this);
     private InventoryEnderChest theInventoryEnderChest = new InventoryEnderChest();
 
-    private SmoothSneakingState smoothSneakingState = new SmoothSneakingState();
+    private final SmoothSneakingState smoothSneakingState = new SmoothSneakingState();
 
     /**
      * The Container for the player's inventory (which opens when they press E)
@@ -217,10 +212,10 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(17, Float.valueOf(0.0F));
-        this.dataWatcher.addObject(18, Integer.valueOf(0));
-        this.dataWatcher.addObject(10, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
+        this.dataWatcher.addObject(17, 0.0F);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(10, (byte) 0);
     }
 
     /**
@@ -387,7 +382,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
             }
         }
 
-        int i = 29999999;
         double d3 = MathHelper.clamp_double(this.posX, -2.9999999E7D, 2.9999999E7D);
         double d4 = MathHelper.clamp_double(this.posZ, -2.9999999E7D, 2.9999999E7D);
 
@@ -502,7 +496,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
      */
     public void updateRidden() {
         if (!this.worldObj.isRemote && this.isSneaking()) {
-            this.mountEntity((Entity)null);
+            this.mountEntity(null);
             this.setSneaking(false);
         }
         else {
@@ -595,7 +589,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         this.cameraPitch += (f1 - this.cameraPitch) * 0.8F;
 
         if (this.getHealth() > 0.0F && !this.isSpectator()) {
-            AxisAlignedBB axisalignedbb = null;
+            AxisAlignedBB axisalignedbb;
 
             if (this.ridingEntity != null && !this.ridingEntity.isDead) {
                 axisalignedbb = this.getEntityBoundingBox().union(this.ridingEntity.getEntityBoundingBox()).expand(1.0D, 0.0D, 1.0D);
@@ -606,9 +600,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
             List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, axisalignedbb);
 
-            for (int i = 0; i < list.size(); i++) {
-                Entity entity = (Entity)list.get(i);
-
+            for (Entity entity : list) {
                 if (!entity.isDead) {
                     this.collideWithPlayer(entity);
                 }
@@ -659,33 +651,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return "game.player.die";
     }
 
-    private Collection<ScoreObjective> func175137E(Entity p_175137_1_) {
-        ScorePlayerTeam scoreplayerteam = this.getWorldScoreboard().getPlayersTeam(this.getName());
-
-        if (scoreplayerteam != null) {
-            int i = scoreplayerteam.getChatFormat().getColorIndex();
-
-            if (i >= 0 && i < IScoreObjectiveCriteria.KILLED_BY_TEAM.length) {
-                for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.KILLED_BY_TEAM[i])) {
-                    Score score = this.getWorldScoreboard().getValueFromObjective(p_175137_1_.getName(), scoreobjective);
-                    score.func_96648_a();
-                }
-            }
-        }
-
-        ScorePlayerTeam scoreplayerteam1 = this.getWorldScoreboard().getPlayersTeam(p_175137_1_.getName());
-
-        if (scoreplayerteam1 != null) {
-            int j = scoreplayerteam1.getChatFormat().getColorIndex();
-
-            if (j >= 0 && j < IScoreObjectiveCriteria.TEAM_KILL.length) {
-                return this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.TEAM_KILL[j]);
-            }
-        }
-
-        return new ArrayList<>();
-    }
-
     /**
      * Called when player presses the drop item key
      */
@@ -693,10 +658,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return this.dropItem(this.inventory.decrStackSize(this.inventory.currentItem, dropAll && this.inventory.getCurrentItem() != null ? this.inventory.getCurrentItem().stackSize : 1), false, true);
     }
 
-    /**
-     * Args: itemstack, flag
-     */
-    public EntityItem dropPlayerItemWithRandomChoice(ItemStack itemStackIn, boolean unused) {
+    public EntityItem dropPlayerItemWithRandomChoice(ItemStack itemStackIn) {
         return this.dropItem(itemStackIn, false, false);
     }
 
@@ -773,14 +735,13 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
         if (this.isPotionActive(Potion.digSlowdown)) {
             float f1 = switch (this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) {
-                case 0: yield 0.3F;
+                case 0 -> 0.3F;
 
-                case 1: yield 0.09F;
+                case 1 -> 0.09F;
 
-                case 2: yield 0.0027F;
+                case 2 -> 0.0027F;
 
-                case 3:
-                default: yield 8.1E-4F;
+                default -> 8.1E-4F;
             };
 
             f *= f1;
@@ -928,7 +889,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public boolean canAttackPlayer(EntityPlayer other) {
         Team team = this.getTeam();
         Team team1 = other.getTeam();
-        return team == null ? true : (team.isSameTeam(team1) ? team.getAllowFriendlyFire() : true);
+        return team == null || (team.isSameTeam(team1) ? team.getAllowFriendlyFire() : true);
     }
 
     protected void damageArmor(float p_70675_1_) {
@@ -1345,7 +1306,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         IBlockState iblockstate = this.worldObj.getBlockState(this.playerLocation);
 
         if (this.playerLocation != null && iblockstate.getBlock() == Blocks.bed) {
-            this.worldObj.setBlockState(this.playerLocation, iblockstate.withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)), 4);
+            this.worldObj.setBlockState(this.playerLocation, iblockstate.withProperty(BlockBed.OCCUPIED, Boolean.FALSE), 4);
             BlockPos blockpos = BlockBed.getSafeExitLocation(this.worldObj, this.playerLocation, 0);
 
             if (blockpos == null) {
@@ -1582,24 +1543,21 @@ public abstract class EntityPlayer extends EntityLivingBase {
             int i = Math.round(MathHelper.sqrt_double(p_71015_1_ * p_71015_1_ + p_71015_3_ * p_71015_3_ + p_71015_5_ * p_71015_5_) * 100.0F);
 
             if (i > 0) {
-                if (this.ridingEntity instanceof EntityMinecart) {
-                    this.addStat(StatList.distanceByMinecartStat, i);
+                switch (this.ridingEntity) {
+                    case EntityMinecart entityMinecart -> {
+                        this.addStat(StatList.distanceByMinecartStat, i);
 
-                    if (this.startMinecartRidingCoordinate == null) {
-                        this.startMinecartRidingCoordinate = new BlockPos(this);
+                        if (this.startMinecartRidingCoordinate == null) {
+                            this.startMinecartRidingCoordinate = new BlockPos(this);
+                        } else if (this.startMinecartRidingCoordinate.distanceSq((double) MathHelper.floor_double(this.posX), (double) MathHelper.floor_double(this.posY), (double) MathHelper.floor_double(this.posZ)) >= 1000000.0D) {
+                            this.triggerAchievement(AchievementList.onARail);
+                        }
                     }
-                    else if (this.startMinecartRidingCoordinate.distanceSq((double)MathHelper.floor_double(this.posX), (double)MathHelper.floor_double(this.posY), (double)MathHelper.floor_double(this.posZ)) >= 1000000.0D) {
-                        this.triggerAchievement(AchievementList.onARail);
+                    case EntityBoat entityBoat -> this.addStat(StatList.distanceByBoatStat, i);
+                    case EntityPig entityPig -> this.addStat(StatList.distanceByPigStat, i);
+                    case EntityHorse entityHorse -> this.addStat(StatList.distanceByHorseStat, i);
+                    default -> {
                     }
-                }
-                else if (this.ridingEntity instanceof EntityBoat) {
-                    this.addStat(StatList.distanceByBoatStat, i);
-                }
-                else if (this.ridingEntity instanceof EntityPig) {
-                    this.addStat(StatList.distanceByPigStat, i);
-                }
-                else if (this.ridingEntity instanceof EntityHorse) {
-                    this.addStat(StatList.distanceByHorseStat, i);
                 }
             }
         }
@@ -1636,7 +1594,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.triggerAchievement(AchievementList.killEnemy);
         }
 
-        EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(EntityList.getEntityID(entityLivingIn)));
+        EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.entityEggs.get(EntityList.getEntityID(entityLivingIn));
 
         if (entitylist$entityegginfo != null) {
             this.triggerAchievement(entitylist$entityegginfo.killEntityStat);
@@ -1787,7 +1745,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             int i = this.experienceLevel * 7;
-            return i > 100 ? 100 : i;
+            return Math.min(i, 100);
         }
     }
 
@@ -1827,7 +1785,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
         this.xpSeed = oldPlayer.xpSeed;
         this.theInventoryEnderChest = oldPlayer.theInventoryEnderChest;
-        this.getDataWatcher().updateObject(10, Byte.valueOf(oldPlayer.getDataWatcher().getWatchableObjectByte(10)));
+        this.getDataWatcher().updateObject(10, oldPlayer.getDataWatcher().getWatchableObjectByte(10));
     }
 
     /**
@@ -1899,7 +1857,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             Team team = this.getTeam();
-            return team == null || player == null || player.getTeam() != team || !team.getSeeFriendlyInvisiblesEnabled();
+            return team == null || player.getTeam() != team || !team.getSeeFriendlyInvisiblesEnabled();
         }
     }
 
@@ -1956,7 +1914,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
             amount = 0.0F;
         }
 
-        this.getDataWatcher().updateObject(17, Float.valueOf(amount));
+        this.getDataWatcher().updateObject(17, amount);
     }
 
     public float getAbsorptionAmount() {
@@ -1989,7 +1947,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             ItemStack itemstack = this.getCurrentEquippedItem();
-            return itemstack != null && itemstack.hasDisplayName() ? itemstack.getDisplayName().equals(code.getLock()) : false;
+            return itemstack != null && itemstack.hasDisplayName() && itemstack.getDisplayName().equals(code.getLock());
         }
     }
 

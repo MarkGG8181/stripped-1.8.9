@@ -29,14 +29,6 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
     }
 
     /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
-    public boolean continueExecuting()
-    {
-        return super.continueExecuting();
-    }
-
-    /**
      * Execute a one shot task or start executing a continuous task
      */
     public void startExecuting()
@@ -90,10 +82,7 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
             {
                 TileEntity tileentity = worldIn.getTileEntity(pos);
 
-                if (tileentity instanceof TileEntityChest chest && chest.numPlayersUsing < 1)
-                {
-                    return true;
-                }
+                return tileentity instanceof TileEntityChest chest && chest.numPlayersUsing < 1;
             }
             else
             {
@@ -102,13 +91,8 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
                     return true;
                 }
 
-                if (block == Blocks.bed && iblockstate.getValue(BlockBed.PART) != BlockBed.EnumPartType.HEAD)
-                {
-                    return true;
-                }
+                return block == Blocks.bed && iblockstate.getValue(BlockBed.PART) != BlockBed.EnumPartType.HEAD;
             }
-
-            return false;
         }
     }
 }

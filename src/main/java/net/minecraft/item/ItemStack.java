@@ -11,8 +11,8 @@ import java.util.Map.Entry;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentDurability;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.impl.EnchantmentUnbreaking;
+import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -279,7 +279,7 @@ public final class ItemStack {
                 int j = 0;
 
                 for (int k = 0; i > 0 && k < amount; k++) {
-                    if (EnchantmentDurability.negateDamage(this, i, rand)) {
+                    if (EnchantmentUnbreaking.negateDamage(this, i, rand)) {
                         ++j;
                     }
                 }

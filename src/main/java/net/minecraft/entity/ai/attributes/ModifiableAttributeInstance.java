@@ -1,7 +1,6 @@
 package net.minecraft.entity.ai.attributes;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import java.util.*;
@@ -28,7 +27,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
         for (int i = 0; i < 3; i++)
         {
-            this.mapByOperation.put(Integer.valueOf(i), new HashSet<>());
+            this.mapByOperation.put(i, new HashSet<>());
         }
     }
 
@@ -56,7 +55,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
     public Collection<AttributeModifier> getModifiersByOperation(int operation)
     {
-        return (Collection)this.mapByOperation.get(Integer.valueOf(operation));
+        return this.mapByOperation.get(operation);
     }
 
     public Collection<AttributeModifier> func_111122_c()
@@ -92,15 +91,9 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         }
         else
         {
-            Set<AttributeModifier> set = (Set)this.mapByName.get(modifier.getName());
+            Set<AttributeModifier> set = this.mapByName.computeIfAbsent(modifier.getName(), k -> new HashSet<>());
 
-            if (set == null)
-            {
-                set = new HashSet<>();
-                this.mapByName.put(modifier.getName(), set);
-            }
-
-            ((Set)this.mapByOperation.get(Integer.valueOf(modifier.getOperation()))).add(modifier);
+            this.mapByOperation.get(modifier.getOperation()).add(modifier);
             set.add(modifier);
             this.mapByUUID.put(modifier.getID(), modifier);
             this.flagForUpdate();
@@ -117,11 +110,11 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     {
         for (int i = 0; i < 3; i++)
         {
-            Set<AttributeModifier> set = (Set)this.mapByOperation.get(Integer.valueOf(i));
+            Set<AttributeModifier> set = this.mapByOperation.get(i);
             set.remove(modifier);
         }
 
-        Set<AttributeModifier> set1 = (Set)this.mapByName.get(modifier.getName());
+        Set<AttributeModifier> set1 = this.mapByName.get(modifier.getName());
 
         if (set1 != null)
         {

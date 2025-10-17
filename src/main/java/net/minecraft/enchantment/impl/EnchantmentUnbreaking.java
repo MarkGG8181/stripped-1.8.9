@@ -1,13 +1,16 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl;
 
 import java.util.Random;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentDurability extends Enchantment
+public class EnchantmentUnbreaking extends Enchantment
 {
-    protected EnchantmentDurability(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentUnbreaking(int enchID, ResourceLocation enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.BREAKABLE);
         this.setName("durability");

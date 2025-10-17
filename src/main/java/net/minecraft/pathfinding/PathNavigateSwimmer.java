@@ -57,14 +57,6 @@ public class PathNavigateSwimmer extends PathNavigate
     }
 
     /**
-     * Trims path data from the end to the first sun covered block
-     */
-    protected void removeSunnyPath()
-    {
-        super.removeSunnyPath();
-    }
-
-    /**
      * Returns true when an entity of specified size could safely walk in a straight line between the two points. Args:
      * pos1, pos2, entityXSize, entityYSize, entityZSize
      */

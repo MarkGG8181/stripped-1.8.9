@@ -968,7 +968,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer, ITickable {
             }
             else if (flag && flag2 && flag3 && this.itemDropThreshold < 200) {
                 this.itemDropThreshold += 20;
-                EntityItem entityitem = this.playerEntity.dropPlayerItemWithRandomChoice(itemstack, true);
+                EntityItem entityitem = this.playerEntity.dropPlayerItemWithRandomChoice(itemstack);
 
                 if (entityitem != null) {
                     entityitem.setAgeToCreativeDespawnTime();

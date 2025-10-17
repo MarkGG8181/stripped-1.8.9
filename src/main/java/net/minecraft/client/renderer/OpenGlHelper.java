@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -250,8 +249,9 @@ public final class OpenGlHelper {
         }
 
         try {
-            List<CentralProcessor.LogicalProcessor> aprocessor = new SystemInfo().getHardware().getProcessor().getLogicalProcessors();
-            cpu = "%dx %s".formatted(aprocessor.size(), aprocessor.getFirst()).replaceAll("\\s+", " ");
+            //Proper format source from: https://minecraft.wiki/w/Debug_screen
+            CentralProcessor processor = new SystemInfo().getHardware().getProcessor();
+            cpu = "%dx %s".formatted(processor.getPhysicalProcessorCount(), processor.getProcessorIdentifier().getName()).replaceAll("\\s+", " ");
         } catch (Throwable ignored) {
         }
     }
@@ -458,12 +458,7 @@ public final class OpenGlHelper {
     }
 
     public static void glUniformMatrix4(int location, boolean transpose, FloatBuffer matrices) {
-        if (arbShaders) {
-            ARBShaderObjects.glUniformMatrix4ARB(location, transpose, matrices);
-        }
-        else {
-            GL20.glUniformMatrix4(location, transpose, matrices);
-        }
+        GL20.glUniformMatrix4fv(location, transpose, matrices);
     }
 
     public static int glGetAttribLocation(int p_153164_0_, CharSequence p_153164_1_) {

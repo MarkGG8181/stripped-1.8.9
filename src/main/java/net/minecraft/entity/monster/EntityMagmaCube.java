@@ -30,14 +30,6 @@ public class EntityMagmaCube extends EntitySlime
     }
 
     /**
-     * Checks that the entity is not colliding with any blocks / liquids
-     */
-    public boolean isNotColliding()
-    {
-        return this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox());
-    }
-
-    /**
      * Returns the current armor value as determined by a call to InventoryPlayer.getTotalArmorValue
      */
     public int getTotalArmorValue()

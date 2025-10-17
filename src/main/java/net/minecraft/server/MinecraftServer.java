@@ -1211,17 +1211,16 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public <V> ListenableFuture<V> callFromMainThread(Callable<V> callable) {
-        Validate.notNull(callable);
+        Objects.requireNonNull(callable, "Callable cannot be null");
 
         if (!this.isCallingFromMinecraftThread() && !this.isServerStopped()) {
-            ListenableFutureTask<V> listenablefuturetask = ListenableFutureTask.create(callable);
+            ListenableFutureTask<V> listenableFutureTask = ListenableFutureTask.create(callable);
 
             synchronized (this.futureTaskQueue) {
-                this.futureTaskQueue.add(listenablefuturetask);
-                return listenablefuturetask;
+                this.futureTaskQueue.add(listenableFutureTask);
+                return listenableFutureTask;
             }
-        }
-        else {
+        } else {
             try {
                 return Futures.immediateFuture(callable.call());
             } catch (Exception exception) {
@@ -1231,7 +1230,7 @@ public abstract class MinecraftServer implements Runnable, ICommandSender, IThre
     }
 
     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule) {
-        Validate.notNull(runnableToSchedule);
+        Objects.requireNonNull(runnableToSchedule, "Runnable cannot be null");
         return this.callFromMainThread(Executors.callable(runnableToSchedule));
     }
 

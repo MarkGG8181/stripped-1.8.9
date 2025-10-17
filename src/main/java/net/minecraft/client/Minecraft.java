@@ -941,10 +941,7 @@ public class Minecraft implements IThreadListener {
 
         while (getSystemTime() >= this.debugUpdateTime + 1000L) {
             debugFPS = this.fpsCounter;
-            //this.debug = String.format("%d fps (%d chunk update%s) T: %s%s%s%s", debugFPS, RenderChunk.renderChunksUpdated, RenderChunk.renderChunksUpdated != 1 ? "s" : "", (float) this.gameSettings.limitFramerate == GameSettings.Options.FRAMERATE_LIMIT.getValueMax() ? "inf" : Integer.valueOf(this.gameSettings.limitFramerate), this.gameSettings.enableVsync ? " vsync" : "", this.gameSettings.fancyGraphics ? "" : " fast", this.gameSettings.clouds == 0 ? "" : (this.gameSettings.clouds == 1 ? " fast-clouds" : " fancy-clouds"));
-            StringBuilder debugBuilder = new StringBuilder();
-            debugBuilder.append(debugFPS).append(" fps (").append(RenderChunk.renderChunksUpdated);
-            this.debug = debugBuilder.toString();
+            this.debug = debugFPS + " fps (" + RenderChunk.renderChunksUpdated + " chunk updates)";
             RenderChunk.renderChunksUpdated = 0;
             this.debugUpdateTime += 1000L;
             this.fpsCounter = 0;
@@ -1026,14 +1023,8 @@ public class Minecraft implements IThreadListener {
 
     public void freeMemory() {
         try {
-            this.renderGlobal.deleteAllDisplayLists();
-        } catch (Throwable ignored) {
-        }
-
-        try {
             this.loadWorld(null);
         } catch (Throwable ignored) {
-
         }
     }
 
@@ -1949,10 +1940,6 @@ public class Minecraft implements IThreadListener {
         return theMinecraft == null || !theMinecraft.gameSettings.hideGUI;
     }
 
-    public static boolean isFancyGraphicsEnabled() {
-        return theMinecraft != null && theMinecraft.gameSettings.fancyGraphics;
-    }
-
     /**
      * Returns if ambient occlusion is enabled
      */
@@ -2012,16 +1999,14 @@ public class Minecraft implements IThreadListener {
                             flag1 = true;
                         }
                     }
-                    case EntityMinecart entityminecart -> {
-                        item = switch (entityminecart.getMinecartType()) {
-                            case FURNACE -> Items.furnace_minecart;
-                            case CHEST -> Items.chest_minecart;
-                            case TNT -> Items.tnt_minecart;
-                            case HOPPER -> Items.hopper_minecart;
-                            case COMMAND_BLOCK -> Items.command_block_minecart;
-                            default -> Items.minecart;
-                        };
-                    }
+                    case EntityMinecart entityminecart -> item = switch (entityminecart.getMinecartType()) {
+                        case FURNACE -> Items.furnace_minecart;
+                        case CHEST -> Items.chest_minecart;
+                        case TNT -> Items.tnt_minecart;
+                        case HOPPER -> Items.hopper_minecart;
+                        case COMMAND_BLOCK -> Items.command_block_minecart;
+                        default -> Items.minecart;
+                    };
                     case EntityBoat ignored -> item = Items.boat;
                     case EntityArmorStand ignored -> item = Items.armor_stand;
                     default -> {

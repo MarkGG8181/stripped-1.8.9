@@ -1,5 +1,7 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.tools;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -95,7 +97,7 @@ public class EnchantmentDamage extends Enchantment
      */
     public boolean canApply(ItemStack stack)
     {
-        return stack.getItem() instanceof ItemAxe ? true : super.canApply(stack);
+        return stack.getItem() instanceof ItemAxe || super.canApply(stack);
     }
 
     /**

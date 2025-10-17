@@ -11,6 +11,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.Validate;
 
+import java.util.Objects;
+
 public abstract class EntityHanging extends Entity {
     private int tickCounter1;
     protected BlockPos hangingPosition;
@@ -37,8 +39,9 @@ public abstract class EntityHanging extends Entity {
      * Updates facing and bounding box based on it
      */
     protected void updateFacingWithBoundingBox(EnumFacing facingDirectionIn) {
-        Validate.notNull(facingDirectionIn);
-        Validate.isTrue(facingDirectionIn.getAxis().isHorizontal());
+        Objects.requireNonNull(facingDirectionIn, "Facing direction cannot be null");
+        Validate.isTrue(facingDirectionIn.getAxis().isHorizontal(), "Facing direction must be horizontal");
+
         this.facingDirection = facingDirectionIn;
         this.prevRotationYaw = this.rotationYaw = (float)(this.facingDirection.getHorizontalIndex() * 90);
         this.updateBoundingBox();

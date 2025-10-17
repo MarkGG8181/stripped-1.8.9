@@ -46,7 +46,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
     public void setAttacking(boolean attacking)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)(attacking ? 1 : 0)));
+        this.dataWatcher.updateObject(16, (byte) (attacking ? 1 : 0));
     }
 
     public int getFireballStrength()
@@ -91,7 +91,7 @@ public class EntityGhast extends EntityFlying implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     protected void applyEntityAttributes()
@@ -207,7 +207,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
     static class AIFireballAttack extends EntityAIBase
     {
-        private EntityGhast parentEntity;
+        private final EntityGhast parentEntity;
         public int attackTimer;
 
         public AIFireballAttack(EntityGhast ghast)
@@ -242,7 +242,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
                 if (this.attackTimer == 10)
                 {
-                    world.playAuxSFXAtEntity((EntityPlayer)null, 1007, new BlockPos(this.parentEntity), 0);
+                    world.playAuxSFXAtEntity(null, 1007, new BlockPos(this.parentEntity), 0);
                 }
 
                 if (this.attackTimer == 20)
@@ -273,7 +273,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
     static class AILookAround extends EntityAIBase
     {
-        private EntityGhast parentEntity;
+        private final EntityGhast parentEntity;
 
         public AILookAround(EntityGhast ghast)
         {
@@ -309,7 +309,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
     static class AIRandomFly extends EntityAIBase
     {
-        private EntityGhast parentEntity;
+        private final EntityGhast parentEntity;
 
         public AIRandomFly(EntityGhast ghast)
         {
@@ -352,7 +352,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
     static class GhastMoveHelper extends EntityMoveHelper
     {
-        private EntityGhast parentEntity;
+        private final EntityGhast parentEntity;
         private int courseChangeCooldown;
 
         public GhastMoveHelper(EntityGhast ghast)

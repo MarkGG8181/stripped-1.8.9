@@ -22,7 +22,6 @@ public class EntityAIFollowOwner extends EntityAIBase
     private int timeToRecalcPath;
     float maxDist;
     float minDist;
-    private boolean oldWaterCost;
 
     public EntityAIFollowOwner(EntityTameable thePetIn, double followSpeedIn, float minDistIn, float maxDistIn)
     {
@@ -84,7 +83,6 @@ public class EntityAIFollowOwner extends EntityAIBase
     public void startExecuting()
     {
         this.timeToRecalcPath = 0;
-        this.oldWaterCost = ((PathNavigateGround)this.thePet.getNavigator()).getAvoidsWater();
         ((PathNavigateGround)this.thePet.getNavigator()).setAvoidsWater(false);
     }
 
@@ -102,7 +100,7 @@ public class EntityAIFollowOwner extends EntityAIBase
     {
         IBlockState iblockstate = this.theWorld.getBlockState(p_181065_1_);
         Block block = iblockstate.getBlock();
-        return block == Blocks.air ? true : !block.isFullCube();
+        return block == Blocks.air || !block.isFullCube();
     }
 
     /**

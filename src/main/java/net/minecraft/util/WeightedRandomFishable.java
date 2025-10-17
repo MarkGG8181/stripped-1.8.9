@@ -1,7 +1,7 @@
 package net.minecraft.util;
 
 import java.util.Random;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
 
 public class WeightedRandomFishable extends WeightedRandom.Item

@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.armor;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentArrowFire extends Enchantment
+public class EnchantmentRespiration extends Enchantment
 {
-    public EnchantmentArrowFire(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentRespiration(int enchID, ResourceLocation p_i45766_2_, int p_i45766_3_)
     {
-        super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
-        this.setName("arrowFire");
+        super(enchID, p_i45766_2_, p_i45766_3_, EnumEnchantmentType.ARMOR_HEAD);
+        this.setName("oxygen");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentArrowFire extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 20;
+        return 10 * enchantmentLevel;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentArrowFire extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return 50;
+        return this.getMinEnchantability(enchantmentLevel) + 30;
     }
 
     /**
@@ -31,6 +33,6 @@ public class EnchantmentArrowFire extends Enchantment
      */
     public int getMaxLevel()
     {
-        return 1;
+        return 3;
     }
 }

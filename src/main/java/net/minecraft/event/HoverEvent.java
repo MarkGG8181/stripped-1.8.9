@@ -3,6 +3,7 @@ package net.minecraft.event;
 import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.util.IChatComponent;
+import org.jetbrains.annotations.NotNull;
 
 public record HoverEvent(Action action, IChatComponent value) {
 
@@ -35,15 +36,9 @@ public record HoverEvent(Action action, IChatComponent value) {
             }
             else {
                 if (this.value != null) {
-                    if (!this.value.equals(hoverevent.value)) {
-                        return false;
-                    }
+                    return this.value.equals(hoverevent.value);
                 }
-                else if (hoverevent.value != null) {
-                    return false;
-                }
-
-                return true;
+                else return hoverevent.value == null;
             }
         }
         else {
@@ -51,8 +46,8 @@ public record HoverEvent(Action action, IChatComponent value) {
         }
     }
 
-    public String toString() {
-        return "HoverEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
+    public @NotNull String toString() {
+        return "HoverEvent{action=" + this.action + ", value='" + this.value + '\'' + '}';
     }
 
     public enum Action {
@@ -65,7 +60,7 @@ public record HoverEvent(Action action, IChatComponent value) {
         private final boolean allowedInChat;
         private final String canonicalName;
 
-        private Action(String canonicalNameIn, boolean allowedInChatIn) {
+        Action(String canonicalNameIn, boolean allowedInChatIn) {
             this.canonicalName = canonicalNameIn;
             this.allowedInChat = allowedInChatIn;
         }
@@ -79,7 +74,7 @@ public record HoverEvent(Action action, IChatComponent value) {
         }
 
         public static Action getValueByCanonicalName(String canonicalNameIn) {
-            return (Action)nameMapping.get(canonicalNameIn);
+            return nameMapping.get(canonicalNameIn);
         }
 
         static {

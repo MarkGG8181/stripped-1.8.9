@@ -190,22 +190,16 @@ public abstract class EntityThrowable extends Entity implements IProjectile
             double d0 = 0.0D;
             EntityLivingBase entitylivingbase = this.getThrower();
 
-            for (int j = 0; j < list.size(); j++)
-            {
-                Entity entity1 = (Entity)list.get(j);
-
-                if (entity1.canBeCollidedWith() && (entity1 != entitylivingbase || this.ticksInAir >= 5))
-                {
+            for (Entity entity1 : list) {
+                if (entity1.canBeCollidedWith() && (entity1 != entitylivingbase || this.ticksInAir >= 5)) {
                     float f = 0.3F;
-                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double)f, (double)f, (double)f);
+                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double) f, (double) f, (double) f);
                     MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
-                    if (movingobjectposition1 != null)
-                    {
+                    if (movingobjectposition1 != null) {
                         double d1 = vec3.squareDistanceTo(movingobjectposition1.hitVec);
 
-                        if (d1 < d0 || d0 == 0.0D)
-                        {
+                        if (d1 < d0 || d0 == 0.0D) {
                             entity = entity1;
                             d0 = d1;
                         }
@@ -305,7 +299,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         tagCompound.setByte("shake", (byte)this.throwableShake);
         tagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
 
-        if ((this.throwerName == null || this.throwerName.length() == 0) && this.thrower instanceof EntityPlayer)
+        if ((this.throwerName == null || this.throwerName.isEmpty()) && this.thrower instanceof EntityPlayer)
         {
             this.throwerName = this.thrower.getName();
         }
@@ -336,7 +330,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
         this.thrower = null;
         this.throwerName = tagCompund.getString("ownerName");
 
-        if (this.throwerName != null && this.throwerName.length() == 0)
+        if (this.throwerName != null && this.throwerName.isEmpty())
         {
             this.throwerName = null;
         }
@@ -346,7 +340,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
     public EntityLivingBase getThrower()
     {
-        if (this.thrower == null && this.throwerName != null && this.throwerName.length() > 0)
+        if (this.thrower == null && this.throwerName != null && !this.throwerName.isEmpty())
         {
             this.thrower = this.worldObj.getPlayerEntityByName(this.throwerName);
 

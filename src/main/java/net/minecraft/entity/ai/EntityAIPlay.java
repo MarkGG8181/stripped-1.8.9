@@ -55,10 +55,7 @@ public class EntityAIPlay extends EntityAIBase
             {
                 Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
 
-                if (vec3 == null)
-                {
-                    return false;
-                }
+                return vec3 != null;
             }
 
             return true;

@@ -49,14 +49,6 @@ public class ContainerMerchant extends Container
     }
 
     /**
-     * Looks for changes made in the container, sends them to every listener.
-     */
-    public void detectAndSendChanges()
-    {
-        super.detectAndSendChanges();
-    }
-
-    /**
      * Callback for when the crafting matrix is changed.
      */
     public void onCraftMatrixChanged(IInventory inventoryIn)
@@ -70,10 +62,6 @@ public class ContainerMerchant extends Container
         this.merchantInventory.setCurrentRecipeIndex(currentRecipeIndex);
     }
 
-    public void updateProgressBar(int id, int data)
-    {
-    }
-
     public boolean canInteractWith(EntityPlayer playerIn)
     {
         return this.theMerchant.getCustomer() == playerIn;
@@ -85,7 +73,7 @@ public class ContainerMerchant extends Container
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(index);
+        Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())
         {
@@ -122,7 +110,7 @@ public class ContainerMerchant extends Container
 
             if (itemstack1.stackSize == 0)
             {
-                slot.putStack((ItemStack)null);
+                slot.putStack(null);
             }
             else
             {
@@ -155,14 +143,14 @@ public class ContainerMerchant extends Container
 
             if (itemstack != null)
             {
-                playerIn.dropPlayerItemWithRandomChoice(itemstack, false);
+                playerIn.dropPlayerItemWithRandomChoice(itemstack);
             }
 
             itemstack = this.merchantInventory.removeStackFromSlot(1);
 
             if (itemstack != null)
             {
-                playerIn.dropPlayerItemWithRandomChoice(itemstack, false);
+                playerIn.dropPlayerItemWithRandomChoice(itemstack);
             }
         }
     }

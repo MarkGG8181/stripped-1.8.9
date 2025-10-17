@@ -52,9 +52,9 @@ public class EntityBoat extends Entity {
     }
 
     protected void entityInit() {
-        this.dataWatcher.addObject(17, Integer.valueOf(0));
-        this.dataWatcher.addObject(18, Integer.valueOf(1));
-        this.dataWatcher.addObject(19, Float.valueOf(0.0F));
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 1);
+        this.dataWatcher.addObject(19, 0.0F);
     }
 
     /**
@@ -222,7 +222,7 @@ public class EntityBoat extends Entity {
         double d0 = 0.0D;
 
         for (int j = 0; j < i; j++) {
-            double d1 = this.getEntityBoundingBox().minY + (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) * (double)(j + 0) / (double)i - 0.125D;
+            double d1 = this.getEntityBoundingBox().minY + (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) * (double)(j) / (double)i - 0.125D;
             double d3 = this.getEntityBoundingBox().minY + (this.getEntityBoundingBox().maxY - this.getEntityBoundingBox().minY) * (double)(j + 1) / (double)i - 0.125D;
             AxisAlignedBB axisalignedbb = new AxisAlignedBB(this.getEntityBoundingBox().minX, d1, this.getEntityBoundingBox().minZ, this.getEntityBoundingBox().maxX, d3, this.getEntityBoundingBox().maxZ);
 
@@ -244,12 +244,12 @@ public class EntityBoat extends Entity {
                 if (this.rand.nextBoolean()) {
                     double d7 = this.posX - d2 * d5 * 0.8D + d4 * d6;
                     double d8 = this.posZ - d4 * d5 * 0.8D - d2 * d6;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, d7, this.posY - 0.125D, d8, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, d7, this.posY - 0.125D, d8, this.motionX, this.motionY, this.motionZ);
                 }
                 else {
                     double d24 = this.posX + d2 + d4 * d5 * 0.7D;
                     double d25 = this.posZ + d4 - d2 * d5 * 0.7D;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, d24, this.posY - 0.125D, d25, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, d24, this.posY - 0.125D, d25, this.motionX, this.motionY, this.motionZ);
                 }
             }
         }
@@ -401,9 +401,7 @@ public class EntityBoat extends Entity {
                 List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
                 if (list != null && !list.isEmpty()) {
-                    for (int k2 = 0; k2 < list.size(); k2++) {
-                        Entity entity = (Entity)list.get(k2);
-
+                    for (Entity entity : list) {
                         if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityBoat) {
                             entity.applyEntityCollision(this);
                         }
@@ -484,7 +482,7 @@ public class EntityBoat extends Entity {
      * Sets the damage taken from the last hit.
      */
     public void setDamageTaken(float p_70266_1_) {
-        this.dataWatcher.updateObject(19, Float.valueOf(p_70266_1_));
+        this.dataWatcher.updateObject(19, p_70266_1_);
     }
 
     /**
@@ -498,7 +496,7 @@ public class EntityBoat extends Entity {
      * Sets the time to count down from since the last time entity was hit.
      */
     public void setTimeSinceHit(int p_70265_1_) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(p_70265_1_));
+        this.dataWatcher.updateObject(17, p_70265_1_);
     }
 
     /**
@@ -512,7 +510,7 @@ public class EntityBoat extends Entity {
      * Sets the forward direction of the entity.
      */
     public void setForwardDirection(int p_70269_1_) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(p_70269_1_));
+        this.dataWatcher.updateObject(18, p_70269_1_);
     }
 
     /**

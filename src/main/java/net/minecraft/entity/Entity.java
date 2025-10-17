@@ -3,7 +3,6 @@ package net.minecraft.entity;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -16,8 +15,8 @@ import net.minecraft.command.CommandResultStats;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentProtection;
+import net.minecraft.enchantment.util.EnchantmentHelper;
+import net.minecraft.enchantment.impl.armor.EnchantmentProtection;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -274,11 +273,11 @@ public abstract class Entity implements ICommandSender
         }
 
         this.dataWatcher = new DataWatcher(this);
-        this.dataWatcher.addObject(0, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(1, Short.valueOf((short)300));
-        this.dataWatcher.addObject(3, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(0, (byte) 0);
+        this.dataWatcher.addObject(1, (short) 300);
+        this.dataWatcher.addObject(3, (byte) 0);
         this.dataWatcher.addObject(2, "");
-        this.dataWatcher.addObject(4, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(4, (byte) 0);
         this.entityInit();
     }
 
@@ -291,7 +290,7 @@ public abstract class Entity implements ICommandSender
 
     public boolean equals(Object p_equals_1_)
     {
-        return p_equals_1_ instanceof Entity e ? e.entityId == this.entityId : false;
+        return p_equals_1_ instanceof Entity e && e.entityId == this.entityId;
     }
 
     public int hashCode()
@@ -1010,7 +1009,7 @@ public abstract class Entity implements ICommandSender
      */
     public void setSilent(boolean isSilent)
     {
-        this.dataWatcher.updateObject(4, Byte.valueOf((byte)(isSilent ? 1 : 0)));
+        this.dataWatcher.updateObject(4, (byte) (isSilent ? 1 : 0));
     }
 
     /**
@@ -1196,7 +1195,7 @@ public abstract class Entity implements ICommandSender
             float f = BlockLiquid.getLiquidHeightPercent(iblockstate.getBlock().getMetaFromState(iblockstate)) - 0.11111111F;
             float f1 = (float)(blockpos.getY() + 1) - f;
             boolean flag = d0 < (double)f1;
-            return !flag && this instanceof EntityPlayer ? false : flag;
+            return (flag || !(this instanceof EntityPlayer)) && flag;
         }
         else
         {
@@ -1526,14 +1525,6 @@ public abstract class Entity implements ICommandSender
         return false;
     }
 
-    /**
-     * Adds a value to the player score. Currently not actually used and the entity passed in does nothing. Args:
-     * entity, scoreToAdd
-     */
-    public void addToPlayerScore(Entity entityIn, int amount)
-    {
-    }
-
     public boolean isInRangeToRender3d(double x, double y, double z)
     {
         double d0 = this.posX - x;
@@ -1622,7 +1613,7 @@ public abstract class Entity implements ICommandSender
             tagCompund.setLong("UUIDMost", this.getUniqueID().getMostSignificantBits());
             tagCompund.setLong("UUIDLeast", this.getUniqueID().getLeastSignificantBits());
 
-            if (this.getCustomNameTag() != null && this.getCustomNameTag().length() > 0)
+            if (this.getCustomNameTag() != null && !this.getCustomNameTag().isEmpty())
             {
                 tagCompund.setString("CustomName", this.getCustomNameTag());
                 tagCompund.setBoolean("CustomNameVisible", this.getAlwaysRenderNameTag());
@@ -1713,7 +1704,7 @@ public abstract class Entity implements ICommandSender
             this.setPosition(this.posX, this.posY, this.posZ);
             this.setRotation(this.rotationYaw, this.rotationPitch);
 
-            if (tagCompund.hasKey("CustomName", 8) && tagCompund.getString("CustomName").length() > 0)
+            if (tagCompund.hasKey("CustomName", 8) && !tagCompund.getString("CustomName").isEmpty())
             {
                 this.setCustomNameTag(tagCompund.getString("CustomName"));
             }
@@ -1759,10 +1750,6 @@ public abstract class Entity implements ICommandSender
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     protected abstract void writeEntityToNBT(NBTTagCompound tagCompound);
-
-    public void onChunkLoad()
-    {
-    }
 
     /**
      * creates a NBT list from the array of doubles passed to this function
@@ -1845,7 +1832,7 @@ public abstract class Entity implements ICommandSender
 
             for (int i = 0; i < 8; i++)
             {
-                int j = MathHelper.floor_double(this.posY + (double)(((float)((i >> 0) % 2) - 0.5F) * 0.1F) + (double)this.getEyeHeight());
+                int j = MathHelper.floor_double(this.posY + (double)(((float)((i) % 2) - 0.5F) * 0.1F) + (double)this.getEyeHeight());
                 int k = MathHelper.floor_double(this.posX + (double)(((float)((i >> 1) % 2) - 0.5F) * this.width * 0.8F));
                 int l = MathHelper.floor_double(this.posZ + (double)(((float)((i >> 2) % 2) - 0.5F) * this.width * 0.8F));
 
@@ -2188,7 +2175,7 @@ public abstract class Entity implements ICommandSender
      */
     public boolean isInvisibleToPlayer(EntityPlayer player)
     {
-        return player.isSpectator() ? false : this.isInvisible();
+        return !player.isSpectator() && this.isInvisible();
     }
 
     public void setInvisible(boolean invisible)
@@ -2224,11 +2211,11 @@ public abstract class Entity implements ICommandSender
 
         if (set)
         {
-            this.dataWatcher.updateObject(0, Byte.valueOf((byte)(b0 | 1 << flag)));
+            this.dataWatcher.updateObject(0, (byte) (b0 | 1 << flag));
         }
         else
         {
-            this.dataWatcher.updateObject(0, Byte.valueOf((byte)(b0 & ~(1 << flag))));
+            this.dataWatcher.updateObject(0, (byte) (b0 & ~(1 << flag)));
         }
     }
 
@@ -2239,7 +2226,7 @@ public abstract class Entity implements ICommandSender
 
     public void setAir(int air)
     {
-        this.dataWatcher.updateObject(1, Short.valueOf((short)air));
+        this.dataWatcher.updateObject(1, (short) air);
     }
 
     /**
@@ -2427,7 +2414,7 @@ public abstract class Entity implements ICommandSender
 
     public String toString()
     {
-        return "%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]".formatted(new Object[]{this.getClass().getSimpleName(), this.getName(), Integer.valueOf(this.entityId), this.worldObj == null ? "~NULL~" : this.worldObj.getWorldInfo().getWorldName(), Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)});
+        return "%s['%s'/%d, l='%s', x=%.2f, y=%.2f, z=%.2f]".formatted(new Object[]{this.getClass().getSimpleName(), this.getName(), this.entityId, this.worldObj == null ? "~NULL~" : this.worldObj.getWorldInfo().getWorldName(), this.posX, this.posY, this.posZ});
     }
 
     public boolean isEntityInvulnerable(DamageSource source)
@@ -2546,38 +2533,14 @@ public abstract class Entity implements ICommandSender
 
     public void addEntityCrashInfo(CrashReportCategory category)
     {
-        category.addCrashSectionCallable("Entity Type", new Callable<>()
-        {
-            public String call() throws Exception
-            {
-                return EntityList.getEntityString(Entity.this) + " (" + Entity.this.getClass().getCanonicalName() + ")";
-            }
-        });
-        category.addCrashSection("Entity ID", Integer.valueOf(this.entityId));
-        category.addCrashSectionCallable("Entity Name", new Callable<>()
-        {
-            public String call() throws Exception
-            {
-                return Entity.this.getName();
-            }
-        });
-        category.addCrashSection("Entity\'s Exact location", "%.2f, %.2f, %.2f".formatted(new Object[]{Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)}));
-        category.addCrashSection("Entity\'s Block location", CrashReportCategory.getCoordinateInfo((double)MathHelper.floor_double(this.posX), (double)MathHelper.floor_double(this.posY), (double)MathHelper.floor_double(this.posZ)));
-        category.addCrashSection("Entity\'s Momentum", "%.2f, %.2f, %.2f".formatted(new Object[]{Double.valueOf(this.motionX), Double.valueOf(this.motionY), Double.valueOf(this.motionZ)}));
-        category.addCrashSectionCallable("Entity\'s Rider", new Callable<>()
-        {
-            public String call() throws Exception
-            {
-                return Entity.this.riddenByEntity.toString();
-            }
-        });
-        category.addCrashSectionCallable("Entity\'s Vehicle", new Callable<>()
-        {
-            public String call() throws Exception
-            {
-                return Entity.this.ridingEntity.toString();
-            }
-        });
+        category.addCrashSectionCallable("Entity Type", () -> EntityList.getEntityString(Entity.this) + " (" + Entity.this.getClass().getCanonicalName() + ")");
+        category.addCrashSection("Entity ID", this.entityId);
+        category.addCrashSectionCallable("Entity Name", Entity.this::getName);
+        category.addCrashSection("Entity's Exact location", "%.2f, %.2f, %.2f".formatted(this.posX, this.posY, this.posZ));
+        category.addCrashSection("Entity's Block location", CrashReportCategory.getCoordinateInfo(MathHelper.floor_double(this.posX), (double)MathHelper.floor_double(this.posY), (double)MathHelper.floor_double(this.posZ)));
+        category.addCrashSection("Entity's Momentum", "%.2f, %.2f, %.2f".formatted(this.motionX, this.motionY, this.motionZ));
+        category.addCrashSectionCallable("Entity's Rider", () -> Entity.this.riddenByEntity.toString());
+        category.addCrashSectionCallable("Entity's Vehicle", () -> Entity.this.ridingEntity.toString());
     }
 
     /**
@@ -2627,12 +2590,12 @@ public abstract class Entity implements ICommandSender
      */
     public boolean hasCustomName()
     {
-        return this.dataWatcher.getWatchableObjectString(2).length() > 0;
+        return !this.dataWatcher.getWatchableObjectString(2).isEmpty();
     }
 
     public void setAlwaysRenderNameTag(boolean alwaysRenderNameTag)
     {
-        this.dataWatcher.updateObject(3, Byte.valueOf((byte)(alwaysRenderNameTag ? 1 : 0)));
+        this.dataWatcher.updateObject(3, (byte) (alwaysRenderNameTag ? 1 : 0));
     }
 
     public boolean getAlwaysRenderNameTag()
@@ -2791,13 +2754,6 @@ public abstract class Entity implements ICommandSender
     public NBTTagCompound getNBTTagCompound()
     {
         return null;
-    }
-
-    /**
-     * Called when client receives entity's NBTTagCompound from server.
-     */
-    public void clientUpdateEntityNBT(NBTTagCompound compound)
-    {
     }
 
     /**

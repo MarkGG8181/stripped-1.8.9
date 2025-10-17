@@ -5,7 +5,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -43,7 +42,7 @@ public class EntitySquid extends EntityWaterMob
     {
         super(worldIn);
         this.setSize(0.95F, 0.95F);
-        this.rand.setSeed((long)(1 + this.getEntityId()));
+        this.rand.setSeed(1 + this.getEntityId());
         this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
         this.tasks.addTask(0, new EntitySquid.AIMoveRandom(this));
     }
@@ -57,14 +56,6 @@ public class EntitySquid extends EntityWaterMob
     public float getEyeHeight()
     {
         return this.height * 0.5F;
-    }
-
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
-    protected String getLivingSound()
-    {
-        return null;
     }
 
     /**
@@ -89,11 +80,6 @@ public class EntitySquid extends EntityWaterMob
     protected float getSoundVolume()
     {
         return 0.4F;
-    }
-
-    protected Item getDropItem()
-    {
-        return null;
     }
 
     /**
@@ -258,7 +244,7 @@ public class EntitySquid extends EntityWaterMob
 
     static class AIMoveRandom extends EntityAIBase
     {
-        private EntitySquid squid;
+        private final EntitySquid squid;
 
         public AIMoveRandom(EntitySquid p_i45859_1_)
         {

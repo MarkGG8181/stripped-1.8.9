@@ -1,7 +1,8 @@
 package net.minecraft.entity;
 
+import java.util.Arrays;
 import java.util.UUID;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityJumpHelper;
 import net.minecraft.entity.ai.EntityLookHelper;
@@ -88,10 +89,7 @@ public abstract class EntityLiving extends EntityLivingBase
         this.navigator = this.getNewNavigator(worldIn);
         this.senses = new EntitySenses(this);
 
-        for (int i = 0; i < this.equipmentDropChances.length; i++)
-        {
-            this.equipmentDropChances[i] = 0.085F;
-        }
+        Arrays.fill(this.equipmentDropChances, 0.085F);
     }
 
     protected void applyEntityAttributes()
@@ -171,7 +169,7 @@ public abstract class EntityLiving extends EntityLivingBase
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(15, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(15, (byte) 0);
     }
 
     /**
@@ -251,7 +249,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 double d1 = this.rand.nextGaussian() * 0.02D;
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 double d3 = 10.0D;
-                this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d0 * d3, this.posY + (double)(this.rand.nextFloat() * this.height) - d1 * d3, this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d2 * d3, d0, d1, d2, new int[0]);
+                this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d0 * d3, this.posY + (double)(this.rand.nextFloat() * this.height) - d1 * d3, this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d2 * d3, d0, d1, d2);
             }
         }
         else
@@ -341,13 +339,11 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setBoolean("PersistenceRequired", this.persistenceRequired);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.equipment.length; i++)
-        {
+        for (ItemStack itemStack : this.equipment) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-            if (this.equipment[i] != null)
-            {
-                this.equipment[i].writeToNBT(nbttagcompound);
+            if (itemStack != null) {
+                itemStack.writeToNBT(nbttagcompound);
             }
 
             nbttaglist.appendTag(nbttagcompound);
@@ -356,9 +352,8 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setTag("Equipment", nbttaglist);
         NBTTagList nbttaglist1 = new NBTTagList();
 
-        for (int j = 0; j < this.equipmentDropChances.length; j++)
-        {
-            nbttaglist1.appendTag(new NBTTagFloat(this.equipmentDropChances[j]));
+        for (float equipmentDropChance : this.equipmentDropChances) {
+            nbttaglist1.appendTag(new NBTTagFloat(equipmentDropChance));
         }
 
         tagCompound.setTag("DropChances", nbttaglist1);
@@ -489,15 +484,8 @@ public abstract class EntityLiving extends EntityLivingBase
             {
                 if (i == 0)
                 {
-                    if (itemstack.getItem() instanceof ItemSword && !(itemstack1.getItem() instanceof ItemSword))
+                    if (itemstack.getItem() instanceof ItemSword itemsword && itemstack1.getItem() instanceof ItemSword itemsword1)
                     {
-                        flag = true;
-                    }
-                    else if (itemstack.getItem() instanceof ItemSword && itemstack1.getItem() instanceof ItemSword)
-                    {
-                        ItemSword itemsword = (ItemSword)itemstack.getItem();
-                        ItemSword itemsword1 = (ItemSword)itemstack1.getItem();
-
                         if (itemsword.getDamageVsEntity() != itemsword1.getDamageVsEntity())
                         {
                             flag = itemsword.getDamageVsEntity() > itemsword1.getDamageVsEntity();
@@ -516,14 +504,8 @@ public abstract class EntityLiving extends EntityLivingBase
                         flag = false;
                     }
                 }
-                else if (itemstack.getItem() instanceof ItemArmor && !(itemstack1.getItem() instanceof ItemArmor))
+                else if (itemstack.getItem() instanceof ItemArmor itemarmor && itemstack1.getItem() instanceof ItemArmor itemarmor1)
                 {
-                    flag = true;
-                }
-                else if (itemstack.getItem() instanceof ItemArmor && itemstack1.getItem() instanceof ItemArmor)
-                {
-                    ItemArmor itemarmor = (ItemArmor)itemstack.getItem();
-                    ItemArmor itemarmor1 = (ItemArmor)itemstack1.getItem();
 
                     if (itemarmor.damageReduceAmount != itemarmor1.damageReduceAmount)
                     {
@@ -540,7 +522,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 }
             }
 
-            if (flag && this.func175448A(itemstack))
+            if (flag && this.canEquipItem(itemstack))
             {
                 if (itemstack1 != null && this.rand.nextFloat() - 0.1F < this.equipmentDropChances[i])
                 {
@@ -566,7 +548,7 @@ public abstract class EntityLiving extends EntityLivingBase
         }
     }
 
-    protected boolean func175448A(ItemStack stack)
+    protected boolean canEquipItem(ItemStack stack)
     {
         return true;
     }
@@ -1175,7 +1157,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
             if (!this.worldObj.isRemote && sendPacket && this.worldObj instanceof WorldServer server)
             {
-                server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, (Entity)null));
+                server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, null));
             }
         }
     }
@@ -1289,7 +1271,7 @@ public abstract class EntityLiving extends EntityLivingBase
      */
     public void setNoAI(boolean disable)
     {
-        this.dataWatcher.updateObject(15, Byte.valueOf((byte)(disable ? 1 : 0)));
+        this.dataWatcher.updateObject(15, (byte) (disable ? 1 : 0));
     }
 
     /**

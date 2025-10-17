@@ -54,22 +54,6 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
     }
 
     /**
-     * Execute a one shot task or start executing a continuous task
-     */
-    public void startExecuting()
-    {
-        super.startExecuting();
-    }
-
-    /**
-     * Resets the task
-     */
-    public void resetTask()
-    {
-        super.resetTask();
-    }
-
-    /**
      * Updates the task
      */
     public void updateTask()
@@ -84,7 +68,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
             IBlockState iblockstate = world.getBlockState(blockpos);
             Block block = iblockstate.getBlock();
 
-            if (this.currentTask == 0 && block instanceof BlockCrops && ((Integer)iblockstate.getValue(BlockCrops.AGE)).intValue() == 7)
+            if (this.currentTask == 0 && block instanceof BlockCrops && iblockstate.getValue(BlockCrops.AGE) == 7)
             {
                 world.destroyBlock(blockpos, true);
             }
@@ -148,7 +132,7 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
             IBlockState iblockstate = worldIn.getBlockState(pos);
             block = iblockstate.getBlock();
 
-            if (block instanceof BlockCrops && ((Integer)iblockstate.getValue(BlockCrops.AGE)).intValue() == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
+            if (block instanceof BlockCrops && iblockstate.getValue(BlockCrops.AGE) == 7 && this.wantsToReapStuff && (this.currentTask == 0 || this.currentTask < 0))
             {
                 this.currentTask = 0;
                 return true;

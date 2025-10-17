@@ -51,22 +51,14 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
         this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(3, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(21, Byte.valueOf((byte)0));
-    }
-
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
-    protected String getLivingSound()
-    {
-        return null;
+        this.getDataWatcher().addObject(21, (byte) 0);
     }
 
     /**
@@ -90,7 +82,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     public void setAggressive(boolean aggressive)
     {
-        this.getDataWatcher().updateObject(21, Byte.valueOf((byte)(aggressive ? 1 : 0)));
+        this.getDataWatcher().updateObject(21, (byte) (aggressive ? 1 : 0));
     }
 
     /**

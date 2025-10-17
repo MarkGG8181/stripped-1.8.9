@@ -22,17 +22,17 @@ public class BlockSourceImpl implements IBlockSource
         return this.worldObj;
     }
 
-    public double getX()
+    public double x()
     {
         return (double)this.pos.getX() + 0.5D;
     }
 
-    public double getY()
+    public double y()
     {
         return (double)this.pos.getY() + 0.5D;
     }
 
-    public double getZ()
+    public double z()
     {
         return (double)this.pos.getZ() + 0.5D;
     }

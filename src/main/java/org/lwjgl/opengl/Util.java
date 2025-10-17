@@ -32,13 +32,6 @@ public final class Util {
     }
 
     /**
-     * Throws OpenGLException if glGetError() returns anything else than GL_NO_ERROR
-     *
-     */
-    public static void checkGLError() throws OpenGLException {
-    }
-
-    /**
      * Translate a GL error code to a String describing the error
      */
     public static String translateGLErrorString(int error_code) {

@@ -46,8 +46,8 @@ public class RenderMinecart<T extends EntityMinecart> extends Render<T>
 
         if (vec3 != null)
         {
-            Vec3 vec31 = entity.func_70495_a(d0, d1, d2, d3);
-            Vec3 vec32 = entity.func_70495_a(d0, d1, d2, -d3);
+            Vec3 vec31 = entity.getPosOffset(d0, d1, d2, d3);
+            Vec3 vec32 = entity.getPosOffset(d0, d1, d2, -d3);
 
             if (vec31 == null)
             {

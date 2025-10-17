@@ -1,7 +1,6 @@
 package net.minecraft.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryMerchant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
@@ -10,8 +9,6 @@ import net.minecraft.village.MerchantRecipeList;
 
 public class NpcMerchant implements IMerchant
 {
-    /** Instance of Merchants Inventory. */
-    private final InventoryMerchant theMerchantInventory;
 
     /** This merchant's current player customer. */
     private final EntityPlayer customer;
@@ -24,7 +21,6 @@ public class NpcMerchant implements IMerchant
     {
         this.customer = p_i45817_1_;
         this.name = p_i45817_2_;
-        this.theMerchantInventory = new InventoryMerchant(p_i45817_1_, this);
     }
 
     public EntityPlayer getCustomer()
@@ -64,6 +60,6 @@ public class NpcMerchant implements IMerchant
      */
     public IChatComponent getDisplayName()
     {
-        return (IChatComponent)(this.name != null ? this.name : new ChatComponentTranslation("entity.Villager.name", new Object[0]));
+        return this.name != null ? this.name : new ChatComponentTranslation("entity.Villager.name", new Object[0]);
     }
 }

@@ -21,7 +21,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     /** Whether this hopper minecart is being blocked by an activator rail. */
     private boolean isBlocked = true;
     private int transferTicker = -1;
-    private BlockPos lastPosition = BlockPos.ORIGIN;
+    private final BlockPos lastPosition = BlockPos.ORIGIN;
 
     public EntityMinecartHopper(World worldIn)
     {
@@ -54,19 +54,6 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     public int getSizeInventory()
     {
         return 5;
-    }
-
-    /**
-     * First layer of player interaction
-     */
-    public boolean interactFirst(EntityPlayer playerIn)
-    {
-        if (!this.worldObj.isRemote)
-        {
-            playerIn.displayGUIChest(this);
-        }
-
-        return true;
     }
 
     /**
@@ -175,7 +162,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
             if (!list.isEmpty())
             {
-                TileEntityHopper.putDropInInventoryAllSlots(this, (EntityItem)list.getFirst());
+                TileEntityHopper.putDropInInventoryAllSlots(this, list.getFirst());
             }
 
             return false;

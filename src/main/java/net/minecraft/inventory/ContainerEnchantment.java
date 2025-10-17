@@ -2,8 +2,8 @@ package net.minecraft.inventory;
 
 import java.util.List;
 import java.util.Random;
-import net.minecraft.enchantment.EnchantmentData;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.util.EnchantmentData;
+import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
@@ -341,7 +341,7 @@ public class ContainerEnchantment extends Container
 
                 if (itemstack != null)
                 {
-                    playerIn.dropPlayerItemWithRandomChoice(itemstack, false);
+                    playerIn.dropPlayerItemWithRandomChoice(itemstack);
                 }
             }
         }

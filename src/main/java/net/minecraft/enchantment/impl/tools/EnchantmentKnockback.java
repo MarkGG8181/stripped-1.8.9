@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.tools;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentFireAspect extends Enchantment
+public class EnchantmentKnockback extends Enchantment
 {
-    protected EnchantmentFireAspect(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentKnockback(int p_i45768_1_, ResourceLocation p_i45768_2_, int p_i45768_3_)
     {
-        super(enchID, enchName, enchWeight, EnumEnchantmentType.WEAPON);
-        this.setName("fire");
+        super(p_i45768_1_, p_i45768_2_, p_i45768_3_, EnumEnchantmentType.WEAPON);
+        this.setName("knockback");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentFireAspect extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 10 + 20 * (enchantmentLevel - 1);
+        return 5 + 20 * (enchantmentLevel - 1);
     }
 
     /**

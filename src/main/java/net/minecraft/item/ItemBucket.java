@@ -115,7 +115,7 @@ public class ItemBucket extends Item
         {
             if (!player.inventory.addItemStackToInventory(new ItemStack(fullBucket)))
             {
-                player.dropPlayerItemWithRandomChoice(new ItemStack(fullBucket, 1, 0), false);
+                player.dropPlayerItemWithRandomChoice(new ItemStack(fullBucket, 1, 0));
             }
 
             return emptyBuckets;

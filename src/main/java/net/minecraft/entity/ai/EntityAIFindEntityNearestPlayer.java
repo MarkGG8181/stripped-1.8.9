@@ -93,7 +93,7 @@ public class EntityAIFindEntityNearestPlayer extends EntityAIBase
         }
         else
         {
-            this.entityTarget = (EntityLivingBase)list.getFirst();
+            this.entityTarget = list.getFirst();
             return true;
         }
     }

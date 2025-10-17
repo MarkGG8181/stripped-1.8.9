@@ -125,7 +125,7 @@ public final class StatList
         initItemDepleteStats();
         initCraftableStats();
         AchievementList.init();
-        EntityList.func_151514_a();
+        EntityList.init();
     }
 
     /**

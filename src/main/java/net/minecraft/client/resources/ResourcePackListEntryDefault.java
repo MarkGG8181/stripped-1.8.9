@@ -44,20 +44,16 @@ public class ResourcePackListEntryDefault extends ResourcePackListEntry
     {
         try
         {
-            PackMetadataSection packmetadatasection = (PackMetadataSection)this.resourcePack.getPackMetadata(this.mc.getResourcePackRepository().rprMetadataSerializer, "pack");
+            PackMetadataSection packmetadatasection = this.resourcePack.getPackMetadata(this.mc.getResourcePackRepository().rprMetadataSerializer, "pack");
 
             if (packmetadatasection != null)
             {
                 return packmetadatasection.packDescription().getFormattedText();
             }
         }
-        catch (JsonParseException jsonparseexception)
+        catch (JsonParseException | IOException jsonparseexception)
         {
-            logger.error((String)"Couldn\'t load metadata info", (Throwable)jsonparseexception);
-        }
-        catch (IOException ioexception)
-        {
-            logger.error((String)"Couldn\'t load metadata info", (Throwable)ioexception);
+            logger.error("Couldn't load metadata info", jsonparseexception);
         }
 
         return EnumChatFormatting.RED + "Missing " + "pack.mcmeta" + " :(";

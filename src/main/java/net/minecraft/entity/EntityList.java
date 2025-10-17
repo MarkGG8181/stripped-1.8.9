@@ -90,7 +90,7 @@ public final class EntityList
         {
             throw new IllegalArgumentException("ID is already registered: " + entityName);
         }
-        else if (idToClassMapping.containsKey(Integer.valueOf(id)))
+        else if (idToClassMapping.containsKey(id))
         {
             throw new IllegalArgumentException("ID is already registered: " + id);
         }
@@ -106,9 +106,9 @@ public final class EntityList
         {
             stringToClassMapping.put(entityName, entityClass);
             classToStringMapping.put(entityClass, entityName);
-            idToClassMapping.put(Integer.valueOf(id), entityClass);
-            classToIDMapping.put(entityClass, Integer.valueOf(id));
-            stringToIDMapping.put(entityName, Integer.valueOf(id));
+            idToClassMapping.put(id, entityClass);
+            classToIDMapping.put(entityClass, id);
+            stringToIDMapping.put(entityName, id);
         }
     }
 
@@ -118,7 +118,7 @@ public final class EntityList
     private static void addMapping(Class<? extends Entity> entityClass, String entityName, int entityID, int baseColor, int spotColor)
     {
         addMapping(entityClass, entityName, entityID);
-        entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, baseColor, spotColor));
+        entityEggs.put(entityID, new EntityList.EntityEggInfo(entityID, baseColor, spotColor));
     }
 
     /**
@@ -130,11 +130,11 @@ public final class EntityList
 
         try
         {
-            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(entityName);
+            Class<? extends Entity> oclass = stringToClassMapping.get(entityName);
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
+                entity = oclass.getConstructor(new Class[]{World.class}).newInstance(worldIn);
             }
         }
         catch (Exception exception)
@@ -160,11 +160,11 @@ public final class EntityList
 
         try
         {
-            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(nbt.getString("id"));
+            Class<? extends Entity> oclass = stringToClassMapping.get(nbt.getString("id"));
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
+                entity = oclass.getConstructor(new Class[]{World.class}).newInstance(worldIn);
             }
         }
         catch (Exception exception)
@@ -178,7 +178,7 @@ public final class EntityList
         }
         else
         {
-            logger.warn("Skipping Entity with id " + nbt.getString("id"));
+            logger.warn("Skipping Entity with id {}", nbt.getString("id"));
         }
 
         return entity;
@@ -197,7 +197,7 @@ public final class EntityList
 
             if (oclass != null)
             {
-                entity = (Entity)oclass.getConstructor(new Class[]{World.class}).newInstance(new Object[]{worldIn});
+                entity = oclass.getConstructor(new Class[]{World.class}).newInstance(worldIn);
             }
         }
         catch (Exception exception)
@@ -207,7 +207,7 @@ public final class EntityList
 
         if (entity == null)
         {
-            logger.warn("Skipping Entity with id " + entityID);
+            logger.warn("Skipping Entity with id {}", entityID);
         }
 
         return entity;
@@ -218,13 +218,13 @@ public final class EntityList
      */
     public static int getEntityID(Entity entityIn)
     {
-        Integer integer = (Integer)classToIDMapping.get(entityIn.getClass());
-        return integer == null ? 0 : integer.intValue();
+        Integer integer = classToIDMapping.get(entityIn.getClass());
+        return integer == null ? 0 : integer;
     }
 
     public static Class<? extends Entity> getClassFromID(int entityID)
     {
-        return (Class)idToClassMapping.get(Integer.valueOf(entityID));
+        return idToClassMapping.get(entityID);
     }
 
     /**
@@ -232,7 +232,7 @@ public final class EntityList
      */
     public static String getEntityString(Entity entityIn)
     {
-        return (String)classToStringMapping.get(entityIn.getClass());
+        return classToStringMapping.get(entityIn.getClass());
     }
 
     /**
@@ -240,8 +240,8 @@ public final class EntityList
      */
     public static int getIDFromString(String entityName)
     {
-        Integer integer = (Integer)stringToIDMapping.get(entityName);
-        return integer == null ? 90 : integer.intValue();
+        Integer integer = stringToIDMapping.get(entityName);
+        return integer == null ? 90 : integer;
     }
 
     /**
@@ -252,7 +252,10 @@ public final class EntityList
         return (String)classToStringMapping.get(getClassFromID(entityID));
     }
 
-    public static void func_151514_a()
+    /**
+     * A stub functions called to make the static initializer for this class run.
+     */
+    public static void init()
     {
     }
 
@@ -263,7 +266,7 @@ public final class EntityList
 
         for (String s : set)
         {
-            Class<? extends Entity> oclass = (Class)stringToClassMapping.get(s);
+            Class<? extends Entity> oclass = stringToClassMapping.get(s);
 
             if ((oclass.getModifiers() & 1024) != 1024)
             {

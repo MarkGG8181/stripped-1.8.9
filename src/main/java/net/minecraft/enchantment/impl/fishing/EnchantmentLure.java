@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.fishing;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentOxygen extends Enchantment
+public class EnchantmentLure extends Enchantment
 {
-    public EnchantmentOxygen(int enchID, ResourceLocation p_i45766_2_, int p_i45766_3_)
+    public EnchantmentLure(int enchID, ResourceLocation enchName, int enchWeight, EnumEnchantmentType enchType)
     {
-        super(enchID, p_i45766_2_, p_i45766_3_, EnumEnchantmentType.ARMOR_HEAD);
-        this.setName("oxygen");
+        super(enchID, enchName, enchWeight, enchType);
+        this.setName("fishingSpeed");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentOxygen extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 10 * enchantmentLevel;
+        return 15 + (enchantmentLevel - 1) * 9;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentOxygen extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return this.getMinEnchantability(enchantmentLevel) + 30;
+        return super.getMinEnchantability(enchantmentLevel) + 50;
     }
 
     /**

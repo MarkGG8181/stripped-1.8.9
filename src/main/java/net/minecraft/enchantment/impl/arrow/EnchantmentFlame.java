@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.arrow;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentArrowInfinite extends Enchantment
+public class EnchantmentFlame extends Enchantment
 {
-    public EnchantmentArrowInfinite(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentFlame(int enchID, ResourceLocation enchName, int enchWeight)
     {
         super(enchID, enchName, enchWeight, EnumEnchantmentType.BOW);
-        this.setName("arrowInfinite");
+        this.setName("arrowFire");
     }
 
     /**
@@ -24,13 +26,5 @@ public class EnchantmentArrowInfinite extends Enchantment
     public int getMaxEnchantability(int enchantmentLevel)
     {
         return 50;
-    }
-
-    /**
-     * Returns the maximum level that the enchantment can have.
-     */
-    public int getMaxLevel()
-    {
-        return 1;
     }
 }

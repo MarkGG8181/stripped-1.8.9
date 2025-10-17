@@ -1,10 +1,8 @@
-package net.minecraft.enchantment;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+package net.minecraft.enchantment.util;
 
 import java.util.*;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;

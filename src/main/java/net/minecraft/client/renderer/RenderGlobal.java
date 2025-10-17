@@ -1841,12 +1841,6 @@ public class RenderGlobal implements IWorldAccess, IResourceManagerReloadListene
     public void onEntityRemoved(Entity entityIn) {
     }
 
-    /**
-     * Deletes all display lists
-     */
-    public void deleteAllDisplayLists() {
-    }
-
     public void broadcastSound(int soundID, BlockPos pos, int data) {
         switch (soundID) {
             case 1013:

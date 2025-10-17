@@ -71,15 +71,9 @@ public class AttributeModifier {
             AttributeModifier attributemodifier = (AttributeModifier)p_equals_1_;
 
             if (this.id != null) {
-                if (!this.id.equals(attributemodifier.id)) {
-                    return false;
-                }
+                return this.id.equals(attributemodifier.id);
             }
-            else if (attributemodifier.id != null) {
-                return false;
-            }
-
-            return true;
+            else return attributemodifier.id == null;
         }
         else {
             return false;
@@ -91,6 +85,6 @@ public class AttributeModifier {
     }
 
     public String toString() {
-        return "AttributeModifier{amount=" + this.amount + ", operation=" + this.operation + ", name=\'" + this.name + '\'' + ", id=" + this.id + ", serialize=" + this.isSaved + '}';
+        return "AttributeModifier{amount=" + this.amount + ", operation=" + this.operation + ", name='" + this.name + '\'' + ", id=" + this.id + ", serialize=" + this.isSaved + '}';
     }
 }
