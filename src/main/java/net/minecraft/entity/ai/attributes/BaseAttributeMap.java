@@ -16,11 +16,11 @@ public abstract class BaseAttributeMap {
     protected final Multimap<IAttribute, IAttribute> descendantsByParent = HashMultimap.create();
 
     public IAttributeInstance getAttributeInstance(IAttribute attribute) {
-        return (IAttributeInstance)this.attributes.get(attribute);
+        return this.attributes.get(attribute);
     }
 
     public IAttributeInstance getAttributeInstanceByName(String attributeName) {
-        return (IAttributeInstance)this.attributesByName.get(attributeName);
+        return this.attributesByName.get(attributeName);
     }
 
     /**
