@@ -21,7 +21,6 @@ public class RegionFile {
     private static final byte[] emptySector = new byte[4096];
     private RandomAccessFile dataFile;
     private final int[] offsets = new int[1024];
-    private final int[] chunkTimestamps = new int[1024];
     private List<Boolean> sectorFree;
 
     public RegionFile(File fileNameIn) {
@@ -66,11 +65,6 @@ public class RegionFile {
                         this.sectorFree.set((k >> 8) + l, false);
                     }
                 }
-            }
-
-            for (int i2 = 0; i2 < 1024; i2++) {
-                int j2 = this.dataFile.readInt();
-                this.chunkTimestamps[i2] = j2;
             }
         } catch (IOException ioexception) {
             ioexception.printStackTrace();
@@ -263,7 +257,6 @@ public class RegionFile {
      * args: x, z, timestamp - sets the chunk's write timestamp
      */
     private void setChunkTimestamp(int x, int z, int timestamp) throws IOException {
-        this.chunkTimestamps[x + z * 32] = timestamp;
         this.dataFile.seek(4096 + (x + z * 32L) * 4);
         this.dataFile.writeInt(timestamp);
     }

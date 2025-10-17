@@ -1946,10 +1946,6 @@ public class Minecraft implements IThreadListener {
         return theMinecraft == null || !theMinecraft.gameSettings.hideGUI;
     }
 
-    public static boolean isFancyGraphicsEnabled() {
-        return theMinecraft != null && theMinecraft.gameSettings.fancyGraphics;
-    }
-
     /**
      * Returns if ambient occlusion is enabled
      */
@@ -2009,16 +2005,14 @@ public class Minecraft implements IThreadListener {
                             flag1 = true;
                         }
                     }
-                    case EntityMinecart entityminecart -> {
-                        item = switch (entityminecart.getMinecartType()) {
-                            case FURNACE -> Items.furnace_minecart;
-                            case CHEST -> Items.chest_minecart;
-                            case TNT -> Items.tnt_minecart;
-                            case HOPPER -> Items.hopper_minecart;
-                            case COMMAND_BLOCK -> Items.command_block_minecart;
-                            default -> Items.minecart;
-                        };
-                    }
+                    case EntityMinecart entityminecart -> item = switch (entityminecart.getMinecartType()) {
+                        case FURNACE -> Items.furnace_minecart;
+                        case CHEST -> Items.chest_minecart;
+                        case TNT -> Items.tnt_minecart;
+                        case HOPPER -> Items.hopper_minecart;
+                        case COMMAND_BLOCK -> Items.command_block_minecart;
+                        default -> Items.minecart;
+                    };
                     case EntityBoat ignored -> item = Items.boat;
                     case EntityArmorStand ignored -> item = Items.armor_stand;
                     default -> {
