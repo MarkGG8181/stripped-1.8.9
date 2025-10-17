@@ -33,9 +33,9 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
 
     public static void doDispense(World worldIn, ItemStack stack, int speed, EnumFacing facing, IPosition position)
     {
-        double d0 = position.getX();
-        double d1 = position.getY();
-        double d2 = position.getZ();
+        double d0 = position.x();
+        double d1 = position.y();
+        double d2 = position.z();
 
         if (facing.getAxis() == EnumFacing.Axis.Y)
         {
