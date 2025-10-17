@@ -250,8 +250,9 @@ public final class OpenGlHelper {
         }
 
         try {
-            List<CentralProcessor.LogicalProcessor> aprocessor = new SystemInfo().getHardware().getProcessor().getLogicalProcessors();
-            cpu = "%dx %s".formatted(aprocessor.size(), aprocessor.getFirst()).replaceAll("\\s+", " ");
+            //Proper format source from: https://minecraft.wiki/w/Debug_screen
+            CentralProcessor processor = new SystemInfo().getHardware().getProcessor();
+            cpu = "%dx %s".formatted(processor.getPhysicalProcessorCount(), processor.getProcessorIdentifier().getName()).replaceAll("\\s+", " ");
         } catch (Throwable ignored) {
         }
     }
