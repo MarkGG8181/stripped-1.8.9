@@ -5,7 +5,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -43,7 +42,7 @@ public class EntitySquid extends EntityWaterMob
     {
         super(worldIn);
         this.setSize(0.95F, 0.95F);
-        this.rand.setSeed((long)(1 + this.getEntityId()));
+        this.rand.setSeed(1 + this.getEntityId());
         this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
         this.tasks.addTask(0, new EntitySquid.AIMoveRandom(this));
     }

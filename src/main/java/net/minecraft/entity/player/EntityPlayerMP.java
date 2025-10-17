@@ -131,7 +131,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     private int lastExperience = -99999999;
     private int respawnInvulnerabilityTicks = 60;
     private EntityPlayer.EnumChatVisibility chatVisibility;
-    private boolean chatColours = true;
     private long playerLastActiveTime = System.currentTimeMillis();
 
     /** The entity the player is currently spectating through. */
@@ -574,7 +573,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public boolean canAttackPlayer(EntityPlayer other)
     {
-        return this.canPlayersAttack() ? super.canAttackPlayer(other) : false;
+        return this.canPlayersAttack() && super.canAttackPlayer(other);
     }
 
     /**
@@ -624,7 +623,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public boolean isSpectatedByPlayer(EntityPlayerMP player)
     {
-        return player.isSpectator() ? this.getSpectatingEntity() == this : (this.isSpectator() ? false : super.isSpectatedByPlayer(player));
+        return player.isSpectator() ? this.getSpectatingEntity() == this : (!this.isSpectator() && super.isSpectatedByPlayer(player));
     }
 
     private void sendTileEntityUpdate(TileEntity p_147097_1_)
@@ -1163,7 +1162,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void handleClientSettings(C15PacketClientSettings packetIn)
     {
         this.chatVisibility = packetIn.getChatVisibility();
-        this.chatColours = packetIn.isColorsEnabled();
         this.getDataWatcher().updateObject(10, (byte) packetIn.getModelPartFlags());
     }
 

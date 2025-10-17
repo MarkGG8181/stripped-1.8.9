@@ -242,7 +242,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
                 if (this.attackTimer == 10)
                 {
-                    world.playAuxSFXAtEntity((EntityPlayer)null, 1007, new BlockPos(this.parentEntity), 0);
+                    world.playAuxSFXAtEntity(null, 1007, new BlockPos(this.parentEntity), 0);
                 }
 
                 if (this.attackTimer == 20)

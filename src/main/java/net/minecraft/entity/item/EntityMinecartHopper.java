@@ -162,7 +162,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
             if (!list.isEmpty())
             {
-                TileEntityHopper.putDropInInventoryAllSlots(this, (EntityItem)list.getFirst());
+                TileEntityHopper.putDropInInventoryAllSlots(this, list.getFirst());
             }
 
             return false;

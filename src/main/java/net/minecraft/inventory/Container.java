@@ -237,13 +237,13 @@ public abstract class Container
                 {
                     if (clickedButton == 0)
                     {
-                        playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack(), true);
+                        playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack());
                         inventoryplayer.setItemStack((ItemStack)null);
                     }
 
                     if (clickedButton == 1)
                     {
-                        playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack().splitStack(1), true);
+                        playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack().splitStack(1));
 
                         if (inventoryplayer.getItemStack().stackSize == 0)
                         {
@@ -451,7 +451,7 @@ public abstract class Container
             {
                 ItemStack itemstack5 = slot3.decrStackSize(clickedButton == 0 ? 1 : slot3.getStack().stackSize);
                 slot3.onPickupFromSlot(playerIn, itemstack5);
-                playerIn.dropPlayerItemWithRandomChoice(itemstack5, true);
+                playerIn.dropPlayerItemWithRandomChoice(itemstack5);
             }
         }
         else if (mode == 6 && slotId >= 0)
@@ -519,7 +519,7 @@ public abstract class Container
 
         if (inventoryplayer.getItemStack() != null)
         {
-            playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack(), false);
+            playerIn.dropPlayerItemWithRandomChoice(inventoryplayer.getItemStack());
             inventoryplayer.setItemStack((ItemStack)null);
         }
     }

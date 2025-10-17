@@ -178,7 +178,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
             else
             {
                 BlockPos blockpos1 = this.villageObj.getCenter();
-                this.setHomePosAndDistance(blockpos1, (int)((float)this.villageObj.getVillageRadius() * 1.0F));
+                this.setHomePosAndDistance(blockpos1, (int)((float) this.villageObj.getVillageRadius()));
 
                 if (this.isLookingForHome)
                 {

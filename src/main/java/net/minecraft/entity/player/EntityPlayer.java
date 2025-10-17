@@ -3,8 +3,6 @@ package net.minecraft.entity.player;
 import com.mojang.authlib.GameProfile;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -52,9 +50,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
 import net.minecraft.port.sneak.SmoothSneakingState;
 import net.minecraft.potion.Potion;
-import net.minecraft.scoreboard.IScoreObjectiveCriteria;
-import net.minecraft.scoreboard.Score;
-import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
@@ -387,7 +382,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
             }
         }
 
-        int i = 29999999;
         double d3 = MathHelper.clamp_double(this.posX, -2.9999999E7D, 2.9999999E7D);
         double d4 = MathHelper.clamp_double(this.posZ, -2.9999999E7D, 2.9999999E7D);
 
@@ -502,7 +496,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
      */
     public void updateRidden() {
         if (!this.worldObj.isRemote && this.isSneaking()) {
-            this.mountEntity((Entity)null);
+            this.mountEntity(null);
             this.setSneaking(false);
         }
         else {
@@ -595,7 +589,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         this.cameraPitch += (f1 - this.cameraPitch) * 0.8F;
 
         if (this.getHealth() > 0.0F && !this.isSpectator()) {
-            AxisAlignedBB axisalignedbb = null;
+            AxisAlignedBB axisalignedbb;
 
             if (this.ridingEntity != null && !this.ridingEntity.isDead) {
                 axisalignedbb = this.getEntityBoundingBox().union(this.ridingEntity.getEntityBoundingBox()).expand(1.0D, 0.0D, 1.0D);
@@ -657,33 +651,6 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return "game.player.die";
     }
 
-    private Collection<ScoreObjective> func175137E(Entity p_175137_1_) {
-        ScorePlayerTeam scoreplayerteam = this.getWorldScoreboard().getPlayersTeam(this.getName());
-
-        if (scoreplayerteam != null) {
-            int i = scoreplayerteam.getChatFormat().getColorIndex();
-
-            if (i >= 0 && i < IScoreObjectiveCriteria.KILLED_BY_TEAM.length) {
-                for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.KILLED_BY_TEAM[i])) {
-                    Score score = this.getWorldScoreboard().getValueFromObjective(p_175137_1_.getName(), scoreobjective);
-                    score.func_96648_a();
-                }
-            }
-        }
-
-        ScorePlayerTeam scoreplayerteam1 = this.getWorldScoreboard().getPlayersTeam(p_175137_1_.getName());
-
-        if (scoreplayerteam1 != null) {
-            int j = scoreplayerteam1.getChatFormat().getColorIndex();
-
-            if (j >= 0 && j < IScoreObjectiveCriteria.TEAM_KILL.length) {
-                return this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.TEAM_KILL[j]);
-            }
-        }
-
-        return new ArrayList<>();
-    }
-
     /**
      * Called when player presses the drop item key
      */
@@ -691,10 +658,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         return this.dropItem(this.inventory.decrStackSize(this.inventory.currentItem, dropAll && this.inventory.getCurrentItem() != null ? this.inventory.getCurrentItem().stackSize : 1), false, true);
     }
 
-    /**
-     * Args: itemstack, flag
-     */
-    public EntityItem dropPlayerItemWithRandomChoice(ItemStack itemStackIn, boolean unused) {
+    public EntityItem dropPlayerItemWithRandomChoice(ItemStack itemStackIn) {
         return this.dropItem(itemStackIn, false, false);
     }
 
@@ -925,7 +889,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public boolean canAttackPlayer(EntityPlayer other) {
         Team team = this.getTeam();
         Team team1 = other.getTeam();
-        return team == null ? true : (team.isSameTeam(team1) ? team.getAllowFriendlyFire() : true);
+        return team == null || (team.isSameTeam(team1) ? team.getAllowFriendlyFire() : true);
     }
 
     protected void damageArmor(float p_70675_1_) {
@@ -1893,7 +1857,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             Team team = this.getTeam();
-            return team == null || player == null || player.getTeam() != team || !team.getSeeFriendlyInvisiblesEnabled();
+            return team == null || player.getTeam() != team || !team.getSeeFriendlyInvisiblesEnabled();
         }
     }
 
@@ -1983,7 +1947,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             ItemStack itemstack = this.getCurrentEquippedItem();
-            return itemstack != null && itemstack.hasDisplayName() ? itemstack.getDisplayName().equals(code.getLock()) : false;
+            return itemstack != null && itemstack.hasDisplayName() && itemstack.getDisplayName().equals(code.getLock());
         }
     }
 

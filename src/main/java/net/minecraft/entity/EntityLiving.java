@@ -249,7 +249,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 double d1 = this.rand.nextGaussian() * 0.02D;
                 double d2 = this.rand.nextGaussian() * 0.02D;
                 double d3 = 10.0D;
-                this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d0 * d3, this.posY + (double)(this.rand.nextFloat() * this.height) - d1 * d3, this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d2 * d3, d0, d1, d2, new int[0]);
+                this.worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d0 * d3, this.posY + (double)(this.rand.nextFloat() * this.height) - d1 * d3, this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width - d2 * d3, d0, d1, d2);
             }
         }
         else
@@ -484,15 +484,8 @@ public abstract class EntityLiving extends EntityLivingBase
             {
                 if (i == 0)
                 {
-                    if (itemstack.getItem() instanceof ItemSword && !(itemstack1.getItem() instanceof ItemSword))
+                    if (itemstack.getItem() instanceof ItemSword itemsword && itemstack1.getItem() instanceof ItemSword itemsword1)
                     {
-                        flag = true;
-                    }
-                    else if (itemstack.getItem() instanceof ItemSword && itemstack1.getItem() instanceof ItemSword)
-                    {
-                        ItemSword itemsword = (ItemSword)itemstack.getItem();
-                        ItemSword itemsword1 = (ItemSword)itemstack1.getItem();
-
                         if (itemsword.getDamageVsEntity() != itemsword1.getDamageVsEntity())
                         {
                             flag = itemsword.getDamageVsEntity() > itemsword1.getDamageVsEntity();
@@ -511,14 +504,8 @@ public abstract class EntityLiving extends EntityLivingBase
                         flag = false;
                     }
                 }
-                else if (itemstack.getItem() instanceof ItemArmor && !(itemstack1.getItem() instanceof ItemArmor))
+                else if (itemstack.getItem() instanceof ItemArmor itemarmor && itemstack1.getItem() instanceof ItemArmor itemarmor1)
                 {
-                    flag = true;
-                }
-                else if (itemstack.getItem() instanceof ItemArmor && itemstack1.getItem() instanceof ItemArmor)
-                {
-                    ItemArmor itemarmor = (ItemArmor)itemstack.getItem();
-                    ItemArmor itemarmor1 = (ItemArmor)itemstack1.getItem();
 
                     if (itemarmor.damageReduceAmount != itemarmor1.damageReduceAmount)
                     {
@@ -1170,7 +1157,7 @@ public abstract class EntityLiving extends EntityLivingBase
 
             if (!this.worldObj.isRemote && sendPacket && this.worldObj instanceof WorldServer server)
             {
-                server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, (Entity)null));
+                server.getEntityTracker().sendToAllTrackingEntity(this, new S1BPacketEntityAttach(1, this, null));
             }
         }
     }

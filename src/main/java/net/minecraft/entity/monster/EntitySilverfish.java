@@ -208,7 +208,7 @@ public class EntitySilverfish extends EntityMob
 
         public boolean continueExecuting()
         {
-            return this.doMerge ? false : super.continueExecuting();
+            return !this.doMerge && super.continueExecuting();
         }
 
         public void startExecuting()
@@ -283,7 +283,7 @@ public class EntitySilverfish extends EntityMob
                                 }
                                 else
                                 {
-                                    world.setBlockState(blockpos1, ((BlockSilverfish.EnumType)iblockstate.getValue(BlockSilverfish.VARIANT)).getModelBlock(), 3);
+                                    world.setBlockState(blockpos1, iblockstate.getValue(BlockSilverfish.VARIANT).getModelBlock(), 3);
                                 }
 
                                 if (random.nextBoolean())

@@ -202,23 +202,19 @@ public class EntityTracker
             CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Adding entity to track");
             CrashReportCategory crashreportcategory = crashreport.makeCategory("Entity To Track");
             crashreportcategory.addCrashSection("Tracking range", trackingRange + " blocks");
-            crashreportcategory.addCrashSectionCallable("Update interval", new Callable<>()
-            {
-                public String call() throws Exception
+            crashreportcategory.addCrashSectionCallable("Update interval", () -> {
+                String s = "Once per " + updateFrequency + " ticks";
+
+                if (updateFrequency == Integer.MAX_VALUE)
                 {
-                    String s = "Once per " + updateFrequency + " ticks";
-
-                    if (updateFrequency == Integer.MAX_VALUE)
-                    {
-                        s = "Maximum (" + s + ")";
-                    }
-
-                    return s;
+                    s = "Maximum (" + s + ")";
                 }
+
+                return s;
             });
             entityIn.addEntityCrashInfo(crashreportcategory);
             CrashReportCategory crashreportcategory1 = crashreport.makeCategory("Entity That Is Already Tracked");
-            ((EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId())).trackedEntity.addEntityCrashInfo(crashreportcategory1);
+            this.trackedEntityHashTable.lookup(entityIn.getEntityId()).trackedEntity.addEntityCrashInfo(crashreportcategory1);
 
             try
             {
@@ -226,7 +222,7 @@ public class EntityTracker
             }
             catch (ReportedException reportedexception)
             {
-                logger.error((String)"\"Silently\" catching entity tracking error.", (Throwable)reportedexception);
+                logger.error("\"Silently\" catching entity tracking error.", reportedexception);
             }
         }
     }
@@ -242,7 +238,7 @@ public class EntityTracker
             }
         }
 
-        EntityTrackerEntry entitytrackerentry1 = (EntityTrackerEntry)this.trackedEntityHashTable.removeObject(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry1 = this.trackedEntityHashTable.removeObject(entityIn.getEntityId());
 
         if (entitytrackerentry1 != null)
         {

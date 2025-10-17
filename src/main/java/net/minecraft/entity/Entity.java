@@ -1525,14 +1525,6 @@ public abstract class Entity implements ICommandSender
         return false;
     }
 
-    /**
-     * Adds a value to the player score. Currently not actually used and the entity passed in does nothing. Args:
-     * entity, scoreToAdd
-     */
-    public void addToPlayerScore(Entity entityIn, int amount)
-    {
-    }
-
     public boolean isInRangeToRender3d(double x, double y, double z)
     {
         double d0 = this.posX - x;

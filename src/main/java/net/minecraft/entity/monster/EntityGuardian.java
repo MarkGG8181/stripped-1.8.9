@@ -298,7 +298,7 @@ public class EntityGuardian extends EntityMob {
                 Vec3 vec3 = this.getLook(0.0F);
 
                 for (int i = 0; i < 2; i++) {
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.x * 1.5D, this.posY + this.rand.nextDouble() * (double)this.height - vec3.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.z * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.x * 1.5D, this.posY + this.rand.nextDouble() * (double)this.height - vec3.y * 1.5D, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width - vec3.z * 1.5D, 0.0D, 0.0D, 0.0D);
                 }
             }
 
@@ -614,15 +614,10 @@ public class EntityGuardian extends EntityMob {
         }
     }
 
-    static class GuardianTargetSelector implements Predicate<EntityLivingBase> {
-        private final EntityGuardian parentEntity;
-
-        public GuardianTargetSelector(EntityGuardian guardian) {
-            this.parentEntity = guardian;
-        }
+    record GuardianTargetSelector(EntityGuardian parentEntity) implements Predicate<EntityLivingBase> {
 
         public boolean apply(EntityLivingBase p_apply_1_) {
-            return (p_apply_1_ instanceof EntityPlayer || p_apply_1_ instanceof EntitySquid) && p_apply_1_.getDistanceSqToEntity(this.parentEntity) > 9.0D;
+                return (p_apply_1_ instanceof EntityPlayer || p_apply_1_ instanceof EntitySquid) && p_apply_1_.getDistanceSqToEntity(this.parentEntity) > 9.0D;
+            }
         }
-    }
 }

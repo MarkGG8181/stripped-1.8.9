@@ -55,7 +55,7 @@ public class ItemGlassBottle extends Item
 
                     if (!playerIn.inventory.addItemStackToInventory(new ItemStack(Items.potionitem)))
                     {
-                        playerIn.dropPlayerItemWithRandomChoice(new ItemStack(Items.potionitem, 1, 0), false);
+                        playerIn.dropPlayerItemWithRandomChoice(new ItemStack(Items.potionitem, 1, 0));
                     }
                 }
             }

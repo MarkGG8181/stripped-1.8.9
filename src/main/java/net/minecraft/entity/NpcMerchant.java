@@ -1,7 +1,6 @@
 package net.minecraft.entity;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryMerchant;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
@@ -61,6 +60,6 @@ public class NpcMerchant implements IMerchant
      */
     public IChatComponent getDisplayName()
     {
-        return (IChatComponent)(this.name != null ? this.name : new ChatComponentTranslation("entity.Villager.name", new Object[0]));
+        return this.name != null ? this.name : new ChatComponentTranslation("entity.Villager.name", new Object[0]);
     }
 }

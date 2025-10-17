@@ -489,19 +489,19 @@ public class EntityTrackerEntry
         }
 
         switch (this.trackedEntity) {
-            case EntityItem entityItem -> {
+            case EntityItem ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 2, 1);
             }
-            case EntityPlayerMP entityPlayerMP -> {
+            case EntityPlayerMP ignored -> {
                 return new S0CPacketSpawnPlayer((EntityPlayer) this.trackedEntity);
             }
             case EntityMinecart entityminecart -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 10, entityminecart.getMinecartType().getNetworkID());
             }
-            case EntityBoat entityBoat -> {
+            case EntityBoat ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 1);
             }
-            case IAnimals iAnimals -> {
+            case IAnimals ignored -> {
                 this.lastHeadMotion = MathHelper.floor_float(this.trackedEntity.getRotationYawHead() * 256.0F / 360.0F);
                 return new S0FPacketSpawnMob((EntityLivingBase) this.trackedEntity);
             }
@@ -513,26 +513,26 @@ public class EntityTrackerEntry
                 Entity entity = arrow.shootingEntity;
                 return new S0EPacketSpawnObject(this.trackedEntity, 60, entity != null ? entity.getEntityId() : this.trackedEntity.getEntityId());
             }
-            case EntitySnowball entitySnowball -> {
+            case EntitySnowball ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 61);
             }
             case EntityPotion potion -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 73, potion.getPotionDamage());
             }
-            case EntityExpBottle entityExpBottle -> {
+            case EntityExpBottle ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 75);
             }
-            case EntityEnderPearl entityEnderPearl -> {
+            case EntityEnderPearl ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 65);
             }
-            case EntityEnderEye entityEnderEye -> {
+            case EntityEnderEye ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 72);
             }
-            case EntityFireworkRocket entityFireworkRocket -> {
+            case EntityFireworkRocket ignored -> {
                 return new S0EPacketSpawnObject(this.trackedEntity, 76);
             }
             case EntityFireball entityfireball -> {
-                S0EPacketSpawnObject s0epacketspawnobject2 = null;
+                S0EPacketSpawnObject s0epacketspawnobject2;
                 int i = 63;
 
                 if (this.trackedEntity instanceof EntitySmallFireball) {

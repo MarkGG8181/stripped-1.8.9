@@ -2,7 +2,6 @@ package net.minecraft.entity.ai;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import net.minecraft.entity.Entity;
@@ -28,7 +27,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
 
     public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, boolean checkSight, boolean onlyNearby)
     {
-        this(creature, classTarget, 10, checkSight, onlyNearby, (Predicate<? super T>)null);
+        this(creature, classTarget, 10, checkSight, onlyNearby, null);
     }
 
     public EntityAINearestAttackableTarget(EntityCreature creature, Class<T> classTarget, int chance, boolean checkSight, boolean onlyNearby, final Predicate<? super T> targetSelector)
@@ -38,45 +37,41 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
         this.targetChance = chance;
         this.theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(creature);
         this.setMutexBits(1);
-        this.targetEntitySelector = new Predicate<>()
-        {
-            public boolean apply(T p_apply_1_)
+        this.targetEntitySelector = (Predicate<T>) p_apply_1_ -> {
+            if (targetSelector != null && !targetSelector.apply(p_apply_1_))
             {
-                if (targetSelector != null && !targetSelector.apply(p_apply_1_))
+                return false;
+            }
+            else
+            {
+                if (p_apply_1_ instanceof EntityPlayer player)
                 {
-                    return false;
-                }
-                else
-                {
-                    if (p_apply_1_ instanceof EntityPlayer player)
+                    double d0 = EntityAINearestAttackableTarget.this.getTargetDistance();
+
+                    if (p_apply_1_.isSneaking())
                     {
-                        double d0 = EntityAINearestAttackableTarget.this.getTargetDistance();
-
-                        if (p_apply_1_.isSneaking())
-                        {
-                            d0 *= 0.800000011920929D;
-                        }
-
-                        if (p_apply_1_.isInvisible())
-                        {
-                            float f = player.getArmorVisibility();
-
-                            if (f < 0.1F)
-                            {
-                                f = 0.1F;
-                            }
-
-                            d0 *= (double)(0.7F * f);
-                        }
-
-                        if ((double)p_apply_1_.getDistanceToEntity(EntityAINearestAttackableTarget.this.taskOwner) > d0)
-                        {
-                            return false;
-                        }
+                        d0 *= 0.800000011920929D;
                     }
 
-                    return EntityAINearestAttackableTarget.this.isSuitableTarget(p_apply_1_, false);
+                    if (p_apply_1_.isInvisible())
+                    {
+                        float f = player.getArmorVisibility();
+
+                        if (f < 0.1F)
+                        {
+                            f = 0.1F;
+                        }
+
+                        d0 *= (double)(0.7F * f);
+                    }
+
+                    if ((double)p_apply_1_.getDistanceToEntity(EntityAINearestAttackableTarget.this.taskOwner) > d0)
+                    {
+                        return false;
+                    }
                 }
+
+                return EntityAINearestAttackableTarget.this.isSuitableTarget(p_apply_1_, false);
             }
         };
     }
@@ -93,7 +88,7 @@ public class EntityAINearestAttackableTarget<T extends EntityLivingBase> extends
         else
         {
             double d0 = this.getTargetDistance();
-            List<T> list = this.taskOwner.worldObj.getEntitiesWithinAABB(this.targetClass, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), Predicates.<T>and(this.targetEntitySelector, EntitySelectors.NOT_SPECTATING));
+            List<T> list = this.taskOwner.worldObj.getEntitiesWithinAABB(this.targetClass, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), Predicates.and(this.targetEntitySelector, EntitySelectors.NOT_SPECTATING));
             list.sort(this.theNearestAttackableTargetSorter);
 
             if (list.isEmpty())
