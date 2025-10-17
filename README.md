@@ -6,6 +6,10 @@ A stripped, open-source, cleaned-up and up-to-date version of Minecraft 1.8.9 fo
 
 This is a deobfuscated and refactored version of Minecraft 1.8.9 with unnecessary client code, telemetry, unused features, and legacy compatibility stripped out. Useful for base client development, modding projects, or studying Minecraft internals.
 
+> **Note:** OptiFine is not included or supported in this project.  
+> Its code is very bloated and hard to work with.  
+> Also, the Frames diffrence beetwen both shouldn't be too massive, especially when the base is already optimized.
+
 ## Features
 
 - Fully deobfuscated and renamed mappings
