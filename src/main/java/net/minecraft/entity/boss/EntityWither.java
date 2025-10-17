@@ -42,8 +42,6 @@ import net.minecraft.world.World;
 public class EntityWither extends EntityMob implements IBossDisplayData, IRangedAttackMob {
     private final float[] xRotationHeads = new float[2];
     private final float[] yRotationHeads = new float[2];
-    private final float[] xRotOHeads = new float[2];
-    private final float[] yRotOHeads = new float[2];
     private final int[] nextHeadUpdate = new int[2];
     private final int[] idleHeadUpdates = new int[2];
 
@@ -68,17 +66,17 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, attackEntitySelector));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 0, false, false, attackEntitySelector));
         this.experienceValue = 50;
     }
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(17, Integer.valueOf(0));
-        this.dataWatcher.addObject(18, Integer.valueOf(0));
-        this.dataWatcher.addObject(19, Integer.valueOf(0));
-        this.dataWatcher.addObject(20, Integer.valueOf(0));
+        this.dataWatcher.addObject(17, 0);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(19, 0);
+        this.dataWatcher.addObject(20, 0);
     }
 
     /**
@@ -154,11 +152,6 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
         }
 
         super.onLivingUpdate();
-
-        for (int i = 0; i < 2; i++) {
-            this.yRotOHeads[i] = this.yRotationHeads[i];
-            this.xRotOHeads[i] = this.xRotationHeads[i];
-        }
 
         for (int j = 0; j < 2; j++) {
             int k = this.getWatchedTargetId(j + 1);
@@ -532,7 +525,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
     }
 
     public void setInvulTime(int p_82215_1_) {
-        this.dataWatcher.updateObject(20, Integer.valueOf(p_82215_1_));
+        this.dataWatcher.updateObject(20, p_82215_1_);
     }
 
     /**
@@ -546,7 +539,7 @@ public class EntityWither extends EntityMob implements IBossDisplayData, IRanged
      * Updates the target entity ID
      */
     public void updateWatchedTargetId(int targetOffset, int newId) {
-        this.dataWatcher.updateObject(17 + targetOffset, Integer.valueOf(newId));
+        this.dataWatcher.updateObject(17 + targetOffset, newId);
     }
 
     /**

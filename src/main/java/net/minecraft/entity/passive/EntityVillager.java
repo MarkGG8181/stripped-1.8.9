@@ -88,7 +88,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     private int careerLevel;
     private boolean isLookingForHome;
     private boolean areAdditionalTasksSet;
-    private InventoryBasic villagerInventory;
+    private final InventoryBasic villagerInventory;
 
     /**
      * A multi-dimensional array mapping the various professions, careers and career levels that a Villager may offer
@@ -109,7 +109,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
         ((PathNavigateGround)this.getNavigator()).setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
         this.tasks.addTask(1, new EntityAITradePlayer(this));
         this.tasks.addTask(1, new EntityAILookAtTradePlayer(this));
         this.tasks.addTask(2, new EntityAIMoveIndoors(this));
@@ -249,7 +249,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Integer.valueOf(0));
+        this.dataWatcher.addObject(16, 0);
     }
 
     /**
@@ -352,7 +352,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
     public void setProfession(int professionId)
     {
-        this.dataWatcher.updateObject(16, Integer.valueOf(professionId));
+        this.dataWatcher.updateObject(16, professionId);
     }
 
     public int getProfession()
@@ -612,7 +612,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     {
         String s = this.getCustomNameTag();
 
-        if (s != null && s.length() > 0)
+        if (s != null && !s.isEmpty())
         {
             ChatComponentText chatcomponenttext = new ChatComponentText(s);
             chatcomponenttext.getChatStyle().setChatHoverEvent(this.getHoverEvent());
@@ -1073,12 +1073,12 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     {
         public PriceInfo(int p_i45810_1_, int p_i45810_2_)
         {
-            super(Integer.valueOf(p_i45810_1_), Integer.valueOf(p_i45810_2_));
+            super(p_i45810_1_, p_i45810_2_);
         }
 
         public int getPrice(Random rand)
         {
-            return ((Integer)this.getFirst()).intValue() >= ((Integer)this.getSecond()).intValue() ? ((Integer)this.getFirst()).intValue() : ((Integer)this.getFirst()).intValue() + rand.nextInt(((Integer)this.getSecond()).intValue() - ((Integer)this.getFirst()).intValue() + 1);
+            return this.getFirst() >= this.getSecond() ? this.getFirst() : this.getFirst() + rand.nextInt(this.getSecond() - this.getFirst() + 1);
         }
     }
 }

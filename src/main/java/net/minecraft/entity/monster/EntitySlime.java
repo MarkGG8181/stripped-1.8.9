@@ -47,12 +47,12 @@ public class EntitySlime extends EntityLiving implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)1));
+        this.dataWatcher.addObject(16, (byte) 1);
     }
 
     protected void setSlimeSize(int size)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)size));
+        this.dataWatcher.updateObject(16, (byte) size);
         this.setSize(0.51000005F * (float)size, 0.51000005F * (float)size);
         this.setPosition(this.posX, this.posY, this.posZ);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue((double)(size * size));
@@ -400,7 +400,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
     static class AISlimeAttack extends EntityAIBase
     {
-        private EntitySlime slime;
+        private final EntitySlime slime;
         private int growTieredTimer;
 
         public AISlimeAttack(EntitySlime slimeIn)
@@ -436,7 +436,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
     static class AISlimeFaceRandom extends EntityAIBase
     {
-        private EntitySlime slime;
+        private final EntitySlime slime;
         private float chosenDegrees;
         private int nextRandomizeTime;
 
@@ -465,7 +465,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
     static class AISlimeFloat extends EntityAIBase
     {
-        private EntitySlime slime;
+        private final EntitySlime slime;
 
         public AISlimeFloat(EntitySlime slimeIn)
         {
@@ -492,7 +492,7 @@ public class EntitySlime extends EntityLiving implements IMob
 
     static class AISlimeHop extends EntityAIBase
     {
-        private EntitySlime slime;
+        private final EntitySlime slime;
 
         public AISlimeHop(EntitySlime slimeIn)
         {
@@ -515,7 +515,7 @@ public class EntitySlime extends EntityLiving implements IMob
     {
         private float yRot;
         private int jumpDelay;
-        private EntitySlime slime;
+        private final EntitySlime slime;
         private boolean isAggressive;
 
         public SlimeMoveHelper(EntitySlime slimeIn)

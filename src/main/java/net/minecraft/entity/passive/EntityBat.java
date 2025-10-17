@@ -26,7 +26,7 @@ public class EntityBat extends EntityAmbientCreature
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     /**
@@ -102,11 +102,11 @@ public class EntityBat extends EntityAmbientCreature
 
         if (isHanging)
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 1)));
+            this.dataWatcher.updateObject(16, (byte) (b0 | 1));
         }
         else
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -2)));
+            this.dataWatcher.updateObject(16, (byte) (b0 & -2));
         }
     }
 
@@ -236,7 +236,7 @@ public class EntityBat extends EntityAmbientCreature
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         super.readEntityFromNBT(tagCompund);
-        this.dataWatcher.updateObject(16, Byte.valueOf(tagCompund.getByte("BatFlags")));
+        this.dataWatcher.updateObject(16, tagCompund.getByte("BatFlags"));
     }
 
     /**
@@ -279,7 +279,7 @@ public class EntityBat extends EntityAmbientCreature
 
     private boolean isDateAroundHalloween(Calendar p_175569_1_)
     {
-        return p_175569_1_.get(2) + 1 == 10 && p_175569_1_.get(5) >= 20 || p_175569_1_.get(2) + 1 == 11 && p_175569_1_.get(5) <= 3;
+        return p_175569_1_.get(Calendar.MONTH) + 1 == 10 && p_175569_1_.get(Calendar.DATE) >= 20 || p_175569_1_.get(2) + 1 == 11 && p_175569_1_.get(5) <= 3;
     }
 
     public float getEyeHeight()

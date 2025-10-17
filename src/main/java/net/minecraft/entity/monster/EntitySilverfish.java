@@ -14,7 +14,6 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
@@ -23,7 +22,7 @@ import net.minecraft.world.World;
 
 public class EntitySilverfish extends EntityMob
 {
-    private EntitySilverfish.AISummonSilverfish summonSilverfish;
+    private final EntitySilverfish.AISummonSilverfish summonSilverfish;
 
     public EntitySilverfish(World worldIn)
     {
@@ -33,8 +32,8 @@ public class EntitySilverfish extends EntityMob
         this.tasks.addTask(3, this.summonSilverfish = new EntitySilverfish.AISummonSilverfish(this));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
         this.tasks.addTask(5, new EntitySilverfish.AIHideInStone(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     /**
@@ -104,7 +103,7 @@ public class EntitySilverfish extends EntityMob
         {
             if (source instanceof EntityDamageSource || source == DamageSource.magic)
             {
-                this.summonSilverfish.func_179462_f();
+                this.summonSilverfish.notifyHurt();
             }
 
             return super.attackEntityFrom(source, amount);
@@ -114,11 +113,6 @@ public class EntitySilverfish extends EntityMob
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
         this.playSound("mob.silverfish.step", 0.15F, 1.0F);
-    }
-
-    protected Item getDropItem()
-    {
-        return null;
     }
 
     /**
@@ -241,7 +235,7 @@ public class EntitySilverfish extends EntityMob
 
     static class AISummonSilverfish extends EntityAIBase
     {
-        private EntitySilverfish silverfish;
+        private final EntitySilverfish silverfish;
         private int lookForFriends;
 
         public AISummonSilverfish(EntitySilverfish silverfishIn)
@@ -249,7 +243,7 @@ public class EntitySilverfish extends EntityMob
             this.silverfish = silverfishIn;
         }
 
-        public void func_179462_f()
+        public void notifyHurt()
         {
             if (this.lookForFriends == 0)
             {
@@ -272,11 +266,11 @@ public class EntitySilverfish extends EntityMob
                 Random random = this.silverfish.getRNG();
                 BlockPos blockpos = new BlockPos(this.silverfish);
 
-                for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : 0 - i)
+                for (int i = 0; i <= 5 && i >= -5; i = i <= 0 ? 1 - i : -i)
                 {
-                    for (int j = 0; j <= 10 && j >= -10; j = j <= 0 ? 1 - j : 0 - j)
+                    for (int j = 0; j <= 10 && j >= -10; j = j <= 0 ? 1 - j : -j)
                     {
-                        for (int k = 0; k <= 10 && k >= -10; k = k <= 0 ? 1 - k : 0 - k)
+                        for (int k = 0; k <= 10 && k >= -10; k = k <= 0 ? 1 - k : -k)
                         {
                             BlockPos blockpos1 = blockpos.add(j, i, k);
                             IBlockState iblockstate = world.getBlockState(blockpos1);

@@ -987,7 +987,7 @@ public class WorldServer extends World implements IThreadListener
      */
     public void setEntityState(Entity entityIn, byte state)
     {
-        this.getEntityTracker().func_151248_b(entityIn, new S19PacketEntityStatus(entityIn, state));
+        this.getEntityTracker().sendToTrackingAndSelf(entityIn, new S19PacketEntityStatus(entityIn, state));
     }
 
     /**

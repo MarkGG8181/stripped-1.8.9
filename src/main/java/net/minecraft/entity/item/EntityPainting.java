@@ -39,7 +39,7 @@ public class EntityPainting extends EntityHanging
 
         if (!list.isEmpty())
         {
-            this.art = (EntityPainting.EnumArt)list.get(this.rand.nextInt(list.size()));
+            this.art = list.get(this.rand.nextInt(list.size()));
         }
 
         this.updateFacingWithBoundingBox(facing);
@@ -174,7 +174,7 @@ public class EntityPainting extends EntityHanging
         public final int offsetX;
         public final int offsetY;
 
-        private EnumArt(String titleIn, int width, int height, int textureU, int textureV)
+        EnumArt(String titleIn, int width, int height, int textureU, int textureV)
         {
             this.title = titleIn;
             this.sizeX = width;

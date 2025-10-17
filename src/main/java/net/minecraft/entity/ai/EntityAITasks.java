@@ -28,7 +28,7 @@ public class EntityAITasks {
      * Add a now AITask. Args : priority, task
      */
     public void addTask(int priority, EntityAIBase task) {
-        this.taskEntries.add(new EntityAITasks.EntityAITaskEntry(priority, task));
+        this.taskEntries.add(new EntityAITaskEntry(task, priority));
     }
 
     /**
@@ -56,7 +56,7 @@ public class EntityAITasks {
         this.theProfiler.startSection("goalSetup");
 
         if (this.tickCount++ % this.tickRate == 0) {
-            Iterator iterator = this.taskEntries.iterator();
+            Iterator<EntityAITaskEntry> iterator = this.taskEntries.iterator();
             label38:
 
             while (true) {
@@ -67,7 +67,7 @@ public class EntityAITasks {
                         break label38;
                     }
 
-                    entityaitasks$entityaitaskentry = (EntityAITasks.EntityAITaskEntry)iterator.next();
+                    entityaitasks$entityaitaskentry = iterator.next();
                     boolean flag = this.executingTaskEntries.contains(entityaitasks$entityaitaskentry);
 
                     if (!flag) {
@@ -91,7 +91,7 @@ public class EntityAITasks {
             Iterator<EntityAITasks.EntityAITaskEntry> iterator1 = this.executingTaskEntries.iterator();
 
             while (iterator1.hasNext()) {
-                EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry1 = (EntityAITasks.EntityAITaskEntry)iterator1.next();
+                EntityAITasks.EntityAITaskEntry entityaitasks$entityaitaskentry1 = iterator1.next();
 
                 if (!this.canContinue(entityaitasks$entityaitaskentry1)) {
                     entityaitasks$entityaitaskentry1.action.resetTask();
@@ -145,13 +145,6 @@ public class EntityAITasks {
         return (taskEntry1.action.getMutexBits() & taskEntry2.action.getMutexBits()) == 0;
     }
 
-    class EntityAITaskEntry {
-        public EntityAIBase action;
-        public int priority;
-
-        public EntityAITaskEntry(int priorityIn, EntityAIBase task) {
-            this.priority = priorityIn;
-            this.action = task;
-        }
+    record EntityAITaskEntry(EntityAIBase action, int priority) {
     }
 }

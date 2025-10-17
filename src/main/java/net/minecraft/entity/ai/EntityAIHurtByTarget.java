@@ -10,9 +10,10 @@ public class EntityAIHurtByTarget extends EntityAITarget
 
     /** Store the previous revengeTimer value */
     private int revengeTimerOld;
-    private final Class[] targetClasses;
+    private final Class<? extends EntityCreature>[] targetClasses;
 
-    public EntityAIHurtByTarget(EntityCreature creatureIn, boolean entityCallsForHelpIn, Class... targetClassesIn)
+    @SafeVarargs
+    public EntityAIHurtByTarget(EntityCreature creatureIn, boolean entityCallsForHelpIn, Class<? extends EntityCreature>... targetClassesIn)
     {
         super(creatureIn, false);
         this.entityCallsForHelp = entityCallsForHelpIn;
@@ -47,7 +48,7 @@ public class EntityAIHurtByTarget extends EntityAITarget
                 {
                     boolean flag = false;
 
-                    for (Class oclass : this.targetClasses)
+                    for (Class<? extends EntityCreature> oclass : this.targetClasses)
                     {
                         if (entitycreature.getClass() == oclass)
                         {

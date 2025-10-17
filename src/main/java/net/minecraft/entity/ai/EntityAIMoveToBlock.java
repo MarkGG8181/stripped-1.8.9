@@ -63,13 +63,6 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
     }
 
     /**
-     * Resets the task
-     */
-    public void resetTask()
-    {
-    }
-
-    /**
      * Updates the task
      */
     public void updateTask()
@@ -103,13 +96,11 @@ public abstract class EntityAIMoveToBlock extends EntityAIBase
      */
     private boolean searchForDestination()
     {
-        int i = this.searchLength;
-        int j = 1;
         BlockPos blockpos = new BlockPos(this.theEntity);
 
         for (int k = 0; k <= 1; k = k > 0 ? -k : 1 - k)
         {
-            for (int l = 0; l < i; l++)
+            for (int l = 0; l < this.searchLength; l++)
             {
                 for (int i1 = 0; i1 <= l; i1 = i1 > 0 ? -i1 : 1 - i1)
                 {

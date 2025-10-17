@@ -1,6 +1,7 @@
 package net.minecraft.entity.projectile;
 
 import java.util.List;
+import java.util.Objects;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -118,7 +119,7 @@ public class EntityArrow extends Entity implements IProjectile {
     }
 
     protected void entityInit() {
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     /**
@@ -271,12 +272,7 @@ public class EntityArrow extends Entity implements IProjectile {
 
                     DamageSource damagesource;
 
-                    if (this.shootingEntity == null) {
-                        damagesource = DamageSource.causeArrowDamage(this, this);
-                    }
-                    else {
-                        damagesource = DamageSource.causeArrowDamage(this, this.shootingEntity);
-                    }
+                    damagesource = DamageSource.causeArrowDamage(this, Objects.requireNonNullElse(this.shootingEntity, this));
 
                     if (this.isBurning() && !(movingobjectposition.entityHit instanceof EntityEnderman)) {
                         movingobjectposition.entityHit.setFire(5);
@@ -511,10 +507,10 @@ public class EntityArrow extends Entity implements IProjectile {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
         if (critical) {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 1)));
+            this.dataWatcher.updateObject(16, (byte) (b0 | 1));
         }
         else {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -2)));
+            this.dataWatcher.updateObject(16, (byte) (b0 & -2));
         }
     }
 

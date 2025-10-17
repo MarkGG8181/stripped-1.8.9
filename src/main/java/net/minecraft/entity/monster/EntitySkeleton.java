@@ -49,13 +49,13 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIRestrictSun(this));
         this.tasks.addTask(3, new EntityAIFleeSun(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityWolf.class, 6.0F, 1.0D, 1.2D));
         this.tasks.addTask(4, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityIronGolem.class, true));
 
         if (worldIn != null && !worldIn.isRemote) {
             this.setCombatTask();
@@ -69,7 +69,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(13, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(13, (byte) 0);
     }
 
     /**
@@ -173,8 +173,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
     public void onDeath(DamageSource cause) {
         super.onDeath(cause);
 
-        if (cause.getSourceOfDamage() instanceof EntityArrow && cause.getEntity() instanceof EntityPlayer) {
-            EntityPlayer entityplayer = (EntityPlayer)cause.getEntity();
+        if (cause.getSourceOfDamage() instanceof EntityArrow && cause.getEntity() instanceof EntityPlayer entityplayer) {
             double d0 = entityplayer.posX - this.posX;
             double d1 = entityplayer.posZ - this.posZ;
 
@@ -263,8 +262,17 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
         if (this.getEquipmentInSlot(4) == null) {
             Calendar calendar = this.worldObj.getCurrentDate();
 
-            if (calendar.get(2) + 1 == 10 && calendar.get(5) == 31 && this.rand.nextFloat() < 0.25F) {
-                this.setCurrentItemOrArmor(4, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.lit_pumpkin : Blocks.pumpkin));
+            //if October 31st
+            boolean isHalloween = calendar.get(Calendar.MONTH) + 1 == 10 &&
+                    calendar.get(Calendar.DATE) == 31;
+
+            //25% chance to equip a pumpkin on Halloween
+            if (isHalloween && this.rand.nextFloat() < 0.25F) {
+                //10% chance for a lit pumpkin, otherwise regular pumpkin
+                boolean useLitPumpkin = this.rand.nextFloat() < 0.1F;
+                Block pumpkinBlock = useLitPumpkin ? Blocks.lit_pumpkin : Blocks.pumpkin;
+
+                this.setCurrentItemOrArmor(4, new ItemStack(pumpkinBlock));
                 this.equipmentDropChances[4] = 0.0F;
             }
         }
@@ -324,7 +332,7 @@ public class EntitySkeleton extends EntityMob implements IRangedAttackMob {
      * Set this skeleton's type.
      */
     public void setSkeletonType(int p_82201_1_) {
-        this.dataWatcher.updateObject(13, Byte.valueOf((byte)p_82201_1_));
+        this.dataWatcher.updateObject(13, (byte) p_82201_1_);
         this.isImmuneToFire = p_82201_1_ == 1;
 
         if (p_82201_1_ == 1) {

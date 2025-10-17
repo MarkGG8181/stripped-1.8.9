@@ -90,14 +90,9 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class EntityPlayerMP extends EntityPlayer implements ICrafting
 {
-    private static final Logger logger = LogManager.getLogger();
-    private String translator = "en_US";
-
     /**
      * The NetServerHandler assigned to this player by the ServerConfigurationManager.
      */
@@ -286,14 +281,14 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         while (!this.destroyedItemsNetCache.isEmpty())
         {
-            int i = Math.min(this.destroyedItemsNetCache.size(), Integer.MAX_VALUE);
+            int i = this.destroyedItemsNetCache.size();
             int[] aint = new int[i];
             Iterator<Integer> iterator = this.destroyedItemsNetCache.iterator();
             int j = 0;
 
             while (iterator.hasNext() && j < i)
             {
-                aint[j++] = ((Integer)iterator.next()).intValue();
+                aint[j++] = iterator.next();
                 iterator.remove();
             }
 
@@ -306,7 +301,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             Iterator<ChunkCoordIntPair> iterator1 = this.loadedChunks.iterator();
             List<TileEntity> list1 = new ArrayList<>();
 
-            while (iterator1.hasNext() && ((List)list).size() < 10)
+            while (iterator1.hasNext() && list.size() < 10)
             {
                 ChunkCoordIntPair chunkcoordintpair = (ChunkCoordIntPair)iterator1.next();
 
@@ -348,7 +343,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 for (Chunk chunk1 : list)
                 {
-                    this.getServerForPlayer().getEntityTracker().func_85172_a(this, chunk1);
+                    this.getServerForPlayer().getEntityTracker().sendLeashedEntitiesInChunk(this, chunk1);
                 }
             }
         }
@@ -386,7 +381,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 if (itemstack != null && itemstack.getItem().isMap())
                 {
-                    Packet packet = ((ItemMapBase)itemstack.getItem()).createMapDataPacket(itemstack, this.worldObj, this);
+                    Packet<?> packet = ((ItemMapBase)itemstack.getItem()).createMapDataPacket(itemstack, this.worldObj, this);
 
                     if (packet != null)
                     {
@@ -409,7 +404,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
                 for (ScoreObjective scoreobjective : this.getWorldScoreboard().getObjectivesFromCriteria(IScoreObjectiveCriteria.health))
                 {
-                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(Arrays.asList(this));
+                    this.getWorldScoreboard().getValueFromObjective(this.getName(), scoreobjective).func_96651_a(List.of(this));
                 }
             }
 
@@ -521,7 +516,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (entitylivingbase != null)
         {
-            EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(EntityList.getEntityID(entitylivingbase)));
+            EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.entityEggs.get(EntityList.getEntityID(entitylivingbase));
 
             if (entitylist$entityegginfo != null)
             {
@@ -614,7 +609,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                     this.playerNetServerHandler.setPlayerLocation((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), 0.0F, 0.0F);
                 }
 
-                dimensionId = 1;
             }
             else
             {
@@ -637,7 +631,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (p_147097_1_ != null)
         {
-            Packet packet = p_147097_1_.getDescriptionPacket();
+            Packet<?> packet = p_147097_1_.getDescriptionPacket();
 
             if (packet != null)
             {
@@ -661,7 +655,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (entityplayer$enumstatus == EntityPlayer.EnumStatus.OK)
         {
-            Packet packet = new S0APacketUseBed(this, bedLocation);
+            Packet<?> packet = new S0APacketUseBed(this, bedLocation);
             this.getServerForPlayer().getEntityTracker().sendToAllTrackingEntity(this, packet);
             this.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             this.playerNetServerHandler.sendPacket(packet);
@@ -677,7 +671,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         if (this.isPlayerSleeping())
         {
-            this.getServerForPlayer().getEntityTracker().func_151248_b(this, new S0BPacketAnimation(this, 2));
+            this.getServerForPlayer().getEntityTracker().sendToTrackingAndSelf(this, new S0BPacketAnimation(this, 2));
         }
 
         super.wakeUpPlayer(immediately, updateWorldFlag, setSpawn);
@@ -1019,7 +1013,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
         if (stack != null && stack.getItem() != null && stack.getItem().getItemUseAction(stack) == EnumAction.EAT)
         {
-            this.getServerForPlayer().getEntityTracker().func_151248_b(this, new S0BPacketAnimation(this, 3));
+            this.getServerForPlayer().getEntityTracker().sendToTrackingAndSelf(this, new S0BPacketAnimation(this, 3));
         }
     }
 
@@ -1067,12 +1061,12 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      */
     public void onCriticalHit(Entity entityHit)
     {
-        this.getServerForPlayer().getEntityTracker().func_151248_b(this, new S0BPacketAnimation(entityHit, 4));
+        this.getServerForPlayer().getEntityTracker().sendToTrackingAndSelf(this, new S0BPacketAnimation(entityHit, 4));
     }
 
     public void onEnchantmentCritical(Entity entityHit)
     {
-        this.getServerForPlayer().getEntityTracker().func_151248_b(this, new S0BPacketAnimation(entityHit, 5));
+        this.getServerForPlayer().getEntityTracker().sendToTrackingAndSelf(this, new S0BPacketAnimation(entityHit, 5));
     }
 
     /**
@@ -1168,10 +1162,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
 
     public void handleClientSettings(C15PacketClientSettings packetIn)
     {
-        this.translator = packetIn.getLang();
         this.chatVisibility = packetIn.getChatVisibility();
         this.chatColours = packetIn.isColorsEnabled();
-        this.getDataWatcher().updateObject(10, Byte.valueOf((byte)packetIn.getModelPartFlags()));
+        this.getDataWatcher().updateObject(10, (byte) packetIn.getModelPartFlags());
     }
 
     public EntityPlayer.EnumChatVisibility getChatVisibility()
@@ -1182,15 +1175,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     public void loadResourcePack(String url, String hash)
     {
         this.playerNetServerHandler.sendPacket(new S48PacketResourcePackSend(url, hash));
-    }
-
-    /**
-     * Get the position in the world. <b>{@code null} is not allowed!</b> If you are not an entity in the world, return
-     * the coordinates 0, 0, 0
-     */
-    public BlockPos getPosition()
-    {
-        return new BlockPos(this.posX, this.posY + 0.5D, this.posZ);
     }
 
     public void markPlayerActive()
@@ -1217,7 +1201,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         }
         else
         {
-            this.destroyedItemsNetCache.add(Integer.valueOf(p_152339_1_.getEntityId()));
+            this.destroyedItemsNetCache.add(p_152339_1_.getEntityId());
         }
     }
 
@@ -1237,7 +1221,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             super.updatePotionMetadata();
         }
 
-        this.getServerForPlayer().getEntityTracker().func_180245_a(this);
+        this.getServerForPlayer().getEntityTracker().updateVisibility(this);
     }
 
     public Entity getSpectatingEntity()

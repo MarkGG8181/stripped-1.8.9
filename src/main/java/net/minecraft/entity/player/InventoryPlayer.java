@@ -1,6 +1,6 @@
 package net.minecraft.entity.player;
 
-import java.util.concurrent.Callable;
+import java.util.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -318,12 +318,7 @@ public class InventoryPlayer implements IInventory
                 }
             }
 
-            int k = i;
-
-            if (i > this.mainInventory[j].getMaxStackSize() - this.mainInventory[j].stackSize)
-            {
-                k = this.mainInventory[j].getMaxStackSize() - this.mainInventory[j].stackSize;
-            }
+            int k = Math.min(i, this.mainInventory[j].getMaxStackSize() - this.mainInventory[j].stackSize);
 
             if (k > this.getInventoryStackLimit() - this.mainInventory[j].stackSize)
             {
@@ -424,16 +419,11 @@ public class InventoryPlayer implements IInventory
                 {
                     int i;
 
-                    while (true)
-                    {
+                    do {
                         i = itemStackIn.stackSize;
                         itemStackIn.stackSize = this.storePartialItemStack(itemStackIn);
 
-                        if (itemStackIn.stackSize <= 0 || itemStackIn.stackSize >= i)
-                        {
-                            break;
-                        }
-                    }
+                    } while (itemStackIn.stackSize > 0 && itemStackIn.stackSize < i);
 
                     if (itemStackIn.stackSize == i && this.player.capabilities.isCreativeMode)
                     {
@@ -450,15 +440,9 @@ public class InventoryPlayer implements IInventory
             {
                 CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Adding item to inventory");
                 CrashReportCategory crashreportcategory = crashreport.makeCategory("Item being added");
-                crashreportcategory.addCrashSection("Item ID", Integer.valueOf(Item.getIdFromItem(itemStackIn.getItem())));
-                crashreportcategory.addCrashSection("Item data", Integer.valueOf(itemStackIn.getMetadata()));
-                crashreportcategory.addCrashSectionCallable("Item name", new Callable<>()
-                {
-                    public String call() throws Exception
-                    {
-                        return itemStackIn.getDisplayName();
-                    }
-                });
+                crashreportcategory.addCrashSection("Item ID", Item.getIdFromItem(itemStackIn.getItem()));
+                crashreportcategory.addCrashSection("Item data", itemStackIn.getMetadata());
+                crashreportcategory.addCrashSectionCallable("Item name", itemStackIn::getDisplayName);
                 throw new ReportedException(crashreport);
             }
         }
@@ -669,7 +653,7 @@ public class InventoryPlayer implements IInventory
      */
     public IChatComponent getDisplayName()
     {
-        return (IChatComponent)(this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName(), new Object[0]));
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatComponentTranslation(this.getName(), new Object[0]);
     }
 
     /**
@@ -710,11 +694,9 @@ public class InventoryPlayer implements IInventory
     {
         int i = 0;
 
-        for (int j = 0; j < this.armorInventory.length; j++)
-        {
-            if (this.armorInventory[j] != null && this.armorInventory[j].getItem() instanceof ItemArmor)
-            {
-                int k = ((ItemArmor)this.armorInventory[j].getItem()).damageReduceAmount;
+        for (ItemStack stack : this.armorInventory) {
+            if (stack != null && stack.getItem() instanceof ItemArmor) {
+                int k = ((ItemArmor) stack.getItem()).damageReduceAmount;
                 i += k;
             }
         }
@@ -810,18 +792,14 @@ public class InventoryPlayer implements IInventory
      */
     public boolean hasItemStack(ItemStack itemStackIn)
     {
-        for (int i = 0; i < this.armorInventory.length; i++)
-        {
-            if (this.armorInventory[i] != null && this.armorInventory[i].isItemEqual(itemStackIn))
-            {
+        for (ItemStack stack : this.armorInventory) {
+            if (stack != null && stack.isItemEqual(itemStackIn)) {
                 return true;
             }
         }
 
-        for (int j = 0; j < this.mainInventory.length; j++)
-        {
-            if (this.mainInventory[j] != null && this.mainInventory[j].isItemEqual(itemStackIn))
-            {
+        for (ItemStack stack : this.mainInventory) {
+            if (stack != null && stack.isItemEqual(itemStackIn)) {
                 return true;
             }
         }
@@ -879,14 +857,7 @@ public class InventoryPlayer implements IInventory
 
     public void clear()
     {
-        for (int i = 0; i < this.mainInventory.length; i++)
-        {
-            this.mainInventory[i] = null;
-        }
-
-        for (int j = 0; j < this.armorInventory.length; j++)
-        {
-            this.armorInventory[j] = null;
-        }
+        Arrays.fill(this.mainInventory, null);
+        Arrays.fill(this.armorInventory, null);
     }
 }

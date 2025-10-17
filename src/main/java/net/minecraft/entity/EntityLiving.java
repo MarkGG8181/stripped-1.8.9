@@ -1,5 +1,6 @@
 package net.minecraft.entity;
 
+import java.util.Arrays;
 import java.util.UUID;
 import net.minecraft.enchantment.util.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -88,10 +89,7 @@ public abstract class EntityLiving extends EntityLivingBase
         this.navigator = this.getNewNavigator(worldIn);
         this.senses = new EntitySenses(this);
 
-        for (int i = 0; i < this.equipmentDropChances.length; i++)
-        {
-            this.equipmentDropChances[i] = 0.085F;
-        }
+        Arrays.fill(this.equipmentDropChances, 0.085F);
     }
 
     protected void applyEntityAttributes()
@@ -171,7 +169,7 @@ public abstract class EntityLiving extends EntityLivingBase
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(15, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(15, (byte) 0);
     }
 
     /**
@@ -341,13 +339,11 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setBoolean("PersistenceRequired", this.persistenceRequired);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.equipment.length; i++)
-        {
+        for (ItemStack itemStack : this.equipment) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-            if (this.equipment[i] != null)
-            {
-                this.equipment[i].writeToNBT(nbttagcompound);
+            if (itemStack != null) {
+                itemStack.writeToNBT(nbttagcompound);
             }
 
             nbttaglist.appendTag(nbttagcompound);
@@ -356,9 +352,8 @@ public abstract class EntityLiving extends EntityLivingBase
         tagCompound.setTag("Equipment", nbttaglist);
         NBTTagList nbttaglist1 = new NBTTagList();
 
-        for (int j = 0; j < this.equipmentDropChances.length; j++)
-        {
-            nbttaglist1.appendTag(new NBTTagFloat(this.equipmentDropChances[j]));
+        for (float equipmentDropChance : this.equipmentDropChances) {
+            nbttaglist1.appendTag(new NBTTagFloat(equipmentDropChance));
         }
 
         tagCompound.setTag("DropChances", nbttaglist1);
@@ -540,7 +535,7 @@ public abstract class EntityLiving extends EntityLivingBase
                 }
             }
 
-            if (flag && this.func175448A(itemstack))
+            if (flag && this.canEquipItem(itemstack))
             {
                 if (itemstack1 != null && this.rand.nextFloat() - 0.1F < this.equipmentDropChances[i])
                 {
@@ -566,7 +561,7 @@ public abstract class EntityLiving extends EntityLivingBase
         }
     }
 
-    protected boolean func175448A(ItemStack stack)
+    protected boolean canEquipItem(ItemStack stack)
     {
         return true;
     }
@@ -1289,7 +1284,7 @@ public abstract class EntityLiving extends EntityLivingBase
      */
     public void setNoAI(boolean disable)
     {
-        this.dataWatcher.updateObject(15, Byte.valueOf((byte)(disable ? 1 : 0)));
+        this.dataWatcher.updateObject(15, (byte) (disable ? 1 : 0));
     }
 
     /**

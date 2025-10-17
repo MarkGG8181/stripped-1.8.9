@@ -1,7 +1,6 @@
 package net.minecraft.entity.boss;
 
 import com.google.common.collect.Lists;
-import java.util.Iterator;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
@@ -445,12 +444,8 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
      */
     private void attackEntitiesInList(List<Entity> p_70971_1_)
     {
-        for (int i = 0; i < p_70971_1_.size(); i++)
-        {
-            Entity entity = (Entity)p_70971_1_.get(i);
-
-            if (entity instanceof EntityLivingBase)
-            {
+        for (Entity entity : p_70971_1_) {
+            if (entity instanceof EntityLivingBase) {
                 entity.attackEntityFrom(DamageSource.causeMobDamage(this), 10.0F);
                 this.applyEnchantments(this, entity);
             }
@@ -463,20 +458,13 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
     private void setNewTarget()
     {
         this.forceNewTarget = false;
-        List<EntityPlayer> list = Lists.newArrayList(this.worldObj.playerEntities);
-        Iterator<EntityPlayer> iterator = list.iterator();
 
-        while (iterator.hasNext())
-        {
-            if (((EntityPlayer)iterator.next()).isSpectator())
-            {
-                iterator.remove();
-            }
-        }
+        List<EntityPlayer> list = Lists.newArrayList(this.worldObj.playerEntities);
+        list.removeIf(EntityPlayer::isSpectator);
 
         if (this.rand.nextInt(2) == 0 && !list.isEmpty())
         {
-            this.target = (Entity)list.get(this.rand.nextInt(list.size()));
+            this.target = list.get(this.rand.nextInt(list.size()));
         }
         else
         {

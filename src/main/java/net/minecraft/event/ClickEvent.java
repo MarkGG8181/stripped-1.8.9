@@ -1,5 +1,7 @@
 package net.minecraft.event;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,15 +36,9 @@ public record ClickEvent(Action action, String value) {
             }
             else {
                 if (this.value != null) {
-                    if (!this.value.equals(clickevent.value)) {
-                        return false;
-                    }
+                    return this.value.equals(clickevent.value);
                 }
-                else if (clickevent.value != null) {
-                    return false;
-                }
-
-                return true;
+                else return clickevent.value == null;
             }
         }
         else {
@@ -50,8 +46,8 @@ public record ClickEvent(Action action, String value) {
         }
     }
 
-    public String toString() {
-        return "ClickEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
+    public @NotNull String toString() {
+        return "ClickEvent{action=" + this.action + ", value='" + this.value + '\'' + '}';
     }
 
     public enum Action {

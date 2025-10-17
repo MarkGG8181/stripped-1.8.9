@@ -113,14 +113,6 @@ public class EntityZombiePigman extends EntityZombie
     }
 
     /**
-     * Checks that the entity is not colliding with any blocks / liquids
-     */
-    public boolean isNotColliding()
-    {
-        return this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.worldObj.getCollidingBoundingBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getEntityBoundingBox());
-    }
-
-    /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound tagCompound)
@@ -147,7 +139,7 @@ public class EntityZombiePigman extends EntityZombie
         this.angerLevel = tagCompund.getShort("Anger");
         String s = tagCompund.getString("HurtBy");
 
-        if (s.length() > 0)
+        if (!s.isEmpty())
         {
             this.angerTargetUUID = FastUUID.parseUUID(s);
             EntityPlayer entityplayer = this.worldObj.getPlayerEntityByUUID(this.angerTargetUUID);
@@ -289,7 +281,7 @@ public class EntityZombiePigman extends EntityZombie
     {
         public AIHurtByAggressor(EntityZombiePigman p_i45828_1_)
         {
-            super(p_i45828_1_, true, new Class[0]);
+            super(p_i45828_1_, true);
         }
 
         protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)

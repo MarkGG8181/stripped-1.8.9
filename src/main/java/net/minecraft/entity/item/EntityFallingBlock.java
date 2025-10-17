@@ -2,6 +2,8 @@ package net.minecraft.entity.item;
 
 import com.google.common.collect.Lists;
 import java.util.List;
+import java.util.Objects;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockFalling;
@@ -200,7 +202,7 @@ public class EntityFallingBlock extends Entity
 
                 if (flag && (double)this.rand.nextFloat() < 0.05000000074505806D + (double)i * 0.05D)
                 {
-                    int j = ((Integer)this.fallTile.getValue(BlockAnvil.DAMAGE)).intValue();
+                    int j = this.fallTile.getValue(BlockAnvil.DAMAGE);
                     ++j;
 
                     if (j > 2)
@@ -209,7 +211,7 @@ public class EntityFallingBlock extends Entity
                     }
                     else
                     {
-                        this.fallTile = this.fallTile.withProperty(BlockAnvil.DAMAGE, Integer.valueOf(j));
+                        this.fallTile = this.fallTile.withProperty(BlockAnvil.DAMAGE, j);
                     }
                 }
             }
@@ -246,7 +248,7 @@ public class EntityFallingBlock extends Entity
 
         if (tagCompund.hasKey("Block", 8))
         {
-            this.fallTile = Block.getBlockFromName(tagCompund.getString("Block")).getStateFromMeta(i);
+            this.fallTile = Objects.requireNonNull(Block.getBlockFromName(tagCompund.getString("Block"))).getStateFromMeta(i);
         }
         else if (tagCompund.hasKey("TileID", 99))
         {
@@ -312,8 +314,8 @@ public class EntityFallingBlock extends Entity
         if (this.fallTile != null)
         {
             Block block = this.fallTile.getBlock();
-            category.addCrashSection("Immitating block ID", Integer.valueOf(Block.getIdFromBlock(block)));
-            category.addCrashSection("Immitating block data", Integer.valueOf(block.getMetaFromState(this.fallTile)));
+            category.addCrashSection("Immitating block ID", Block.getIdFromBlock(block));
+            category.addCrashSection("Immitating block data", block.getMetaFromState(this.fallTile));
         }
     }
 

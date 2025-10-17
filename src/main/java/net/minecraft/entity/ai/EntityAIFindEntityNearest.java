@@ -55,7 +55,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
     {
         double d0 = this.getFollowRange();
         List<EntityLivingBase> list = this.mob.worldObj.getEntitiesWithinAABB(this.classToCheck, this.mob.getEntityBoundingBox().expand(d0, 4.0D, d0), this.predicate);
-        Collections.sort(list, this.sorter);
+        list.sort(this.sorter);
 
         if (list.isEmpty())
         {
@@ -63,7 +63,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
         }
         else
         {
-            this.target = (EntityLivingBase)list.getFirst();
+            this.target = list.getFirst();
             return true;
         }
     }
@@ -104,7 +104,7 @@ public class EntityAIFindEntityNearest extends EntityAIBase
      */
     public void resetTask()
     {
-        this.mob.setAttackTarget((EntityLivingBase)null);
+        this.mob.setAttackTarget(null);
         super.startExecuting();
     }
 

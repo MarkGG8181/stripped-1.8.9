@@ -103,13 +103,6 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     /**
-     * Returns the collision bounding box for this entity
-     */
-    public AxisAlignedBB getCollisionBoundingBox() {
-        return null;
-    }
-
-    /**
      * Returns true if this entity should push and be pushed by other entities when colliding.
      */
     public boolean canBePushed() {
@@ -302,7 +295,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
                 this.func180460A(blockpos, iblockstate);
 
                 if (iblockstate.getBlock() == Blocks.activator_rail) {
-                    this.onActivatorRailPass(k, l, i1, ((Boolean)iblockstate.getValue(BlockRailPowered.POWERED)).booleanValue());
+                    this.onActivatorRailPass(k, l, i1, iblockstate.getValue(BlockRailPowered.POWERED));
                 }
             }
             else {
@@ -395,7 +388,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         BlockRailBase blockrailbase = (BlockRailBase)p_180460_2_.getBlock();
 
         if (blockrailbase == Blocks.golden_rail) {
-            flag = ((Boolean)p_180460_2_.getValue(BlockRailPowered.POWERED)).booleanValue();
+            flag = p_180460_2_.getValue(BlockRailPowered.POWERED);
             flag1 = !flag;
         }
 
@@ -726,7 +719,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             this.setDisplayTileOffset(tagCompund.getInteger("DisplayOffset"));
         }
 
-        if (tagCompund.hasKey("CustomName", 8) && tagCompund.getString("CustomName").length() > 0) {
+        if (tagCompund.hasKey("CustomName", 8) && !tagCompund.getString("CustomName").isEmpty()) {
             this.entityName = tagCompund.getString("CustomName");
         }
     }
@@ -744,7 +737,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
             tagCompound.setInteger("DisplayOffset", this.getDisplayTileOffset());
         }
 
-        if (this.entityName != null && this.entityName.length() > 0) {
+        if (this.entityName != null && !this.entityName.isEmpty()) {
             tagCompound.setString("CustomName", this.entityName);
         }
     }
@@ -858,7 +851,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * 40.
      */
     public void setDamage(float p_70492_1_) {
-        this.dataWatcher.updateObject(19, Float.valueOf(p_70492_1_));
+        this.dataWatcher.updateObject(19, p_70492_1_);
     }
 
     /**
@@ -873,7 +866,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * Sets the rolling amplitude the cart rolls while being attacked.
      */
     public void setRollingAmplitude(int p_70497_1_) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(p_70497_1_));
+        this.dataWatcher.updateObject(17, p_70497_1_);
     }
 
     /**
@@ -887,7 +880,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
      * Sets the rolling direction the cart rolls while being attacked. Can be 1 or -1.
      */
     public void setRollingDirection(int p_70494_1_) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(p_70494_1_));
+        this.dataWatcher.updateObject(18, p_70494_1_);
     }
 
     /**
@@ -916,12 +909,12 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     public void func_174899_a(IBlockState p_174899_1_) {
-        this.getDataWatcher().updateObject(20, Integer.valueOf(Block.getStateId(p_174899_1_)));
+        this.getDataWatcher().updateObject(20, Block.getStateId(p_174899_1_));
         this.setHasDisplayTile(true);
     }
 
     public void setDisplayTileOffset(int p_94086_1_) {
-        this.getDataWatcher().updateObject(21, Integer.valueOf(p_94086_1_));
+        this.getDataWatcher().updateObject(21, p_94086_1_);
         this.setHasDisplayTile(true);
     }
 
@@ -930,7 +923,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
     }
 
     public void setHasDisplayTile(boolean p_94096_1_) {
-        this.getDataWatcher().updateObject(22, Byte.valueOf((byte)(p_94096_1_ ? 1 : 0)));
+        this.getDataWatcher().updateObject(22, (byte) (p_94096_1_ ? 1 : 0));
     }
 
     /**
@@ -989,7 +982,7 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         private final int networkID;
         private final String name;
 
-        private EnumMinecartType(int networkID, String name) {
+        EnumMinecartType(int networkID, String name) {
             this.networkID = networkID;
             this.name = name;
         }
@@ -1003,13 +996,13 @@ public abstract class EntityMinecart extends Entity implements IWorldNameable {
         }
 
         public static EntityMinecart.EnumMinecartType byNetworkID(int id) {
-            EntityMinecart.EnumMinecartType entityminecart$enumminecarttype = (EntityMinecart.EnumMinecartType)ID_LOOKUP.get(Integer.valueOf(id));
+            EntityMinecart.EnumMinecartType entityminecart$enumminecarttype = ID_LOOKUP.get(id);
             return entityminecart$enumminecarttype == null ? RIDEABLE : entityminecart$enumminecarttype;
         }
 
         static {
             for (EntityMinecart.EnumMinecartType entityminecart$enumminecarttype : values()) {
-                ID_LOOKUP.put(Integer.valueOf(entityminecart$enumminecarttype.getNetworkID()), entityminecart$enumminecarttype);
+                ID_LOOKUP.put(entityminecart$enumminecarttype.getNetworkID(), entityminecart$enumminecarttype);
             }
         }
     }

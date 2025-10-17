@@ -3,11 +3,7 @@ package net.minecraft.entity.monster;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -52,9 +48,9 @@ public class EntityEnderman extends EntityMob {
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.tasks.addTask(10, new EntityEnderman.AIPlaceBlock(this));
         this.tasks.addTask(11, new EntityEnderman.AITakeBlock(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityEnderman.AIFindPlayer(this));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityEndermite.class, 10, true, false, new Predicate<EntityEndermite>() {
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityEndermite.class, 10, true, false, new Predicate<EntityEndermite>() {
             public boolean apply(EntityEndermite p_apply_1_) {
                 return p_apply_1_.isSpawnedByPlayer();
             }
@@ -94,7 +90,7 @@ public class EntityEnderman extends EntityMob {
         IBlockState iblockstate;
 
         if (tagCompund.hasKey("carried", 8)) {
-            iblockstate = Block.getBlockFromName(tagCompund.getString("carried")).getStateFromMeta(tagCompund.getShort("carriedData") & 65535);
+            iblockstate = Objects.requireNonNull(Block.getBlockFromName(tagCompund.getString("carried"))).getStateFromMeta(tagCompund.getShort("carriedData") & 65535);
         }
         else {
             iblockstate = Block.getBlockById(tagCompund.getShort("carried")).getStateFromMeta(tagCompund.getShort("carriedData") & 65535);
@@ -297,7 +293,7 @@ public class EntityEnderman extends EntityMob {
      * Sets this enderman's held block state
      */
     public void setHeldBlockState(IBlockState state) {
-        this.dataWatcher.updateObject(16, Short.valueOf((short)(Block.getStateId(state) & 65535)));
+        this.dataWatcher.updateObject(16, (short) (Block.getStateId(state) & 65535));
     }
 
     /**
@@ -357,7 +353,7 @@ public class EntityEnderman extends EntityMob {
     }
 
     public void setScreaming(boolean screaming) {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)(screaming ? 1 : 0)));
+        this.dataWatcher.updateObject(18, (byte) (screaming ? 1 : 0));
     }
 
     static {
@@ -381,7 +377,7 @@ public class EntityEnderman extends EntityMob {
         private EntityPlayer player;
         private int aggroTime;
         private int teleportTime;
-        private EntityEnderman enderman;
+        private final EntityEnderman enderman;
 
         public AIFindPlayer(EntityEnderman p_i45842_1_) {
             super(p_i45842_1_, EntityPlayer.class, true);
@@ -390,8 +386,8 @@ public class EntityEnderman extends EntityMob {
 
         public boolean shouldExecute() {
             double d0 = this.getTargetDistance();
-            List<EntityPlayer> list = this.taskOwner.worldObj.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), this.targetEntitySelector);
-            Collections.sort(list, this.theNearestAttackableTargetSorter);
+            List<EntityPlayer> list = this.taskOwner.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.taskOwner.getEntityBoundingBox().expand(d0, 4.0D, d0), this.targetEntitySelector);
+            list.sort(this.theNearestAttackableTargetSorter);
 
             if (list.isEmpty()) {
                 return false;
@@ -463,7 +459,7 @@ public class EntityEnderman extends EntityMob {
     }
 
     static class AIPlaceBlock extends EntityAIBase {
-        private EntityEnderman enderman;
+        private final EntityEnderman enderman;
 
         public AIPlaceBlock(EntityEnderman p_i45843_1_) {
             this.enderman = p_i45843_1_;
@@ -483,19 +479,19 @@ public class EntityEnderman extends EntityMob {
             Block block = world.getBlockState(blockpos).getBlock();
             Block block1 = world.getBlockState(blockpos.down()).getBlock();
 
-            if (this.func179474A(world, blockpos, this.enderman.getHeldBlockState().getBlock(), block, block1)) {
+            if (this.canPlace(world, blockpos, this.enderman.getHeldBlockState().getBlock(), block, block1)) {
                 world.setBlockState(blockpos, this.enderman.getHeldBlockState(), 3);
                 this.enderman.setHeldBlockState(Blocks.air.getDefaultState());
             }
         }
 
-        private boolean func179474A(World worldIn, BlockPos p_179474_2_, Block p_179474_3_, Block p_179474_4_, Block p_179474_5_) {
+        private boolean canPlace(World worldIn, BlockPos p_179474_2_, Block p_179474_3_, Block p_179474_4_, Block p_179474_5_) {
             return p_179474_3_.canPlaceBlockAt(worldIn, p_179474_2_) ? (p_179474_4_.getMaterial() != Material.air ? false : (p_179474_5_.getMaterial() == Material.air ? false : p_179474_5_.isFullCube())) : false;
         }
     }
 
     static class AITakeBlock extends EntityAIBase {
-        private EntityEnderman enderman;
+        private final EntityEnderman enderman;
 
         public AITakeBlock(EntityEnderman p_i45841_1_) {
             this.enderman = p_i45841_1_;

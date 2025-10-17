@@ -14,7 +14,7 @@ public class EntityAIWatchClosest extends EntityAIBase
     /** This is the Maximum distance that the AI will look for the Entity */
     protected float maxDistanceForPlayer;
     private int lookTime;
-    private float chance;
+    private final float chance;
     protected Class<? extends Entity> watchedClass;
 
     public EntityAIWatchClosest(EntityLiving entitylivingIn, Class<? extends Entity> watchTargetClass, float maxDistance)

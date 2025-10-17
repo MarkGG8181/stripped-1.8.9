@@ -87,7 +87,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
     public InventoryPlayer inventory = new InventoryPlayer(this);
     private InventoryEnderChest theInventoryEnderChest = new InventoryEnderChest();
 
-    private SmoothSneakingState smoothSneakingState = new SmoothSneakingState();
+    private final SmoothSneakingState smoothSneakingState = new SmoothSneakingState();
 
     /**
      * The Container for the player's inventory (which opens when they press E)
@@ -217,10 +217,10 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(17, Float.valueOf(0.0F));
-        this.dataWatcher.addObject(18, Integer.valueOf(0));
-        this.dataWatcher.addObject(10, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
+        this.dataWatcher.addObject(17, 0.0F);
+        this.dataWatcher.addObject(18, 0);
+        this.dataWatcher.addObject(10, (byte) 0);
     }
 
     /**
@@ -606,9 +606,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
             List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, axisalignedbb);
 
-            for (int i = 0; i < list.size(); i++) {
-                Entity entity = (Entity)list.get(i);
-
+            for (Entity entity : list) {
                 if (!entity.isDead) {
                     this.collideWithPlayer(entity);
                 }
@@ -773,14 +771,13 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
         if (this.isPotionActive(Potion.digSlowdown)) {
             float f1 = switch (this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) {
-                case 0: yield 0.3F;
+                case 0 -> 0.3F;
 
-                case 1: yield 0.09F;
+                case 1 -> 0.09F;
 
-                case 2: yield 0.0027F;
+                case 2 -> 0.0027F;
 
-                case 3:
-                default: yield 8.1E-4F;
+                default -> 8.1E-4F;
             };
 
             f *= f1;
@@ -1345,7 +1342,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         IBlockState iblockstate = this.worldObj.getBlockState(this.playerLocation);
 
         if (this.playerLocation != null && iblockstate.getBlock() == Blocks.bed) {
-            this.worldObj.setBlockState(this.playerLocation, iblockstate.withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)), 4);
+            this.worldObj.setBlockState(this.playerLocation, iblockstate.withProperty(BlockBed.OCCUPIED, Boolean.FALSE), 4);
             BlockPos blockpos = BlockBed.getSafeExitLocation(this.worldObj, this.playerLocation, 0);
 
             if (blockpos == null) {
@@ -1582,24 +1579,21 @@ public abstract class EntityPlayer extends EntityLivingBase {
             int i = Math.round(MathHelper.sqrt_double(p_71015_1_ * p_71015_1_ + p_71015_3_ * p_71015_3_ + p_71015_5_ * p_71015_5_) * 100.0F);
 
             if (i > 0) {
-                if (this.ridingEntity instanceof EntityMinecart) {
-                    this.addStat(StatList.distanceByMinecartStat, i);
+                switch (this.ridingEntity) {
+                    case EntityMinecart entityMinecart -> {
+                        this.addStat(StatList.distanceByMinecartStat, i);
 
-                    if (this.startMinecartRidingCoordinate == null) {
-                        this.startMinecartRidingCoordinate = new BlockPos(this);
+                        if (this.startMinecartRidingCoordinate == null) {
+                            this.startMinecartRidingCoordinate = new BlockPos(this);
+                        } else if (this.startMinecartRidingCoordinate.distanceSq((double) MathHelper.floor_double(this.posX), (double) MathHelper.floor_double(this.posY), (double) MathHelper.floor_double(this.posZ)) >= 1000000.0D) {
+                            this.triggerAchievement(AchievementList.onARail);
+                        }
                     }
-                    else if (this.startMinecartRidingCoordinate.distanceSq((double)MathHelper.floor_double(this.posX), (double)MathHelper.floor_double(this.posY), (double)MathHelper.floor_double(this.posZ)) >= 1000000.0D) {
-                        this.triggerAchievement(AchievementList.onARail);
+                    case EntityBoat entityBoat -> this.addStat(StatList.distanceByBoatStat, i);
+                    case EntityPig entityPig -> this.addStat(StatList.distanceByPigStat, i);
+                    case EntityHorse entityHorse -> this.addStat(StatList.distanceByHorseStat, i);
+                    default -> {
                     }
-                }
-                else if (this.ridingEntity instanceof EntityBoat) {
-                    this.addStat(StatList.distanceByBoatStat, i);
-                }
-                else if (this.ridingEntity instanceof EntityPig) {
-                    this.addStat(StatList.distanceByPigStat, i);
-                }
-                else if (this.ridingEntity instanceof EntityHorse) {
-                    this.addStat(StatList.distanceByHorseStat, i);
                 }
             }
         }
@@ -1636,7 +1630,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
             this.triggerAchievement(AchievementList.killEnemy);
         }
 
-        EntityList.EntityEggInfo entitylist$entityegginfo = (EntityList.EntityEggInfo)EntityList.entityEggs.get(Integer.valueOf(EntityList.getEntityID(entityLivingIn)));
+        EntityList.EntityEggInfo entitylist$entityegginfo = EntityList.entityEggs.get(EntityList.getEntityID(entityLivingIn));
 
         if (entitylist$entityegginfo != null) {
             this.triggerAchievement(entitylist$entityegginfo.killEntityStat);
@@ -1787,7 +1781,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
         }
         else {
             int i = this.experienceLevel * 7;
-            return i > 100 ? 100 : i;
+            return Math.min(i, 100);
         }
     }
 
@@ -1827,7 +1821,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
         this.xpSeed = oldPlayer.xpSeed;
         this.theInventoryEnderChest = oldPlayer.theInventoryEnderChest;
-        this.getDataWatcher().updateObject(10, Byte.valueOf(oldPlayer.getDataWatcher().getWatchableObjectByte(10)));
+        this.getDataWatcher().updateObject(10, oldPlayer.getDataWatcher().getWatchableObjectByte(10));
     }
 
     /**
@@ -1956,7 +1950,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
             amount = 0.0F;
         }
 
-        this.getDataWatcher().updateObject(17, Float.valueOf(amount));
+        this.getDataWatcher().updateObject(17, amount);
     }
 
     public float getAbsorptionAmount() {

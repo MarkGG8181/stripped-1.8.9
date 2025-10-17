@@ -265,21 +265,16 @@ public class EntityTracker
             }
         }
 
-        for (int i = 0; i < ((List)list).size(); i++)
-        {
-            EntityPlayerMP entityplayermp = (EntityPlayerMP)list.get(i);
-
-            for (EntityTrackerEntry entitytrackerentry1 : this.trackedEntities)
-            {
-                if (entitytrackerentry1.trackedEntity != entityplayermp)
-                {
+        for (EntityPlayerMP entityplayermp : list) {
+            for (EntityTrackerEntry entitytrackerentry1 : this.trackedEntities) {
+                if (entitytrackerentry1.trackedEntity != entityplayermp) {
                     entitytrackerentry1.updatePlayerEntity(entityplayermp);
                 }
             }
         }
     }
 
-    public void func_180245_a(EntityPlayerMP p_180245_1_)
+    public void updateVisibility(EntityPlayerMP p_180245_1_)
     {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {
@@ -294,9 +289,9 @@ public class EntityTracker
         }
     }
 
-    public void sendToAllTrackingEntity(Entity entityIn, Packet p_151247_2_)
+    public void sendToAllTrackingEntity(Entity entityIn, Packet<?> p_151247_2_)
     {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntityHashTable.lookup(entityIn.getEntityId());
 
         if (entitytrackerentry != null)
         {
@@ -304,13 +299,13 @@ public class EntityTracker
         }
     }
 
-    public void func_151248_b(Entity entityIn, Packet p_151248_2_)
+    public void sendToTrackingAndSelf(Entity entityIn, Packet<?> p_151248_2_)
     {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry)this.trackedEntityHashTable.lookup(entityIn.getEntityId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntityHashTable.lookup(entityIn.getEntityId());
 
         if (entitytrackerentry != null)
         {
-            entitytrackerentry.func_151261_b(p_151248_2_);
+            entitytrackerentry.sendToTrackingAndSelf(p_151248_2_);
         }
     }
 
@@ -322,7 +317,7 @@ public class EntityTracker
         }
     }
 
-    public void func_85172_a(EntityPlayerMP p_85172_1_, Chunk p_85172_2_)
+    public void sendLeashedEntitiesInChunk(EntityPlayerMP p_85172_1_, Chunk p_85172_2_)
     {
         for (EntityTrackerEntry entitytrackerentry : this.trackedEntities)
         {

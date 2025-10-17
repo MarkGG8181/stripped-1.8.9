@@ -75,7 +75,7 @@ public class EntityArmorStand extends EntityLivingBase {
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(10, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(10, (byte) 0);
         this.dataWatcher.addObject(11, DEFAULT_HEAD_ROTATION);
         this.dataWatcher.addObject(12, DEFAULT_BODY_ROTATION);
         this.dataWatcher.addObject(13, DEFAULT_LEFTARM_ROTATION);
@@ -146,11 +146,11 @@ public class EntityArmorStand extends EntityLivingBase {
         super.writeEntityToNBT(tagCompound);
         NBTTagList nbttaglist = new NBTTagList();
 
-        for (int i = 0; i < this.contents.length; i++) {
+        for (ItemStack content : this.contents) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-            if (this.contents[i] != null) {
-                this.contents[i].writeToNBT(nbttagcompound);
+            if (content != null) {
+                content.writeToNBT(nbttagcompound);
             }
 
             nbttaglist.appendTag(nbttagcompound);
@@ -306,9 +306,7 @@ public class EntityArmorStand extends EntityLivingBase {
         List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
 
         if (list != null && !list.isEmpty()) {
-            for (int i = 0; i < list.size(); i++) {
-                Entity entity = (Entity)list.get(i);
-
+            for (Entity entity : list) {
                 if (entity instanceof EntityMinecart minecart && minecart.getMinecartType() == EntityMinecart.EnumMinecartType.RIDEABLE && this.getDistanceSqToEntity(entity) <= 0.2D) {
                     entity.applyEntityCollision(this);
                 }
@@ -328,9 +326,7 @@ public class EntityArmorStand extends EntityLivingBase {
             ItemStack itemstack = player.getCurrentEquippedItem();
             boolean flag = itemstack != null;
 
-            if (flag && itemstack.getItem() instanceof ItemArmor) {
-                ItemArmor itemarmor = (ItemArmor)itemstack.getItem();
-
+            if (flag && itemstack.getItem() instanceof ItemArmor itemarmor) {
                 if (itemarmor.armorType == 3) {
                     i = 1;
                 }
@@ -684,7 +680,7 @@ public class EntityArmorStand extends EntityLivingBase {
             b0 = (byte)(b0 & -2);
         }
 
-        this.dataWatcher.updateObject(10, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(10, b0);
     }
 
     public boolean isSmall() {
@@ -701,7 +697,7 @@ public class EntityArmorStand extends EntityLivingBase {
             b0 = (byte)(b0 & -3);
         }
 
-        this.dataWatcher.updateObject(10, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(10, b0);
     }
 
     public boolean hasNoGravity() {
@@ -718,7 +714,7 @@ public class EntityArmorStand extends EntityLivingBase {
             b0 = (byte)(b0 & -5);
         }
 
-        this.dataWatcher.updateObject(10, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(10, b0);
     }
 
     public boolean getShowArms() {
@@ -735,7 +731,7 @@ public class EntityArmorStand extends EntityLivingBase {
             b0 = (byte)(b0 & -9);
         }
 
-        this.dataWatcher.updateObject(10, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(10, b0);
     }
 
     public boolean hasNoBasePlate() {
@@ -755,7 +751,7 @@ public class EntityArmorStand extends EntityLivingBase {
             b0 = (byte)(b0 & -17);
         }
 
-        this.dataWatcher.updateObject(10, Byte.valueOf(b0));
+        this.dataWatcher.updateObject(10, b0);
     }
 
     /**
