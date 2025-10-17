@@ -29,14 +29,6 @@ public class EntityAIOcelotSit extends EntityAIMoveToBlock
     }
 
     /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
-    public boolean continueExecuting()
-    {
-        return super.continueExecuting();
-    }
-
-    /**
      * Execute a one shot task or start executing a continuous task
      */
     public void startExecuting()

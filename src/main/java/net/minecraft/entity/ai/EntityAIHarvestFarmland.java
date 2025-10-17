@@ -54,22 +54,6 @@ public class EntityAIHarvestFarmland extends EntityAIMoveToBlock
     }
 
     /**
-     * Execute a one shot task or start executing a continuous task
-     */
-    public void startExecuting()
-    {
-        super.startExecuting();
-    }
-
-    /**
-     * Resets the task
-     */
-    public void resetTask()
-    {
-        super.resetTask();
-    }
-
-    /**
      * Updates the task
      */
     public void updateTask()

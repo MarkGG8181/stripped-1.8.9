@@ -80,15 +80,6 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
     }
 
     /**
-     * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it
-     * hasn't changed and skip it.
-     */
-    public void markDirty()
-    {
-        super.markDirty();
-    }
-
-    /**
      * Returns the number of slots in the inventory.
      */
     public int getSizeInventory()

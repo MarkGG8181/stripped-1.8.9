@@ -1751,10 +1751,6 @@ public abstract class Entity implements ICommandSender
      */
     protected abstract void writeEntityToNBT(NBTTagCompound tagCompound);
 
-    public void onChunkLoad()
-    {
-    }
-
     /**
      * creates a NBT list from the array of doubles passed to this function
      */
@@ -2758,13 +2754,6 @@ public abstract class Entity implements ICommandSender
     public NBTTagCompound getNBTTagCompound()
     {
         return null;
-    }
-
-    /**
-     * Called when client receives entity's NBTTagCompound from server.
-     */
-    public void clientUpdateEntityNBT(NBTTagCompound compound)
-    {
     }
 
     /**

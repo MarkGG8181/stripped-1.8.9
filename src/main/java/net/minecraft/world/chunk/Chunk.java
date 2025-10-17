@@ -754,10 +754,6 @@ public class Chunk implements IChunkLighting, IChunkLightingData, ILightingEngin
         this.worldObj.addTileEntities(this.chunkTileEntityMap.values());
 
         for (ClassInheritanceMultiMap<Entity> entityList : this.entityLists) {
-            for (Entity entity : entityList) {
-                entity.onChunkLoad();
-            }
-
             this.worldObj.loadEntities(entityList);
         }
         LightingHooks.scheduleRelightChecksForChunkBoundaries(this.worldObj, this);

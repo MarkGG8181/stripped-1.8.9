@@ -20,12 +20,12 @@ public class Material
     public static final Material sand = new Material(MapColor.sandColor);
     public static final Material circuits = new MaterialLogic(MapColor.airColor).setNoPushMobility();
     public static final Material carpet = new MaterialLogic(MapColor.clothColor).setBurning();
-    public static final Material glass = new Material(MapColor.airColor).setTranslucent().setAdventureModeExempt();
-    public static final Material redstoneLight = new Material(MapColor.airColor).setAdventureModeExempt();
+    public static final Material glass = new Material(MapColor.airColor).setTranslucent();
+    public static final Material redstoneLight = new Material(MapColor.airColor);
     public static final Material tnt = new Material(MapColor.tntColor).setBurning().setTranslucent();
     public static final Material coral = new Material(MapColor.foliageColor).setNoPushMobility();
-    public static final Material ice = new Material(MapColor.iceColor).setTranslucent().setAdventureModeExempt();
-    public static final Material packedIce = new Material(MapColor.iceColor).setAdventureModeExempt();
+    public static final Material ice = new Material(MapColor.iceColor).setTranslucent();
+    public static final Material packedIce = new Material(MapColor.iceColor);
     public static final Material snow = new MaterialLogic(MapColor.snowColor).setReplaceable().setTranslucent().setRequiresTool().setNoPushMobility();
 
     /** The material for crafted snow. */
@@ -73,7 +73,6 @@ public class Material
      * indicates that it can't be pushed.
      */
     private int mobilityFlag;
-    private boolean isAdventureModeExempt;
 
     public Material(MapColor color)
     {
@@ -204,15 +203,6 @@ public class Material
     protected Material setImmovableMobility()
     {
         this.mobilityFlag = 2;
-        return this;
-    }
-
-    /**
-     * @see #isAdventureModeExempt()
-     */
-    protected Material setAdventureModeExempt()
-    {
-        this.isAdventureModeExempt = true;
         return this;
     }
 

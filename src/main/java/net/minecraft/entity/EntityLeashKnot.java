@@ -27,11 +27,6 @@ public class EntityLeashKnot extends EntityHanging
         this.setEntityBoundingBox(new AxisAlignedBB(this.posX - 0.1875D, this.posY - 0.25D + 0.125D, this.posZ - 0.1875D, this.posX + 0.1875D, this.posY + 0.25D + 0.125D, this.posZ + 0.1875D));
     }
 
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
     /**
      * Updates facing and bounding box based on it
      */

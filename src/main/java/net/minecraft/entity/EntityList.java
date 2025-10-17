@@ -252,7 +252,10 @@ public final class EntityList
         return (String)classToStringMapping.get(getClassFromID(entityID));
     }
 
-    public static void func_151514_a()
+    /**
+     * A stub functions called to make the static initializer for this class run.
+     */
+    public static void init()
     {
     }
 

@@ -1023,14 +1023,8 @@ public class Minecraft implements IThreadListener {
 
     public void freeMemory() {
         try {
-            this.renderGlobal.deleteAllDisplayLists();
-        } catch (Throwable ignored) {
-        }
-
-        try {
             this.loadWorld(null);
         } catch (Throwable ignored) {
-
         }
     }
 

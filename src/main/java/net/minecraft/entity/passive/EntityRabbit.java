@@ -433,10 +433,6 @@ public class EntityRabbit extends EntityAnimal {
         public AIAvoidEntity(EntityRabbit rabbit, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
             super(rabbit, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
         }
-
-        public void updateTask() {
-            super.updateTask();
-        }
     }
 
     static class AIEvilAttack extends EntityAIAttackOnCollide {
@@ -488,14 +484,6 @@ public class EntityRabbit extends EntityAnimal {
 
         public boolean continueExecuting() {
             return this.canRaid && super.continueExecuting();
-        }
-
-        public void startExecuting() {
-            super.startExecuting();
-        }
-
-        public void resetTask() {
-            super.resetTask();
         }
 
         public void updateTask() {

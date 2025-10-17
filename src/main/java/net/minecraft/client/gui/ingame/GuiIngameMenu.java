@@ -84,13 +84,6 @@ public class GuiIngameMenu extends GuiScreen {
     }
 
     /**
-     * Called from the main game loop to update the screen.
-     */
-    public void updateScreen() {
-        super.updateScreen();
-    }
-
-    /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
