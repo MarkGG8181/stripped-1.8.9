@@ -133,6 +133,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.Sys;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.input.Controller;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -1499,6 +1501,44 @@ public class Minecraft implements IThreadListener {
 
             if (this.leftClickCounter > 0) {
                 --this.leftClickCounter;
+            }
+
+
+            this.mcProfiler.endStartSection("controller");
+
+            Controller.poll();
+
+            while (Controller.next()) {
+                int b = Controller.getEventButton();
+
+                if (Controller.getEventButtonState()) {
+                    if (b == 6) {
+                        this.displayInGameMenu();
+                    }
+
+                    if (b == 7) {
+                        if (this.thePlayer != null) {
+                            this.thePlayer.setSneaking(true);
+                        }
+                    }
+
+                    if (b == 8) {
+                        ++this.gameSettings.thirdPersonView;
+
+                        if (this.gameSettings.thirdPersonView > 2) {
+                            this.gameSettings.thirdPersonView = 0;
+                        }
+
+                        if (this.gameSettings.thirdPersonView == 0) {
+                            this.entityRenderer.loadEntityShader(this.getRenderViewEntity());
+                        }
+                        else if (this.gameSettings.thirdPersonView == 1) {
+                            this.entityRenderer.loadEntityShader(null);
+                        }
+
+                        this.renderGlobal.setDisplayListEntitiesDirty();
+                    }
+                }
             }
 
             this.mcProfiler.endStartSection("keyboard");

@@ -1,6 +1,8 @@
 package net.minecraft.util;
 
+import com.studiohartman.jamepad.ControllerButton;
 import net.minecraft.client.settings.GameSettings;
+import org.lwjgl.input.Controller;
 
 public class MovementInputFromOptions extends MovementInput
 {
@@ -15,6 +17,18 @@ public class MovementInputFromOptions extends MovementInput
     {
         this.moveStrafe = 0.0F;
         this.moveForward = 0.0F;
+
+        float deadzone = Controller.STICK_DEADZONE;
+        float moveX = -Controller.getAxis(0);
+        float moveY = Controller.getAxis(1);
+
+        if (Math.abs(moveX) > deadzone) {
+            this.moveStrafe = moveX;
+        }
+
+        if (Math.abs(moveY) > deadzone) {
+            this.moveForward = moveY;
+        }
 
         if (this.gameSettings.keyBindForward.isKeyDown())
         {
@@ -36,8 +50,8 @@ public class MovementInputFromOptions extends MovementInput
             --this.moveStrafe;
         }
 
-        this.jump = this.gameSettings.keyBindJump.isKeyDown();
-        this.sneak = this.gameSettings.keyBindSneak.isKeyDown();
+        this.jump = this.gameSettings.keyBindJump.isKeyDown() || Controller.isButtonDown(ControllerButton.A.ordinal());
+        this.sneak = this.gameSettings.keyBindSneak.isKeyDown() ;
 
         if (this.sneak)
         {

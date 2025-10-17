@@ -61,6 +61,7 @@ import net.minecraft.world.WorldSettings;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Controller;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -918,25 +919,42 @@ public class EntityRenderer implements IResourceManagerReloadListener {
 
         if (this.mc.inGameHasFocus && flag) {
             this.mc.mouseHelper.mouseXYChange();
-            float f = this.mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;
-            float f1 = f * f * f * 8.0F;
-            float f2 = (float)this.mc.mouseHelper.deltaX * f1;
-            float f3 = (float)this.mc.mouseHelper.deltaY * f1;
-            int i = 1;
+
+            // Base mouse sensitivity scaling
+            float sens = this.mc.gameSettings.mouseSensitivity * 0.6F + 0.2F;
+            float factor = sens * sens * sens * 8.0F;
+
+            float deltaX = (float) this.mc.mouseHelper.deltaX * factor;
+            float deltaY = (float) this.mc.mouseHelper.deltaY * factor;
+
+            if (Controller.isCreated() && Controller.isConnected()) {
+                float rightX = Controller.getAxis(2);
+                float rightY = Controller.getAxis(3);
+
+                final float deadzone = Controller.STICK_DEADZONE;
+
+                if (Math.abs(rightX) > deadzone) {
+                    deltaX += rightX * 10.0F;
+                }
+                if (Math.abs(rightY) > deadzone) {
+                    deltaY = rightY * 10.0F;
+                }
+            }
+
+            int invertY = 1;
 
             if (this.mc.gameSettings.smoothCamera) {
-                this.smoothCamYaw += f2;
-                this.smoothCamPitch += f3;
-                float f4 = partialTicks - this.smoothCamPartialTicks;
+                this.smoothCamYaw += deltaX;
+                this.smoothCamPitch += deltaY;
+                float deltaTicks = partialTicks - this.smoothCamPartialTicks;
                 this.smoothCamPartialTicks = partialTicks;
-                f2 = this.smoothCamFilterX * f4;
-                f3 = this.smoothCamFilterY * f4;
-                this.mc.thePlayer.setAngles(f2, f3 * (float)i);
-            }
-            else {
+                deltaX = this.smoothCamFilterX * deltaTicks;
+                deltaY = this.smoothCamFilterY * deltaTicks;
+                this.mc.thePlayer.setAngles(deltaX, deltaY * (float) invertY);
+            } else {
                 this.smoothCamYaw = 0.0F;
                 this.smoothCamPitch = 0.0F;
-                this.mc.thePlayer.setAngles(f2, f3 * (float)i);
+                this.mc.thePlayer.setAngles(deltaX, deltaY * (float) invertY);
             }
         }
 
