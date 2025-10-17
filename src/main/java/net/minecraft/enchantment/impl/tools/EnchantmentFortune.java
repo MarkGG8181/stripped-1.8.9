@@ -1,10 +1,12 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.tools;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentLootBonus extends Enchantment
+public class EnchantmentFortune extends Enchantment
 {
-    protected EnchantmentLootBonus(int p_i45767_1_, ResourceLocation p_i45767_2_, int p_i45767_3_, EnumEnchantmentType p_i45767_4_)
+    public EnchantmentFortune(int p_i45767_1_, ResourceLocation p_i45767_2_, int p_i45767_3_, EnumEnchantmentType p_i45767_4_)
     {
         super(p_i45767_1_, p_i45767_2_, p_i45767_3_, p_i45767_4_);
 

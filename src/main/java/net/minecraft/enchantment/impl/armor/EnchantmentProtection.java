@@ -1,5 +1,8 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.armor;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.util.EnchantmentHelper;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;

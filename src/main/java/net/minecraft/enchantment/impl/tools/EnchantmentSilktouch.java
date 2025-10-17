@@ -1,15 +1,17 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.tools;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentDigging extends Enchantment
+public class EnchantmentSilktouch extends Enchantment
 {
-    protected EnchantmentDigging(int enchID, ResourceLocation enchName, int enchWeight)
+    public EnchantmentSilktouch(int p_i45763_1_, ResourceLocation p_i45763_2_, int p_i45763_3_)
     {
-        super(enchID, enchName, enchWeight, EnumEnchantmentType.DIGGER);
-        this.setName("digging");
+        super(p_i45763_1_, p_i45763_2_, p_i45763_3_, EnumEnchantmentType.DIGGER);
+        this.setName("untouching");
     }
 
     /**
@@ -17,7 +19,7 @@ public class EnchantmentDigging extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 1 + 10 * (enchantmentLevel - 1);
+        return 15;
     }
 
     /**
@@ -33,7 +35,15 @@ public class EnchantmentDigging extends Enchantment
      */
     public int getMaxLevel()
     {
-        return 5;
+        return 1;
+    }
+
+    /**
+     * Determines if the enchantment passed can be applyied together with this enchantment.
+     */
+    public boolean canApplyTogether(Enchantment ench)
+    {
+        return super.canApplyTogether(ench) && ench.effectId != fortune.effectId;
     }
 
     /**

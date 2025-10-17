@@ -1,13 +1,15 @@
-package net.minecraft.enchantment;
+package net.minecraft.enchantment.impl.armor;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.util.ResourceLocation;
 
-public class EnchantmentFishingSpeed extends Enchantment
+public class EnchantmentDepthStrider extends Enchantment
 {
-    protected EnchantmentFishingSpeed(int enchID, ResourceLocation enchName, int enchWeight, EnumEnchantmentType enchType)
+    public EnchantmentDepthStrider(int p_i45762_1_, ResourceLocation p_i45762_2_, int p_i45762_3_)
     {
-        super(enchID, enchName, enchWeight, enchType);
-        this.setName("fishingSpeed");
+        super(p_i45762_1_, p_i45762_2_, p_i45762_3_, EnumEnchantmentType.ARMOR_FEET);
+        this.setName("waterWalker");
     }
 
     /**
@@ -15,7 +17,7 @@ public class EnchantmentFishingSpeed extends Enchantment
      */
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 15 + (enchantmentLevel - 1) * 9;
+        return enchantmentLevel * 10;
     }
 
     /**
@@ -23,7 +25,7 @@ public class EnchantmentFishingSpeed extends Enchantment
      */
     public int getMaxEnchantability(int enchantmentLevel)
     {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return this.getMinEnchantability(enchantmentLevel) + 15;
     }
 
     /**

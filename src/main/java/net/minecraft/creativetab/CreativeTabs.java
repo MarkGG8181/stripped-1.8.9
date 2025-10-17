@@ -3,7 +3,7 @@ package net.minecraft.creativetab;
 import java.util.List;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.enchantment.util.EnchantmentData;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
