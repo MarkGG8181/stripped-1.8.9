@@ -219,11 +219,14 @@ public class RegionFile {
     /**
      * args: sectorNumber, data, length - write the chunk data to this RegionFile
      */
-    private void write(int sectorNumber, byte[] data, int length) throws IOException {
-        this.dataFile.seek(sectorNumber * 4096L);
-        this.dataFile.writeInt(length + 1);
-        this.dataFile.writeByte(2);
-        this.dataFile.write(data, 0, length);
+    private void write(int sectorNumber, byte[] data, int length) {
+        try {
+            this.dataFile.seek(sectorNumber * 4096L);
+            this.dataFile.writeInt(length + 1);
+            this.dataFile.writeByte(2);
+            this.dataFile.write(data, 0, length);
+        } catch (IOException ignored) {
+        }
     }
 
     /**
