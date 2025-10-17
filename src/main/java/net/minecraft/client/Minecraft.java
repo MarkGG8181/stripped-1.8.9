@@ -24,6 +24,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import javax.imageio.ImageIO;
 
+import com.studiohartman.jamepad.ControllerAxis;
+import com.studiohartman.jamepad.ControllerButton;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.SoundHandler;
@@ -1506,39 +1508,38 @@ public class Minecraft implements IThreadListener {
 
             this.mcProfiler.endStartSection("controller");
 
-            Controller.poll();
+            Controller.update();
 
-            while (Controller.next()) {
-                int b = Controller.getEventButton();
-
-                if (Controller.getEventButtonState()) {
-                    if (b == 6) {
-                        this.displayInGameMenu();
-                    }
-
-                    if (b == 7) {
-                        if (this.thePlayer != null) {
-                            this.thePlayer.setSneaking(true);
-                        }
-                    }
-
-                    if (b == 8) {
-                        ++this.gameSettings.thirdPersonView;
-
-                        if (this.gameSettings.thirdPersonView > 2) {
-                            this.gameSettings.thirdPersonView = 0;
-                        }
-
-                        if (this.gameSettings.thirdPersonView == 0) {
-                            this.entityRenderer.loadEntityShader(this.getRenderViewEntity());
-                        }
-                        else if (this.gameSettings.thirdPersonView == 1) {
-                            this.entityRenderer.loadEntityShader(null);
-                        }
-
-                        this.renderGlobal.setDisplayListEntitiesDirty();
-                    }
+            if (Controller.isButtonDown(ControllerButton.START)) {
+                this.displayInGameMenu();
+            } else if (Controller.isButtonDown(ControllerButton.LEFTSTICK)) {
+                if (this.thePlayer != null) {
+                    this.thePlayer.setSneaking(true);
                 }
+            } else if (Controller.isButtonDown(ControllerButton.RIGHTSTICK)) {
+                ++this.gameSettings.thirdPersonView;
+
+                if (this.gameSettings.thirdPersonView > 2) {
+                    this.gameSettings.thirdPersonView = 0;
+                }
+
+                if (this.gameSettings.thirdPersonView == 0) {
+                    this.entityRenderer.loadEntityShader(this.getRenderViewEntity());
+                }
+                else if (this.gameSettings.thirdPersonView == 1) {
+                    this.entityRenderer.loadEntityShader(null);
+                }
+
+                this.renderGlobal.setDisplayListEntitiesDirty();
+            } else if (Controller.isButtonDown(ControllerButton.RIGHTBUMPER)) {
+                int current = this.thePlayer.inventory.currentItem;
+
+                current = (current + 1) % 9;
+                this.thePlayer.inventory.currentItem = current;
+            } else if (Controller.isButtonDown(ControllerButton.LEFTBUMPER)) {
+                int current = this.thePlayer.inventory.currentItem;
+                current = (current + 8) % 9;
+                this.thePlayer.inventory.currentItem = current;
             }
 
             this.mcProfiler.endStartSection("keyboard");
@@ -1672,7 +1673,7 @@ public class Minecraft implements IThreadListener {
 
             boolean flag = this.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN;
 
-            while (this.gameSettings.keyBindInventory.isPressed()) {
+            while (this.gameSettings.keyBindInventory.isPressed() || Controller.isButtonDown(ControllerButton.Y)) {
                 if (this.playerController.isRidingHorse()) {
                     this.thePlayer.sendHorseInventory();
                 }
@@ -1682,7 +1683,7 @@ public class Minecraft implements IThreadListener {
                 }
             }
 
-            while (this.gameSettings.keyBindDrop.isPressed()) {
+            while (this.gameSettings.keyBindDrop.isPressed() || Controller.isButtonDown(ControllerButton.B)) {
                 if (!this.thePlayer.isSpectator()) {
                     this.thePlayer.dropOneItem(GuiScreen.isCtrlKeyDown());
                 }
@@ -1702,11 +1703,11 @@ public class Minecraft implements IThreadListener {
                 }
             }
             else {
-                while (this.gameSettings.keyBindAttack.isPressed()) {
+                if (this.gameSettings.keyBindAttack.isPressed()) {
                     this.clickMouse();
                 }
 
-                while (this.gameSettings.keyBindUseItem.isPressed()) {
+                if (this.gameSettings.keyBindUseItem.isPressed()) {
                     this.rightClickMouse();
                 }
 
@@ -1715,11 +1716,11 @@ public class Minecraft implements IThreadListener {
                 }
             }
 
-            if (this.gameSettings.keyBindUseItem.isKeyDown() && this.rightClickDelayTimer == 0 && !this.thePlayer.isUsingItem()) {
+            if ((this.gameSettings.keyBindUseItem.isKeyDown() || Controller.getAxis(ControllerAxis.TRIGGERLEFT) > Controller.DEADZONE) && this.rightClickDelayTimer == 0 && !this.thePlayer.isUsingItem()) {
                 this.rightClickMouse();
             }
 
-            this.sendClickBlockToController(this.currentScreen == null && this.gameSettings.keyBindAttack.isKeyDown() && this.inGameHasFocus);
+            this.sendClickBlockToController(this.currentScreen == null && (this.gameSettings.keyBindAttack.isKeyDown() || Controller.getAxis(ControllerAxis.TRIGGERRIGHT) > Controller.DEADZONE) && this.inGameHasFocus);
         }
 
         if (this.theWorld != null) {

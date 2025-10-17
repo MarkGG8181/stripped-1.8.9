@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.studiohartman.jamepad.ControllerAxis;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -927,11 +928,11 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             float deltaX = (float) this.mc.mouseHelper.deltaX * factor;
             float deltaY = (float) this.mc.mouseHelper.deltaY * factor;
 
-            if (Controller.isCreated() && Controller.isConnected()) {
-                float rightX = Controller.getAxis(2);
-                float rightY = Controller.getAxis(3);
+            if (Controller.isConnected() && Controller.isConnected()) {
+                float rightX = Controller.getAxis(ControllerAxis.RIGHTX);
+                float rightY = Controller.getAxis(ControllerAxis.RIGHTY);
 
-                final float deadzone = Controller.STICK_DEADZONE;
+                final float deadzone = Controller.DEADZONE;
 
                 if (Math.abs(rightX) > deadzone) {
                     deltaX += rightX * 10.0F;

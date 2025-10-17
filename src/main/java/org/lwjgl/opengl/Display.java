@@ -119,7 +119,7 @@ public final class Display {
         try {
             Mouse.create();
             Keyboard.create();
-            Controller.create();
+            Controller.init();
         } catch (Exception e) {
             destroy();
             throw new RuntimeException(e);
