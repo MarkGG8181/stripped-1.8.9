@@ -12,20 +12,34 @@ public class KeyBinding implements Comparable<KeyBinding> {
     private static final List<KeyBinding> keybindArray = new ArrayList<>();
     private static final IntHashMap<KeyBinding> hash = new IntHashMap<>();
     private static final Set<String> keybindSet = new HashSet<>();
+
     private final String keyDescription;
     private final int keyCodeDefault;
     private final String keyCategory;
     private int keyCode;
 
-    /**
-     * Is the key held down?
-     */
     private boolean pressed;
     private int pressTime;
 
+    public KeyBinding(String description, int keyCode, String category) {
+        this.keyDescription = description;
+        this.keyCode = keyCode;
+        this.keyCodeDefault = keyCode;
+        this.keyCategory = category;
+
+        keybindArray.add(this);
+        hash.addKey(keyCode, this);
+        keybindSet.add(category);
+    }
+
+    private void unpressKey() {
+        this.pressTime = 0;
+        this.pressed = false;
+    }
+
     public static void onTick(int keyCode) {
         if (keyCode != 0) {
-            KeyBinding keybinding = (KeyBinding)hash.lookup(keyCode);
+            KeyBinding keybinding = hash.lookup(keyCode);
 
             if (keybinding != null) {
                 ++keybinding.pressTime;
@@ -35,7 +49,7 @@ public class KeyBinding implements Comparable<KeyBinding> {
 
     public static void setKeyBindState(int keyCode, boolean pressed) {
         if (keyCode != 0) {
-            KeyBinding keybinding = (KeyBinding)hash.lookup(keyCode);
+            KeyBinding keybinding = hash.lookup(keyCode);
 
             if (keybinding != null) {
                 keybinding.pressed = pressed;
@@ -61,16 +75,6 @@ public class KeyBinding implements Comparable<KeyBinding> {
         return keybindSet;
     }
 
-    public KeyBinding(String description, int keyCode, String category) {
-        this.keyDescription = description;
-        this.keyCode = keyCode;
-        this.keyCodeDefault = keyCode;
-        this.keyCategory = category;
-        keybindArray.add(this);
-        hash.addKey(keyCode, this);
-        keybindSet.add(category);
-    }
-
     /**
      * Returns true if the key is pressed (used for continuous querying). Should be used in tickers.
      */
@@ -89,16 +93,10 @@ public class KeyBinding implements Comparable<KeyBinding> {
     public boolean isPressed() {
         if (this.pressTime == 0) {
             return false;
-        }
-        else {
+        } else {
             --this.pressTime;
             return true;
         }
-    }
-
-    private void unpressKey() {
-        this.pressTime = 0;
-        this.pressed = false;
     }
 
     public String getKeyDescription() {
@@ -118,10 +116,10 @@ public class KeyBinding implements Comparable<KeyBinding> {
     }
 
     public int compareTo(KeyBinding p_compareTo_1_) {
-        int i = I18n.format(this.keyCategory, new Object[0]).compareTo(I18n.format(p_compareTo_1_.keyCategory, new Object[0]));
+        int i = I18n.format(this.keyCategory).compareTo(I18n.format(p_compareTo_1_.keyCategory));
 
         if (i == 0) {
-            i = I18n.format(this.keyDescription, new Object[0]).compareTo(I18n.format(p_compareTo_1_.keyDescription, new Object[0]));
+            i = I18n.format(this.keyDescription).compareTo(I18n.format(p_compareTo_1_.keyDescription));
         }
 
         return i;
