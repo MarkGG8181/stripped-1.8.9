@@ -1,6 +1,7 @@
 package net.minecraft.controller;
 
 import com.studiohartman.jamepad.ControllerAxis;
+import net.minecraft.client.Minecraft;
 
 /**
  * Represents a rebindable controller axis for analog input.
@@ -14,7 +15,6 @@ public class ControllerAxisBinding {
     private final ControllerAxis defaultAxis;
     private float value;
     private boolean inverted;
-    private final float deadzone = Controller.DEADZONE;
 
     public ControllerAxisBinding(String description, ControllerAxis defaultAxis, String category) {
         this.description = description;
@@ -56,7 +56,7 @@ public class ControllerAxisBinding {
     }
 
     public boolean isDown() {
-        return getValue() > deadzone;
+        return getValue() > Minecraft.getMinecraft().gameSettings.controllerDeadzone;
     }
 
     public static void resetAll(ControllerAxisBinding[] bindings) {
@@ -72,7 +72,7 @@ public class ControllerAxisBinding {
         }
         try {
             float raw = Controller.getAxis(axis);
-            value = (Math.abs(raw) < deadzone) ? 0f : raw;
+            value = (Math.abs(raw) < Minecraft.getMinecraft().gameSettings.controllerDeadzone) ? 0f : raw;
         } catch (Exception e) {
             value = 0f;
         }

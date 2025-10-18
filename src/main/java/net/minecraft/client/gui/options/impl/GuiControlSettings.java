@@ -18,7 +18,7 @@ import net.minecraft.controller.ControllerAxisBinding;
 import net.minecraft.controller.ControllerBinding;
 
 public class GuiControlSettings extends GuiScreen {
-    private static final GameSettings.Options[] optionsArr = new GameSettings.Options[]{GameSettings.Options.SENSITIVITY};
+    private static final GameSettings.Options[] optionsArr = new GameSettings.Options[]{GameSettings.Options.SENSITIVITY, GameSettings.Options.DEADZONE};
 
     /**
      * A reference to the screen object that created this. Used for navigating between screens.

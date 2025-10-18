@@ -1,6 +1,7 @@
 package net.minecraft.controller;
 
 import com.studiohartman.jamepad.*;
+import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,8 +12,6 @@ public class Controller {
 
     private static final ControllerManager controllers = new ControllerManager();
     private static ControllerIndex controller;
-
-    public static final float DEADZONE = 0.2f;
 
     private static boolean initialized = false;
 
@@ -75,8 +74,8 @@ public class Controller {
                 currentValue = 0f;
             }
 
-            boolean leftDeadzone = Math.abs(currentValue) > DEADZONE;
-            boolean wasOutsideDeadzone = Math.abs(lastValue) > DEADZONE;
+            boolean leftDeadzone = Math.abs(currentValue) > Minecraft.getMinecraft().gameSettings.controllerDeadzone;
+            boolean wasOutsideDeadzone = Math.abs(lastValue) > Minecraft.getMinecraft().gameSettings.controllerDeadzone;
 
             if (leftDeadzone || wasOutsideDeadzone) {
                 if (Math.abs(currentValue - lastValue) >= 0.05f) {

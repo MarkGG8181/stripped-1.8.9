@@ -932,10 +932,10 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 float rightX = this.mc.gameSettings.controllerBindLookX.getValue();
                 float rightY = this.mc.gameSettings.controllerBindLookY.getValue();
 
-                if (Math.abs(rightX) > Controller.DEADZONE) {
+                if (Math.abs(rightX) > this.mc.gameSettings.controllerDeadzone) {
                     deltaX += rightX * 10.0F;
                 }
-                if (Math.abs(rightY) > Controller.DEADZONE) {
+                if (Math.abs(rightY) > this.mc.gameSettings.controllerDeadzone) {
                     deltaY = rightY * 10.0F;
                 }
             }

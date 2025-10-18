@@ -274,6 +274,7 @@ options.gamma=Brightness
 options.gamma.min=Moody
 options.gamma.max=Bright
 options.sensitivity=Sensitivity
+options.controllerDeadzone=Controller deadzone
 options.sensitivity.min=*yawn*
 options.sensitivity.max=HYPERSPEED!!!
 options.renderDistance=Render Distance

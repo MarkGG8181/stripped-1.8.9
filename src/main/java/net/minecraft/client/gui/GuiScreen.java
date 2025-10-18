@@ -585,7 +585,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     }
 
     public void handleControllerAxisInput() {
-        if (Controller.getEventAxisValue() > Controller.DEADZONE) {
+        if (Controller.getEventAxisValue() > this.mc.gameSettings.controllerDeadzone) {
             this.controllerAxisDown(Controller.getEventAxis());
         }
     }
