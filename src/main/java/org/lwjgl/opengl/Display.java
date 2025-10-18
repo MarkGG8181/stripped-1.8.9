@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
-import org.lwjgl.input.Controller;
+import net.minecraft.controller.Controller;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.openal.SoundSystemOpenAL;
@@ -136,7 +136,7 @@ public final class Display {
         windowResized = false;
 
         Mouse.poll();
-        Controller.update();
+        Controller.poll();
         Keyboard.poll();
 
         GLFW.glfwSwapBuffers(windowHandle);
