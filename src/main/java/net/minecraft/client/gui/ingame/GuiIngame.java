@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.controller.Controller;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -354,10 +355,14 @@ public class GuiIngame extends Gui {
         GlStateManager.popMatrix();
         scoreobjective1 = scoreboard.getObjectiveInDisplaySlot(0);
 
-        if (!mc.gameSettings.keyBindPlayerList.isKeyDown() || mc.isIntegratedServerRunning() && mc.thePlayer.sendQueue.getPlayerInfoMap().size() <= 1 && scoreobjective1 == null) {
+        if ((!mc.gameSettings.keyBindPlayerList.isKeyDown() &&
+                !Controller.isButtonDown(mc.gameSettings.controllerBindPlayerList.getButton())) ||
+                (mc.isIntegratedServerRunning() &&
+                        mc.thePlayer.sendQueue.getPlayerInfoMap().size() <= 1 &&
+                        scoreobjective1 == null)) {
+
             overlayPlayerList.updatePlayerList(false);
-        }
-        else {
+        } else {
             overlayPlayerList.updatePlayerList(true);
             overlayPlayerList.renderPlayerlist(i, scoreboard, scoreobjective1);
         }
