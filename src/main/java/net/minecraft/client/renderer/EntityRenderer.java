@@ -62,7 +62,7 @@ import net.minecraft.world.WorldSettings;
 import net.minecraft.world.biome.gen.BiomeGenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Controller;
+import net.minecraft.controller.Controller;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
@@ -486,7 +486,7 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 f = f * (this.fovModifierHandPrev + (this.fovModifierHand - this.fovModifierHandPrev) * partialTicks);
             }
 
-            if (mc.currentScreen == null && GameSettings.isKeyDown(this.mc.gameSettings.keyBindZoom)) {
+            if (mc.currentScreen == null && (GameSettings.isKeyDown(this.mc.gameSettings.keyBindZoom) || GameSettings.isControllerButtonDown(this.mc.gameSettings.controllerBindZoom))) {
                 this.mc.gameSettings.smoothCamera = true;
                 this.mc.renderGlobal.displayListEntitiesDirty = true;
 
@@ -928,16 +928,14 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             float deltaX = (float) this.mc.mouseHelper.deltaX * factor;
             float deltaY = (float) this.mc.mouseHelper.deltaY * factor;
 
-            if (Controller.isConnected() && Controller.isConnected()) {
-                float rightX = Controller.getAxis(ControllerAxis.RIGHTX);
-                float rightY = Controller.getAxis(ControllerAxis.RIGHTY);
+            if (Controller.isConnected()) {
+                float rightX = this.mc.gameSettings.controllerBindLookX.getValue();
+                float rightY = this.mc.gameSettings.controllerBindLookY.getValue();
 
-                final float deadzone = Controller.DEADZONE;
-
-                if (Math.abs(rightX) > deadzone) {
+                if (Math.abs(rightX) > Controller.DEADZONE) {
                     deltaX += rightX * 10.0F;
                 }
-                if (Math.abs(rightY) > deadzone) {
+                if (Math.abs(rightY) > Controller.DEADZONE) {
                     deltaY = rightY * 10.0F;
                 }
             }

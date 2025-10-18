@@ -88,7 +88,7 @@ public class RenderItemFrame extends Render<EntityItemFrame> {
         ItemStack itemstack = itemFrame.getDisplayedItem();
 
         if (itemstack != null) {
-            if (!(mc.currentScreen == null && GameSettings.isKeyDown(this.mc.gameSettings.keyBindZoom))) {
+            if (!(mc.currentScreen == null && (GameSettings.isKeyDown(this.mc.gameSettings.keyBindZoom) || GameSettings.isControllerButtonDown(this.mc.gameSettings.controllerBindZoom)))) {
                 Entity entity = this.mc.thePlayer;
                 double d0 = itemFrame.getDistanceSq(entity.posX, entity.posY, entity.posZ);
 
