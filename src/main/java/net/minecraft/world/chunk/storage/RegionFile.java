@@ -256,9 +256,12 @@ public class RegionFile {
     /**
      * args: x, z, timestamp - sets the chunk's write timestamp
      */
-    private void setChunkTimestamp(int x, int z, int timestamp) throws IOException {
-        this.dataFile.seek(4096 + (x + z * 32L) * 4);
-        this.dataFile.writeInt(timestamp);
+    private void setChunkTimestamp(int x, int z, int timestamp){
+        try {
+            this.dataFile.seek(4096 + (x + z * 32L) * 4);
+            this.dataFile.writeInt(timestamp);
+        } catch (IOException ignored) {
+        }
     }
 
     /**

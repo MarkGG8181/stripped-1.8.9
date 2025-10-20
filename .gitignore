@@ -10,5 +10,4 @@ out/
 .project
 .classpath
 
-*.jar
 *.py

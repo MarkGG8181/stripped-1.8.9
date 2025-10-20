@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.studiohartman.jamepad.ControllerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -93,6 +94,9 @@ public abstract class GuiContainer extends GuiScreen {
     private boolean doubleClick;
     private ItemStack shiftClickedSlot;
 
+    private int controllerSlotIndex = 0;
+    private Slot controllerSelectedSlot = null;
+
     protected GuiContainer(Container inventorySlotsIn) {
         this.inventorySlots = inventorySlotsIn;
         this.ignoreMouseUp = true;
@@ -149,6 +153,19 @@ public abstract class GuiContainer extends GuiScreen {
                 GlStateManager.enableLighting();
                 GlStateManager.enableDepth();
             }
+        }
+
+        if (controllerSelectedSlot != null) {
+            Slot slot = controllerSelectedSlot;
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
+            int j1 = slot.xDisplayPosition;
+            int k1 = slot.yDisplayPosition;
+            GlStateManager.colorMask(true, true, true, false);
+            this.drawGradientRect(j1, k1, j1 + 16, k1 + 16, 0x80FFFFFF, 0x80FFFFFF);
+            GlStateManager.colorMask(true, true, true, true);
+            GlStateManager.enableLighting();
+            GlStateManager.enableDepth();
         }
 
         RenderHelper.disableStandardItemLighting();
@@ -341,7 +358,7 @@ public abstract class GuiContainer extends GuiScreen {
      * Called when the mouse is clicked. Args : mouseX, mouseY, clickedButton
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        if (mouseButton - 100 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
+        if ((mouseButton - 100 == this.mc.gameSettings.keyBindInventory.getKeyCode()) || this.mc.gameSettings.controllerBindInventory.isPressed()) {
             this.mc.thePlayer.closeScreen();
             return;
         }
@@ -556,6 +573,80 @@ public abstract class GuiContainer extends GuiScreen {
             else if (keyCode == this.mc.gameSettings.keyBindDrop.getKeyCode()) {
                 this.handleMouseClick(this.theSlot, this.theSlot.slotNumber, isCtrlKeyDown() ? 1 : 0, 4);
             }
+        }
+    }
+
+    @Override
+    protected void controllerButtonPressed(ControllerButton button) {
+        if (button == this.mc.gameSettings.controllerBindInventory.getButton()) {
+            this.mc.thePlayer.closeScreen();
+            return;
+        }
+
+        if (button == ControllerButton.DPAD_LEFT) {
+            moveControllerSlot(-1, 0);
+        } else if (button == ControllerButton.DPAD_RIGHT) {
+            moveControllerSlot(1, 0);
+        } else if (button == ControllerButton.DPAD_UP) {
+            moveControllerSlot(0, -1);
+        } else if (button == ControllerButton.DPAD_DOWN) {
+            moveControllerSlot(0, 1);
+        }
+
+        if (controllerSelectedSlot != null && controllerSelectedSlot.getHasStack()) {
+            if (button == this.mc.gameSettings.controllerBindPickBlock.getButton()) {
+                this.handleMouseClick(controllerSelectedSlot, controllerSelectedSlot.slotNumber, 0, 3);
+            } else if (button == this.mc.gameSettings.controllerBindDrop.getButton()) {
+                this.handleMouseClick(controllerSelectedSlot, controllerSelectedSlot.slotNumber, isCtrlKeyDown() ? 1 : 0, 4);
+            }
+        }
+    }
+
+    private void moveControllerSlot(int dx, int dy) {
+        if (this.inventorySlots == null || this.inventorySlots.inventorySlots.isEmpty()) return;
+
+        if (controllerSelectedSlot == null) {
+            controllerSelectedSlot = this.inventorySlots.inventorySlots.getFirst();
+            this.theSlot = controllerSelectedSlot;
+            return;
+        }
+
+        int currentX = controllerSelectedSlot.xDisplayPosition;
+        int currentY = controllerSelectedSlot.yDisplayPosition;
+
+        Slot bestCandidate = controllerSelectedSlot;
+        double bestDist = Double.MAX_VALUE;
+
+        for (Slot slot : this.inventorySlots.inventorySlots) {
+            if (!slot.canBeHovered() || slot == controllerSelectedSlot)
+                continue;
+
+            int sx = slot.xDisplayPosition;
+            int sy = slot.yDisplayPosition;
+
+            int deltaX = sx - currentX;
+            int deltaY = sy - currentY;
+
+            if (dx < 0 && deltaX >= 0) continue; // want left
+            if (dx > 0 && deltaX <= 0) continue; // want right
+            if (dy < 0 && deltaY >= 0) continue; // want up
+            if (dy > 0 && deltaY <= 0) continue; // want down
+
+            double dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            //bias toward straight movement (dont jump diagonally)
+            double directionFactor = (dx != 0 ? Math.abs(deltaX) : Math.abs(deltaY));
+            if (directionFactor < 4) continue; //skip too close in wrong axis
+
+            if (dist < bestDist) {
+                bestDist = dist;
+                bestCandidate = slot;
+            }
+        }
+
+        if (bestCandidate != controllerSelectedSlot) {
+            controllerSelectedSlot = bestCandidate;
+            this.theSlot = bestCandidate;
         }
     }
 

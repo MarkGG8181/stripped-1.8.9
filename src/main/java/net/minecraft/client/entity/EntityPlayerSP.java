@@ -20,6 +20,7 @@ import net.minecraft.client.gui.inventory.GuiFurnace;
 import net.minecraft.client.gui.inventory.GuiScreenHorseInventory;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.command.server.CommandBlockLogic;
+import net.minecraft.controller.Controller;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.item.EntityItem;
@@ -800,7 +801,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
         if (this.onGround && !flag1 && !flag2 && this.movementInput.moveForward >= f && !this.isSprinting() && flag3 && !this.isUsingItem() && !this.isPotionActive(Potion.blindness))
         {
-            if (this.sprintToggleTimer <= 0 && !this.mc.gameSettings.keyBindSprint.isKeyDown())
+            if (this.sprintToggleTimer <= 0 &&
+                    !this.mc.gameSettings.keyBindSprint.isKeyDown() &&
+                    !Controller.isButtonDown(this.mc.gameSettings.controllerBindSprint.getButton()))
             {
                 this.sprintToggleTimer = 7;
             }
@@ -810,7 +813,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
             }
         }
 
-        if (!this.isSprinting() && this.movementInput.moveForward >= f && flag3 && !this.isUsingItem() && !this.isPotionActive(Potion.blindness) && this.mc.gameSettings.keyBindSprint.isKeyDown())
+        if (!this.isSprinting() && this.movementInput.moveForward >= f && flag3 && !this.isUsingItem() && !this.isPotionActive(Potion.blindness) && (this.mc.gameSettings.keyBindSprint.isKeyDown() || this.mc.gameSettings.controllerBindSprint.isPressed()))
         {
             this.setSprinting(true);
         }

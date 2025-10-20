@@ -13,11 +13,16 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import com.studiohartman.jamepad.ControllerAxis;
+import com.studiohartman.jamepad.ControllerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.ingame.GuiNewChat;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.controller.Controller;
+import net.minecraft.controller.ControllerAxisBinding;
+import net.minecraft.controller.ControllerBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.network.play.client.C15PacketClientSettings;
@@ -57,6 +62,7 @@ public class GameSettings {
     private static final String[] AMBIENT_OCCLUSIONS = new String[]{"options.ao.off", "options.ao.min", "options.ao.max"};
     private static final String[] CLOUDS_TYPES = new String[]{"options.off", "options.graphics.fast", "options.graphics.fancy"};
     public float mouseSensitivity = 0.5F;
+    public float controllerDeadzone = 0.2f;
     public int renderDistanceChunks = -1;
     public boolean viewBobbing = true;
     public boolean fboEnable = true;
@@ -132,6 +138,28 @@ public class GameSettings {
     public KeyBinding keyBindSpectatorOutlines = new KeyBinding("key.spectatorOutlines", 0, "key.categories.misc");
     public KeyBinding[] keyBindsHotbar = new KeyBinding[]{new KeyBinding("key.hotbar.1", 2, "key.categories.inventory"), new KeyBinding("key.hotbar.2", 3, "key.categories.inventory"), new KeyBinding("key.hotbar.3", 4, "key.categories.inventory"), new KeyBinding("key.hotbar.4", 5, "key.categories.inventory"), new KeyBinding("key.hotbar.5", 6, "key.categories.inventory"), new KeyBinding("key.hotbar.6", 7, "key.categories.inventory"), new KeyBinding("key.hotbar.7", 8, "key.categories.inventory"), new KeyBinding("key.hotbar.8", 9, "key.categories.inventory"), new KeyBinding("key.hotbar.9", 10, "key.categories.inventory")};
     public KeyBinding[] keyBindings;
+
+    public ControllerBinding controllerBindJump = new ControllerBinding("controller.jump", ControllerButton.A, "controller.categories.movement");
+    public ControllerBinding controllerBindDrop = new ControllerBinding("controller.drop", ControllerButton.B, "controller.categories.movement");
+    public ControllerBinding controllerBindPickBlock = new ControllerBinding("controller.pickBlock", ControllerButton.A, "controller.categories.movement");
+    public ControllerBinding controllerBindSprint = new ControllerBinding("controller.sprint", ControllerButton.X, "controller.categories.movement");
+    public ControllerBinding controllerBindSneak = new ControllerBinding("controller.sneak", ControllerButton.LEFTSTICK, "controller.categories.movement");
+    public ControllerBinding controllerBindTogglePerspective = new ControllerBinding("controller.togglePerspective", ControllerButton.RIGHTSTICK, "controller.categories.misc");
+    public ControllerBinding controllerBindPreviousItem = new ControllerBinding("controller.previousItem", ControllerButton.LEFTBUMPER, "controller.categories.misc");
+    public ControllerBinding controllerBindNextItem = new ControllerBinding("controller.nextItem", ControllerButton.RIGHTBUMPER, "controller.categories.misc");
+    public ControllerBinding controllerBindZoom = new ControllerBinding("controller.zoom", ControllerButton.DPAD_UP, "controller.categories.misc");
+    public ControllerBinding controllerBindPlayerList = new ControllerBinding("controller.playerlist", ControllerButton.BACK, "controller.categories.misc");
+    public ControllerBinding controllerBindInventory = new ControllerBinding("controller.inventory", ControllerButton.Y, "controller.categories.inventory");
+    public ControllerBinding[] controllerBindings;
+
+    public ControllerAxisBinding controllerBindMoveX = new ControllerAxisBinding("controller.moveX", ControllerAxis.LEFTX, "controller.categories.movement");
+    public ControllerAxisBinding controllerBindMoveY = new ControllerAxisBinding("controller.moveY", ControllerAxis.LEFTY, "controller.categories.movement");
+    public ControllerAxisBinding controllerBindLookX = new ControllerAxisBinding("controller.lookX", ControllerAxis.RIGHTX, "controller.categories.camera");
+    public ControllerAxisBinding controllerBindLookY = new ControllerAxisBinding("controller.lookY", ControllerAxis.RIGHTY, "controller.categories.camera");
+    public ControllerAxisBinding controllerBindPlace = new ControllerAxisBinding("controller.place", ControllerAxis.TRIGGERLEFT, "controller.categories.gameplay");
+    public ControllerAxisBinding controllerBindMine = new ControllerAxisBinding("controller.mine", ControllerAxis.TRIGGERRIGHT, "controller.categories.gameplay");
+    public ControllerAxisBinding[] controllerAxisBindings;
+
     protected Minecraft mc;
     private File optionsFile;
     public EnumDifficulty difficulty;
@@ -175,18 +203,24 @@ public class GameSettings {
     public String language;
 
     public GameSettings(Minecraft mcIn, File optionsFileIn) {
+        this.mc = mcIn;
+        this.optionsFile = new File(optionsFileIn, "options.txt");
+
         this.keyBindings = ArrayUtils.addAll(new KeyBinding[]{this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindZoom, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar);
+        this.controllerBindings = ArrayUtils.addAll(new ControllerBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory});
+        this.controllerAxisBindings = ArrayUtils.addAll(new ControllerAxisBinding[]{this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
+
+        Controller.registerBindings(controllerBindings);
+        Controller.registerAxisBindings(controllerAxisBindings);
+
         this.difficulty = EnumDifficulty.NORMAL;
         this.lastServer = "";
         this.fovSetting = 70.0F;
         this.language = "en_US";
-        this.mc = mcIn;
-        this.optionsFile = new File(optionsFileIn, "options.txt");
 
         if (mcIn.isJava64bit() && Runtime.getRuntime().maxMemory() >= 1000000000L) {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(32.0F);
-        }
-        else {
+        } else {
             GameSettings.Options.RENDER_DISTANCE.setValueMax(16.0F);
         }
 
@@ -196,6 +230,12 @@ public class GameSettings {
 
     public GameSettings() {
         this.keyBindings = ArrayUtils.addAll(new KeyBinding[]{this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindZoom, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar);
+        this.controllerBindings = ArrayUtils.addAll(new ControllerBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory});
+        this.controllerAxisBindings = ArrayUtils.addAll(new ControllerAxisBinding[]{this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
+
+        Controller.registerBindings(controllerBindings);
+        Controller.registerAxisBindings(controllerAxisBindings);
+
         this.difficulty = EnumDifficulty.NORMAL;
         this.lastServer = "";
         this.fovSetting = 70.0F;
@@ -208,7 +248,7 @@ public class GameSettings {
      * @param key The key to display
      */
     public static String getKeyDisplayString(int key) {
-        return key < 0 ? I18n.format("key.mouseButton", key + 101) : (key < 256 ? Keyboard.getKeyName(key) : "%c".formatted((char)(key - 256)).toUpperCase());
+        return key < 0 ? I18n.format("key.mouseButton", key + 101) : (key < 256 ? Keyboard.getKeyName(key) : "%c".formatted((char) (key - 256)).toUpperCase());
     }
 
     /**
@@ -220,10 +260,13 @@ public class GameSettings {
         int keyCode = key.getKeyCode();
         if (keyCode != 0 && keyCode < 256) {
             return keyCode < 0 ? Mouse.isButtonDown(keyCode + 100) : Keyboard.isKeyDown(keyCode);
-        }
-        else {
+        } else {
             return false;
         }
+    }
+
+    public static boolean isControllerButtonDown(ControllerBinding binding) {
+        return Controller.isButtonDown(binding.getButton());
     }
 
     /**
@@ -234,6 +277,16 @@ public class GameSettings {
      */
     public void setOptionKeyBinding(KeyBinding key, int keyCode) {
         key.setKeyCode(keyCode);
+        this.saveOptions();
+    }
+
+    public void setOptionControllerBinding(ControllerBinding key, ControllerButton button) {
+        key.setButton(button);
+        this.saveOptions();
+    }
+
+    public void setOptionControllerAxisBinding(ControllerAxisBinding key, ControllerAxis button) {
+        key.setAxis(button);
         this.saveOptions();
     }
 
@@ -248,6 +301,10 @@ public class GameSettings {
             this.mouseSensitivity = value;
         }
 
+        if (settingsOption == Options.DEADZONE) {
+            this.controllerDeadzone = value;
+        }
+
         if (settingsOption == Options.FOV) {
             this.fovSetting = value;
         }
@@ -257,7 +314,7 @@ public class GameSettings {
         }
 
         if (settingsOption == Options.FRAMERATE_LIMIT) {
-            this.limitFramerate = (int)value;
+            this.limitFramerate = (int) value;
         }
 
         if (settingsOption == Options.CHAT_OPACITY) {
@@ -287,9 +344,9 @@ public class GameSettings {
 
         if (settingsOption == Options.MIPMAP_LEVELS) {
             int i = this.mipmapLevels;
-            this.mipmapLevels = (int)value;
+            this.mipmapLevels = (int) value;
 
-            if ((float)i != value) {
+            if ((float) i != value) {
                 this.mc.getTextureMapBlocks().setMipmapLevels(this.mipmapLevels);
                 this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
                 this.mc.getTextureMapBlocks().setBlurMipmapDirect(false, this.mipmapLevels > 0);
@@ -303,7 +360,7 @@ public class GameSettings {
         }
 
         if (settingsOption == Options.RENDER_DISTANCE) {
-            this.renderDistanceChunks = (int)value;
+            this.renderDistanceChunks = (int) value;
             this.mc.renderGlobal.setDisplayListEntitiesDirty();
         }
     }
@@ -399,7 +456,21 @@ public class GameSettings {
     }
 
     public float getOptionFloatValue(Options settingOption) {
-        return settingOption == Options.FOV ? this.fovSetting : (settingOption == Options.GAMMA ? this.gammaSetting : (settingOption == Options.SATURATION ? this.saturation : (settingOption == Options.SENSITIVITY ? this.mouseSensitivity : (settingOption == Options.CHAT_OPACITY ? this.chatOpacity : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? this.chatHeightFocused : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? this.chatHeightUnfocused : (settingOption == Options.CHAT_SCALE ? this.chatScale : (settingOption == Options.CHAT_WIDTH ? this.chatWidth : (settingOption == Options.FRAMERATE_LIMIT ? (float)this.limitFramerate : (settingOption == Options.MIPMAP_LEVELS ? (float)this.mipmapLevels : (settingOption == Options.RENDER_DISTANCE ? (float)this.renderDistanceChunks : 0.0F)))))))))));
+        return
+                settingOption == Options.FOV ? this.fovSetting
+                        : (settingOption == Options.GAMMA ? this.gammaSetting
+                        : (settingOption == Options.SATURATION ? this.saturation
+                        : (settingOption == Options.SENSITIVITY ? this.mouseSensitivity
+                        : (settingOption == Options.DEADZONE ? this.controllerDeadzone
+                        : (settingOption == Options.CHAT_OPACITY ? this.chatOpacity
+                        : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? this.chatHeightFocused
+                        : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? this.chatHeightUnfocused
+                        : (settingOption == Options.CHAT_SCALE ? this.chatScale
+                        : (settingOption == Options.CHAT_WIDTH ? this.chatWidth
+                        : (settingOption == Options.FRAMERATE_LIMIT ? (float) this.limitFramerate
+                        : (settingOption == Options.MIPMAP_LEVELS ? (float) this.mipmapLevels
+                        : (settingOption == Options.RENDER_DISTANCE ? (float) this.renderDistanceChunks
+                        : 0.0F))))))))))));
     }
 
     public boolean getOptionOrdinalValue(Options settingOption) {
@@ -446,36 +517,50 @@ public class GameSettings {
         if (settingOption.getEnumFloat()) {
             float f1 = this.getOptionFloatValue(settingOption);
             float f = settingOption.normalizeValue(f1);
-            return settingOption == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min") : (f == 1.0F ? s + I18n.format("options.sensitivity.max") : s + (int)(f * 200.0F) + "%")) : (settingOption == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min") : (f1 == 110.0F ? s + I18n.format("options.fov.max") : s + (int)f1)) : (settingOption == Options.FRAMERATE_LIMIT ? (f1 == settingOption.valueMax ? s + I18n.format("options.framerateLimit.max") : s + (int)f1 + " fps") : (settingOption == Options.RENDER_CLOUDS ? (f1 == settingOption.valueMin ? s + I18n.format("options.cloudHeight.min") : s + ((int)f1 + 128)) : (settingOption == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min") : (f == 1.0F ? s + I18n.format("options.gamma.max") : s + "+" + (int)(f * 100.0F) + "%")) : (settingOption == Options.SATURATION ? s + (int)(f * 400.0F) + "%" : (settingOption == Options.CHAT_OPACITY ? s + (int)(f * 90.0F + 10.0F) + "%" : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px" : (settingOption == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px" : (settingOption == Options.RENDER_DISTANCE ? s + (int)f1 + " chunks" : (settingOption == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off") : s + (int)f1) : (f == 0.0F ? s + I18n.format("options.off") : s + (int)(f * 100.0F) + "%"))))))))))));
-        }
-        else if (settingOption.getEnumBoolean()) {
+            return settingOption == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min")
+                    : (f == 1.0F ? s + I18n.format("options.sensitivity.max")
+                    : s + (int) (f * 200.0F) + "%"))
+                    : (settingOption == Options.DEADZONE
+                    ? s + String.format("%.2f", f1)
+                    : (settingOption == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min")
+                    : (f1 == 110.0F ? s + I18n.format("options.fov.max")
+                    : s + (int) f1))
+                    : (settingOption == Options.FRAMERATE_LIMIT ? (f1 == settingOption.valueMax ? s + I18n.format("options.framerateLimit.max")
+                    : s + (int) f1 + " fps")
+                    : (settingOption == Options.RENDER_CLOUDS ? (f1 == settingOption.valueMin ? s + I18n.format("options.cloudHeight.min")
+                    : s + ((int) f1 + 128))
+                    : (settingOption == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min")
+                    : (f == 1.0F ? s + I18n.format("options.gamma.max")
+                    : s + "+" + (int) (f * 100.0F) + "%"))
+                    : (settingOption == Options.SATURATION ? s + (int) (f * 400.0F) + "%"
+                    : (settingOption == Options.CHAT_OPACITY ? s + (int) (f * 90.0F + 10.0F) + "%"
+                    : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
+                    : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
+                    : (settingOption == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px"
+                    : (settingOption == Options.RENDER_DISTANCE ? s + (int) f1 + " chunks"
+                    : (settingOption == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off")
+                    : s + (int) f1) : (f == 0.0F ? s + I18n.format("options.off")
+                    : s + (int) (f * 100.0F) + "%")))))))))))));
+        } else if (settingOption.getEnumBoolean()) {
             boolean flag = this.getOptionOrdinalValue(settingOption);
             return flag ? s + I18n.format("options.on") : s + I18n.format("options.off");
-        }
-        else if (settingOption == Options.GUI_SCALE) {
+        } else if (settingOption == Options.GUI_SCALE) {
             return s + getTranslation(GUISCALES, this.guiScale);
-        }
-        else if (settingOption == Options.CHAT_VISIBILITY) {
+        } else if (settingOption == Options.CHAT_VISIBILITY) {
             return s + I18n.format(this.chatVisibility.getResourceKey());
-        }
-        else if (settingOption == Options.PARTICLES) {
+        } else if (settingOption == Options.PARTICLES) {
             return s + getTranslation(PARTICLES, this.particleSetting);
-        }
-        else if (settingOption == Options.AMBIENT_OCCLUSION) {
+        } else if (settingOption == Options.AMBIENT_OCCLUSION) {
             return s + getTranslation(AMBIENT_OCCLUSIONS, this.ambientOcclusion);
-        }
-        else if (settingOption == Options.RENDER_CLOUDS) {
+        } else if (settingOption == Options.RENDER_CLOUDS) {
             return s + getTranslation(CLOUDS_TYPES, this.clouds);
-        }
-        else if (settingOption == Options.GRAPHICS) {
+        } else if (settingOption == Options.GRAPHICS) {
             if (this.fancyGraphics) {
                 return s + I18n.format("options.graphics.fancy");
-            }
-            else {
+            } else {
                 return s + I18n.format("options.graphics.fast");
             }
-        }
-        else {
+        } else {
             return s;
         }
     }
@@ -560,11 +645,9 @@ public class GameSettings {
                     if ("ao".equals(astring[0])) {
                         if ("true".equals(astring[1])) {
                             this.ambientOcclusion = 2;
-                        }
-                        else if ("false".equals(astring[1])) {
+                        } else if ("false".equals(astring[1])) {
                             this.ambientOcclusion = 0;
-                        }
-                        else {
+                        } else {
                             this.ambientOcclusion = Integer.parseInt(astring[1]);
                         }
                     }
@@ -841,8 +924,7 @@ public class GameSettings {
     public void setModelPartEnabled(EnumPlayerModelParts modelPart, boolean enable) {
         if (enable) {
             this.setModelParts.add(modelPart);
-        }
-        else {
+        } else {
             this.setModelParts.remove(modelPart);
         }
 
@@ -852,8 +934,7 @@ public class GameSettings {
     public void switchModelPartEnabled(EnumPlayerModelParts modelPart) {
         if (!this.getModelParts().contains(modelPart)) {
             this.setModelParts.add(modelPart);
-        }
-        else {
+        } else {
             this.setModelParts.remove(modelPart);
         }
 
@@ -876,6 +957,7 @@ public class GameSettings {
 
     public enum Options {
         SENSITIVITY("options.sensitivity", true, false),
+        DEADZONE("options.controllerDeadzone", true, false, 0.0F, 1.0F, 0.2F),
         FOV("options.fov", true, false, 30.0F, 110.0F, 1.0F),
         GAMMA("options.gamma", true, false),
         SATURATION("options.saturation", true, false),
@@ -975,7 +1057,7 @@ public class GameSettings {
 
         private float snapToStep(float value) {
             if (this.valueStep > 0.0F) {
-                value = this.valueStep * (float)Math.round(value / this.valueStep);
+                value = this.valueStep * (float) Math.round(value / this.valueStep);
             }
 
             return value;

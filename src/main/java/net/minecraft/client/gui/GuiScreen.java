@@ -18,6 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.studiohartman.jamepad.ControllerAxis;
+import com.studiohartman.jamepad.ControllerButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.element.Gui;
 import net.minecraft.client.gui.element.data.GuiYesNoCallback;
@@ -31,6 +33,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.controller.Controller;
 import net.minecraft.entity.EntityList;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.event.HoverEvent;
@@ -122,6 +125,19 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                 this.mc.setIngameFocus();
             }
         }
+    }
+
+    protected void controllerButtonPressed(ControllerButton button) {
+        if (button == ControllerButton.START) {
+            this.mc.displayGuiScreen((GuiScreen)null);
+
+            if (this.mc.currentScreen == null) {
+                this.mc.setIngameFocus();
+            }
+        }
+    }
+
+    protected void controllerAxisDown(ControllerAxis axis) {
     }
 
     /**
@@ -507,6 +523,22 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
                 this.handleKeyboardInput();
             }
         }
+
+        if (Controller.isConnected()) {
+            while (Controller.next()) {
+                if (this != this.mc.currentScreen) {
+                    return;
+                }
+                this.handleControllerInput();
+            }
+
+            while (Controller.nextAxis()) {
+                if (this != this.mc.currentScreen) {
+                    return;
+                }
+                this.handleControllerAxisInput();
+            }
+        }
     }
 
     /**
@@ -541,6 +573,21 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
         }
 
         this.mc.dispatchKeypresses();
+    }
+
+    /**
+     * Handles controller input.
+     */
+    public void handleControllerInput() {
+        if (Controller.getEventButtonState()) {
+            this.controllerButtonPressed(Controller.getEventButton());
+        }
+    }
+
+    public void handleControllerAxisInput() {
+        if (Controller.getEventAxisValue() > this.mc.gameSettings.controllerDeadzone) {
+            this.controllerAxisDown(Controller.getEventAxis());
+        }
     }
 
     /**

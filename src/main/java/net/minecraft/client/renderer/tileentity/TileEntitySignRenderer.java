@@ -75,7 +75,7 @@ public class TileEntitySignRenderer extends TileEntitySpecialRenderer<TileEntity
         this.model.renderSign();
         GlStateManager.popMatrix();
 
-        if (!(Minecraft.getMinecraft().currentScreen == null && GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindZoom)) && te.lineBeingEdited < 0) {
+        if (!(Minecraft.getMinecraft().currentScreen == null && (GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindZoom)) || GameSettings.isControllerButtonDown(Minecraft.getMinecraft().gameSettings.controllerBindZoom)) && te.lineBeingEdited < 0) {
             Entity entity = Minecraft.getMinecraft().getRenderViewEntity();
             double d0 = te.getDistanceSq(entity.posX, entity.posY, entity.posZ);
 

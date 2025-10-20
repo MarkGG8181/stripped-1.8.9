@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;
+import net.minecraft.controller.Controller;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.openal.SoundSystemOpenAL;
@@ -118,12 +119,14 @@ public final class Display {
         try {
             Mouse.create();
             Keyboard.create();
+            Controller.init();
         } catch (Exception e) {
             destroy();
             throw new RuntimeException(e);
         }
 
         GLFW.glfwShowWindow(windowHandle);
+
         if (cachedIcons != null && !wayland) {
             setIcon(cachedIcons);
         }
@@ -133,6 +136,7 @@ public final class Display {
         windowResized = false;
 
         Mouse.poll();
+        Controller.poll();
         Keyboard.poll();
 
         GLFW.glfwSwapBuffers(windowHandle);
@@ -316,6 +320,7 @@ public final class Display {
         }
 
         Mouse.destroy();
+        Controller.destroy();
         Keyboard.destroy();
 
         if (windowHandle != MemoryUtil.NULL) {

@@ -17,6 +17,11 @@
             <id>papermc</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
+
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>
@@ -32,6 +37,20 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.WilliamAHartman</groupId>
+            <artifactId>Jamepad</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>uk.co.electronstudio.sdl2gdx</groupId>
+            <artifactId>sdl2gdx</artifactId>
+            <version>1.0.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/sdl2gdx-1.0.5.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>com.velocitypowered</groupId>
             <artifactId>velocity-native</artifactId>
