@@ -21,8 +21,7 @@ import net.minecraft.client.gui.ingame.GuiNewChat;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.controller.Controller;
-import net.minecraft.controller.ControllerAxisBinding;
-import net.minecraft.controller.ControllerBinding;
+import net.minecraft.controller.bind.ControllerInputBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EnumPlayerModelParts;
 import net.minecraft.network.play.client.C15PacketClientSettings;
@@ -139,26 +138,26 @@ public class GameSettings {
     public KeyBinding[] keyBindsHotbar = new KeyBinding[]{new KeyBinding("key.hotbar.1", 2, "key.categories.inventory"), new KeyBinding("key.hotbar.2", 3, "key.categories.inventory"), new KeyBinding("key.hotbar.3", 4, "key.categories.inventory"), new KeyBinding("key.hotbar.4", 5, "key.categories.inventory"), new KeyBinding("key.hotbar.5", 6, "key.categories.inventory"), new KeyBinding("key.hotbar.6", 7, "key.categories.inventory"), new KeyBinding("key.hotbar.7", 8, "key.categories.inventory"), new KeyBinding("key.hotbar.8", 9, "key.categories.inventory"), new KeyBinding("key.hotbar.9", 10, "key.categories.inventory")};
     public KeyBinding[] keyBindings;
 
-    public ControllerBinding controllerBindJump = new ControllerBinding("controller.jump", ControllerButton.A, "controller.categories.movement");
-    public ControllerBinding controllerBindDrop = new ControllerBinding("controller.drop", ControllerButton.B, "controller.categories.movement");
-    public ControllerBinding controllerBindPickBlock = new ControllerBinding("controller.pickBlock", ControllerButton.A, "controller.categories.movement");
-    public ControllerBinding controllerBindSprint = new ControllerBinding("controller.sprint", ControllerButton.X, "controller.categories.movement");
-    public ControllerBinding controllerBindSneak = new ControllerBinding("controller.sneak", ControllerButton.LEFTSTICK, "controller.categories.movement");
-    public ControllerBinding controllerBindTogglePerspective = new ControllerBinding("controller.togglePerspective", ControllerButton.RIGHTSTICK, "controller.categories.misc");
-    public ControllerBinding controllerBindPreviousItem = new ControllerBinding("controller.previousItem", ControllerButton.LEFTBUMPER, "controller.categories.misc");
-    public ControllerBinding controllerBindNextItem = new ControllerBinding("controller.nextItem", ControllerButton.RIGHTBUMPER, "controller.categories.misc");
-    public ControllerBinding controllerBindZoom = new ControllerBinding("controller.zoom", ControllerButton.DPAD_UP, "controller.categories.misc");
-    public ControllerBinding controllerBindPlayerList = new ControllerBinding("controller.playerlist", ControllerButton.BACK, "controller.categories.misc");
-    public ControllerBinding controllerBindInventory = new ControllerBinding("controller.inventory", ControllerButton.Y, "controller.categories.inventory");
-    public ControllerBinding[] controllerBindings;
+    public ControllerInputBinding controllerBindJump = new ControllerInputBinding("controller.jump", ControllerButton.A, "controller.categories.movement");
+    public ControllerInputBinding controllerBindDrop = new ControllerInputBinding("controller.drop", ControllerButton.B, "controller.categories.movement");
+    public ControllerInputBinding controllerBindPickBlock = new ControllerInputBinding("controller.pickBlock", ControllerButton.A, "controller.categories.movement");
+    public ControllerInputBinding controllerBindSprint = new ControllerInputBinding("controller.sprint", ControllerButton.X, "controller.categories.movement");
+    public ControllerInputBinding controllerBindSneak = new ControllerInputBinding("controller.sneak", ControllerButton.LEFTSTICK, "controller.categories.movement");
+    public ControllerInputBinding controllerBindTogglePerspective = new ControllerInputBinding("controller.togglePerspective", ControllerButton.RIGHTSTICK, "controller.categories.misc");
+    public ControllerInputBinding controllerBindPreviousItem = new ControllerInputBinding("controller.previousItem", ControllerButton.LEFTBUMPER, "controller.categories.misc");
+    public ControllerInputBinding controllerBindNextItem = new ControllerInputBinding("controller.nextItem", ControllerButton.RIGHTBUMPER, "controller.categories.misc");
+    public ControllerInputBinding controllerBindZoom = new ControllerInputBinding("controller.zoom", ControllerButton.DPAD_UP, "controller.categories.misc");
+    public ControllerInputBinding controllerBindPlayerList = new ControllerInputBinding("controller.playerlist", ControllerButton.BACK, "controller.categories.misc");
+    public ControllerInputBinding controllerBindInventory = new ControllerInputBinding("controller.inventory", ControllerButton.Y, "controller.categories.inventory");
 
-    public ControllerAxisBinding controllerBindMoveX = new ControllerAxisBinding("controller.moveX", ControllerAxis.LEFTX, "controller.categories.movement");
-    public ControllerAxisBinding controllerBindMoveY = new ControllerAxisBinding("controller.moveY", ControllerAxis.LEFTY, "controller.categories.movement");
-    public ControllerAxisBinding controllerBindLookX = new ControllerAxisBinding("controller.lookX", ControllerAxis.RIGHTX, "controller.categories.camera");
-    public ControllerAxisBinding controllerBindLookY = new ControllerAxisBinding("controller.lookY", ControllerAxis.RIGHTY, "controller.categories.camera");
-    public ControllerAxisBinding controllerBindPlace = new ControllerAxisBinding("controller.place", ControllerAxis.TRIGGERLEFT, "controller.categories.gameplay");
-    public ControllerAxisBinding controllerBindMine = new ControllerAxisBinding("controller.mine", ControllerAxis.TRIGGERRIGHT, "controller.categories.gameplay");
-    public ControllerAxisBinding[] controllerAxisBindings;
+    public ControllerInputBinding controllerBindMoveX = new ControllerInputBinding("controller.moveX", ControllerAxis.LEFTX, "controller.categories.movement");
+    public ControllerInputBinding controllerBindMoveY = new ControllerInputBinding("controller.moveY", ControllerAxis.LEFTY, "controller.categories.movement");
+    public ControllerInputBinding controllerBindLookX = new ControllerInputBinding("controller.lookX", ControllerAxis.RIGHTX, "controller.categories.camera");
+    public ControllerInputBinding controllerBindLookY = new ControllerInputBinding("controller.lookY", ControllerAxis.RIGHTY, "controller.categories.camera");
+    public ControllerInputBinding controllerBindPlace = new ControllerInputBinding("controller.place", ControllerAxis.TRIGGERLEFT, "controller.categories.gameplay");
+    public ControllerInputBinding controllerBindMine = new ControllerInputBinding("controller.mine", ControllerAxis.TRIGGERRIGHT, "controller.categories.gameplay");
+
+    public ControllerInputBinding[] controllerBindings;
 
     protected Minecraft mc;
     private File optionsFile;
@@ -207,11 +206,9 @@ public class GameSettings {
         this.optionsFile = new File(optionsFileIn, "options.txt");
 
         this.keyBindings = ArrayUtils.addAll(new KeyBinding[]{this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindZoom, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar);
-        this.controllerBindings = ArrayUtils.addAll(new ControllerBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory});
-        this.controllerAxisBindings = ArrayUtils.addAll(new ControllerAxisBinding[]{this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
+        this.controllerBindings = ArrayUtils.addAll(new ControllerInputBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory, this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
 
         Controller.registerBindings(controllerBindings);
-        Controller.registerAxisBindings(controllerAxisBindings);
 
         this.difficulty = EnumDifficulty.NORMAL;
         this.lastServer = "";
@@ -230,11 +227,9 @@ public class GameSettings {
 
     public GameSettings() {
         this.keyBindings = ArrayUtils.addAll(new KeyBinding[]{this.keyBindAttack, this.keyBindUseItem, this.keyBindForward, this.keyBindLeft, this.keyBindBack, this.keyBindRight, this.keyBindJump, this.keyBindSneak, this.keyBindSprint, this.keyBindDrop, this.keyBindInventory, this.keyBindChat, this.keyBindPlayerList, this.keyBindPickBlock, this.keyBindCommand, this.keyBindScreenshot, this.keyBindTogglePerspective, this.keyBindSmoothCamera, this.keyBindZoom, this.keyBindFullscreen, this.keyBindSpectatorOutlines}, this.keyBindsHotbar);
-        this.controllerBindings = ArrayUtils.addAll(new ControllerBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory});
-        this.controllerAxisBindings = ArrayUtils.addAll(new ControllerAxisBinding[]{this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
+        this.controllerBindings = ArrayUtils.addAll(new ControllerInputBinding[]{this.controllerBindJump, this.controllerBindDrop, this.controllerBindPickBlock, this.controllerBindSprint, this.controllerBindSneak, this.controllerBindTogglePerspective, this.controllerBindPreviousItem, this.controllerBindNextItem, this.controllerBindZoom, this.controllerBindPlayerList, this.controllerBindInventory, this.controllerBindMoveX, this.controllerBindMoveY, this.controllerBindLookX, this.controllerBindLookY, this.controllerBindPlace, this.controllerBindMine});
 
         Controller.registerBindings(controllerBindings);
-        Controller.registerAxisBindings(controllerAxisBindings);
 
         this.difficulty = EnumDifficulty.NORMAL;
         this.lastServer = "";
@@ -265,7 +260,7 @@ public class GameSettings {
         }
     }
 
-    public static boolean isControllerButtonDown(ControllerBinding binding) {
+    public static boolean isControllerButtonDown(ControllerInputBinding binding) {
         return Controller.isButtonDown(binding.getButton());
     }
 
@@ -280,13 +275,15 @@ public class GameSettings {
         this.saveOptions();
     }
 
-    public void setOptionControllerBinding(ControllerBinding key, ControllerButton button) {
-        key.setButton(button);
-        this.saveOptions();
-    }
+    public void setOptionControllerInputBinding(ControllerInputBinding binding, Object input) {
+        if (input instanceof ControllerButton) {
+            binding.setButton((ControllerButton) input);
+        } else if (input instanceof ControllerAxis) {
+            binding.setAxis((ControllerAxis) input);
+        } else {
+            throw new IllegalArgumentException("Invalid controller input type: " + input);
+        }
 
-    public void setOptionControllerAxisBinding(ControllerAxisBinding key, ControllerAxis button) {
-        key.setAxis(button);
         this.saveOptions();
     }
 

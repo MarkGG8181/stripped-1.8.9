@@ -13,8 +13,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.controller.Controller;
-import net.minecraft.controller.ControllerAxisBinding;
-import net.minecraft.controller.ControllerBinding;
+import net.minecraft.controller.bind.ControllerInputBinding;
 import net.minecraft.util.EnumChatFormatting;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -50,23 +49,8 @@ public class GuiKeyBindingList extends GuiListExtended {
         }
 
         if (Controller.isConnected()) {
-            ControllerBinding[] acontrolbinding = ArrayUtils.clone(mcIn.gameSettings.controllerBindings);
-            for (ControllerBinding binding : acontrolbinding) {
-                String s1 = binding.getCategory();
-
-                if (!s1.equals(s)) {
-                    s = s1;
-                    listEntries.add(new CategoryEntry(s1));
-                }
-
-                int j = mcIn.fontRendererObj.getStringWidth(I18n.format(binding.getDescription()));
-                if (j > this.maxListLabelWidth) this.maxListLabelWidth = j;
-
-                listEntries.add(new KeyEntry(binding));
-            }
-
-            ControllerAxisBinding[] acontrolAxisBindings = ArrayUtils.clone(mcIn.gameSettings.controllerAxisBindings);
-            for (ControllerAxisBinding binding : acontrolAxisBindings) {
+            ControllerInputBinding[] acontrolbinding = ArrayUtils.clone(mcIn.gameSettings.controllerBindings);
+            for (ControllerInputBinding binding : acontrolbinding) {
                 String s1 = binding.getCategory();
 
                 if (!s1.equals(s)) {
@@ -130,20 +114,13 @@ public class GuiKeyBindingList extends GuiListExtended {
 
     public final class KeyEntry implements GuiListExtended.IGuiListEntry {
         private KeyBinding keybinding;
-        private ControllerBinding controllerBinding;
-        private ControllerAxisBinding controllerAxisBinding;
+        private ControllerInputBinding controllerBinding;
+
         private final String keyDesc;
         private final GuiButton btnChangeKeyBinding;
         private final GuiButton btnReset;
 
-        private KeyEntry(ControllerAxisBinding p_i45029_2_) {
-            this.controllerAxisBinding = p_i45029_2_;
-            this.keyDesc = I18n.format(p_i45029_2_.getDescription());
-            this.btnChangeKeyBinding = new GuiButton(0, 0, 0, 75, 20, I18n.format(p_i45029_2_.getDescription()));
-            this.btnReset = new GuiButton(0, 0, 0, 50, 20, I18n.format("controls.reset"));
-        }
-
-        private KeyEntry(ControllerBinding p_i45029_2_) {
+        private KeyEntry(ControllerInputBinding p_i45029_2_) {
             this.controllerBinding = p_i45029_2_;
             this.keyDesc = I18n.format(p_i45029_2_.getDescription());
             this.btnChangeKeyBinding = new GuiButton(0, 0, 0, 75, 20, I18n.format(p_i45029_2_.getDescription()));
@@ -186,8 +163,8 @@ public class GuiKeyBindingList extends GuiListExtended {
                 }
 
                 this.btnChangeKeyBinding.drawButton(GuiKeyBindingList.this.mc, mouseX, mouseY);
-            } else if (controllerBinding != null) {
-                boolean flag = (GuiKeyBindingList.this.controlsScreen.controllerButtonId == this.controllerBinding);
+            } else {
+                boolean flag = (GuiKeyBindingList.this.controlsScreen.controllerBindingId == this.controllerBinding);
                 GuiKeyBindingList.this.mc.fontRendererObj.drawString(this.keyDesc, x + 90 - GuiKeyBindingList.this.maxListLabelWidth, y + slotHeight / 2 - GuiKeyBindingList.this.mc.fontRendererObj.FONT_HEIGHT / 2, 16777215);
                 this.btnReset.xPosition = x + 190;
                 this.btnReset.yPosition = y;
@@ -195,41 +172,15 @@ public class GuiKeyBindingList extends GuiListExtended {
                 this.btnReset.drawButton(GuiKeyBindingList.this.mc, mouseX, mouseY);
                 this.btnChangeKeyBinding.xPosition = x + 105;
                 this.btnChangeKeyBinding.yPosition = y;
-                this.btnChangeKeyBinding.displayString = this.controllerBinding.getButton().name();
+                this.btnChangeKeyBinding.displayString = this.controllerBinding.getName();
                 boolean flag1 = false;
 
                 if (this.controllerBinding.getButton() != ControllerButton.GUIDE) {
-                    for (ControllerBinding controllerBinding1 : GuiKeyBindingList.this.mc.gameSettings.controllerBindings) {
+                    for (ControllerInputBinding controllerBinding1 : GuiKeyBindingList.this.mc.gameSettings.controllerBindings) {
                         if (controllerBinding1 != this.controllerBinding && controllerBinding1.getButton() == this.controllerBinding.getButton()) {
                             flag1 = true;
                             break;
                         }
-                    }
-                }
-
-                if (flag) {
-                    this.btnChangeKeyBinding.displayString = EnumChatFormatting.WHITE + "> " + EnumChatFormatting.YELLOW + this.btnChangeKeyBinding.displayString + EnumChatFormatting.WHITE + " <";
-                } else if (flag1) {
-                    this.btnChangeKeyBinding.displayString = EnumChatFormatting.RED + this.btnChangeKeyBinding.displayString;
-                }
-
-                this.btnChangeKeyBinding.drawButton(GuiKeyBindingList.this.mc, mouseX, mouseY);
-            } else {
-                boolean flag = (GuiKeyBindingList.this.controlsScreen.controllerAxisBindingId == this.controllerAxisBinding);
-                GuiKeyBindingList.this.mc.fontRendererObj.drawString(this.keyDesc, x + 90 - GuiKeyBindingList.this.maxListLabelWidth, y + slotHeight / 2 - GuiKeyBindingList.this.mc.fontRendererObj.FONT_HEIGHT / 2, 16777215);
-                this.btnReset.xPosition = x + 190;
-                this.btnReset.yPosition = y;
-                this.btnReset.enabled = this.controllerAxisBinding.getAxis() != this.controllerAxisBinding.getDefaultAxis();
-                this.btnReset.drawButton(GuiKeyBindingList.this.mc, mouseX, mouseY);
-                this.btnChangeKeyBinding.xPosition = x + 105;
-                this.btnChangeKeyBinding.yPosition = y;
-                this.btnChangeKeyBinding.displayString = this.controllerAxisBinding.getAxis().name();
-                boolean flag1 = false;
-
-                for (ControllerAxisBinding binding : GuiKeyBindingList.this.mc.gameSettings.controllerAxisBindings) {
-                    if (binding != this.controllerAxisBinding && binding.getAxis() == this.controllerAxisBinding.getAxis()) {
-                        flag1 = true;
-                        break;
                     }
                 }
 
@@ -255,21 +206,18 @@ public class GuiKeyBindingList extends GuiListExtended {
                 } else {
                     return false;
                 }
-            } else if (this.controllerBinding != null) {
-                if (this.btnChangeKeyBinding.mousePressed(GuiKeyBindingList.this.mc, p_148278_2_, p_148278_3_)) {
-                    GuiKeyBindingList.this.controlsScreen.controllerButtonId = this.controllerBinding;
-                    return true;
-                } else if (this.btnReset.mousePressed(GuiKeyBindingList.this.mc, p_148278_2_, p_148278_3_)) {
-                    this.controllerBinding.setButton(this.controllerBinding.getDefaultButton());
-                    return true;
-                }
             } else {
                 if (this.btnChangeKeyBinding.mousePressed(GuiKeyBindingList.this.mc, p_148278_2_, p_148278_3_)) {
-                    GuiKeyBindingList.this.controlsScreen.controllerAxisBindingId = this.controllerAxisBinding;
+                    GuiKeyBindingList.this.controlsScreen.controllerBindingId = this.controllerBinding;
                     return true;
                 } else if (this.btnReset.mousePressed(GuiKeyBindingList.this.mc, p_148278_2_, p_148278_3_)) {
-                    this.controllerAxisBinding.setAxis(this.controllerAxisBinding.getDefaultAxis());
-                    return true;
+                    if (this.controllerBinding.isAxis()) {
+                        this.controllerBinding.setAxis(this.controllerBinding.getDefaultAxis());
+                        return true;
+                    } else {
+                        this.controllerBinding.setButton(this.controllerBinding.getDefaultButton());
+                        return true;
+                    }
                 }
             }
 
