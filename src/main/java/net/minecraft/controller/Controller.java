@@ -2,6 +2,7 @@ package net.minecraft.controller;
 
 import com.studiohartman.jamepad.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.controller.bind.ControllerInputBinding;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,21 +24,21 @@ public class Controller {
     private static final Queue<ControllerAxisEvent> axisEventQueue = new ArrayDeque<>();
     private static ControllerAxisEvent currentAxisEvent = null;
 
-    private static ControllerBinding[] bindings = new ControllerBinding[0];
-    private static ControllerAxisBinding[] axisBindings = new ControllerAxisBinding[0];
+    private static ControllerInputBinding[] bindings = new ControllerInputBinding[0];
+
+    private static long lastReconnectAttempt = 0;
+    private static final long RECONNECT_INTERVAL_MS = 1000;
 
     public static void init() {
         if (initialized) return;
-        controllers.initSDLGamepad();
-        controller = controllers.getControllerIndex(0);
-        initialized = true;
 
-        for (ControllerButton button : ControllerButton.values()) {
-            lastButtonStates.put(button, false);
-        }
-
-        for (ControllerAxis axis : ControllerAxis.values()) {
-            lastAxisStates.put(axis, 0f);
+        try {
+            controllers.initSDLGamepad();
+            initialized = true;
+            logger.info("Jamepad initialized (waiting for controller connection)");
+        } catch (Exception e) {
+            logger.error("Failed to init Jamepad", e);
+            initialized = false;
         }
     }
 
@@ -46,21 +47,34 @@ public class Controller {
 
         controllers.update();
 
-        if (controller != null && controller.isConnected()) {
-            for (ControllerButton button : ControllerButton.values()) {
-                boolean wasDown = lastButtonStates.getOrDefault(button, false);
-                boolean isDown;
-
+        if (controller == null || !controller.isConnected()) {
+            long now = System.currentTimeMillis();
+            if (now - lastReconnectAttempt > RECONNECT_INTERVAL_MS) {
                 try {
-                    isDown = controller.isButtonPressed(button);
+                    tryReconnect();
                 } catch (ControllerUnpluggedException e) {
-                    isDown = false;
+                    logger.warn(e);
                 }
+                lastReconnectAttempt = now;
+            }
+            return;
+        }
 
-                if (isDown != wasDown) {
-                    eventQueue.add(new ControllerButtonEvent(button, isDown));
-                    lastButtonStates.put(button, isDown);
-                }
+        for (ControllerButton button : ControllerButton.values()) {
+            boolean wasDown = lastButtonStates.getOrDefault(button, false);
+            boolean isDown;
+
+            try {
+                isDown = controller.isButtonPressed(button);
+            } catch (ControllerUnpluggedException e) {
+                logger.warn("Controller unplugged mid-frame, will retry...");
+                controller = null;
+                return;
+            }
+
+            if (isDown != wasDown) {
+                eventQueue.add(new ControllerButtonEvent(button, isDown));
+                lastButtonStates.put(button, isDown);
             }
         }
 
@@ -87,7 +101,6 @@ public class Controller {
         }
 
         updateBindings();
-        updateAxisBindings();
     }
 
     public static void destroy() {
@@ -102,7 +115,7 @@ public class Controller {
     public static boolean isButtonDown(ControllerButton button) {
         try {
             return controller.isButtonPressed(button);
-        } catch (ControllerUnpluggedException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -110,13 +123,9 @@ public class Controller {
     public static float getAxis(ControllerAxis axis) {
         try {
             return controller.getAxisState(axis);
-        } catch (ControllerUnpluggedException e) {
+        } catch (Exception e) {
             return 0f;
         }
-    }
-
-    public static void shutdown() {
-        controllers.quitSDLGamepad();
     }
 
     /**
@@ -166,25 +175,49 @@ public class Controller {
         return currentAxisEvent != null ? currentAxisEvent.value() : 0f;
     }
 
-    public static void registerBindings(ControllerBinding[] newBindings) {
+    public static void registerBindings(ControllerInputBinding[] newBindings) {
         bindings = newBindings;
+    }
+
+    public static void resetBindings() {
+        if (bindings == null || bindings.length == 0) return;
+        for (ControllerInputBinding b : bindings) {
+            b.reset();
+        }
     }
 
     public static void updateBindings() {
         if (bindings == null || bindings.length == 0) return;
-        for (ControllerBinding b : bindings) {
+        for (ControllerInputBinding b : bindings) {
             b.update();
         }
     }
 
-    public static void registerAxisBindings(ControllerAxisBinding[] newBindings) {
-        axisBindings = newBindings;
-    }
+    private static void tryReconnect() throws ControllerUnpluggedException {
+        if (!initialized) return;
 
-    public static void updateAxisBindings() {
-        if (axisBindings == null || axisBindings.length == 0) return;
-        for (ControllerAxisBinding a : axisBindings) {
-            a.update();
+        controllers.update();
+        int count = controllers.getNumControllers();
+
+        if (count == 0) {
+            if (controller != null) {
+                logger.info("Controller disconnected.");
+                controller = null;
+                resetBindings();
+            }
+            return;
+        }
+
+        for (int i = 0; i < count; i++) {
+            ControllerIndex idx = controllers.getControllerIndex(i);
+            if (idx != null && idx.isConnected()) {
+                controller = idx;
+                logger.info("Controller connected: {}::{}", controller.getName(), controller.getIndex());
+                try {
+                    controller.doVibration(0.5f, 0.5f, 300);
+                } catch (Exception ignored) {}
+                return;
+            }
         }
     }
 }
