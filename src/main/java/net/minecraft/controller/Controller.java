@@ -3,6 +3,8 @@ package net.minecraft.controller;
 import com.studiohartman.jamepad.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.controller.bind.ControllerInputBinding;
+import net.minecraft.controller.event.ControllerAxisEvent;
+import net.minecraft.controller.event.ControllerButtonEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
