@@ -293,163 +293,149 @@ public class GameSettings {
     /**
      * If the specified option is controlled by a slider (float value), this will set the float value.
      *
-     * @param settingsOption The option to set to a value
+     * @param option The option to set to a value
      * @param value          The value that the option will take
      */
-    public void setOptionFloatValue(Options settingsOption, float value) {
-        if (settingsOption == Options.SENSITIVITY) {
-            this.mouseSensitivity = value;
-        }
-
-        if (settingsOption == Options.DEADZONE) {
-            this.controllerDeadzone = value;
-        }
-
-        if (settingsOption == Options.FOV) {
-            this.fovSetting = value;
-        }
-
-        if (settingsOption == Options.GAMMA) {
-            this.gammaSetting = value;
-        }
-
-        if (settingsOption == Options.FRAMERATE_LIMIT) {
-            this.limitFramerate = (int) value;
-        }
-
-        if (settingsOption == Options.CHAT_OPACITY) {
-            this.chatOpacity = value;
-            this.mc.ingameGUI.getChatGUI().refreshChat();
-        }
-
-        if (settingsOption == Options.CHAT_HEIGHT_FOCUSED) {
-            this.chatHeightFocused = value;
-            this.mc.ingameGUI.getChatGUI().refreshChat();
-        }
-
-        if (settingsOption == Options.CHAT_HEIGHT_UNFOCUSED) {
-            this.chatHeightUnfocused = value;
-            this.mc.ingameGUI.getChatGUI().refreshChat();
-        }
-
-        if (settingsOption == Options.CHAT_WIDTH) {
-            this.chatWidth = value;
-            this.mc.ingameGUI.getChatGUI().refreshChat();
-        }
-
-        if (settingsOption == Options.CHAT_SCALE) {
-            this.chatScale = value;
-            this.mc.ingameGUI.getChatGUI().refreshChat();
-        }
-
-        if (settingsOption == Options.MIPMAP_LEVELS) {
-            int i = this.mipmapLevels;
-            this.mipmapLevels = (int) value;
-
-            if ((float) i != value) {
-                this.mc.getTextureMapBlocks().setMipmapLevels(this.mipmapLevels);
-                this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-                this.mc.getTextureMapBlocks().setBlurMipmapDirect(false, this.mipmapLevels > 0);
-                this.mc.scheduleResourcesRefresh();
-            }
-        }
-
-        if (settingsOption == Options.BLOCK_ALTERNATIVES) {
-            this.allowBlockAlternatives = !this.allowBlockAlternatives;
-            this.mc.renderGlobal.loadRenderers();
-        }
-
-        if (settingsOption == Options.RENDER_DISTANCE) {
-            this.renderDistanceChunks = (int) value;
-            this.mc.renderGlobal.setDisplayListEntitiesDirty();
+    public void setOptionFloatValue(Options option, float value) {
+        switch (option) {
+            case SENSITIVITY:
+                mouseSensitivity = value;
+                break;
+            case DEADZONE:
+                controllerDeadzone = value;
+                break;
+            case FOV:
+                fovSetting = value;
+                break;
+            case GAMMA:
+                gammaSetting = value;
+                break;
+            case FRAMERATE_LIMIT:
+                limitFramerate = (int) value;
+                break;
+            case CHAT_OPACITY:
+                chatOpacity = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case CHAT_HEIGHT_FOCUSED:
+                chatHeightFocused = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case CHAT_HEIGHT_UNFOCUSED:
+                chatHeightUnfocused = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case CHAT_WIDTH:
+                chatWidth = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case CHAT_SCALE:
+                chatScale = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case CHAT_WIDTH:
+                chatWidth = value;
+                mc.ingameGUI.getChatGUI().refreshChat();
+                break;
+            case SENSITIVITY:
+                mouseSensitivity = value;
+                break;
+            case MIPMAP_LEVELS:
+                if (mipmapLevels != (int) value) {
+                    mipmapLevels = (int) value;
+                    mc.getTextureMapBlocks().setMipmapLevels(this.mipmapLevels);
+                    mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+                    mc.getTextureMapBlocks().setBlurMipmapDirect(false, this.mipmapLevels > 0);
+                    mc.scheduleResourcesRefresh();
+                }
+                break;
+            case RENDER_DISTANCE:
+                renderDistanceChunks = (int) value;
+                mc.renderGlobal.setDisplayListEntitiesDirty();
+                break;
+            case BLOCK_ALTERNATIVES:
+                allowBlockAlternatives = !allowBlockAlternatives;
+                mc.renderGlobal.loadRenderers();
+                break;
+            default:
+                break;
         }
     }
 
     /**
      * For non-float options. Toggles the option on/off, or cycles through the list i.e. render distances.
      *
-     * @param settingsOption The option to set to a value
+     * @param option The option to set to a value
      * @param value          The value that the option will take
      */
-    public void setOptionValue(Options settingsOption, int value) {
-        if (settingsOption == Options.GUI_SCALE) {
-            this.guiScale = this.guiScale + value & 3;
-        }
-
-        if (settingsOption == Options.PARTICLES) {
-            this.particleSetting = (this.particleSetting + value) % 3;
-        }
-
-        if (settingsOption == Options.VIEW_BOBBING) {
-            this.viewBobbing = !this.viewBobbing;
-        }
-
-        if (settingsOption == Options.RENDER_CLOUDS) {
-            this.clouds = (this.clouds + value) % 3;
-        }
-
-        if (settingsOption == Options.FBO_ENABLE) {
-            this.fboEnable = !this.fboEnable;
-        }
-
-        if (settingsOption == Options.SHOW_FRAMERATE) {
-            this.showFramerate = !this.showFramerate;
-        }
-
-        if (settingsOption == Options.RENDER_VIGNETTE) {
-            this.renderVignette = !this.renderVignette;
-        }
-
-        if (settingsOption == Options.RENDER_FOG) {
-            this.renderFog = !this.renderFog;
-        }
-
-        if (settingsOption == Options.GRAPHICS) {
-            this.fancyGraphics = !this.fancyGraphics;
-            this.mc.renderGlobal.loadRenderers();
-        }
-
-        if (settingsOption == Options.AMBIENT_OCCLUSION) {
-            this.ambientOcclusion = (this.ambientOcclusion + value) % 3;
-            this.mc.renderGlobal.loadRenderers();
-        }
-
-        if (settingsOption == Options.CHAT_VISIBILITY) {
-            this.chatVisibility = EntityPlayer.EnumChatVisibility.getEnumChatVisibility((this.chatVisibility.getChatVisibility() + value) % 3);
-        }
-
-        if (settingsOption == Options.CHAT_COLOR) {
-            this.chatColours = !this.chatColours;
-        }
-
-        if (settingsOption == Options.CHAT_LINKS) {
-            this.chatLinks = !this.chatLinks;
-        }
-
-        if (settingsOption == Options.CHAT_LINKS_PROMPT) {
-            this.chatLinksPrompt = !this.chatLinksPrompt;
-        }
-
-        if (settingsOption == Options.USE_FULLSCREEN) {
-            this.fullScreen = !this.fullScreen;
-
-            if (this.mc.isFullScreen() != this.fullScreen) {
-                this.mc.toggleFullscreen();
-            }
-        }
-
-        if (settingsOption == Options.ENABLE_VSYNC) {
-            this.enableVsync = !this.enableVsync;
-            Display.setVSyncEnabled(this.enableVsync);
-        }
-
-        if (settingsOption == Options.BLOCK_ALTERNATIVES) {
-            this.allowBlockAlternatives = !this.allowBlockAlternatives;
-            this.mc.renderGlobal.loadRenderers();
-        }
-
-        if (settingsOption == Options.ENTITY_SHADOWS) {
-            this.entityShadows = !this.entityShadows;
+    public void setOptionValue(Options option, int value) {
+        switch (option) {
+            case GUI_SCALE:
+                guiScale = (guiScale + value) % 3;
+                break;
+            case PARTICLES:
+                particleSetting = (particleSetting + value) % 3;
+                break;
+            case VIEW_BOBBING:
+                viewBobbing = !viewBobbing;
+                break;
+            case RENDER_CLOUDS:
+                clouds = (clouds + value) % 3;
+                break;
+            case FBO_ENABLE:
+                fboEnable = !fboEnable;
+                break;
+            case SHOW_FRAMERATE:
+                showFramerate = !showFramerate;
+                break;
+            case RENDER_VIGNETTE:
+                renderVignette = !renderVignette;
+                break;
+            case RENDER_FOG:
+                renderFog = !renderFog;
+                break;
+            case SHOW_FRAMERATE:
+                showFramerate = !showFramerate;
+                break;
+            case GRAPHICS:
+                fancyGraphics = !fancyGraphics;
+                mc.renderGlobal.loadRenderers();
+                break;
+            case AMBIENT_OCCLUSION:
+                ambientOcclusion = (ambientOcclusion + value) % 3;;
+                mc.renderGlobal.loadRenderers();
+                break;
+            case CHAT_VISIBILITY:
+                chatVisibility = EntityPlayer.EnumChatVisibility.getEnumChatVisibility((chatVisibility.getChatVisibility() + value) % 3);
+                break;
+            case CHAT_COLOR:
+                chatColours = !chatColours;
+                break;
+            case CHAT_LINKS:
+                chatLinks = !chatLinks;
+                break;
+            case CHAT_LINKS_PROMPT:
+                chatLinksPrompt = !chatLinksPrompt;
+                break;
+            case USE_FULLSCREEN:
+                fullScreen = !fullScreen;
+                if (mc.isFullScreen() != fullScreen) {
+                    mc.toggleFullscreen();
+                }
+                break;
+            case ENABLE_VSYNC:
+                enableVsync = !enableVsync;
+                Display.setVSyncEnabled(enableVsync);
+                break;
+            case BLOCK_ALTERNATIVES:
+                allowBlockAlternatives = !allowBlockAlternatives;
+                mc.renderGlobal.loadRenderers();
+                break;
+            case ENTITY_SHADOWS:
+                entityShadows = !entityShadows;
+                break;
+            default:
+                break;
         }
 
         this.saveOptions();
@@ -509,40 +495,40 @@ public class GameSettings {
     /**
      * Gets a key binding.
      *
-     * @param settingOption The KeyBinding is generated from this option
+     * @param option The KeyBinding is generated from this option
      */
-    public String getKeyBinding(Options settingOption) {
-        String s = I18n.format(settingOption.getEnumString()) + ": ";
+    public String getKeyBinding(Options option) {
+        String s = I18n.format(option.getEnumString()) + ": ";
 
-        if (settingOption.getEnumFloat()) {
-            float f1 = this.getOptionFloatValue(settingOption);
-            float f = settingOption.normalizeValue(f1);
-            return settingOption == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min")
+        if (option.getEnumFloat()) {
+            float f1 = this.getOptionFloatValue(option);
+            float f = option.normalizeValue(f1);
+            return option == Options.SENSITIVITY ? (f == 0.0F ? s + I18n.format("options.sensitivity.min")
                     : (f == 1.0F ? s + I18n.format("options.sensitivity.max")
                     : s + (int) (f * 200.0F) + "%"))
-                    : (settingOption == Options.DEADZONE
+                    : (option == Options.DEADZONE
                     ? s + String.format("%.2f", f1)
-                    : (settingOption == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min")
+                    : (option == Options.FOV ? (f1 == 70.0F ? s + I18n.format("options.fov.min")
                     : (f1 == 110.0F ? s + I18n.format("options.fov.max")
                     : s + (int) f1))
-                    : (settingOption == Options.FRAMERATE_LIMIT ? (f1 == settingOption.valueMax ? s + I18n.format("options.framerateLimit.max")
+                    : (option == Options.FRAMERATE_LIMIT ? (f1 == option.valueMax ? s + I18n.format("options.framerateLimit.max")
                     : s + (int) f1 + " fps")
-                    : (settingOption == Options.RENDER_CLOUDS ? (f1 == settingOption.valueMin ? s + I18n.format("options.cloudHeight.min")
+                    : (option == Options.RENDER_CLOUDS ? (f1 == option.valueMin ? s + I18n.format("options.cloudHeight.min")
                     : s + ((int) f1 + 128))
-                    : (settingOption == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min")
+                    : (option == Options.GAMMA ? (f == 0.0F ? s + I18n.format("options.gamma.min")
                     : (f == 1.0F ? s + I18n.format("options.gamma.max")
                     : s + "+" + (int) (f * 100.0F) + "%"))
-                    : (settingOption == Options.SATURATION ? s + (int) (f * 400.0F) + "%"
-                    : (settingOption == Options.CHAT_OPACITY ? s + (int) (f * 90.0F + 10.0F) + "%"
-                    : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
-                    : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
-                    : (settingOption == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px"
-                    : (settingOption == Options.RENDER_DISTANCE ? s + (int) f1 + " chunks"
-                    : (settingOption == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off")
+                    : (option == Options.SATURATION ? s + (int) (f * 400.0F) + "%"
+                    : (option == Options.CHAT_OPACITY ? s + (int) (f * 90.0F + 10.0F) + "%"
+                    : (option == Options.CHAT_HEIGHT_UNFOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
+                    : (option == Options.CHAT_HEIGHT_FOCUSED ? s + GuiNewChat.calculateChatboxHeight(f) + "px"
+                    : (option == Options.CHAT_WIDTH ? s + GuiNewChat.calculateChatboxWidth(f) + "px"
+                    : (option == Options.RENDER_DISTANCE ? s + (int) f1 + " chunks"
+                    : (option == Options.MIPMAP_LEVELS ? (f1 == 0.0F ? s + I18n.format("options.off")
                     : s + (int) f1) : (f == 0.0F ? s + I18n.format("options.off")
                     : s + (int) (f * 100.0F) + "%")))))))))))));
-        } else if (settingOption.getEnumBoolean()) {
-            boolean flag = this.getOptionOrdinalValue(settingOption);
+        } else if (option.getEnumBoolean()) {
+            boolean flag = this.getOptionOrdinalValue(option);
             return flag ? s + I18n.format("options.on") : s + I18n.format("options.off");
         } else if (settingOption == Options.GUI_SCALE) {
             return s + getTranslation(GUISCALES, this.guiScale);
