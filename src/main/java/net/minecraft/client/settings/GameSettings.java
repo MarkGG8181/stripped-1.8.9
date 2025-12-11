@@ -354,7 +354,7 @@ public class GameSettings {
                 mc.renderGlobal.setDisplayListEntitiesDirty();
                 break;
             case BLOCK_ALTERNATIVES:
-                allowBlockAlternatives = !allowBlockAlternatives;
+                this.allowBlockAlternatives = !this.allowBlockAlternatives;
                 mc.renderGlobal.loadRenderers();
                 break;
             default:
@@ -441,38 +441,39 @@ public class GameSettings {
         this.saveOptions();
     }
 
-    public float getOptionFloatValue(Options settingOption) {
-        return
-                settingOption == Options.FOV ? this.fovSetting
-                        : (settingOption == Options.GAMMA ? this.gammaSetting
-                        : (settingOption == Options.SATURATION ? this.saturation
-                        : (settingOption == Options.SENSITIVITY ? this.mouseSensitivity
-                        : (settingOption == Options.DEADZONE ? this.controllerDeadzone
-                        : (settingOption == Options.CHAT_OPACITY ? this.chatOpacity
-                        : (settingOption == Options.CHAT_HEIGHT_FOCUSED ? this.chatHeightFocused
-                        : (settingOption == Options.CHAT_HEIGHT_UNFOCUSED ? this.chatHeightUnfocused
-                        : (settingOption == Options.CHAT_SCALE ? this.chatScale
-                        : (settingOption == Options.CHAT_WIDTH ? this.chatWidth
-                        : (settingOption == Options.FRAMERATE_LIMIT ? (float) this.limitFramerate
-                        : (settingOption == Options.MIPMAP_LEVELS ? (float) this.mipmapLevels
-                        : (settingOption == Options.RENDER_DISTANCE ? (float) this.renderDistanceChunks
-                        : 0.0F))))))))))));
+    public float getOptionFloatValue(Options option) {
+        return switch (option) {
+            case FOV -> fovSetting;
+            case GAMMA -> gammaSetting;
+            case SATURATION -> saturation;
+            case SENSITIVITY -> mouseSensitivity;
+            case DEADZONE -> controllerDeadzone;
+            case CHAT_OPACITY -> chatOpacity;
+            case CHAT_HEIGHT_FOCUSED -> chatHeightFocused;
+            case CHAT_HEIGHT_UNFOCUSED -> chatHeightUnfocused;
+            case CHAT_SCALE -> chatScale;
+            case CHAT_WIDTH -> chatWidth;
+            case FRAMERATE_LIMIT -> (float) limitFramerate;
+            case MIPMAP_LEVELS -> (float) mipmapLevels;
+            case RENDER_DISTANCE -> (float) renderDistanceChunks;
+            default -> 0.0F;
+        }
     }
 
-    public boolean getOptionOrdinalValue(Options settingOption) {
-        return switch (settingOption) {
-            case VIEW_BOBBING -> this.viewBobbing;
-            case FBO_ENABLE -> this.fboEnable;
-            case SHOW_FRAMERATE -> this.showFramerate;
-            case RENDER_VIGNETTE -> this.renderVignette;
-            case RENDER_FOG -> this.renderFog;
-            case CHAT_COLOR -> this.chatColours;
-            case CHAT_LINKS -> this.chatLinks;
-            case CHAT_LINKS_PROMPT -> this.chatLinksPrompt;
-            case USE_FULLSCREEN -> this.fullScreen;
-            case ENABLE_VSYNC -> this.enableVsync;
-            case BLOCK_ALTERNATIVES -> this.allowBlockAlternatives;
-            case ENTITY_SHADOWS -> this.entityShadows;
+    public boolean getOptionOrdinalValue(Options option) {
+        return switch (option) {
+            case VIEW_BOBBING -> viewBobbing;
+            case FBO_ENABLE -> fboEnable;
+            case SHOW_FRAMERATE -> showFramerate;
+            case RENDER_VIGNETTE -> renderVignette;
+            case RENDER_FOG -> renderFog;
+            case CHAT_COLOR -> chatColours;
+            case CHAT_LINKS -> chatLinks;
+            case CHAT_LINKS_PROMPT -> chatLinksPrompt;
+            case USE_FULLSCREEN -> fullScreen;
+            case ENABLE_VSYNC -> enableVsync;
+            case BLOCK_ALTERNATIVES -> allowBlockAlternatives;
+            case ENTITY_SHADOWS -> entityShadows;
             default -> false;
         };
     }
@@ -949,7 +950,9 @@ public class GameSettings {
         SATURATION("options.saturation", true, false),
         RENDER_DISTANCE("options.renderDistance", true, false, 2.0F, 16.0F, 1.0F),
         VIEW_BOBBING("options.viewBobbing", false, true),
-        FRAMERATE_LIMIT("options.framerateLimit", true, false, 10.0F, 260.0F, 10.0F),
+        FRAMERATE_LIMIT("options.framerateLimit", true, false, 5.0F, 1000.0F, 5.0F),
+        IDLE_FRAMERATE_LIMIT("options.idleFramerateLimit", true, false, 5.0F, 1000.0F, 5.0F),
+        MAIN_MENU_FRAMERATE_LIMIT("options.mainMenuFramerateLimit", true, false, 5.0F, 1000.0F, 5.0F),
         FBO_ENABLE("options.fboEnable", false, true),
         SHOW_FRAMERATE("options.showFramerate", false, true),
         RENDER_VIGNETTE("options.renderVignette", false, true),

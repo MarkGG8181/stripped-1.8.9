@@ -1180,7 +1180,7 @@ public class Minecraft implements IThreadListener {
      */
     public void setIngameNotInFocus() {
         if (this.inGameHasFocus) {
-            KeyBinding.unPressAllKeys();
+            KeyBinding.unpressAllKeys();
             ControllerBinding.resetAll(this.gameSettings.controllerBindings);
             ControllerAxisBinding.resetAll(this.gameSettings.controllerAxisBindings);
             this.inGameHasFocus = false;
