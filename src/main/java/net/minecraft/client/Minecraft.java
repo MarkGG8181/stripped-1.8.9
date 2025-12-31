@@ -91,8 +91,7 @@ import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.shader.Framebuffer;
-import net.minecraft.controller.ControllerAxisBinding;
-import net.minecraft.controller.ControllerBinding;
+import net.minecraft.controller.bind.ControllerInputBinding;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
@@ -1181,8 +1180,7 @@ public class Minecraft implements IThreadListener {
     public void setIngameNotInFocus() {
         if (this.inGameHasFocus) {
             KeyBinding.unPressAllKeys();
-            ControllerBinding.resetAll(this.gameSettings.controllerBindings);
-            ControllerAxisBinding.resetAll(this.gameSettings.controllerAxisBindings);
+            Controller.resetBindings();
             this.inGameHasFocus = false;
             this.mouseHelper.ungrabMouseCursor();
         }
@@ -1699,15 +1697,15 @@ public class Minecraft implements IThreadListener {
             }
 
             if (this.thePlayer.isUsingItem()) {
-                if (!this.gameSettings.keyBindUseItem.isKeyDown() || this.gameSettings.controllerBindPlace.isDown()) {
+                if (!this.gameSettings.keyBindUseItem.isKeyDown() || this.gameSettings.controllerBindPlace.isPressed()) {
                     this.playerController.onStoppedUsingItem(this.thePlayer);
                 }
             } else {
-                if (this.gameSettings.keyBindAttack.isPressed() || this.gameSettings.controllerBindMine.isDown()) {
+                if (this.gameSettings.keyBindAttack.isPressed() || this.gameSettings.controllerBindMine.isPressed()) {
                     this.clickMouse();
                 }
 
-                if (this.gameSettings.keyBindUseItem.isPressed() || this.gameSettings.controllerBindPlace.isDown()) {
+                if (this.gameSettings.keyBindUseItem.isPressed() || this.gameSettings.controllerBindPlace.isPressed()) {
                     this.rightClickMouse();
                 }
 
@@ -1716,11 +1714,11 @@ public class Minecraft implements IThreadListener {
                 }
             }
 
-            if ((this.gameSettings.keyBindUseItem.isKeyDown() || this.gameSettings.controllerBindPlace.isDown()) && this.rightClickDelayTimer == 0 && !this.thePlayer.isUsingItem()) {
+            if ((this.gameSettings.keyBindUseItem.isKeyDown() || this.gameSettings.controllerBindPlace.isPressed()) && this.rightClickDelayTimer == 0 && !this.thePlayer.isUsingItem()) {
                 this.rightClickMouse();
             }
 
-            this.sendClickBlockToController(this.currentScreen == null && (this.gameSettings.keyBindAttack.isKeyDown() || this.gameSettings.controllerBindMine.isDown()) && this.inGameHasFocus);
+            this.sendClickBlockToController(this.currentScreen == null && (this.gameSettings.keyBindAttack.isKeyDown() || this.gameSettings.controllerBindMine.isPressed()) && this.inGameHasFocus);
         }
 
         if (this.theWorld != null) {
