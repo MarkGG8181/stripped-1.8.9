@@ -14,8 +14,7 @@ import net.minecraft.client.gui.options.data.GuiKeyBindingList;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.controller.ControllerAxisBinding;
-import net.minecraft.controller.ControllerBinding;
+import net.minecraft.controller.bind.ControllerInputBinding;
 
 public class GuiControlSettings extends GuiScreen {
     private static final GameSettings.Options[] optionsArr = new GameSettings.Options[]{GameSettings.Options.SENSITIVITY, GameSettings.Options.DEADZONE};
@@ -35,8 +34,7 @@ public class GuiControlSettings extends GuiScreen {
      * The ID of the button that has been pressed.
      */
     public KeyBinding buttonId;
-    public ControllerBinding controllerButtonId;
-    public ControllerAxisBinding controllerAxisBindingId;
+    public ControllerInputBinding controllerBindingId;
     public long time;
     private GuiKeyBindingList keyBindingList;
     private GuiButton buttonReset;
@@ -85,6 +83,14 @@ public class GuiControlSettings extends GuiScreen {
         } else if (button.id == 201) {
             for (KeyBinding keybinding : this.mc.gameSettings.keyBindings) {
                 keybinding.setKeyCode(keybinding.getKeyCodeDefault());
+            }
+
+            for (ControllerInputBinding binding : this.mc.gameSettings.controllerBindings) {
+                if (binding.isAxis()) {
+                    binding.setAxis(binding.getDefaultAxis());
+                } else {
+                    binding.setButton(binding.getDefaultButton());
+                }
             }
 
             KeyBinding.resetKeyBindingArrayAndHash();
@@ -140,14 +146,14 @@ public class GuiControlSettings extends GuiScreen {
 
     @Override
     protected void controllerButtonPressed(ControllerButton button) {
-        if (this.controllerButtonId != null) {
+        if (this.controllerBindingId != null) {
             if (button == ControllerButton.GUIDE) {
                 this.options.setOptionKeyBinding(this.buttonId, 0);
             } else {
-                this.options.setOptionControllerBinding(this.controllerButtonId, button);
+                this.options.setOptionControllerInputBinding(this.controllerBindingId, button);
             }
 
-            this.controllerButtonId = null;
+            this.controllerBindingId = null;
             this.time = Minecraft.getSystemTime();
         } else {
             super.controllerButtonPressed(button);
@@ -156,10 +162,10 @@ public class GuiControlSettings extends GuiScreen {
 
     @Override
     protected void controllerAxisDown(ControllerAxis axis) {
-        if (this.controllerAxisBindingId != null) {
-            this.options.setOptionControllerAxisBinding(this.controllerAxisBindingId, axis);
+        if (this.controllerBindingId != null) {
+            this.options.setOptionControllerInputBinding(this.controllerBindingId, axis);
 
-            this.controllerAxisBindingId = null;
+            this.controllerBindingId = null;
             this.time = Minecraft.getSystemTime();
         } else {
             super.controllerAxisDown(axis);
@@ -179,6 +185,20 @@ public class GuiControlSettings extends GuiScreen {
             if (keybinding.getKeyCode() != keybinding.getKeyCodeDefault()) {
                 flag = false;
                 break;
+            }
+        }
+
+        for (ControllerInputBinding keybinding : this.options.controllerBindings) {
+            if (keybinding.isAxis()) {
+                if (keybinding.getAxis() != keybinding.getDefaultAxis()) {
+                    flag = false;
+                    break;
+                }
+            } else {
+                if (keybinding.getButton() != keybinding.getDefaultButton()) {
+                    flag = false;
+                    break;
+                }
             }
         }
 
