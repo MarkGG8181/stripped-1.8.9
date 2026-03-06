@@ -57,7 +57,7 @@ public class KeyBinding implements Comparable<KeyBinding> {
         }
     }
 
-    public static void unpressAllKeys() {
+    public static void unPressAllKeys() {
         for (KeyBinding keybinding : keybindArray) {
             keybinding.unpressKey();
         }
