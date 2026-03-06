@@ -2,9 +2,6 @@ package net.minecraft.controller;
 
 import com.studiohartman.jamepad.*;
 import net.minecraft.client.Minecraft;
-import net.minecraft.controller.bind.ControllerInputBinding;
-import net.minecraft.controller.event.ControllerAxisEvent;
-import net.minecraft.controller.event.ControllerButtonEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,21 +23,21 @@ public class Controller {
     private static final Queue<ControllerAxisEvent> axisEventQueue = new ArrayDeque<>();
     private static ControllerAxisEvent currentAxisEvent = null;
 
-    private static ControllerInputBinding[] bindings = new ControllerInputBinding[0];
-
-    private static long lastReconnectAttempt = 0;
-    private static final long RECONNECT_INTERVAL_MS = 1000;
+    private static ControllerBinding[] bindings = new ControllerBinding[0];
+    private static ControllerAxisBinding[] axisBindings = new ControllerAxisBinding[0];
 
     public static void init() {
         if (initialized) return;
+        controllers.initSDLGamepad();
+        controller = controllers.getControllerIndex(0);
+        initialized = true;
 
-        try {
-            controllers.initSDLGamepad();
-            initialized = true;
-            logger.info("Jamepad initialized (waiting for controller connection)");
-        } catch (Exception e) {
-            logger.error("Failed to init Jamepad", e);
-            initialized = false;
+        for (ControllerButton button : ControllerButton.values()) {
+            lastButtonStates.put(button, false);
+        }
+
+        for (ControllerAxis axis : ControllerAxis.values()) {
+            lastAxisStates.put(axis, 0f);
         }
     }
 
@@ -49,34 +46,21 @@ public class Controller {
 
         controllers.update();
 
-        if (controller == null || !controller.isConnected()) {
-            long now = System.currentTimeMillis();
-            if (now - lastReconnectAttempt > RECONNECT_INTERVAL_MS) {
+        if (controller != null && controller.isConnected()) {
+            for (ControllerButton button : ControllerButton.values()) {
+                boolean wasDown = lastButtonStates.getOrDefault(button, false);
+                boolean isDown;
+
                 try {
-                    tryReconnect();
+                    isDown = controller.isButtonPressed(button);
                 } catch (ControllerUnpluggedException e) {
-                    logger.warn(e);
+                    isDown = false;
                 }
-                lastReconnectAttempt = now;
-            }
-            return;
-        }
 
-        for (ControllerButton button : ControllerButton.values()) {
-            boolean wasDown = lastButtonStates.getOrDefault(button, false);
-            boolean isDown;
-
-            try {
-                isDown = controller.isButtonPressed(button);
-            } catch (ControllerUnpluggedException e) {
-                logger.warn("Controller unplugged mid-frame, will retry...");
-                controller = null;
-                return;
-            }
-
-            if (isDown != wasDown) {
-                eventQueue.add(new ControllerButtonEvent(button, isDown));
-                lastButtonStates.put(button, isDown);
+                if (isDown != wasDown) {
+                    eventQueue.add(new ControllerButtonEvent(button, isDown));
+                    lastButtonStates.put(button, isDown);
+                }
             }
         }
 
@@ -103,6 +87,7 @@ public class Controller {
         }
 
         updateBindings();
+        updateAxisBindings();
     }
 
     public static void destroy() {
@@ -117,7 +102,7 @@ public class Controller {
     public static boolean isButtonDown(ControllerButton button) {
         try {
             return controller.isButtonPressed(button);
-        } catch (Exception e) {
+        } catch (ControllerUnpluggedException e) {
             return false;
         }
     }
@@ -125,9 +110,13 @@ public class Controller {
     public static float getAxis(ControllerAxis axis) {
         try {
             return controller.getAxisState(axis);
-        } catch (Exception e) {
+        } catch (ControllerUnpluggedException e) {
             return 0f;
         }
+    }
+
+    public static void shutdown() {
+        controllers.quitSDLGamepad();
     }
 
     /**
@@ -177,49 +166,25 @@ public class Controller {
         return currentAxisEvent != null ? currentAxisEvent.value() : 0f;
     }
 
-    public static void registerBindings(ControllerInputBinding[] newBindings) {
+    public static void registerBindings(ControllerBinding[] newBindings) {
         bindings = newBindings;
-    }
-
-    public static void resetBindings() {
-        if (bindings == null || bindings.length == 0) return;
-        for (ControllerInputBinding b : bindings) {
-            b.reset();
-        }
     }
 
     public static void updateBindings() {
         if (bindings == null || bindings.length == 0) return;
-        for (ControllerInputBinding b : bindings) {
+        for (ControllerBinding b : bindings) {
             b.update();
         }
     }
 
-    private static void tryReconnect() throws ControllerUnpluggedException {
-        if (!initialized) return;
+    public static void registerAxisBindings(ControllerAxisBinding[] newBindings) {
+        axisBindings = newBindings;
+    }
 
-        controllers.update();
-        int count = controllers.getNumControllers();
-
-        if (count == 0) {
-            if (controller != null) {
-                logger.info("Controller disconnected.");
-                controller = null;
-                resetBindings();
-            }
-            return;
-        }
-
-        for (int i = 0; i < count; i++) {
-            ControllerIndex idx = controllers.getControllerIndex(i);
-            if (idx != null && idx.isConnected()) {
-                controller = idx;
-                logger.info("Controller connected: {}::{}", controller.getName(), controller.getIndex());
-                try {
-                    controller.doVibration(0.5f, 0.5f, 300);
-                } catch (Exception ignored) {}
-                return;
-            }
+    public static void updateAxisBindings() {
+        if (axisBindings == null || axisBindings.length == 0) return;
+        for (ControllerAxisBinding a : axisBindings) {
+            a.update();
         }
     }
 }

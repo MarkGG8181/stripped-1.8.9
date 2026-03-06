@@ -1,4 +1,4 @@
-package net.minecraft.controller.event;
+package net.minecraft.controller;
 
 import com.studiohartman.jamepad.ControllerButton;
 
